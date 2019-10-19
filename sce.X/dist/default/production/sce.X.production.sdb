@@ -1,0 +1,383 @@
+[p GLOBOPT AUTOSTATIC IEEE_DBL IEEE_FLT PIC14 PIC14E ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip 16F18875 ]
+[d frameptr 6 ]
+"10 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\sprcadd.c
+[v ___fladd __fladd `(d  1 e 4 0 ]
+"4 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\Umul8_16.c
+[v __Umul8_16 _Umul8_16 `(ui  1 e 2 0 ]
+"6 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\pic\__eeprom.c
+[v ___eecpymem __eecpymem `(v  1 e 1 0 ]
+"39
+[v ___memcpyee __memcpyee `(v  1 e 1 0 ]
+"46 C:\Users\andre\MPLABXProjects\sce.X\main.c
+[v _handler_clock_hms handler_clock_hms `(v  1 e 1 0 ]
+"61
+[v _copyto_EEPROM copyto_EEPROM `(v  1 e 1 0 ]
+"65
+[v _main main `(v  1 e 1 0 ]
+"52 C:\Users\andre\MPLABXProjects\sce.X\mcc_generated_files/interrupt_manager.c
+[v _INTERRUPT_InterruptManager INTERRUPT_InterruptManager `II(v  1 e 1 0 ]
+"50 C:\Users\andre\MPLABXProjects\sce.X\mcc_generated_files/mcc.c
+[v _SYSTEM_Initialize SYSTEM_Initialize `(v  1 e 1 0 ]
+"59
+[v _OSCILLATOR_Initialize OSCILLATOR_Initialize `(v  1 e 1 0 ]
+"73
+[v _PMD_Initialize PMD_Initialize `(v  1 e 1 0 ]
+"55 C:\Users\andre\MPLABXProjects\sce.X\mcc_generated_files/pin_manager.c
+[v _PIN_MANAGER_Initialize PIN_MANAGER_Initialize `(v  1 e 1 0 ]
+"61 C:\Users\andre\MPLABXProjects\sce.X\mcc_generated_files/tmr0.c
+[v _TMR0_Initialize TMR0_Initialize `(v  1 e 1 0 ]
+"121
+[v _TMR0_ISR TMR0_ISR `(v  1 e 1 0 ]
+"134
+[v _TMR0_SetInterruptHandler TMR0_SetInterruptHandler `(v  1 e 1 0 ]
+"138
+[v _TMR0_DefaultInterruptHandler TMR0_DefaultInterruptHandler `(v  1 e 1 0 ]
+"64 C:\Users\andre\MPLABXProjects\sce.X\mcc_generated_files/tmr1.c
+[v _TMR1_Initialize TMR1_Initialize `(v  1 e 1 0 ]
+"99
+[v _TMR1_StartTimer TMR1_StartTimer `(v  1 e 1 0 ]
+"127
+[v _TMR1_WriteTimer TMR1_WriteTimer `(v  1 e 1 0 ]
+"164
+[v _TMR1_ISR TMR1_ISR `(v  1 e 1 0 ]
+"178
+[v _TMR1_SetInterruptHandler TMR1_SetInterruptHandler `(v  1 e 1 0 ]
+"182
+[v _TMR1_DefaultInterruptHandler TMR1_DefaultInterruptHandler `(v  1 e 1 0 ]
+[s S61 . 1 `uc 1 INTEDG 1 0 :1:0 
+`uc 1 . 1 0 :5:1 
+`uc 1 PEIE 1 0 :1:6 
+`uc 1 GIE 1 0 :1:7 
+]
+"364 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h
+[u S66 . 1 `S61 1 . 1 0 ]
+[v _INTCONbits INTCONbits `VES66  1 e 1 @11 ]
+"670
+[v _TRISA TRISA `VEuc  1 e 1 @17 ]
+"732
+[v _TRISB TRISB `VEuc  1 e 1 @18 ]
+"794
+[v _TRISC TRISC `VEuc  1 e 1 @19 ]
+"856
+[v _TRISD TRISD `VEuc  1 e 1 @20 ]
+"918
+[v _TRISE TRISE `VEuc  1 e 1 @21 ]
+"950
+[v _LATA LATA `VEuc  1 e 1 @22 ]
+[s S22 . 1 `uc 1 LATA0 1 0 :1:0 
+`uc 1 LATA1 1 0 :1:1 
+`uc 1 LATA2 1 0 :1:2 
+`uc 1 LATA3 1 0 :1:3 
+`uc 1 LATA4 1 0 :1:4 
+`uc 1 LATA5 1 0 :1:5 
+`uc 1 LATA6 1 0 :1:6 
+`uc 1 LATA7 1 0 :1:7 
+]
+"967
+[u S31 . 1 `S22 1 . 1 0 ]
+[v _LATAbits LATAbits `VES31  1 e 1 @22 ]
+"1012
+[v _LATB LATB `VEuc  1 e 1 @23 ]
+"1074
+[v _LATC LATC `VEuc  1 e 1 @24 ]
+"1136
+[v _LATD LATD `VEuc  1 e 1 @25 ]
+"1198
+[v _LATE LATE `VEuc  1 e 1 @26 ]
+"1230
+[v _TMR0L TMR0L `VEuc  1 e 1 @28 ]
+"1368
+[v _TMR0H TMR0H `VEuc  1 e 1 @29 ]
+"1622
+[v _T0CON0 T0CON0 `VEuc  1 e 1 @30 ]
+[s S460 . 1 `uc 1 T0OUTPS 1 0 :4:0 
+`uc 1 T016BIT 1 0 :1:4 
+`uc 1 T0OUT 1 0 :1:5 
+`uc 1 . 1 0 :1:6 
+`uc 1 T0EN 1 0 :1:7 
+]
+"1642
+[s S466 . 1 `uc 1 T0OUTPS0 1 0 :1:0 
+`uc 1 T0OUTPS1 1 0 :1:1 
+`uc 1 T0OUTPS2 1 0 :1:2 
+`uc 1 T0OUTPS3 1 0 :1:3 
+]
+[u S471 . 1 `S460 1 . 1 0 `S466 1 . 1 0 ]
+[v _T0CON0bits T0CON0bits `VES471  1 e 1 @30 ]
+"1687
+[v _T0CON1 T0CON1 `VEuc  1 e 1 @31 ]
+"6508
+[v _TMR1L TMR1L `VEuc  1 e 1 @524 ]
+"6678
+[v _TMR1H TMR1H `VEuc  1 e 1 @525 ]
+"6798
+[v _T1CON T1CON `VEuc  1 e 1 @526 ]
+[s S144 . 1 `uc 1 ON 1 0 :1:0 
+`uc 1 RD16 1 0 :1:1 
+`uc 1 nSYNC 1 0 :1:2 
+`uc 1 . 1 0 :1:3 
+`uc 1 CKPS 1 0 :2:4 
+]
+"6829
+[s S150 . 1 `uc 1 TMR1ON 1 0 :1:0 
+`uc 1 T1RD16 1 0 :1:1 
+`uc 1 nT1SYNC 1 0 :1:2 
+`uc 1 . 1 0 :1:3 
+`uc 1 T1CKPS0 1 0 :1:4 
+`uc 1 T1CKPS1 1 0 :1:5 
+]
+[s S157 . 1 `uc 1 . 1 0 :4:0 
+`uc 1 CKPS0 1 0 :1:4 
+`uc 1 CKPS1 1 0 :1:5 
+]
+[s S161 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 RD161 1 0 :1:1 
+]
+[u S164 . 1 `S144 1 . 1 0 `S150 1 . 1 0 `S157 1 . 1 0 `S161 1 . 1 0 ]
+[v _T1CONbits T1CONbits `VES164  1 e 1 @526 ]
+"6894
+[v _T1GCON T1GCON `VEuc  1 e 1 @527 ]
+[s S190 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 GVAL 1 0 :1:2 
+`uc 1 GGO_nDONE 1 0 :1:3 
+`uc 1 GSPM 1 0 :1:4 
+`uc 1 GTM 1 0 :1:5 
+`uc 1 GPOL 1 0 :1:6 
+`uc 1 GE 1 0 :1:7 
+]
+"6928
+[s S198 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 T1GVAL 1 0 :1:2 
+`uc 1 T1GGO_nDONE 1 0 :1:3 
+`uc 1 T1GSPM 1 0 :1:4 
+`uc 1 T1GTM 1 0 :1:5 
+`uc 1 T1GPOL 1 0 :1:6 
+`uc 1 T1GE 1 0 :1:7 
+]
+[s S206 . 1 `uc 1 . 1 0 :3:0 
+`uc 1 T1GGO 1 0 :1:3 
+]
+[u S209 . 1 `S190 1 . 1 0 `S198 1 . 1 0 `S206 1 . 1 0 ]
+[v _T1GCONbits T1GCONbits `VES209  1 e 1 @527 ]
+"7090
+[v _T1GATE T1GATE `VEuc  1 e 1 @528 ]
+"7256
+[v _T1CLK T1CLK `VEuc  1 e 1 @529 ]
+[s S300 . 1 `uc 1 INTF 1 0 :1:0 
+`uc 1 . 1 0 :3:1 
+`uc 1 IOCIF 1 0 :1:4 
+`uc 1 TMR0IF 1 0 :1:5 
+]
+"21425
+[u S305 . 1 `S300 1 . 1 0 ]
+[v _PIR0bits PIR0bits `VES305  1 e 1 @1804 ]
+[s S103 . 1 `uc 1 TMR1IF 1 0 :1:0 
+`uc 1 TMR2IF 1 0 :1:1 
+`uc 1 TMR3IF 1 0 :1:2 
+`uc 1 TMR4IF 1 0 :1:3 
+`uc 1 TMR5IF 1 0 :1:4 
+`uc 1 TMR6IF 1 0 :1:5 
+]
+"21582
+[u S110 . 1 `S103 1 . 1 0 ]
+[v _PIR4bits PIR4bits `VES110  1 e 1 @1808 ]
+[s S287 . 1 `uc 1 INTE 1 0 :1:0 
+`uc 1 . 1 0 :3:1 
+`uc 1 IOCIE 1 0 :1:4 
+`uc 1 TMR0IE 1 0 :1:5 
+]
+"21847
+[u S292 . 1 `S287 1 . 1 0 ]
+[v _PIE0bits PIE0bits `VES292  1 e 1 @1814 ]
+[s S120 . 1 `uc 1 TMR1IE 1 0 :1:0 
+`uc 1 TMR2IE 1 0 :1:1 
+`uc 1 TMR3IE 1 0 :1:2 
+`uc 1 TMR4IE 1 0 :1:3 
+`uc 1 TMR5IE 1 0 :1:4 
+`uc 1 TMR6IE 1 0 :1:5 
+]
+"22004
+[u S127 . 1 `S120 1 . 1 0 ]
+[v _PIE4bits PIE4bits `VES127  1 e 1 @1818 ]
+"22256
+[v _PMD0 PMD0 `VEuc  1 e 1 @1942 ]
+"22313
+[v _PMD1 PMD1 `VEuc  1 e 1 @1943 ]
+"22384
+[v _PMD2 PMD2 `VEuc  1 e 1 @1944 ]
+"22429
+[v _PMD3 PMD3 `VEuc  1 e 1 @1945 ]
+"22485
+[v _PMD4 PMD4 `VEuc  1 e 1 @1946 ]
+"22536
+[v _PMD5 PMD5 `VEuc  1 e 1 @1947 ]
+"23607
+[v _OSCCON1 OSCCON1 `VEuc  1 e 1 @2189 ]
+"23747
+[v _OSCCON3 OSCCON3 `VEuc  1 e 1 @2191 ]
+"23844
+[v _OSCEN OSCEN `VEuc  1 e 1 @2193 ]
+"23895
+[v _OSCTUNE OSCTUNE `VEuc  1 e 1 @2194 ]
+"23953
+[v _OSCFRQ OSCFRQ `VEuc  1 e 1 @2195 ]
+"33838
+[v _ANSELA ANSELA `VEuc  1 e 1 @3896 ]
+"33900
+[v _WPUA WPUA `VEuc  1 e 1 @3897 ]
+"33962
+[v _ODCONA ODCONA `VEuc  1 e 1 @3898 ]
+"34024
+[v _SLRCONA SLRCONA `VEuc  1 e 1 @3899 ]
+"34086
+[v _INLVLA INLVLA `VEuc  1 e 1 @3900 ]
+"34458
+[v _ANSELB ANSELB `VEuc  1 e 1 @3907 ]
+"34520
+[v _WPUB WPUB `VEuc  1 e 1 @3908 ]
+"34582
+[v _ODCONB ODCONB `VEuc  1 e 1 @3909 ]
+"34644
+[v _SLRCONB SLRCONB `VEuc  1 e 1 @3910 ]
+"34706
+[v _INLVLB INLVLB `VEuc  1 e 1 @3911 ]
+"35078
+[v _ANSELC ANSELC `VEuc  1 e 1 @3918 ]
+"35140
+[v _WPUC WPUC `VEuc  1 e 1 @3919 ]
+"35202
+[v _ODCONC ODCONC `VEuc  1 e 1 @3920 ]
+"35264
+[v _SLRCONC SLRCONC `VEuc  1 e 1 @3921 ]
+"35326
+[v _INLVLC INLVLC `VEuc  1 e 1 @3922 ]
+"35698
+[v _ANSELD ANSELD `VEuc  1 e 1 @3929 ]
+"35760
+[v _WPUD WPUD `VEuc  1 e 1 @3930 ]
+"35822
+[v _ODCOND ODCOND `VEuc  1 e 1 @3931 ]
+"35884
+[v _SLRCOND SLRCOND `VEuc  1 e 1 @3932 ]
+"35946
+[v _INLVLD INLVLD `VEuc  1 e 1 @3933 ]
+"36132
+[v _ANSELE ANSELE `VEuc  1 e 1 @3940 ]
+"36164
+[v _WPUE WPUE `VEuc  1 e 1 @3941 ]
+"36202
+[v _ODCONE ODCONE `VEuc  1 e 1 @3942 ]
+"36234
+[v _SLRCONE SLRCONE `VEuc  1 e 1 @3943 ]
+"36266
+[v _INLVLE INLVLE `VEuc  1 e 1 @3944 ]
+"38 C:\Users\andre\MPLABXProjects\sce.X\main.c
+[v _value value `VEi  1 e 2 0 ]
+"42
+[v _clkh clkh `VEuc  1 e 1 0 ]
+"43
+[v _clkm clkm `VEuc  1 e 1 0 ]
+"44
+[v _seg seg `VEuc  1 e 1 0 ]
+"59 C:\Users\andre\MPLABXProjects\sce.X\mcc_generated_files/tmr0.c
+[v _TMR0_InterruptHandler TMR0_InterruptHandler `*.37(v  1 e 2 0 ]
+"57 C:\Users\andre\MPLABXProjects\sce.X\mcc_generated_files/tmr1.c
+[v _timer1ReloadVal timer1ReloadVal `VEus  1 e 2 0 ]
+"58
+[v _TMR1_InterruptHandler TMR1_InterruptHandler `*.37(v  1 e 2 0 ]
+"65 C:\Users\andre\MPLABXProjects\sce.X\main.c
+[v _main main `(v  1 e 1 0 ]
+{
+"94
+} 0
+"99 C:\Users\andre\MPLABXProjects\sce.X\mcc_generated_files/tmr1.c
+[v _TMR1_StartTimer TMR1_StartTimer `(v  1 e 1 0 ]
+{
+"103
+} 0
+"50 C:\Users\andre\MPLABXProjects\sce.X\mcc_generated_files/mcc.c
+[v _SYSTEM_Initialize SYSTEM_Initialize `(v  1 e 1 0 ]
+{
+"57
+} 0
+"64 C:\Users\andre\MPLABXProjects\sce.X\mcc_generated_files/tmr1.c
+[v _TMR1_Initialize TMR1_Initialize `(v  1 e 1 0 ]
+{
+"97
+} 0
+"178
+[v _TMR1_SetInterruptHandler TMR1_SetInterruptHandler `(v  1 e 1 0 ]
+{
+[v TMR1_SetInterruptHandler@InterruptHandler InterruptHandler `*.37(v  1 p 2 0 ]
+"180
+} 0
+"61 C:\Users\andre\MPLABXProjects\sce.X\mcc_generated_files/tmr0.c
+[v _TMR0_Initialize TMR0_Initialize `(v  1 e 1 0 ]
+{
+"85
+} 0
+"134
+[v _TMR0_SetInterruptHandler TMR0_SetInterruptHandler `(v  1 e 1 0 ]
+{
+[v TMR0_SetInterruptHandler@InterruptHandler InterruptHandler `*.37(v  1 p 2 0 ]
+"136
+} 0
+"73 C:\Users\andre\MPLABXProjects\sce.X\mcc_generated_files/mcc.c
+[v _PMD_Initialize PMD_Initialize `(v  1 e 1 0 ]
+{
+"87
+} 0
+"55 C:\Users\andre\MPLABXProjects\sce.X\mcc_generated_files/pin_manager.c
+[v _PIN_MANAGER_Initialize PIN_MANAGER_Initialize `(v  1 e 1 0 ]
+{
+"126
+} 0
+"59 C:\Users\andre\MPLABXProjects\sce.X\mcc_generated_files/mcc.c
+[v _OSCILLATOR_Initialize OSCILLATOR_Initialize `(v  1 e 1 0 ]
+{
+"71
+} 0
+"52 C:\Users\andre\MPLABXProjects\sce.X\mcc_generated_files/interrupt_manager.c
+[v _INTERRUPT_InterruptManager INTERRUPT_InterruptManager `II(v  1 e 1 0 ]
+{
+"74
+} 0
+"164 C:\Users\andre\MPLABXProjects\sce.X\mcc_generated_files/tmr1.c
+[v _TMR1_ISR TMR1_ISR `(v  1 e 1 0 ]
+{
+"175
+} 0
+"182
+[v _TMR1_DefaultInterruptHandler TMR1_DefaultInterruptHandler `(v  1 e 1 0 ]
+{
+"185
+} 0
+"46 C:\Users\andre\MPLABXProjects\sce.X\main.c
+[v _handler_clock_hms handler_clock_hms `(v  1 e 1 0 ]
+{
+"59
+} 0
+"61
+[v _copyto_EEPROM copyto_EEPROM `(v  1 e 1 0 ]
+{
+"63
+} 0
+"127 C:\Users\andre\MPLABXProjects\sce.X\mcc_generated_files/tmr1.c
+[v _TMR1_WriteTimer TMR1_WriteTimer `(v  1 e 1 0 ]
+{
+[v TMR1_WriteTimer@timerVal timerVal `us  1 p 2 0 ]
+"147
+} 0
+"121 C:\Users\andre\MPLABXProjects\sce.X\mcc_generated_files/tmr0.c
+[v _TMR0_ISR TMR0_ISR `(v  1 e 1 0 ]
+{
+"131
+} 0
+"138
+[v _TMR0_DefaultInterruptHandler TMR0_DefaultInterruptHandler `(v  1 e 1 0 ]
+{
+"141
+} 0
