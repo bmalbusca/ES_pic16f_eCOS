@@ -38,14 +38,45 @@
 volatile int value = 0;
 void handler_clock_hms(void);
 void copyto_EEPROM(void);
-
+void acquire_temp_sensor(void);
+void acquire_lum_sensor(void);
+        
 volatile unsigned char clkh = CLKH;
 volatile unsigned char clkm = CLKM;
 volatile unsigned char seg;
 
+void main(void)
+{
+    // initialize the device
+    SYSTEM_Initialize();
+    //PIE4 |= (1<< TMR1IE);
+    TMR1_SetInterruptHandler(handler_clock_hms);
+    //TMR1_StartTimer();
+    // When using interrupts, you need to set the Global and Peripheral Interrupt Enable bits
+    // Use the following macros to:
+
+    // Enable the Global Interrupts
+    INTERRUPT_GlobalInterruptEnable();
+
+    // Enable the Peripheral Interrupts
+    INTERRUPT_PeripheralInterruptEnable();
+    
+    // Disable the Global Interrupts
+    //INTERRUPT_GlobalInterruptDisable();
+
+    // Disable the Peripheral Interrupts
+    //INTERRUPT_PeripheralInterruptDisable();
+    
+    while (1)
+    {
+        acquire_temp_sensor();
+        acquire_lum_sensor();
+    }
+}
+
 void handler_clock_hms(void){
     IO_RA7_Toggle();
-    
+    //PIE4 |= (1<< TMR1IE);
     seg++;
     if(seg >= 60) {
         clkm++;
@@ -62,36 +93,16 @@ void copyto_EEPROM(void) {
     
 }
 
-void main(void)
-{
-    // initialize the device
-    SYSTEM_Initialize();
-    TMR1_SetInterruptHandler(handler_clock_hms);
-    TMR1_StartTimer();
-    // When using interrupts, you need to set the Global and Peripheral Interrupt Enable bits
-    // Use the following macros to:
-
-    // Enable the Global Interrupts
-    INTERRUPT_GlobalInterruptEnable();
-
-    // Enable the Peripheral Interrupts
-    INTERRUPT_PeripheralInterruptEnable();
+void acquire_temp_sensor() {
     
-    // Disable the Global Interrupts
-    //INTERRUPT_GlobalInterruptDisable();
-
-    // Disable the Peripheral Interrupts
-    //INTERRUPT_PeripheralInterruptDisable();
     
-    // PIE4bits.TMR1IE = 0 UI run
     
-    while (1)
-    {
-        SLEEP();
-        IO_RA4_Toggle();
-        
-    }
 }
-/**
- End of File
-*/
+
+void OpenI2C(  unsigned char sync_mode,  unsigned char slew );
+
+signed char WriteI2C( unsigned char data_out );
+
+signed char putsI2C(  unsigned char *wrptr );
+
+unsigned char ReadI2C( void );

@@ -31,7 +31,7 @@
 
 
 #pragma config WDTCPS = WDTCPS_14
-#pragma config WDTE = NSLEEP
+#pragma config WDTE = OFF
 #pragma config WDTCWS = WDTCWS_7
 #pragma config WDTCCS = HFINTOSC
 

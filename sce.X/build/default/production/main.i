@@ -20963,17 +20963,7 @@ volatile unsigned char seg;
 
 void handler_clock_hms(void){
     do { LATAbits.LATA7 = ~LATAbits.LATA7; } while(0);
-
-    seg++;
-    if(seg >= 60) {
-        clkm++;
-        seg = 0;
-        if(clkm >= 60) {
-            clkh++;
-            clkm = 0;
-        }
-    }
-    copyto_EEPROM();
+# 60 "main.c"
 }
 
 void copyto_EEPROM(void) {
@@ -20984,8 +20974,9 @@ void main(void)
 {
 
     SYSTEM_Initialize();
+
     TMR1_SetInterruptHandler(handler_clock_hms);
-    TMR1_StartTimer();
+
 
 
 
@@ -20994,11 +20985,12 @@ void main(void)
 
 
     (INTCONbits.PEIE = 1);
-# 88 "main.c"
+# 89 "main.c"
+    do { LATAbits.LATA7 = 1; } while(0);
+    do { LATAbits.LATA4 = 1; } while(0);
     while (1)
     {
-        __asm("sleep");
         do { LATAbits.LATA4 = ~LATAbits.LATA4; } while(0);
-
+        _delay((unsigned long)((1000)*(1000000/4000.0)));
     }
 }
