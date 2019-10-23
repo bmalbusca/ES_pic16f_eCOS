@@ -89,6 +89,15 @@ void main(void)
     }
 }
 
+void read_ring5(unsigned char index)
+{
+    unsigned char c;
+    if(index <= nreg_pt) c = DATAEE_ReadByte(ADDR_RING + nreg_pt - index);
+    else c = '\0';
+    
+    /* falta so fazer return de um array de 5 bytes */
+}
+
 void push_ring5(unsigned char byte0, unsigned char byte1, unsigned char byte2, unsigned char byte3, unsigned char byte4)
 {
     if(nreg_pt >= NREG) nreg_pt = 0;
