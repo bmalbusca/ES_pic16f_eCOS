@@ -1,43 +1,48 @@
-#define NREG    30
-#define PMON    5
-#define TALA    3
-#define ALAT    25
-#define ALAL    2
-#define ALAF    0
-#define CLKH    0
-#define CLKM    0
+#define NREG        30          // Ring Buffer Size --  49 will fill adresses until 0x70F4
+#define PMON        5
+#define TALA        3
+#define ALAT        25
+#define ALAL        2
+#define ALAF        0
+#define CLKH        0
+#define CLKM        0
+#define ADDR_RING   0x7000      // EEPROM ring buffer head
+#define ADDR_RCVR   0x70F4      // EEPROM recovery values
 
-#define EEAddr  0x7000        // EEPROM starting address
-
+/* EEPROM adress space
+ * 0x7000 to 0x70FF     
+ * 256B -- 256 x 1B  
+ */
 
 #include <xc.h>
 #include "mcc_generated_files/mcc.h"
 #include "I2C/i2c.h"
 
 void update_clock(void);
-void moveto_EEPROM(void);
-void read_EEPROM(void);
+void acquire_sensor_lum(void);
+unsigned char tsttc (void);
+void push_ring5(unsigned char data);
 
-/*Handlers*/
-void h_clock(void){
+/*Interrupt Handlers*/
+void h_clock(void) {
     IO_RA7_Toggle(); // Clock Activity (UI)
     update_clock();
-    moveto_EEPROM();
 }
-/**/
-
-/*Main loop*/
-unsigned char tsttc (void);
-void acquire_sensor_lum(void);
-/**/
 
 volatile unsigned char clkh = CLKH;
 volatile unsigned char clkm = CLKM;
-volatile unsigned char seg = 0;
-bit configuration_mode = 0;
+volatile unsigned char seg;
+volatile bit configuration_mode;
+volatile unsigned char nreg_pt;
 
 void main(void)
 {
+    clkh = CLKH;
+    clkm = CLKM;
+    seg = 0;
+    configuration_mode = 0;
+    nreg_pt = 0;
+    
     bit running = 1;
     unsigned char temp, lum;
     unsigned char last = 0;
@@ -56,28 +61,43 @@ void main(void)
        
     while (running)
     {
-        if(!last) last = seg;
-        else if((seg - last >= PMON) || (seg - last <= -PMON)) {
+        if(PMON) {
+            if(!last) last = seg;
+            else if((seg - last >= PMON) || (seg - last <= -PMON)) {
 
-            /* Temperature Sensor Aquisition */
-            NOP();
-            temp = tsttc();     		
-            NOP();
-        
-            /* Light Sensor Aquisition */
-            acquire_sensor_lum();
-            
-            /* Write Results */
-            if(temp != read_EEPROM() || lum != read_EEPROM()) {
-                DATAEE_WriteByte(EEAddr, clkh);
+                /* Temperature Sensor Aquisition */
+                NOP();
+                temp = tsttc();     		
+                NOP();
+
+                /* Light Sensor Aquisition */
+                acquire_sensor_lum();
+
+                /* Write If Changed */
+                if(temp != DATAEE_ReadByte(ADDR_RING + 3) || lum != DATAEE_ReadByte(ADDR_RING + 4))
+                    push_ring5(clkh, clkm, seg, temp, lum);
+                
+                /* Write Recovery Parameters */
+                
+                last = 0;
             }
-            
-            last = 0;
         }
+        
         if(configuration_mode) {
-            /*User UI -- COnfig Mode*/
+            /*User UI -- Config Mode*/
         }
     }
+}
+
+void push_ring5(unsigned char byte0, unsigned char byte1, unsigned char byte2, unsigned char byte3, unsigned char byte4)
+{
+    if(nreg_pt >= NREG) nreg_pt = 0;
+    else nreg_pt ++;
+    DATAEE_WriteByte(ADDR_RING + nreg_pt + 0, byte0);
+    DATAEE_WriteByte(ADDR_RING + nreg_pt + 1, byte1);
+    DATAEE_WriteByte(ADDR_RING + nreg_pt + 2, byte2);
+    DATAEE_WriteByte(ADDR_RING + nreg_pt + 3, byte3);
+    DATAEE_WriteByte(ADDR_RING + nreg_pt + 4, byte4);
 }
 
 void update_clock(void) {
@@ -119,12 +139,4 @@ do{
 	StopI2C();
 
 	return value;
-}
-
-void moveto_EEPROM(void) {
-    
-}
-
-void read_EEPROM(void) {
-    
 }
