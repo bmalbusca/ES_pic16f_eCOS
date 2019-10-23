@@ -1,4 +1,4 @@
-# 1 "main.c"
+# 1 "I2C/i2c.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 288 "<built-in>" 3
@@ -6,8 +6,7 @@
 # 1 "<built-in>" 2
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "main.c" 2
-# 10 "main.c"
+# 1 "I2C/i2c.c" 2
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\xc.h" 1 3
 # 18 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -20791,170 +20790,9 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 27 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\xc.h" 2 3
-# 10 "main.c" 2
-
-# 1 "./mcc_generated_files/mcc.h" 1
-# 50 "./mcc_generated_files/mcc.h"
-# 1 "./mcc_generated_files/device_config.h" 1
-# 50 "./mcc_generated_files/mcc.h" 2
-
-# 1 "./mcc_generated_files/pin_manager.h" 1
-# 118 "./mcc_generated_files/pin_manager.h"
-void PIN_MANAGER_Initialize (void);
-# 130 "./mcc_generated_files/pin_manager.h"
-void PIN_MANAGER_IOC(void);
-# 51 "./mcc_generated_files/mcc.h" 2
-
-# 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\stdint.h" 1 3
-# 22 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\stdint.h" 3
-# 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\bits/alltypes.h" 1 3
-# 127 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\bits/alltypes.h" 3
-typedef unsigned long uintptr_t;
-# 142 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\bits/alltypes.h" 3
-typedef long intptr_t;
-# 158 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\bits/alltypes.h" 3
-typedef signed char int8_t;
-
-
-
-
-typedef short int16_t;
-# 173 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\bits/alltypes.h" 3
-typedef long int32_t;
-
-
-
-
-
-typedef long long int64_t;
-# 188 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\bits/alltypes.h" 3
-typedef long long intmax_t;
-
-
-
-
-
-typedef unsigned char uint8_t;
-
-
-
-
-typedef unsigned short uint16_t;
-# 209 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\bits/alltypes.h" 3
-typedef unsigned long uint32_t;
-
-
-
-
-
-typedef unsigned long long uint64_t;
-# 229 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\bits/alltypes.h" 3
-typedef unsigned long long uintmax_t;
-# 22 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\stdint.h" 2 3
-
-
-typedef int8_t int_fast8_t;
-
-typedef int64_t int_fast64_t;
-
-
-typedef int8_t int_least8_t;
-typedef int16_t int_least16_t;
-
-typedef int24_t int_least24_t;
-
-typedef int32_t int_least32_t;
-
-typedef int64_t int_least64_t;
-
-
-typedef uint8_t uint_fast8_t;
-
-typedef uint64_t uint_fast64_t;
-
-
-typedef uint8_t uint_least8_t;
-typedef uint16_t uint_least16_t;
-
-typedef uint24_t uint_least24_t;
-
-typedef uint32_t uint_least32_t;
-
-typedef uint64_t uint_least64_t;
-# 139 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\stdint.h" 3
-# 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\bits/stdint.h" 1 3
-typedef int32_t int_fast16_t;
-typedef int32_t int_fast32_t;
-typedef uint32_t uint_fast16_t;
-typedef uint32_t uint_fast32_t;
-# 139 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\stdint.h" 2 3
-# 52 "./mcc_generated_files/mcc.h" 2
-
-# 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\stdbool.h" 1 3
-# 53 "./mcc_generated_files/mcc.h" 2
-
-# 1 "./mcc_generated_files/interrupt_manager.h" 1
-# 54 "./mcc_generated_files/mcc.h" 2
-
-# 1 "./mcc_generated_files/tmr1.h" 1
-# 100 "./mcc_generated_files/tmr1.h"
-void TMR1_Initialize(void);
-# 129 "./mcc_generated_files/tmr1.h"
-void TMR1_StartTimer(void);
-# 161 "./mcc_generated_files/tmr1.h"
-void TMR1_StopTimer(void);
-# 196 "./mcc_generated_files/tmr1.h"
-uint16_t TMR1_ReadTimer(void);
-# 235 "./mcc_generated_files/tmr1.h"
-void TMR1_WriteTimer(uint16_t timerVal);
-# 271 "./mcc_generated_files/tmr1.h"
-void TMR1_Reload(void);
-# 310 "./mcc_generated_files/tmr1.h"
-void TMR1_StartSinglePulseAcquisition(void);
-# 349 "./mcc_generated_files/tmr1.h"
-uint8_t TMR1_CheckGateValueStatus(void);
-# 367 "./mcc_generated_files/tmr1.h"
-void TMR1_ISR(void);
-# 385 "./mcc_generated_files/tmr1.h"
- void TMR1_SetInterruptHandler(void (* InterruptHandler)(void));
-# 403 "./mcc_generated_files/tmr1.h"
-extern void (*TMR1_InterruptHandler)(void);
-# 421 "./mcc_generated_files/tmr1.h"
-void TMR1_DefaultInterruptHandler(void);
-# 55 "./mcc_generated_files/mcc.h" 2
-
-# 1 "./mcc_generated_files/tmr0.h" 1
-# 100 "./mcc_generated_files/tmr0.h"
-void TMR0_Initialize(void);
-# 129 "./mcc_generated_files/tmr0.h"
-void TMR0_StartTimer(void);
-# 161 "./mcc_generated_files/tmr0.h"
-void TMR0_StopTimer(void);
-# 196 "./mcc_generated_files/tmr0.h"
-uint8_t TMR0_ReadTimer(void);
-# 235 "./mcc_generated_files/tmr0.h"
-void TMR0_WriteTimer(uint8_t timerVal);
-# 272 "./mcc_generated_files/tmr0.h"
-void TMR0_Reload(uint8_t periodVal);
-# 291 "./mcc_generated_files/tmr0.h"
-void TMR0_ISR(void);
-# 310 "./mcc_generated_files/tmr0.h"
- void TMR0_SetInterruptHandler(void (* InterruptHandler)(void));
-# 328 "./mcc_generated_files/tmr0.h"
-extern void (*TMR0_InterruptHandler)(void);
-# 346 "./mcc_generated_files/tmr0.h"
-void TMR0_DefaultInterruptHandler(void);
-# 56 "./mcc_generated_files/mcc.h" 2
-# 71 "./mcc_generated_files/mcc.h"
-void SYSTEM_Initialize(void);
-# 84 "./mcc_generated_files/mcc.h"
-void OSCILLATOR_Initialize(void);
-# 97 "./mcc_generated_files/mcc.h"
-void PMD_Initialize(void);
-# 11 "main.c" 2
-
-# 1 "./I2C/i2c.h" 1
-# 154 "./I2C/i2c.h"
+# 2 "I2C/i2c.c" 2
+# 1 "I2C/i2c.h" 1
+# 154 "I2C/i2c.h"
 void OpenI2C( unsigned char sync_mode, unsigned char slew );
 
 signed char WriteI2C( unsigned char data_out );
@@ -20962,71 +20800,60 @@ signed char WriteI2C( unsigned char data_out );
 signed char putsI2C( unsigned char *wrptr );
 
 unsigned char ReadI2C( void );
-# 281 "./I2C/i2c.h"
+# 281 "I2C/i2c.h"
 signed char WriteI2C( unsigned char data_out );
 
 signed char getsI2C( unsigned char *rdptr, unsigned char length );
-# 12 "main.c" 2
-
-
-void update_clock(void);
-void copyto_EEPROM(void);
-
-
-void h_clock(void){
-    do { LATAbits.LATA7 = ~LATAbits.LATA7; } while(0);
-    update_clock();
-    copyto_EEPROM();
-}
-
-
-
-void acquire_sensor_lum(void);
-
-
-volatile unsigned char clkh = 0;
-volatile unsigned char clkm = 0;
-volatile unsigned char seg;
-
-void main(void)
+# 3 "I2C/i2c.c" 2
+# 12 "I2C/i2c.c"
+void OpenI2C( unsigned char sync_mode, unsigned char slew )
 {
-    bit running = 1;
-    unsigned char temp;
+# 24 "I2C/i2c.c"
+}
 
-    SYSTEM_Initialize();
-    (INTCONbits.GIE = 1);
-    (INTCONbits.PEIE = 1);
 
-    TMR1_SetInterruptHandler(h_clock);
 
-    i2c1_driver_open();
-    TRISCbits.TRISC3 = 1;
-    TRISCbits.TRISC4 = 1;
-    WPUC3 = 1;
-    WPUC4 = 1;
 
-    while (running)
+
+
+
+unsigned char ReadI2C( void )
+{
+if( ((SSP1CON1&0x0F)==0x08) || ((SSP1CON1&0x0F)==0x0B) )
+  SSP1CON2bits.RCEN = 1;
+  while ( !SSP1STATbits.BF );
+  return ( SSP1BUF );
+}
+# 47 "I2C/i2c.c"
+signed char WriteI2C( unsigned char data_out )
+{
+  SSP1BUF = data_out;
+  if ( SSP1CON1bits.WCOL )
+   return ( -1 );
+  else
+  {
+ if( ((SSP1CON1&0x0F)!=0x08) && ((SSP1CON1&0x0F)!=0x0B) )
+ {
+       SSP1CON1bits.CKP = 1;
+       while ( !PIR3bits.SSP1IF );
+
+       if ( ( !SSP1STATbits.R_W ) && ( !SSP1STATbits.BF ) )
+       {
+         return ( -2 );
+       }
+    else
     {
-        __nop();
-  temp = tsttc();
-        __nop();
-
-        void acquire_sensor_lum(void);
+   return ( 0 );
     }
-}
+ }
+ else if( ((SSP1CON1&0x0F)==0x08) || ((SSP1CON1&0x0F)==0x0B) )
+ {
+     while( SSP1STATbits.BF );
+     while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
+     if ( SSP1CON2bits.ACKSTAT )
+       return ( -2 );
+  else return ( 0 );
+ }
 
-void update_clock(void) {
-    seg++;
-    if(seg >= 60) {
-        clkm++;
-        seg = 0;
-        if(clkm >= 60) {
-            clkh++;
-            clkm = 0;
-        }
-    }
-}
-
-void copyto_EEPROM(void) {
-
+  }
 }

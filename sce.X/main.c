@@ -1,82 +1,86 @@
+#define NREG    30
+#define PMON    5
+#define TALA    3
+#define ALAT    25
+#define ALAL    2
+#define ALAF    0
+#define CLKH    0
+#define CLKM    0
 
+#define EEAddr  0x7000        // EEPROM starting address
 
-/*
-    (c) 2018 Microchip Technology Inc. and its subsidiaries. 
-    
-    Subject to your compliance with these terms, you may use Microchip software and any 
-    derivatives exclusively with Microchip products. It is your responsibility to comply with third party 
-    license terms applicable to your use of third party software (including open source software) that 
-    may accompany Microchip software.
-    
-    THIS SOFTWARE IS SUPPLIED BY MICROCHIP "AS IS". NO WARRANTIES, WHETHER 
-    EXPRESS, IMPLIED OR STATUTORY, APPLY TO THIS SOFTWARE, INCLUDING ANY 
-    IMPLIED WARRANTIES OF NON-INFRINGEMENT, MERCHANTABILITY, AND FITNESS 
-    FOR A PARTICULAR PURPOSE.
-    
-    IN NO EVENT WILL MICROCHIP BE LIABLE FOR ANY INDIRECT, SPECIAL, PUNITIVE, 
-    INCIDENTAL OR CONSEQUENTIAL LOSS, DAMAGE, COST OR EXPENSE OF ANY KIND 
-    WHATSOEVER RELATED TO THE SOFTWARE, HOWEVER CAUSED, EVEN IF MICROCHIP 
-    HAS BEEN ADVISED OF THE POSSIBILITY OR THE DAMAGES ARE FORESEEABLE. TO 
-    THE FULLEST EXTENT ALLOWED BY LAW, MICROCHIP'S TOTAL LIABILITY ON ALL 
-    CLAIMS IN ANY WAY RELATED TO THIS SOFTWARE WILL NOT EXCEED THE AMOUNT 
-    OF FEES, IF ANY, THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS 
-    SOFTWARE.
-*/
 
 #include <xc.h>
 #include "mcc_generated_files/mcc.h"
+#include "I2C/i2c.h"
 
-#define NREG 30
-#define PMON 5
-#define TALA 3
-#define ALAT 25
-#define ALAL 2
-#define ALAF 0
-#define CLKH 0
-#define CLKM 0
+void update_clock(void);
+void moveto_EEPROM(void);
+void read_EEPROM(void);
 
-volatile int value = 0;
-void handler_clock_hms(void);
-void copyto_EEPROM(void);
-void acquire_temp_sensor(void);
-void acquire_lum_sensor(void);
-        
+/*Handlers*/
+void h_clock(void){
+    IO_RA7_Toggle(); // Clock Activity (UI)
+    update_clock();
+    moveto_EEPROM();
+}
+/**/
+
+/*Main loop*/
+unsigned char tsttc (void);
+void acquire_sensor_lum(void);
+/**/
+
 volatile unsigned char clkh = CLKH;
 volatile unsigned char clkm = CLKM;
-volatile unsigned char seg;
+volatile unsigned char seg = 0;
+bit configuration_mode = 0;
 
 void main(void)
 {
-    // initialize the device
+    bit running = 1;
+    unsigned char temp, lum;
+    unsigned char last = 0;
+    
     SYSTEM_Initialize();
-    //PIE4 |= (1<< TMR1IE);
-    TMR1_SetInterruptHandler(handler_clock_hms);
-    //TMR1_StartTimer();
-    // When using interrupts, you need to set the Global and Peripheral Interrupt Enable bits
-    // Use the following macros to:
-
-    // Enable the Global Interrupts
     INTERRUPT_GlobalInterruptEnable();
-
-    // Enable the Peripheral Interrupts
     INTERRUPT_PeripheralInterruptEnable();
-    
-    // Disable the Global Interrupts
-    //INTERRUPT_GlobalInterruptDisable();
 
-    // Disable the Peripheral Interrupts
-    //INTERRUPT_PeripheralInterruptDisable();
-    
-    while (1)
+    TMR1_SetInterruptHandler(h_clock);
+
+    i2c1_driver_open();
+    I2C_SCL = 1;
+    I2C_SDA = 1;
+    WPUC3 = 1;
+    WPUC4 = 1;
+       
+    while (running)
     {
-        acquire_temp_sensor();
-        acquire_lum_sensor();
+        if(!last) last = seg;
+        else if((seg - last >= PMON) || (seg - last <= -PMON)) {
+
+            /* Temperature Sensor Aquisition */
+            NOP();
+            temp = tsttc();     		
+            NOP();
+        
+            /* Light Sensor Aquisition */
+            acquire_sensor_lum();
+            
+            /* Write Results */
+            if(temp != read_EEPROM() || lum != read_EEPROM()) {
+                DATAEE_WriteByte(EEAddr, clkh);
+            }
+            
+            last = 0;
+        }
+        if(configuration_mode) {
+            /*User UI -- COnfig Mode*/
+        }
     }
 }
 
-void handler_clock_hms(void){
-    IO_RA7_Toggle();
-    //PIE4 |= (1<< TMR1IE);
+void update_clock(void) {
     seg++;
     if(seg >= 60) {
         clkm++;
@@ -86,23 +90,41 @@ void handler_clock_hms(void){
             clkm = 0;
         }
     }
-    copyto_EEPROM();
 }
 
-void copyto_EEPROM(void) {
+unsigned char tsttc (void)
+{
+	unsigned char value;
+do{
+	IdleI2C();
+	StartI2C(); IdleI2C();
+    
+	WriteI2C(0x9a | 0x00); IdleI2C();
+	WriteI2C(0x01); IdleI2C();
+	RestartI2C(); IdleI2C();
+	WriteI2C(0x9a | 0x01); IdleI2C();
+	value = ReadI2C(); IdleI2C();
+	NotAckI2C(); IdleI2C();
+	StopI2C();
+} while (!(value & 0x40));
+
+	IdleI2C();
+	StartI2C(); IdleI2C();
+	WriteI2C(0x9a | 0x00); IdleI2C();
+	WriteI2C(0x00); IdleI2C();
+	RestartI2C(); IdleI2C();
+	WriteI2C(0x9a | 0x01); IdleI2C();
+	value = ReadI2C(); IdleI2C();
+	NotAckI2C(); IdleI2C();
+	StopI2C();
+
+	return value;
+}
+
+void moveto_EEPROM(void) {
     
 }
 
-void acquire_temp_sensor() {
-    
-    
+void read_EEPROM(void) {
     
 }
-
-void OpenI2C(  unsigned char sync_mode,  unsigned char slew );
-
-signed char WriteI2C( unsigned char data_out );
-
-signed char putsI2C(  unsigned char *wrptr );
-
-unsigned char ReadI2C( void );
