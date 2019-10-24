@@ -38,8 +38,6 @@
 volatile int value = 0;
 void handler_clock_hms(void);
 void copyto_EEPROM(void);
-void acquire_temp_sensor(void);
-void acquire_lum_sensor(void);
         
 volatile unsigned char clkh = CLKH;
 volatile unsigned char clkm = CLKM;
@@ -49,7 +47,6 @@ void main(void)
 {
     // initialize the device
     SYSTEM_Initialize();
-    //PIE4 |= (1<< TMR1IE);
     TMR1_SetInterruptHandler(handler_clock_hms);
     //TMR1_StartTimer();
     // When using interrupts, you need to set the Global and Peripheral Interrupt Enable bits
@@ -66,11 +63,18 @@ void main(void)
 
     // Disable the Peripheral Interrupts
     //INTERRUPT_PeripheralInterruptDisable();
-    
+        IO_RA4_SetLow(); 
     while (1)
-    {
-        acquire_temp_sensor();
-        acquire_lum_sensor();
+    {   
+        
+        SLEEP();
+        NOP();
+        IO_RA4_Toggle();; 
+        
+        
+        
+        
+  
     }
 }
 
@@ -86,23 +90,9 @@ void handler_clock_hms(void){
             clkm = 0;
         }
     }
-    copyto_EEPROM();
+    
 }
 
 void copyto_EEPROM(void) {
     
 }
-
-void acquire_temp_sensor() {
-    
-    
-    
-}
-
-void OpenI2C(  unsigned char sync_mode,  unsigned char slew );
-
-signed char WriteI2C( unsigned char data_out );
-
-signed char putsI2C(  unsigned char *wrptr );
-
-unsigned char ReadI2C( void );
