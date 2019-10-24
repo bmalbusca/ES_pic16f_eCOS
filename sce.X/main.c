@@ -43,11 +43,18 @@ volatile unsigned char clkh = CLKH;
 volatile unsigned char clkm = CLKM;
 volatile unsigned char seg;
 
+void sw1_EXT(void){
+    
+    IO_RA5_Toggle(); 
+    
+}
+
 void main(void)
 {
     // initialize the device
     SYSTEM_Initialize();
     TMR1_SetInterruptHandler(handler_clock_hms);
+    INT_SetInterruptHandler(sw1_EXT);
     //TMR1_StartTimer();
     // When using interrupts, you need to set the Global and Peripheral Interrupt Enable bits
     // Use the following macros to:
