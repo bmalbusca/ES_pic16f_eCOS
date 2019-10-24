@@ -3,6 +3,22 @@
 [d edition pro ]
 [d chip 16F18875 ]
 [d frameptr 6 ]
+"88 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
+[e E12248 . `uc
+channel_ANA0 0
+channel_VSS 60
+channel_Temp 61
+channel_DAC1 62
+channel_FVR_buf1 63
+]
+"106 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/adcc.c
+[e E12246 . `uc
+channel_ANA0 0
+channel_VSS 60
+channel_Temp 61
+channel_DAC1 62
+channel_FVR_buf1 63
+]
 "10 /opt/microchip/xc8/v2.10/pic/sources/c99/common/sprcadd.c
 [v ___fladd __fladd `(d  1 e 4 0 ]
 "4 /opt/microchip/xc8/v2.10/pic/sources/c99/common/Umul8_16.c
@@ -11,12 +27,20 @@
 [v ___eecpymem __eecpymem `(v  1 e 1 0 ]
 "39
 [v ___memcpyee __memcpyee `(v  1 e 1 0 ]
-"46 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
+"48 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
 [v _sw1_EXT sw1_EXT `(v  1 e 1 0 ]
-"52
+"54
 [v _main main `(v  1 e 1 0 ]
-"88
+"100
 [v _handler_clock_hms handler_clock_hms `(v  1 e 1 0 ]
+"63 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/adcc.c
+[v _ADCC_Initialize ADCC_Initialize `(v  1 e 1 0 ]
+"106
+[v _ADCC_StartConversion ADCC_StartConversion `(v  1 e 1 0 ]
+"118
+[v _ADCC_IsConversionDone ADCC_IsConversionDone `(a  1 e 1 0 ]
+"124
+[v _ADCC_GetConversionResult ADCC_GetConversionResult `(us  1 e 2 0 ]
 "32 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/ext_int.c
 [v _INT_ISR INT_ISR `(v  1 e 1 0 ]
 "41
@@ -31,9 +55,9 @@
 [v _INTERRUPT_InterruptManager INTERRUPT_InterruptManager `II(v  1 e 1 0 ]
 "50 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/mcc.c
 [v _SYSTEM_Initialize SYSTEM_Initialize `(v  1 e 1 0 ]
-"60
+"61
 [v _OSCILLATOR_Initialize OSCILLATOR_Initialize `(v  1 e 1 0 ]
-"74
+"75
 [v _PMD_Initialize PMD_Initialize `(v  1 e 1 0 ]
 "55 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pin_manager.c
 [v _PIN_MANAGER_Initialize PIN_MANAGER_Initialize `(v  1 e 1 0 ]
@@ -69,7 +93,7 @@
 [v _TRISE TRISE `VEuc  1 e 1 @21 ]
 "950
 [v _LATA LATA `VEuc  1 e 1 @22 ]
-[s S425 . 1 `uc 1 LATA0 1 0 :1:0 
+[s S429 . 1 `uc 1 LATA0 1 0 :1:0 
 `uc 1 LATA1 1 0 :1:1 
 `uc 1 LATA2 1 0 :1:2 
 `uc 1 LATA3 1 0 :1:3 
@@ -79,8 +103,8 @@
 `uc 1 LATA7 1 0 :1:7 
 ]
 "967
-[u S434 . 1 `S425 1 . 1 0 ]
-[v _LATAbits LATAbits `VES434  1 e 1 @22 ]
+[u S438 . 1 `S429 1 . 1 0 ]
+[v _LATAbits LATAbits `VES438  1 e 1 @22 ]
 "1012
 [v _LATB LATB `VEuc  1 e 1 @23 ]
 "1074
@@ -95,22 +119,163 @@
 [v _TMR0H TMR0H `VEuc  1 e 1 @29 ]
 "1622
 [v _T0CON0 T0CON0 `VEuc  1 e 1 @30 ]
-[s S384 . 1 `uc 1 T0OUTPS 1 0 :4:0 
+[s S388 . 1 `uc 1 T0OUTPS 1 0 :4:0 
 `uc 1 T016BIT 1 0 :1:4 
 `uc 1 T0OUT 1 0 :1:5 
 `uc 1 . 1 0 :1:6 
 `uc 1 T0EN 1 0 :1:7 
 ]
 "1642
-[s S390 . 1 `uc 1 T0OUTPS0 1 0 :1:0 
+[s S394 . 1 `uc 1 T0OUTPS0 1 0 :1:0 
 `uc 1 T0OUTPS1 1 0 :1:1 
 `uc 1 T0OUTPS2 1 0 :1:2 
 `uc 1 T0OUTPS3 1 0 :1:3 
 ]
-[u S395 . 1 `S384 1 . 1 0 `S390 1 . 1 0 ]
-[v _T0CON0bits T0CON0bits `VES395  1 e 1 @30 ]
+[u S399 . 1 `S388 1 . 1 0 `S394 1 . 1 0 ]
+[v _T0CON0bits T0CON0bits `VES399  1 e 1 @30 ]
 "1687
 [v _T0CON1 T0CON1 `VEuc  1 e 1 @31 ]
+"1805
+[v _ADRESL ADRESL `VEuc  1 e 1 @140 ]
+"1825
+[v _ADRESH ADRESH `VEuc  1 e 1 @141 ]
+"1839
+[v _ADPREVL ADPREVL `VEuc  1 e 1 @142 ]
+"1909
+[v _ADPREVH ADPREVH `VEuc  1 e 1 @143 ]
+"1986
+[v _ADACCL ADACCL `VEuc  1 e 1 @144 ]
+"2056
+[v _ADACCH ADACCH `VEuc  1 e 1 @145 ]
+"2126
+[v _ADCON0 ADCON0 `VEuc  1 e 1 @147 ]
+[s S581 . 1 `uc 1 ADGO 1 0 :1:0 
+`uc 1 . 1 0 :1:1 
+`uc 1 ADFM 1 0 :2:2 
+`uc 1 ADCS 1 0 :1:4 
+`uc 1 . 1 0 :1:5 
+`uc 1 ADCONT 1 0 :1:6 
+`uc 1 ADON 1 0 :1:7 
+]
+"2162
+[s S589 . 1 `uc 1 DONE 1 0 :1:0 
+`uc 1 . 1 0 :1:1 
+`uc 1 ADFRM 1 0 :2:2 
+]
+[s S593 . 1 `uc 1 nDONE 1 0 :1:0 
+]
+[s S595 . 1 `uc 1 GO 1 0 :1:0 
+`uc 1 . 1 0 :1:1 
+`uc 1 ADFM0 1 0 :1:2 
+`uc 1 ADFM1 1 0 :1:3 
+]
+[s S600 . 1 `uc 1 GO_nDONE 1 0 :1:0 
+`uc 1 . 1 0 :1:1 
+`uc 1 ADFRM0 1 0 :1:2 
+`uc 1 ADFRM1 1 0 :1:3 
+]
+[u S605 . 1 `S581 1 . 1 0 `S589 1 . 1 0 `S593 1 . 1 0 `S595 1 . 1 0 `S600 1 . 1 0 ]
+[v _ADCON0bits ADCON0bits `VES605  1 e 1 @147 ]
+"2237
+[v _ADCON1 ADCON1 `VEuc  1 e 1 @148 ]
+[s S733 . 1 `uc 1 ADDSEN 1 0 :1:0 
+`uc 1 . 1 0 :4:1 
+`uc 1 ADGPOL 1 0 :1:5 
+`uc 1 ADIPEN 1 0 :1:6 
+`uc 1 ADPPOL 1 0 :1:7 
+]
+"2251
+[u S739 . 1 `S733 1 . 1 0 ]
+[v _ADCON1bits ADCON1bits `VES739  1 e 1 @148 ]
+"2276
+[v _ADCON2 ADCON2 `VEuc  1 e 1 @149 ]
+[s S669 . 1 `uc 1 ADMD 1 0 :3:0 
+`uc 1 ADACLR 1 0 :1:3 
+`uc 1 ADCRS 1 0 :3:4 
+`uc 1 ADPSIS 1 0 :1:7 
+]
+"2298
+[s S674 . 1 `uc 1 ADMD0 1 0 :1:0 
+`uc 1 ADMD1 1 0 :1:1 
+`uc 1 ADMD2 1 0 :1:2 
+`uc 1 . 1 0 :1:3 
+`uc 1 ADCRS0 1 0 :1:4 
+`uc 1 ADCRS1 1 0 :1:5 
+`uc 1 ADCRS2 1 0 :1:6 
+]
+[u S682 . 1 `S669 1 . 1 0 `S674 1 . 1 0 ]
+[v _ADCON2bits ADCON2bits `VES682  1 e 1 @149 ]
+"2353
+[v _ADCON3 ADCON3 `VEuc  1 e 1 @150 ]
+[s S639 . 1 `uc 1 ADTMD0 1 0 :1:0 
+`uc 1 ADTMD1 1 0 :1:1 
+`uc 1 ADTMD2 1 0 :1:2 
+`uc 1 . 1 0 :1:3 
+`uc 1 ADCALC0 1 0 :1:4 
+`uc 1 ADCALC1 1 0 :1:5 
+`uc 1 ADCALC2 1 0 :1:6 
+]
+"2374
+[s S647 . 1 `uc 1 ADTMD 1 0 :3:0 
+`uc 1 ADSOI 1 0 :1:3 
+`uc 1 ADCALC 1 0 :3:4 
+]
+[u S651 . 1 `S639 1 . 1 0 `S647 1 . 1 0 ]
+[v _ADCON3bits ADCON3bits `VES651  1 e 1 @150 ]
+"2424
+[v _ADSTAT ADSTAT `VEuc  1 e 1 @151 ]
+[s S701 . 1 `uc 1 ADSTAT 1 0 :3:0 
+`uc 1 ADMACT 1 0 :1:3 
+`uc 1 ADMATH 1 0 :1:4 
+`uc 1 ADLTHR 1 0 :1:5 
+`uc 1 ADUTHR 1 0 :1:6 
+`uc 1 ADAOV 1 0 :1:7 
+]
+"2444
+[s S708 . 1 `uc 1 ADSTAT0 1 0 :1:0 
+`uc 1 ADSTAT1 1 0 :1:1 
+`uc 1 ADSTAT2 1 0 :1:2 
+]
+[u S712 . 1 `S701 1 . 1 0 `S708 1 . 1 0 ]
+[v _ADSTATbits ADSTATbits `VES712  1 e 1 @151 ]
+"2494
+[v _ADCLK ADCLK `VEuc  1 e 1 @152 ]
+"2552
+[v _ADACT ADACT `VEuc  1 e 1 @153 ]
+"2604
+[v _ADREF ADREF `VEuc  1 e 1 @154 ]
+"2645
+[v _ADCAP ADCAP `VEuc  1 e 1 @155 ]
+"2697
+[v _ADPRE ADPRE `VEuc  1 e 1 @156 ]
+"2767
+[v _ADACQ ADACQ `VEuc  1 e 1 @157 ]
+"2837
+[v _ADPCH ADPCH `VEuc  1 e 1 @158 ]
+"2895
+[v _ADCNT ADCNT `VEuc  1 e 1 @268 ]
+"2965
+[v _ADRPT ADRPT `VEuc  1 e 1 @269 ]
+"3042
+[v _ADLTHL ADLTHL `VEuc  1 e 1 @270 ]
+"3112
+[v _ADLTHH ADLTHH `VEuc  1 e 1 @271 ]
+"3189
+[v _ADUTHL ADUTHL `VEuc  1 e 1 @272 ]
+"3259
+[v _ADUTHH ADUTHH `VEuc  1 e 1 @273 ]
+"3336
+[v _ADSTPTL ADSTPTL `VEuc  1 e 1 @274 ]
+"3406
+[v _ADSTPTH ADSTPTH `VEuc  1 e 1 @275 ]
+"3483
+[v _ADFLTRL ADFLTRL `VEuc  1 e 1 @276 ]
+"3553
+[v _ADFLTRH ADFLTRH `VEuc  1 e 1 @277 ]
+"3630
+[v _ADERRL ADERRL `VEuc  1 e 1 @278 ]
+"3700
+[v _ADERRH ADERRH `VEuc  1 e 1 @279 ]
 "6508
 [v _TMR1L TMR1L `VEuc  1 e 1 @524 ]
 "6678
@@ -286,21 +451,23 @@
 [v _clkm clkm `VEuc  1 e 1 0 ]
 "44
 [v _seg seg `VEuc  1 e 1 0 ]
+"46
+[v _convertedValue convertedValue `ui  1 e 2 0 ]
 "30 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/ext_int.c
 [v _INT_InterruptHandler INT_InterruptHandler `*.37(v  1 e 2 0 ]
 "57 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr1.c
 [v _timer1ReloadVal timer1ReloadVal `VEus  1 e 2 0 ]
 "58
 [v _TMR1_InterruptHandler TMR1_InterruptHandler `*.37(v  1 e 2 0 ]
-"52 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
+"54 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
 [v _main main `(v  1 e 1 0 ]
 {
-"86
+"98
 } 0
 "50 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/mcc.c
 [v _SYSTEM_Initialize SYSTEM_Initialize `(v  1 e 1 0 ]
 {
-"58
+"59
 } 0
 "64 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr1.c
 [v _TMR1_Initialize TMR1_Initialize `(v  1 e 1 0 ]
@@ -310,7 +477,7 @@
 "178
 [v _TMR1_SetInterruptHandler TMR1_SetInterruptHandler `(v  1 e 1 0 ]
 {
-[v TMR1_SetInterruptHandler@InterruptHandler InterruptHandler `*.37(v  1 p 2 0 ]
+[v TMR1_SetInterruptHandler@InterruptHandler InterruptHandler `*.37(v  1 p 2 2 ]
 "180
 } 0
 "60 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr0.c
@@ -318,20 +485,20 @@
 {
 "78
 } 0
-"74 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/mcc.c
+"75 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/mcc.c
 [v _PMD_Initialize PMD_Initialize `(v  1 e 1 0 ]
 {
-"88
+"89
 } 0
 "55 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pin_manager.c
 [v _PIN_MANAGER_Initialize PIN_MANAGER_Initialize `(v  1 e 1 0 ]
 {
 "128
 } 0
-"60 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/mcc.c
+"61 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/mcc.c
 [v _OSCILLATOR_Initialize OSCILLATOR_Initialize `(v  1 e 1 0 ]
 {
-"72
+"73
 } 0
 "59 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/ext_int.c
 [v _EXT_INT_Initialize EXT_INT_Initialize `(v  1 e 1 0 ]
@@ -341,8 +508,32 @@
 "50
 [v _INT_SetInterruptHandler INT_SetInterruptHandler `(v  1 e 1 0 ]
 {
-[v INT_SetInterruptHandler@InterruptHandler InterruptHandler `*.37(v  1 p 2 0 ]
+[v INT_SetInterruptHandler@InterruptHandler InterruptHandler `*.37(v  1 p 2 2 ]
 "52
+} 0
+"63 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/adcc.c
+[v _ADCC_Initialize ADCC_Initialize `(v  1 e 1 0 ]
+{
+"104
+} 0
+"106
+[v _ADCC_StartConversion ADCC_StartConversion `(v  1 e 1 0 ]
+{
+[v ADCC_StartConversion@channel channel `E12246  1 a 1 wreg ]
+[v ADCC_StartConversion@channel channel `E12246  1 a 1 wreg ]
+"109
+[v ADCC_StartConversion@channel channel `E12246  1 a 1 2 ]
+"116
+} 0
+"118
+[v _ADCC_IsConversionDone ADCC_IsConversionDone `(a  1 e 1 0 ]
+{
+"122
+} 0
+"124
+[v _ADCC_GetConversionResult ADCC_GetConversionResult `(us  1 e 2 0 ]
+{
+"128
 } 0
 "52 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/interrupt_manager.c
 [v _INTERRUPT_InterruptManager INTERRUPT_InterruptManager `II(v  1 e 1 0 ]
@@ -359,10 +550,10 @@
 {
 "185
 } 0
-"88 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
+"100 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
 [v _handler_clock_hms handler_clock_hms `(v  1 e 1 0 ]
 {
-"101
+"113
 } 0
 "127 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr1.c
 [v _TMR1_WriteTimer TMR1_WriteTimer `(v  1 e 1 0 ]
@@ -385,8 +576,8 @@
 {
 "57
 } 0
-"46 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
+"48 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
 [v _sw1_EXT sw1_EXT `(v  1 e 1 0 ]
 {
-"50
+"52
 } 0

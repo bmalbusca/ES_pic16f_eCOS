@@ -43,6 +43,8 @@ volatile unsigned char clkh = CLKH;
 volatile unsigned char clkm = CLKM;
 volatile unsigned char seg;
 
+unsigned int convertedValue = 0;
+
 void sw1_EXT(void){
     
     IO_RA5_Toggle(); 
@@ -55,7 +57,8 @@ void main(void)
     SYSTEM_Initialize();
     TMR1_SetInterruptHandler(handler_clock_hms);
     INT_SetInterruptHandler(sw1_EXT);
-    //TMR1_StartTimer();
+    
+    unsigned int task_schedule = 0;
     // When using interrupts, you need to set the Global and Peripheral Interrupt Enable bits
     // Use the following macros to:
 
@@ -70,14 +73,23 @@ void main(void)
 
     // Disable the Peripheral Interrupts
     //INTERRUPT_PeripheralInterruptDisable();
-        IO_RA4_SetLow(); 
+     IO_RA4_SetLow(); 
     while (1)
     {   
         
         SLEEP();
         NOP();
-        IO_RA4_Toggle();; 
         
+        IO_RA4_Toggle();
+        
+        task_schedule = seg;
+        if (seg >= 5){
+        
+            ADCC_StartConversion(channel_ANA0);
+            while(!ADCC_IsConversionDone());
+            convertedValue = ADCC_GetConversionResult();
+            IO_RA6_LAT = 1 << convertedValue; 
+        }
         
         
         
