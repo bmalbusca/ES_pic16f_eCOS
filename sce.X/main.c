@@ -44,6 +44,7 @@ volatile unsigned char clkm = CLKM;
 volatile unsigned char seg;
 
 unsigned int convertedValue = 0;
+unsigned int duty_cycle = 25;
 
 void sw1_EXT(void){
     
@@ -85,13 +86,27 @@ void main(void)
         task_schedule = seg;
         if (seg >= 5){
         
-            ADCC_StartConversion(channel_ANA0);
-            while(!ADCC_IsConversionDone());
-            convertedValue = ADCC_GetConversionResult();
-            IO_RA6_LAT = 1 << convertedValue; 
+            do{
+                ADCC_StartConversion(channel_ANA0);
+                while(!ADCC_IsConversionDone()){
+                    __delay_ms(1);
+                }
+                convertedValue = ADCC_GetConversionResult();
+                
+                //IO_RA6_LAT = 1 << convertedValue;
+                duty_cycle =  convertedValue;
+                
+                if (duty_cycle < 50){   //set zero 
+                    duty_cycle = 0;
+                }
+                
+                PWM6_LoadDutyValue(duty_cycle);
+                
+            }while(duty_cycle > 50);    //maintain this state 
+            
         }
         
-        
+       
         
   
     }

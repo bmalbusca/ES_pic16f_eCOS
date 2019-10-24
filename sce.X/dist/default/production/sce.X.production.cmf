@@ -11,47 +11,51 @@
 # All addresses and the length are given in unqualified hexadecimal
 # in delta units.  Any other numeric values are decimal.
 %PSECTS
-$dist/default/production/sce.X.production.o
-cinit CODE 0 27 27 C 2
-text1 CODE 0 103 103 16 2
-text2 CODE 0 E8 E8 1B 2
-text3 CODE 0 1A8 1A8 6 2
-text4 CODE 0 17D 17D C 2
-text5 CODE 0 192 192 8 2
-text6 CODE 0 84 84 3D 2
-text7 CODE 0 189 189 9 2
-text8 CODE 0 156 156 D 2
-text9 CODE 0 1AE 1AE 6 2
-nvCOMMON COMMON 1 79 79 2 1
-text10 CODE 0 119 119 16 2
-text11 CODE 0 19A 19A 7 2
-text12 CODE 0 1A1 1A1 7 2
-text13 CODE 0 1B4 1B4 6 2
-text15 CODE 0 12F 12F 16 2
-text16 CODE 0 1C0 1C0 1 2
-text17 CODE 0 C1 C1 27 2
-text18 CODE 0 145 145 11 2
-text19 CODE 0 1BA 1BA 6 2
-text20 CODE 0 163 163 D 2
-text21 CODE 0 1C1 1C1 1 2
-text22 CODE 0 170 170 D 2
-nvBANK0 BANK0 1 20 20 4 1
-maintext CODE 0 33 33 51 2
-cstackCOMMON COMMON 1 70 70 6 1
-intentry CODE 0 4 4 21 2
-bssBANK0 BANK0 1 24 24 4 1
-bssCOMMON COMMON 1 76 76 3 1
-$/tmp/xcX8EsYWK.o
+$/tmp/xcXyn9liv.o
 reset_vec CODE 0 0 0 2 2
 end_init CODE 0 25 25 2 2
 config CONFIG 0 8007 8007 5 2
+$dist/default/production/sce.X.production.o
+cinit CODE 0 27 27 13 2
+text1 CODE 0 123 123 1C 2
+text2 CODE 0 193 193 F 2
+text3 CODE 0 105 105 1E 2
+text4 CODE 0 201 201 6 2
+text5 CODE 0 1D6 1D6 C 2
+text6 CODE 0 1A2 1A2 D 2
+text7 CODE 0 1EB 1EB 8 2
+text8 CODE 0 9E 9E 40 2
+text9 CODE 0 1E2 1E2 9 2
+text10 CODE 0 1AF 1AF D 2
+text11 CODE 0 207 207 6 2
+text12 CODE 0 156 156 16 2
+text13 CODE 0 16C 16C 16 2
+text14 CODE 0 1F3 1F3 7 2
+text15 CODE 0 1FA 1FA 7 2
+text16 CODE 0 20D 20D 6 2
+text18 CODE 0 13F 13F 17 2
+text19 CODE 0 21B 21B 1 2
+text20 CODE 0 DE DE 27 2
+text21 CODE 0 182 182 11 2
+text22 CODE 0 213 213 6 2
+text23 CODE 0 1BC 1BC D 2
+text24 CODE 0 21C 21C 1 2
+text25 CODE 0 1C9 1C9 D 2
+nvBANK0 BANK0 1 20 20 6 1
+idataCOMMON CODE 0 219 219 2 2
+maintext CODE 0 3A 3A 64 2
+cstackCOMMON COMMON 1 70 70 6 1
+intentry CODE 0 4 4 21 2
+bssBANK0 BANK0 1 26 26 4 1
+dataCOMMON COMMON 1 79 79 2 1
+bssCOMMON COMMON 1 76 76 3 1
 # %UNUSED Section
 # This section enumerates the unused ranges of each CLASS. Each entry
 # is described on a single line as follows:
 #    <class name> <range> <delta>
 # Addresses given in the range are in hexadecimal and units of delta.
 %UNUSED
-RAM 28-6F 1
+RAM 2A-6F 1
 RAM A0-EF 1
 RAM 120-16F 1
 RAM 1A0-1EF 1
@@ -64,7 +68,7 @@ RAM 4A0-4EF 1
 RAM 520-56F 1
 RAM 5A0-5EF 1
 RAM 620-64F 1
-BANK0 28-6F 1
+BANK0 2A-6F 1
 BANK1 A0-EF 1
 BANK2 120-16F 1
 BANK3 1A0-1EF 1
@@ -75,9 +79,9 @@ BANK7 3A0-3EF 1
 BANK8 420-46F 1
 BANK9 4A0-4EF 1
 CONST 2-3 2
-CONST 1C2-1FFF 2
+CONST 21D-1FFF 2
 ENTRY 2-3 2
-ENTRY 1C2-1FFF 2
+ENTRY 21D-1FFF 2
 IDLOC 8000-8003 2
 SFR10 500-51F 1
 SFR11 580-59F 1
@@ -101,9 +105,9 @@ SFR28 E00-E6F 1
 SFR29 E80-EEF 1
 SFR30 F00-F6F 1
 SFR31 F80-FEF 1
-STACK 2008-23EF 1
+STACK 200A-23EF 1
 CODE 2-3 2
-CODE 1C2-1FFF 2
+CODE 21D-1FFF 2
 SFR0 0-1F 1
 SFR1 80-9F 1
 SFR2 100-11F 1
@@ -121,9 +125,9 @@ BIGRAM 2000-23EF 1
 COMMON 7B-7D 1
 EEDATA F000-F0FF 2
 STRCODE 2-3 2
-STRCODE 1C2-1FFF 2
+STRCODE 21D-1FFF 2
 STRING 2-3 2
-STRING 1C2-1FFF 2
+STRING 21D-1FFF 2
 # %LINETAB Section
 # This section enumerates the file/line to address mappings.
 # The beginning of the section is indicated by %LINETAB.
@@ -138,20 +142,23 @@ STRING 1C2-1FFF 2
 # All other numeric values are in decimal.
 %LINETAB
 $dist/default/production/sce.X.production.o
-27 cinit CODE >10225:/tmp/xcXIMwOnn.s
-27 cinit CODE >10228:/tmp/xcXIMwOnn.s
-27 cinit CODE >10255:/tmp/xcXIMwOnn.s
-28 cinit CODE >10256:/tmp/xcXIMwOnn.s
-29 cinit CODE >10257:/tmp/xcXIMwOnn.s
-2A cinit CODE >10261:/tmp/xcXIMwOnn.s
-2B cinit CODE >10262:/tmp/xcXIMwOnn.s
-2C cinit CODE >10263:/tmp/xcXIMwOnn.s
-2D cinit CODE >10264:/tmp/xcXIMwOnn.s
-2E cinit CODE >10265:/tmp/xcXIMwOnn.s
-2F cinit CODE >10271:/tmp/xcXIMwOnn.s
-2F cinit CODE >10273:/tmp/xcXIMwOnn.s
-30 cinit CODE >10274:/tmp/xcXIMwOnn.s
-31 cinit CODE >10275:/tmp/xcXIMwOnn.s
+27 cinit CODE >12452:/tmp/xcX8mxuYm.s
+27 cinit CODE >12455:/tmp/xcX8mxuYm.s
+27 cinit CODE >12490:/tmp/xcX8mxuYm.s
+2A cinit CODE >12491:/tmp/xcX8mxuYm.s
+2B cinit CODE >12492:/tmp/xcX8mxuYm.s
+2E cinit CODE >12493:/tmp/xcX8mxuYm.s
+2F cinit CODE >12498:/tmp/xcX8mxuYm.s
+30 cinit CODE >12499:/tmp/xcX8mxuYm.s
+31 cinit CODE >12500:/tmp/xcX8mxuYm.s
+32 cinit CODE >12504:/tmp/xcX8mxuYm.s
+33 cinit CODE >12505:/tmp/xcX8mxuYm.s
+34 cinit CODE >12506:/tmp/xcX8mxuYm.s
+35 cinit CODE >12507:/tmp/xcX8mxuYm.s
+36 cinit CODE >12513:/tmp/xcX8mxuYm.s
+36 cinit CODE >12515:/tmp/xcX8mxuYm.s
+37 cinit CODE >12516:/tmp/xcX8mxuYm.s
+38 cinit CODE >12517:/tmp/xcX8mxuYm.s
 4 intentry CODE >52:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/interrupt_manager.c
 6 intentry CODE >55:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/interrupt_manager.c
 F intentry CODE >57:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/interrupt_manager.c
@@ -162,189 +169,217 @@ F intentry CODE >57:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_fi
 22 intentry CODE >64:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/interrupt_manager.c
 23 intentry CODE >73:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/interrupt_manager.c
 23 intentry CODE >74:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/interrupt_manager.c
-170 text22 CODE >48:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
-170 text22 CODE >50:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
-17C text22 CODE >52:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
-1C1 text21 CODE >54:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/ext_int.c
-1C1 text21 CODE >57:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/ext_int.c
-163 text20 CODE >41:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/ext_int.c
-163 text20 CODE >44:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/ext_int.c
-16A text20 CODE >46:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/ext_int.c
-16F text20 CODE >48:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/ext_int.c
-1BA text19 CODE >32:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/ext_int.c
-1BA text19 CODE >34:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/ext_int.c
-1BC text19 CODE >37:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/ext_int.c
-1BF text19 CODE >38:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/ext_int.c
-145 text18 CODE >127:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr1.c
-145 text18 CODE >129:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr1.c
-14A text18 CODE >132:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr1.c
-14B text18 CODE >135:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr1.c
-14D text18 CODE >136:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr1.c
-14F text18 CODE >139:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr1.c
-150 text18 CODE >140:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr1.c
-151 text18 CODE >144:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr1.c
-153 text18 CODE >145:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr1.c
-155 text18 CODE >147:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr1.c
-C1 text17 CODE >100:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
-C1 text17 CODE >101:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
-CD text17 CODE >103:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
-D1 text17 CODE >104:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
-D7 text17 CODE >105:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
-DB text17 CODE >106:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
-DC text17 CODE >107:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
-E2 text17 CODE >108:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
-E6 text17 CODE >109:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
-E7 text17 CODE >113:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
-1C0 text16 CODE >182:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr1.c
-1C0 text16 CODE >185:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr1.c
-12F text15 CODE >164:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr1.c
-12F text15 CODE >168:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr1.c
-131 text15 CODE >169:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr1.c
-138 text15 CODE >171:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr1.c
-13F text15 CODE >173:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr1.c
-144 text15 CODE >175:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr1.c
-1B4 text13 CODE >124:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/adcc.c
-1B4 text13 CODE >127:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/adcc.c
-1B9 text13 CODE >128:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/adcc.c
-1A1 text12 CODE >118:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/adcc.c
-1A1 text12 CODE >121:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/adcc.c
-1A7 text12 CODE >122:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/adcc.c
-19A text11 CODE >106:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/adcc.c
-19B text11 CODE >109:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/adcc.c
-19E text11 CODE >112:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/adcc.c
-19F text11 CODE >115:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/adcc.c
-1A0 text11 CODE >116:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/adcc.c
-119 text10 CODE >63:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/adcc.c
-119 text10 CODE >67:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/adcc.c
-11B text10 CODE >69:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/adcc.c
-11C text10 CODE >71:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/adcc.c
-11D text10 CODE >73:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/adcc.c
-11E text10 CODE >75:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/adcc.c
-11F text10 CODE >77:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/adcc.c
-120 text10 CODE >79:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/adcc.c
-121 text10 CODE >81:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/adcc.c
-123 text10 CODE >83:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/adcc.c
-124 text10 CODE >85:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/adcc.c
-125 text10 CODE >87:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/adcc.c
-126 text10 CODE >89:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/adcc.c
-127 text10 CODE >91:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/adcc.c
-128 text10 CODE >93:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/adcc.c
-129 text10 CODE >95:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/adcc.c
-12A text10 CODE >97:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/adcc.c
-12B text10 CODE >99:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/adcc.c
-12D text10 CODE >101:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/adcc.c
-12E text10 CODE >104:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/adcc.c
-1AE text9 CODE >50:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/ext_int.c
-1AE text9 CODE >51:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/ext_int.c
-1B3 text9 CODE >52:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/ext_int.c
-156 text8 CODE >59:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/ext_int.c
-156 text8 CODE >64:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/ext_int.c
-158 text8 CODE >65:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/ext_int.c
-159 text8 CODE >67:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/ext_int.c
-160 text8 CODE >68:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/ext_int.c
-162 text8 CODE >70:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/ext_int.c
-189 text7 CODE >61:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/mcc.c
-189 text7 CODE >64:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/mcc.c
-18C text7 CODE >66:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/mcc.c
-18D text7 CODE >68:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/mcc.c
-18E text7 CODE >70:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/mcc.c
-190 text7 CODE >72:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/mcc.c
-191 text7 CODE >73:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/mcc.c
-84 text6 CODE >55:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pin_manager.c
-84 text6 CODE >60:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pin_manager.c
-86 text6 CODE >61:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pin_manager.c
-87 text6 CODE >62:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pin_manager.c
-88 text6 CODE >63:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pin_manager.c
-89 text6 CODE >64:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pin_manager.c
-8A text6 CODE >69:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pin_manager.c
-8C text6 CODE >70:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pin_manager.c
-8E text6 CODE >71:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pin_manager.c
-90 text6 CODE >72:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pin_manager.c
-92 text6 CODE >73:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pin_manager.c
-94 text6 CODE >78:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pin_manager.c
-97 text6 CODE >79:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pin_manager.c
-99 text6 CODE >80:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pin_manager.c
-9B text6 CODE >81:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pin_manager.c
-9D text6 CODE >82:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pin_manager.c
-9F text6 CODE >87:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pin_manager.c
-A0 text6 CODE >88:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pin_manager.c
-A1 text6 CODE >89:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pin_manager.c
-A2 text6 CODE >90:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pin_manager.c
-A3 text6 CODE >91:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pin_manager.c
-A4 text6 CODE >96:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pin_manager.c
-A5 text6 CODE >97:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pin_manager.c
-A6 text6 CODE >98:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pin_manager.c
-A7 text6 CODE >99:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pin_manager.c
-A8 text6 CODE >100:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pin_manager.c
-A9 text6 CODE >105:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pin_manager.c
-AB text6 CODE >106:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pin_manager.c
-AD text6 CODE >107:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pin_manager.c
-AF text6 CODE >108:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pin_manager.c
-B1 text6 CODE >109:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pin_manager.c
-B3 text6 CODE >114:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pin_manager.c
-B5 text6 CODE >115:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pin_manager.c
-B7 text6 CODE >116:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pin_manager.c
-B9 text6 CODE >117:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pin_manager.c
-BB text6 CODE >118:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pin_manager.c
-BD text6 CODE >127:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pin_manager.c
-C0 text6 CODE >128:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pin_manager.c
-192 text5 CODE >75:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/mcc.c
-192 text5 CODE >78:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/mcc.c
-194 text5 CODE >80:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/mcc.c
-195 text5 CODE >82:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/mcc.c
-196 text5 CODE >84:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/mcc.c
-197 text5 CODE >86:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/mcc.c
-198 text5 CODE >88:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/mcc.c
-199 text5 CODE >89:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/mcc.c
-17D text4 CODE >60:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr0.c
-17D text4 CODE >65:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr0.c
-180 text4 CODE >68:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr0.c
-182 text4 CODE >71:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr0.c
-183 text4 CODE >74:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr0.c
-185 text4 CODE >77:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr0.c
-188 text4 CODE >78:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr0.c
-1A8 text3 CODE >178:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr1.c
-1A8 text3 CODE >179:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr1.c
-1AD text3 CODE >180:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr1.c
-E8 text2 CODE >64:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr1.c
-E8 text2 CODE >69:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr1.c
-EA text2 CODE >72:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr1.c
-EB text2 CODE >75:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr1.c
-ED text2 CODE >78:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr1.c
-EF text2 CODE >81:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr1.c
-F1 text2 CODE >84:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr1.c
-F5 text2 CODE >87:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr1.c
-F7 text2 CODE >90:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr1.c
-F8 text2 CODE >93:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr1.c
-FF text2 CODE >96:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr1.c
-102 text2 CODE >97:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr1.c
-103 text1 CODE >50:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/mcc.c
-103 text1 CODE >52:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/mcc.c
-106 text1 CODE >53:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/mcc.c
-109 text1 CODE >54:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/mcc.c
-10C text1 CODE >55:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/mcc.c
-10F text1 CODE >56:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/mcc.c
-112 text1 CODE >57:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/mcc.c
-115 text1 CODE >58:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/mcc.c
-118 text1 CODE >59:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/mcc.c
-33 maintext CODE >54:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
-33 maintext CODE >57:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
-36 maintext CODE >58:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
+1C9 text25 CODE >49:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
+1C9 text25 CODE >51:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
+1D5 text25 CODE >53:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
+21C text24 CODE >54:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/ext_int.c
+21C text24 CODE >57:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/ext_int.c
+1BC text23 CODE >41:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/ext_int.c
+1BC text23 CODE >44:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/ext_int.c
+1C3 text23 CODE >46:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/ext_int.c
+1C8 text23 CODE >48:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/ext_int.c
+213 text22 CODE >32:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/ext_int.c
+213 text22 CODE >34:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/ext_int.c
+215 text22 CODE >37:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/ext_int.c
+218 text22 CODE >38:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/ext_int.c
+182 text21 CODE >127:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr1.c
+182 text21 CODE >129:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr1.c
+187 text21 CODE >132:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr1.c
+188 text21 CODE >135:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr1.c
+18A text21 CODE >136:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr1.c
+18C text21 CODE >139:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr1.c
+18D text21 CODE >140:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr1.c
+18E text21 CODE >144:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr1.c
+190 text21 CODE >145:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr1.c
+192 text21 CODE >147:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr1.c
+DE text20 CODE >115:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
+DE text20 CODE >116:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
+EA text20 CODE >118:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
+EE text20 CODE >119:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
+F4 text20 CODE >120:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
+F8 text20 CODE >121:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
+F9 text20 CODE >122:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
+FF text20 CODE >123:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
+103 text20 CODE >124:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
+104 text20 CODE >128:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
+21B text19 CODE >182:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr1.c
+21B text19 CODE >185:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr1.c
+13F text18 CODE >164:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr1.c
+13F text18 CODE >168:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr1.c
+141 text18 CODE >169:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr1.c
+149 text18 CODE >171:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr1.c
+150 text18 CODE >173:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr1.c
+155 text18 CODE >175:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr1.c
+20D text16 CODE >124:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/adcc.c
+20D text16 CODE >127:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/adcc.c
+212 text16 CODE >128:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/adcc.c
+1FA text15 CODE >118:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/adcc.c
+1FA text15 CODE >121:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/adcc.c
+200 text15 CODE >122:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/adcc.c
+1F3 text14 CODE >106:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/adcc.c
+1F4 text14 CODE >109:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/adcc.c
+1F7 text14 CODE >112:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/adcc.c
+1F8 text14 CODE >115:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/adcc.c
+1F9 text14 CODE >116:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/adcc.c
+16C text13 CODE >74:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pwm6.c
+16C text13 CODE >77:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pwm6.c
+177 text13 CODE >80:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pwm6.c
+181 text13 CODE >81:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pwm6.c
+156 text12 CODE >63:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/adcc.c
+156 text12 CODE >67:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/adcc.c
+158 text12 CODE >69:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/adcc.c
+159 text12 CODE >71:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/adcc.c
+15A text12 CODE >73:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/adcc.c
+15B text12 CODE >75:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/adcc.c
+15C text12 CODE >77:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/adcc.c
+15D text12 CODE >79:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/adcc.c
+15E text12 CODE >81:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/adcc.c
+160 text12 CODE >83:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/adcc.c
+161 text12 CODE >85:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/adcc.c
+162 text12 CODE >87:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/adcc.c
+163 text12 CODE >89:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/adcc.c
+164 text12 CODE >91:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/adcc.c
+165 text12 CODE >93:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/adcc.c
+166 text12 CODE >95:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/adcc.c
+167 text12 CODE >97:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/adcc.c
+168 text12 CODE >99:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/adcc.c
+16A text12 CODE >101:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/adcc.c
+16B text12 CODE >104:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/adcc.c
+207 text11 CODE >50:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/ext_int.c
+207 text11 CODE >51:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/ext_int.c
+20C text11 CODE >52:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/ext_int.c
+1AF text10 CODE >59:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/ext_int.c
+1AF text10 CODE >64:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/ext_int.c
+1B1 text10 CODE >65:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/ext_int.c
+1B2 text10 CODE >67:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/ext_int.c
+1B9 text10 CODE >68:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/ext_int.c
+1BB text10 CODE >70:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/ext_int.c
+1E2 text9 CODE >63:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/mcc.c
+1E2 text9 CODE >66:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/mcc.c
+1E5 text9 CODE >68:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/mcc.c
+1E6 text9 CODE >70:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/mcc.c
+1E7 text9 CODE >72:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/mcc.c
+1E9 text9 CODE >74:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/mcc.c
+1EA text9 CODE >75:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/mcc.c
+9E text8 CODE >55:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pin_manager.c
+9E text8 CODE >60:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pin_manager.c
+A0 text8 CODE >61:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pin_manager.c
+A1 text8 CODE >62:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pin_manager.c
+A2 text8 CODE >63:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pin_manager.c
+A3 text8 CODE >64:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pin_manager.c
+A4 text8 CODE >69:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pin_manager.c
+A6 text8 CODE >70:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pin_manager.c
+A8 text8 CODE >71:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pin_manager.c
+AA text8 CODE >72:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pin_manager.c
+AC text8 CODE >73:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pin_manager.c
+AE text8 CODE >78:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pin_manager.c
+B1 text8 CODE >79:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pin_manager.c
+B3 text8 CODE >80:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pin_manager.c
+B5 text8 CODE >81:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pin_manager.c
+B7 text8 CODE >82:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pin_manager.c
+B9 text8 CODE >87:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pin_manager.c
+BA text8 CODE >88:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pin_manager.c
+BB text8 CODE >89:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pin_manager.c
+BC text8 CODE >90:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pin_manager.c
+BD text8 CODE >91:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pin_manager.c
+BE text8 CODE >96:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pin_manager.c
+BF text8 CODE >97:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pin_manager.c
+C0 text8 CODE >98:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pin_manager.c
+C1 text8 CODE >99:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pin_manager.c
+C2 text8 CODE >100:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pin_manager.c
+C3 text8 CODE >105:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pin_manager.c
+C5 text8 CODE >106:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pin_manager.c
+C7 text8 CODE >107:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pin_manager.c
+C9 text8 CODE >108:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pin_manager.c
+CB text8 CODE >109:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pin_manager.c
+CD text8 CODE >114:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pin_manager.c
+CF text8 CODE >115:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pin_manager.c
+D1 text8 CODE >116:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pin_manager.c
+D3 text8 CODE >117:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pin_manager.c
+D5 text8 CODE >118:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pin_manager.c
+D7 text8 CODE >127:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pin_manager.c
+DA text8 CODE >128:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pin_manager.c
+DD text8 CODE >129:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pin_manager.c
+1EB text7 CODE >77:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/mcc.c
+1EB text7 CODE >80:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/mcc.c
+1ED text7 CODE >82:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/mcc.c
+1EE text7 CODE >84:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/mcc.c
+1EF text7 CODE >86:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/mcc.c
+1F0 text7 CODE >88:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/mcc.c
+1F1 text7 CODE >90:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/mcc.c
+1F2 text7 CODE >91:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/mcc.c
+1A2 text6 CODE >58:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pwm6.c
+1A2 text6 CODE >62:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pwm6.c
+1A5 text6 CODE >65:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pwm6.c
+1A7 text6 CODE >68:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pwm6.c
+1A9 text6 CODE >71:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pwm6.c
+1AE text6 CODE >72:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pwm6.c
+1D6 text5 CODE >60:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr0.c
+1D6 text5 CODE >65:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr0.c
+1D9 text5 CODE >68:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr0.c
+1DB text5 CODE >71:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr0.c
+1DC text5 CODE >74:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr0.c
+1DE text5 CODE >77:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr0.c
+1E1 text5 CODE >78:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr0.c
+201 text4 CODE >178:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr1.c
+201 text4 CODE >179:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr1.c
+206 text4 CODE >180:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr1.c
+105 text3 CODE >64:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr1.c
+105 text3 CODE >69:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr1.c
+107 text3 CODE >72:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr1.c
+108 text3 CODE >75:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr1.c
+10A text3 CODE >78:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr1.c
+10C text3 CODE >81:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr1.c
+10E text3 CODE >84:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr1.c
+115 text3 CODE >87:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr1.c
+117 text3 CODE >90:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr1.c
+118 text3 CODE >93:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr1.c
+11F text3 CODE >96:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr1.c
+122 text3 CODE >97:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr1.c
+193 text2 CODE >62:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr2.c
+193 text2 CODE >67:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr2.c
+196 text2 CODE >70:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr2.c
+198 text2 CODE >73:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr2.c
+199 text2 CODE >76:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr2.c
+19B text2 CODE >79:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr2.c
+19C text2 CODE >82:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr2.c
+19E text2 CODE >85:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr2.c
+1A1 text2 CODE >86:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr2.c
+123 text1 CODE >50:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/mcc.c
+123 text1 CODE >52:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/mcc.c
+126 text1 CODE >53:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/mcc.c
+129 text1 CODE >54:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/mcc.c
+12C text1 CODE >55:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/mcc.c
+12F text1 CODE >56:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/mcc.c
+132 text1 CODE >57:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/mcc.c
+135 text1 CODE >58:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/mcc.c
+138 text1 CODE >59:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/mcc.c
+13B text1 CODE >60:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/mcc.c
+13E text1 CODE >61:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/mcc.c
+3A maintext CODE >55:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
+3A maintext CODE >58:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
 3D maintext CODE >59:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
-44 maintext CODE >61:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
-44 maintext CODE >66:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
-45 maintext CODE >69:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
-46 maintext CODE >76:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
-48 maintext CODE >77:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
-48 maintext CODE >80:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
-49 maintext CODE >81:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
-4A maintext CODE >83:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
-56 maintext CODE >85:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
-56 maintext CODE >86:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
-5C maintext CODE >88:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
-60 maintext CODE >89:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
-68 maintext CODE >90:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
-70 maintext CODE >91:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
+44 maintext CODE >60:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
+4B maintext CODE >62:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
+4B maintext CODE >67:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
+4C maintext CODE >70:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
+4D maintext CODE >77:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
+4F maintext CODE >78:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
+4F maintext CODE >81:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
+50 maintext CODE >82:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
+51 maintext CODE >84:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
+5D maintext CODE >86:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
+5D maintext CODE >87:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
+63 maintext CODE >90:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
+67 maintext CODE >91:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
+68 maintext CODE >92:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
+6C maintext CODE >91:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
+74 maintext CODE >94:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
+7C maintext CODE >97:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
+80 maintext CODE >99:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
+89 maintext CODE >100:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
+8B maintext CODE >103:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
+92 maintext CODE >105:/home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
 # %SYMTAB Section
 # An enumeration of all symbols in the program.
 # The beginning of the section is indicated by %SYMTAB.
@@ -362,13 +397,16 @@ __Hspace_0 800C 0 ABS 0 - -
 __Hspace_1 7B 0 ABS 0 - -
 __Hspace_2 0 0 ABS 0 - -
 __Hspace_3 0 0 ABS 0 - -
-_handler_clock_hms 182 0 CODE 0 text17 dist/default/production/sce.X.production.o
+_handler_clock_hms 1BC 0 CODE 0 text20 dist/default/production/sce.X.production.o
+_PWM6CON 38E 0 ABS 0 - dist/default/production/sce.X.production.o
+_PWM6DCH 38D 0 ABS 0 - dist/default/production/sce.X.production.o
+_PWM6DCL 38C 0 ABS 0 - dist/default/production/sce.X.production.o
 __Heeprom_data 0 0 EEDATA 3 eeprom_data -
 __CFG_MCLRE$ON 0 0 ABS 0 - dist/default/production/sce.X.production.o
-_INT_CallBack 2C6 0 CODE 0 text20 dist/default/production/sce.X.production.o
+_INT_CallBack 378 0 CODE 0 text23 dist/default/production/sce.X.production.o
 _T1CONbits 20E 0 ABS 0 - dist/default/production/sce.X.production.o
 __size_of_EXT_INT_Initialize 0 0 ABS 0 - dist/default/production/sce.X.production.o
-_PMD_Initialize 324 0 CODE 0 text5 dist/default/production/sce.X.production.o
+_PMD_Initialize 3D6 0 CODE 0 text7 dist/default/production/sce.X.production.o
 __Hstrings 0 0 ABS 0 strings -
 _LATA 16 0 ABS 0 - dist/default/production/sce.X.production.o
 _LATB 17 0 ABS 0 - dist/default/production/sce.X.production.o
@@ -381,43 +419,50 @@ _PMD2 798 0 ABS 0 - dist/default/production/sce.X.production.o
 _PMD3 799 0 ABS 0 - dist/default/production/sce.X.production.o
 _PMD4 79A 0 ABS 0 - dist/default/production/sce.X.production.o
 _PMD5 79B 0 ABS 0 - dist/default/production/sce.X.production.o
+_T2PR 28D 0 ABS 0 - dist/default/production/sce.X.production.o
+_TMR2 28C 0 ABS 0 - dist/default/production/sce.X.production.o
 _WPUA F39 0 ABS 0 - dist/default/production/sce.X.production.o
 _WPUB F44 0 ABS 0 - dist/default/production/sce.X.production.o
 _WPUC F4F 0 ABS 0 - dist/default/production/sce.X.production.o
 _WPUD F5A 0 ABS 0 - dist/default/production/sce.X.production.o
 _WPUE F65 0 ABS 0 - dist/default/production/sce.X.production.o
-___sp 0 0 STACK 2 stack /tmp/xcX8EsYWK.o
+___sp 0 0 STACK 2 stack /tmp/xcXyn9liv.o
 _clkh 78 0 COMMON 1 bssCOMMON dist/default/production/sce.X.production.o
 _clkm 77 0 COMMON 1 bssCOMMON dist/default/production/sce.X.production.o
-_main 66 0 CODE 0 maintext dist/default/production/sce.X.production.o
+_main 74 0 CODE 0 maintext dist/default/production/sce.X.production.o
 btemp 7E 0 ABS 0 - dist/default/production/sce.X.production.o
-start 4A 0 CODE 0 init /tmp/xcX8EsYWK.o
+start 4A 0 CODE 0 init /tmp/xcXyn9liv.o
+_PWM6_LoadDutyValue 2D8 0 CODE 0 text13 dist/default/production/sce.X.production.o
 __size_of_main 0 0 ABS 0 - dist/default/production/sce.X.production.o
 __HbssCOMMON 0 0 ABS 0 bssCOMMON -
 __CFG_SCANE$available 0 0 ABS 0 - dist/default/production/sce.X.production.o
 __CFG_DEBUG$OFF 0 0 ABS 0 - dist/default/production/sce.X.production.o
+_PWM6_Initialize 344 0 CODE 0 text6 dist/default/production/sce.X.production.o
 __Hpowerup 0 0 CODE 0 powerup -
 __size_of_TMR1_Initialize 0 0 ABS 0 - dist/default/production/sce.X.production.o
 __size_of_TMR1_WriteTimer 0 0 ABS 0 - dist/default/production/sce.X.production.o
 ADCC_StartConversion@channel 72 0 COMMON 1 cstackCOMMON dist/default/production/sce.X.production.o
-__LnvCOMMON 0 0 ABS 0 nvCOMMON -
+_TMR2_Initialize 326 0 CODE 0 text2 dist/default/production/sce.X.production.o
 __size_of_SYSTEM_Initialize 0 0 ABS 0 - dist/default/production/sce.X.production.o
-intlevel0 0 0 ENTRY 0 functab /tmp/xcX8EsYWK.o
-intlevel1 0 0 ENTRY 0 functab /tmp/xcX8EsYWK.o
-intlevel2 0 0 ENTRY 0 functab /tmp/xcX8EsYWK.o
-intlevel3 0 0 ENTRY 0 functab /tmp/xcX8EsYWK.o
-intlevel4 0 0 ENTRY 0 functab /tmp/xcX8EsYWK.o
-intlevel5 0 0 ENTRY 0 functab /tmp/xcX8EsYWK.o
+__HdataCOMMON 0 0 ABS 0 dataCOMMON -
+intlevel0 0 0 ENTRY 0 functab /tmp/xcXyn9liv.o
+intlevel1 0 0 ENTRY 0 functab /tmp/xcXyn9liv.o
+intlevel2 0 0 ENTRY 0 functab /tmp/xcXyn9liv.o
+intlevel3 0 0 ENTRY 0 functab /tmp/xcXyn9liv.o
+intlevel4 0 0 ENTRY 0 functab /tmp/xcXyn9liv.o
+intlevel5 0 0 ENTRY 0 functab /tmp/xcXyn9liv.o
 __size_of_INT_CallBack 0 0 ABS 0 - dist/default/production/sce.X.production.o
 __LbssCOMMON 0 0 ABS 0 bssCOMMON -
-_ADCC_StartConversion 334 0 CODE 0 text11 dist/default/production/sce.X.production.o
+_ADCC_StartConversion 3E6 0 CODE 0 text14 dist/default/production/sce.X.production.o
 wtemp0 7E 0 ABS 0 - dist/default/production/sce.X.production.o
 __Hfunctab 0 0 ENTRY 0 functab -
-__end_of_PMD_Initialize 334 0 CODE 0 text5 dist/default/production/sce.X.production.o
+PWM6_LoadDutyValue@dutyValue 72 0 COMMON 1 cstackCOMMON dist/default/production/sce.X.production.o
+__end_of_PMD_Initialize 3E6 0 CODE 0 text7 dist/default/production/sce.X.production.o
 __size_of_TMR1_DefaultInterruptHandler 0 0 ABS 0 - dist/default/production/sce.X.production.o
 __Hclrtext 0 0 ABS 0 clrtext -
-__end_of_ADCC_IsConversionDone 350 0 CODE 0 text12 dist/default/production/sce.X.production.o
-__end_of_TMR1_DefaultInterruptHandler 382 0 CODE 0 text16 dist/default/production/sce.X.production.o
+__pidataCOMMON 432 0 CODE 0 idataCOMMON dist/default/production/sce.X.production.o
+__end_of_ADCC_IsConversionDone 402 0 CODE 0 text15 dist/default/production/sce.X.production.o
+__end_of_TMR1_DefaultInterruptHandler 438 0 CODE 0 text19 dist/default/production/sce.X.production.o
 _ADACCH 91 0 ABS 0 - dist/default/production/sce.X.production.o
 _ADACCL 90 0 ABS 0 - dist/default/production/sce.X.production.o
 _ADCON0 93 0 ABS 0 - dist/default/production/sce.X.production.o
@@ -438,10 +483,11 @@ _ANSELB F43 0 ABS 0 - dist/default/production/sce.X.production.o
 _ANSELC F4E 0 ABS 0 - dist/default/production/sce.X.production.o
 _ANSELD F59 0 ABS 0 - dist/default/production/sce.X.production.o
 _ANSELE F64 0 ABS 0 - dist/default/production/sce.X.production.o
-__end_of_INT_CallBack 2E0 0 CODE 0 text20 dist/default/production/sce.X.production.o
+__end_of_INT_CallBack 392 0 CODE 0 text23 dist/default/production/sce.X.production.o
+__LdataCOMMON 0 0 ABS 0 dataCOMMON -
 __end_of_INTERRUPT_InterruptManager 4A 0 CODE 0 intentry dist/default/production/sce.X.production.o
 __size_of_TMR1_SetInterruptHandler 0 0 ABS 0 - dist/default/production/sce.X.production.o
-_ADCC_IsConversionDone 342 0 CODE 0 text12 dist/default/production/sce.X.production.o
+_ADCC_IsConversionDone 3F4 0 CODE 0 text15 dist/default/production/sce.X.production.o
 __Lmaintext 0 0 ABS 0 maintext -
 __LnvBANK0 0 0 ABS 0 nvBANK0 -
 __size_of_INT_SetInterruptHandler 0 0 ABS 0 - dist/default/production/sce.X.production.o
@@ -452,12 +498,14 @@ _INLVLC F52 0 ABS 0 - dist/default/production/sce.X.production.o
 _INLVLD F5D 0 ABS 0 - dist/default/production/sce.X.production.o
 _INLVLE F68 0 ABS 0 - dist/default/production/sce.X.production.o
 _INTPPS E90 0 ABS 0 - dist/default/production/sce.X.production.o
-___stackhi 23EF 0 ABS 0 - /tmp/xcX8EsYWK.o
-___stacklo 2008 0 ABS 0 - /tmp/xcX8EsYWK.o
+___stackhi 23EF 0 ABS 0 - /tmp/xcXyn9liv.o
+___stacklo 200A 0 ABS 0 - /tmp/xcXyn9liv.o
+__size_of_PWM6_Initialize 0 0 ABS 0 - dist/default/production/sce.X.production.o
 __size_of_sw1_EXT 0 0 ABS 0 - dist/default/production/sce.X.production.o
+__LidataCOMMON 0 0 ABS 0 idataCOMMON -
 __size_of_INT_ISR 0 0 ABS 0 - dist/default/production/sce.X.production.o
-__HnvCOMMON 0 0 ABS 0 nvCOMMON -
-_PIN_MANAGER_Initialize 108 0 CODE 0 text6 dist/default/production/sce.X.production.o
+__size_of_TMR2_Initialize 0 0 ABS 0 - dist/default/production/sce.X.production.o
+_PIN_MANAGER_Initialize 13C 0 CODE 0 text8 dist/default/production/sce.X.production.o
 start_initialization 4E 0 CODE 0 cinit dist/default/production/sce.X.production.o
 _ODCONA F3A 0 ABS 0 - dist/default/production/sce.X.production.o
 _ODCONB F45 0 ABS 0 - dist/default/production/sce.X.production.o
@@ -472,14 +520,16 @@ _ADPREVH 8F 0 ABS 0 - dist/default/production/sce.X.production.o
 _ADPREVL 8E 0 ABS 0 - dist/default/production/sce.X.production.o
 _ADSTPTH 113 0 ABS 0 - dist/default/production/sce.X.production.o
 _ADSTPTL 112 0 ABS 0 - dist/default/production/sce.X.production.o
-__end_of_SYSTEM_Initialize 232 0 CODE 0 text1 dist/default/production/sce.X.production.o
+_RA6PPS F16 0 ABS 0 - dist/default/production/sce.X.production.o
+__end_of_SYSTEM_Initialize 27E 0 CODE 0 text1 dist/default/production/sce.X.production.o
 _T0CON0 1E 0 ABS 0 - dist/default/production/sce.X.production.o
 _T0CON1 1F 0 ABS 0 - dist/default/production/sce.X.production.o
 _T1GATE 210 0 ABS 0 - dist/default/production/sce.X.production.o
 _T1GCON 20F 0 ABS 0 - dist/default/production/sce.X.production.o
-__end_of_TMR1_SetInterruptHandler 35C 0 CODE 0 text3 dist/default/production/sce.X.production.o
-__end_of_ADCC_Initialize 25E 0 CODE 0 text10 dist/default/production/sce.X.production.o
-___int_sp 0 0 STACK 2 stack /tmp/xcX8EsYWK.o
+_T2CLKCON 290 0 ABS 0 - dist/default/production/sce.X.production.o
+__end_of_TMR1_SetInterruptHandler 40E 0 CODE 0 text4 dist/default/production/sce.X.production.o
+__end_of_ADCC_Initialize 2D8 0 CODE 0 text12 dist/default/production/sce.X.production.o
+___int_sp 0 0 STACK 2 stack /tmp/xcXyn9liv.o
 __Hbank0 0 0 ABS 0 bank0 -
 __Hbank1 0 0 ABS 0 bank1 -
 __Hbank2 0 0 ABS 0 bank2 -
@@ -490,8 +540,8 @@ __Hbank6 0 0 ABS 0 bank6 -
 __Hbank7 0 0 ABS 0 bank7 -
 __Hbank8 0 0 ABS 0 bank8 -
 __Hbank9 0 0 ABS 0 bank9 -
-__Hcinit 66 0 CODE 0 cinit -
-_INT_DefaultInterruptHandler 382 0 CODE 0 text21 dist/default/production/sce.X.production.o
+__Hcinit 74 0 CODE 0 cinit -
+_INT_DefaultInterruptHandler 438 0 CODE 0 text24 dist/default/production/sce.X.production.o
 __Hidloc 0 0 IDLOC 0 idloc -
 __size_of_OSCILLATOR_Initialize 0 0 ABS 0 - dist/default/production/sce.X.production.o
 __Hsfr10 0 0 ABS 0 sfr10 -
@@ -541,8 +591,10 @@ __Hbank30 0 0 BANK30 1 bank30 -
 __Hbank31 0 0 BANK31 1 bank31 -
 __Hbigram 0 0 ABS 0 bigram -
 __Hmaintext 0 0 ABS 0 maintext -
+__size_of_PWM6_LoadDutyValue 0 0 ABS 0 - dist/default/production/sce.X.production.o
 __Hcommon 0 0 ABS 0 common -
 __Hconfig 10018 0 CONFIG 0 config -
+_T2HLTbits 28F 0 ABS 0 - dist/default/production/sce.X.production.o
 __Lbank0 0 0 ABS 0 bank0 -
 __Lbank1 0 0 ABS 0 bank1 -
 __Lbank2 0 0 ABS 0 bank2 -
@@ -609,26 +661,30 @@ __Lsfr8 0 0 ABS 0 sfr8 -
 __Lsfr9 0 0 ABS 0 sfr9 -
 __Ltext 0 0 ABS 0 text -
 __pnvBANK0 20 0 BANK0 1 nvBANK0 dist/default/production/sce.X.production.o
-__end_of_sw1_EXT 2FA 0 CODE 0 text22 dist/default/production/sce.X.production.o
+__end_of_sw1_EXT 3AC 0 CODE 0 text25 dist/default/production/sce.X.production.o
 __CFG_WDTCWS$WDTCWS_7 0 0 ABS 0 - dist/default/production/sce.X.production.o
-_ADCC_GetConversionResult 368 0 CODE 0 text13 dist/default/production/sce.X.production.o
+_ADCC_GetConversionResult 41A 0 CODE 0 text16 dist/default/production/sce.X.production.o
 int$flags 7E 0 ABS 0 - dist/default/production/sce.X.production.o
-__end_of_INT_ISR 380 0 CODE 0 text19 dist/default/production/sce.X.production.o
+__end_of_INT_ISR 432 0 CODE 0 text22 dist/default/production/sce.X.production.o
 __HcstackCOMMON 0 0 ABS 0 cstackCOMMON -
 __size_of_INTERRUPT_InterruptManager 0 0 ABS 0 - dist/default/production/sce.X.production.o
+_PR2 28D 0 ABS 0 - dist/default/production/sce.X.production.o
 __S0 800C 0 ABS 0 - -
 __S1 7B 0 ABS 0 - -
 __S2 0 0 ABS 0 - -
 __S3 0 0 ABS 0 - -
 _seg 76 0 COMMON 1 bssCOMMON dist/default/production/sce.X.production.o
 __size_of_TMR1_ISR 0 0 ABS 0 - dist/default/production/sce.X.production.o
-__pnvCOMMON 79 0 COMMON 1 nvCOMMON dist/default/production/sce.X.production.o
-_ADCC_Initialize 232 0 CODE 0 text10 dist/default/production/sce.X.production.o
-_SYSTEM_Initialize 206 0 CODE 0 text1 dist/default/production/sce.X.production.o
+_T2RSTbits 291 0 ABS 0 - dist/default/production/sce.X.production.o
+_ADCC_Initialize 2AC 0 CODE 0 text12 dist/default/production/sce.X.production.o
+__HidataCOMMON 0 0 ABS 0 idataCOMMON -
+_SYSTEM_Initialize 246 0 CODE 0 text1 dist/default/production/sce.X.production.o
 __CFG_BOREN$ON 0 0 ABS 0 - dist/default/production/sce.X.production.o
 __HnvBANK0 0 0 ABS 0 nvBANK0 -
 __Lintentry 8 0 CODE 0 intentry -
-reset_vec 0 0 CODE 0 reset_vec /tmp/xcX8EsYWK.o
+_duty_cycle 79 0 COMMON 1 dataCOMMON dist/default/production/sce.X.production.o
+reset_vec 0 0 CODE 0 reset_vec /tmp/xcXyn9liv.o
+_CCPTMRS1bits 21F 0 ABS 0 - dist/default/production/sce.X.production.o
 __LbssBANK0 0 0 ABS 0 bssBANK0 -
 __CFG_FCMEN$ON 0 0 ABS 0 - dist/default/production/sce.X.production.o
 _INT_InterruptHandler 20 0 BANK0 1 nvBANK0 dist/default/production/sce.X.production.o
@@ -636,23 +692,26 @@ _INTERRUPT_InterruptManager 8 0 CODE 0 intentry dist/default/production/sce.X.pr
 __size_of_PMD_Initialize 0 0 ABS 0 - dist/default/production/sce.X.production.o
 _PIE0bits 716 0 ABS 0 - dist/default/production/sce.X.production.o
 _PIE4bits 71A 0 ABS 0 - dist/default/production/sce.X.production.o
-__end_of_EXT_INT_Initialize 2C6 0 CODE 0 text8 dist/default/production/sce.X.production.o
+__end_of_EXT_INT_Initialize 378 0 CODE 0 text10 dist/default/production/sce.X.production.o
 __size_of_handler_clock_hms 0 0 ABS 0 - dist/default/production/sce.X.production.o
-_TMR1_ISR 25E 0 CODE 0 text15 dist/default/production/sce.X.production.o
-__ptext10 232 0 CODE 0 text10 dist/default/production/sce.X.production.o
-__ptext11 334 0 CODE 0 text11 dist/default/production/sce.X.production.o
-__ptext12 342 0 CODE 0 text12 dist/default/production/sce.X.production.o
-__ptext13 368 0 CODE 0 text13 dist/default/production/sce.X.production.o
-__ptext15 25E 0 CODE 0 text15 dist/default/production/sce.X.production.o
-__ptext16 380 0 CODE 0 text16 dist/default/production/sce.X.production.o
-__ptext17 182 0 CODE 0 text17 dist/default/production/sce.X.production.o
-__ptext18 28A 0 CODE 0 text18 dist/default/production/sce.X.production.o
-__ptext19 374 0 CODE 0 text19 dist/default/production/sce.X.production.o
-__ptext20 2C6 0 CODE 0 text20 dist/default/production/sce.X.production.o
-__ptext21 382 0 CODE 0 text21 dist/default/production/sce.X.production.o
-__ptext22 2E0 0 CODE 0 text22 dist/default/production/sce.X.production.o
-__end_of_PIN_MANAGER_Initialize 182 0 CODE 0 text6 dist/default/production/sce.X.production.o
-__end_of_TMR0_Initialize 312 0 CODE 0 text4 dist/default/production/sce.X.production.o
+_TMR1_ISR 27E 0 CODE 0 text18 dist/default/production/sce.X.production.o
+__ptext10 35E 0 CODE 0 text10 dist/default/production/sce.X.production.o
+__ptext11 40E 0 CODE 0 text11 dist/default/production/sce.X.production.o
+__ptext12 2AC 0 CODE 0 text12 dist/default/production/sce.X.production.o
+__ptext13 2D8 0 CODE 0 text13 dist/default/production/sce.X.production.o
+__ptext14 3E6 0 CODE 0 text14 dist/default/production/sce.X.production.o
+__ptext15 3F4 0 CODE 0 text15 dist/default/production/sce.X.production.o
+__ptext16 41A 0 CODE 0 text16 dist/default/production/sce.X.production.o
+__ptext18 27E 0 CODE 0 text18 dist/default/production/sce.X.production.o
+__ptext19 436 0 CODE 0 text19 dist/default/production/sce.X.production.o
+__ptext20 1BC 0 CODE 0 text20 dist/default/production/sce.X.production.o
+__ptext21 304 0 CODE 0 text21 dist/default/production/sce.X.production.o
+__ptext22 426 0 CODE 0 text22 dist/default/production/sce.X.production.o
+__ptext23 378 0 CODE 0 text23 dist/default/production/sce.X.production.o
+__ptext24 438 0 CODE 0 text24 dist/default/production/sce.X.production.o
+__ptext25 392 0 CODE 0 text25 dist/default/production/sce.X.production.o
+__end_of_PIN_MANAGER_Initialize 1BC 0 CODE 0 text8 dist/default/production/sce.X.production.o
+__end_of_TMR0_Initialize 3C4 0 CODE 0 text5 dist/default/production/sce.X.production.o
 __Lbank10 0 0 ABS 0 bank10 -
 __Lbank11 0 0 ABS 0 bank11 -
 __Lbank12 0 0 ABS 0 bank12 -
@@ -675,7 +734,7 @@ __Lbank28 0 0 BANK28 1 bank28 -
 __Lbank29 0 0 BANK29 1 bank29 -
 __Lbank30 0 0 BANK30 1 bank30 -
 __Lbank31 0 0 BANK31 1 bank31 -
-__pmaintext 66 0 CODE 0 maintext dist/default/production/sce.X.production.o
+__pmaintext 74 0 CODE 0 maintext dist/default/production/sce.X.production.o
 __Lbigram 0 0 ABS 0 bigram -
 __CFG_BORV$LO 0 0 ABS 0 - dist/default/production/sce.X.production.o
 ?_ADCC_GetConversionResult 72 0 COMMON 1 cstackCOMMON dist/default/production/sce.X.production.o
@@ -684,11 +743,11 @@ __Lcommon 0 0 ABS 0 common -
 __Lconfig 1000E 0 CONFIG 0 config -
 __CFG_CP$OFF 0 0 ABS 0 - dist/default/production/sce.X.production.o
 __CFG_WDTE$OFF 0 0 ABS 0 - dist/default/production/sce.X.production.o
-__end_of_TMR1_ISR 28A 0 CODE 0 text15 dist/default/production/sce.X.production.o
+__end_of_TMR1_ISR 2AC 0 CODE 0 text18 dist/default/production/sce.X.production.o
 _LATAbits 16 0 ABS 0 - dist/default/production/sce.X.production.o
 __size_of_ADCC_IsConversionDone 0 0 ABS 0 - dist/default/production/sce.X.production.o
 __size_of_ADCC_StartConversion 0 0 ABS 0 - dist/default/production/sce.X.production.o
-_EXT_INT_Initialize 2AC 0 CODE 0 text8 dist/default/production/sce.X.production.o
+_EXT_INT_Initialize 35E 0 CODE 0 text10 dist/default/production/sce.X.production.o
 _OSCCON1 88D 0 ABS 0 - dist/default/production/sce.X.production.o
 _OSCCON3 88F 0 ABS 0 - dist/default/production/sce.X.production.o
 _OSCTUNE 892 0 ABS 0 - dist/default/production/sce.X.production.o
@@ -708,35 +767,35 @@ _PIR0bits 70C 0 ABS 0 - dist/default/production/sce.X.production.o
 _PIR4bits 710 0 ABS 0 - dist/default/production/sce.X.production.o
 __Lend_init 4A 0 CODE 0 end_init -
 __CFG_WDTCCS$HFINTOSC 0 0 ABS 0 - dist/default/production/sce.X.production.o
-__end_of_ADCC_StartConversion 342 0 CODE 0 text11 dist/default/production/sce.X.production.o
+__end_of_ADCC_StartConversion 3F4 0 CODE 0 text14 dist/default/production/sce.X.production.o
 __CFG_LVP$ON 0 0 ABS 0 - dist/default/production/sce.X.production.o
 __CFG_CSWEN$ON 0 0 ABS 0 - dist/default/production/sce.X.production.o
 __LcstackCOMMON 0 0 ABS 0 cstackCOMMON -
 __CFG_ZCD$OFF 0 0 ABS 0 - dist/default/production/sce.X.production.o
-end_of_initialization 5E 0 CODE 0 cinit dist/default/production/sce.X.production.o
-_TMR0_Initialize 2FA 0 CODE 0 text4 dist/default/production/sce.X.production.o
+end_of_initialization 6C 0 CODE 0 cinit dist/default/production/sce.X.production.o
+_TMR0_Initialize 3AC 0 CODE 0 text5 dist/default/production/sce.X.production.o
 __Hintentry 4A 0 CODE 0 intentry -
 __CFG_STVREN$ON 0 0 ABS 0 - dist/default/production/sce.X.production.o
 __Lstrings 0 0 ABS 0 strings -
 __Hreset_vec 4 0 CODE 0 reset_vec -
 TMR1_SetInterruptHandler@InterruptHandler 72 0 COMMON 1 cstackCOMMON dist/default/production/sce.X.production.o
-_INT_SetInterruptHandler 35C 0 CODE 0 text9 dist/default/production/sce.X.production.o
+_INT_SetInterruptHandler 40E 0 CODE 0 text11 dist/default/production/sce.X.production.o
 __HbssBANK0 0 0 ABS 0 bssBANK0 -
-__end_of_INT_SetInterruptHandler 368 0 CODE 0 text9 dist/default/production/sce.X.production.o
-__ptext1 206 0 CODE 0 text1 dist/default/production/sce.X.production.o
-__ptext2 1D0 0 CODE 0 text2 dist/default/production/sce.X.production.o
-__ptext3 350 0 CODE 0 text3 dist/default/production/sce.X.production.o
-__ptext4 2FA 0 CODE 0 text4 dist/default/production/sce.X.production.o
-__ptext5 324 0 CODE 0 text5 dist/default/production/sce.X.production.o
-__ptext6 108 0 CODE 0 text6 dist/default/production/sce.X.production.o
-__ptext7 312 0 CODE 0 text7 dist/default/production/sce.X.production.o
-__ptext8 2AC 0 CODE 0 text8 dist/default/production/sce.X.production.o
-__ptext9 35C 0 CODE 0 text9 dist/default/production/sce.X.production.o
+__end_of_INT_SetInterruptHandler 41A 0 CODE 0 text11 dist/default/production/sce.X.production.o
+__ptext1 246 0 CODE 0 text1 dist/default/production/sce.X.production.o
+__ptext2 326 0 CODE 0 text2 dist/default/production/sce.X.production.o
+__ptext3 20A 0 CODE 0 text3 dist/default/production/sce.X.production.o
+__ptext4 402 0 CODE 0 text4 dist/default/production/sce.X.production.o
+__ptext5 3AC 0 CODE 0 text5 dist/default/production/sce.X.production.o
+__ptext6 344 0 CODE 0 text6 dist/default/production/sce.X.production.o
+__ptext7 3D6 0 CODE 0 text7 dist/default/production/sce.X.production.o
+__ptext8 13C 0 CODE 0 text8 dist/default/production/sce.X.production.o
+__ptext9 3C4 0 CODE 0 text9 dist/default/production/sce.X.production.o
 __Lpowerup 0 0 CODE 0 powerup -
 __Leeprom_data 0 0 EEDATA 3 eeprom_data -
 TMR1_WriteTimer@timerVal 70 0 COMMON 1 cstackCOMMON dist/default/production/sce.X.production.o
-__end_of_TMR1_Initialize 206 0 CODE 0 text2 dist/default/production/sce.X.production.o
-__end_of_TMR1_WriteTimer 2AC 0 CODE 0 text18 dist/default/production/sce.X.production.o
+__end_of_TMR1_Initialize 246 0 CODE 0 text3 dist/default/production/sce.X.production.o
+__end_of_TMR1_WriteTimer 326 0 CODE 0 text21 dist/default/production/sce.X.production.o
 __Lreset_vec 0 0 CODE 0 reset_vec -
 _SLRCONA F3B 0 ABS 0 - dist/default/production/sce.X.production.o
 _SLRCONB F46 0 ABS 0 - dist/default/production/sce.X.production.o
@@ -744,23 +803,23 @@ _SLRCONC F51 0 ABS 0 - dist/default/production/sce.X.production.o
 _SLRCOND F5C 0 ABS 0 - dist/default/production/sce.X.production.o
 _SLRCONE F67 0 ABS 0 - dist/default/production/sce.X.production.o
 __CFG_CLKOUTEN$OFF 0 0 ABS 0 - dist/default/production/sce.X.production.o
-_sw1_EXT 2E0 0 CODE 0 text22 dist/default/production/sce.X.production.o
-__end_of_handler_clock_hms 1D0 0 CODE 0 text17 dist/default/production/sce.X.production.o
-__end_of__initialization 5E 0 CODE 0 cinit dist/default/production/sce.X.production.o
-_INT_ISR 374 0 CODE 0 text19 dist/default/production/sce.X.production.o
+_sw1_EXT 392 0 CODE 0 text25 dist/default/production/sce.X.production.o
+__end_of_handler_clock_hms 20A 0 CODE 0 text20 dist/default/production/sce.X.production.o
+__end_of__initialization 6C 0 CODE 0 cinit dist/default/production/sce.X.production.o
+_INT_ISR 426 0 CODE 0 text22 dist/default/production/sce.X.production.o
 __Lfunctab 0 0 ENTRY 0 functab -
 _convertedValue 26 0 BANK0 1 bssBANK0 dist/default/production/sce.X.production.o
 _ADSTATbits 97 0 ABS 0 - dist/default/production/sce.X.production.o
 __Lclrtext 0 0 ABS 0 clrtext -
-_timer1ReloadVal 79 0 COMMON 1 nvCOMMON dist/default/production/sce.X.production.o
+_timer1ReloadVal 24 0 BANK0 1 nvBANK0 dist/default/production/sce.X.production.o
 INT_SetInterruptHandler@InterruptHandler 72 0 COMMON 1 cstackCOMMON dist/default/production/sce.X.production.o
-_TMR1_DefaultInterruptHandler 380 0 CODE 0 text16 dist/default/production/sce.X.production.o
+_TMR1_DefaultInterruptHandler 436 0 CODE 0 text19 dist/default/production/sce.X.production.o
 __pcstackCOMMON 70 0 COMMON 1 cstackCOMMON dist/default/production/sce.X.production.o
 _T0CON0bits 1E 0 ABS 0 - dist/default/production/sce.X.production.o
-__end_of_ADCC_GetConversionResult 374 0 CODE 0 text13 dist/default/production/sce.X.production.o
+__end_of_ADCC_GetConversionResult 426 0 CODE 0 text16 dist/default/production/sce.X.production.o
 __Hend_init 4E 0 CODE 0 end_init -
 __size_of_INT_DefaultInterruptHandler 0 0 ABS 0 - dist/default/production/sce.X.production.o
-__end_of_main 108 0 CODE 0 maintext dist/default/production/sce.X.production.o
+__end_of_main 13C 0 CODE 0 maintext dist/default/production/sce.X.production.o
 _ADACQ 9D 0 ABS 0 - dist/default/production/sce.X.production.o
 _ADACT 99 0 ABS 0 - dist/default/production/sce.X.production.o
 _ADCAP 9B 0 ABS 0 - dist/default/production/sce.X.production.o
@@ -773,6 +832,10 @@ _ADRPT 10D 0 ABS 0 - dist/default/production/sce.X.production.o
 _OSCEN 891 0 ABS 0 - dist/default/production/sce.X.production.o
 _T1CLK 211 0 ABS 0 - dist/default/production/sce.X.production.o
 _T1CON 20E 0 ABS 0 - dist/default/production/sce.X.production.o
+_T2CON 28E 0 ABS 0 - dist/default/production/sce.X.production.o
+_T2HLT 28F 0 ABS 0 - dist/default/production/sce.X.production.o
+_T2RST 291 0 ABS 0 - dist/default/production/sce.X.production.o
+_T2TMR 28C 0 ABS 0 - dist/default/production/sce.X.production.o
 _TMR0H 1D 0 ABS 0 - dist/default/production/sce.X.production.o
 _TMR0L 1C 0 ABS 0 - dist/default/production/sce.X.production.o
 _TMR1H 20D 0 ABS 0 - dist/default/production/sce.X.production.o
@@ -785,22 +848,27 @@ _TRISE 15 0 ABS 0 - dist/default/production/sce.X.production.o
 __size_of_TMR0_Initialize 0 0 ABS 0 - dist/default/production/sce.X.production.o
 __Hram 0 0 ABS 0 ram -
 __Lram 0 0 ABS 0 ram -
-_TMR1_Initialize 1D0 0 CODE 0 text2 dist/default/production/sce.X.production.o
-_TMR1_WriteTimer 28A 0 CODE 0 text18 dist/default/production/sce.X.production.o
+_TMR1_Initialize 20A 0 CODE 0 text3 dist/default/production/sce.X.production.o
+_TMR1_WriteTimer 304 0 CODE 0 text21 dist/default/production/sce.X.production.o
 __CFG_CPD$OFF 0 0 ABS 0 - dist/default/production/sce.X.production.o
-_value 24 0 BANK0 1 bssBANK0 dist/default/production/sce.X.production.o
+_value 28 0 BANK0 1 bssBANK0 dist/default/production/sce.X.production.o
 __size_of_PIN_MANAGER_Initialize 0 0 ABS 0 - dist/default/production/sce.X.production.o
 __pintentry 8 0 CODE 0 intentry dist/default/production/sce.X.production.o
-__end_of_OSCILLATOR_Initialize 324 0 CODE 0 text7 dist/default/production/sce.X.production.o
+__end_of_OSCILLATOR_Initialize 3D6 0 CODE 0 text9 dist/default/production/sce.X.production.o
 __CFG_PPS1WAY$ON 0 0 ABS 0 - dist/default/production/sce.X.production.o
 __initialization 4E 0 CODE 0 cinit dist/default/production/sce.X.production.o
 __CFG_PWRTE$OFF 0 0 ABS 0 - dist/default/production/sce.X.production.o
-__pbssBANK0 24 0 BANK0 1 bssBANK0 dist/default/production/sce.X.production.o
-__end_of_INT_DefaultInterruptHandler 384 0 CODE 0 text21 dist/default/production/sce.X.production.o
+__pbssBANK0 26 0 BANK0 1 bssBANK0 dist/default/production/sce.X.production.o
+__pdataCOMMON 79 0 COMMON 1 dataCOMMON dist/default/production/sce.X.production.o
+__end_of_INT_DefaultInterruptHandler 43A 0 CODE 0 text24 dist/default/production/sce.X.production.o
+_T2CONbits 28E 0 ABS 0 - dist/default/production/sce.X.production.o
 __CFG_WRT$OFF 0 0 ABS 0 - dist/default/production/sce.X.production.o
-_TMR1_SetInterruptHandler 350 0 CODE 0 text3 dist/default/production/sce.X.production.o
+__end_of_PWM6_Initialize 35E 0 CODE 0 text6 dist/default/production/sce.X.production.o
+_TMR1_SetInterruptHandler 402 0 CODE 0 text4 dist/default/production/sce.X.production.o
+__end_of_PWM6_LoadDutyValue 304 0 CODE 0 text13 dist/default/production/sce.X.production.o
 _TMR1_InterruptHandler 22 0 BANK0 1 nvBANK0 dist/default/production/sce.X.production.o
-_OSCILLATOR_Initialize 312 0 CODE 0 text7 dist/default/production/sce.X.production.o
+_OSCILLATOR_Initialize 3C4 0 CODE 0 text9 dist/default/production/sce.X.production.o
+__end_of_TMR2_Initialize 344 0 CODE 0 text2 dist/default/production/sce.X.production.o
 # %SPLITSTAB Section
 # This section enumerates all the psect splits performed by the assembler.
 # The beginning of the section is indicated by %SPLITSTAB.
@@ -826,9 +894,9 @@ _OSCILLATOR_Initialize 312 0 CODE 0 text7 dist/default/production/sce.X.producti
 # and size are in units of delta. The file address is in units of bytes.
 # All other numeric quantities are in decimal.
 %SEGMENTS
-nvBANK0 1 20 20 8 1
+nvBANK0 1 20 20 A 1
 cstackCOMMON 1 70 70 B 1
-intentry 0 4 8 1BE 2
+intentry 0 4 8 219 2
 reset_vec 0 0 0 2 2
 config 0 8007 1000E 5 2
 # %NOTES Section

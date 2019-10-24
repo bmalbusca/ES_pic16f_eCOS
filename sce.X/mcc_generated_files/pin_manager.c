@@ -125,6 +125,7 @@ void PIN_MANAGER_Initialize(void)
     
 	
     INTPPS = 0x0C;   //RB4->EXT_INT:INT;    
+    RA6PPS = 0x0E;   //RA6->PWM6:PWM6OUT;    
 }
   
 void PIN_MANAGER_IOC(void)
