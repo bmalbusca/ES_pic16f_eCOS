@@ -20933,10 +20933,10 @@ void TMR1_Initialize(void)
     T1CLK = 0x04;
 
 
-    TMR1H = 0xE1;
+    TMR1H = 0xF0;
 
 
-    TMR1L = 0xBA;
+    TMR1L = 0xDD;
 
 
     timer1ReloadVal=(uint16_t)((TMR1H << 8) | TMR1L);

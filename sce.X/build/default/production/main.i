@@ -7,7 +7,7 @@
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
 # 1 "main.c" 2
-# 10 "main.c"
+# 12 "main.c"
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\xc.h" 1 3
 # 18 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -20791,7 +20791,7 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 27 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\xc.h" 2 3
-# 10 "main.c" 2
+# 12 "main.c" 2
 
 # 1 "./mcc_generated_files/mcc.h" 1
 # 50 "./mcc_generated_files/mcc.h"
@@ -20799,9 +20799,9 @@ extern __bank0 __bit __timeout;
 # 50 "./mcc_generated_files/mcc.h" 2
 
 # 1 "./mcc_generated_files/pin_manager.h" 1
-# 118 "./mcc_generated_files/pin_manager.h"
+# 158 "./mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_Initialize (void);
-# 130 "./mcc_generated_files/pin_manager.h"
+# 170 "./mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_IOC(void);
 # 51 "./mcc_generated_files/mcc.h" 2
 
@@ -20896,6 +20896,218 @@ typedef uint32_t uint_fast32_t;
 # 1 "./mcc_generated_files/interrupt_manager.h" 1
 # 54 "./mcc_generated_files/mcc.h" 2
 
+# 1 "./mcc_generated_files/i2c1_driver.h" 1
+# 26 "./mcc_generated_files/i2c1_driver.h"
+# 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\stdio.h" 1 3
+# 24 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\stdio.h" 3
+# 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\bits/alltypes.h" 1 3
+
+
+
+
+
+typedef void * va_list[1];
+
+
+
+
+typedef void * __isoc_va_list[1];
+# 137 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\bits/alltypes.h" 3
+typedef long ssize_t;
+# 246 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\bits/alltypes.h" 3
+typedef long long off_t;
+# 399 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\bits/alltypes.h" 3
+typedef struct _IO_FILE FILE;
+# 24 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\stdio.h" 2 3
+# 52 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\stdio.h" 3
+typedef union _G_fpos64_t {
+ char __opaque[16];
+ double __align;
+} fpos_t;
+
+extern FILE *const stdin;
+extern FILE *const stdout;
+extern FILE *const stderr;
+
+
+
+
+
+FILE *fopen(const char *restrict, const char *restrict);
+FILE *freopen(const char *restrict, const char *restrict, FILE *restrict);
+int fclose(FILE *);
+
+int remove(const char *);
+int rename(const char *, const char *);
+
+int feof(FILE *);
+int ferror(FILE *);
+int fflush(FILE *);
+void clearerr(FILE *);
+
+int fseek(FILE *, long, int);
+long ftell(FILE *);
+void rewind(FILE *);
+
+int fgetpos(FILE *restrict, fpos_t *restrict);
+int fsetpos(FILE *, const fpos_t *);
+
+size_t fread(void *restrict, size_t, size_t, FILE *restrict);
+size_t fwrite(const void *restrict, size_t, size_t, FILE *restrict);
+
+int fgetc(FILE *);
+int getc(FILE *);
+int getchar(void);
+int ungetc(int, FILE *);
+
+int fputc(int, FILE *);
+int putc(int, FILE *);
+int putchar(int);
+
+char *fgets(char *restrict, int, FILE *restrict);
+
+char *gets(char *);
+
+
+int fputs(const char *restrict, FILE *restrict);
+int puts(const char *);
+
+#pragma printf_check(printf) const
+#pragma printf_check(vprintf) const
+#pragma printf_check(sprintf) const
+#pragma printf_check(snprintf) const
+#pragma printf_check(vsprintf) const
+#pragma printf_check(vsnprintf) const
+
+int printf(const char *restrict, ...);
+int fprintf(FILE *restrict, const char *restrict, ...);
+int sprintf(char *restrict, const char *restrict, ...);
+int snprintf(char *restrict, size_t, const char *restrict, ...);
+
+int vprintf(const char *restrict, __isoc_va_list);
+int vfprintf(FILE *restrict, const char *restrict, __isoc_va_list);
+int vsprintf(char *restrict, const char *restrict, __isoc_va_list);
+int vsnprintf(char *restrict, size_t, const char *restrict, __isoc_va_list);
+
+int scanf(const char *restrict, ...);
+int fscanf(FILE *restrict, const char *restrict, ...);
+int sscanf(const char *restrict, const char *restrict, ...);
+int vscanf(const char *restrict, __isoc_va_list);
+int vfscanf(FILE *restrict, const char *restrict, __isoc_va_list);
+int vsscanf(const char *restrict, const char *restrict, __isoc_va_list);
+
+void perror(const char *);
+
+int setvbuf(FILE *restrict, char *restrict, int, size_t);
+void setbuf(FILE *restrict, char *restrict);
+
+char *tmpnam(char *);
+FILE *tmpfile(void);
+
+
+
+
+FILE *fmemopen(void *restrict, size_t, const char *restrict);
+FILE *open_memstream(char **, size_t *);
+FILE *fdopen(int, const char *);
+FILE *popen(const char *, const char *);
+int pclose(FILE *);
+int fileno(FILE *);
+int fseeko(FILE *, off_t, int);
+off_t ftello(FILE *);
+int dprintf(int, const char *restrict, ...);
+int vdprintf(int, const char *restrict, __isoc_va_list);
+void flockfile(FILE *);
+int ftrylockfile(FILE *);
+void funlockfile(FILE *);
+int getc_unlocked(FILE *);
+int getchar_unlocked(void);
+int putc_unlocked(int, FILE *);
+int putchar_unlocked(int);
+ssize_t getdelim(char **restrict, size_t *restrict, int, FILE *restrict);
+ssize_t getline(char **restrict, size_t *restrict, FILE *restrict);
+int renameat(int, const char *, int, const char *);
+char *ctermid(char *);
+
+
+
+
+
+
+
+char *tempnam(const char *, const char *);
+# 26 "./mcc_generated_files/i2c1_driver.h" 2
+
+
+
+
+
+
+
+
+typedef void (*interruptHandler)(void);
+
+
+__attribute__((inline)) void i2c1_driver_close(void);
+
+
+__attribute__((inline)) void mssp1_enableIRQ(void);
+__attribute__((inline)) __bit mssp1_IRQisEnabled(void);
+__attribute__((inline)) void mssp1_disableIRQ(void);
+__attribute__((inline)) void mssp1_clearIRQ(void);
+__attribute__((inline)) void mssp1_setIRQ(void);
+__attribute__((inline)) __bit mssp1_IRQisSet(void);
+__attribute__((inline)) void mssp1_waitForEvent(uint16_t*);
+
+
+__bit i2c1_driver_open(void);
+__attribute__((inline)) char i2c1_driver_getRXData(void);
+__attribute__((inline)) char i2c1_driver_getAddr(void);
+__attribute__((inline)) void i2c1_driver_setAddr(char addr);
+__attribute__((inline)) void i2c1_driver_setMask(char mask);
+__attribute__((inline)) void i2c1_driver_TXData(char d);
+__attribute__((inline)) void i2c1_driver_resetBus(void);
+__attribute__((inline)) void i2c1_driver_start(void);
+__attribute__((inline)) void i2c1_driver_restart(void);
+__attribute__((inline)) void i2c1_driver_stop(void);
+__attribute__((inline)) __bit i2c1_driver_isNACK(void);
+__attribute__((inline)) void i2c1_driver_startRX(void);
+__attribute__((inline)) void i2c1_driver_sendACK(void);
+__attribute__((inline)) void i2c1_driver_sendNACK(void);
+__attribute__((inline)) void i2c1_driver_clearBusCollision(void);
+
+__bit i2c1_driver_initSlaveHardware(void);
+__attribute__((inline)) void i2c1_driver_releaseClock(void);
+__attribute__((inline)) __bit i2c1_driver_isBufferFull(void);
+__attribute__((inline)) __bit i2c1_driver_isStart(void);
+__attribute__((inline)) __bit i2c1_driver_isStop(void);
+__attribute__((inline)) __bit i2c1_driver_isAddress(void);
+__attribute__((inline)) __bit i2c1_driver_isData(void);
+__attribute__((inline)) __bit i2c1_driver_isRead(void);
+__attribute__((inline)) __bit i2c1_driver_isWriteCollision(void);
+__attribute__((inline)) __bit i2c1_driver_isReceiveOverflow(void);
+
+__attribute__((inline)) void i2c1_driver_setBusCollisionISR(interruptHandler handler);
+__attribute__((inline)) void i2c1_driver_setI2cISR(interruptHandler handler);
+void (*i2c1_driver_busCollisionISR)(void);
+void (*i2c1_driver_i2cISR)(void);
+# 55 "./mcc_generated_files/mcc.h" 2
+
+# 1 "./mcc_generated_files/memory.h" 1
+# 99 "./mcc_generated_files/memory.h"
+uint16_t FLASH_ReadWord(uint16_t flashAddr);
+# 128 "./mcc_generated_files/memory.h"
+void FLASH_WriteWord(uint16_t flashAddr, uint16_t *ramBuf, uint16_t word);
+# 164 "./mcc_generated_files/memory.h"
+int8_t FLASH_WriteBlock(uint16_t writeAddr, uint16_t *flashWordArray);
+# 189 "./mcc_generated_files/memory.h"
+void FLASH_EraseBlock(uint16_t startAddr);
+# 222 "./mcc_generated_files/memory.h"
+void DATAEE_WriteByte(uint16_t bAdd, uint8_t bData);
+# 248 "./mcc_generated_files/memory.h"
+uint8_t DATAEE_ReadByte(uint16_t bAdd);
+# 56 "./mcc_generated_files/mcc.h" 2
+
 # 1 "./mcc_generated_files/tmr1.h" 1
 # 100 "./mcc_generated_files/tmr1.h"
 void TMR1_Initialize(void);
@@ -20921,37 +21133,83 @@ void TMR1_ISR(void);
 extern void (*TMR1_InterruptHandler)(void);
 # 421 "./mcc_generated_files/tmr1.h"
 void TMR1_DefaultInterruptHandler(void);
-# 55 "./mcc_generated_files/mcc.h" 2
+# 57 "./mcc_generated_files/mcc.h" 2
 
-# 1 "./mcc_generated_files/tmr0.h" 1
-# 100 "./mcc_generated_files/tmr0.h"
-void TMR0_Initialize(void);
-# 129 "./mcc_generated_files/tmr0.h"
-void TMR0_StartTimer(void);
-# 161 "./mcc_generated_files/tmr0.h"
-void TMR0_StopTimer(void);
-# 196 "./mcc_generated_files/tmr0.h"
-uint8_t TMR0_ReadTimer(void);
-# 235 "./mcc_generated_files/tmr0.h"
-void TMR0_WriteTimer(uint8_t timerVal);
-# 272 "./mcc_generated_files/tmr0.h"
-void TMR0_Reload(uint8_t periodVal);
-# 291 "./mcc_generated_files/tmr0.h"
-void TMR0_ISR(void);
-# 310 "./mcc_generated_files/tmr0.h"
- void TMR0_SetInterruptHandler(void (* InterruptHandler)(void));
-# 328 "./mcc_generated_files/tmr0.h"
-extern void (*TMR0_InterruptHandler)(void);
-# 346 "./mcc_generated_files/tmr0.h"
-void TMR0_DefaultInterruptHandler(void);
-# 56 "./mcc_generated_files/mcc.h" 2
-# 71 "./mcc_generated_files/mcc.h"
+# 1 "./mcc_generated_files/drivers/i2c_master.h" 1
+# 29 "./mcc_generated_files/drivers/i2c_master.h"
+# 1 "./mcc_generated_files/drivers/i2c_types.h" 1
+# 29 "./mcc_generated_files/drivers/i2c_types.h"
+typedef enum {
+    I2C_NOERR,
+    I2C_BUSY,
+    I2C_FAIL
+
+
+} i2c_error_t;
+
+typedef enum
+{
+    i2c_stop=1,
+    i2c_restart_read,
+    i2c_restart_write,
+    i2c_continue,
+    i2c_reset_link
+} i2c_operations_t;
+
+typedef i2c_operations_t (*i2c_callback)(void *p);
+
+typedef uint8_t i2c_address_t;
+
+
+i2c_operations_t i2c_returnStop(void *p);
+i2c_operations_t i2c_returnReset(void *p);
+i2c_operations_t i2c_restartWrite(void *p);
+i2c_operations_t i2c_restartRead(void *p);
+# 29 "./mcc_generated_files/drivers/i2c_master.h" 2
+
+
+
+
+i2c_error_t i2c_open(i2c_address_t address);
+void i2c_setAddress(i2c_address_t address);
+i2c_error_t i2c_close(void);
+i2c_error_t i2c_masterOperation(_Bool read);
+i2c_error_t i2c_masterWrite(void);
+i2c_error_t i2c_masterRead(void);
+
+void i2c_setTimeOut(uint8_t to);
+void i2c_setBuffer(void *buffer, size_t bufferSize);
+
+
+void i2c_setDataCompleteCallback(i2c_callback cb, void *p);
+void i2c_setWriteCollisionCallback(i2c_callback cb, void *p);
+void i2c_setAddressNACKCallback(i2c_callback cb, void *p);
+void i2c_setDataNACKCallback(i2c_callback cb, void *p);
+void i2c_setTimeOutCallback(i2c_callback cb, void *p);
+
+
+void i2c_ISR(void);
+void i2c_busCollisionISR(void);
+# 58 "./mcc_generated_files/mcc.h" 2
+
+# 1 "./mcc_generated_files/drivers/i2c_simple_master.h" 1
+# 30 "./mcc_generated_files/drivers/i2c_simple_master.h"
+uint8_t i2c_read1ByteRegister(i2c_address_t address, uint8_t reg);
+uint16_t i2c_read2ByteRegister(i2c_address_t address, uint8_t reg);
+void i2c_write1ByteRegister(i2c_address_t address, uint8_t reg, uint8_t data);
+void i2c_write2ByteRegister(i2c_address_t address, uint8_t reg, uint16_t data);
+
+void i2c_writeNBytes(i2c_address_t address, void* data, size_t len);
+void i2c_readDataBlock(i2c_address_t address, uint8_t reg, void *data, size_t len);
+void i2c_readNBytes(i2c_address_t address, void *data, size_t len);
+# 59 "./mcc_generated_files/mcc.h" 2
+# 74 "./mcc_generated_files/mcc.h"
 void SYSTEM_Initialize(void);
-# 84 "./mcc_generated_files/mcc.h"
+# 87 "./mcc_generated_files/mcc.h"
 void OSCILLATOR_Initialize(void);
-# 97 "./mcc_generated_files/mcc.h"
+# 100 "./mcc_generated_files/mcc.h"
 void PMD_Initialize(void);
-# 11 "main.c" 2
+# 13 "main.c" 2
 
 # 1 "./I2C/i2c.h" 1
 # 154 "./I2C/i2c.h"
@@ -20966,32 +21224,85 @@ unsigned char ReadI2C( void );
 signed char WriteI2C( unsigned char data_out );
 
 signed char getsI2C( unsigned char *rdptr, unsigned char length );
-# 12 "main.c" 2
+# 14 "main.c" 2
 
 
+void cksum_w(void);
+unsigned char cksum(void);
+unsigned char read_ring(unsigned char index, unsigned char subindex);
+void push_ring(void);
 void update_clock(void);
-void copyto_EEPROM(void);
+unsigned char tsttc (void);
 
 
-void h_clock(void){
+volatile __bit half = 0;
+void h_clock(void) {
     do { LATAbits.LATA7 = ~LATAbits.LATA7; } while(0);
-    update_clock();
-    copyto_EEPROM();
+    if(!half) {
+        update_clock();
+        half = 1;
+    }
+    else {
+        half = 0;
+    }
 }
 
+__eeprom unsigned char buffer[30*5];
+__eeprom unsigned char recovery_data[5];
 
 
-void acquire_sensor_lum(void);
 
 
-volatile unsigned char clkh = 0;
-volatile unsigned char clkm = 0;
-volatile unsigned char seg;
+
+
+volatile unsigned char clkh, clkh_aux;
+volatile unsigned char clkm, clkm_aux;
+volatile unsigned char seg, seg_aux;
+volatile unsigned char last5s, last1m;
+__bit configuration_mode;
+unsigned char nreg, nreg_pt;
+__bit nreg_init;
+unsigned char ring_byte[5];
+unsigned char pmon;
+__bit running;
+unsigned char temp, lum;
+unsigned char last5s_aux, last1m_aux;
+unsigned int convertedValue;
+unsigned int duty_cycle;
+unsigned int task_schedule;
+unsigned char value = 0;
 
 void main(void)
 {
-    bit running = 1;
-    unsigned char temp;
+    clkh = 0;
+    clkm = 0;
+    seg = 0;
+    last5s = 0;
+    last1m = 0;
+    configuration_mode = 0;
+    nreg = 5*30;
+    nreg_pt = 0;
+    nreg_init = 0;
+    pmon = 5;
+    running = 1;
+    temp = 0;
+    lum = 0;
+    convertedValue = 0;
+    duty_cycle = 25;
+    task_schedule = 0;
+
+
+    if(recovery_data[0] == 0xAB) {
+        if(recovery_data[5 - 1] == cksum()) {
+            clkh = recovery_data[1];
+            clkm = recovery_data[2];
+            nreg_pt = recovery_data[3];
+        }
+    }
+
+
+    recovery_data[0] = 0xAB;
+    cksum_w();
 
     SYSTEM_Initialize();
     (INTCONbits.GIE = 1);
@@ -21007,18 +21318,116 @@ void main(void)
 
     while (running)
     {
-        __nop();
-  temp = tsttc();
-        __nop();
+        (INTCONbits.GIE = 0);
+        clkh_aux = clkh;
+        clkm_aux = clkm;
+        seg_aux = seg;
+        last5s_aux = last5s;
+        last1m_aux = last1m;
+        (INTCONbits.GIE = 1);
 
-        void acquire_sensor_lum(void);
+        if(configuration_mode) {
+
+        }
+
+        if(pmon) {
+            if(last5s_aux >= 5) {
+
+
+                __nop();
+
+                temp++;
+                __nop();
+
+
+                   DATAEE_WriteByte(0xF000, 0xAA);
+                   DATAEE_WriteByte(0xF001, 0xAA);
+
+
+                if (temp != read_ring(0, 3) || lum != read_ring(0, 4)) {
+                    ring_byte[0] = clkh_aux;
+                    ring_byte[1] = clkm_aux;
+                    ring_byte[2] = seg_aux;
+                    ring_byte[3] = temp;
+                    ring_byte[4] = lum;
+                    push_ring();
+                    DATAEE_WriteByte(buffer, 0xAA);
+
+                    recovery_data[3] = nreg_pt;
+                    cksum_w();
+                }
+
+                (INTCONbits.GIE = 0);
+                last5s_aux = 0;
+                (INTCONbits.GIE = 1);
+            }
+        }
+
+
+        if (last1m >= 1) {
+
+
+            recovery_data[1] = clkh_aux;
+            recovery_data[2] = clkm_aux;
+            cksum_w();
+
+            (INTCONbits.GIE = 0);
+            last1m = 0;
+            (INTCONbits.GIE = 1);
+        }
     }
 }
 
+void cksum_w()
+{
+    recovery_data[5 - 1] = cksum();
+}
+
+unsigned char cksum()
+{
+    unsigned char res = 0;
+    for(unsigned char i = 0; i < 5; i ++) {
+        res += recovery_data[i];
+    }
+    return res;
+}
+
+unsigned char read_ring(unsigned char index, unsigned char subindex)
+{
+    unsigned char absindex;
+    unsigned char i = 0;
+
+    if(index <= 30 && nreg_init) {
+        absindex = 5 * index + subindex;
+        if(absindex <= nreg_pt)
+            i = nreg_pt - absindex;
+        else
+            i = nreg - (nreg_pt - absindex);
+    }
+    else
+        return 0;
+
+    return buffer[i];
+}
+
+void push_ring()
+{ unsigned char address = 0xF000;
+    if(!nreg_init) nreg_init = 1;
+    for(unsigned char i = 0; i < 5; i++) {
+
+
+        DATAEE_WriteByte(address + nreg_pt, 0xAC);
+        nreg_pt ++;
+    }
+}
+
+unsigned char aux;
 void update_clock(void) {
     seg++;
+    last5s++;
     if(seg >= 60) {
         clkm++;
+        last1m++;
         seg = 0;
         if(clkm >= 60) {
             clkh++;
@@ -21027,6 +21436,32 @@ void update_clock(void) {
     }
 }
 
-void copyto_EEPROM(void) {
+unsigned char tsttc (void)
+{
+ unsigned char value;
 
+    do{
+        while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
+        SSP1CON2bits.SEN=1;while(SSP1CON2bits.SEN); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
+
+        WriteI2C(0x9a | 0x00); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
+        WriteI2C(0x01); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
+        SSP1CON2bits.RSEN=1;while(SSP1CON2bits.RSEN); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
+        WriteI2C(0x9a | 0x01); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
+        value = ReadI2C(); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
+        SSP1CON2bits.ACKDT=1;SSP1CON2bits.ACKEN=1;while(SSP1CON2bits.ACKEN); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
+        SSP1CON2bits.PEN = 1;while(SSP1CON2bits.PEN);
+    } while (!(value & 0x40));
+
+ while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
+ SSP1CON2bits.SEN=1;while(SSP1CON2bits.SEN); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
+ WriteI2C(0x9a | 0x00); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
+ WriteI2C(0x00); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
+ SSP1CON2bits.RSEN=1;while(SSP1CON2bits.RSEN); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
+ WriteI2C(0x9a | 0x01); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
+ value = ReadI2C(); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
+ SSP1CON2bits.ACKDT=1;SSP1CON2bits.ACKEN=1;while(SSP1CON2bits.ACKEN); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
+ SSP1CON2bits.PEN = 1;while(SSP1CON2bits.PEN);
+
+ return value;
 }
