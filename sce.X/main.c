@@ -38,6 +38,7 @@
 volatile int value = 0;
 void handler_clock_hms(void);
 void copyto_EEPROM(void);
+void LED_bin(unsigned int value);
         
 volatile unsigned char clkh = CLKH;
 volatile unsigned char clkm = CLKM;
@@ -48,7 +49,7 @@ unsigned int duty_cycle = 25;
 
 void sw1_EXT(void){
     
-    IO_RA5_Toggle(); 
+    //IO_RA5_Toggle(); 
     
 }
 
@@ -74,17 +75,17 @@ void main(void)
 
     // Disable the Peripheral Interrupts
     //INTERRUPT_PeripheralInterruptDisable();
-     IO_RA4_SetLow(); 
+     //IO_RA4_SetLow(); 
     while (1)
     {   
         
         SLEEP();
         NOP();
         
-        IO_RA4_Toggle();
+        //IO_RA4_Toggle();
         
         task_schedule = seg;
-        if (seg >= 5){
+        //if (seg >= 5){
         
             do{
                 ADCC_StartConversion(channel_ANA0);
@@ -96,15 +97,18 @@ void main(void)
                 //IO_RA6_LAT = 1 << convertedValue;
                 duty_cycle =  convertedValue;
                 
+                LED_bin(convertedValue);
+                
                 if (duty_cycle < 50){   //set zero 
                     duty_cycle = 0;
                 }
                 
+                
                 PWM6_LoadDutyValue(duty_cycle);
                 
-            }while(duty_cycle > 50);    //maintain this state 
+            }while(duty_cycle > 1);    //maintain this state 
             
-        }
+        //}
         
        
         
@@ -112,6 +116,18 @@ void main(void)
     }
 }
 
+/*******************************************
+ *  Func: LED_bin
+ *  Desc: Convert voltage into 2 bit levels
+ *  Obs: Assign the bit code to RA5 and RA4
+ *******************************************/
+
+void LED_bin(unsigned int value){
+    
+    IO_RA4_LAT =  (value >> 8) & 1;
+    IO_RA5_LAT =  ((value >> 8)>>1);
+  
+}
 void handler_clock_hms(void){
     IO_RA7_Toggle();
     //PIE4 |= (1<< TMR1IE);

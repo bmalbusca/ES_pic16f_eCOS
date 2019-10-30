@@ -21232,6 +21232,7 @@ void PMD_Initialize(void);
 volatile int value = 0;
 void handler_clock_hms(void);
 void copyto_EEPROM(void);
+void LED_bin(unsigned int value);
 
 volatile unsigned char clkh = 0;
 volatile unsigned char clkm = 0;
@@ -21242,7 +21243,7 @@ unsigned int duty_cycle = 25;
 
 void sw1_EXT(void){
 
-    do { LATAbits.LATA5 = ~LATAbits.LATA5; } while(0);
+
 
 }
 
@@ -21268,17 +21269,17 @@ void main(void)
 
 
 
-     do { LATAbits.LATA4 = 0; } while(0);
+
     while (1)
     {
 
         __asm("sleep");
         __nop();
 
-        do { LATAbits.LATA4 = ~LATAbits.LATA4; } while(0);
+
 
         task_schedule = seg;
-        if (seg >= 5){
+
 
             do{
                 ADCC_StartConversion(channel_ANA0);
@@ -21290,15 +21291,18 @@ void main(void)
 
                 duty_cycle = convertedValue;
 
+                LED_bin(convertedValue);
+
                 if (duty_cycle < 50){
                     duty_cycle = 0;
                 }
 
+
                 PWM6_LoadDutyValue(duty_cycle);
 
-            }while(duty_cycle > 50);
+            }while(duty_cycle > 1);
 
-        }
+
 
 
 
@@ -21306,6 +21310,13 @@ void main(void)
     }
 }
 
+void LED_bin(unsigned int value){
+
+
+    LATAbits.LATA4 = (value >> 8) & 1;
+    LATAbits.LATA5 = ((value >> 8)>>1);
+
+}
 void handler_clock_hms(void){
     do { LATAbits.LATA7 = ~LATAbits.LATA7; } while(0);
 
