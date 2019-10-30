@@ -21228,7 +21228,7 @@ void OSCILLATOR_Initialize(void);
 # 101 "./mcc_generated_files/mcc.h"
 void PMD_Initialize(void);
 # 28 "main.c" 2
-# 38 "main.c"
+# 41 "main.c"
 volatile int value = 0;
 void handler_clock_hms(void);
 void copyto_EEPROM(void);
@@ -21238,8 +21238,14 @@ volatile unsigned char clkh = 0;
 volatile unsigned char clkm = 0;
 volatile unsigned char seg;
 
+volatile unsigned char alarm = 0;
+
 unsigned int convertedValue = 0;
-unsigned int duty_cycle = 25;
+unsigned int duty_cycle = 1;
+unsigned int level_bin = 0;
+
+
+
 
 void sw1_EXT(void){
 
@@ -21250,6 +21256,7 @@ void sw1_EXT(void){
 void main(void)
 {
 
+    unsigned int lum_threshold = 0;
     SYSTEM_Initialize();
     TMR1_SetInterruptHandler(handler_clock_hms);
     INT_SetInterruptHandler(sw1_EXT);
@@ -21289,18 +21296,24 @@ void main(void)
                 convertedValue = ADCC_GetConversionResult();
 
 
-                duty_cycle = convertedValue;
 
-                LED_bin(convertedValue);
+                level_bin = (convertedValue >> 8);
+                LED_bin(level_bin);
 
-                if (duty_cycle < 50){
-                    duty_cycle = 0;
+                lum_threshold = ( level_bin > 2);
+
+                if (alarm == 0 && lum_threshold ){
+
+                        duty_cycle +=1 ;
+                        PWM6_LoadDutyValue(duty_cycle);
+
+                }
+                else if (alarm == 0 && !(lum_threshold)) {
+                    PWM6_LoadDutyValue(0);
                 }
 
 
-                PWM6_LoadDutyValue(duty_cycle);
-
-            }while(duty_cycle > 1);
+            }while(1);
 
 
 
@@ -21310,13 +21323,19 @@ void main(void)
     }
 }
 
+
+
+
+
+
+
 void LED_bin(unsigned int value){
 
-
-    LATAbits.LATA4 = (value >> 8) & 1;
-    LATAbits.LATA5 = ((value >> 8)>>1);
+    LATAbits.LATA4 = (value & 1);
+    LATAbits.LATA5 = (value >>1);
 
 }
+
 void handler_clock_hms(void){
     do { LATAbits.LATA7 = ~LATAbits.LATA7; } while(0);
 

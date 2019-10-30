@@ -35,6 +35,9 @@
 #define CLKH 0
 #define CLKM 0
 
+#define ON 1
+#define OFF 0
+
 volatile int value = 0;
 void handler_clock_hms(void);
 void copyto_EEPROM(void);
@@ -44,8 +47,14 @@ volatile unsigned char clkh = CLKH;
 volatile unsigned char clkm = CLKM;
 volatile unsigned char seg;
 
+volatile unsigned char alarm = 0; 
+
 unsigned int convertedValue = 0;
-unsigned int duty_cycle = 25;
+unsigned int duty_cycle = 1;
+unsigned int level_bin = 0;
+
+
+
 
 void sw1_EXT(void){
     
@@ -56,6 +65,7 @@ void sw1_EXT(void){
 void main(void)
 {
     // initialize the device
+    unsigned int lum_threshold = 0;
     SYSTEM_Initialize();
     TMR1_SetInterruptHandler(handler_clock_hms);
     INT_SetInterruptHandler(sw1_EXT);
@@ -95,18 +105,24 @@ void main(void)
                 convertedValue = ADCC_GetConversionResult();
                 
                 //IO_RA6_LAT = 1 << convertedValue;
-                duty_cycle =  convertedValue;
                 
-                LED_bin(convertedValue);
+                level_bin = (convertedValue >> 8);
+                LED_bin(level_bin);
+               
+                lum_threshold = ( level_bin > ALAL);
                 
-                if (duty_cycle < 50){   //set zero 
-                    duty_cycle = 0;
+                if (alarm == OFF && lum_threshold ){
+                        
+                        duty_cycle +=1 ;   
+                        PWM6_LoadDutyValue(duty_cycle);
+
+                }
+                else if (alarm == OFF && !(lum_threshold)) {
+                    PWM6_LoadDutyValue(0);
                 }
                 
                 
-                PWM6_LoadDutyValue(duty_cycle);
-                
-            }while(duty_cycle > 1);    //maintain this state 
+            }while(1);    //maintain this state 
             
         //}
         
@@ -124,13 +140,14 @@ void main(void)
 
 void LED_bin(unsigned int value){
     
-    IO_RA4_LAT =  (value >> 8) & 1;
-    IO_RA5_LAT =  ((value >> 8)>>1);
+    IO_RA4_LAT =  (value & 1);
+    IO_RA5_LAT =  (value >>1);
   
 }
+
 void handler_clock_hms(void){
     IO_RA7_Toggle();
-    //PIE4 |= (1<< TMR1IE);
+   
     seg++;
     if(seg >= 60) {
         clkm++;
