@@ -8,6 +8,9 @@
 #define CLKM        0
 #define WORD_MG     0xAB        // Magic Word
 #define NRECOV      5           // nº of parameters for recovery
+#define REG_SIZE    5
+
+#define MAX_ADD_EEPROM 0xF0FF
 
 #include <xc.h>
 #include "mcc_generated_files/mcc.h"
@@ -19,6 +22,7 @@ unsigned char read_ring(unsigned char index, unsigned char subindex);
 void push_ring(void);
 void update_clock(void);
 unsigned char tsttc (void);
+
 
 /*Interrupt Handlers*/
 volatile __bit half = 0;
@@ -33,8 +37,14 @@ void h_clock(void) {
     }
 }
 
-__eeprom unsigned char buffer[NREG*5];
+//__eeprom unsigned char buffer[NREG*5];
 __eeprom unsigned char recovery_data[NRECOV]; // order {word_mg, clkh, clkm, nreg_pt, ck}
+
+unsigned char  buffer[NREG*REG_SIZE];
+unsigned char * ptr_read_buff = NULL;
+unsigned char * ptr_write_buff = NULL;
+
+unsigned int ptr_EEPROM = 0xF000;
 
 /* EEPROM adress space
  * 0xF000 to 0xF0FF     
@@ -58,6 +68,46 @@ unsigned int duty_cycle;
 unsigned int task_schedule;
 unsigned char value = 0;
 
+void Pull_ring_buffer(){ // clean buffer
+    
+    
+} 
+
+
+void Store_EEPROM(unsigned char * ptr_buffer_r){     //store EEPROM
+    
+    for(int j =1; j <= REG_SIZE && ptr_EEPROM != MAX_ADD_EEPROM ; j++){
+            DATAEE_WriteByte(ptr_EEPROM , *(ptr_buffer_r+ (j-1)));
+            ptr_EEPROM +=j;
+        }      
+    
+}
+
+void Push_ring_buffer( unsigned char reg[REG_SIZE]){
+    
+    if (ptr_write_buff == &(buffer[NREG*REG_SIZE-1])){ //is full
+      
+        Store_EEPROM(ptr_read_buff);
+     
+    }
+   
+    else if (ptr_write_buff == NULL && ptr_read_buff == NULL){
+       ptr_write_buff =  buffer;
+       ptr_read_buff = buffer;
+    }
+    else{}
+    
+    
+    
+    //check if is the last on the buffer
+    for (int i=0; i< REG_SIZE; i++){
+        *(ptr_write_buff + i)  = reg[i];
+        ptr_write_buff += i;
+    }
+    
+}
+
+
 void main(void)
 {
     clkh = CLKH;
@@ -76,6 +126,8 @@ void main(void)
     convertedValue = 0;
     duty_cycle = 25;
     task_schedule = 0;
+    
+    unsigned char data[5] = {0x1,0x2,0x3,0x4,0x5}; 
     
     /* Recover Parameters */
     if(recovery_data[0] == WORD_MG) {
@@ -126,17 +178,21 @@ void main(void)
                 NOP();
                 
                 /* Light Sensor Aquisition */
-                   DATAEE_WriteByte(0xF000, 0xAA);
-                   DATAEE_WriteByte(0xF001, 0xAA);
+                   //DATAEE_WriteByte(0xF000, 0xAA);
+                   //DATAEE_WriteByte(0xF001, 0xAA);
+                Push_ring_buffer(data);
                    //push_ring();
                 /* Write If Changed */
                 if (temp != read_ring(0, 3) || lum != read_ring(0, 4)) {
+                    
+                    
+                    
                     ring_byte[0] = clkh_aux;
                     ring_byte[1] = clkm_aux;
                     ring_byte[2] = seg_aux;
                     ring_byte[3] = temp;
                     ring_byte[4] = lum;
-                    push_ring();
+                    //feed_ring_buffer(ring_byte);
                     DATAEE_WriteByte(buffer, 0xAA);
                     /* Write Recovery Parameters */
                     recovery_data[3] = nreg_pt;
@@ -163,6 +219,8 @@ void main(void)
         }              
     }
 }
+
+
 
 void cksum_w()
 {
@@ -196,6 +254,7 @@ unsigned char read_ring(unsigned char index, unsigned char subindex)
     return buffer[i];
 }
 
+/*
 void push_ring()
 {   unsigned char address = 0xF000;
     if(!nreg_init) nreg_init = 1;
@@ -206,7 +265,7 @@ void push_ring()
         nreg_pt ++;
     }
 }
-
+*/
 unsigned char aux;
 void update_clock(void) { 
     seg++;
