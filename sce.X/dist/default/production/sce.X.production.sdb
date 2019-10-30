@@ -3,14 +3,6 @@
 [d edition pro ]
 [d chip 16F18875 ]
 [d frameptr 6 ]
-"101 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
-[e E12248 . `uc
-channel_ANA0 0
-channel_VSS 60
-channel_Temp 61
-channel_DAC1 62
-channel_FVR_buf1 63
-]
 "106 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/adcc.c
 [e E12246 . `uc
 channel_ANA0 0
@@ -64,6 +56,14 @@ TMR2_CLC2_OUT 15
 TMR2_CLC3_OUT 16
 TMR2_CLC4_OUT 17
 ]
+"125 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
+[e E12248 . `uc
+channel_ANA0 0
+channel_VSS 60
+channel_Temp 61
+channel_DAC1 62
+channel_FVR_buf1 63
+]
 "10 /opt/microchip/xc8/v2.10/pic/sources/c99/common/sprcadd.c
 [v ___fladd __fladd `(d  1 e 4 0 ]
 "4 /opt/microchip/xc8/v2.10/pic/sources/c99/common/Umul8_16.c
@@ -72,13 +72,15 @@ TMR2_CLC4_OUT 17
 [v ___eecpymem __eecpymem `(v  1 e 1 0 ]
 "39
 [v ___memcpyee __memcpyee `(v  1 e 1 0 ]
-"59 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
+"61 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
 [v _sw1_EXT sw1_EXT `(v  1 e 1 0 ]
-"65
+"69
+[v _ISR_3s ISR_3s `(v  1 e 1 0 ]
+"84
 [v _main main `(v  1 e 1 0 ]
-"141
+"167
 [v _LED_bin LED_bin `(v  1 e 1 0 ]
-"148
+"174
 [v _handler_clock_hms handler_clock_hms `(v  1 e 1 0 ]
 "63 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/adcc.c
 [v _ADCC_Initialize ADCC_Initialize `(v  1 e 1 0 ]
@@ -112,8 +114,19 @@ TMR2_CLC4_OUT 17
 [v _PWM6_Initialize PWM6_Initialize `(v  1 e 1 0 ]
 "74
 [v _PWM6_LoadDutyValue PWM6_LoadDutyValue `(v  1 e 1 0 ]
-"60 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr0.c
+[v i1_PWM6_LoadDutyValue PWM6_LoadDutyValue `(v  1 e 1 0 ]
+"61 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr0.c
 [v _TMR0_Initialize TMR0_Initialize `(v  1 e 1 0 ]
+"89
+[v _TMR0_StartTimer TMR0_StartTimer `(v  1 e 1 0 ]
+"95
+[v _TMR0_StopTimer TMR0_StopTimer `(v  1 e 1 0 ]
+"123
+[v _TMR0_ISR TMR0_ISR `(v  1 e 1 0 ]
+"136
+[v _TMR0_SetInterruptHandler TMR0_SetInterruptHandler `(v  1 e 1 0 ]
+"140
+[v _TMR0_DefaultInterruptHandler TMR0_DefaultInterruptHandler `(v  1 e 1 0 ]
 "64 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr1.c
 [v _TMR1_Initialize TMR1_Initialize `(v  1 e 1 0 ]
 "127
@@ -136,14 +149,14 @@ TMR2_CLC4_OUT 17
 [v _TMR2_Counter8BitSet TMR2_Counter8BitSet `(v  1 e 1 0 ]
 "147
 [v _TMR2_Period8BitSet TMR2_Period8BitSet `(v  1 e 1 0 ]
-[s S246 . 1 `uc 1 INTEDG 1 0 :1:0 
+[s S250 . 1 `uc 1 INTEDG 1 0 :1:0 
 `uc 1 . 1 0 :5:1 
 `uc 1 PEIE 1 0 :1:6 
 `uc 1 GIE 1 0 :1:7 
 ]
 "364 /opt/microchip/xc8/v2.10/pic/include/pic16f18875.h
-[u S251 . 1 `S246 1 . 1 0 ]
-[v _INTCONbits INTCONbits `VES251  1 e 1 @11 ]
+[u S255 . 1 `S250 1 . 1 0 ]
+[v _INTCONbits INTCONbits `VES255  1 e 1 @11 ]
 "670
 [v _TRISA TRISA `VEuc  1 e 1 @17 ]
 "732
@@ -156,7 +169,7 @@ TMR2_CLC4_OUT 17
 [v _TRISE TRISE `VEuc  1 e 1 @21 ]
 "950
 [v _LATA LATA `VEuc  1 e 1 @22 ]
-[s S498 . 1 `uc 1 LATA0 1 0 :1:0 
+[s S1093 . 1 `uc 1 LATA0 1 0 :1:0 
 `uc 1 LATA1 1 0 :1:1 
 `uc 1 LATA2 1 0 :1:2 
 `uc 1 LATA3 1 0 :1:3 
@@ -166,8 +179,8 @@ TMR2_CLC4_OUT 17
 `uc 1 LATA7 1 0 :1:7 
 ]
 "967
-[u S507 . 1 `S498 1 . 1 0 ]
-[v _LATAbits LATAbits `VES507  1 e 1 @22 ]
+[u S1102 . 1 `S1093 1 . 1 0 ]
+[v _LATAbits LATAbits `VES1102  1 e 1 @22 ]
 "1012
 [v _LATB LATB `VEuc  1 e 1 @23 ]
 "1074
@@ -182,20 +195,20 @@ TMR2_CLC4_OUT 17
 [v _TMR0H TMR0H `VEuc  1 e 1 @29 ]
 "1622
 [v _T0CON0 T0CON0 `VEuc  1 e 1 @30 ]
-[s S397 . 1 `uc 1 T0OUTPS 1 0 :4:0 
+[s S420 . 1 `uc 1 T0OUTPS 1 0 :4:0 
 `uc 1 T016BIT 1 0 :1:4 
 `uc 1 T0OUT 1 0 :1:5 
 `uc 1 . 1 0 :1:6 
 `uc 1 T0EN 1 0 :1:7 
 ]
 "1642
-[s S403 . 1 `uc 1 T0OUTPS0 1 0 :1:0 
+[s S426 . 1 `uc 1 T0OUTPS0 1 0 :1:0 
 `uc 1 T0OUTPS1 1 0 :1:1 
 `uc 1 T0OUTPS2 1 0 :1:2 
 `uc 1 T0OUTPS3 1 0 :1:3 
 ]
-[u S408 . 1 `S397 1 . 1 0 `S403 1 . 1 0 ]
-[v _T0CON0bits T0CON0bits `VES408  1 e 1 @30 ]
+[u S431 . 1 `S420 1 . 1 0 `S426 1 . 1 0 ]
+[v _T0CON0bits T0CON0bits `VES431  1 e 1 @30 ]
 "1687
 [v _T0CON1 T0CON1 `VEuc  1 e 1 @31 ]
 "1805
@@ -212,7 +225,7 @@ TMR2_CLC4_OUT 17
 [v _ADACCH ADACCH `VEuc  1 e 1 @145 ]
 "2126
 [v _ADCON0 ADCON0 `VEuc  1 e 1 @147 ]
-[s S612 . 1 `uc 1 ADGO 1 0 :1:0 
+[s S534 . 1 `uc 1 ADGO 1 0 :1:0 
 `uc 1 . 1 0 :1:1 
 `uc 1 ADFM 1 0 :2:2 
 `uc 1 ADCS 1 0 :1:4 
@@ -221,44 +234,44 @@ TMR2_CLC4_OUT 17
 `uc 1 ADON 1 0 :1:7 
 ]
 "2162
-[s S620 . 1 `uc 1 DONE 1 0 :1:0 
+[s S542 . 1 `uc 1 DONE 1 0 :1:0 
 `uc 1 . 1 0 :1:1 
 `uc 1 ADFRM 1 0 :2:2 
 ]
-[s S624 . 1 `uc 1 nDONE 1 0 :1:0 
+[s S546 . 1 `uc 1 nDONE 1 0 :1:0 
 ]
-[s S626 . 1 `uc 1 GO 1 0 :1:0 
+[s S548 . 1 `uc 1 GO 1 0 :1:0 
 `uc 1 . 1 0 :1:1 
 `uc 1 ADFM0 1 0 :1:2 
 `uc 1 ADFM1 1 0 :1:3 
 ]
-[s S631 . 1 `uc 1 GO_nDONE 1 0 :1:0 
+[s S553 . 1 `uc 1 GO_nDONE 1 0 :1:0 
 `uc 1 . 1 0 :1:1 
 `uc 1 ADFRM0 1 0 :1:2 
 `uc 1 ADFRM1 1 0 :1:3 
 ]
-[u S636 . 1 `S612 1 . 1 0 `S620 1 . 1 0 `S624 1 . 1 0 `S626 1 . 1 0 `S631 1 . 1 0 ]
-[v _ADCON0bits ADCON0bits `VES636  1 e 1 @147 ]
+[u S558 . 1 `S534 1 . 1 0 `S542 1 . 1 0 `S546 1 . 1 0 `S548 1 . 1 0 `S553 1 . 1 0 ]
+[v _ADCON0bits ADCON0bits `VES558  1 e 1 @147 ]
 "2237
 [v _ADCON1 ADCON1 `VEuc  1 e 1 @148 ]
-[s S764 . 1 `uc 1 ADDSEN 1 0 :1:0 
+[s S689 . 1 `uc 1 ADDSEN 1 0 :1:0 
 `uc 1 . 1 0 :4:1 
 `uc 1 ADGPOL 1 0 :1:5 
 `uc 1 ADIPEN 1 0 :1:6 
 `uc 1 ADPPOL 1 0 :1:7 
 ]
 "2251
-[u S770 . 1 `S764 1 . 1 0 ]
-[v _ADCON1bits ADCON1bits `VES770  1 e 1 @148 ]
+[u S695 . 1 `S689 1 . 1 0 ]
+[v _ADCON1bits ADCON1bits `VES695  1 e 1 @148 ]
 "2276
 [v _ADCON2 ADCON2 `VEuc  1 e 1 @149 ]
-[s S700 . 1 `uc 1 ADMD 1 0 :3:0 
+[s S625 . 1 `uc 1 ADMD 1 0 :3:0 
 `uc 1 ADACLR 1 0 :1:3 
 `uc 1 ADCRS 1 0 :3:4 
 `uc 1 ADPSIS 1 0 :1:7 
 ]
 "2298
-[s S705 . 1 `uc 1 ADMD0 1 0 :1:0 
+[s S630 . 1 `uc 1 ADMD0 1 0 :1:0 
 `uc 1 ADMD1 1 0 :1:1 
 `uc 1 ADMD2 1 0 :1:2 
 `uc 1 . 1 0 :1:3 
@@ -266,11 +279,11 @@ TMR2_CLC4_OUT 17
 `uc 1 ADCRS1 1 0 :1:5 
 `uc 1 ADCRS2 1 0 :1:6 
 ]
-[u S713 . 1 `S700 1 . 1 0 `S705 1 . 1 0 ]
-[v _ADCON2bits ADCON2bits `VES713  1 e 1 @149 ]
+[u S638 . 1 `S625 1 . 1 0 `S630 1 . 1 0 ]
+[v _ADCON2bits ADCON2bits `VES638  1 e 1 @149 ]
 "2353
 [v _ADCON3 ADCON3 `VEuc  1 e 1 @150 ]
-[s S670 . 1 `uc 1 ADTMD0 1 0 :1:0 
+[s S595 . 1 `uc 1 ADTMD0 1 0 :1:0 
 `uc 1 ADTMD1 1 0 :1:1 
 `uc 1 ADTMD2 1 0 :1:2 
 `uc 1 . 1 0 :1:3 
@@ -279,15 +292,15 @@ TMR2_CLC4_OUT 17
 `uc 1 ADCALC2 1 0 :1:6 
 ]
 "2374
-[s S678 . 1 `uc 1 ADTMD 1 0 :3:0 
+[s S603 . 1 `uc 1 ADTMD 1 0 :3:0 
 `uc 1 ADSOI 1 0 :1:3 
 `uc 1 ADCALC 1 0 :3:4 
 ]
-[u S682 . 1 `S670 1 . 1 0 `S678 1 . 1 0 ]
-[v _ADCON3bits ADCON3bits `VES682  1 e 1 @150 ]
+[u S607 . 1 `S595 1 . 1 0 `S603 1 . 1 0 ]
+[v _ADCON3bits ADCON3bits `VES607  1 e 1 @150 ]
 "2424
 [v _ADSTAT ADSTAT `VEuc  1 e 1 @151 ]
-[s S732 . 1 `uc 1 ADSTAT 1 0 :3:0 
+[s S657 . 1 `uc 1 ADSTAT 1 0 :3:0 
 `uc 1 ADMACT 1 0 :1:3 
 `uc 1 ADMATH 1 0 :1:4 
 `uc 1 ADLTHR 1 0 :1:5 
@@ -295,12 +308,12 @@ TMR2_CLC4_OUT 17
 `uc 1 ADAOV 1 0 :1:7 
 ]
 "2444
-[s S739 . 1 `uc 1 ADSTAT0 1 0 :1:0 
+[s S664 . 1 `uc 1 ADSTAT0 1 0 :1:0 
 `uc 1 ADSTAT1 1 0 :1:1 
 `uc 1 ADSTAT2 1 0 :1:2 
 ]
-[u S743 . 1 `S732 1 . 1 0 `S739 1 . 1 0 ]
-[v _ADSTATbits ADSTATbits `VES743  1 e 1 @151 ]
+[u S668 . 1 `S657 1 . 1 0 `S664 1 . 1 0 ]
+[v _ADSTATbits ADSTATbits `VES668  1 e 1 @151 ]
 "2494
 [v _ADCLK ADCLK `VEuc  1 e 1 @152 ]
 "2552
@@ -396,20 +409,20 @@ TMR2_CLC4_OUT 17
 [v _T1GATE T1GATE `VEuc  1 e 1 @528 ]
 "7256
 [v _T1CLK T1CLK `VEuc  1 e 1 @529 ]
-[s S842 . 1 `uc 1 C5TSEL 1 0 :2:0 
+[s S767 . 1 `uc 1 C5TSEL 1 0 :2:0 
 `uc 1 P6TSEL 1 0 :2:2 
 `uc 1 P7TSEL 1 0 :2:4 
 ]
 "9300
-[s S846 . 1 `uc 1 C5TSEL0 1 0 :1:0 
+[s S771 . 1 `uc 1 C5TSEL0 1 0 :1:0 
 `uc 1 C5TSEL1 1 0 :1:1 
 `uc 1 P6TSEL0 1 0 :1:2 
 `uc 1 P6TSEL1 1 0 :1:3 
 `uc 1 P7TSEL0 1 0 :1:4 
 `uc 1 P7TSEL1 1 0 :1:5 
 ]
-[u S853 . 1 `S842 1 . 1 0 `S846 1 . 1 0 ]
-[v _CCPTMRS1bits CCPTMRS1bits `VES853  1 e 1 @543 ]
+[u S778 . 1 `S767 1 . 1 0 `S771 1 . 1 0 ]
+[v _CCPTMRS1bits CCPTMRS1bits `VES778  1 e 1 @543 ]
 "9350
 [v _T2TMR T2TMR `VEuc  1 e 1 @652 ]
 "9355
@@ -420,16 +433,16 @@ TMR2_CLC4_OUT 17
 [v _PR2 PR2 `VEuc  1 e 1 @653 ]
 "9426
 [v _T2CON T2CON `VEuc  1 e 1 @654 ]
-[s S1019 . 1 `uc 1 OUTPS 1 0 :4:0 
+[s S944 . 1 `uc 1 OUTPS 1 0 :4:0 
 `uc 1 CKPS 1 0 :3:4 
 `uc 1 ON 1 0 :1:7 
 ]
 "9462
-[s S1023 . 1 `uc 1 T2OUTPS 1 0 :4:0 
+[s S948 . 1 `uc 1 T2OUTPS 1 0 :4:0 
 `uc 1 T2CKPS 1 0 :3:4 
 `uc 1 T2ON 1 0 :1:7 
 ]
-[s S1027 . 1 `uc 1 T2OUTPS0 1 0 :1:0 
+[s S952 . 1 `uc 1 T2OUTPS0 1 0 :1:0 
 `uc 1 T2OUTPS1 1 0 :1:1 
 `uc 1 T2OUTPS2 1 0 :1:2 
 `uc 1 T2OUTPS3 1 0 :1:3 
@@ -437,7 +450,7 @@ TMR2_CLC4_OUT 17
 `uc 1 T2CKPS1 1 0 :1:5 
 `uc 1 T2CKPS2 1 0 :1:6 
 ]
-[s S1035 . 1 `uc 1 OUTPS0 1 0 :1:0 
+[s S960 . 1 `uc 1 OUTPS0 1 0 :1:0 
 `uc 1 OUTPS1 1 0 :1:1 
 `uc 1 OUTPS2 1 0 :1:2 
 `uc 1 OUTPS3 1 0 :1:3 
@@ -446,58 +459,58 @@ TMR2_CLC4_OUT 17
 `uc 1 CKPS2 1 0 :1:6 
 `uc 1 TMR2ON 1 0 :1:7 
 ]
-[u S1044 . 1 `S1019 1 . 1 0 `S1023 1 . 1 0 `S1027 1 . 1 0 `S1035 1 . 1 0 ]
-[v _T2CONbits T2CONbits `VES1044  1 e 1 @654 ]
+[u S969 . 1 `S944 1 . 1 0 `S948 1 . 1 0 `S952 1 . 1 0 `S960 1 . 1 0 ]
+[v _T2CONbits T2CONbits `VES969  1 e 1 @654 ]
 "9572
 [v _T2HLT T2HLT `VEuc  1 e 1 @655 ]
-[s S912 . 1 `uc 1 MODE 1 0 :5:0 
+[s S837 . 1 `uc 1 MODE 1 0 :5:0 
 `uc 1 CKSYNC 1 0 :1:5 
 `uc 1 CKPOL 1 0 :1:6 
 `uc 1 PSYNC 1 0 :1:7 
 ]
 "9605
-[s S917 . 1 `uc 1 MODE0 1 0 :1:0 
+[s S842 . 1 `uc 1 MODE0 1 0 :1:0 
 `uc 1 MODE1 1 0 :1:1 
 `uc 1 MODE2 1 0 :1:2 
 `uc 1 MODE3 1 0 :1:3 
 `uc 1 MODE4 1 0 :1:4 
 ]
-[s S923 . 1 `uc 1 T2MODE 1 0 :5:0 
+[s S848 . 1 `uc 1 T2MODE 1 0 :5:0 
 `uc 1 T2CKSYNC 1 0 :1:5 
 `uc 1 T2CKPOL 1 0 :1:6 
 `uc 1 T2PSYNC 1 0 :1:7 
 ]
-[s S928 . 1 `uc 1 T2MODE0 1 0 :1:0 
+[s S853 . 1 `uc 1 T2MODE0 1 0 :1:0 
 `uc 1 T2MODE1 1 0 :1:1 
 `uc 1 T2MODE2 1 0 :1:2 
 `uc 1 T2MODE3 1 0 :1:3 
 `uc 1 T2MODE4 1 0 :1:4 
 ]
-[u S934 . 1 `S912 1 . 1 0 `S917 1 . 1 0 `S923 1 . 1 0 `S928 1 . 1 0 ]
-[v _T2HLTbits T2HLTbits `VES934  1 e 1 @655 ]
+[u S859 . 1 `S837 1 . 1 0 `S842 1 . 1 0 `S848 1 . 1 0 `S853 1 . 1 0 ]
+[v _T2HLTbits T2HLTbits `VES859  1 e 1 @655 ]
 "9700
 [v _T2CLKCON T2CLKCON `VEuc  1 e 1 @656 ]
 "9858
 [v _T2RST T2RST `VEuc  1 e 1 @657 ]
-[s S981 . 1 `uc 1 RSEL 1 0 :5:0 
+[s S906 . 1 `uc 1 RSEL 1 0 :5:0 
 ]
 "9885
-[s S983 . 1 `uc 1 RSEL0 1 0 :1:0 
+[s S908 . 1 `uc 1 RSEL0 1 0 :1:0 
 `uc 1 RSEL1 1 0 :1:1 
 `uc 1 RSEL2 1 0 :1:2 
 `uc 1 RSEL3 1 0 :1:3 
 `uc 1 RSEL4 1 0 :1:4 
 ]
-[s S989 . 1 `uc 1 T2RSEL 1 0 :5:0 
+[s S914 . 1 `uc 1 T2RSEL 1 0 :5:0 
 ]
-[s S991 . 1 `uc 1 T2RSEL0 1 0 :1:0 
+[s S916 . 1 `uc 1 T2RSEL0 1 0 :1:0 
 `uc 1 T2RSEL1 1 0 :1:1 
 `uc 1 T2RSEL2 1 0 :1:2 
 `uc 1 T2RSEL3 1 0 :1:3 
 `uc 1 T2RSEL4 1 0 :1:4 
 ]
-[u S997 . 1 `S981 1 . 1 0 `S983 1 . 1 0 `S989 1 . 1 0 `S991 1 . 1 0 ]
-[v _T2RSTbits T2RSTbits `VES997  1 e 1 @657 ]
+[u S922 . 1 `S906 1 . 1 0 `S908 1 . 1 0 `S914 1 . 1 0 `S916 1 . 1 0 ]
+[v _T2RSTbits T2RSTbits `VES922  1 e 1 @657 ]
 "12447
 [v _PWM6DCL PWM6DCL `VEuc  1 e 1 @908 ]
 "12513
@@ -616,34 +629,41 @@ TMR2_CLC4_OUT 17
 [v _SLRCONE SLRCONE `VEuc  1 e 1 @3943 ]
 "36266
 [v _INLVLE INLVLE `VEuc  1 e 1 @3944 ]
-"41 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
+"42 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
 [v _value value `VEi  1 e 2 0 ]
-"46
-[v _clkh clkh `VEuc  1 e 1 0 ]
 "47
-[v _clkm clkm `VEuc  1 e 1 0 ]
+[v _clkh clkh `VEuc  1 e 1 0 ]
 "48
+[v _clkm clkm `VEuc  1 e 1 0 ]
+"49
 [v _seg seg `VEuc  1 e 1 0 ]
-"50
+"51
 [v _alarm alarm `VEuc  1 e 1 0 ]
-"52
-[v _convertedValue convertedValue `ui  1 e 2 0 ]
 "53
-[v _duty_cycle duty_cycle `ui  1 e 2 0 ]
+[v _convertedValue convertedValue `ui  1 e 2 0 ]
 "54
+[v _duty_cycle duty_cycle `ui  1 e 2 0 ]
+"56
 [v _level_bin level_bin `ui  1 e 2 0 ]
+"57
+[v _lum_threshold lum_threshold `ui  1 e 2 0 ]
 "30 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/ext_int.c
 [v _INT_InterruptHandler INT_InterruptHandler `*.37(v  1 e 2 0 ]
+"59 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr0.c
+[v _TMR0_InterruptHandler TMR0_InterruptHandler `*.37(v  1 e 2 0 ]
 "57 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr1.c
 [v _timer1ReloadVal timer1ReloadVal `VEus  1 e 2 0 ]
 "58
 [v _TMR1_InterruptHandler TMR1_InterruptHandler `*.37(v  1 e 2 0 ]
-"65 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
+"84 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
 [v _main main `(v  1 e 1 0 ]
 {
-"68
-[v main@lum_threshold lum_threshold `ui  1 a 2 4 ]
-"133
+"159
+} 0
+"89 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr0.c
+[v _TMR0_StartTimer TMR0_StartTimer `(v  1 e 1 0 ]
+{
+"93
 } 0
 "50 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/mcc.c
 [v _SYSTEM_Initialize SYSTEM_Initialize `(v  1 e 1 0 ]
@@ -663,13 +683,19 @@ TMR2_CLC4_OUT 17
 "178
 [v _TMR1_SetInterruptHandler TMR1_SetInterruptHandler `(v  1 e 1 0 ]
 {
-[v TMR1_SetInterruptHandler@InterruptHandler InterruptHandler `*.37(v  1 p 2 2 ]
+[v TMR1_SetInterruptHandler@InterruptHandler InterruptHandler `*.37(v  1 p 2 0 ]
 "180
 } 0
-"60 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr0.c
+"61 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr0.c
 [v _TMR0_Initialize TMR0_Initialize `(v  1 e 1 0 ]
 {
-"78
+"87
+} 0
+"136
+[v _TMR0_SetInterruptHandler TMR0_SetInterruptHandler `(v  1 e 1 0 ]
+{
+[v TMR0_SetInterruptHandler@InterruptHandler InterruptHandler `*.37(v  1 p 2 0 ]
+"138
 } 0
 "58 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pwm6.c
 [v _PWM6_Initialize PWM6_Initialize `(v  1 e 1 0 ]
@@ -699,7 +725,7 @@ TMR2_CLC4_OUT 17
 "50
 [v _INT_SetInterruptHandler INT_SetInterruptHandler `(v  1 e 1 0 ]
 {
-[v INT_SetInterruptHandler@InterruptHandler InterruptHandler `*.37(v  1 p 2 2 ]
+[v INT_SetInterruptHandler@InterruptHandler InterruptHandler `*.37(v  1 p 2 0 ]
 "52
 } 0
 "63 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/adcc.c
@@ -710,14 +736,14 @@ TMR2_CLC4_OUT 17
 "74 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pwm6.c
 [v _PWM6_LoadDutyValue PWM6_LoadDutyValue `(v  1 e 1 0 ]
 {
-[v PWM6_LoadDutyValue@dutyValue dutyValue `us  1 p 2 2 ]
+[v PWM6_LoadDutyValue@dutyValue dutyValue `us  1 p 2 0 ]
 "81
 } 0
-"141 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
+"167 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
 [v _LED_bin LED_bin `(v  1 e 1 0 ]
 {
-[v LED_bin@value value `ui  1 p 2 2 ]
-"146
+[v LED_bin@value value `ui  1 p 2 0 ]
+"172
 } 0
 "106 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/adcc.c
 [v _ADCC_StartConversion ADCC_StartConversion `(v  1 e 1 0 ]
@@ -725,7 +751,7 @@ TMR2_CLC4_OUT 17
 [v ADCC_StartConversion@channel channel `E12246  1 a 1 wreg ]
 [v ADCC_StartConversion@channel channel `E12246  1 a 1 wreg ]
 "109
-[v ADCC_StartConversion@channel channel `E12246  1 a 1 2 ]
+[v ADCC_StartConversion@channel channel `E12246  1 a 1 0 ]
 "116
 } 0
 "118
@@ -741,7 +767,7 @@ TMR2_CLC4_OUT 17
 "52 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/interrupt_manager.c
 [v _INTERRUPT_InterruptManager INTERRUPT_InterruptManager `II(v  1 e 1 0 ]
 {
-"74
+"78
 } 0
 "164 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr1.c
 [v _TMR1_ISR TMR1_ISR `(v  1 e 1 0 ]
@@ -753,16 +779,36 @@ TMR2_CLC4_OUT 17
 {
 "185
 } 0
-"148 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
+"174 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
 [v _handler_clock_hms handler_clock_hms `(v  1 e 1 0 ]
 {
-"161
+"187
 } 0
 "127 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr1.c
 [v _TMR1_WriteTimer TMR1_WriteTimer `(v  1 e 1 0 ]
 {
 [v TMR1_WriteTimer@timerVal timerVal `us  1 p 2 0 ]
 "147
+} 0
+"123 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr0.c
+[v _TMR0_ISR TMR0_ISR `(v  1 e 1 0 ]
+{
+"133
+} 0
+"69 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
+[v _ISR_3s ISR_3s `(v  1 e 1 0 ]
+{
+"82
+} 0
+"140 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr0.c
+[v _TMR0_DefaultInterruptHandler TMR0_DefaultInterruptHandler `(v  1 e 1 0 ]
+{
+"143
+} 0
+"95
+[v _TMR0_StopTimer TMR0_StopTimer `(v  1 e 1 0 ]
+{
+"99
 } 0
 "32 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/ext_int.c
 [v _INT_ISR INT_ISR `(v  1 e 1 0 ]
@@ -779,8 +825,14 @@ TMR2_CLC4_OUT 17
 {
 "57
 } 0
-"59 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
+"61 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
 [v _sw1_EXT sw1_EXT `(v  1 e 1 0 ]
 {
-"63
+"67
+} 0
+"74 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pwm6.c
+[v i1_PWM6_LoadDutyValue PWM6_LoadDutyValue `(v  1 e 1 0 ]
+{
+[v i1PWM6_LoadDutyValue@dutyValue dutyValue `us  1 p 2 0 ]
+"81
 } 0

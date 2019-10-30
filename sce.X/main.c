@@ -37,6 +37,7 @@
 
 #define ON 1
 #define OFF 0
+#define SET 2
 
 volatile int value = 0;
 void handler_clock_hms(void);
@@ -50,27 +51,50 @@ volatile unsigned char seg;
 volatile unsigned char alarm = 0; 
 
 unsigned int convertedValue = 0;
-unsigned int duty_cycle = 1;
-unsigned int level_bin = 0;
+unsigned int duty_cycle = 0;
 
+unsigned int level_bin = 0;
+unsigned int lum_threshold = 0;
 
 
 
 void sw1_EXT(void){
     
-    //IO_RA5_Toggle(); 
+    alarm = OFF;
+    PWM6_LoadDutyValue(OFF); 
+    
+    
+}
+
+void ISR_3s(void){
+    
+    
+    
+    if (lum_threshold){     //check if we still have a issue
+        PWM6_LoadDutyValue(1023);
+        alarm = ON;
+        
+    }
+    
+    TMR0_StopTimer();
+    PIE0bits.TMR0IE = 0;
     
 }
 
 void main(void)
 {
-    // initialize the device
-    unsigned int lum_threshold = 0;
+ 
+    
     SYSTEM_Initialize();
+    TMR0_SetInterruptHandler(ISR_3s);
     TMR1_SetInterruptHandler(handler_clock_hms);
     INT_SetInterruptHandler(sw1_EXT);
     
     unsigned int task_schedule = 0;
+    
+  
+    PWM6_LoadDutyValue(OFF);
+    alarm = OFF ;
     // When using interrupts, you need to set the Global and Peripheral Interrupt Enable bits
     // Use the following macros to:
 
@@ -85,14 +109,14 @@ void main(void)
 
     // Disable the Peripheral Interrupts
     //INTERRUPT_PeripheralInterruptDisable();
-     //IO_RA4_SetLow(); 
+    
     while (1)
     {   
         
         SLEEP();
         NOP();
         
-        //IO_RA4_Toggle();
+       
         
         task_schedule = seg;
         //if (seg >= 5){
@@ -104,21 +128,23 @@ void main(void)
                 }
                 convertedValue = ADCC_GetConversionResult();
                 
-                //IO_RA6_LAT = 1 << convertedValue;
-                
                 level_bin = (convertedValue >> 8);
                 LED_bin(level_bin);
-               
-                lum_threshold = ( level_bin > ALAL);
+                lum_threshold = (level_bin > ALAL);
                 
-                if (alarm == OFF && lum_threshold ){
-                        
-                        duty_cycle +=1 ;   
-                        PWM6_LoadDutyValue(duty_cycle);
-
+                if (alarm == SET && lum_threshold ){    //if alarm is set ON you need to press SW1 ON   
+                    duty_cycle +=1 ;   
+                    PWM6_LoadDutyValue(duty_cycle);
                 }
-                else if (alarm == OFF && !(lum_threshold)) {
-                    PWM6_LoadDutyValue(0);
+                else if (alarm == SET && !(lum_threshold)) { //
+                    PWM6_LoadDutyValue(OFF);
+                    alarm = OFF ;
+                   
+                }
+                else if (alarm == OFF && lum_threshold){
+                    PIE0bits.TMR0IE = 1;
+                    TMR0_StartTimer();
+                    alarm = SET ;
                 }
                 
                 

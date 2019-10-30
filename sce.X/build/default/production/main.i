@@ -20949,6 +20949,26 @@ _Bool ADCC_HasErrorCrossedLowerThreshold(void);
 # 824 "./mcc_generated_files/adcc.h"
 uint8_t ADCC_GetConversionStageStatus(void);
 # 56 "./mcc_generated_files/mcc.h" 2
+# 1 "./mcc_generated_files/ext_int.h" 1
+# 250 "./mcc_generated_files/ext_int.h"
+void EXT_INT_Initialize(void);
+# 272 "./mcc_generated_files/ext_int.h"
+void INT_ISR(void);
+# 296 "./mcc_generated_files/ext_int.h"
+void INT_CallBack(void);
+# 319 "./mcc_generated_files/ext_int.h"
+void INT_SetInterruptHandler(void (* InterruptHandler)(void));
+# 343 "./mcc_generated_files/ext_int.h"
+extern void (*INT_InterruptHandler)(void);
+# 367 "./mcc_generated_files/ext_int.h"
+void INT_DefaultInterruptHandler(void);
+# 57 "./mcc_generated_files/mcc.h" 2
+# 1 "./mcc_generated_files/pwm6.h" 1
+# 102 "./mcc_generated_files/pwm6.h"
+ void PWM6_Initialize(void);
+# 129 "./mcc_generated_files/pwm6.h"
+ void PWM6_LoadDutyValue(uint16_t dutyValue);
+# 58 "./mcc_generated_files/mcc.h" 2
 # 1 "./mcc_generated_files/tmr1.h" 1
 # 100 "./mcc_generated_files/tmr1.h"
 void TMR1_Initialize(void);
@@ -20974,26 +20994,6 @@ void TMR1_ISR(void);
 extern void (*TMR1_InterruptHandler)(void);
 # 421 "./mcc_generated_files/tmr1.h"
 void TMR1_DefaultInterruptHandler(void);
-# 57 "./mcc_generated_files/mcc.h" 2
-# 1 "./mcc_generated_files/ext_int.h" 1
-# 250 "./mcc_generated_files/ext_int.h"
-void EXT_INT_Initialize(void);
-# 272 "./mcc_generated_files/ext_int.h"
-void INT_ISR(void);
-# 296 "./mcc_generated_files/ext_int.h"
-void INT_CallBack(void);
-# 319 "./mcc_generated_files/ext_int.h"
-void INT_SetInterruptHandler(void (* InterruptHandler)(void));
-# 343 "./mcc_generated_files/ext_int.h"
-extern void (*INT_InterruptHandler)(void);
-# 367 "./mcc_generated_files/ext_int.h"
-void INT_DefaultInterruptHandler(void);
-# 58 "./mcc_generated_files/mcc.h" 2
-# 1 "./mcc_generated_files/pwm6.h" 1
-# 102 "./mcc_generated_files/pwm6.h"
- void PWM6_Initialize(void);
-# 129 "./mcc_generated_files/pwm6.h"
- void PWM6_LoadDutyValue(uint16_t dutyValue);
 # 59 "./mcc_generated_files/mcc.h" 2
 # 1 "./mcc_generated_files/tmr2.h" 1
 # 79 "./mcc_generated_files/tmr2.h"
@@ -21218,8 +21218,14 @@ uint8_t TMR0_ReadTimer(void);
 void TMR0_WriteTimer(uint8_t timerVal);
 # 272 "./mcc_generated_files/tmr0.h"
 void TMR0_Reload(uint8_t periodVal);
-# 308 "./mcc_generated_files/tmr0.h"
-_Bool TMR0_HasOverflowOccured(void);
+# 291 "./mcc_generated_files/tmr0.h"
+void TMR0_ISR(void);
+# 310 "./mcc_generated_files/tmr0.h"
+ void TMR0_SetInterruptHandler(void (* InterruptHandler)(void));
+# 328 "./mcc_generated_files/tmr0.h"
+extern void (*TMR0_InterruptHandler)(void);
+# 346 "./mcc_generated_files/tmr0.h"
+void TMR0_DefaultInterruptHandler(void);
 # 61 "./mcc_generated_files/mcc.h" 2
 # 75 "./mcc_generated_files/mcc.h"
 void SYSTEM_Initialize(void);
@@ -21228,7 +21234,7 @@ void OSCILLATOR_Initialize(void);
 # 101 "./mcc_generated_files/mcc.h"
 void PMD_Initialize(void);
 # 28 "main.c" 2
-# 41 "main.c"
+# 42 "main.c"
 volatile int value = 0;
 void handler_clock_hms(void);
 void copyto_EEPROM(void);
@@ -21241,27 +21247,50 @@ volatile unsigned char seg;
 volatile unsigned char alarm = 0;
 
 unsigned int convertedValue = 0;
-unsigned int duty_cycle = 1;
-unsigned int level_bin = 0;
+unsigned int duty_cycle = 0;
 
+unsigned int level_bin = 0;
+unsigned int lum_threshold = 0;
 
 
 
 void sw1_EXT(void){
 
+    alarm = 0;
+    PWM6_LoadDutyValue(0);
 
+
+}
+
+void ISR_3s(void){
+
+
+
+    if (lum_threshold){
+        PWM6_LoadDutyValue(1023);
+        alarm = 1;
+
+    }
+
+    TMR0_StopTimer();
+    PIE0bits.TMR0IE = 0;
 
 }
 
 void main(void)
 {
 
-    unsigned int lum_threshold = 0;
+
     SYSTEM_Initialize();
+    TMR0_SetInterruptHandler(ISR_3s);
     TMR1_SetInterruptHandler(handler_clock_hms);
     INT_SetInterruptHandler(sw1_EXT);
 
     unsigned int task_schedule = 0;
+
+
+    PWM6_LoadDutyValue(0);
+    alarm = 0 ;
 
 
 
@@ -21295,21 +21324,23 @@ void main(void)
                 }
                 convertedValue = ADCC_GetConversionResult();
 
-
-
                 level_bin = (convertedValue >> 8);
                 LED_bin(level_bin);
+                lum_threshold = (level_bin > 2);
 
-                lum_threshold = ( level_bin > 2);
-
-                if (alarm == 0 && lum_threshold ){
-
-                        duty_cycle +=1 ;
-                        PWM6_LoadDutyValue(duty_cycle);
+                if (alarm == 2 && lum_threshold ){
+                    duty_cycle +=1 ;
+                    PWM6_LoadDutyValue(duty_cycle);
+                }
+                else if (alarm == 2 && !(lum_threshold)) {
+                    PWM6_LoadDutyValue(0);
+                     alarm = 0 ;
 
                 }
-                else if (alarm == 0 && !(lum_threshold)) {
-                    PWM6_LoadDutyValue(0);
+                else if (alarm == 0 && lum_threshold){
+                    PIE0bits.TMR0IE = 1;
+                    TMR0_StartTimer();
+                    alarm = 2 ;
                 }
 
 

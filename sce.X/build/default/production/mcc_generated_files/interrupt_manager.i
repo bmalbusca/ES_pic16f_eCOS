@@ -20950,6 +20950,26 @@ _Bool ADCC_HasErrorCrossedLowerThreshold(void);
 # 824 "mcc_generated_files/adcc.h"
 uint8_t ADCC_GetConversionStageStatus(void);
 # 56 "mcc_generated_files/mcc.h" 2
+# 1 "mcc_generated_files/ext_int.h" 1
+# 250 "mcc_generated_files/ext_int.h"
+void EXT_INT_Initialize(void);
+# 272 "mcc_generated_files/ext_int.h"
+void INT_ISR(void);
+# 296 "mcc_generated_files/ext_int.h"
+void INT_CallBack(void);
+# 319 "mcc_generated_files/ext_int.h"
+void INT_SetInterruptHandler(void (* InterruptHandler)(void));
+# 343 "mcc_generated_files/ext_int.h"
+extern void (*INT_InterruptHandler)(void);
+# 367 "mcc_generated_files/ext_int.h"
+void INT_DefaultInterruptHandler(void);
+# 57 "mcc_generated_files/mcc.h" 2
+# 1 "mcc_generated_files/pwm6.h" 1
+# 102 "mcc_generated_files/pwm6.h"
+ void PWM6_Initialize(void);
+# 129 "mcc_generated_files/pwm6.h"
+ void PWM6_LoadDutyValue(uint16_t dutyValue);
+# 58 "mcc_generated_files/mcc.h" 2
 # 1 "mcc_generated_files/tmr1.h" 1
 # 100 "mcc_generated_files/tmr1.h"
 void TMR1_Initialize(void);
@@ -20975,26 +20995,6 @@ void TMR1_ISR(void);
 extern void (*TMR1_InterruptHandler)(void);
 # 421 "mcc_generated_files/tmr1.h"
 void TMR1_DefaultInterruptHandler(void);
-# 57 "mcc_generated_files/mcc.h" 2
-# 1 "mcc_generated_files/ext_int.h" 1
-# 250 "mcc_generated_files/ext_int.h"
-void EXT_INT_Initialize(void);
-# 272 "mcc_generated_files/ext_int.h"
-void INT_ISR(void);
-# 296 "mcc_generated_files/ext_int.h"
-void INT_CallBack(void);
-# 319 "mcc_generated_files/ext_int.h"
-void INT_SetInterruptHandler(void (* InterruptHandler)(void));
-# 343 "mcc_generated_files/ext_int.h"
-extern void (*INT_InterruptHandler)(void);
-# 367 "mcc_generated_files/ext_int.h"
-void INT_DefaultInterruptHandler(void);
-# 58 "mcc_generated_files/mcc.h" 2
-# 1 "mcc_generated_files/pwm6.h" 1
-# 102 "mcc_generated_files/pwm6.h"
- void PWM6_Initialize(void);
-# 129 "mcc_generated_files/pwm6.h"
- void PWM6_LoadDutyValue(uint16_t dutyValue);
 # 59 "mcc_generated_files/mcc.h" 2
 # 1 "mcc_generated_files/tmr2.h" 1
 # 79 "mcc_generated_files/tmr2.h"
@@ -21219,8 +21219,14 @@ uint8_t TMR0_ReadTimer(void);
 void TMR0_WriteTimer(uint8_t timerVal);
 # 272 "mcc_generated_files/tmr0.h"
 void TMR0_Reload(uint8_t periodVal);
-# 308 "mcc_generated_files/tmr0.h"
-_Bool TMR0_HasOverflowOccured(void);
+# 291 "mcc_generated_files/tmr0.h"
+void TMR0_ISR(void);
+# 310 "mcc_generated_files/tmr0.h"
+ void TMR0_SetInterruptHandler(void (* InterruptHandler)(void));
+# 328 "mcc_generated_files/tmr0.h"
+extern void (*TMR0_InterruptHandler)(void);
+# 346 "mcc_generated_files/tmr0.h"
+void TMR0_DefaultInterruptHandler(void);
 # 61 "mcc_generated_files/mcc.h" 2
 # 75 "mcc_generated_files/mcc.h"
 void SYSTEM_Initialize(void);
@@ -21236,6 +21242,10 @@ void __attribute__((picinterrupt(("")))) INTERRUPT_InterruptManager (void)
     if(PIE0bits.INTE == 1 && PIR0bits.INTF == 1)
     {
         INT_ISR();
+    }
+    else if(PIE0bits.TMR0IE == 1 && PIR0bits.TMR0IF == 1)
+    {
+        TMR0_ISR();
     }
     else if(INTCONbits.PEIE == 1)
     {

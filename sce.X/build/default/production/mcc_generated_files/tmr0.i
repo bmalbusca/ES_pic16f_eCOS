@@ -20884,8 +20884,14 @@ uint8_t TMR0_ReadTimer(void);
 void TMR0_WriteTimer(uint8_t timerVal);
 # 272 "mcc_generated_files/tmr0.h"
 void TMR0_Reload(uint8_t periodVal);
-# 308 "mcc_generated_files/tmr0.h"
-_Bool TMR0_HasOverflowOccured(void);
+# 291 "mcc_generated_files/tmr0.h"
+void TMR0_ISR(void);
+# 310 "mcc_generated_files/tmr0.h"
+ void TMR0_SetInterruptHandler(void (* InterruptHandler)(void));
+# 328 "mcc_generated_files/tmr0.h"
+extern void (*TMR0_InterruptHandler)(void);
+# 346 "mcc_generated_files/tmr0.h"
+void TMR0_DefaultInterruptHandler(void);
 # 53 "mcc_generated_files/tmr0.c" 2
 
 
@@ -20893,13 +20899,14 @@ _Bool TMR0_HasOverflowOccured(void);
 
 
 
+void (*TMR0_InterruptHandler)(void);
 
 void TMR0_Initialize(void)
 {
 
 
 
-    T0CON1 = 0x93;
+    T0CON1 = 0x95;
 
 
     TMR0H = 0xF1;
@@ -20911,7 +20918,15 @@ void TMR0_Initialize(void)
     PIR0bits.TMR0IF = 0;
 
 
-    T0CON0 = 0x0F;
+    PIE0bits.TMR0IE = 1;
+
+
+    TMR0_SetInterruptHandler(TMR0_DefaultInterruptHandler);
+
+
+
+    T0CON0 = 0x0B;
+
 }
 
 void TMR0_StartTimer(void)
@@ -20948,8 +20963,24 @@ void TMR0_Reload(uint8_t periodVal)
    TMR0H = periodVal;
 }
 
-_Bool TMR0_HasOverflowOccured(void)
+void TMR0_ISR(void)
 {
 
-    return(PIR0bits.TMR0IF);
+    PIR0bits.TMR0IF = 0;
+    if(TMR0_InterruptHandler)
+    {
+        TMR0_InterruptHandler();
+    }
+
+
+}
+
+
+void TMR0_SetInterruptHandler(void (* InterruptHandler)(void)){
+    TMR0_InterruptHandler = InterruptHandler;
+}
+
+void TMR0_DefaultInterruptHandler(void){
+
+
 }
