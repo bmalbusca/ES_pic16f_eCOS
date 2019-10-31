@@ -3,7 +3,7 @@
 [d edition pro ]
 [d chip 16F18875 ]
 [d frameptr 6 ]
-"80 E:\_ist\SCE\labs\sce.X\mcc_generated_files/drivers/i2c_master.c
+"80 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/drivers/i2c_master.c
 [e E12722 . `uc
 I2C_IDLE 0
 I2C_SEND_ADR_READ 1
@@ -43,7 +43,7 @@ i2c_dataNACK 3
 i2c_timeOut 4
 i2c_NULL 5
 ]
-"31 E:\_ist\SCE\labs\sce.X\mcc_generated_files/drivers/i2c_simple_master.c
+"31 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/drivers/i2c_simple_master.c
 [e E358 . `uc
 i2c_stop 1
 i2c_restart_read 2
@@ -57,7 +57,7 @@ I2C_NOERR 0
 I2C_BUSY 1
 I2C_FAIL 2
 ]
-"25 E:\_ist\SCE\labs\sce.X\mcc_generated_files/drivers/i2c_types.c
+"25 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/drivers/i2c_types.c
 [e E358 . `uc
 i2c_stop 1
 i2c_restart_read 2
@@ -65,16 +65,17 @@ i2c_restart_write 3
 i2c_continue 4
 i2c_reset_link 5
 ]
-"10 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\sprcadd.c
+"10 /opt/microchip/xc8/v2.10/pic/sources/c99/common/sprcadd.c
 [v ___fladd __fladd `(d  1 e 4 0 ]
-"4 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\Umul8.c
+"4 /opt/microchip/xc8/v2.10/pic/sources/c99/common/Umul8.c
 [v ___bmul __bmul `(uc  1 e 1 0 ]
-"4 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\Umul8_16.c
+"4 /opt/microchip/xc8/v2.10/pic/sources/c99/common/Umul8_16.c
 [v __Umul8_16 _Umul8_16 `(ui  1 e 2 0 ]
-"6 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\pic\__eeprom.c
+"6 /opt/microchip/xc8/v2.10/pic/sources/c99/pic/__eeprom.c
 [v ___eecpymem __eecpymem `(v  1 e 1 0 ]
 "39
 [v ___memcpyee __memcpyee `(v  1 e 1 0 ]
+<<<<<<< HEAD
 "32 E:\_ist\SCE\labs\sce.X\I2C/i2c.c
 [v _ReadI2C ReadI2C `(uc  1 e 1 0 ]
 "47
@@ -94,8 +95,33 @@ i2c_reset_link 5
 "202
 [v _push_ring push_ring `(v  1 e 1 0 ]
 "211
+=======
+"104
+[v ___eetoc __eetoc `(uc  1 e 1 0 ]
+"150
+[v ___ctoee __ctoee `(uc  1 e 1 0 ]
+"32 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/I2C/i2c.c
+[v _ReadI2C ReadI2C `(uc  1 e 1 0 ]
+"47
+[v _WriteI2C WriteI2C `(c  1 e 1 0 ]
+"29 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
+[v _h_clock h_clock `(v  1 e 1 0 ]
+"77
+[v _Store_EEPROM Store_EEPROM `(v  1 e 1 0 ]
+"86
+[v _Push_ring_buffer Push_ring_buffer `(v  1 e 1 0 ]
+"111
+[v _main main `(v  1 e 1 0 ]
+"225
+[v _cksum_w cksum_w `(v  1 e 1 0 ]
+"230
+[v _cksum cksum `(uc  1 e 1 0 ]
+"239
+[v _read_ring read_ring `(uc  1 e 1 0 ]
+"270
+>>>>>>> 8a784acfeed5fb28f801f16fe528231cbb0c7541
 [v _update_clock update_clock `(v  1 e 1 0 ]
-"89 E:\_ist\SCE\labs\sce.X\mcc_generated_files/drivers/i2c_master.c
+"89 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/drivers/i2c_master.c
 [v _i2c_setDataCompleteCallback i2c_setDataCompleteCallback `(v  1 e 1 0 ]
 "99
 [v _i2c_setAddressNACKCallback i2c_setAddressNACKCallback `(v  1 e 1 0 ]
@@ -155,7 +181,7 @@ i2c_reset_link 5
 [v _returnReset returnReset `(E12568  1 s 1 returnReset ]
 "453
 [v _setCallBack setCallBack `(v  1 s 1 setCallBack ]
-"31 E:\_ist\SCE\labs\sce.X\mcc_generated_files/drivers/i2c_simple_master.c
+"31 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/drivers/i2c_simple_master.c
 [v _wr1RegCompleteHandler wr1RegCompleteHandler `(E358  1 s 1 wr1RegCompleteHandler ]
 "58
 [v _rd1RegCompleteHandler rd1RegCompleteHandler `(E358  1 s 1 rd1RegCompleteHandler ]
@@ -165,9 +191,9 @@ i2c_reset_link 5
 [v _wr2RegCompleteHandler wr2RegCompleteHandler `(E358  1 s 1 wr2RegCompleteHandler ]
 "134
 [v _rdBlkRegCompleteHandler rdBlkRegCompleteHandler `(E358  1 s 1 rdBlkRegCompleteHandler ]
-"35 E:\_ist\SCE\labs\sce.X\mcc_generated_files/drivers/i2c_types.c
+"35 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/drivers/i2c_types.c
 [v _i2c_restartWrite i2c_restartWrite `(E358  1 e 1 0 ]
-"39 E:\_ist\SCE\labs\sce.X\mcc_generated_files/i2c1_driver.c
+"39 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/i2c1_driver.c
 [v _mssp1_enableIRQ mssp1_enableIRQ `T(v  1 e 1 0 ]
 "44
 [v _mssp1_IRQisEnabled mssp1_IRQisEnabled `T(b  1 e 0 0 ]
@@ -207,15 +233,15 @@ i2c_reset_link 5
 [v _i2c1_driver_setBusCollisionISR i2c1_driver_setBusCollisionISR `T(v  1 e 1 0 ]
 "263
 [v _i2c1_driver_setI2cISR i2c1_driver_setI2cISR `T(v  1 e 1 0 ]
-"52 E:\_ist\SCE\labs\sce.X\mcc_generated_files/interrupt_manager.c
+"52 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/interrupt_manager.c
 [v _INTERRUPT_InterruptManager INTERRUPT_InterruptManager `II(v  1 e 1 0 ]
-"50 E:\_ist\SCE\labs\sce.X\mcc_generated_files/mcc.c
+"50 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/mcc.c
 [v _SYSTEM_Initialize SYSTEM_Initialize `(v  1 e 1 0 ]
 "58
 [v _OSCILLATOR_Initialize OSCILLATOR_Initialize `(v  1 e 1 0 ]
 "72
 [v _PMD_Initialize PMD_Initialize `(v  1 e 1 0 ]
-"58 E:\_ist\SCE\labs\sce.X\mcc_generated_files/memory.c
+"58 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/memory.c
 [v _FLASH_ReadWord FLASH_ReadWord `(us  1 e 2 0 ]
 "94
 [v _FLASH_WriteBlock FLASH_WriteBlock `(c  1 e 1 0 ]
@@ -223,11 +249,15 @@ i2c_reset_link 5
 [v _FLASH_EraseBlock FLASH_EraseBlock `(v  1 e 1 0 ]
 "180
 [v _DATAEE_WriteByte DATAEE_WriteByte `(v  1 e 1 0 ]
+<<<<<<< HEAD
 "202
 [v _DATAEE_ReadByte DATAEE_ReadByte `(uc  1 e 1 0 ]
 "55 E:\_ist\SCE\labs\sce.X\mcc_generated_files/pin_manager.c
+=======
+"55 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pin_manager.c
+>>>>>>> 8a784acfeed5fb28f801f16fe528231cbb0c7541
 [v _PIN_MANAGER_Initialize PIN_MANAGER_Initialize `(v  1 e 1 0 ]
-"64 E:\_ist\SCE\labs\sce.X\mcc_generated_files/tmr1.c
+"64 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr1.c
 [v _TMR1_Initialize TMR1_Initialize `(v  1 e 1 0 ]
 "127
 [v _TMR1_WriteTimer TMR1_WriteTimer `(v  1 e 1 0 ]
@@ -237,10 +267,26 @@ i2c_reset_link 5
 [v _TMR1_SetInterruptHandler TMR1_SetInterruptHandler `(v  1 e 1 0 ]
 "182
 [v _TMR1_DefaultInterruptHandler TMR1_DefaultInterruptHandler `(v  1 e 1 0 ]
-"78 E:\_ist\SCE\labs\sce.X/mcc_generated_files/i2c1_driver.h
+"78 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/i2c1_driver.h
 [v _i2c1_driver_busCollisionISR i2c1_driver_busCollisionISR `*.37(v  1 e 2 0 ]
 "79
 [v _i2c1_driver_i2cISR i2c1_driver_i2cISR `*.37(v  1 e 2 0 ]
+<<<<<<< HEAD
+=======
+[s S1849 . 1 `uc 1 C 1 0 :1:0 
+`uc 1 DC 1 0 :1:1 
+`uc 1 Z 1 0 :1:2 
+`uc 1 nPD 1 0 :1:3 
+`uc 1 nTO 1 0 :1:4 
+]
+"131 /opt/microchip/xc8/v2.10/pic/include/pic16f18875.h
+[s S1855 . 1 `uc 1 CARRY 1 0 :1:0 
+`uc 1 . 1 0 :1:1 
+`uc 1 ZERO 1 0 :1:2 
+]
+[u S1859 . 1 `S1849 1 . 1 0 `S1855 1 . 1 0 ]
+[v _STATUSbits STATUSbits `VES1859  1 e 1 @3 ]
+>>>>>>> 8a784acfeed5fb28f801f16fe528231cbb0c7541
 [s S1007 . 1 `uc 1 INTEDG 1 0 :1:0 
 `uc 1 . 1 0 :5:1 
 `uc 1 PEIE 1 0 :1:6 
@@ -255,7 +301,11 @@ i2c_reset_link 5
 [v _TRISB TRISB `VEuc  1 e 1 @18 ]
 "794
 [v _TRISC TRISC `VEuc  1 e 1 @19 ]
+<<<<<<< HEAD
 [s S1577 . 1 `uc 1 TRISC0 1 0 :1:0 
+=======
+[s S1574 . 1 `uc 1 TRISC0 1 0 :1:0 
+>>>>>>> 8a784acfeed5fb28f801f16fe528231cbb0c7541
 `uc 1 TRISC1 1 0 :1:1 
 `uc 1 TRISC2 1 0 :1:2 
 `uc 1 TRISC3 1 0 :1:3 
@@ -265,8 +315,13 @@ i2c_reset_link 5
 `uc 1 TRISC7 1 0 :1:7 
 ]
 "811
+<<<<<<< HEAD
 [u S1586 . 1 `S1577 1 . 1 0 ]
 [v _TRISCbits TRISCbits `VES1586  1 e 1 @19 ]
+=======
+[u S1583 . 1 `S1574 1 . 1 0 ]
+[v _TRISCbits TRISCbits `VES1583  1 e 1 @19 ]
+>>>>>>> 8a784acfeed5fb28f801f16fe528231cbb0c7541
 "856
 [v _TRISD TRISD `VEuc  1 e 1 @20 ]
 "918
@@ -658,6 +713,7 @@ i2c_reset_link 5
 [v _WPUC3 WPUC3 `VEb  1 e 0 @31355 ]
 "45039
 [v _WPUC4 WPUC4 `VEb  1 e 0 @31356 ]
+<<<<<<< HEAD
 "35 E:\_ist\SCE\labs\sce.X\main.c
 [v _half half `VEb  1 e 0 0 ]
 "47
@@ -688,19 +744,71 @@ i2c_reset_link 5
 "61
 [v _aux aux `uc  1 e 1 0 ]
 [v _aux1 aux1 `uc  1 e 1 0 ]
+=======
+"28 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
+[v _half half `VEb  1 e 0 0 ]
+"41
+[v _recovery_data recovery_data `VE[5]uc  1 e 5 0 ]
+"43
+[v _buffer buffer `[150]uc  1 e 150 @9050 ]
+"44
+[v _ptr_read_buff ptr_read_buff `*.39uc  1 e 2 0 ]
+"45
+[v _ptr_write_buff ptr_write_buff `*.39uc  1 e 2 0 ]
+"47
+[v _ptr_EEPROM ptr_EEPROM `ui  1 e 2 0 ]
+"54
+[v _clkh clkh `VEuc  1 e 1 0 ]
+[v _clkh_aux clkh_aux `VEuc  1 e 1 0 ]
+"55
+[v _clkm clkm `VEuc  1 e 1 0 ]
+[v _clkm_aux clkm_aux `VEuc  1 e 1 0 ]
+"56
+[v _seg seg `VEuc  1 e 1 0 ]
+[v _seg_aux seg_aux `VEuc  1 e 1 0 ]
+"57
+[v _last5s last5s `VEuc  1 e 1 0 ]
+[v _last1m last1m `VEuc  1 e 1 0 ]
+"58
+[v _configuration_mode configuration_mode `b  1 e 0 0 ]
+"59
+[v _nreg nreg `uc  1 e 1 0 ]
+[v _nreg_pt nreg_pt `uc  1 e 1 0 ]
+"60
+[v _nreg_init nreg_init `b  1 e 0 0 ]
+"61
+[v _ring_byte ring_byte `[5]uc  1 e 5 0 ]
+"62
+[v _pmon pmon `uc  1 e 1 0 ]
+"63
+[v _running running `b  1 e 0 0 ]
+"64
+[v _temp temp `uc  1 e 1 0 ]
+[v _lum lum `uc  1 e 1 0 ]
+"65
+[v _last5s_aux last5s_aux `uc  1 e 1 0 ]
+[v _last1m_aux last1m_aux `uc  1 e 1 0 ]
+"66
+[v _convertedValue convertedValue `ui  1 e 2 0 ]
+"67
+[v _duty_cycle duty_cycle `ui  1 e 2 0 ]
+"68
+[v _task_schedule task_schedule `ui  1 e 2 0 ]
+>>>>>>> 8a784acfeed5fb28f801f16fe528231cbb0c7541
 [s S422 . 29 `uc 1 busy 1 0 :1:0 
 `uc 1 inUse 1 0 :1:1 
 `uc 1 bufferFree 1 0 :1:2 
 `uc 1 addressNACKCheck 1 0 :1:3 
 `uc 1 address 1 1 `*.1uc 1 data_ptr 1 2 `ui 1 data_length 2 3 `us 1 time_out 2 5 `us 1 time_out_value 2 7 `E12722 1 state 1 9 `E12563 1 error 1 10 `[6]*.37(E12568 1 callbackTable 12 11 `[6]*.1v 1 callbackPayload 6 23 ]
-"80 E:\_ist\SCE\labs\sce.X\mcc_generated_files/drivers/i2c_master.c
+"80 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/drivers/i2c_master.c
 [v _i2c_status i2c_status `S422  1 e 29 0 ]
 "400
 [v _fsmStateTable fsmStateTable `DC[16]*.37(E12722  1 e 32 0 ]
-"57 E:\_ist\SCE\labs\sce.X\mcc_generated_files/tmr1.c
+"57 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr1.c
 [v _timer1ReloadVal timer1ReloadVal `VEus  1 e 2 0 ]
 "58
 [v _TMR1_InterruptHandler TMR1_InterruptHandler `*.37(v  1 e 2 0 ]
+<<<<<<< HEAD
 "63 E:\_ist\SCE\labs\sce.X\main.c
 [v _main main `(v  1 e 1 0 ]
 {
@@ -726,8 +834,32 @@ i2c_reset_link 5
 [v read_ring@subindex subindex `uc  1 p 1 4 ]
 [v read_ring@index index `uc  1 a 1 8 ]
 "200
+=======
+"111 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
+[v _main main `(v  1 e 1 0 ]
+{
+"130
+[v main@data data `[5]uc  1 a 5 19 ]
+"128
+[v main@F12846 F12846 `[5]uc  1 s 5 F12846 ]
+"221
 } 0
-"4 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\Umul8.c
+"239
+[v _read_ring read_ring `(uc  1 e 1 0 ]
+{
+[v read_ring@index index `uc  1 a 1 wreg ]
+"241
+[v read_ring@absindex absindex `uc  1 a 1 9 ]
+"242
+[v read_ring@i i `uc  1 a 1 7 ]
+"239
+[v read_ring@index index `uc  1 a 1 wreg ]
+[v read_ring@subindex subindex `uc  1 p 1 4 ]
+[v read_ring@index index `uc  1 a 1 8 ]
+"255
+>>>>>>> 8a784acfeed5fb28f801f16fe528231cbb0c7541
+} 0
+"4 /opt/microchip/xc8/v2.10/pic/sources/c99/common/Umul8.c
 [v ___bmul __bmul `(uc  1 e 1 0 ]
 {
 [v ___bmul@multiplier multiplier `uc  1 a 1 wreg ]
@@ -740,6 +872,7 @@ i2c_reset_link 5
 [v ___bmul@multiplier multiplier `uc  1 a 1 3 ]
 "51
 } 0
+<<<<<<< HEAD
 "202 E:\_ist\SCE\labs\sce.X\main.c
 [v _push_ring push_ring `(v  1 e 1 0 ]
 {
@@ -748,10 +881,14 @@ i2c_reset_link 5
 "209
 } 0
 "84 E:\_ist\SCE\labs\sce.X\mcc_generated_files/i2c1_driver.c
+=======
+"84 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/i2c1_driver.c
+>>>>>>> 8a784acfeed5fb28f801f16fe528231cbb0c7541
 [v _i2c1_driver_open i2c1_driver_open `(b  1 e 0 0 ]
 {
 "96
 } 0
+<<<<<<< HEAD
 "170 E:\_ist\SCE\labs\sce.X\main.c
 [v _cksum_w cksum_w `(v  1 e 1 0 ]
 {
@@ -759,6 +896,36 @@ i2c_reset_link 5
 } 0
 "175
 [v _cksum cksum `(uc  1 e 1 0 ]
+=======
+"225 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
+[v _cksum_w cksum_w `(v  1 e 1 0 ]
+{
+"228
+} 0
+"230
+[v _cksum cksum `(uc  1 e 1 0 ]
+{
+"233
+[v cksum@i i `uc  1 a 1 10 ]
+"232
+[v cksum@res res `uc  1 a 1 9 ]
+"237
+} 0
+"104 /opt/microchip/xc8/v2.10/pic/sources/c99/pic/__eeprom.c
+[v ___eetoc __eetoc `(uc  1 e 1 0 ]
+{
+[v ___eetoc@addr addr `*.28VEv  1 a 1 wreg ]
+"106
+[v ___eetoc@data data `uc  1 a 1 7 ]
+"104
+[v ___eetoc@addr addr `*.28VEv  1 a 1 wreg ]
+"107
+[v ___eetoc@addr addr `*.28VEv  1 a 1 6 ]
+"109
+} 0
+"6
+[v ___eecpymem __eecpymem `(v  1 e 1 0 ]
+>>>>>>> 8a784acfeed5fb28f801f16fe528231cbb0c7541
 {
 "178
 [v cksum@i i `ui  1 a 2 4 ]
@@ -782,12 +949,12 @@ i2c_reset_link 5
 [v DATAEE_WriteByte@bData bData `uc  1 p 1 8 ]
 "200
 } 0
-"50 E:\_ist\SCE\labs\sce.X\mcc_generated_files/mcc.c
+"50 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/mcc.c
 [v _SYSTEM_Initialize SYSTEM_Initialize `(v  1 e 1 0 ]
 {
 "56
 } 0
-"64 E:\_ist\SCE\labs\sce.X\mcc_generated_files/tmr1.c
+"64 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr1.c
 [v _TMR1_Initialize TMR1_Initialize `(v  1 e 1 0 ]
 {
 "97
@@ -798,47 +965,78 @@ i2c_reset_link 5
 [v TMR1_SetInterruptHandler@InterruptHandler InterruptHandler `*.37(v  1 p 2 0 ]
 "180
 } 0
-"72 E:\_ist\SCE\labs\sce.X\mcc_generated_files/mcc.c
+"72 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/mcc.c
 [v _PMD_Initialize PMD_Initialize `(v  1 e 1 0 ]
 {
 "86
 } 0
-"55 E:\_ist\SCE\labs\sce.X\mcc_generated_files/pin_manager.c
+"55 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pin_manager.c
 [v _PIN_MANAGER_Initialize PIN_MANAGER_Initialize `(v  1 e 1 0 ]
 {
 "131
 } 0
-"58 E:\_ist\SCE\labs\sce.X\mcc_generated_files/mcc.c
+"58 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/mcc.c
 [v _OSCILLATOR_Initialize OSCILLATOR_Initialize `(v  1 e 1 0 ]
 {
 "70
 } 0
-"52 E:\_ist\SCE\labs\sce.X\mcc_generated_files/interrupt_manager.c
+"86 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
+[v _Push_ring_buffer Push_ring_buffer `(v  1 e 1 0 ]
+{
+[v Push_ring_buffer@reg reg `*.4uc  1 a 1 wreg ]
+"103
+[v Push_ring_buffer@i i `i  1 a 2 16 ]
+"86
+[v Push_ring_buffer@reg reg `*.4uc  1 a 1 wreg ]
+"88
+[v Push_ring_buffer@reg reg `*.4uc  1 a 1 15 ]
+"108
+} 0
+"77
+[v _Store_EEPROM Store_EEPROM `(v  1 e 1 0 ]
+{
+"79
+[v Store_EEPROM@j j `i  1 a 2 9 ]
+"77
+[v Store_EEPROM@ptr_buffer_r ptr_buffer_r `*.39uc  1 p 2 4 ]
+"84
+} 0
+"180 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/memory.c
+[v _DATAEE_WriteByte DATAEE_WriteByte `(v  1 e 1 0 ]
+{
+"182
+[v DATAEE_WriteByte@GIEBitValue GIEBitValue `uc  1 a 1 3 ]
+"180
+[v DATAEE_WriteByte@bAdd bAdd `us  1 p 2 0 ]
+[v DATAEE_WriteByte@bData bData `uc  1 p 1 2 ]
+"200
+} 0
+"52 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/interrupt_manager.c
 [v _INTERRUPT_InterruptManager INTERRUPT_InterruptManager `II(v  1 e 1 0 ]
 {
 "78
 } 0
-"435 E:\_ist\SCE\labs\sce.X\mcc_generated_files/drivers/i2c_master.c
+"435 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/drivers/i2c_master.c
 [v _i2c_busCollisionISR i2c_busCollisionISR `(v  1 e 1 0 ]
 {
 "438
 } 0
-"254 E:\_ist\SCE\labs\sce.X\mcc_generated_files/i2c1_driver.c
+"254 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/i2c1_driver.c
 [v _i2c1_driver_clearBusCollision i2c1_driver_clearBusCollision `T(v  1 e 1 0 ]
 {
 "257
 } 0
-"419 E:\_ist\SCE\labs\sce.X\mcc_generated_files/drivers/i2c_master.c
+"419 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/drivers/i2c_master.c
 [v _i2c_ISR i2c_ISR `(v  1 e 1 0 ]
 {
 "433
 } 0
-"54 E:\_ist\SCE\labs\sce.X\mcc_generated_files/i2c1_driver.c
+"54 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/i2c1_driver.c
 [v _mssp1_clearIRQ mssp1_clearIRQ `T(v  1 e 1 0 ]
 {
 "57
 } 0
-"357 E:\_ist\SCE\labs\sce.X\mcc_generated_files/drivers/i2c_master.c
+"357 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/drivers/i2c_master.c
 [v _do_I2C_RX do_I2C_RX `(E12722  1 s 1 do_I2C_RX ]
 {
 "380
@@ -918,7 +1116,7 @@ i2c_reset_link 5
 {
 "397
 } 0
-"59 E:\_ist\SCE\labs\sce.X\mcc_generated_files/i2c1_driver.c
+"59 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/i2c1_driver.c
 [v _mssp1_setIRQ mssp1_setIRQ `T(v  1 e 1 0 ]
 {
 "62
@@ -957,7 +1155,7 @@ i2c_reset_link 5
 {
 "170
 } 0
-"134 E:\_ist\SCE\labs\sce.X\mcc_generated_files/drivers/i2c_simple_master.c
+"134 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/drivers/i2c_simple_master.c
 [v _rdBlkRegCompleteHandler rdBlkRegCompleteHandler `(E358  1 s 1 rdBlkRegCompleteHandler ]
 {
 [v rdBlkRegCompleteHandler@p p `*.1v  1 p 1 6 ]
@@ -981,12 +1179,12 @@ i2c_reset_link 5
 [v wr1RegCompleteHandler@p p `*.1v  1 p 1 6 ]
 "36
 } 0
-"35 E:\_ist\SCE\labs\sce.X\mcc_generated_files/drivers/i2c_types.c
+"35 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/drivers/i2c_types.c
 [v _i2c_restartWrite i2c_restartWrite `(E358  1 e 1 0 ]
 {
 "38
 } 0
-"448 E:\_ist\SCE\labs\sce.X\mcc_generated_files/drivers/i2c_master.c
+"448 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/drivers/i2c_master.c
 [v _returnReset returnReset `(E12568  1 s 1 returnReset ]
 {
 "451
@@ -996,13 +1194,13 @@ i2c_reset_link 5
 {
 "446
 } 0
-"110 E:\_ist\SCE\labs\sce.X\mcc_generated_files/drivers/i2c_simple_master.c
+"110 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/drivers/i2c_simple_master.c
 [v _wr2RegCompleteHandler wr2RegCompleteHandler `(E358  1 s 1 wr2RegCompleteHandler ]
 {
 [v wr2RegCompleteHandler@p p `*.1v  1 p 1 6 ]
 "115
 } 0
-"89 E:\_ist\SCE\labs\sce.X\mcc_generated_files/drivers/i2c_master.c
+"89 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/drivers/i2c_master.c
 [v _i2c_setDataCompleteCallback i2c_setDataCompleteCallback `(v  1 e 1 0 ]
 {
 [v i2c_setDataCompleteCallback@cb cb `*.37(E12568  1 p 2 0 ]
@@ -1030,7 +1228,7 @@ i2c_reset_link 5
 [v i2c_setBuffer@buffer buffer `*.1v  1 a 1 3 ]
 "192
 } 0
-"157 E:\_ist\SCE\labs\sce.X\mcc_generated_files/i2c1_driver.c
+"157 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/i2c1_driver.c
 [v _i2c1_driver_stop i2c1_driver_stop `T(v  1 e 1 0 ]
 {
 "160
@@ -1045,7 +1243,7 @@ i2c_reset_link 5
 {
 "201
 } 0
-"164 E:\_ist\SCE\labs\sce.X\mcc_generated_files/tmr1.c
+"164 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr1.c
 [v _TMR1_ISR TMR1_ISR `(v  1 e 1 0 ]
 {
 "175
@@ -1055,17 +1253,24 @@ i2c_reset_link 5
 {
 "185
 } 0
+<<<<<<< HEAD
 "36 E:\_ist\SCE\labs\sce.X\main.c
 [v _h_clock h_clock `(v  1 e 1 0 ]
 {
 "45
+=======
+"29 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
+[v _h_clock h_clock `(v  1 e 1 0 ]
+{
+"38
+>>>>>>> 8a784acfeed5fb28f801f16fe528231cbb0c7541
 } 0
-"211
+"270
 [v _update_clock update_clock `(v  1 e 1 0 ]
 {
-"223
+"282
 } 0
-"127 E:\_ist\SCE\labs\sce.X\mcc_generated_files/tmr1.c
+"127 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr1.c
 [v _TMR1_WriteTimer TMR1_WriteTimer `(v  1 e 1 0 ]
 {
 [v TMR1_WriteTimer@timerVal timerVal `us  1 p 2 0 ]

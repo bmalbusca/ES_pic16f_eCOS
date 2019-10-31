@@ -30,8 +30,8 @@ void push_ring(void);
 void update_clock(void);
 unsigned char tsttc (void);
 
-/*Interrupt Handlers*/
 
+/*Interrupt Handlers*/
 volatile __bit half = 0;
 void h_clock(void) {
     IO_RA7_Toggle(); // Clock Activity (UI) T = 1 s
@@ -44,9 +44,9 @@ void h_clock(void) {
     }
 }
 
-volatile unsigned char clkh;
-volatile unsigned char clkm;
-volatile unsigned char seg;
+volatile unsigned char clkh, clkh_aux;
+volatile unsigned char clkm, clkm_aux;
+volatile unsigned char seg, seg_aux;
 volatile unsigned char last5s, last1m;
 
 __bit configuration_mode;
@@ -135,7 +135,7 @@ void main(void)
                     ring_byte[3] = temp;
                     ring_byte[4] = lum;
                     push_ring();
-                    
+
                     /* Write Recovery Parameters */
                     DATAEE_WriteByte(EE_RECV + 3, nreg_pt);
                     cksum_w();

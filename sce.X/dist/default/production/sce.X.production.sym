@@ -1,17 +1,29 @@
 __size_of_do_I2C_SEND_RESTART_READ 0 0 ABS 0
+<<<<<<< HEAD
 _i2c1_driver_i2cISR 42 0 BANK0 1
 _i2c1_driver_clearBusCollision 5A9 0 CODE 0
 __CFG_WRT$OFF 0 0 ABS 0
 _i2c1_driver_getRXData 5B2 0 CODE 0
+=======
+_i2c1_driver_i2cISR 2F 0 BANK0 1
+_i2c1_driver_clearBusCollision 6A3 0 CODE 0
+__CFG_WRT$OFF 0 0 ABS 0
+_i2c1_driver_getRXData 6AC 0 CODE 0
+>>>>>>> 8a784acfeed5fb28f801f16fe528231cbb0c7541
 __S0 800C 0 ABS 0
-__S1 7E 0 ABS 0
+__S1 BD 0 ABS 0
 __S2 0 0 ABS 0
+<<<<<<< HEAD
 __S3 0 0 ABS 0
+=======
+__S3 F005 0 ABS 0
+>>>>>>> 8a784acfeed5fb28f801f16fe528231cbb0c7541
 _SSP1STATbits 18F 0 ABS 0
 __Hintentry 36 0 CODE 0
 __Lintentry 4 0 CODE 0
 __CFG_BOREN$ON 0 0 ABS 0
 __pintentry 4 0 CODE 0
+<<<<<<< HEAD
 __end_of_read_ring 282 0 CODE 0
 _seg 4D 0 BANK0 1
 __end_of_i2c_setDataCompleteCallback 512 0 CODE 0
@@ -21,6 +33,18 @@ _PMD0 796 0 ABS 0
 _PMD1 797 0 ABS 0
 _TMR1_DefaultInterruptHandler 5C5 0 CODE 0
 DATAEE_WriteByte@bData 58 0 BANK0 1
+=======
+___memcpyee@ptr 43 0 BANK0 1
+__end_of_read_ring 389 0 CODE 0
+_seg 3B 0 BANK0 1
+__end_of_i2c_setDataCompleteCallback 5E7 0 CODE 0
+_lum 35 0 BANK0 1
+_PMD0 796 0 ABS 0
+_task_schedule 25 0 BANK0 1
+_PMD1 797 0 ABS 0
+_TMR1_DefaultInterruptHandler 6BF 0 CODE 0
+DATAEE_WriteByte@bData 42 0 BANK0 1
+>>>>>>> 8a784acfeed5fb28f801f16fe528231cbb0c7541
 _PMD2 798 0 ABS 0
 _PMD3 799 0 ABS 0
 _PMD4 79A 0 ABS 0
@@ -37,6 +61,7 @@ _WPUD F5A 0 ABS 0
 _WPUE F65 0 ABS 0
 _aux1 44 0 BANK0 1
 __size_of_wr1RegCompleteHandler 0 0 ABS 0
+<<<<<<< HEAD
 read_ring@index 58 0 BANK0 1
 __end_of_PIN_MANAGER_Initialize 244 0 CODE 0
 __end_of_i2c1_driver_open 52B 0 CODE 0
@@ -68,6 +93,42 @@ wr1RegCompleteHandler@p 76 0 COMMON 1
 wr2RegCompleteHandler@p 76 0 COMMON 1
 _TMR1H 20D 0 ABS 0
 __end_of_i2c1_driver_isNACK 55D 0 CODE 0
+=======
+read_ring@index 48 0 BANK0 1
+__end_of_PIN_MANAGER_Initialize 316 0 CODE 0
+__end_of_i2c1_driver_open 619 0 CODE 0
+__end_of_TMR1_Initialize 4ED 0 CODE 0
+_half 3E2 -364 COMMON 1
+_nreg 62 0 BANK0 1
+__CFG_CSWEN$ON 0 0 ABS 0
+_clkh 3F 0 BANK0 1
+_i2c_setBuffer 5BA 0 CODE 0
+_main 75 0 CODE 0
+_clkm 3D 0 BANK0 1
+_i2c1_driver_startRX 6AF 0 CODE 0
+___sp 0 0 STACK 2
+_temp 36 0 BANK0 1
+btemp 7E 0 ABS 0
+_pmon 61 0 BANK0 1
+_update_clock 48D 0 CODE 0
+start 37 0 CODE 0
+_TMR1_WriteTimer 5A9 0 CODE 0
+read_ring@i 47 0 BANK0 1
+__end_of_returnStop 6BE 0 CODE 0
+_do_I2C_SEND_RESTART_READ 688 0 CODE 0
+_WPUC3 7A7B 0 ABS 0
+_WPUC4 7A7C 0 ABS 0
+rd1RegCompleteHandler@p 41 0 BANK0 1
+rd2RegCompleteHandler@p 41 0 BANK0 1
+wr1RegCompleteHandler@p 41 0 BANK0 1
+wr2RegCompleteHandler@p 41 0 BANK0 1
+main@data 53 0 BANK0 1
+__HbssEEDATA 0 0 ABS 0
+__LbssEEDATA 0 0 ABS 0
+_TMR1H 20D 0 ABS 0
+__pbssEEDATA 0 1E000 EEDATA 3
+__end_of_i2c1_driver_isNACK 656 0 CODE 0
+>>>>>>> 8a784acfeed5fb28f801f16fe528231cbb0c7541
 _TMR1L 20C 0 ABS 0
 __size_of_do_I2C_RX 0 0 ABS 0
 __size_of_do_I2C_TX 0 0 ABS 0
@@ -75,12 +136,14 @@ _TRISA 11 0 ABS 0
 _T1CLK 211 0 ABS 0
 _TRISB 12 0 ABS 0
 _TRISC 13 0 ABS 0
+__size_of_Push_ring_buffer 0 0 ABS 0
 reset_vec 0 0 CODE 0
 _TRISD 14 0 ABS 0
 _TRISE 15 0 ABS 0
 _OSCEN 891 0 ABS 0
 _T1CON 20E 0 ABS 0
 wtemp0 7E 0 ABS 0
+<<<<<<< HEAD
 __end_of_i2c1_driver_stop 5BB 0 CODE 0
 __Hconfig 800C 0 CONFIG 0
 __Lconfig 8007 0 CONFIG 0
@@ -92,12 +155,26 @@ __Lstringtext1 0 0 ABS 0
 __pstringtext1 3A9 0 STRCODE 0
 __size_of_do_I2C_IDLE 0 0 ABS 0
 _i2c1_driver_restart 5BB 0 CODE 0
+=======
+__end_of_i2c1_driver_stop 6B5 0 CODE 0
+__Hconfig 800C 0 CONFIG 0
+__Lconfig 8007 0 CONFIG 0
+_i2c1_driver_busCollisionISR 31 0 BANK0 1
+TMR1_WriteTimer@timerVal 70 0 COMMON 1
+__end_of_wr1RegCompleteHandler 597 0 CODE 0
+__Hstringtext1 0 0 ABS 0
+__Lstringtext1 0 0 ABS 0
+__pstringtext1 4B1 0 STRCODE 0
+__size_of_do_I2C_IDLE 0 0 ABS 0
+_i2c1_driver_restart 6B5 0 CODE 0
+>>>>>>> 8a784acfeed5fb28f801f16fe528231cbb0c7541
 __size_of_do_I2C_RCEN 0 0 ABS 0
 __size_of_DATAEE_ReadByte 0 0 ABS 0
 __Hbigram 0 0 ABS 0
 __Lbigram 0 0 ABS 0
 __Hram 0 0 ABS 0
 __Lram 0 0 ABS 0
+<<<<<<< HEAD
 _i2c1_driver_TXData 598 0 CODE 0
 i2c_setDataCompleteCallback@p 52 0 BANK0 1
 __size_of_wr2RegCompleteHandler 0 0 ABS 0
@@ -118,6 +195,27 @@ _INTERRUPT_InterruptManager 4 0 CODE 0
 __end_of_reset_recv 405 0 CODE 0
 __end_of_i2c1_driver_getRXData 5B5 0 CODE 0
 DATAEE_ReadByte@bAdd 50 0 BANK0 1
+=======
+_i2c1_driver_TXData 692 0 CODE 0
+i2c_setDataCompleteCallback@p 77 0 COMMON 1
+__size_of_wr2RegCompleteHandler 0 0 ABS 0
+__CFG_STVREN$ON 0 0 ABS 0
+_cksum 506 0 CODE 0
+_do_I2C_DO_ACK 674 0 CODE 0
+__size_of_i2c_busCollisionISR 0 0 ABS 0
+___eecpymem@cp 43 0 BANK0 1
+__size_of_do_I2C_DO_ADDRESS_NACK 0 0 ABS 0
+int$flags 7E 0 ABS 0
+cksum@res 49 0 BANK0 1
+_do_I2C_IDLE 68D 0 CODE 0
+__end_of_wr2RegCompleteHandler 5A9 0 CODE 0
+__Hfunctab 0 0 ENTRY 0
+__Lfunctab 0 0 ENTRY 0
+_i2c1_driver_resetBus 6BE 0 CODE 0
+__end_of_i2c_setBuffer 5CA 0 CODE 0
+_INTERRUPT_InterruptManager 4 0 CODE 0
+__end_of_i2c1_driver_getRXData 6AF 0 CODE 0
+>>>>>>> 8a784acfeed5fb28f801f16fe528231cbb0c7541
 __Hcommon 0 0 ABS 0
 __Lcommon 0 0 ABS 0
 _PIE3bits 719 0 ABS 0
@@ -126,14 +224,24 @@ _PIE4bits 71A 0 ABS 0
 __Leeprom_data 0 0 EEDATA 3
 _PIR3bits 70F 0 ABS 0
 _PIR4bits 710 0 ABS 0
+<<<<<<< HEAD
 __end_of_cksum 3E9 0 CODE 0
+=======
+__end_of_cksum 51E 0 CODE 0
+>>>>>>> 8a784acfeed5fb28f801f16fe528231cbb0c7541
 _LATAbits 16 0 ABS 0
 ___int_sp 0 0 STACK 2
 __size_of_do_I2C_RESET 0 0 ABS 0
 __CFG_CLKOUTEN$OFF 0 0 ABS 0
+<<<<<<< HEAD
 __end_of_i2c1_driver_TXData 59D 0 CODE 0
 _ANSELA F38 0 ABS 0
 __end_of_i2c_busCollisionISR 5A1 0 CODE 0
+=======
+__end_of_i2c1_driver_TXData 697 0 CODE 0
+_ANSELA F38 0 ABS 0
+__end_of_i2c_busCollisionISR 69B 0 CODE 0
+>>>>>>> 8a784acfeed5fb28f801f16fe528231cbb0c7541
 __size_of_setCallBack 0 0 ABS 0
 _ANSELB F43 0 ABS 0
 _ODCONA F3A 0 ABS 0
@@ -141,6 +249,10 @@ _ANSELC F4E 0 ABS 0
 _ODCONB F45 0 ABS 0
 _ANSELD F59 0 ABS 0
 _ODCONC F50 0 ABS 0
+<<<<<<< HEAD
+=======
+___ctoee@addr 4D 0 BANK0 1
+>>>>>>> 8a784acfeed5fb28f801f16fe528231cbb0c7541
 _INLVLA F3C 0 ABS 0
 __CFG_WDTCPS$WDTCPS_14 0 0 ABS 0
 _ANSELE F64 0 ABS 0
@@ -151,7 +263,12 @@ _ODCONE F66 0 ABS 0
 _INLVLC F52 0 ABS 0
 _INLVLD F5D 0 ABS 0
 _INLVLE F68 0 ABS 0
+<<<<<<< HEAD
 _rdBlkRegCompleteHandler 421 0 CODE 0
+=======
+___eetoc@addr 46 0 BANK0 1
+_rdBlkRegCompleteHandler 4ED 0 CODE 0
+>>>>>>> 8a784acfeed5fb28f801f16fe528231cbb0c7541
 __CFG_RSTOSC$HFINT1 0 0 ABS 0
 _T1GCON 20F 0 ABS 0
 __Habs1 0 0 ABS 0
@@ -174,12 +291,17 @@ __Lsfr5 0 0 ABS 0
 __Hsfr6 0 0 ABS 0
 __Lsfr6 0 0 ABS 0
 __Hsfr7 0 0 ABS 0
+<<<<<<< HEAD
 __end_of_i2c_ISR 33B 0 CODE 0
+=======
+__end_of_i2c_ISR 443 0 CODE 0
+>>>>>>> 8a784acfeed5fb28f801f16fe528231cbb0c7541
 __Lsfr7 0 0 ABS 0
 __Hsfr8 0 0 ABS 0
 __Lsfr8 0 0 ABS 0
 __Hsfr9 0 0 ABS 0
 __Lsfr9 0 0 ABS 0
+<<<<<<< HEAD
 __end_of_TMR1_SetInterruptHandler 570 0 CODE 0
 _DATAEE_ReadByte 4F5 0 CODE 0
 __size_of_mssp1_clearIRQ 0 0 ABS 0
@@ -191,13 +313,30 @@ _read_ring 244 0 CODE 0
 _last5s 4C 0 BANK0 1
 __size_of_DATAEE_WriteByte 0 0 ABS 0
 _push_ring 2B5 0 CODE 0
+=======
+__end_of_TMR1_SetInterruptHandler 66A 0 CODE 0
+_clkh_aux 3E 0 BANK0 1
+_clkm_aux 3C 0 BANK0 1
+__size_of_mssp1_clearIRQ 0 0 ABS 0
+_ptr_write_buff 29 0 BANK0 1
+_recovery_data 0 1E000 EEDATA 3
+___stackhi 2359 0 ABS 0
+_last1m 38 0 BANK0 1
+cksum@i 4A 0 BANK0 1
+_read_ring 353 0 CODE 0
+_last5s 39 0 BANK0 1
+__size_of_DATAEE_WriteByte 0 0 ABS 0
+__size_of_Store_EEPROM 0 0 ABS 0
+>>>>>>> 8a784acfeed5fb28f801f16fe528231cbb0c7541
 __Hcode 0 0 ABS 0
 __Lcode 0 0 ABS 0
 __size_of_i2c1_driver_open 0 0 ABS 0
 __size_of_do_I2C_DO_ACK 0 0 ABS 0
 __size_of_update_clock 0 0 ABS 0
+__end_of_Push_ring_buffer 1E4 0 CODE 0
 __HcstackBANK0 0 0 ABS 0
 __LcstackBANK0 0 0 ABS 0
+<<<<<<< HEAD
 __pcstackBANK0 50 0 BANK0 1
 ___bmul 451 0 CODE 0
 __Hinit 36 0 CODE 0
@@ -208,10 +347,28 @@ __end_of_i2c_restartWrite 5C0 0 CODE 0
 __Htext 0 0 ABS 0
 __Ltext 0 0 ABS 0
 ___bmul@multiplier 53 0 BANK0 1
+=======
+__pcstackBANK0 40 0 BANK0 1
+_buffer 235A 0 ABS 1
+___bmul 535 0 CODE 0
+__Hinit 37 0 CODE 0
+__Linit 37 0 CODE 0
+__end_of_main 18E 0 CODE 0
+_ring_byte 20 0 BANK0 1
+___memcpyee@to 44 0 BANK0 1
+__end_of_i2c_restartWrite 6BA 0 CODE 0
+__Htext 0 0 ABS 0
+__Ltext 0 0 ABS 0
+___bmul@multiplier 43 0 BANK0 1
+>>>>>>> 8a784acfeed5fb28f801f16fe528231cbb0c7541
 __CFG_WDTCWS$WDTCWS_7 0 0 ABS 0
+__HdataBANK0 0 0 ABS 0
+__LdataBANK0 0 0 ABS 0
 __CFG_LVP$ON 0 0 ABS 0
 i2c_setBuffer@bufferSize 70 0 COMMON 1
+__pdataBANK0 58 0 BANK0 1
 __size_of_do_I2C_DO_NACK_RESTART 0 0 ABS 0
+<<<<<<< HEAD
 _rd1RegCompleteHandler 48E 0 CODE 0
 _rd2RegCompleteHandler 47C 0 CODE 0
 end_of_initialization 47 0 CODE 0
@@ -223,6 +380,23 @@ __size_of_i2c1_driver_sendNACK 0 0 ABS 0
 ___bmul@multiplicand 50 0 BANK0 1
 ___stacklo 203E 0 ABS 0
 __size_of_i2c1_driver_isNACK 0 0 ABS 0
+=======
+_rd1RegCompleteHandler 573 0 CODE 0
+_rd2RegCompleteHandler 561 0 CODE 0
+end_of_initialization 71 0 CODE 0
+_wr1RegCompleteHandler 585 0 CODE 0
+_wr2RegCompleteHandler 597 0 CODE 0
+main@F12846 58 0 BANK0 1
+__CFG_FEXTOSC$OFF 0 0 ABS 0
+i2c1_driver_TXData@d 70 0 COMMON 1
+__size_of_i2c1_driver_sendNACK 0 0 ABS 0
+__HnvBANK0 0 0 ABS 0
+__LnvBANK0 0 0 ABS 0
+___bmul@multiplicand 40 0 BANK0 1
+___stacklo 206D 0 ABS 0
+__size_of_i2c1_driver_isNACK 0 0 ABS 0
+__pnvBANK0 5F 0 BANK0 1
+>>>>>>> 8a784acfeed5fb28f801f16fe528231cbb0c7541
 _OSCCON1 88D 0 ABS 0
 __Hsfr10 0 0 ABS 0
 __Lsfr10 0 0 ABS 0
@@ -240,7 +414,11 @@ __Hsfr31 0 0 ABS 0
 __Hsfr12 0 0 ABS 0
 __Lsfr31 0 0 ABS 0
 __Lsfr12 0 0 ABS 0
+<<<<<<< HEAD
 _do_I2C_DO_NACK_STOP 575 0 CODE 0
+=======
+_do_I2C_DO_NACK_STOP 66F 0 CODE 0
+>>>>>>> 8a784acfeed5fb28f801f16fe528231cbb0c7541
 __Hsfr22 0 0 ABS 0
 __Lsfr22 0 0 ABS 0
 __Hsfr13 0 0 ABS 0
@@ -251,11 +429,19 @@ __Lsfr23 0 0 ABS 0
 __Hsfr14 0 0 ABS 0
 __Lsfr14 0 0 ABS 0
 __Hsfr24 0 0 ABS 0
+<<<<<<< HEAD
 _do_I2C_TX_EMPTY 282 0 CODE 0
 __Lsfr24 0 0 ABS 0
 __Hsfr15 0 0 ABS 0
 __Lsfr15 0 0 ABS 0
 __end_of_do_I2C_TX_EMPTY 2B5 0 CODE 0
+=======
+_do_I2C_TX_EMPTY 389 0 CODE 0
+__Lsfr24 0 0 ABS 0
+__Hsfr15 0 0 ABS 0
+__Lsfr15 0 0 ABS 0
+__end_of_do_I2C_TX_EMPTY 3BD 0 CODE 0
+>>>>>>> 8a784acfeed5fb28f801f16fe528231cbb0c7541
 __Hsfr25 0 0 ABS 0
 __Lsfr25 0 0 ABS 0
 __size_of_i2c1_driver_restart 0 0 ABS 0
@@ -267,19 +453,32 @@ __Hsfr17 0 0 ABS 0
 __Lsfr17 0 0 ABS 0
 __Hsfr27 0 0 ABS 0
 __Lsfr27 0 0 ABS 0
+<<<<<<< HEAD
 rdBlkRegCompleteHandler@p 76 0 COMMON 1
+=======
+rdBlkRegCompleteHandler@p 41 0 BANK0 1
+>>>>>>> 8a784acfeed5fb28f801f16fe528231cbb0c7541
 __Hsfr18 0 0 ABS 0
 __Lsfr18 0 0 ABS 0
 __Hsfr28 0 0 ABS 0
 _SSP1ADD 18D 0 ABS 0
 __Lsfr28 0 0 ABS 0
+<<<<<<< HEAD
 _do_I2C_SEND_RESTART 584 0 CODE 0
+=======
+_do_I2C_SEND_RESTART 67E 0 CODE 0
+>>>>>>> 8a784acfeed5fb28f801f16fe528231cbb0c7541
 __Hsfr19 0 0 ABS 0
 __Lsfr19 0 0 ABS 0
 __Hsfr29 0 0 ABS 0
 __Lsfr29 0 0 ABS 0
 __size_of_i2c1_driver_stop 0 0 ABS 0
+_ptr_EEPROM 5D 0 BANK0 1
 _TRISCbits 13 0 ABS 0
+<<<<<<< HEAD
+=======
+__end_of___memcpyee 286 0 CODE 0
+>>>>>>> 8a784acfeed5fb28f801f16fe528231cbb0c7541
 _T1CONbits 20E 0 ABS 0
 __Hstrings 0 0 ABS 0
 __Lstrings 0 0 ABS 0
@@ -288,6 +487,7 @@ __size_of_i2c_restartWrite 0 0 ABS 0
 _nreg_init 3E9 -36B COMMON 1
 _SLRCONA F3B 0 ABS 0
 _SLRCONB F46 0 ABS 0
+<<<<<<< HEAD
 __end_of_i2c1_driver_sendACK 5A9 0 CODE 0
 _SLRCONC F51 0 ABS 0
 _SLRCOND F5C 0 ABS 0
@@ -303,6 +503,29 @@ _OSCTUNE 892 0 ABS 0
 __size_of_i2c1_driver_resetBus 0 0 ABS 0
 _configuration_mode 3EA -36B COMMON 1
 __end_of_returnReset 5C2 0 CODE 0
+=======
+__end_of_i2c1_driver_sendACK 6A3 0 CODE 0
+___ctoee@data 4B 0 BANK0 1
+_SLRCONC F51 0 ABS 0
+_SLRCOND F5C 0 ABS 0
+_SSP1BUF 18C 0 ABS 0
+_SYSTEM_Initialize 5F4 0 CODE 0
+__end_of_setCallBack 469 0 CODE 0
+_SLRCONE F67 0 ABS 0
+___eetoc@data 47 0 BANK0 1
+_mssp1_setIRQ 6A9 0 CODE 0
+_NVMADRH 81B 0 ABS 0
+_mssp1_clearIRQ 6A6 0 CODE 0
+_NVMDATH 81D 0 ABS 0
+_convertedValue 27 0 BANK0 1
+_OSCTUNE 892 0 ABS 0
+__size_of_i2c1_driver_resetBus 0 0 ABS 0
+__end_of___eetoc 5D9 0 CODE 0
+__size_of___ctoee 0 0 ABS 0
+__pbssBIGRAM 235A 0 ABS 0
+_configuration_mode 3E1 -364 COMMON 1
+__end_of_returnReset 6BC 0 CODE 0
+>>>>>>> 8a784acfeed5fb28f801f16fe528231cbb0c7541
 _SSP1MSK 18E 0 ABS 0
 _NVMADRL 81A 0 ABS 0
 __Hbank0 0 0 ABS 0
@@ -310,10 +533,17 @@ __Lbank0 0 0 ABS 0
 _NVMDATL 81C 0 ABS 0
 __Hbank1 0 0 ABS 0
 __Lbank1 0 0 ABS 0
+<<<<<<< HEAD
 __end_of_do_I2C_SEND_RESTART_WRITE 58E 0 CODE 0
 __Hbank2 0 0 ABS 0
 __Lbank2 0 0 ABS 0
 _TMR1_SetInterruptHandler 56A 0 CODE 0
+=======
+__end_of_do_I2C_SEND_RESTART_WRITE 688 0 CODE 0
+__Hbank2 0 0 ABS 0
+__Lbank2 0 0 ABS 0
+_TMR1_SetInterruptHandler 664 0 CODE 0
+>>>>>>> 8a784acfeed5fb28f801f16fe528231cbb0c7541
 __Hbank3 0 0 ABS 0
 __Lbank3 0 0 ABS 0
 ___latbits 2 0 ABS 0
@@ -326,17 +556,26 @@ __Hpowerup 0 0 CODE 0
 __Lpowerup 0 0 CODE 0
 __Hbank6 0 0 ABS 0
 __Lbank6 0 0 ABS 0
+<<<<<<< HEAD
 _do_I2C_SEND_ADR_READ 534 0 CODE 0
+=======
+_do_I2C_SEND_ADR_READ 625 0 CODE 0
+>>>>>>> 8a784acfeed5fb28f801f16fe528231cbb0c7541
 __Hbank7 0 0 ABS 0
 __Lbank7 0 0 ABS 0
 __Hbank8 0 0 ABS 0
 __Lbank8 0 0 ABS 0
 __size_of_TMR1_WriteTimer 0 0 ABS 0
+<<<<<<< HEAD
 _i2c_busCollisionISR 59D 0 CODE 0
+=======
+_i2c_busCollisionISR 697 0 CODE 0
+>>>>>>> 8a784acfeed5fb28f801f16fe528231cbb0c7541
 _NVMCON1bits 81E 0 ABS 0
 __Hbank9 0 0 ABS 0
 __size_of_rd2RegCompleteHandler 0 0 ABS 0
 __Lbank9 0 0 ABS 0
+<<<<<<< HEAD
 _do_I2C_RCEN 55D 0 CODE 0
 __ptext1 3E9 0 CODE 0
 __ptext2 244 0 CODE 0
@@ -371,9 +610,51 @@ __end_of_h_clock 451 0 CODE 0
 _do_I2C_DO_NACK_RESTART 570 0 CODE 0
 _TMR1_Initialize 405 0 CODE 0
 __Hidloc 0 0 IDLOC 0
+=======
+_do_I2C_RCEN 65D 0 CODE 0
+__ptext1 353 0 CODE 0
+__ptext2 535 0 CODE 0
+_i2c_ISR 419 0 CODE 0
+___eecpymem@to 44 0 BANK0 1
+__ptext3 60D 0 CODE 0
+__ptext4 619 0 CODE 0
+__ptext5 506 0 CODE 0
+__ptext6 5CA 0 CODE 0
+__ptext7 3BD 0 CODE 0
+read_ring@subindex 44 0 BANK0 1
+__ptext8 5E7 0 CODE 0
+_returnReset 6BA 0 CODE 0
+__ptext9 239 0 CODE 0
+__Hclrtext 0 0 ABS 0
+__Lclrtext 0 0 ABS 0
+setCallBack@cb 70 0 COMMON 1
+_duty_cycle 5F 0 BANK0 1
+_SSP1CLKPPS EC5 0 ABS 0
+__size_of___eecpymem 0 0 ABS 0
+_Store_EEPROM 316 0 CODE 0
+Store_EEPROM@j 49 0 BANK0 1
+_TMR1_InterruptHandler 2D 0 BANK0 1
+_SSP1DATPPS EC6 0 ABS 0
+_do_I2C_SEND_ADR_WRITE 63E 0 CODE 0
+___memcpyee 239 0 CODE 0
+__end_of_DATAEE_WriteByte 48D 0 CODE 0
+__size_of_i2c1_driver_getRXData 0 0 ABS 0
+__end_of_update_clock 4B1 0 CODE 0
+__end_of__initialization 71 0 CODE 0
+__size_of_TMR1_SetInterruptHandler 0 0 ABS 0
+__end_of_do_I2C_DO_NACK_RESTART 66F 0 CODE 0
+__size_of_i2c1_driver_TXData 0 0 ABS 0
+__end_of_h_clock 535 0 CODE 0
+_do_I2C_DO_NACK_RESTART 66A 0 CODE 0
+_TMR1_Initialize 4D1 0 CODE 0
+__Hidloc 0 0 IDLOC 0
+___ctoee 5E7 0 CODE 0
+>>>>>>> 8a784acfeed5fb28f801f16fe528231cbb0c7541
 __Lidloc 0 0 IDLOC 0
+_ptr_read_buff 2B 0 BANK0 1
 __Hstack 0 0 STACK 2
 __Lstack 0 0 STACK 2
+<<<<<<< HEAD
 _h_clock 43A 0 CODE 0
 __end_of_mssp1_setIRQ 5B2 0 CODE 0
 __Hspace_0 800C 0 ABS 0
@@ -409,6 +690,53 @@ __size_of_TMR1_ISR 0 0 ABS 0
 __CFG_DEBUG$OFF 0 0 ABS 0
 __size_of_rdBlkRegCompleteHandler 0 0 ABS 0
 clear_ram0 564 0 CODE 0
+=======
+___eetoc 5CA 0 CODE 0
+_h_clock 51E 0 CODE 0
+__end_of_mssp1_setIRQ 6AC 0 CODE 0
+__Hspace_0 800C 0 ABS 0
+__Lspace_0 0 0 ABS 0
+_running 3E8 -36B COMMON 1
+__end_of_TMR1_DefaultInterruptHandler 6C0 0 CODE 0
+__end_of_do_I2C_SEND_RESTART_READ 68D 0 CODE 0
+__Hspace_1 3E9 0 ABS 0
+__Lspace_1 0 0 ABS 0
+__Hspace_2 0 0 ABS 0
+__Lspace_2 0 0 ABS 0
+__end_of_i2c1_driver_sendNACK 69F 0 CODE 0
+__Hcinit 75 0 CODE 0
+__Lcinit 39 0 CODE 0
+_do_I2C_RESET 646 0 CODE 0
+__end_of_PMD_Initialize 636 0 CODE 0
+__size_of___eetoc 0 0 ABS 0
+_nreg_pt 37 0 BANK0 1
+_cksum_w 619 0 CODE 0
+__Hspace_3 5 0 ABS 0
+__CFG_LPBOREN$OFF 0 0 ABS 0
+__size_of_read_ring 0 0 ABS 0
+__Lspace_3 0 0 ABS 0
+__end_of_Store_EEPROM 353 0 CODE 0
+__end_of_i2c1_driver_restart 6B8 0 CODE 0
+__size_of_main 0 0 ABS 0
+setCallBack@idx 74 0 COMMON 1
+__end_of_INTERRUPT_InterruptManager 37 0 CODE 0
+_seg_aux 3A 0 BANK0 1
+__CFG_BORV$LO 0 0 ABS 0
+__size_of_i2c_ISR 0 0 ABS 0
+_PIN_MANAGER_Initialize 2D1 0 CODE 0
+___eecpymem 3BD 0 CODE 0
+__end_of_i2c1_driver_resetBus 6BF 0 CODE 0
+__HidataBANK0 0 0 ABS 0
+__LidataBANK0 0 0 ABS 0
+__pidataBANK0 656 0 CODE 0
+___memcpyee@size 41 0 BANK0 1
+__end_of_TMR1_WriteTimer 5BA 0 CODE 0
+__size_of_TMR1_ISR 0 0 ABS 0
+__CFG_DEBUG$OFF 0 0 ABS 0
+__size_of_rdBlkRegCompleteHandler 0 0 ABS 0
+__size_of___memcpyee 0 0 ABS 0
+clear_ram0 601 0 CODE 0
+>>>>>>> 8a784acfeed5fb28f801f16fe528231cbb0c7541
 __size_of_SYSTEM_Initialize 0 0 ABS 0
 __HbssBANK0 0 0 ABS 0
 __LbssBANK0 0 0 ABS 0
@@ -423,27 +751,48 @@ __Hbank30 0 0 BANK30 1
 __Hbank11 0 0 ABS 0
 __Lbank30 0 0 BANK30 1
 __Lbank11 0 0 ABS 0
+<<<<<<< HEAD
 _i2c1_driver_stop 5B8 0 CODE 0
 __size_of_do_I2C_SEND_RESTART_WRITE 0 0 ABS 0
 __Hbank21 0 0 BANK21 1
 __Lbank21 0 0 BANK21 1
 __end_of_OSCILLATOR_Initialize 534 0 CODE 0
+=======
+_i2c1_driver_stop 6B2 0 CODE 0
+__size_of_do_I2C_SEND_RESTART_WRITE 0 0 ABS 0
+__Hbank21 0 0 BANK21 1
+__Lbank21 0 0 BANK21 1
+__end_of_OSCILLATOR_Initialize 63E 0 CODE 0
+>>>>>>> 8a784acfeed5fb28f801f16fe528231cbb0c7541
 __Hbank31 0 0 BANK31 1
 __Hbank12 0 0 ABS 0
 __Lbank31 0 0 BANK31 1
 __Lbank12 0 0 ABS 0
+<<<<<<< HEAD
 __end_of_SYSTEM_Initialize 51F 0 CODE 0
 __Hbank22 0 0 BANK22 1
 __Lbank22 0 0 BANK22 1
 __Hbank13 0 0 BANK13 1
 _setCallBack 33B 0 CODE 0
+=======
+__end_of_SYSTEM_Initialize 601 0 CODE 0
+__end_of___ctoee 5F4 0 CODE 0
+__Hbank22 0 0 BANK22 1
+__Lbank22 0 0 BANK22 1
+__Hbank13 0 0 BANK13 1
+_setCallBack 443 0 CODE 0
+>>>>>>> 8a784acfeed5fb28f801f16fe528231cbb0c7541
 __Lbank13 0 0 BANK13 1
+__HbssBANK1 0 0 ABS 0
+__LbssBANK1 0 0 ABS 0
 __Hbank23 0 0 BANK23 1
 __Lbank23 0 0 BANK23 1
 __Hbank14 0 0 BANK14 1
+__pbssBANK1 A0 0 BANK1 1
 __Lbank14 0 0 BANK14 1
 __Hbank24 0 0 BANK24 1
 __Lbank24 0 0 BANK24 1
+<<<<<<< HEAD
 __ptext10 512 0 CODE 0
 __Hbank15 0 0 BANK15 1
 __Lbank15 0 0 BANK15 1
@@ -549,10 +898,125 @@ i2c_setBuffer@buffer 73 0 COMMON 1
 __size_of_do_I2C_SEND_ADR_WRITE 0 0 ABS 0
 __size_of_TMR1_Initialize 0 0 ABS 0
 _OSCILLATOR_Initialize 52B 0 CODE 0
+=======
+__ptext10 5F4 0 CODE 0
+__Hbank15 0 0 BANK15 1
+__Lbank15 0 0 BANK15 1
+__ptext20 697 0 CODE 0
+__Hbank25 0 0 BANK25 1
+__end_of_i2c1_driver_clearBusCollision 6A6 0 CODE 0
+__Lbank25 0 0 BANK25 1
+__ptext11 4D1 0 CODE 0
+__ptext30 65D 0 CODE 0
+__Hbank16 0 0 BANK16 1
+__Lbank16 0 0 BANK16 1
+_i2c_restartWrite 6B8 0 CODE 0
+__ptext21 6A3 0 CODE 0
+__ptext40 6A9 0 CODE 0
+__Hbank26 0 0 BANK26 1
+__Lbank26 0 0 BANK26 1
+_Push_ring_buffer 18E 0 CODE 0
+__ptext12 664 0 CODE 0
+__ptext31 63E 0 CODE 0
+__ptext50 585 0 CODE 0
+__Hbank17 0 0 BANK17 1
+__Lbank17 0 0 BANK17 1
+__size_of_TMR1_DefaultInterruptHandler 0 0 ABS 0
+__ptext22 419 0 CODE 0
+__ptext41 64E 0 CODE 0
+__ptext60 69F 0 CODE 0
+__Hbank27 0 0 BANK27 1
+__Lbank27 0 0 BANK27 1
+__ptext13 62E 0 CODE 0
+__ptext32 625 0 CODE 0
+__ptext51 6B8 0 CODE 0
+__Hbank18 0 0 BANK18 1
+__Lbank18 0 0 BANK18 1
+read_ring@absindex 49 0 BANK0 1
+__ptext23 6A6 0 CODE 0
+__ptext42 692 0 CODE 0
+__ptext61 54B 0 CODE 0
+__Hbank28 0 0 BANK28 1
+__Lbank28 0 0 BANK28 1
+__ptext14 2D1 0 CODE 0
+__ptext33 679 0 CODE 0
+__ptext52 6BA 0 CODE 0
+__Hbank19 0 0 BANK19 1
+__Lbank19 0 0 BANK19 1
+__end_of_fsmStateTable 4D1 0 STRCODE 0
+__ptext24 286 0 CODE 0
+__ptext43 6AC 0 CODE 0
+__ptext62 6BF 0 CODE 0
+__Hbank29 0 0 BANK29 1
+__Lbank29 0 0 BANK29 1
+__size_of_PMD_Initialize 0 0 ABS 0
+__ptext15 636 0 CODE 0
+__ptext34 67E 0 CODE 0
+__ptext53 6BC 0 CODE 0
+__ptext25 1E4 0 CODE 0
+__ptext44 69B 0 CODE 0
+__ptext63 51E 0 CODE 0
+__end_of_mssp1_clearIRQ 6A9 0 CODE 0
+setCallBack@p 72 0 COMMON 1
+__ptext16 18E 0 CODE 0
+__ptext35 683 0 CODE 0
+__ptext54 597 0 CODE 0
+__ptext26 3EC 0 CODE 0
+__ptext45 6BE 0 CODE 0
+__ptext64 48D 0 CODE 0
+__size_of_i2c_setBuffer 0 0 ABS 0
+_i2c1_driver_open 60D 0 CODE 0
+__end_of_cksum_w 625 0 CODE 0
+__ptext17 316 0 CODE 0
+__ptext36 688 0 CODE 0
+__ptext55 5D9 0 CODE 0
+__end_of_rdBlkRegCompleteHandler 506 0 CODE 0
+__ptext27 66A 0 CODE 0
+__ptext46 6AF 0 CODE 0
+__ptext65 5A9 0 CODE 0
+__size_of_cksum_w 0 0 ABS 0
+__ptext18 469 0 CODE 0
+__ptext37 68D 0 CODE 0
+__ptext56 443 0 CODE 0
+__CFG_PWRTE$OFF 0 0 ABS 0
+__ptext28 66F 0 CODE 0
+__ptext47 4ED 0 CODE 0
+__HbssCOMMON 0 0 ABS 0
+__LbssCOMMON 0 0 ABS 0
+__ptext38 646 0 CODE 0
+__ptext57 5BA 0 CODE 0
+__end_of_do_I2C_SEND_ADR_WRITE 646 0 CODE 0
+__pbssCOMMON 78 0 COMMON 1
+__ptext29 674 0 CODE 0
+__ptext48 561 0 CODE 0
+_returnStop 6BC 0 CODE 0
+__ptext39 389 0 CODE 0
+__ptext58 6B2 0 CODE 0
+_T1GCONbits 20F 0 ABS 0
+__ptext49 573 0 CODE 0
+_timer1ReloadVal 78 0 COMMON 1
+_INTCONbits B 0 ABS 0
+__ptext59 6B5 0 CODE 0
+__CFG_PPS1WAY$ON 0 0 ABS 0
+__Hend_init 39 0 CODE 0
+__Lend_init 37 0 CODE 0
+__end_of_do_I2C_SEND_STOP 67E 0 CODE 0
+__end_of_rd1RegCompleteHandler 585 0 CODE 0
+_STATUSbits 3 0 ABS 0
+_PMD_Initialize 62E 0 CODE 0
+___eecpymem@size 41 0 BANK0 1
+i2c_setBuffer@buffer 73 0 COMMON 1
+__size_of_do_I2C_SEND_ADR_WRITE 0 0 ABS 0
+___memcpyee@from 40 0 BANK0 1
+Push_ring_buffer@i 50 0 BANK0 1
+__size_of_TMR1_Initialize 0 0 ABS 0
+_OSCILLATOR_Initialize 636 0 CODE 0
+>>>>>>> 8a784acfeed5fb28f801f16fe528231cbb0c7541
 __size_of_INTERRUPT_InterruptManager 0 0 ABS 0
 __Hreset_vec 2 0 CODE 0
 __Lreset_vec 0 0 CODE 0
 __size_of_PIN_MANAGER_Initialize 0 0 ABS 0
+<<<<<<< HEAD
 __end_of_rd2RegCompleteHandler 48E 0 CODE 0
 __size_of_do_I2C_SEND_STOP 0 0 ABS 0
 _do_I2C_RX 1B5 0 CODE 0
@@ -560,29 +1024,56 @@ __end_of_do_I2C_SEND_ADR_READ 53D 0 CODE 0
 __end_of_do_I2C_DO_NACK_STOP 57A 0 CODE 0
 intlevel0 0 0 ENTRY 0
 _do_I2C_TX 161 0 CODE 0
+=======
+__end_of_rd2RegCompleteHandler 573 0 CODE 0
+Push_ring_buffer@reg 4F 0 BANK0 1
+__size_of_do_I2C_SEND_STOP 0 0 ABS 0
+_do_I2C_RX 286 0 CODE 0
+__end_of_do_I2C_SEND_ADR_READ 62E 0 CODE 0
+__end_of_do_I2C_DO_NACK_STOP 674 0 CODE 0
+intlevel0 0 0 ENTRY 0
+_do_I2C_TX 1E4 0 CODE 0
+>>>>>>> 8a784acfeed5fb28f801f16fe528231cbb0c7541
 __CFG_WDTE$OFF 0 0 ABS 0
 _SSP1STAT 18F 0 ABS 0
 intlevel1 0 0 ENTRY 0
 intlevel2 0 0 ENTRY 0
 __size_of_h_clock 0 0 ABS 0
+<<<<<<< HEAD
 __end_of_do_I2C_SEND_RESTART 589 0 CODE 0
 _DATAEE_WriteByte 361 0 CODE 0
 intlevel3 0 0 ENTRY 0
 _i2c1_driver_sendACK 5A5 0 CODE 0
+=======
+__end_of_do_I2C_SEND_RESTART 683 0 CODE 0
+_DATAEE_WriteByte 469 0 CODE 0
+intlevel3 0 0 ENTRY 0
+_i2c1_driver_sendACK 69F 0 CODE 0
+>>>>>>> 8a784acfeed5fb28f801f16fe528231cbb0c7541
 intlevel4 0 0 ENTRY 0
 _SSP1CON1bits 190 0 ABS 0
 intlevel5 0 0 ENTRY 0
 _SSP1CON2bits 191 0 ABS 0
 __size_of_i2c_setDataCompleteCallback 0 0 ABS 0
+<<<<<<< HEAD
 _TMR1_ISR 467 0 CODE 0
 _i2c1_driver_sendNACK 5A1 0 CODE 0
 __end_of_i2c1_driver_startRX 5B8 0 CODE 0
 i2c_setDataCompleteCallback@cb 50 0 BANK0 1
+=======
+_last1m_aux 33 0 BANK0 1
+_TMR1_ISR 54B 0 CODE 0
+_i2c1_driver_sendNACK 69B 0 CODE 0
+__end_of_i2c1_driver_startRX 6B2 0 CODE 0
+_last5s_aux 34 0 BANK0 1
+i2c_setDataCompleteCallback@cb 75 0 COMMON 1
+>>>>>>> 8a784acfeed5fb28f801f16fe528231cbb0c7541
 __HcstackCOMMON 0 0 ABS 0
 __LcstackCOMMON 0 0 ABS 0
 __pcstackCOMMON 70 0 COMMON 1
 __CFG_ZCD$OFF 0 0 ABS 0
 __CFG_CPD$OFF 0 0 ABS 0
+<<<<<<< HEAD
 start_initialization 38 0 CODE 0
 __end_of_do_I2C_RX 1FF 0 CODE 0
 __end_of_do_I2C_TX 1B5 0 CODE 0
@@ -618,18 +1109,68 @@ ___bmul@product 52 0 BANK0 1
 DATAEE_WriteByte@bAdd 56 0 BANK0 1
 __HbitbssCOMMON 0 0 ABS 0
 __LbitbssCOMMON 0 0 ABS 0
+=======
+start_initialization 39 0 CODE 0
+__end_of_do_I2C_RX 2D1 0 CODE 0
+__end_of_do_I2C_TX 239 0 CODE 0
+__size_of_i2c1_driver_startRX 0 0 ABS 0
+_do_I2C_DO_ADDRESS_NACK 3EC 0 CODE 0
+__size_of_mssp1_setIRQ 0 0 ABS 0
+_i2c_status A0 0 BANK1 1
+TMR1_SetInterruptHandler@InterruptHandler 40 0 BANK0 1
+_i2c_setDataCompleteCallback 5D9 0 CODE 0
+_i2c1_driver_isNACK 64E 0 CODE 0
+__end_of_do_I2C_IDLE 692 0 CODE 0
+_do_I2C_SEND_STOP 679 0 CODE 0
+__end_of_do_I2C_RCEN 664 0 CODE 0
+__end_of_TMR1_ISR 561 0 CODE 0
+__Hmaintext 0 0 ABS 0
+__Lmaintext 0 0 ABS 0
+__size_of_i2c1_driver_sendACK 0 0 ABS 0
+__pmaintext 75 0 CODE 0
+__CFG_MCLRE$ON 0 0 ABS 0
+___eecpymem@from 40 0 BANK0 1
+__size_of_OSCILLATOR_Initialize 0 0 ABS 0
+__end_of_do_I2C_DO_ADDRESS_NACK 419 0 CODE 0
+__CFG_SCANE$available 0 0 ABS 0
+__size_of_do_I2C_SEND_ADR_READ 0 0 ABS 0
+__size_of_i2c1_driver_clearBusCollision 0 0 ABS 0
+__end_of_do_I2C_RESET 64E 0 CODE 0
+__initialization 39 0 CODE 0
+_do_I2C_SEND_RESTART_WRITE 683 0 CODE 0
+DATAEE_WriteByte@GIEBitValue 43 0 BANK0 1
+__size_of_do_I2C_DO_NACK_STOP 0 0 ABS 0
+__size_of_returnStop 0 0 ABS 0
+___bmul@product 42 0 BANK0 1
+DATAEE_WriteByte@bAdd 40 0 BANK0 1
+__HbitbssCOMMON 0 0 ABS 0
+__LbitbssCOMMON 0 0 ABS 0
+__end_of___eecpymem 3EC 0 CODE 0
+>>>>>>> 8a784acfeed5fb28f801f16fe528231cbb0c7541
 __CFG_CP$OFF 0 0 ABS 0
 __pbitbssCOMMON 3E8 -36B COMMON 1
 __CFG_FCMEN$ON 0 0 ABS 0
 __size_of_do_I2C_SEND_RESTART 0 0 ABS 0
+<<<<<<< HEAD
 _fsmStateTable 3A9 0 STRCODE 0
 __size_of___bmul 0 0 ABS 0
 __end_of___bmul 467 0 CODE 0
 __end_of_do_I2C_DO_ACK 57F 0 CODE 0
+=======
+_fsmStateTable 4B1 0 STRCODE 0
+Store_EEPROM@ptr_buffer_r 44 0 BANK0 1
+__size_of___bmul 0 0 ABS 0
+__end_of___bmul 54B 0 CODE 0
+__end_of_do_I2C_DO_ACK 679 0 CODE 0
+__HbitnvCOMMON 0 0 ABS 0
+__LbitnvCOMMON 0 0 ABS 0
+__pbitnvCOMMON 3E8 -36B COMMON 1
+>>>>>>> 8a784acfeed5fb28f801f16fe528231cbb0c7541
 __size_of_returnReset 0 0 ABS 0
 __size_of_do_I2C_TX_EMPTY 0 0 ABS 0
 %segments
 reset_vec 0 3 CODE 0 0
+<<<<<<< HEAD
 intentry 8 751 CODE 8 0
 config 1000E 10017 CONFIG 1000E 0
 cstackCOMMON 70 7D COMMON 70 1
@@ -893,6 +1434,366 @@ mcc_generated_files/mcc.c
 67 530 0 CODE 0
 69 532 0 CODE 0
 70 533 0 CODE 0
+=======
+intentry 8 961 CODE 8 0
+config 1000E 10017 CONFIG 1000E 0
+bssEEDATA 0 9 EEDATA 1E000 3
+cstackCOMMON 70 7D COMMON 70 1
+bssBANK0 20 62 BANK0 20 1
+bssBANK1 A0 BC BANK1 A0 1
+stringtext1 962 9A1 STRCODE 962 0
+text11 9A2 D7F CODE 9A2 0
+%locals
+dist/default/production/sce.X.production.o
+/tmp/xcXyi0e3k.s
+11483 39 0 CODE 0
+11486 39 0 CODE 0
+11613 39 0 CODE 0
+11614 3A 0 CODE 0
+11615 3B 0 CODE 0
+11616 3C 0 CODE 0
+11617 3D 0 CODE 0
+11618 3E 0 CODE 0
+11619 3F 0 CODE 0
+11620 40 0 CODE 0
+11621 41 0 CODE 0
+11622 42 0 CODE 0
+11623 43 0 CODE 0
+11624 44 0 CODE 0
+11625 45 0 CODE 0
+11626 46 0 CODE 0
+11627 47 0 CODE 0
+11628 48 0 CODE 0
+11629 49 0 CODE 0
+11630 4A 0 CODE 0
+11653 4B 0 CODE 0
+11654 4C 0 CODE 0
+11655 4D 0 CODE 0
+11656 4E 0 CODE 0
+11657 4F 0 CODE 0
+11658 50 0 CODE 0
+11659 51 0 CODE 0
+11660 52 0 CODE 0
+11661 53 0 CODE 0
+11665 56 0 CODE 0
+11669 57 0 CODE 0
+11670 58 0 CODE 0
+11671 59 0 CODE 0
+11672 5A 0 CODE 0
+11676 5B 0 CODE 0
+11677 5C 0 CODE 0
+11678 5D 0 CODE 0
+11679 5E 0 CODE 0
+11680 5F 0 CODE 0
+11681 60 0 CODE 0
+11682 61 0 CODE 0
+11683 62 0 CODE 0
+11684 63 0 CODE 0
+11688 66 0 CODE 0
+11689 67 0 CODE 0
+11690 68 0 CODE 0
+11691 69 0 CODE 0
+11692 6A 0 CODE 0
+11693 6B 0 CODE 0
+11694 6C 0 CODE 0
+11695 6D 0 CODE 0
+11696 6E 0 CODE 0
+11702 71 0 CODE 0
+11704 71 0 CODE 0
+11705 72 0 CODE 0
+11706 73 0 CODE 0
+11636 601 0 CODE 0
+11637 601 0 CODE 0
+11638 602 0 CODE 0
+11639 602 0 CODE 0
+11640 603 0 CODE 0
+11641 604 0 CODE 0
+11642 605 0 CODE 0
+11643 606 0 CODE 0
+11644 607 0 CODE 0
+11645 608 0 CODE 0
+11646 609 0 CODE 0
+11647 60A 0 CODE 0
+11648 60B 0 CODE 0
+11649 60C 0 CODE 0
+main.c
+111 75 0 CODE 0
+113 75 0 CODE 0
+114 77 0 CODE 0
+115 78 0 CODE 0
+116 79 0 CODE 0
+117 7A 0 CODE 0
+118 7B 0 CODE 0
+119 7C 0 CODE 0
+120 80 0 CODE 0
+121 81 0 CODE 0
+122 82 0 CODE 0
+123 86 0 CODE 0
+124 87 0 CODE 0
+125 88 0 CODE 0
+126 89 0 CODE 0
+127 8B 0 CODE 0
+128 8F 0 CODE 0
+130 91 0 CODE 0
+133 9F 0 CODE 0
+134 A8 0 CODE 0
+135 B7 0 CODE 0
+136 BF 0 CODE 0
+137 C7 0 CODE 0
+139 CF 0 CODE 0
+142 CF 0 CODE 0
+143 D8 0 CODE 0
+145 DB 0 CODE 0
+146 DE 0 CODE 0
+147 DF 0 CODE 0
+149 E0 0 CODE 0
+151 E8 0 CODE 0
+152 EB 0 CODE 0
+153 ED 0 CODE 0
+154 EE 0 CODE 0
+155 F0 0 CODE 0
+157 F1 0 CODE 0
+159 F2 0 CODE 0
+160 F3 0 CODE 0
+161 F8 0 CODE 0
+162 FC 0 CODE 0
+163 100 0 CODE 0
+164 104 0 CODE 0
+165 108 0 CODE 0
+171 109 0 CODE 0
+172 10E 0 CODE 0
+175 114 0 CODE 0
+177 115 0 CODE 0
+178 11A 0 CODE 0
+183 11B 0 CODE 0
+186 11F 0 CODE 0
+190 13C 0 CODE 0
+191 140 0 CODE 0
+192 144 0 CODE 0
+193 148 0 CODE 0
+194 14C 0 CODE 0
+196 150 0 CODE 0
+198 15B 0 CODE 0
+199 164 0 CODE 0
+202 167 0 CODE 0
+203 168 0 CODE 0
+204 16A 0 CODE 0
+209 16B 0 CODE 0
+212 170 0 CODE 0
+213 178 0 CODE 0
+214 181 0 CODE 0
+216 184 0 CODE 0
+217 185 0 CODE 0
+218 187 0 CODE 0
+157 188 0 CODE 0
+221 18C 0 CODE 0
+239 353 0 CODE 0
+242 355 0 CODE 0
+244 355 0 CODE 0
+245 35F 0 CODE 0
+246 36C 0 CODE 0
+247 372 0 CODE 0
+249 378 0 CODE 0
+252 37F 0 CODE 0
+254 381 0 CODE 0
+255 388 0 CODE 0
+/opt/microchip/xc8/v2.10/pic/sources/c99/common/Umul8.c
+4 535 0 CODE 0
+6 537 0 CODE 0
+43 538 0 CODE 0
+44 53C 0 CODE 0
+45 540 0 CODE 0
+46 542 0 CODE 0
+47 544 0 CODE 0
+50 549 0 CODE 0
+51 54A 0 CODE 0
+mcc_generated_files/i2c1_driver.c
+84 60D 0 CODE 0
+86 60D 0 CODE 0
+88 612 0 CODE 0
+89 613 0 CODE 0
+90 615 0 CODE 0
+91 616 0 CODE 0
+96 618 0 CODE 0
+main.c
+225 619 0 CODE 0
+227 619 0 CODE 0
+228 624 0 CODE 0
+230 506 0 CODE 0
+232 506 0 CODE 0
+233 508 0 CODE 0
+234 509 0 CODE 0
+235 512 0 CODE 0
+236 51C 0 CODE 0
+237 51D 0 CODE 0
+/opt/microchip/xc8/v2.10/pic/sources/c99/pic/__eeprom.c
+104 5CA 0 CODE 0
+107 5CC 0 CODE 0
+108 5D6 0 CODE 0
+109 5D8 0 CODE 0
+6 3BD 0 CODE 0
+8 3BF 0 CODE 0
+24 3C3 0 CODE 0
+22 3C3 0 CODE 0
+25 3C8 0 CODE 0
+26 3C9 0 CODE 0
+27 3CD 0 CODE 0
+28 3CF 0 CODE 0
+29 3D0 0 CODE 0
+30 3D2 0 CODE 0
+31 3DE 0 CODE 0
+28 3E3 0 CODE 0
+36 3EB 0 CODE 0
+150 5E7 0 CODE 0
+152 5E9 0 CODE 0
+154 5F3 0 CODE 0
+39 239 0 CODE 0
+41 23B 0 CODE 0
+71 23F 0 CODE 0
+69 23F 0 CODE 0
+72 244 0 CODE 0
+73 245 0 CODE 0
+74 24A 0 CODE 0
+75 24C 0 CODE 0
+76 24D 0 CODE 0
+79 24E 0 CODE 0
+77 24E 0 CODE 0
+80 253 0 CODE 0
+81 25F 0 CODE 0
+82 264 0 CODE 0
+83 266 0 CODE 0
+84 26A 0 CODE 0
+85 26B 0 CODE 0
+86 26B 0 CODE 0
+87 26D 0 CODE 0
+88 26F 0 CODE 0
+89 271 0 CODE 0
+92 272 0 CODE 0
+90 272 0 CODE 0
+93 276 0 CODE 0
+94 277 0 CODE 0
+95 27C 0 CODE 0
+76 27D 0 CODE 0
+101 285 0 CODE 0
+mcc_generated_files/mcc.c
+50 5F4 0 CODE 0
+52 5F4 0 CODE 0
+53 5F7 0 CODE 0
+54 5FA 0 CODE 0
+55 5FD 0 CODE 0
+56 600 0 CODE 0
+mcc_generated_files/tmr1.c
+64 4D1 0 CODE 0
+69 4D1 0 CODE 0
+72 4D3 0 CODE 0
+75 4D4 0 CODE 0
+78 4D6 0 CODE 0
+81 4D8 0 CODE 0
+84 4DA 0 CODE 0
+87 4DE 0 CODE 0
+90 4E0 0 CODE 0
+93 4E1 0 CODE 0
+96 4E9 0 CODE 0
+97 4EC 0 CODE 0
+178 664 0 CODE 0
+179 664 0 CODE 0
+180 669 0 CODE 0
+mcc_generated_files/mcc.c
+72 62E 0 CODE 0
+75 62E 0 CODE 0
+77 630 0 CODE 0
+79 631 0 CODE 0
+81 632 0 CODE 0
+83 633 0 CODE 0
+85 634 0 CODE 0
+86 635 0 CODE 0
+mcc_generated_files/pin_manager.c
+55 2D1 0 CODE 0
+60 2D1 0 CODE 0
+61 2D3 0 CODE 0
+62 2D4 0 CODE 0
+63 2D5 0 CODE 0
+64 2D6 0 CODE 0
+69 2D7 0 CODE 0
+70 2D9 0 CODE 0
+71 2DB 0 CODE 0
+72 2DD 0 CODE 0
+73 2DF 0 CODE 0
+78 2E1 0 CODE 0
+79 2E4 0 CODE 0
+80 2E6 0 CODE 0
+81 2E8 0 CODE 0
+82 2EA 0 CODE 0
+87 2EC 0 CODE 0
+88 2ED 0 CODE 0
+89 2EE 0 CODE 0
+90 2EF 0 CODE 0
+91 2F0 0 CODE 0
+96 2F1 0 CODE 0
+97 2F2 0 CODE 0
+98 2F3 0 CODE 0
+99 2F4 0 CODE 0
+100 2F5 0 CODE 0
+105 2F6 0 CODE 0
+106 2F8 0 CODE 0
+107 2FA 0 CODE 0
+108 2FC 0 CODE 0
+109 2FE 0 CODE 0
+114 300 0 CODE 0
+115 302 0 CODE 0
+116 304 0 CODE 0
+117 306 0 CODE 0
+118 308 0 CODE 0
+127 30A 0 CODE 0
+128 30D 0 CODE 0
+129 310 0 CODE 0
+130 312 0 CODE 0
+131 315 0 CODE 0
+mcc_generated_files/mcc.c
+58 636 0 CODE 0
+61 636 0 CODE 0
+63 639 0 CODE 0
+65 63A 0 CODE 0
+67 63B 0 CODE 0
+69 63C 0 CODE 0
+70 63D 0 CODE 0
+main.c
+86 18E 0 CODE 0
+88 190 0 CODE 0
+90 19A 0 CODE 0
+92 1A1 0 CODE 0
+94 1A2 0 CODE 0
+95 1AE 0 CODE 0
+96 1B2 0 CODE 0
+103 1B6 0 CODE 0
+104 1B9 0 CODE 0
+105 1CE 0 CODE 0
+106 1D2 0 CODE 0
+108 1E3 0 CODE 0
+77 316 0 CODE 0
+79 316 0 CODE 0
+80 31C 0 CODE 0
+81 333 0 CODE 0
+82 338 0 CODE 0
+84 352 0 CODE 0
+mcc_generated_files/memory.c
+180 469 0 CODE 0
+182 469 0 CODE 0
+184 46E 0 CODE 0
+185 471 0 CODE 0
+186 475 0 CODE 0
+187 479 0 CODE 0
+188 47A 0 CODE 0
+189 47B 0 CODE 0
+190 47C 0 CODE 0
+191 47E 0 CODE 0
+192 480 0 CODE 0
+196 481 0 CODE 0
+194 481 0 CODE 0
+198 485 0 CODE 0
+199 486 0 CODE 0
+200 48C 0 CODE 0
+>>>>>>> 8a784acfeed5fb28f801f16fe528231cbb0c7541
 mcc_generated_files/interrupt_manager.c
 52 4 0 CODE 0
 55 6 0 CODE 0
@@ -908,6 +1809,7 @@ mcc_generated_files/interrupt_manager.c
 72 34 0 CODE 0
 78 34 0 CODE 0
 mcc_generated_files/drivers/i2c_master.c
+<<<<<<< HEAD
 435 59D 0 CODE 0
 437 59D 0 CODE 0
 438 5A0 0 CODE 0
@@ -1151,3 +2053,248 @@ mcc_generated_files/tmr1.c
 144 4D0 0 CODE 0
 145 4D2 0 CODE 0
 147 4D4 0 CODE 0
+=======
+435 697 0 CODE 0
+437 697 0 CODE 0
+438 69A 0 CODE 0
+mcc_generated_files/i2c1_driver.c
+254 6A3 0 CODE 0
+256 6A3 0 CODE 0
+257 6A5 0 CODE 0
+mcc_generated_files/drivers/i2c_master.c
+419 419 0 CODE 0
+421 419 0 CODE 0
+427 41C 0 CODE 0
+429 428 0 CODE 0
+432 42D 0 CODE 0
+433 442 0 CODE 0
+mcc_generated_files/i2c1_driver.c
+54 6A6 0 CODE 0
+56 6A6 0 CODE 0
+57 6A8 0 CODE 0
+mcc_generated_files/drivers/i2c_master.c
+357 286 0 CODE 0
+359 286 0 CODE 0
+360 294 0 CODE 0
+362 29E 0 CODE 0
+363 2A1 0 CODE 0
+365 2A3 0 CODE 0
+367 2A3 0 CODE 0
+368 2A4 0 CODE 0
+372 2A5 0 CODE 0
+376 2A9 0 CODE 0
+377 2AD 0 CODE 0
+380 2D0 0 CODE 0
+333 1E4 0 CODE 0
+335 1E4 0 CODE 0
+340 1EC 0 CODE 0
+342 1F0 0 CODE 0
+346 1F4 0 CODE 0
+347 1F8 0 CODE 0
+349 21C 0 CODE 0
+351 21C 0 CODE 0
+352 21E 0 CODE 0
+353 22A 0 CODE 0
+355 238 0 CODE 0
+319 3EC 0 CODE 0
+321 3EC 0 CODE 0
+322 3EE 0 CODE 0
+323 3F2 0 CODE 0
+327 3F3 0 CODE 0
+329 3F7 0 CODE 0
+330 3FB 0 CODE 0
+331 418 0 CODE 0
+311 66A 0 CODE 0
+313 66A 0 CODE 0
+314 66D 0 CODE 0
+315 66E 0 CODE 0
+305 66F 0 CODE 0
+307 66F 0 CODE 0
+308 672 0 CODE 0
+309 673 0 CODE 0
+299 674 0 CODE 0
+301 674 0 CODE 0
+302 677 0 CODE 0
+303 678 0 CODE 0
+292 65D 0 CODE 0
+294 65D 0 CODE 0
+295 65F 0 CODE 0
+296 662 0 CODE 0
+297 663 0 CODE 0
+285 63E 0 CODE 0
+287 63E 0 CODE 0
+288 640 0 CODE 0
+289 644 0 CODE 0
+290 645 0 CODE 0
+278 625 0 CODE 0
+280 625 0 CODE 0
+281 627 0 CODE 0
+282 62C 0 CODE 0
+283 62D 0 CODE 0
+272 679 0 CODE 0
+274 679 0 CODE 0
+275 67C 0 CODE 0
+276 67D 0 CODE 0
+266 67E 0 CODE 0
+268 67E 0 CODE 0
+269 681 0 CODE 0
+270 682 0 CODE 0
+260 683 0 CODE 0
+262 683 0 CODE 0
+263 686 0 CODE 0
+264 687 0 CODE 0
+254 688 0 CODE 0
+256 688 0 CODE 0
+257 68B 0 CODE 0
+258 68C 0 CODE 0
+247 68D 0 CODE 0
+249 68D 0 CODE 0
+250 68F 0 CODE 0
+251 690 0 CODE 0
+252 691 0 CODE 0
+239 646 0 CODE 0
+241 646 0 CODE 0
+242 649 0 CODE 0
+243 64B 0 CODE 0
+244 64C 0 CODE 0
+245 64D 0 CODE 0
+382 389 0 CODE 0
+384 389 0 CODE 0
+385 38B 0 CODE 0
+389 38C 0 CODE 0
+391 390 0 CODE 0
+392 393 0 CODE 0
+395 395 0 CODE 0
+396 399 0 CODE 0
+397 3BC 0 CODE 0
+mcc_generated_files/i2c1_driver.c
+59 6A9 0 CODE 0
+61 6A9 0 CODE 0
+62 6AB 0 CODE 0
+162 64E 0 CODE 0
+164 64E 0 CODE 0
+165 655 0 CODE 0
+187 692 0 CODE 0
+189 693 0 CODE 0
+190 696 0 CODE 0
+172 6AC 0 CODE 0
+174 6AC 0 CODE 0
+175 6AE 0 CODE 0
+203 69B 0 CODE 0
+205 69B 0 CODE 0
+206 69D 0 CODE 0
+207 69E 0 CODE 0
+142 6BE 0 CODE 0
+145 6BE 0 CODE 0
+167 6AF 0 CODE 0
+169 6AF 0 CODE 0
+170 6B1 0 CODE 0
+mcc_generated_files/drivers/i2c_simple_master.c
+134 4ED 0 CODE 0
+136 4ED 0 CODE 0
+137 4FD 0 CODE 0
+138 504 0 CODE 0
+139 505 0 CODE 0
+87 561 0 CODE 0
+89 561 0 CODE 0
+90 56A 0 CODE 0
+91 571 0 CODE 0
+92 572 0 CODE 0
+58 573 0 CODE 0
+60 573 0 CODE 0
+61 57C 0 CODE 0
+62 583 0 CODE 0
+63 584 0 CODE 0
+31 585 0 CODE 0
+33 585 0 CODE 0
+34 58E 0 CODE 0
+35 595 0 CODE 0
+36 596 0 CODE 0
+mcc_generated_files/drivers/i2c_types.c
+35 6B8 0 CODE 0
+37 6B8 0 CODE 0
+38 6B9 0 CODE 0
+mcc_generated_files/drivers/i2c_master.c
+448 6BA 0 CODE 0
+450 6BA 0 CODE 0
+451 6BB 0 CODE 0
+443 6BC 0 CODE 0
+445 6BC 0 CODE 0
+446 6BD 0 CODE 0
+mcc_generated_files/drivers/i2c_simple_master.c
+110 597 0 CODE 0
+112 597 0 CODE 0
+113 5A0 0 CODE 0
+114 5A7 0 CODE 0
+115 5A8 0 CODE 0
+mcc_generated_files/drivers/i2c_master.c
+89 5D9 0 CODE 0
+91 5D9 0 CODE 0
+92 5E6 0 CODE 0
+453 443 0 CODE 0
+455 444 0 CODE 0
+457 44A 0 CODE 0
+458 452 0 CODE 0
+459 45A 0 CODE 0
+462 45B 0 CODE 0
+463 463 0 CODE 0
+465 468 0 CODE 0
+184 5BA 0 CODE 0
+186 5BB 0 CODE 0
+188 5C0 0 CODE 0
+189 5C4 0 CODE 0
+190 5C8 0 CODE 0
+192 5C9 0 CODE 0
+mcc_generated_files/i2c1_driver.c
+157 6B2 0 CODE 0
+159 6B2 0 CODE 0
+160 6B4 0 CODE 0
+152 6B5 0 CODE 0
+154 6B5 0 CODE 0
+155 6B7 0 CODE 0
+197 69F 0 CODE 0
+199 69F 0 CODE 0
+200 6A1 0 CODE 0
+201 6A2 0 CODE 0
+mcc_generated_files/tmr1.c
+164 54B 0 CODE 0
+168 54B 0 CODE 0
+169 54D 0 CODE 0
+171 554 0 CODE 0
+173 55B 0 CODE 0
+175 560 0 CODE 0
+182 6BF 0 CODE 0
+185 6BF 0 CODE 0
+main.c
+29 51E 0 CODE 0
+30 51E 0 CODE 0
+31 52A 0 CODE 0
+32 52E 0 CODE 0
+33 531 0 CODE 0
+34 532 0 CODE 0
+35 533 0 CODE 0
+36 533 0 CODE 0
+38 534 0 CODE 0
+270 48D 0 CODE 0
+271 48D 0 CODE 0
+272 492 0 CODE 0
+273 496 0 CODE 0
+274 49C 0 CODE 0
+275 4A0 0 CODE 0
+276 4A4 0 CODE 0
+277 4A5 0 CODE 0
+278 4AB 0 CODE 0
+279 4AF 0 CODE 0
+282 4B0 0 CODE 0
+mcc_generated_files/tmr1.c
+127 5A9 0 CODE 0
+129 5A9 0 CODE 0
+132 5AE 0 CODE 0
+135 5AF 0 CODE 0
+136 5B1 0 CODE 0
+139 5B3 0 CODE 0
+140 5B4 0 CODE 0
+144 5B5 0 CODE 0
+145 5B7 0 CODE 0
+147 5B9 0 CODE 0
+>>>>>>> 8a784acfeed5fb28f801f16fe528231cbb0c7541
