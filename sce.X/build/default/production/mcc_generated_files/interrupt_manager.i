@@ -21136,10 +21136,10 @@ extern void (*TMR1_InterruptHandler)(void);
 void TMR1_DefaultInterruptHandler(void);
 # 57 "mcc_generated_files/mcc.h" 2
 
-# 1 "mcc_generated_files/drivers/i2c_master.h" 1
-# 29 "mcc_generated_files/drivers/i2c_master.h"
-# 1 "mcc_generated_files/drivers/i2c_types.h" 1
-# 29 "mcc_generated_files/drivers/i2c_types.h"
+# 1 "mcc_generated_files/drivers/i2c_simple_master.h" 1
+# 28 "mcc_generated_files/drivers/i2c_simple_master.h"
+# 1 "mcc_generated_files/drivers/../drivers/i2c_types.h" 1
+# 29 "mcc_generated_files/drivers/../drivers/i2c_types.h"
 typedef enum {
     I2C_NOERR,
     I2C_BUSY,
@@ -21166,11 +21166,21 @@ i2c_operations_t i2c_returnStop(void *p);
 i2c_operations_t i2c_returnReset(void *p);
 i2c_operations_t i2c_restartWrite(void *p);
 i2c_operations_t i2c_restartRead(void *p);
-# 29 "mcc_generated_files/drivers/i2c_master.h" 2
+# 28 "mcc_generated_files/drivers/i2c_simple_master.h" 2
 
 
+uint8_t i2c_read1ByteRegister(i2c_address_t address, uint8_t reg);
+uint16_t i2c_read2ByteRegister(i2c_address_t address, uint8_t reg);
+void i2c_write1ByteRegister(i2c_address_t address, uint8_t reg, uint8_t data);
+void i2c_write2ByteRegister(i2c_address_t address, uint8_t reg, uint16_t data);
 
+void i2c_writeNBytes(i2c_address_t address, void* data, size_t len);
+void i2c_readDataBlock(i2c_address_t address, uint8_t reg, void *data, size_t len);
+void i2c_readNBytes(i2c_address_t address, void *data, size_t len);
+# 58 "mcc_generated_files/mcc.h" 2
 
+# 1 "mcc_generated_files/drivers/i2c_master.h" 1
+# 33 "mcc_generated_files/drivers/i2c_master.h"
 i2c_error_t i2c_open(i2c_address_t address);
 void i2c_setAddress(i2c_address_t address);
 i2c_error_t i2c_close(void);
@@ -21191,18 +21201,6 @@ void i2c_setTimeOutCallback(i2c_callback cb, void *p);
 
 void i2c_ISR(void);
 void i2c_busCollisionISR(void);
-# 58 "mcc_generated_files/mcc.h" 2
-
-# 1 "mcc_generated_files/drivers/i2c_simple_master.h" 1
-# 30 "mcc_generated_files/drivers/i2c_simple_master.h"
-uint8_t i2c_read1ByteRegister(i2c_address_t address, uint8_t reg);
-uint16_t i2c_read2ByteRegister(i2c_address_t address, uint8_t reg);
-void i2c_write1ByteRegister(i2c_address_t address, uint8_t reg, uint8_t data);
-void i2c_write2ByteRegister(i2c_address_t address, uint8_t reg, uint16_t data);
-
-void i2c_writeNBytes(i2c_address_t address, void* data, size_t len);
-void i2c_readDataBlock(i2c_address_t address, uint8_t reg, void *data, size_t len);
-void i2c_readNBytes(i2c_address_t address, void *data, size_t len);
 # 59 "mcc_generated_files/mcc.h" 2
 # 74 "mcc_generated_files/mcc.h"
 void SYSTEM_Initialize(void);

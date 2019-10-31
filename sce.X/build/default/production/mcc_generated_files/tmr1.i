@@ -20933,10 +20933,10 @@ void TMR1_Initialize(void)
     T1CLK = 0x04;
 
 
-    TMR1H = 0xF0;
+    TMR1H = 0xC3;
 
 
-    TMR1L = 0xDD;
+    TMR1L = 0x74;
 
 
     timer1ReloadVal=(uint16_t)((TMR1H << 8) | TMR1L);
@@ -20951,7 +20951,7 @@ void TMR1_Initialize(void)
     TMR1_SetInterruptHandler(TMR1_DefaultInterruptHandler);
 
 
-    T1CON = 0x25;
+    T1CON = 0x05;
 }
 
 void TMR1_StartTimer(void)

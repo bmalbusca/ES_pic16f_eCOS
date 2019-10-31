@@ -7,7 +7,7 @@
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
 # 1 "main.c" 2
-# 12 "main.c"
+# 21 "main.c"
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\xc.h" 1 3
 # 18 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -20791,7 +20791,7 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 27 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\xc.h" 2 3
-# 12 "main.c" 2
+# 21 "main.c" 2
 
 # 1 "./mcc_generated_files/mcc.h" 1
 # 50 "./mcc_generated_files/mcc.h"
@@ -21135,10 +21135,10 @@ extern void (*TMR1_InterruptHandler)(void);
 void TMR1_DefaultInterruptHandler(void);
 # 57 "./mcc_generated_files/mcc.h" 2
 
-# 1 "./mcc_generated_files/drivers/i2c_master.h" 1
-# 29 "./mcc_generated_files/drivers/i2c_master.h"
-# 1 "./mcc_generated_files/drivers/i2c_types.h" 1
-# 29 "./mcc_generated_files/drivers/i2c_types.h"
+# 1 "./mcc_generated_files/drivers/i2c_simple_master.h" 1
+# 28 "./mcc_generated_files/drivers/i2c_simple_master.h"
+# 1 "./mcc_generated_files/drivers/../drivers/i2c_types.h" 1
+# 29 "./mcc_generated_files/drivers/../drivers/i2c_types.h"
 typedef enum {
     I2C_NOERR,
     I2C_BUSY,
@@ -21165,11 +21165,21 @@ i2c_operations_t i2c_returnStop(void *p);
 i2c_operations_t i2c_returnReset(void *p);
 i2c_operations_t i2c_restartWrite(void *p);
 i2c_operations_t i2c_restartRead(void *p);
-# 29 "./mcc_generated_files/drivers/i2c_master.h" 2
+# 28 "./mcc_generated_files/drivers/i2c_simple_master.h" 2
 
 
+uint8_t i2c_read1ByteRegister(i2c_address_t address, uint8_t reg);
+uint16_t i2c_read2ByteRegister(i2c_address_t address, uint8_t reg);
+void i2c_write1ByteRegister(i2c_address_t address, uint8_t reg, uint8_t data);
+void i2c_write2ByteRegister(i2c_address_t address, uint8_t reg, uint16_t data);
 
+void i2c_writeNBytes(i2c_address_t address, void* data, size_t len);
+void i2c_readDataBlock(i2c_address_t address, uint8_t reg, void *data, size_t len);
+void i2c_readNBytes(i2c_address_t address, void *data, size_t len);
+# 58 "./mcc_generated_files/mcc.h" 2
 
+# 1 "./mcc_generated_files/drivers/i2c_master.h" 1
+# 33 "./mcc_generated_files/drivers/i2c_master.h"
 i2c_error_t i2c_open(i2c_address_t address);
 void i2c_setAddress(i2c_address_t address);
 i2c_error_t i2c_close(void);
@@ -21190,18 +21200,6 @@ void i2c_setTimeOutCallback(i2c_callback cb, void *p);
 
 void i2c_ISR(void);
 void i2c_busCollisionISR(void);
-# 58 "./mcc_generated_files/mcc.h" 2
-
-# 1 "./mcc_generated_files/drivers/i2c_simple_master.h" 1
-# 30 "./mcc_generated_files/drivers/i2c_simple_master.h"
-uint8_t i2c_read1ByteRegister(i2c_address_t address, uint8_t reg);
-uint16_t i2c_read2ByteRegister(i2c_address_t address, uint8_t reg);
-void i2c_write1ByteRegister(i2c_address_t address, uint8_t reg, uint8_t data);
-void i2c_write2ByteRegister(i2c_address_t address, uint8_t reg, uint16_t data);
-
-void i2c_writeNBytes(i2c_address_t address, void* data, size_t len);
-void i2c_readDataBlock(i2c_address_t address, uint8_t reg, void *data, size_t len);
-void i2c_readNBytes(i2c_address_t address, void *data, size_t len);
 # 59 "./mcc_generated_files/mcc.h" 2
 # 74 "./mcc_generated_files/mcc.h"
 void SYSTEM_Initialize(void);
@@ -21209,7 +21207,7 @@ void SYSTEM_Initialize(void);
 void OSCILLATOR_Initialize(void);
 # 100 "./mcc_generated_files/mcc.h"
 void PMD_Initialize(void);
-# 13 "main.c" 2
+# 22 "main.c" 2
 
 # 1 "./I2C/i2c.h" 1
 # 154 "./I2C/i2c.h"
@@ -21224,15 +21222,17 @@ unsigned char ReadI2C( void );
 signed char WriteI2C( unsigned char data_out );
 
 signed char getsI2C( unsigned char *rdptr, unsigned char length );
-# 14 "main.c" 2
+# 23 "main.c" 2
 
 
+void reset_recv(void);
 void cksum_w(void);
 unsigned char cksum(void);
 unsigned char read_ring(unsigned char index, unsigned char subindex);
 void push_ring(void);
 void update_clock(void);
 unsigned char tsttc (void);
+
 
 
 volatile __bit half = 0;
@@ -21247,68 +21247,61 @@ void h_clock(void) {
     }
 }
 
-__eeprom unsigned char buffer[30*5];
-__eeprom unsigned char recovery_data[5];
-
-
-
-
-
-
-volatile unsigned char clkh, clkh_aux;
-volatile unsigned char clkm, clkm_aux;
-volatile unsigned char seg, seg_aux;
+volatile unsigned char clkh;
+volatile unsigned char clkm;
+volatile unsigned char seg;
 volatile unsigned char last5s, last1m;
+
 __bit configuration_mode;
+
 unsigned char nreg, nreg_pt;
 __bit nreg_init;
 unsigned char ring_byte[5];
-unsigned char pmon;
+
 __bit running;
+unsigned char pmon;
 unsigned char temp, lum;
-unsigned char last5s_aux, last1m_aux;
-unsigned int convertedValue;
-unsigned int duty_cycle;
-unsigned int task_schedule;
-unsigned char value = 0;
+unsigned char aux, aux1;
 
 void main(void)
 {
-    clkh = 0;
-    clkm = 0;
-    seg = 0;
-    last5s = 0;
-    last1m = 0;
+    clkh = 0; clkm = 0; seg = 0;
+    last5s = 0; last1m = 0;
+
     configuration_mode = 0;
-    nreg = 5*30;
+
+    nreg = 0xF000 + 5 * 30 >= 0xF0FF - 10 ? 256 : 5 * 30;
     nreg_pt = 0;
     nreg_init = 0;
+
     pmon = 5;
     running = 1;
     temp = 0;
     lum = 0;
-    convertedValue = 0;
-    duty_cycle = 25;
-    task_schedule = 0;
 
 
-    if(recovery_data[0] == 0xAB) {
-        if(recovery_data[5 - 1] == cksum()) {
-            clkh = recovery_data[1];
-            clkm = recovery_data[2];
-            nreg_pt = recovery_data[3];
+    if(DATAEE_ReadByte(0xF0FF - 10) == 0xAB) {
+        if(DATAEE_ReadByte(0xF0FF) == cksum()) {
+            clkh = DATAEE_ReadByte(0xF0FF - 10 + 1);
+            clkm = DATAEE_ReadByte(0xF0FF - 10 + 2);;
+            nreg_pt = DATAEE_ReadByte(0xF0FF - 10 + 3);;
         }
     }
 
+    reset_recv();
 
-    recovery_data[0] = 0xAB;
-    cksum_w();
+
+    DATAEE_WriteByte(0xF0FF - 10, 0xAB);
+
+
+    _delay((unsigned long)((16000)*(4000000/4000.0)));
 
     SYSTEM_Initialize();
     (INTCONbits.GIE = 1);
     (INTCONbits.PEIE = 1);
 
     TMR1_SetInterruptHandler(h_clock);
+
 
     i2c1_driver_open();
     TRISCbits.TRISC3 = 1;
@@ -21318,76 +21311,75 @@ void main(void)
 
     while (running)
     {
-        (INTCONbits.GIE = 0);
-        clkh_aux = clkh;
-        clkm_aux = clkm;
-        seg_aux = seg;
-        last5s_aux = last5s;
-        last1m_aux = last1m;
-        (INTCONbits.GIE = 1);
-
         if(configuration_mode) {
 
         }
 
         if(pmon) {
-            if(last5s_aux >= 5) {
+            (INTCONbits.GIE = 0);
+            if(last5s >= pmon) {
+                last5s = 0;
+               (INTCONbits.GIE = 1);
 
 
                 __nop();
-
                 temp++;
                 __nop();
 
 
-                   DATAEE_WriteByte(0xF000, 0xAA);
-                   DATAEE_WriteByte(0xF001, 0xAA);
 
 
                 if (temp != read_ring(0, 3) || lum != read_ring(0, 4)) {
-                    ring_byte[0] = clkh_aux;
-                    ring_byte[1] = clkm_aux;
-                    ring_byte[2] = seg_aux;
+                    (INTCONbits.GIE = 0);
+                    ring_byte[0] = clkh;
+                    ring_byte[1] = clkm;
+                    ring_byte[2] = seg;
+                    (INTCONbits.GIE = 1);
                     ring_byte[3] = temp;
                     ring_byte[4] = lum;
                     push_ring();
-                    DATAEE_WriteByte(buffer, 0xAA);
 
-                    recovery_data[3] = nreg_pt;
+
+                    DATAEE_WriteByte(0xF0FF - 10 + 3, nreg_pt);
                     cksum_w();
                 }
-
-                (INTCONbits.GIE = 0);
-                last5s_aux = 0;
-                (INTCONbits.GIE = 1);
             }
+            else
+                (INTCONbits.GIE = 1);
         }
 
 
+        (INTCONbits.GIE = 0);
         if (last1m >= 1) {
 
-
-            recovery_data[1] = clkh_aux;
-            recovery_data[2] = clkm_aux;
-            cksum_w();
-
-            (INTCONbits.GIE = 0);
             last1m = 0;
+            aux = clkh;
+            aux1 = clkm;
             (INTCONbits.GIE = 1);
+            DATAEE_WriteByte(0xF0FF - 10 + 1, aux);
+            DATAEE_WriteByte(0xF0FF - 10 + 2, aux1);
+            cksum_w();
         }
+        else
+            (INTCONbits.GIE = 1);
     }
+}
+
+void reset_recv() {
+    for(unsigned int i = 0xF0FF - 10; i <= 0xF0FF; i ++)
+        DATAEE_WriteByte(i, 0);
 }
 
 void cksum_w()
 {
-    recovery_data[5 - 1] = cksum();
+    DATAEE_WriteByte(0xF0FF, cksum());
 }
 
 unsigned char cksum()
 {
     unsigned char res = 0;
-    for(unsigned char i = 0; i < 5; i ++) {
-        res += recovery_data[i];
+    for(unsigned int i = 0xF0FF - 10; i < 0xF0FF; i ++) {
+        res += DATAEE_ReadByte(i);
     }
     return res;
 }
@@ -21397,31 +21389,28 @@ unsigned char read_ring(unsigned char index, unsigned char subindex)
     unsigned char absindex;
     unsigned char i = 0;
 
-    if(index <= 30 && nreg_init) {
+    if(index <= nreg && nreg_init) {
         absindex = 5 * index + subindex;
         if(absindex <= nreg_pt)
-            i = nreg_pt - absindex;
+            i = nreg_pt - 5 + absindex;
         else
-            i = nreg - (nreg_pt - absindex);
+            i = nreg - (nreg_pt - 5 + absindex);
     }
     else
         return 0;
 
-    return buffer[i];
+    return DATAEE_ReadByte(0xF000 + i);
 }
 
 void push_ring()
-{ unsigned char address = 0xF000;
-    if(!nreg_init) nreg_init = 1;
+{ if(!nreg_init) nreg_init = 1;
     for(unsigned char i = 0; i < 5; i++) {
-
-
-        DATAEE_WriteByte(address + nreg_pt, 0xAC);
+        if(nreg_pt >= nreg) nreg_pt = 0;
+        DATAEE_WriteByte(0xF000 + nreg_pt, ring_byte[i]);
         nreg_pt ++;
     }
 }
 
-unsigned char aux;
 void update_clock(void) {
     seg++;
     last5s++;

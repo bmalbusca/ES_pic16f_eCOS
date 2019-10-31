@@ -1732,8 +1732,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;mcc_generated_files/mcc.c: 65:     OSCEN = 0x00;
 [e = _OSCEN -> -> 0 `i `uc ]
 "67
-[; ;mcc_generated_files/mcc.c: 67:     OSCFRQ = 0x00;
-[e = _OSCFRQ -> -> 0 `i `uc ]
+[; ;mcc_generated_files/mcc.c: 67:     OSCFRQ = 0x02;
+[e = _OSCFRQ -> -> 2 `i `uc ]
 "69
 [; ;mcc_generated_files/mcc.c: 69:     OSCTUNE = 0x00;
 [e = _OSCTUNE -> -> 0 `i `uc ]

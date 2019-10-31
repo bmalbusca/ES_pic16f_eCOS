@@ -1,97 +1,167 @@
 Version 4.0 HI-TECH Software Intermediate Code
-[v F12264 `(v ~T0 @X0 0 tf ]
-"6894 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 6894: extern volatile unsigned char T1GCON __attribute__((address(0x20F)));
-[v _T1GCON `Vuc ~T0 @X0 0 e@527 ]
-"7090
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 7090: extern volatile unsigned char T1GATE __attribute__((address(0x210)));
-[v _T1GATE `Vuc ~T0 @X0 0 e@528 ]
-"7256
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 7256: extern volatile unsigned char T1CLK __attribute__((address(0x211)));
-[v _T1CLK `Vuc ~T0 @X0 0 e@529 ]
-"6678
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 6678: extern volatile unsigned char TMR1H __attribute__((address(0x20D)));
-[v _TMR1H `Vuc ~T0 @X0 0 e@525 ]
-"6508
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 6508: extern volatile unsigned char TMR1L __attribute__((address(0x20C)));
-[v _TMR1L `Vuc ~T0 @X0 0 e@524 ]
-"21573
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 21573:     struct {
-[s S979 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S979 . TMR1IF TMR2IF TMR3IF TMR4IF TMR5IF TMR6IF ]
-"21572
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 21572: typedef union {
-[u S978 `S979 1 ]
-[n S978 . . ]
-"21582
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 21582: extern volatile PIR4bits_t PIR4bits __attribute__((address(0x710)));
-[v _PIR4bits `VS978 ~T0 @X0 0 e@1808 ]
-"21995
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 21995:     struct {
+[v F12644 `(v ~T0 @X0 0 tf ]
+[v F12646 `(v ~T0 @X0 0 tf ]
+"5195 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 5195:     struct {
+[s S250 :4 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S250 . SSPM CKP SSPEN SSPOV WCOL ]
+"5202
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 5202:     struct {
+[s S251 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S251 . SSPM0 SSPM1 SSPM2 SSPM3 ]
+"5208
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 5208:     struct {
+[s S252 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S252 . SSPM01 SSPM11 SSPM21 SSPM31 CKP1 SSPEN1 SSPOV1 WCOL1 ]
+"5194
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 5194: typedef union {
+[u S249 `S250 1 `S251 1 `S252 1 ]
+[n S249 . . . . ]
+"5219
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 5219: extern volatile SSP1CON1bits_t SSP1CON1bits __attribute__((address(0x190)));
+[v _SSP1CON1bits `VS249 ~T0 @X0 0 e@400 ]
+"21945
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 21945:     struct {
 [s S998 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S998 . TMR1IE TMR2IE TMR3IE TMR4IE TMR5IE TMR6IE ]
-"21994
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 21994: typedef union {
+[n S998 . SSP1IE BCL1IE SSP2IE BCL2IE TXIE RCIE ]
+"21944
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 21944: typedef union {
 [u S997 `S998 1 ]
 [n S997 . . ]
-"22004
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 22004: extern volatile PIE4bits_t PIE4bits __attribute__((address(0x71A)));
-[v _PIE4bits `VS997 ~T0 @X0 0 e@1818 ]
-[v F12256 `(v ~T0 @X0 0 tf ]
-"385 mcc_generated_files/tmr1.h
-[; ;mcc_generated_files/tmr1.h: 385:  void TMR1_SetInterruptHandler(void (* InterruptHandler)(void));
-[v _TMR1_SetInterruptHandler `(v ~T0 @X0 0 ef1`*F12256 ]
-"421
-[; ;mcc_generated_files/tmr1.h: 421: void TMR1_DefaultInterruptHandler(void);
-[v _TMR1_DefaultInterruptHandler `(v ~T0 @X0 0 ef ]
-"6798 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 6798: extern volatile unsigned char T1CON __attribute__((address(0x20E)));
-[v _T1CON `Vuc ~T0 @X0 0 e@526 ]
-"6804
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 6804:     struct {
-[s S306 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :2 `uc 1 ]
-[n S306 . ON RD16 nSYNC . CKPS ]
-"6811
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 6811:     struct {
-[s S307 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S307 . TMR1ON T1RD16 nT1SYNC . T1CKPS0 T1CKPS1 ]
-"6819
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 6819:     struct {
-[s S308 :4 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S308 . . CKPS0 CKPS1 ]
-"6824
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 6824:     struct {
-[s S309 :1 `uc 1 :1 `uc 1 ]
-[n S309 . . RD161 ]
-"6803
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 6803: typedef union {
-[u S305 `S306 1 `S307 1 `S308 1 `S309 1 ]
-[n S305 . . . . . ]
-"6829
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 6829: extern volatile T1CONbits_t T1CONbits __attribute__((address(0x20E)));
-[v _T1CONbits `VS305 ~T0 @X0 0 e@526 ]
-"6905
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 6905:     struct {
-[s S311 :2 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S311 . . GVAL GGO_nDONE GSPM GTM GPOL GE ]
-"6914
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 6914:     struct {
-[s S312 :2 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S312 . . T1GVAL T1GGO_nDONE T1GSPM T1GTM T1GPOL T1GE ]
-"6923
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 6923:     struct {
-[s S313 :3 `uc 1 :1 `uc 1 ]
-[n S313 . . T1GGO ]
-"6904
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 6904: typedef union {
-[u S310 `S311 1 `S312 1 `S313 1 ]
-[n S310 . . . . ]
-"6928
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 6928: extern volatile T1GCONbits_t T1GCONbits __attribute__((address(0x20F)));
-[v _T1GCONbits `VS310 ~T0 @X0 0 e@527 ]
-[v F12279 `(v ~T0 @X0 0 tf ]
-[v F12281 `(v ~T0 @X0 0 tf ]
-[v F12283 `(v ~T0 @X0 0 tf ]
+"21954
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 21954: extern volatile PIE3bits_t PIE3bits __attribute__((address(0x719)));
+[v _PIE3bits `VS997 ~T0 @X0 0 e@1817 ]
+"21523
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 21523:     struct {
+[s S979 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S979 . SSP1IF BCL1IF SSP2IF BCL2IF TXIF RCIF ]
+"21522
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 21522: typedef union {
+[u S978 `S979 1 ]
+[n S978 . . ]
+"21532
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 21532: extern volatile PIR3bits_t PIR3bits __attribute__((address(0x70F)));
+[v _PIR3bits `VS978 ~T0 @X0 0 e@1807 ]
+[v F12552 `(v ~T0 @X0 1 tf1`ul ]
+"92 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic.h
+[v __delay `JF12552 ~T0 @X0 0 e ]
+[p i __delay ]
+"4825 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 4825: extern volatile unsigned char SSP1STAT __attribute__((address(0x18F)));
+[v _SSP1STAT `Vuc ~T0 @X0 0 e@399 ]
+"5189
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 5189: extern volatile unsigned char SSP1CON1 __attribute__((address(0x190)));
+[v _SSP1CON1 `Vuc ~T0 @X0 0 e@400 ]
+"5309
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 5309: extern volatile unsigned char SSP1CON2 __attribute__((address(0x191)));
+[v _SSP1CON2 `Vuc ~T0 @X0 0 e@401 ]
+"4635
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 4635: extern volatile unsigned char SSP1ADD __attribute__((address(0x18D)));
+[v _SSP1ADD `Vuc ~T0 @X0 0 e@397 ]
+"5315
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 5315:     struct {
+[s S254 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S254 . SEN RSEN PEN RCEN ACKEN ACKDT ACKSTAT GCEN ]
+"5325
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 5325:     struct {
+[s S255 :1 `uc 1 :5 `uc 1 ]
+[n S255 . . ADMSK ]
+"5329
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 5329:     struct {
+[s S256 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S256 . . ADMSK1 ADMSK2 ADMSK3 ADMSK4 ADMSK5 ]
+"5337
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 5337:     struct {
+[s S257 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S257 . SEN1 ADMSK11 ADMSK21 ADMSK31 ACKEN1 ACKDT1 ACKSTAT1 GCEN1 ]
+"5347
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 5347:     struct {
+[s S258 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S258 . . RSEN1 PEN1 RCEN1 ADMSK41 ADMSK51 ]
+"5314
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 5314: typedef union {
+[u S253 `S254 1 `S255 1 `S256 1 `S257 1 `S258 1 ]
+[n S253 . . . . . . ]
+"5356
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 5356: extern volatile SSP1CON2bits_t SSP1CON2bits __attribute__((address(0x191)));
+[v _SSP1CON2bits `VS253 ~T0 @X0 0 e@401 ]
+"4615
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 4615: extern volatile unsigned char SSP1BUF __attribute__((address(0x18C)));
+[v _SSP1BUF `Vuc ~T0 @X0 0 e@396 ]
+"4755
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 4755: extern volatile unsigned char SSP1MSK __attribute__((address(0x18E)));
+[v _SSP1MSK `Vuc ~T0 @X0 0 e@398 ]
+"4831
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 4831:     struct {
+[s S234 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S234 . BF UA R_nW S P D_nA CKE SMP ]
+"4841
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 4841:     struct {
+[s S235 :2 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 ]
+[n S235 . . R_W . D_A ]
+"4847
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 4847:     struct {
+[s S236 :2 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 ]
+[n S236 . . nW . nA ]
+"4853
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 4853:     struct {
+[s S237 :2 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 ]
+[n S237 . . nWRITE . nADDRESS ]
+"4859
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 4859:     struct {
+[s S238 :2 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 ]
+[n S238 . . READ_WRITE . DATA_ADDRESS ]
+"4865
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 4865:     struct {
+[s S239 :2 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S239 . . I2C_READ I2C_START I2C_STOP I2C_DAT ]
+"4872
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 4872:     struct {
+[s S240 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S240 . BF1 UA1 R START STOP D CKE1 SMP1 ]
+"4882
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 4882:     struct {
+[s S241 :2 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S241 . . RW START1 STOP1 DA ]
+"4889
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 4889:     struct {
+[s S242 :2 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S242 . . RW1 I2C_START1 I2C_STOP2 DA1 ]
+"4896
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 4896:     struct {
+[s S243 :2 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S243 . . I2C_READ1 S2 P2 DATA_ADDRESS1 ]
+"4903
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 4903:     struct {
+[s S244 :2 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 ]
+[n S244 . . READ_WRITE1 . D_A1 ]
+"4909
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 4909:     struct {
+[s S245 :2 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 ]
+[n S245 . . R_W1 . D_nA1 ]
+"4915
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 4915:     struct {
+[s S246 :2 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 ]
+[n S246 . . R_nW1 . I2C_DAT1 ]
+"4921
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 4921:     struct {
+[s S247 :2 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 ]
+[n S247 . . nW2 . nA2 ]
+"4927
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 4927:     struct {
+[s S248 :2 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 ]
+[n S248 . . nWRITE1 . nADDRESS1 ]
+"4830
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 4830: typedef union {
+[u S233 `S234 1 `S235 1 `S236 1 `S237 1 `S238 1 `S239 1 `S240 1 `S241 1 `S242 1 `S243 1 `S244 1 `S245 1 `S246 1 `S247 1 `S248 1 ]
+[n S233 . . . . . . . . . . . . . . . . ]
+"4934
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 4934: extern volatile SSP1STATbits_t SSP1STATbits __attribute__((address(0x18F)));
+[v _SSP1STATbits `VS233 ~T0 @X0 0 e@399 ]
+[v F12716 `(v ~T0 @X0 0 tf ]
+[v F12719 `(v ~T0 @X0 0 tf ]
+[v F12722 `(v ~T0 @X0 0 tf ]
+[v F12725 `(v ~T0 @X0 0 tf ]
 "54 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 54: __asm("INDF0 equ 00h");
 [; <" INDF0 equ 00h ;# ">
@@ -1730,274 +1800,659 @@ Version 4.0 HI-TECH Software Intermediate Code
 "36645
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 36645: __asm("TOSH equ 0FEFh");
 [; <" TOSH equ 0FEFh ;# ">
-"57 mcc_generated_files/tmr1.c
-[; ;mcc_generated_files/tmr1.c: 57: volatile uint16_t timer1ReloadVal;
-[v _timer1ReloadVal `Vus ~T0 @X0 1 e ]
-"58
-[; ;mcc_generated_files/tmr1.c: 58: void (*TMR1_InterruptHandler)(void);
-[v _TMR1_InterruptHandler `*F12264 ~T0 @X0 1 e ]
-"64
-[; ;mcc_generated_files/tmr1.c: 64: void TMR1_Initialize(void)
-[v _TMR1_Initialize `(v ~T0 @X0 1 ef ]
-"65
-[; ;mcc_generated_files/tmr1.c: 65: {
+"78 mcc_generated_files/i2c1_driver.h
+[; ;mcc_generated_files/i2c1_driver.h: 78: void (*i2c1_driver_busCollisionISR)(void);
+[v _i2c1_driver_busCollisionISR `*F12644 ~T0 @X0 1 e ]
+"79
+[; ;mcc_generated_files/i2c1_driver.h: 79: void (*i2c1_driver_i2cISR)(void);
+[v _i2c1_driver_i2cISR `*F12646 ~T0 @X0 1 e ]
+"31 mcc_generated_files/i2c1_driver.c
+[; ;mcc_generated_files/i2c1_driver.c: 31: __attribute__((inline)) __bit mssp1_IRQisSet(void)
+[p n 520 ]
+[v F12648 `(v ~T0 @X0 1 tf ]
+"33
+[; ;mcc_generated_files/i2c1_driver.c: 33:     return PIR3bits.SSP1IF;
+[v _i2c1_driver_close `TF12648 ~T0 @X0 1 e ]
+"34
+[; ;mcc_generated_files/i2c1_driver.c: 34: }
 {
-[e :U _TMR1_Initialize ]
+[e :U _i2c1_driver_close ]
 [f ]
-"69
-[; ;mcc_generated_files/tmr1.c: 69:     T1GCON = 0x00;
-[e = _T1GCON -> -> 0 `i `uc ]
-"72
-[; ;mcc_generated_files/tmr1.c: 72:     T1GATE = 0x00;
-[e = _T1GATE -> -> 0 `i `uc ]
-"75
-[; ;mcc_generated_files/tmr1.c: 75:     T1CLK = 0x04;
-[e = _T1CLK -> -> 4 `i `uc ]
-"78
-[; ;mcc_generated_files/tmr1.c: 78:     TMR1H = 0xC3;
-[e = _TMR1H -> -> 195 `i `uc ]
-"81
-[; ;mcc_generated_files/tmr1.c: 81:     TMR1L = 0x74;
-[e = _TMR1L -> -> 116 `i `uc ]
-"84
-[; ;mcc_generated_files/tmr1.c: 84:     timer1ReloadVal=(uint16_t)((TMR1H << 8) | TMR1L);
-[e = _timer1ReloadVal -> | << -> _TMR1H `i -> 8 `i -> _TMR1L `i `us ]
-"87
-[; ;mcc_generated_files/tmr1.c: 87:     PIR4bits.TMR1IF = 0;
-[e = . . _PIR4bits 0 0 -> -> 0 `i `uc ]
-"90
-[; ;mcc_generated_files/tmr1.c: 90:     PIE4bits.TMR1IE = 1;
-[e = . . _PIE4bits 0 0 -> -> 1 `i `uc ]
-"93
-[; ;mcc_generated_files/tmr1.c: 93:     TMR1_SetInterruptHandler(TMR1_DefaultInterruptHandler);
-[e ( _TMR1_SetInterruptHandler (1 &U _TMR1_DefaultInterruptHandler ]
-"96
-[; ;mcc_generated_files/tmr1.c: 96:     T1CON = 0x05;
-[e = _T1CON -> -> 5 `i `uc ]
-"97
-[; ;mcc_generated_files/tmr1.c: 97: }
-[e :UE 1625 ]
-}
-"99
-[; ;mcc_generated_files/tmr1.c: 99: void TMR1_StartTimer(void)
-[v _TMR1_StartTimer `(v ~T0 @X0 1 ef ]
-"100
-[; ;mcc_generated_files/tmr1.c: 100: {
-{
-[e :U _TMR1_StartTimer ]
-[f ]
-"102
-[; ;mcc_generated_files/tmr1.c: 102:     T1CONbits.TMR1ON = 1;
-[e = . . _T1CONbits 1 0 -> -> 1 `i `uc ]
-"103
-[; ;mcc_generated_files/tmr1.c: 103: }
-[e :UE 1626 ]
-}
-"105
-[; ;mcc_generated_files/tmr1.c: 105: void TMR1_StopTimer(void)
-[v _TMR1_StopTimer `(v ~T0 @X0 1 ef ]
-"106
-[; ;mcc_generated_files/tmr1.c: 106: {
-{
-[e :U _TMR1_StopTimer ]
-[f ]
-"108
-[; ;mcc_generated_files/tmr1.c: 108:     T1CONbits.TMR1ON = 0;
-[e = . . _T1CONbits 1 0 -> -> 0 `i `uc ]
-"109
-[; ;mcc_generated_files/tmr1.c: 109: }
+"35
+[; ;mcc_generated_files/i2c1_driver.c: 35: 
+[e = . . _SSP1CON1bits 0 2 -> -> 0 `i `uc ]
+"36
+[; ;mcc_generated_files/i2c1_driver.c: 36: __attribute__((inline)) void mssp1_waitForEvent(uint16_t *timeout)
 [e :UE 1627 ]
 }
-"111
-[; ;mcc_generated_files/tmr1.c: 111: uint16_t TMR1_ReadTimer(void)
-[v _TMR1_ReadTimer `(us ~T0 @X0 1 ef ]
-"112
-[; ;mcc_generated_files/tmr1.c: 112: {
+[v F12650 `(v ~T0 @X0 1 tf ]
+"39
+[; ;mcc_generated_files/i2c1_driver.c: 39: 
+[v _mssp1_enableIRQ `TF12650 ~T0 @X0 1 e ]
+"40
+[; ;mcc_generated_files/i2c1_driver.c: 40: 
 {
-[e :U _TMR1_ReadTimer ]
+[e :U _mssp1_enableIRQ ]
 [f ]
-"113
-[; ;mcc_generated_files/tmr1.c: 113:     uint16_t readVal;
-[v _readVal `us ~T0 @X0 1 a ]
-"114
-[; ;mcc_generated_files/tmr1.c: 114:     uint8_t readValHigh;
-[v _readValHigh `uc ~T0 @X0 1 a ]
-"115
-[; ;mcc_generated_files/tmr1.c: 115:     uint8_t readValLow;
-[v _readValLow `uc ~T0 @X0 1 a ]
-"117
-[; ;mcc_generated_files/tmr1.c: 117:     T1CONbits.T1RD16 = 1;
-[e = . . _T1CONbits 1 1 -> -> 1 `i `uc ]
-"119
-[; ;mcc_generated_files/tmr1.c: 119:     readValLow = TMR1L;
-[e = _readValLow _TMR1L ]
-"120
-[; ;mcc_generated_files/tmr1.c: 120:     readValHigh = TMR1H;
-[e = _readValHigh _TMR1H ]
-"122
-[; ;mcc_generated_files/tmr1.c: 122:     readVal = ((uint16_t)readValHigh << 8) | readValLow;
-[e = _readVal -> | << -> -> _readValHigh `us `ui -> 8 `i -> _readValLow `ui `us ]
-"124
-[; ;mcc_generated_files/tmr1.c: 124:     return readVal;
-[e ) _readVal ]
-[e $UE 1628  ]
-"125
-[; ;mcc_generated_files/tmr1.c: 125: }
+"41
+[; ;mcc_generated_files/i2c1_driver.c: 41:     if(PIR3bits.SSP1IF == 0)
+[e = . . _PIE3bits 0 0 -> -> 1 `i `uc ]
+"42
+[; ;mcc_generated_files/i2c1_driver.c: 42:     {
 [e :UE 1628 ]
 }
-"127
-[; ;mcc_generated_files/tmr1.c: 127: void TMR1_WriteTimer(uint16_t timerVal)
-[v _TMR1_WriteTimer `(v ~T0 @X0 1 ef1`us ]
-"128
-[; ;mcc_generated_files/tmr1.c: 128: {
+[v F12652 `(b ~T0 @X0 1 tf ]
+"44
+[; ;mcc_generated_files/i2c1_driver.c: 44:         {
+[v _mssp1_IRQisEnabled `TF12652 ~T0 @X0 1 e ]
+"45
+[; ;mcc_generated_files/i2c1_driver.c: 45:             if(PIR3bits.SSP1IF) break;
 {
-[e :U _TMR1_WriteTimer ]
-"127
-[; ;mcc_generated_files/tmr1.c: 127: void TMR1_WriteTimer(uint16_t timerVal)
-[v _timerVal `us ~T0 @X0 1 r1 ]
-"128
-[; ;mcc_generated_files/tmr1.c: 128: {
+[e :U _mssp1_IRQisEnabled ]
 [f ]
-"129
-[; ;mcc_generated_files/tmr1.c: 129:     if (T1CONbits.nT1SYNC == 1)
-[e $ ! == -> . . _T1CONbits 1 2 `i -> 1 `i 1630  ]
-"130
-[; ;mcc_generated_files/tmr1.c: 130:     {
-{
-"132
-[; ;mcc_generated_files/tmr1.c: 132:         T1CONbits.TMR1ON = 0;
-[e = . . _T1CONbits 1 0 -> -> 0 `i `uc ]
-"135
-[; ;mcc_generated_files/tmr1.c: 135:         TMR1H = (timerVal >> 8);
-[e = _TMR1H -> >> -> _timerVal `ui -> 8 `i `uc ]
-"136
-[; ;mcc_generated_files/tmr1.c: 136:         TMR1L = timerVal;
-[e = _TMR1L -> _timerVal `uc ]
-"139
-[; ;mcc_generated_files/tmr1.c: 139:         T1CONbits.TMR1ON =1;
-[e = . . _T1CONbits 1 0 -> -> 1 `i `uc ]
-"140
-[; ;mcc_generated_files/tmr1.c: 140:     }
-}
-[e $U 1631  ]
-"141
-[; ;mcc_generated_files/tmr1.c: 141:     else
-[e :U 1630 ]
-"142
-[; ;mcc_generated_files/tmr1.c: 142:     {
-{
-"144
-[; ;mcc_generated_files/tmr1.c: 144:         TMR1H = (timerVal >> 8);
-[e = _TMR1H -> >> -> _timerVal `ui -> 8 `i `uc ]
-"145
-[; ;mcc_generated_files/tmr1.c: 145:         TMR1L = timerVal;
-[e = _TMR1L -> _timerVal `uc ]
-"146
-[; ;mcc_generated_files/tmr1.c: 146:     }
-}
-[e :U 1631 ]
-"147
-[; ;mcc_generated_files/tmr1.c: 147: }
+"46
+[; ;mcc_generated_files/i2c1_driver.c: 46:             _delay((unsigned long)((100)*(4000000/4000000.0)));
+[e ) -> . . _PIE3bits 0 0 `b ]
+[e $UE 1629  ]
+"47
+[; ;mcc_generated_files/i2c1_driver.c: 47:         }
 [e :UE 1629 ]
 }
-"149
-[; ;mcc_generated_files/tmr1.c: 149: void TMR1_Reload(void)
-[v _TMR1_Reload `(v ~T0 @X0 1 ef ]
-"150
-[; ;mcc_generated_files/tmr1.c: 150: {
+[v F12654 `(v ~T0 @X0 1 tf ]
+"49
+[; ;mcc_generated_files/i2c1_driver.c: 49: }
+[v _mssp1_disableIRQ `TF12654 ~T0 @X0 1 e ]
+"50
+[; ;mcc_generated_files/i2c1_driver.c: 50: 
 {
-[e :U _TMR1_Reload ]
+[e :U _mssp1_disableIRQ ]
 [f ]
-"151
-[; ;mcc_generated_files/tmr1.c: 151:     TMR1_WriteTimer(timer1ReloadVal);
-[e ( _TMR1_WriteTimer (1 _timer1ReloadVal ]
-"152
-[; ;mcc_generated_files/tmr1.c: 152: }
+"51
+[; ;mcc_generated_files/i2c1_driver.c: 51: __bit i2c1_driver_open(void)
+[e = . . _PIE3bits 0 0 -> -> 0 `i `uc ]
+"52
+[; ;mcc_generated_files/i2c1_driver.c: 52: {
+[e :UE 1630 ]
+}
+[v F12656 `(v ~T0 @X0 1 tf ]
+"54
+[; ;mcc_generated_files/i2c1_driver.c: 54:     {
+[v _mssp1_clearIRQ `TF12656 ~T0 @X0 1 e ]
+"55
+[; ;mcc_generated_files/i2c1_driver.c: 55:         SSP1STAT = 0x00;
+{
+[e :U _mssp1_clearIRQ ]
+[f ]
+"56
+[; ;mcc_generated_files/i2c1_driver.c: 56:         SSP1CON1 = 0x28;
+[e = . . _PIR3bits 0 0 -> -> 0 `i `uc ]
+"57
+[; ;mcc_generated_files/i2c1_driver.c: 57:         SSP1CON2 = 0x00;
+[e :UE 1631 ]
+}
+[v F12658 `(v ~T0 @X0 1 tf ]
+"59
+[; ;mcc_generated_files/i2c1_driver.c: 59:         return 1;
+[v _mssp1_setIRQ `TF12658 ~T0 @X0 1 e ]
+"60
+[; ;mcc_generated_files/i2c1_driver.c: 60:     }
+{
+[e :U _mssp1_setIRQ ]
+[f ]
+"61
+[; ;mcc_generated_files/i2c1_driver.c: 61:     else
+[e = . . _PIR3bits 0 0 -> -> 1 `i `uc ]
+"62
+[; ;mcc_generated_files/i2c1_driver.c: 62:         return 0;
 [e :UE 1632 ]
 }
-"154
-[; ;mcc_generated_files/tmr1.c: 154: void TMR1_StartSinglePulseAcquisition(void)
-[v _TMR1_StartSinglePulseAcquisition `(v ~T0 @X0 1 ef ]
-"155
-[; ;mcc_generated_files/tmr1.c: 155: {
+[v F12660 `(b ~T0 @X0 1 tf ]
+"64
+[; ;mcc_generated_files/i2c1_driver.c: 64: 
+[v _mssp1_IRQisSet `TF12660 ~T0 @X0 1 e ]
+"65
+[; ;mcc_generated_files/i2c1_driver.c: 65: __bit i2c1_driver_initSlaveHardware(void)
 {
-[e :U _TMR1_StartSinglePulseAcquisition ]
+[e :U _mssp1_IRQisSet ]
 [f ]
-"156
-[; ;mcc_generated_files/tmr1.c: 156:     T1GCONbits.T1GGO = 1;
-[e = . . _T1GCONbits 2 1 -> -> 1 `i `uc ]
-"157
-[; ;mcc_generated_files/tmr1.c: 157: }
+"66
+[; ;mcc_generated_files/i2c1_driver.c: 66: {
+[e ) -> . . _PIR3bits 0 0 `b ]
+[e $UE 1633  ]
+"67
+[; ;mcc_generated_files/i2c1_driver.c: 67:     if(!SSP1CON1bits.SSPEN)
 [e :UE 1633 ]
 }
-"159
-[; ;mcc_generated_files/tmr1.c: 159: uint8_t TMR1_CheckGateValueStatus(void)
-[v _TMR1_CheckGateValueStatus `(uc ~T0 @X0 1 ef ]
-"160
-[; ;mcc_generated_files/tmr1.c: 160: {
+[v F12662 `(v ~T0 @X0 1 tf1`*us ]
+"69
+[v _mssp1_waitForEvent `TF12662 ~T0 @X0 1 e ]
+"70
 {
-[e :U _TMR1_CheckGateValueStatus ]
+[e :U _mssp1_waitForEvent ]
+"69
+[v _timeout `*us ~T0 @X0 1 r1 ]
+"70
 [f ]
-"161
-[; ;mcc_generated_files/tmr1.c: 161:     return (T1GCONbits.T1GVAL);
-[e ) . . _T1GCONbits 1 1 ]
-[e $UE 1634  ]
-"162
-[; ;mcc_generated_files/tmr1.c: 162: }
-[e :UE 1634 ]
-}
-"164
-[; ;mcc_generated_files/tmr1.c: 164: void TMR1_ISR(void)
-[v _TMR1_ISR `(v ~T0 @X0 1 ef ]
-"165
-[; ;mcc_generated_files/tmr1.c: 165: {
+"74
+[e $ ! == -> . . _PIR3bits 0 0 `i -> 0 `i 1635  ]
+"75
 {
-[e :U _TMR1_ISR ]
-[f ]
-"168
-[; ;mcc_generated_files/tmr1.c: 168:     PIR4bits.TMR1IF = 0;
-[e = . . _PIR4bits 0 0 -> -> 0 `i `uc ]
-"169
-[; ;mcc_generated_files/tmr1.c: 169:     TMR1_WriteTimer(timer1ReloadVal);
-[e ( _TMR1_WriteTimer (1 _timer1ReloadVal ]
-"171
-[; ;mcc_generated_files/tmr1.c: 171:     if(TMR1_InterruptHandler)
-[e $ ! != _TMR1_InterruptHandler -> -> 0 `i `*F12279 1636  ]
-"172
-[; ;mcc_generated_files/tmr1.c: 172:     {
+"76
+[e :U 1637 ]
+"77
 {
-"173
-[; ;mcc_generated_files/tmr1.c: 173:         TMR1_InterruptHandler();
-[e ( *U _TMR1_InterruptHandler ..  ]
-"174
-[; ;mcc_generated_files/tmr1.c: 174:     }
+"78
+[e $ ! != -> . . _PIR3bits 0 0 `i -> 0 `i 1639  ]
+[e $U 1638  ]
+[e :U 1639 ]
+"79
+[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 4000000 `l `d .4000000.0 `ul ]
+"80
 }
 [e :U 1636 ]
-"175
-[; ;mcc_generated_files/tmr1.c: 175: }
-[e :UE 1635 ]
+[e $U 1637  ]
+[e :U 1638 ]
+"81
 }
-"178
-[; ;mcc_generated_files/tmr1.c: 178: void TMR1_SetInterruptHandler(void (* InterruptHandler)(void)){
-[v _TMR1_SetInterruptHandler `(v ~T0 @X0 1 ef1`*F12281 ]
+[e :U 1635 ]
+"82
+[e :UE 1634 ]
+}
+"84
+[v _i2c1_driver_open `(b ~T0 @X0 1 ef ]
+"85
 {
-[e :U _TMR1_SetInterruptHandler ]
-[v _InterruptHandler `*F12283 ~T0 @X0 1 r1 ]
+[e :U _i2c1_driver_open ]
+[f ]
+"86
+[e $ ! ! != -> . . _SSP1CON1bits 0 2 `i -> 0 `i 1641  ]
+"87
+{
+"88
+[e = _SSP1STAT -> -> 0 `i `uc ]
+"89
+[e = _SSP1CON1 -> -> 40 `i `uc ]
+"90
+[e = _SSP1CON2 -> -> 0 `i `uc ]
+"91
+[e = _SSP1ADD -> -> 9 `i `uc ]
+"92
+[e ) -> -> 1 `i `b ]
+[e $UE 1640  ]
+"93
+}
+[e $U 1642  ]
+"94
+[e :U 1641 ]
+"95
+[e ) -> -> 0 `i `b ]
+[e $UE 1640  ]
+[e :U 1642 ]
+"96
+[e :UE 1640 ]
+}
+"98
+[v _i2c1_driver_initSlaveHardware `(b ~T0 @X0 1 ef ]
+"99
+{
+[e :U _i2c1_driver_initSlaveHardware ]
+[f ]
+"100
+[e $ ! ! != -> . . _SSP1CON1bits 0 2 `i -> 0 `i 1644  ]
+"101
+{
+"132
+[; ;mcc_generated_files/i2c1_driver.c: 132:         SSP1CON1 |= 0x06;
+[e =| _SSP1CON1 -> -> 6 `i `Vuc ]
+"133
+[; ;mcc_generated_files/i2c1_driver.c: 133:         SSP1STAT = 0x00;
+[e = _SSP1STAT -> -> 0 `i `uc ]
+"134
+[; ;mcc_generated_files/i2c1_driver.c: 134:         SSP1CON2 = 0x00;
+[e = _SSP1CON2 -> -> 0 `i `uc ]
+"136
+[; ;mcc_generated_files/i2c1_driver.c: 136:         SSP1CON1bits.SSPEN = 1;
+[e = . . _SSP1CON1bits 0 2 -> -> 1 `i `uc ]
+"137
+[; ;mcc_generated_files/i2c1_driver.c: 137:         return 1;
+[e ) -> -> 1 `i `b ]
+[e $UE 1643  ]
+"138
+[; ;mcc_generated_files/i2c1_driver.c: 138:     }
+}
+[e :U 1644 ]
+"139
+[; ;mcc_generated_files/i2c1_driver.c: 139:     return 0;
+[e ) -> -> 0 `i `b ]
+[e $UE 1643  ]
+"140
+[; ;mcc_generated_files/i2c1_driver.c: 140: }
+[e :UE 1643 ]
+}
+[v F12667 `(v ~T0 @X0 1 tf ]
+"142
+[; ;mcc_generated_files/i2c1_driver.c: 142: __attribute__((inline)) void i2c1_driver_resetBus(void)
+[v _i2c1_driver_resetBus `TF12667 ~T0 @X0 1 e ]
+"143
+[; ;mcc_generated_files/i2c1_driver.c: 143: {
+{
+[e :U _i2c1_driver_resetBus ]
+[f ]
+"145
+[; ;mcc_generated_files/i2c1_driver.c: 145: }
+[e :UE 1645 ]
+}
+[v F12669 `(v ~T0 @X0 1 tf ]
+"147
+[; ;mcc_generated_files/i2c1_driver.c: 147: __attribute__((inline)) void i2c1_driver_start(void)
+[v _i2c1_driver_start `TF12669 ~T0 @X0 1 e ]
+"148
+[; ;mcc_generated_files/i2c1_driver.c: 148: {
+{
+[e :U _i2c1_driver_start ]
+[f ]
+"149
+[; ;mcc_generated_files/i2c1_driver.c: 149:     SSP1CON2bits.SEN = 1;
+[e = . . _SSP1CON2bits 0 0 -> -> 1 `i `uc ]
+"150
+[; ;mcc_generated_files/i2c1_driver.c: 150: }
+[e :UE 1646 ]
+}
+[v F12671 `(v ~T0 @X0 1 tf ]
+"152
+[; ;mcc_generated_files/i2c1_driver.c: 152: __attribute__((inline)) void i2c1_driver_restart(void)
+[v _i2c1_driver_restart `TF12671 ~T0 @X0 1 e ]
+"153
+[; ;mcc_generated_files/i2c1_driver.c: 153: {
+{
+[e :U _i2c1_driver_restart ]
+[f ]
+"154
+[; ;mcc_generated_files/i2c1_driver.c: 154:     SSP1CON2bits.RSEN = 1;
+[e = . . _SSP1CON2bits 0 1 -> -> 1 `i `uc ]
+"155
+[; ;mcc_generated_files/i2c1_driver.c: 155: }
+[e :UE 1647 ]
+}
+[v F12673 `(v ~T0 @X0 1 tf ]
+"157
+[; ;mcc_generated_files/i2c1_driver.c: 157: __attribute__((inline)) void i2c1_driver_stop(void)
+[v _i2c1_driver_stop `TF12673 ~T0 @X0 1 e ]
+"158
+[; ;mcc_generated_files/i2c1_driver.c: 158: {
+{
+[e :U _i2c1_driver_stop ]
+[f ]
+"159
+[; ;mcc_generated_files/i2c1_driver.c: 159:     SSP1CON2bits.PEN = 1;
+[e = . . _SSP1CON2bits 0 2 -> -> 1 `i `uc ]
+"160
+[; ;mcc_generated_files/i2c1_driver.c: 160: }
+[e :UE 1648 ]
+}
+[v F12675 `(b ~T0 @X0 1 tf ]
+"162
+[; ;mcc_generated_files/i2c1_driver.c: 162: __attribute__((inline)) __bit i2c1_driver_isNACK(void)
+[v _i2c1_driver_isNACK `TF12675 ~T0 @X0 1 e ]
+"163
+[; ;mcc_generated_files/i2c1_driver.c: 163: {
+{
+[e :U _i2c1_driver_isNACK ]
+[f ]
+"164
+[; ;mcc_generated_files/i2c1_driver.c: 164:     return SSP1CON2bits.ACKSTAT;
+[e ) -> . . _SSP1CON2bits 0 6 `b ]
+[e $UE 1649  ]
+"165
+[; ;mcc_generated_files/i2c1_driver.c: 165: }
+[e :UE 1649 ]
+}
+[v F12677 `(v ~T0 @X0 1 tf ]
+"167
+[; ;mcc_generated_files/i2c1_driver.c: 167: __attribute__((inline)) void i2c1_driver_startRX(void)
+[v _i2c1_driver_startRX `TF12677 ~T0 @X0 1 e ]
+"168
+[; ;mcc_generated_files/i2c1_driver.c: 168: {
+{
+[e :U _i2c1_driver_startRX ]
+[f ]
+"169
+[; ;mcc_generated_files/i2c1_driver.c: 169:     SSP1CON2bits.RCEN = 1;
+[e = . . _SSP1CON2bits 0 3 -> -> 1 `i `uc ]
+"170
+[; ;mcc_generated_files/i2c1_driver.c: 170: }
+[e :UE 1650 ]
+}
+[v F12679 `(uc ~T0 @X0 1 tf ]
+"172
+[; ;mcc_generated_files/i2c1_driver.c: 172: __attribute__((inline)) char i2c1_driver_getRXData(void)
+[v _i2c1_driver_getRXData `TF12679 ~T0 @X0 1 e ]
+"173
+[; ;mcc_generated_files/i2c1_driver.c: 173: {
+{
+[e :U _i2c1_driver_getRXData ]
+[f ]
+"174
+[; ;mcc_generated_files/i2c1_driver.c: 174:     return SSP1BUF;
+[e ) -> _SSP1BUF `uc ]
+[e $UE 1651  ]
+"175
+[; ;mcc_generated_files/i2c1_driver.c: 175: }
+[e :UE 1651 ]
+}
+[v F12681 `(v ~T0 @X0 1 tf1`uc ]
+"177
+[; ;mcc_generated_files/i2c1_driver.c: 177: __attribute__((inline)) void i2c1_driver_setAddr(char addr)
+[v _i2c1_driver_setAddr `TF12681 ~T0 @X0 1 e ]
+"178
+[; ;mcc_generated_files/i2c1_driver.c: 178: {
+{
+[e :U _i2c1_driver_setAddr ]
+"177
+[; ;mcc_generated_files/i2c1_driver.c: 177: __attribute__((inline)) void i2c1_driver_setAddr(char addr)
+[v _addr `uc ~T0 @X0 1 r1 ]
+"178
+[; ;mcc_generated_files/i2c1_driver.c: 178: {
 [f ]
 "179
-[; ;mcc_generated_files/tmr1.c: 179:     TMR1_InterruptHandler = InterruptHandler;
-[e = _TMR1_InterruptHandler _InterruptHandler ]
+[; ;mcc_generated_files/i2c1_driver.c: 179:     SSP1ADD = addr;
+[e = _SSP1ADD -> _addr `uc ]
 "180
-[; ;mcc_generated_files/tmr1.c: 180: }
-[e :UE 1637 ]
+[; ;mcc_generated_files/i2c1_driver.c: 180: }
+[e :UE 1652 ]
 }
+[v F12684 `(v ~T0 @X0 1 tf1`uc ]
 "182
-[; ;mcc_generated_files/tmr1.c: 182: void TMR1_DefaultInterruptHandler(void){
-[v _TMR1_DefaultInterruptHandler `(v ~T0 @X0 1 ef ]
+[; ;mcc_generated_files/i2c1_driver.c: 182: __attribute__((inline)) void i2c1_driver_setMask(char mask)
+[v _i2c1_driver_setMask `TF12684 ~T0 @X0 1 e ]
+"183
+[; ;mcc_generated_files/i2c1_driver.c: 183: {
 {
-[e :U _TMR1_DefaultInterruptHandler ]
+[e :U _i2c1_driver_setMask ]
+"182
+[; ;mcc_generated_files/i2c1_driver.c: 182: __attribute__((inline)) void i2c1_driver_setMask(char mask)
+[v _mask `uc ~T0 @X0 1 r1 ]
+"183
+[; ;mcc_generated_files/i2c1_driver.c: 183: {
 [f ]
+"184
+[; ;mcc_generated_files/i2c1_driver.c: 184:     SSP1MSK = mask;
+[e = _SSP1MSK -> _mask `uc ]
 "185
-[; ;mcc_generated_files/tmr1.c: 185: }
-[e :UE 1638 ]
+[; ;mcc_generated_files/i2c1_driver.c: 185: }
+[e :UE 1653 ]
+}
+[v F12687 `(v ~T0 @X0 1 tf1`uc ]
+"187
+[; ;mcc_generated_files/i2c1_driver.c: 187: __attribute__((inline)) void i2c1_driver_TXData(char d)
+[v _i2c1_driver_TXData `TF12687 ~T0 @X0 1 e ]
+"188
+[; ;mcc_generated_files/i2c1_driver.c: 188: {
+{
+[e :U _i2c1_driver_TXData ]
+"187
+[; ;mcc_generated_files/i2c1_driver.c: 187: __attribute__((inline)) void i2c1_driver_TXData(char d)
+[v _d `uc ~T0 @X0 1 r1 ]
+"188
+[; ;mcc_generated_files/i2c1_driver.c: 188: {
+[f ]
+"189
+[; ;mcc_generated_files/i2c1_driver.c: 189:     SSP1BUF = d;
+[e = _SSP1BUF -> _d `uc ]
+"190
+[; ;mcc_generated_files/i2c1_driver.c: 190: }
+[e :UE 1654 ]
+}
+[v F12690 `(uc ~T0 @X0 1 tf ]
+"192
+[; ;mcc_generated_files/i2c1_driver.c: 192: __attribute__((inline)) char i2c1_driver_getAddr(void)
+[v _i2c1_driver_getAddr `TF12690 ~T0 @X0 1 e ]
+"193
+[; ;mcc_generated_files/i2c1_driver.c: 193: {
+{
+[e :U _i2c1_driver_getAddr ]
+[f ]
+"194
+[; ;mcc_generated_files/i2c1_driver.c: 194:     return SSP1ADD;
+[e ) -> _SSP1ADD `uc ]
+[e $UE 1655  ]
+"195
+[; ;mcc_generated_files/i2c1_driver.c: 195: }
+[e :UE 1655 ]
+}
+[v F12692 `(v ~T0 @X0 1 tf ]
+"197
+[; ;mcc_generated_files/i2c1_driver.c: 197: __attribute__((inline)) void i2c1_driver_sendACK(void)
+[v _i2c1_driver_sendACK `TF12692 ~T0 @X0 1 e ]
+"198
+[; ;mcc_generated_files/i2c1_driver.c: 198: {
+{
+[e :U _i2c1_driver_sendACK ]
+[f ]
+"199
+[; ;mcc_generated_files/i2c1_driver.c: 199:     SSP1CON2bits.ACKDT = 0;
+[e = . . _SSP1CON2bits 0 5 -> -> 0 `i `uc ]
+"200
+[; ;mcc_generated_files/i2c1_driver.c: 200:     SSP1CON2bits.ACKEN = 1;
+[e = . . _SSP1CON2bits 0 4 -> -> 1 `i `uc ]
+"201
+[; ;mcc_generated_files/i2c1_driver.c: 201: }
+[e :UE 1656 ]
+}
+[v F12694 `(v ~T0 @X0 1 tf ]
+"203
+[; ;mcc_generated_files/i2c1_driver.c: 203: __attribute__((inline)) void i2c1_driver_sendNACK(void)
+[v _i2c1_driver_sendNACK `TF12694 ~T0 @X0 1 e ]
+"204
+[; ;mcc_generated_files/i2c1_driver.c: 204: {
+{
+[e :U _i2c1_driver_sendNACK ]
+[f ]
+"205
+[; ;mcc_generated_files/i2c1_driver.c: 205:     SSP1CON2bits.ACKDT = 1;
+[e = . . _SSP1CON2bits 0 5 -> -> 1 `i `uc ]
+"206
+[; ;mcc_generated_files/i2c1_driver.c: 206:     SSP1CON2bits.ACKEN = 1;
+[e = . . _SSP1CON2bits 0 4 -> -> 1 `i `uc ]
+"207
+[; ;mcc_generated_files/i2c1_driver.c: 207: }
+[e :UE 1657 ]
+}
+[v F12696 `(v ~T0 @X0 1 tf ]
+"209
+[; ;mcc_generated_files/i2c1_driver.c: 209: __attribute__((inline)) void i2c1_driver_releaseClock(void)
+[v _i2c1_driver_releaseClock `TF12696 ~T0 @X0 1 e ]
+"210
+[; ;mcc_generated_files/i2c1_driver.c: 210: {
+{
+[e :U _i2c1_driver_releaseClock ]
+[f ]
+"211
+[; ;mcc_generated_files/i2c1_driver.c: 211:     SSP1CON1bits.CKP = 1;
+[e = . . _SSP1CON1bits 0 1 -> -> 1 `i `uc ]
+"212
+[; ;mcc_generated_files/i2c1_driver.c: 212: }
+[e :UE 1658 ]
+}
+[v F12698 `(b ~T0 @X0 1 tf ]
+"214
+[; ;mcc_generated_files/i2c1_driver.c: 214: __attribute__((inline)) __bit i2c1_driver_isBufferFull(void)
+[v _i2c1_driver_isBufferFull `TF12698 ~T0 @X0 1 e ]
+"215
+[; ;mcc_generated_files/i2c1_driver.c: 215: {
+{
+[e :U _i2c1_driver_isBufferFull ]
+[f ]
+"216
+[; ;mcc_generated_files/i2c1_driver.c: 216:     return SSP1STATbits.BF;
+[e ) -> . . _SSP1STATbits 0 0 `b ]
+[e $UE 1659  ]
+"217
+[; ;mcc_generated_files/i2c1_driver.c: 217: }
+[e :UE 1659 ]
+}
+[v F12700 `(b ~T0 @X0 1 tf ]
+"219
+[; ;mcc_generated_files/i2c1_driver.c: 219: __attribute__((inline)) __bit i2c1_driver_isStart(void)
+[v _i2c1_driver_isStart `TF12700 ~T0 @X0 1 e ]
+"220
+[; ;mcc_generated_files/i2c1_driver.c: 220: {
+{
+[e :U _i2c1_driver_isStart ]
+[f ]
+"221
+[; ;mcc_generated_files/i2c1_driver.c: 221:     return SSP1STATbits.S;
+[e ) -> . . _SSP1STATbits 0 3 `b ]
+[e $UE 1660  ]
+"222
+[; ;mcc_generated_files/i2c1_driver.c: 222: }
+[e :UE 1660 ]
+}
+[v F12702 `(b ~T0 @X0 1 tf ]
+"224
+[; ;mcc_generated_files/i2c1_driver.c: 224: __attribute__((inline)) __bit i2c1_driver_isAddress(void)
+[v _i2c1_driver_isAddress `TF12702 ~T0 @X0 1 e ]
+"225
+[; ;mcc_generated_files/i2c1_driver.c: 225: {
+{
+[e :U _i2c1_driver_isAddress ]
+[f ]
+"226
+[; ;mcc_generated_files/i2c1_driver.c: 226:     return !SSP1STATbits.D_nA;
+[e ) ! != -> . . _SSP1STATbits 0 5 `i -> 0 `i ]
+[e $UE 1661  ]
+"227
+[; ;mcc_generated_files/i2c1_driver.c: 227: }
+[e :UE 1661 ]
+}
+[v F12704 `(b ~T0 @X0 1 tf ]
+"229
+[; ;mcc_generated_files/i2c1_driver.c: 229: __attribute__((inline)) __bit i2c1_driver_isStop(void)
+[v _i2c1_driver_isStop `TF12704 ~T0 @X0 1 e ]
+"230
+[; ;mcc_generated_files/i2c1_driver.c: 230: {
+{
+[e :U _i2c1_driver_isStop ]
+[f ]
+"231
+[; ;mcc_generated_files/i2c1_driver.c: 231:     return SSP1STATbits.P;
+[e ) -> . . _SSP1STATbits 0 4 `b ]
+[e $UE 1662  ]
+"232
+[; ;mcc_generated_files/i2c1_driver.c: 232: }
+[e :UE 1662 ]
+}
+[v F12706 `(b ~T0 @X0 1 tf ]
+"234
+[; ;mcc_generated_files/i2c1_driver.c: 234: __attribute__((inline)) __bit i2c1_driver_isData(void)
+[v _i2c1_driver_isData `TF12706 ~T0 @X0 1 e ]
+"235
+[; ;mcc_generated_files/i2c1_driver.c: 235: {
+{
+[e :U _i2c1_driver_isData ]
+[f ]
+"236
+[; ;mcc_generated_files/i2c1_driver.c: 236:     return SSP1STATbits.D_nA;
+[e ) -> . . _SSP1STATbits 0 5 `b ]
+[e $UE 1663  ]
+"237
+[; ;mcc_generated_files/i2c1_driver.c: 237: }
+[e :UE 1663 ]
+}
+[v F12708 `(b ~T0 @X0 1 tf ]
+"239
+[; ;mcc_generated_files/i2c1_driver.c: 239: __attribute__((inline)) __bit i2c1_driver_isRead(void)
+[v _i2c1_driver_isRead `TF12708 ~T0 @X0 1 e ]
+"240
+[; ;mcc_generated_files/i2c1_driver.c: 240: {
+{
+[e :U _i2c1_driver_isRead ]
+[f ]
+"241
+[; ;mcc_generated_files/i2c1_driver.c: 241:     return SSP1STATbits.R_nW;
+[e ) -> . . _SSP1STATbits 0 2 `b ]
+[e $UE 1664  ]
+"242
+[; ;mcc_generated_files/i2c1_driver.c: 242: }
+[e :UE 1664 ]
+}
+[v F12710 `(b ~T0 @X0 1 tf ]
+"244
+[; ;mcc_generated_files/i2c1_driver.c: 244: __attribute__((inline)) __bit i2c1_driver_isWriteCollision(void)
+[v _i2c1_driver_isWriteCollision `TF12710 ~T0 @X0 1 e ]
+"245
+[; ;mcc_generated_files/i2c1_driver.c: 245: {
+{
+[e :U _i2c1_driver_isWriteCollision ]
+[f ]
+"246
+[; ;mcc_generated_files/i2c1_driver.c: 246:     return SSP1CON1bits.WCOL;
+[e ) -> . . _SSP1CON1bits 0 4 `b ]
+[e $UE 1665  ]
+"247
+[; ;mcc_generated_files/i2c1_driver.c: 247: }
+[e :UE 1665 ]
+}
+[v F12712 `(b ~T0 @X0 1 tf ]
+"249
+[; ;mcc_generated_files/i2c1_driver.c: 249: __attribute__((inline)) __bit i2c1_driver_isReceiveOverflow(void)
+[v _i2c1_driver_isReceiveOverflow `TF12712 ~T0 @X0 1 e ]
+"250
+[; ;mcc_generated_files/i2c1_driver.c: 250: {
+{
+[e :U _i2c1_driver_isReceiveOverflow ]
+[f ]
+"251
+[; ;mcc_generated_files/i2c1_driver.c: 251:     return SSP1CON1bits.SSPOV;
+[e ) -> . . _SSP1CON1bits 0 3 `b ]
+[e $UE 1666  ]
+"252
+[; ;mcc_generated_files/i2c1_driver.c: 252: }
+[e :UE 1666 ]
+}
+[v F12714 `(v ~T0 @X0 1 tf ]
+"254
+[; ;mcc_generated_files/i2c1_driver.c: 254: __attribute__((inline)) void i2c1_driver_clearBusCollision(void)
+[v _i2c1_driver_clearBusCollision `TF12714 ~T0 @X0 1 e ]
+"255
+[; ;mcc_generated_files/i2c1_driver.c: 255: {
+{
+[e :U _i2c1_driver_clearBusCollision ]
+[f ]
+"256
+[; ;mcc_generated_files/i2c1_driver.c: 256:     PIR3bits.BCL1IF = 0;
+[e = . . _PIR3bits 0 1 -> -> 0 `i `uc ]
+"257
+[; ;mcc_generated_files/i2c1_driver.c: 257: }
+[e :UE 1667 ]
+}
+[v F12717 `(v ~T0 @X0 1 tf1`*F12716 ]
+"259
+[; ;mcc_generated_files/i2c1_driver.c: 259: __attribute__((inline)) void i2c1_driver_setBusCollisionISR(interruptHandler handler){
+[v _i2c1_driver_setBusCollisionISR `TF12717 ~T0 @X0 1 e ]
+{
+[e :U _i2c1_driver_setBusCollisionISR ]
+[v _handler `*F12719 ~T0 @X0 1 r1 ]
+[f ]
+"260
+[; ;mcc_generated_files/i2c1_driver.c: 260:     i2c1_driver_busCollisionISR = handler;
+[e = _i2c1_driver_busCollisionISR _handler ]
+"261
+[; ;mcc_generated_files/i2c1_driver.c: 261: }
+[e :UE 1668 ]
+}
+[v F12723 `(v ~T0 @X0 1 tf1`*F12722 ]
+"263
+[; ;mcc_generated_files/i2c1_driver.c: 263: __attribute__((inline)) void i2c1_driver_setI2cISR(interruptHandler handler){
+[v _i2c1_driver_setI2cISR `TF12723 ~T0 @X0 1 e ]
+{
+[e :U _i2c1_driver_setI2cISR ]
+[v _handler `*F12725 ~T0 @X0 1 r1 ]
+[f ]
+"264
+[; ;mcc_generated_files/i2c1_driver.c: 264:     i2c1_driver_i2cISR = handler;
+[e = _i2c1_driver_i2cISR _handler ]
+"265
+[; ;mcc_generated_files/i2c1_driver.c: 265: }
+[e :UE 1669 ]
 }

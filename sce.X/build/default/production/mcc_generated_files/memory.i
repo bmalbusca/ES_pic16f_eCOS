@@ -1,4 +1,4 @@
-# 1 "mcc_generated_files/mcc.c"
+# 1 "mcc_generated_files/memory.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 288 "<built-in>" 3
@@ -6,10 +6,8 @@
 # 1 "<built-in>" 2
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "mcc_generated_files/mcc.c" 2
-# 47 "mcc_generated_files/mcc.c"
-# 1 "mcc_generated_files/mcc.h" 1
-# 49 "mcc_generated_files/mcc.h"
+# 1 "mcc_generated_files/memory.c" 2
+# 51 "mcc_generated_files/memory.c"
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\xc.h" 1 3
 # 18 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -20793,17 +20791,12 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 27 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\xc.h" 2 3
-# 49 "mcc_generated_files/mcc.h" 2
+# 51 "mcc_generated_files/memory.c" 2
 
-# 1 "mcc_generated_files/device_config.h" 1
-# 50 "mcc_generated_files/mcc.h" 2
-
-# 1 "mcc_generated_files/pin_manager.h" 1
-# 158 "mcc_generated_files/pin_manager.h"
-void PIN_MANAGER_Initialize (void);
-# 170 "mcc_generated_files/pin_manager.h"
-void PIN_MANAGER_IOC(void);
-# 51 "mcc_generated_files/mcc.h" 2
+# 1 "mcc_generated_files/memory.h" 1
+# 54 "mcc_generated_files/memory.h"
+# 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\stdbool.h" 1 3
+# 54 "mcc_generated_files/memory.h" 2
 
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\stdint.h" 1 3
 # 22 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\stdint.h" 3
@@ -20888,212 +20881,7 @@ typedef int32_t int_fast32_t;
 typedef uint32_t uint_fast16_t;
 typedef uint32_t uint_fast32_t;
 # 139 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\stdint.h" 2 3
-# 52 "mcc_generated_files/mcc.h" 2
-
-# 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\stdbool.h" 1 3
-# 53 "mcc_generated_files/mcc.h" 2
-
-# 1 "mcc_generated_files/interrupt_manager.h" 1
-# 54 "mcc_generated_files/mcc.h" 2
-
-# 1 "mcc_generated_files/i2c1_driver.h" 1
-# 26 "mcc_generated_files/i2c1_driver.h"
-# 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\stdio.h" 1 3
-# 24 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\stdio.h" 3
-# 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\bits/alltypes.h" 1 3
-
-
-
-
-
-typedef void * va_list[1];
-
-
-
-
-typedef void * __isoc_va_list[1];
-# 137 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\bits/alltypes.h" 3
-typedef long ssize_t;
-# 246 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\bits/alltypes.h" 3
-typedef long long off_t;
-# 399 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\bits/alltypes.h" 3
-typedef struct _IO_FILE FILE;
-# 24 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\stdio.h" 2 3
-# 52 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\stdio.h" 3
-typedef union _G_fpos64_t {
- char __opaque[16];
- double __align;
-} fpos_t;
-
-extern FILE *const stdin;
-extern FILE *const stdout;
-extern FILE *const stderr;
-
-
-
-
-
-FILE *fopen(const char *restrict, const char *restrict);
-FILE *freopen(const char *restrict, const char *restrict, FILE *restrict);
-int fclose(FILE *);
-
-int remove(const char *);
-int rename(const char *, const char *);
-
-int feof(FILE *);
-int ferror(FILE *);
-int fflush(FILE *);
-void clearerr(FILE *);
-
-int fseek(FILE *, long, int);
-long ftell(FILE *);
-void rewind(FILE *);
-
-int fgetpos(FILE *restrict, fpos_t *restrict);
-int fsetpos(FILE *, const fpos_t *);
-
-size_t fread(void *restrict, size_t, size_t, FILE *restrict);
-size_t fwrite(const void *restrict, size_t, size_t, FILE *restrict);
-
-int fgetc(FILE *);
-int getc(FILE *);
-int getchar(void);
-int ungetc(int, FILE *);
-
-int fputc(int, FILE *);
-int putc(int, FILE *);
-int putchar(int);
-
-char *fgets(char *restrict, int, FILE *restrict);
-
-char *gets(char *);
-
-
-int fputs(const char *restrict, FILE *restrict);
-int puts(const char *);
-
-#pragma printf_check(printf) const
-#pragma printf_check(vprintf) const
-#pragma printf_check(sprintf) const
-#pragma printf_check(snprintf) const
-#pragma printf_check(vsprintf) const
-#pragma printf_check(vsnprintf) const
-
-int printf(const char *restrict, ...);
-int fprintf(FILE *restrict, const char *restrict, ...);
-int sprintf(char *restrict, const char *restrict, ...);
-int snprintf(char *restrict, size_t, const char *restrict, ...);
-
-int vprintf(const char *restrict, __isoc_va_list);
-int vfprintf(FILE *restrict, const char *restrict, __isoc_va_list);
-int vsprintf(char *restrict, const char *restrict, __isoc_va_list);
-int vsnprintf(char *restrict, size_t, const char *restrict, __isoc_va_list);
-
-int scanf(const char *restrict, ...);
-int fscanf(FILE *restrict, const char *restrict, ...);
-int sscanf(const char *restrict, const char *restrict, ...);
-int vscanf(const char *restrict, __isoc_va_list);
-int vfscanf(FILE *restrict, const char *restrict, __isoc_va_list);
-int vsscanf(const char *restrict, const char *restrict, __isoc_va_list);
-
-void perror(const char *);
-
-int setvbuf(FILE *restrict, char *restrict, int, size_t);
-void setbuf(FILE *restrict, char *restrict);
-
-char *tmpnam(char *);
-FILE *tmpfile(void);
-
-
-
-
-FILE *fmemopen(void *restrict, size_t, const char *restrict);
-FILE *open_memstream(char **, size_t *);
-FILE *fdopen(int, const char *);
-FILE *popen(const char *, const char *);
-int pclose(FILE *);
-int fileno(FILE *);
-int fseeko(FILE *, off_t, int);
-off_t ftello(FILE *);
-int dprintf(int, const char *restrict, ...);
-int vdprintf(int, const char *restrict, __isoc_va_list);
-void flockfile(FILE *);
-int ftrylockfile(FILE *);
-void funlockfile(FILE *);
-int getc_unlocked(FILE *);
-int getchar_unlocked(void);
-int putc_unlocked(int, FILE *);
-int putchar_unlocked(int);
-ssize_t getdelim(char **restrict, size_t *restrict, int, FILE *restrict);
-ssize_t getline(char **restrict, size_t *restrict, FILE *restrict);
-int renameat(int, const char *, int, const char *);
-char *ctermid(char *);
-
-
-
-
-
-
-
-char *tempnam(const char *, const char *);
-# 26 "mcc_generated_files/i2c1_driver.h" 2
-
-
-
-
-
-
-
-
-typedef void (*interruptHandler)(void);
-
-
-__attribute__((inline)) void i2c1_driver_close(void);
-
-
-__attribute__((inline)) void mssp1_enableIRQ(void);
-__attribute__((inline)) __bit mssp1_IRQisEnabled(void);
-__attribute__((inline)) void mssp1_disableIRQ(void);
-__attribute__((inline)) void mssp1_clearIRQ(void);
-__attribute__((inline)) void mssp1_setIRQ(void);
-__attribute__((inline)) __bit mssp1_IRQisSet(void);
-__attribute__((inline)) void mssp1_waitForEvent(uint16_t*);
-
-
-__bit i2c1_driver_open(void);
-__attribute__((inline)) char i2c1_driver_getRXData(void);
-__attribute__((inline)) char i2c1_driver_getAddr(void);
-__attribute__((inline)) void i2c1_driver_setAddr(char addr);
-__attribute__((inline)) void i2c1_driver_setMask(char mask);
-__attribute__((inline)) void i2c1_driver_TXData(char d);
-__attribute__((inline)) void i2c1_driver_resetBus(void);
-__attribute__((inline)) void i2c1_driver_start(void);
-__attribute__((inline)) void i2c1_driver_restart(void);
-__attribute__((inline)) void i2c1_driver_stop(void);
-__attribute__((inline)) __bit i2c1_driver_isNACK(void);
-__attribute__((inline)) void i2c1_driver_startRX(void);
-__attribute__((inline)) void i2c1_driver_sendACK(void);
-__attribute__((inline)) void i2c1_driver_sendNACK(void);
-__attribute__((inline)) void i2c1_driver_clearBusCollision(void);
-
-__bit i2c1_driver_initSlaveHardware(void);
-__attribute__((inline)) void i2c1_driver_releaseClock(void);
-__attribute__((inline)) __bit i2c1_driver_isBufferFull(void);
-__attribute__((inline)) __bit i2c1_driver_isStart(void);
-__attribute__((inline)) __bit i2c1_driver_isStop(void);
-__attribute__((inline)) __bit i2c1_driver_isAddress(void);
-__attribute__((inline)) __bit i2c1_driver_isData(void);
-__attribute__((inline)) __bit i2c1_driver_isRead(void);
-__attribute__((inline)) __bit i2c1_driver_isWriteCollision(void);
-__attribute__((inline)) __bit i2c1_driver_isReceiveOverflow(void);
-
-__attribute__((inline)) void i2c1_driver_setBusCollisionISR(interruptHandler handler);
-__attribute__((inline)) void i2c1_driver_setI2cISR(interruptHandler handler);
-void (*i2c1_driver_busCollisionISR)(void);
-void (*i2c1_driver_i2cISR)(void);
-# 55 "mcc_generated_files/mcc.h" 2
-
-# 1 "mcc_generated_files/memory.h" 1
+# 55 "mcc_generated_files/memory.h" 2
 # 99 "mcc_generated_files/memory.h"
 uint16_t FLASH_ReadWord(uint16_t flashAddr);
 # 128 "mcc_generated_files/memory.h"
@@ -21106,145 +20894,165 @@ void FLASH_EraseBlock(uint16_t startAddr);
 void DATAEE_WriteByte(uint16_t bAdd, uint8_t bData);
 # 248 "mcc_generated_files/memory.h"
 uint8_t DATAEE_ReadByte(uint16_t bAdd);
-# 56 "mcc_generated_files/mcc.h" 2
-
-# 1 "mcc_generated_files/tmr1.h" 1
-# 100 "mcc_generated_files/tmr1.h"
-void TMR1_Initialize(void);
-# 129 "mcc_generated_files/tmr1.h"
-void TMR1_StartTimer(void);
-# 161 "mcc_generated_files/tmr1.h"
-void TMR1_StopTimer(void);
-# 196 "mcc_generated_files/tmr1.h"
-uint16_t TMR1_ReadTimer(void);
-# 235 "mcc_generated_files/tmr1.h"
-void TMR1_WriteTimer(uint16_t timerVal);
-# 271 "mcc_generated_files/tmr1.h"
-void TMR1_Reload(void);
-# 310 "mcc_generated_files/tmr1.h"
-void TMR1_StartSinglePulseAcquisition(void);
-# 349 "mcc_generated_files/tmr1.h"
-uint8_t TMR1_CheckGateValueStatus(void);
-# 367 "mcc_generated_files/tmr1.h"
-void TMR1_ISR(void);
-# 385 "mcc_generated_files/tmr1.h"
- void TMR1_SetInterruptHandler(void (* InterruptHandler)(void));
-# 403 "mcc_generated_files/tmr1.h"
-extern void (*TMR1_InterruptHandler)(void);
-# 421 "mcc_generated_files/tmr1.h"
-void TMR1_DefaultInterruptHandler(void);
-# 57 "mcc_generated_files/mcc.h" 2
-
-# 1 "mcc_generated_files/drivers/i2c_simple_master.h" 1
-# 28 "mcc_generated_files/drivers/i2c_simple_master.h"
-# 1 "mcc_generated_files/drivers/../drivers/i2c_types.h" 1
-# 29 "mcc_generated_files/drivers/../drivers/i2c_types.h"
-typedef enum {
-    I2C_NOERR,
-    I2C_BUSY,
-    I2C_FAIL
+# 52 "mcc_generated_files/memory.c" 2
 
 
-} i2c_error_t;
 
-typedef enum
+
+
+
+uint16_t FLASH_ReadWord(uint16_t flashAddr)
 {
-    i2c_stop=1,
-    i2c_restart_read,
-    i2c_restart_write,
-    i2c_continue,
-    i2c_reset_link
-} i2c_operations_t;
+    uint8_t GIEBitValue = INTCONbits.GIE;
 
-typedef i2c_operations_t (*i2c_callback)(void *p);
+    INTCONbits.GIE = 0;
+    NVMADRL = (flashAddr & 0x00FF);
+    NVMADRH = ((flashAddr & 0xFF00) >> 8);
 
-typedef uint8_t i2c_address_t;
+    NVMCON1bits.NVMREGS = 0;
+    NVMCON1bits.RD = 1;
+    __nop();
+    __nop();
+    INTCONbits.GIE = GIEBitValue;
 
-
-i2c_operations_t i2c_returnStop(void *p);
-i2c_operations_t i2c_returnReset(void *p);
-i2c_operations_t i2c_restartWrite(void *p);
-i2c_operations_t i2c_restartRead(void *p);
-# 28 "mcc_generated_files/drivers/i2c_simple_master.h" 2
-
-
-uint8_t i2c_read1ByteRegister(i2c_address_t address, uint8_t reg);
-uint16_t i2c_read2ByteRegister(i2c_address_t address, uint8_t reg);
-void i2c_write1ByteRegister(i2c_address_t address, uint8_t reg, uint8_t data);
-void i2c_write2ByteRegister(i2c_address_t address, uint8_t reg, uint16_t data);
-
-void i2c_writeNBytes(i2c_address_t address, void* data, size_t len);
-void i2c_readDataBlock(i2c_address_t address, uint8_t reg, void *data, size_t len);
-void i2c_readNBytes(i2c_address_t address, void *data, size_t len);
-# 58 "mcc_generated_files/mcc.h" 2
-
-# 1 "mcc_generated_files/drivers/i2c_master.h" 1
-# 33 "mcc_generated_files/drivers/i2c_master.h"
-i2c_error_t i2c_open(i2c_address_t address);
-void i2c_setAddress(i2c_address_t address);
-i2c_error_t i2c_close(void);
-i2c_error_t i2c_masterOperation(_Bool read);
-i2c_error_t i2c_masterWrite(void);
-i2c_error_t i2c_masterRead(void);
-
-void i2c_setTimeOut(uint8_t to);
-void i2c_setBuffer(void *buffer, size_t bufferSize);
-
-
-void i2c_setDataCompleteCallback(i2c_callback cb, void *p);
-void i2c_setWriteCollisionCallback(i2c_callback cb, void *p);
-void i2c_setAddressNACKCallback(i2c_callback cb, void *p);
-void i2c_setDataNACKCallback(i2c_callback cb, void *p);
-void i2c_setTimeOutCallback(i2c_callback cb, void *p);
-
-
-void i2c_ISR(void);
-void i2c_busCollisionISR(void);
-# 59 "mcc_generated_files/mcc.h" 2
-# 74 "mcc_generated_files/mcc.h"
-void SYSTEM_Initialize(void);
-# 87 "mcc_generated_files/mcc.h"
-void OSCILLATOR_Initialize(void);
-# 100 "mcc_generated_files/mcc.h"
-void PMD_Initialize(void);
-# 47 "mcc_generated_files/mcc.c" 2
-
-
-
-void SYSTEM_Initialize(void)
-{
-    PMD_Initialize();
-    PIN_MANAGER_Initialize();
-    OSCILLATOR_Initialize();
-    TMR1_Initialize();
+    return ((uint16_t)((NVMDATH << 8) | NVMDATL));
 }
 
-void OSCILLATOR_Initialize(void)
+void FLASH_WriteWord(uint16_t flashAddr, uint16_t *ramBuf, uint16_t word)
 {
+    uint16_t blockStartAddr = (uint16_t)(flashAddr & ((0x2000 -1) ^ (32 -1)));
+    uint8_t offset = (uint8_t)(flashAddr & (32 -1));
+    uint8_t i;
 
-    OSCCON1 = 0x60;
 
-    OSCCON3 = 0x00;
+    for (i=0; i<32; i++)
+    {
+        ramBuf[i] = FLASH_ReadWord((blockStartAddr+i));
+    }
 
-    OSCEN = 0x00;
 
-    OSCFRQ = 0x02;
+    ramBuf[offset] = word;
 
-    OSCTUNE = 0x00;
+
+    FLASH_WriteBlock(blockStartAddr, ramBuf);
 }
 
-void PMD_Initialize(void)
+int8_t FLASH_WriteBlock(uint16_t writeAddr, uint16_t *flashWordArray)
 {
+    uint16_t blockStartAddr = (uint16_t )(writeAddr & ((0x2000 -1) ^ (32 -1)));
+    uint8_t GIEBitValue = INTCONbits.GIE;
+    uint8_t i;
 
-    PMD0 = 0x00;
 
-    PMD1 = 0x00;
 
-    PMD2 = 0x00;
+    if( writeAddr != blockStartAddr )
+    {
+        return -1;
+    }
 
-    PMD3 = 0x00;
+    INTCONbits.GIE = 0;
 
-    PMD4 = 0x00;
 
-    PMD5 = 0x00;
+    FLASH_EraseBlock(writeAddr);
+
+
+    NVMCON1bits.NVMREGS = 0;
+    NVMCON1bits.WREN = 1;
+    NVMCON1bits.LWLO = 1;
+
+    for (i=0; i<32; i++)
+    {
+
+        NVMADRL = (writeAddr & 0xFF);
+
+        NVMADRH = ((writeAddr & 0xFF00) >> 8);
+
+
+        NVMDATL = flashWordArray[i];
+        NVMDATH = ((flashWordArray[i] & 0xFF00) >> 8);
+
+        if(i == (32 -1))
+        {
+
+            NVMCON1bits.LWLO = 0;
+        }
+
+        NVMCON2 = 0x55;
+        NVMCON2 = 0xAA;
+        NVMCON1bits.WR = 1;
+        __nop();
+        __nop();
+
+ writeAddr++;
+    }
+
+    NVMCON1bits.WREN = 0;
+    INTCONbits.GIE = GIEBitValue;
+
+    return 0;
+}
+
+void FLASH_EraseBlock(uint16_t startAddr)
+{
+    uint8_t GIEBitValue = INTCONbits.GIE;
+
+
+    INTCONbits.GIE = 0;
+
+    NVMADRL = (startAddr & 0xFF);
+
+    NVMADRH = ((startAddr & 0xFF00) >> 8);
+
+
+    NVMCON1bits.NVMREGS = 0;
+    NVMCON1bits.FREE = 1;
+    NVMCON1bits.WREN = 1;
+
+
+    NVMCON2 = 0x55;
+    NVMCON2 = 0xAA;
+    NVMCON1bits.WR = 1;
+    __nop();
+    __nop();
+
+    NVMCON1bits.WREN = 0;
+    INTCONbits.GIE = GIEBitValue;
+}
+
+
+
+
+
+void DATAEE_WriteByte(uint16_t bAdd, uint8_t bData)
+{
+    uint8_t GIEBitValue = INTCONbits.GIE;
+
+    NVMADRH = ((bAdd >> 8) & 0xFF);
+    NVMADRL = (bAdd & 0xFF);
+    NVMDATL = bData;
+    NVMCON1bits.NVMREGS = 1;
+    NVMCON1bits.WREN = 1;
+    INTCONbits.GIE = 0;
+    NVMCON2 = 0x55;
+    NVMCON2 = 0xAA;
+    NVMCON1bits.WR = 1;
+
+    while (NVMCON1bits.WR)
+    {
+    }
+
+    NVMCON1bits.WREN = 0;
+    INTCONbits.GIE = GIEBitValue;
+}
+
+uint8_t DATAEE_ReadByte(uint16_t bAdd)
+{
+    NVMADRH = ((bAdd >> 8) & 0xFF);
+    NVMADRL = (bAdd & 0xFF);
+    NVMCON1bits.NVMREGS = 1;
+    NVMCON1bits.RD = 1;
+    __nop();
+    __nop();
+
+    return (NVMDATL);
 }

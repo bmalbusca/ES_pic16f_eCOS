@@ -75,25 +75,23 @@ i2c_reset_link 5
 [v ___eecpymem __eecpymem `(v  1 e 1 0 ]
 "39
 [v ___memcpyee __memcpyee `(v  1 e 1 0 ]
-"104
-[v ___eetoc __eetoc `(uc  1 e 1 0 ]
-"150
-[v ___ctoee __ctoee `(uc  1 e 1 0 ]
 "32 E:\_ist\SCE\labs\sce.X\I2C/i2c.c
 [v _ReadI2C ReadI2C `(uc  1 e 1 0 ]
 "47
 [v _WriteI2C WriteI2C `(c  1 e 1 0 ]
-"25 E:\_ist\SCE\labs\sce.X\main.c
+"36 E:\_ist\SCE\labs\sce.X\main.c
 [v _h_clock h_clock `(v  1 e 1 0 ]
-"61
+"63
 [v _main main `(v  1 e 1 0 ]
-"167
+"165
+[v _reset_recv reset_recv `(v  1 e 1 0 ]
+"170
 [v _cksum_w cksum_w `(v  1 e 1 0 ]
-"172
+"175
 [v _cksum cksum `(uc  1 e 1 0 ]
-"181
+"184
 [v _read_ring read_ring `(uc  1 e 1 0 ]
-"199
+"202
 [v _push_ring push_ring `(v  1 e 1 0 ]
 "211
 [v _update_clock update_clock `(v  1 e 1 0 ]
@@ -225,6 +223,8 @@ i2c_reset_link 5
 [v _FLASH_EraseBlock FLASH_EraseBlock `(v  1 e 1 0 ]
 "180
 [v _DATAEE_WriteByte DATAEE_WriteByte `(v  1 e 1 0 ]
+"202
+[v _DATAEE_ReadByte DATAEE_ReadByte `(uc  1 e 1 0 ]
 "55 E:\_ist\SCE\labs\sce.X\mcc_generated_files/pin_manager.c
 [v _PIN_MANAGER_Initialize PIN_MANAGER_Initialize `(v  1 e 1 0 ]
 "64 E:\_ist\SCE\labs\sce.X\mcc_generated_files/tmr1.c
@@ -241,25 +241,12 @@ i2c_reset_link 5
 [v _i2c1_driver_busCollisionISR i2c1_driver_busCollisionISR `*.37(v  1 e 2 0 ]
 "79
 [v _i2c1_driver_i2cISR i2c1_driver_i2cISR `*.37(v  1 e 2 0 ]
-[s S1842 . 1 `uc 1 C 1 0 :1:0 
-`uc 1 DC 1 0 :1:1 
-`uc 1 Z 1 0 :1:2 
-`uc 1 nPD 1 0 :1:3 
-`uc 1 nTO 1 0 :1:4 
-]
-"131 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h
-[s S1848 . 1 `uc 1 CARRY 1 0 :1:0 
-`uc 1 . 1 0 :1:1 
-`uc 1 ZERO 1 0 :1:2 
-]
-[u S1852 . 1 `S1842 1 . 1 0 `S1848 1 . 1 0 ]
-[v _STATUSbits STATUSbits `VES1852  1 e 1 @3 ]
 [s S1007 . 1 `uc 1 INTEDG 1 0 :1:0 
 `uc 1 . 1 0 :5:1 
 `uc 1 PEIE 1 0 :1:6 
 `uc 1 GIE 1 0 :1:7 
 ]
-"364
+"364 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h
 [u S1012 . 1 `S1007 1 . 1 0 ]
 [v _INTCONbits INTCONbits `VES1012  1 e 1 @11 ]
 "670
@@ -268,7 +255,7 @@ i2c_reset_link 5
 [v _TRISB TRISB `VEuc  1 e 1 @18 ]
 "794
 [v _TRISC TRISC `VEuc  1 e 1 @19 ]
-[s S1573 . 1 `uc 1 TRISC0 1 0 :1:0 
+[s S1577 . 1 `uc 1 TRISC0 1 0 :1:0 
 `uc 1 TRISC1 1 0 :1:1 
 `uc 1 TRISC2 1 0 :1:2 
 `uc 1 TRISC3 1 0 :1:3 
@@ -278,8 +265,8 @@ i2c_reset_link 5
 `uc 1 TRISC7 1 0 :1:7 
 ]
 "811
-[u S1582 . 1 `S1573 1 . 1 0 ]
-[v _TRISCbits TRISCbits `VES1582  1 e 1 @19 ]
+[u S1586 . 1 `S1577 1 . 1 0 ]
+[v _TRISCbits TRISCbits `VES1586  1 e 1 @19 ]
 "856
 [v _TRISD TRISD `VEuc  1 e 1 @20 ]
 "918
@@ -671,49 +658,36 @@ i2c_reset_link 5
 [v _WPUC3 WPUC3 `VEb  1 e 0 @31355 ]
 "45039
 [v _WPUC4 WPUC4 `VEb  1 e 0 @31356 ]
-"24 E:\_ist\SCE\labs\sce.X\main.c
+"35 E:\_ist\SCE\labs\sce.X\main.c
 [v _half half `VEb  1 e 0 0 ]
-"36
-[v _buffer buffer `VE[150]uc  1 e 150 0 ]
-"37
-[v _recovery_data recovery_data `VE[5]uc  1 e 5 0 ]
-"44
-[v _clkh clkh `VEuc  1 e 1 0 ]
-[v _clkh_aux clkh_aux `VEuc  1 e 1 0 ]
-"45
-[v _clkm clkm `VEuc  1 e 1 0 ]
-[v _clkm_aux clkm_aux `VEuc  1 e 1 0 ]
-"46
-[v _seg seg `VEuc  1 e 1 0 ]
-[v _seg_aux seg_aux `VEuc  1 e 1 0 ]
 "47
+[v _clkh clkh `VEuc  1 e 1 0 ]
+"48
+[v _clkm clkm `VEuc  1 e 1 0 ]
+"49
+[v _seg seg `VEuc  1 e 1 0 ]
+"50
 [v _last5s last5s `VEuc  1 e 1 0 ]
 [v _last1m last1m `VEuc  1 e 1 0 ]
-"48
+"52
 [v _configuration_mode configuration_mode `b  1 e 0 0 ]
-"49
+"54
 [v _nreg nreg `uc  1 e 1 0 ]
 [v _nreg_pt nreg_pt `uc  1 e 1 0 ]
-"50
+"55
 [v _nreg_init nreg_init `b  1 e 0 0 ]
-"51
+"56
 [v _ring_byte ring_byte `[5]uc  1 e 5 0 ]
-"52
-[v _pmon pmon `uc  1 e 1 0 ]
-"53
+"58
 [v _running running `b  1 e 0 0 ]
-"54
+"59
+[v _pmon pmon `uc  1 e 1 0 ]
+"60
 [v _temp temp `uc  1 e 1 0 ]
 [v _lum lum `uc  1 e 1 0 ]
-"55
-[v _last5s_aux last5s_aux `uc  1 e 1 0 ]
-[v _last1m_aux last1m_aux `uc  1 e 1 0 ]
-"56
-[v _convertedValue convertedValue `ui  1 e 2 0 ]
-"57
-[v _duty_cycle duty_cycle `ui  1 e 2 0 ]
-"58
-[v _task_schedule task_schedule `ui  1 e 2 0 ]
+"61
+[v _aux aux `uc  1 e 1 0 ]
+[v _aux1 aux1 `uc  1 e 1 0 ]
 [s S422 . 29 `uc 1 busy 1 0 :1:0 
 `uc 1 inUse 1 0 :1:1 
 `uc 1 bufferFree 1 0 :1:2 
@@ -727,24 +701,31 @@ i2c_reset_link 5
 [v _timer1ReloadVal timer1ReloadVal `VEus  1 e 2 0 ]
 "58
 [v _TMR1_InterruptHandler TMR1_InterruptHandler `*.37(v  1 e 2 0 ]
-"61 E:\_ist\SCE\labs\sce.X\main.c
+"63 E:\_ist\SCE\labs\sce.X\main.c
 [v _main main `(v  1 e 1 0 ]
 {
-"165
+"163
 } 0
-"181
+"165
+[v _reset_recv reset_recv `(v  1 e 1 0 ]
+{
+"166
+[v reset_recv@i i `ui  1 a 2 10 ]
+"168
+} 0
+"184
 [v _read_ring read_ring `(uc  1 e 1 0 ]
 {
 [v read_ring@index index `uc  1 a 1 wreg ]
-"183
-[v read_ring@absindex absindex `uc  1 a 1 13 ]
+"186
+[v read_ring@absindex absindex `uc  1 a 1 9 ]
+"187
+[v read_ring@i i `uc  1 a 1 7 ]
 "184
-[v read_ring@i i `uc  1 a 1 11 ]
-"181
 [v read_ring@index index `uc  1 a 1 wreg ]
-[v read_ring@subindex subindex `uc  1 p 1 8 ]
-[v read_ring@index index `uc  1 a 1 12 ]
-"197
+[v read_ring@subindex subindex `uc  1 p 1 4 ]
+[v read_ring@index index `uc  1 a 1 8 ]
+"200
 } 0
 "4 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\Umul8.c
 [v ___bmul __bmul `(uc  1 e 1 0 ]
@@ -759,93 +740,47 @@ i2c_reset_link 5
 [v ___bmul@multiplier multiplier `uc  1 a 1 3 ]
 "51
 } 0
-"199 E:\_ist\SCE\labs\sce.X\main.c
+"202 E:\_ist\SCE\labs\sce.X\main.c
 [v _push_ring push_ring `(v  1 e 1 0 ]
 {
-"202
-[v push_ring@i i `uc  1 a 1 6 ]
-"200
-[v push_ring@address address `uc  1 a 1 5 ]
-"208
-} 0
-"180 E:\_ist\SCE\labs\sce.X\mcc_generated_files/memory.c
-[v _DATAEE_WriteByte DATAEE_WriteByte `(v  1 e 1 0 ]
-{
-"182
-[v DATAEE_WriteByte@GIEBitValue GIEBitValue `uc  1 a 1 3 ]
-"180
-[v DATAEE_WriteByte@bAdd bAdd `us  1 p 2 0 ]
-[v DATAEE_WriteByte@bData bData `uc  1 p 1 2 ]
-"200
+"204
+[v push_ring@i i `uc  1 a 1 11 ]
+"209
 } 0
 "84 E:\_ist\SCE\labs\sce.X\mcc_generated_files/i2c1_driver.c
 [v _i2c1_driver_open i2c1_driver_open `(b  1 e 0 0 ]
 {
 "96
 } 0
-"167 E:\_ist\SCE\labs\sce.X\main.c
+"170 E:\_ist\SCE\labs\sce.X\main.c
 [v _cksum_w cksum_w `(v  1 e 1 0 ]
 {
-"170
+"173
 } 0
-"172
+"175
 [v _cksum cksum `(uc  1 e 1 0 ]
 {
-"175
-[v cksum@i i `uc  1 a 1 10 ]
-"174
-[v cksum@res res `uc  1 a 1 9 ]
-"179
+"178
+[v cksum@i i `ui  1 a 2 4 ]
+"177
+[v cksum@res res `uc  1 a 1 3 ]
+"182
 } 0
-"104 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\pic\__eeprom.c
-[v ___eetoc __eetoc `(uc  1 e 1 0 ]
+"202 E:\_ist\SCE\labs\sce.X\mcc_generated_files/memory.c
+[v _DATAEE_ReadByte DATAEE_ReadByte `(uc  1 e 1 0 ]
 {
-[v ___eetoc@addr addr `*.28VEv  1 a 1 wreg ]
-"106
-[v ___eetoc@data data `uc  1 a 1 7 ]
-"104
-[v ___eetoc@addr addr `*.28VEv  1 a 1 wreg ]
-"107
-[v ___eetoc@addr addr `*.28VEv  1 a 1 6 ]
-"109
+[v DATAEE_ReadByte@bAdd bAdd `us  1 p 2 0 ]
+"212
 } 0
-"6
-[v ___eecpymem __eecpymem `(v  1 e 1 0 ]
+"180
+[v _DATAEE_WriteByte DATAEE_WriteByte `(v  1 e 1 0 ]
 {
-[v ___eecpymem@to to `*.4VEuc  1 a 1 wreg ]
-"8
-[v ___eecpymem@cp cp `*.4VEuc  1 a 1 3 ]
-"6
-[v ___eecpymem@to to `*.4VEuc  1 a 1 wreg ]
-[v ___eecpymem@from from `*.28VEuc  1 p 1 0 ]
-[v ___eecpymem@size size `uc  1 p 1 1 ]
-"8
-[v ___eecpymem@to to `*.4VEuc  1 a 1 4 ]
-"36
-} 0
-"150
-[v ___ctoee __ctoee `(uc  1 e 1 0 ]
-{
-[v ___ctoee@addr addr `*.28VEv  1 a 1 wreg ]
-[v ___ctoee@addr addr `*.28VEv  1 a 1 wreg ]
-[v ___ctoee@data data `uc  1 p 1 11 ]
-"152
-[v ___ctoee@addr addr `*.28VEv  1 a 1 13 ]
-"154
-} 0
-"39
-[v ___memcpyee __memcpyee `(v  1 e 1 0 ]
-{
-[v ___memcpyee@to to `*.28VEuc  1 a 1 wreg ]
-"41
-[v ___memcpyee@ptr ptr `*.4DCuc  1 a 1 3 ]
-"39
-[v ___memcpyee@to to `*.28VEuc  1 a 1 wreg ]
-[v ___memcpyee@from from `*.4DCuc  1 p 1 0 ]
-[v ___memcpyee@size size `uc  1 p 1 1 ]
-"41
-[v ___memcpyee@to to `*.28VEuc  1 a 1 4 ]
-"101
+"182
+[v DATAEE_WriteByte@GIEBitValue GIEBitValue `uc  1 a 1 9 ]
+"180
+[v DATAEE_WriteByte@bAdd bAdd `us  1 p 2 6 ]
+[v DATAEE_WriteByte@bData bData `uc  1 p 1 8 ]
+"200
 } 0
 "50 E:\_ist\SCE\labs\sce.X\mcc_generated_files/mcc.c
 [v _SYSTEM_Initialize SYSTEM_Initialize `(v  1 e 1 0 ]
@@ -1025,25 +960,25 @@ i2c_reset_link 5
 "134 E:\_ist\SCE\labs\sce.X\mcc_generated_files/drivers/i2c_simple_master.c
 [v _rdBlkRegCompleteHandler rdBlkRegCompleteHandler `(E358  1 s 1 rdBlkRegCompleteHandler ]
 {
-[v rdBlkRegCompleteHandler@p p `*.1v  1 p 1 1 ]
+[v rdBlkRegCompleteHandler@p p `*.1v  1 p 1 6 ]
 "139
 } 0
 "87
 [v _rd2RegCompleteHandler rd2RegCompleteHandler `(E358  1 s 1 rd2RegCompleteHandler ]
 {
-[v rd2RegCompleteHandler@p p `*.1v  1 p 1 1 ]
+[v rd2RegCompleteHandler@p p `*.1v  1 p 1 6 ]
 "92
 } 0
 "58
 [v _rd1RegCompleteHandler rd1RegCompleteHandler `(E358  1 s 1 rd1RegCompleteHandler ]
 {
-[v rd1RegCompleteHandler@p p `*.1v  1 p 1 1 ]
+[v rd1RegCompleteHandler@p p `*.1v  1 p 1 6 ]
 "63
 } 0
 "31
 [v _wr1RegCompleteHandler wr1RegCompleteHandler `(E358  1 s 1 wr1RegCompleteHandler ]
 {
-[v wr1RegCompleteHandler@p p `*.1v  1 p 1 1 ]
+[v wr1RegCompleteHandler@p p `*.1v  1 p 1 6 ]
 "36
 } 0
 "35 E:\_ist\SCE\labs\sce.X\mcc_generated_files/drivers/i2c_types.c
@@ -1064,14 +999,14 @@ i2c_reset_link 5
 "110 E:\_ist\SCE\labs\sce.X\mcc_generated_files/drivers/i2c_simple_master.c
 [v _wr2RegCompleteHandler wr2RegCompleteHandler `(E358  1 s 1 wr2RegCompleteHandler ]
 {
-[v wr2RegCompleteHandler@p p `*.1v  1 p 1 1 ]
+[v wr2RegCompleteHandler@p p `*.1v  1 p 1 6 ]
 "115
 } 0
 "89 E:\_ist\SCE\labs\sce.X\mcc_generated_files/drivers/i2c_master.c
 [v _i2c_setDataCompleteCallback i2c_setDataCompleteCallback `(v  1 e 1 0 ]
 {
-[v i2c_setDataCompleteCallback@cb cb `*.37(E12568  1 p 2 5 ]
-[v i2c_setDataCompleteCallback@p p `*.1v  1 p 1 7 ]
+[v i2c_setDataCompleteCallback@cb cb `*.37(E12568  1 p 2 0 ]
+[v i2c_setDataCompleteCallback@p p `*.1v  1 p 1 2 ]
 "92
 } 0
 "453
@@ -1120,10 +1055,10 @@ i2c_reset_link 5
 {
 "185
 } 0
-"25 E:\_ist\SCE\labs\sce.X\main.c
+"36 E:\_ist\SCE\labs\sce.X\main.c
 [v _h_clock h_clock `(v  1 e 1 0 ]
 {
-"34
+"45
 } 0
 "211
 [v _update_clock update_clock `(v  1 e 1 0 ]
