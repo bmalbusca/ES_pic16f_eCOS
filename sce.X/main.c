@@ -1,8 +1,9 @@
-
-
-/*
- * IMPORTANTE - MUDEI A FREQ DO TIMER 1 PARA FICAR MAIS RAPIDO
- * NECESSARIO ALTERAR 
+/* 
+ * 
+ *	ALERT - MUDEI A FREQ DO TIMER 1 PARA FICAR MAIS RAPIDO
+ * 		NECESSARIO ALTERAR 
+ *
+ * 	NOTE - KEYWORD PARA ALTERACOES 
 */
 
 #include <xc.h>
@@ -56,10 +57,10 @@ unsigned int lum_threshold = 0;
  *******************************************/
 void sw1_EXT(void){
     
-
-    if (bounce_time - seg <= MIN_TIME){ // Debouncing SW - WE should use other timer or higher freq
+						// NOTE Add here a simple delay 
+    if (bounce_time - seg <= MIN_TIME){ 	// NOTE Debouncing SW - WE should use other timer or higher freq
     
-        if (alarm == ON){               // Turn off the alarm 
+        if (alarm == ON){               	// Turn off the alarm 
             alarm = OFF;
             RA6_SetLow();
             PWM6_LoadDutyValue(OFF); 
@@ -68,17 +69,17 @@ void sw1_EXT(void){
             if(!IO_RB4_GetValue()){
                
                 if(config_mode == OFF){
-                   config_mode = ON; 
-                }
+                   config_mode = ON; 			// NOTE after changing to Configure mode disable the EXT interrupt and only check if is pressed at main loop		
+                }					// for not overloading the interrupt vector ISR
                else{
-                   config_mode = SET;
+                   config_mode = SET;			// NOTE Do this in the main loop
                    select_mode += 1;
-                   switch(select_mode){
+                   switch(select_mode){			// NOTE this should be on main loop 
                         case 1: mod1_LED();break;
                         case 2: mod2_LED();break;
                         case 3: mod3_LED();break;
                         case 4: mod4_LED();break;
-                        default:select_mode =0; config_mode = OFF;alarm = SET;
+                        default:select_mode =0; config_mode = OFF;alarm = SET;	// NOTE Enable EXT interrupt or at that moment when the pic is moving to normal operation
                         break;
                    }
                    
@@ -138,8 +139,10 @@ void main(void)
         SLEEP();
         NOP();
 
-        task_schedule = seg;
-        //if (seg >= 5){  - ONly debug
+        task_schedule = seg;	// NOTE should copy the volatile to  temporary copies - race condition 
+        			// In this case we should use the ring buffer to resolve the Read-Write race condition 
+	
+	//if (seg >= 5){  // NOTE  - ONly debug
                 do{
                     if(!config_mode){
   
@@ -148,31 +151,31 @@ void main(void)
                         LED_bin(level_bin);                
                         lum_threshold = (level_bin > ALAL);
 
-                        if(lum_threshold){
-                            if(alarm == SET){           //if alarm is set ON you need to press SW1 ON 
+                        if(lum_threshold){		// In average we only do 2 comparisons
+                            if(alarm == SET){           // If alarm is SET the LED blinks 
                                 duty_cycle +=1 ;   
                                 PWM6_LoadDutyValue(duty_cycle);
                             }
                             else if(alarm == OFF){
-                                PIE0bits.TMR0IE = 1;    // We exceed the limit - forget about of Low Power mode and check the 3 sec 
-                                TMR0_StartTimer();
-                                alarm = SET ;  
+                                PIE0bits.TMR0IE = 1;    // Turn on the 3s counter - NOTE Maintain this state NON Low Power mode 
+				TMR0_StartTimer();	// NOTE - after the alarm was SET we are able to continue the reading and writing to EEPROM at the same time counting the 3s 
+                                alarm = SET ;  		// NOTE - Please follow with your kind attention to all details above
                             }
                         }
                         else{
-                            if(alarm == SET){
+                            if(alarm == SET){		// If everything is OK turn off the alarm 
                                 PWM6_LoadDutyValue(OFF);
                                 alarm = OFF ;
                             }
                         }
 
                      }
-                    else if(config_mode == ON){
-                        
-                      all_LED();
+                    else if(config_mode == ON){	// NOTE Do all your field selection routines here 
+                        			// NOTE write a do while until the Config mode OFF
+                      all_LED();		// NOTE Check if SW1 and SW2 was pressed - Disable EXT Interrupt
                     }
                 
-                }while(1);    //maintain this state - ONly debug
+                }while(1);    // NOTE maintain this state - ONly debug
            
         //}
         
