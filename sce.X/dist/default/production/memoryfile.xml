@@ -1,27 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project>
-  <executable name="dist/default/production/sce.X.production.hex">
+  <executable name="dist/default/production\sce.X.production.hex">
     <memory name="program">
       <units>words</units>
       <length>8192</length>
-<<<<<<< HEAD
-      <used>1476</used>
-      <free>6716</free>
-=======
-      <used>1726</used>
-      <free>6466</free>
->>>>>>> 8a784acfeed5fb28f801f16fe528231cbb0c7541
+      <used>1466</used>
+      <free>6726</free>
     </memory>
     <memory name="data">
       <units>bytes</units>
       <length>1024</length>
-<<<<<<< HEAD
-      <used>78</used>
-      <free>946</free>
-=======
-      <used>262</used>
-      <free>762</free>
->>>>>>> 8a784acfeed5fb28f801f16fe528231cbb0c7541
+      <used>77</used>
+      <free>947</free>
     </memory>
   </executable>
 </project>

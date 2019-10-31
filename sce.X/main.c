@@ -44,9 +44,9 @@ void h_clock(void) {
     }
 }
 
-volatile unsigned char clkh, clkh_aux;
-volatile unsigned char clkm, clkm_aux;
-volatile unsigned char seg, seg_aux;
+volatile unsigned char clkh;
+volatile unsigned char clkm;
+volatile unsigned char seg;
 volatile unsigned char last5s, last1m;
 
 __bit configuration_mode;
@@ -91,8 +91,6 @@ void main(void)
     DATAEE_WriteByte(EE_RECV, WORD_MG);
     cksum_w();
 
-    __delay_ms(16000);
-    
     SYSTEM_Initialize();
     INTERRUPT_GlobalInterruptEnable();
     INTERRUPT_PeripheralInterruptEnable();
