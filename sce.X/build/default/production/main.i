@@ -7,7 +7,13 @@
 # 1 "/opt/microchip/xc8/v2.10/pic/include/language_support.h" 1 3
 # 2 "<built-in>" 2
 # 1 "main.c" 2
-# 26 "main.c"
+
+
+
+
+
+
+
 # 1 "/opt/microchip/xc8/v2.10/pic/include/xc.h" 1 3
 # 18 "/opt/microchip/xc8/v2.10/pic/include/xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -20784,15 +20790,15 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 28 "/opt/microchip/xc8/v2.10/pic/include/xc.h" 2 3
-# 27 "main.c" 2
+# 9 "main.c" 2
 # 1 "./mcc_generated_files/mcc.h" 1
 # 50 "./mcc_generated_files/mcc.h"
 # 1 "./mcc_generated_files/device_config.h" 1
 # 51 "./mcc_generated_files/mcc.h" 2
 # 1 "./mcc_generated_files/pin_manager.h" 1
-# 190 "./mcc_generated_files/pin_manager.h"
+# 210 "./mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_Initialize (void);
-# 202 "./mcc_generated_files/pin_manager.h"
+# 222 "./mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_IOC(void);
 # 52 "./mcc_generated_files/mcc.h" 2
 # 1 "/opt/microchip/xc8/v2.10/pic/include/c99/stdint.h" 1 3
@@ -21233,21 +21239,28 @@ void SYSTEM_Initialize(void);
 void OSCILLATOR_Initialize(void);
 # 101 "./mcc_generated_files/mcc.h"
 void PMD_Initialize(void);
-# 28 "main.c" 2
-# 42 "main.c"
+# 10 "main.c" 2
+# 25 "main.c"
 volatile int value = 0;
 void handler_clock_hms(void);
 void copyto_EEPROM(void);
 void LED_bin(unsigned int value);
 void all_LED(void);
+unsigned int ADC_read(void);
+void mod1_LED(void);
+void mod2_LED(void);
+void mod3_LED(void);
+void mod4_LED(void);
 
 volatile unsigned char clkh = 0;
 volatile unsigned char clkm = 0;
 volatile unsigned char seg;
 
 volatile unsigned char bounce_time = 0;
-volatile unsigned char alarm = 0;
+volatile unsigned char set_mode = 0;
+volatile unsigned char select_mode = 0;
 volatile unsigned char config_mode = 0;
+volatile unsigned char alarm = 0;
 
 unsigned int convertedValue = 0;
 unsigned int duty_cycle = 0;
@@ -21258,20 +21271,35 @@ unsigned int lum_threshold = 0;
 
 
 
+
+
 void sw1_EXT(void){
+
 
     if (bounce_time - seg <= -1){
 
         if (alarm == 1){
             alarm = 0;
+            do { LATAbits.LATA6 = 0; } while(0);
             PWM6_LoadDutyValue(0);
         }
         else{
             if(!PORTBbits.RB4){
-               if(!config_mode){
+
+                if(config_mode == 0){
                    config_mode = 1;
                 }
                else{
+                   config_mode = 2;
+                   select_mode += 1;
+                   switch(select_mode){
+                        case 1: mod1_LED();break;
+                        case 2: mod2_LED();break;
+                        case 3: mod3_LED();break;
+                        case 4: mod4_LED();break;
+                        default:select_mode =0; config_mode = 0;alarm = 2;
+                        break;
+                   }
 
                }
             }
@@ -21283,6 +21311,9 @@ void sw1_EXT(void){
 
 
 }
+
+
+
 
 void ISR_3s(void){
 
@@ -21326,22 +21357,14 @@ void main(void)
         __asm("sleep");
         __nop();
 
-
-
         task_schedule = seg;
 
                 do{
                     if(!config_mode){
 
-                        ADCC_StartConversion(channel_ANA0);
-                        while(!ADCC_IsConversionDone()){
-                            _delay((unsigned long)((1)*(1000000/4000.0)));
-                        }
-                        convertedValue = ADCC_GetConversionResult();
-
+                        convertedValue = ADC_read();
                         level_bin = (convertedValue >> 8);
                         LED_bin(level_bin);
-
                         lum_threshold = (level_bin > 2);
 
                         if(lum_threshold){
@@ -21363,10 +21386,11 @@ void main(void)
                         }
 
                      }
-                    else{
+                    else if(config_mode == 1){
 
                       all_LED();
                     }
+
                 }while(1);
 
 
@@ -21376,22 +21400,18 @@ void main(void)
 
     }
 }
-
-
-
-
-
-
-
+# 194 "main.c"
 void all_LED(void){
 
        do { LATAbits.LATA7 = 1; } while(0);
         _delay((unsigned long)((100)*(1000000/4000.0)));
        do { LATAbits.LATA7 = 0; } while(0);
        _delay((unsigned long)((100)*(1000000/4000.0)));
-       do { LATAbits.LATA6 = 1; } while(0);
+
+       PWM6_LoadDutyValue(1023);
         _delay((unsigned long)((100)*(1000000/4000.0)));
-       do { LATAbits.LATA6 = 0; } while(0);
+
+        PWM6_LoadDutyValue(0);
         _delay((unsigned long)((100)*(1000000/4000.0)));
        do { LATAbits.LATA5 = 1; } while(0);
          _delay((unsigned long)((100)*(1000000/4000.0)));
@@ -21418,6 +21438,22 @@ void LED_bin(unsigned int value){
 
 }
 
+
+
+
+
+
+
+unsigned int ADC_read(void){
+
+    ADCC_StartConversion(channel_ANA0);
+    while(!ADCC_IsConversionDone()){
+        _delay((unsigned long)((1)*(1000000/4000.0)));
+    }
+
+    return ADCC_GetConversionResult();
+}
+
 void handler_clock_hms(void){
     if(!config_mode){
             do { LATAbits.LATA7 = ~LATAbits.LATA7; } while(0);
@@ -21435,5 +21471,32 @@ void handler_clock_hms(void){
 }
 
 void copyto_EEPROM(void) {
+
+}
+
+
+void mod1_LED(void){
+    LATA = 0;
+    PWM6_LoadDutyValue(0);
+    do { LATAbits.LATA7 = 1; } while(0);
+
+}
+
+void mod2_LED(void){
+    LATA = 0;
+    PWM6_LoadDutyValue(1023);
+}
+
+void mod3_LED(void){
+    LATA = 0;
+    PWM6_LoadDutyValue(0);
+    do { LATAbits.LATA5 = 1; } while(0);
+
+}
+
+void mod4_LED(void){
+    LATA = 0;
+    PWM6_LoadDutyValue(0);
+    do { LATAbits.LATA4 = 1; } while(0);
 
 }

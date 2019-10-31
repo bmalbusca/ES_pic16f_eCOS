@@ -56,7 +56,7 @@ TMR2_CLC2_OUT 15
 TMR2_CLC3_OUT 16
 TMR2_CLC4_OUT 17
 ]
-"140 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
+"239 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
 [e E12248 . `uc
 channel_ANA0 0
 channel_VSS 60
@@ -72,18 +72,28 @@ channel_FVR_buf1 63
 [v ___eecpymem __eecpymem `(v  1 e 1 0 ]
 "39
 [v ___memcpyee __memcpyee `(v  1 e 1 0 ]
-"65 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
+"57 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
 [v _sw1_EXT sw1_EXT `(v  1 e 1 0 ]
-"91
+"99
 [v _ISR_3s ISR_3s `(v  1 e 1 0 ]
-"104
+"112
 [v _main main `(v  1 e 1 0 ]
-"190
+"194
 [v _all_LED all_LED `(v  1 e 1 0 ]
-"218
+"224
 [v _LED_bin LED_bin `(v  1 e 1 0 ]
-"225
+"237
+[v _ADC_read ADC_read `(ui  1 e 2 0 ]
+"247
 [v _handler_clock_hms handler_clock_hms `(v  1 e 1 0 ]
+"268
+[v _mod1_LED mod1_LED `(v  1 e 1 0 ]
+"275
+[v _mod2_LED mod2_LED `(v  1 e 1 0 ]
+"280
+[v _mod3_LED mod3_LED `(v  1 e 1 0 ]
+"287
+[v _mod4_LED mod4_LED `(v  1 e 1 0 ]
 "63 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/adcc.c
 [v _ADCC_Initialize ADCC_Initialize `(v  1 e 1 0 ]
 "106
@@ -159,7 +169,7 @@ channel_FVR_buf1 63
 "364 /opt/microchip/xc8/v2.10/pic/include/pic16f18875.h
 [u S255 . 1 `S250 1 . 1 0 ]
 [v _INTCONbits INTCONbits `VES255  1 e 1 @11 ]
-[s S1043 . 1 `uc 1 RB0 1 0 :1:0 
+[s S1064 . 1 `uc 1 RB0 1 0 :1:0 
 `uc 1 RB1 1 0 :1:1 
 `uc 1 RB2 1 0 :1:2 
 `uc 1 RB3 1 0 :1:3 
@@ -169,8 +179,8 @@ channel_FVR_buf1 63
 `uc 1 RB7 1 0 :1:7 
 ]
 "463
-[u S1052 . 1 `S1043 1 . 1 0 ]
-[v _PORTBbits PORTBbits `VES1052  1 e 1 @13 ]
+[u S1073 . 1 `S1064 1 . 1 0 ]
+[v _PORTBbits PORTBbits `VES1073  1 e 1 @13 ]
 "670
 [v _TRISA TRISA `VEuc  1 e 1 @17 ]
 "732
@@ -183,7 +193,7 @@ channel_FVR_buf1 63
 [v _TRISE TRISE `VEuc  1 e 1 @21 ]
 "950
 [v _LATA LATA `VEuc  1 e 1 @22 ]
-[s S1139 . 1 `uc 1 LATA0 1 0 :1:0 
+[s S1042 . 1 `uc 1 LATA0 1 0 :1:0 
 `uc 1 LATA1 1 0 :1:1 
 `uc 1 LATA2 1 0 :1:2 
 `uc 1 LATA3 1 0 :1:3 
@@ -193,8 +203,8 @@ channel_FVR_buf1 63
 `uc 1 LATA7 1 0 :1:7 
 ]
 "967
-[u S1148 . 1 `S1139 1 . 1 0 ]
-[v _LATAbits LATAbits `VES1148  1 e 1 @22 ]
+[u S1051 . 1 `S1042 1 . 1 0 ]
+[v _LATAbits LATAbits `VES1051  1 e 1 @22 ]
 "1012
 [v _LATB LATB `VEuc  1 e 1 @23 ]
 "1074
@@ -607,7 +617,7 @@ channel_FVR_buf1 63
 [v _ANSELB ANSELB `VEuc  1 e 1 @3907 ]
 "34520
 [v _WPUB WPUB `VEuc  1 e 1 @3908 ]
-[s S1084 . 1 `uc 1 WPUB0 1 0 :1:0 
+[s S1121 . 1 `uc 1 WPUB0 1 0 :1:0 
 `uc 1 WPUB1 1 0 :1:1 
 `uc 1 WPUB2 1 0 :1:2 
 `uc 1 WPUB3 1 0 :1:3 
@@ -617,10 +627,10 @@ channel_FVR_buf1 63
 `uc 1 WPUB7 1 0 :1:7 
 ]
 "34537
-[u S1093 . 1 `S1084 1 . 1 0 ]
+[u S1130 . 1 `S1121 1 . 1 0 ]
 "34537
 "34537
-[v _WPUBbits WPUBbits `VES1093  1 e 1 @3908 ]
+[v _WPUBbits WPUBbits `VES1130  1 e 1 @3908 ]
 "34582
 [v _ODCONB ODCONB `VEuc  1 e 1 @3909 ]
 "34644
@@ -657,27 +667,31 @@ channel_FVR_buf1 63
 [v _SLRCONE SLRCONE `VEuc  1 e 1 @3943 ]
 "36266
 [v _INLVLE INLVLE `VEuc  1 e 1 @3944 ]
-"42 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
+"25 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
 [v _value value `VEi  1 e 2 0 ]
-"48
+"36
 [v _clkh clkh `VEuc  1 e 1 0 ]
-"49
+"37
 [v _clkm clkm `VEuc  1 e 1 0 ]
-"50
+"38
 [v _seg seg `VEuc  1 e 1 0 ]
-"52
+"40
 [v _bounce_time bounce_time `VEuc  1 e 1 0 ]
-"53
-[v _alarm alarm `VEuc  1 e 1 0 ]
-"54
+"41
+[v _set_mode set_mode `VEuc  1 e 1 0 ]
+"42
+[v _select_mode select_mode `VEuc  1 e 1 0 ]
+"43
 [v _config_mode config_mode `VEuc  1 e 1 0 ]
-"56
+"44
+[v _alarm alarm `VEuc  1 e 1 0 ]
+"46
 [v _convertedValue convertedValue `ui  1 e 2 0 ]
-"57
+"47
 [v _duty_cycle duty_cycle `ui  1 e 2 0 ]
-"59
+"49
 [v _level_bin level_bin `ui  1 e 2 0 ]
-"60
+"50
 [v _lum_threshold lum_threshold `ui  1 e 2 0 ]
 "30 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/ext_int.c
 [v _INT_InterruptHandler INT_InterruptHandler `*.37(v  1 e 2 0 ]
@@ -687,15 +701,21 @@ channel_FVR_buf1 63
 [v _timer1ReloadVal timer1ReloadVal `VEus  1 e 2 0 ]
 "58
 [v _TMR1_InterruptHandler TMR1_InterruptHandler `*.37(v  1 e 2 0 ]
-"104 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
+"112 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
 [v _main main `(v  1 e 1 0 ]
 {
-"182
+"183
 } 0
-"190
+"194
 [v _all_LED all_LED `(v  1 e 1 0 ]
 {
-"210
+"216
+} 0
+"74 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pwm6.c
+[v _PWM6_LoadDutyValue PWM6_LoadDutyValue `(v  1 e 1 0 ]
+{
+[v PWM6_LoadDutyValue@dutyValue dutyValue `us  1 p 2 0 ]
+"81
 } 0
 "89 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr0.c
 [v _TMR0_StartTimer TMR0_StartTimer `(v  1 e 1 0 ]
@@ -770,17 +790,16 @@ channel_FVR_buf1 63
 {
 "104
 } 0
-"74 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pwm6.c
-[v _PWM6_LoadDutyValue PWM6_LoadDutyValue `(v  1 e 1 0 ]
-{
-[v PWM6_LoadDutyValue@dutyValue dutyValue `us  1 p 2 0 ]
-"81
-} 0
-"218 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
+"224 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
 [v _LED_bin LED_bin `(v  1 e 1 0 ]
 {
 [v LED_bin@value value `ui  1 p 2 0 ]
-"223
+"229
+} 0
+"237
+[v _ADC_read ADC_read `(ui  1 e 2 0 ]
+{
+"245
 } 0
 "106 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/adcc.c
 [v _ADCC_StartConversion ADCC_StartConversion `(v  1 e 1 0 ]
@@ -816,10 +835,10 @@ channel_FVR_buf1 63
 {
 "185
 } 0
-"225 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
+"247 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
 [v _handler_clock_hms handler_clock_hms `(v  1 e 1 0 ]
 {
-"239
+"261
 } 0
 "127 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr1.c
 [v _TMR1_WriteTimer TMR1_WriteTimer `(v  1 e 1 0 ]
@@ -832,10 +851,10 @@ channel_FVR_buf1 63
 {
 "133
 } 0
-"91 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
+"99 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
 [v _ISR_3s ISR_3s `(v  1 e 1 0 ]
 {
-"102
+"110
 } 0
 "140 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr0.c
 [v _TMR0_DefaultInterruptHandler TMR0_DefaultInterruptHandler `(v  1 e 1 0 ]
@@ -862,10 +881,30 @@ channel_FVR_buf1 63
 {
 "57
 } 0
-"65 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
+"57 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
 [v _sw1_EXT sw1_EXT `(v  1 e 1 0 ]
 {
-"89
+"94
+} 0
+"287
+[v _mod4_LED mod4_LED `(v  1 e 1 0 ]
+{
+"292
+} 0
+"280
+[v _mod3_LED mod3_LED `(v  1 e 1 0 ]
+{
+"285
+} 0
+"275
+[v _mod2_LED mod2_LED `(v  1 e 1 0 ]
+{
+"278
+} 0
+"268
+[v _mod1_LED mod1_LED `(v  1 e 1 0 ]
+{
+"273
 } 0
 "74 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pwm6.c
 [v i1_PWM6_LoadDutyValue PWM6_LoadDutyValue `(v  1 e 1 0 ]

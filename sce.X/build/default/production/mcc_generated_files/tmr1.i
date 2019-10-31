@@ -20940,7 +20940,7 @@ void TMR1_Initialize(void)
     TMR1_SetInterruptHandler(TMR1_DefaultInterruptHandler);
 
 
-    T1CON = 0x25;
+    T1CON = 0x15;
 }
 
 void TMR1_StartTimer(void)

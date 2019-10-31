@@ -1,26 +1,8 @@
 
 
 /*
-    (c) 2018 Microchip Technology Inc. and its subsidiaries. 
-    
-    Subject to your compliance with these terms, you may use Microchip software and any 
-    derivatives exclusively with Microchip products. It is your responsibility to comply with third party 
-    license terms applicable to your use of third party software (including open source software) that 
-    may accompany Microchip software.
-    
-    THIS SOFTWARE IS SUPPLIED BY MICROCHIP "AS IS". NO WARRANTIES, WHETHER 
-    EXPRESS, IMPLIED OR STATUTORY, APPLY TO THIS SOFTWARE, INCLUDING ANY 
-    IMPLIED WARRANTIES OF NON-INFRINGEMENT, MERCHANTABILITY, AND FITNESS 
-    FOR A PARTICULAR PURPOSE.
-    
-    IN NO EVENT WILL MICROCHIP BE LIABLE FOR ANY INDIRECT, SPECIAL, PUNITIVE, 
-    INCIDENTAL OR CONSEQUENTIAL LOSS, DAMAGE, COST OR EXPENSE OF ANY KIND 
-    WHATSOEVER RELATED TO THE SOFTWARE, HOWEVER CAUSED, EVEN IF MICROCHIP 
-    HAS BEEN ADVISED OF THE POSSIBILITY OR THE DAMAGES ARE FORESEEABLE. TO 
-    THE FULLEST EXTENT ALLOWED BY LAW, MICROCHIP'S TOTAL LIABILITY ON ALL 
-    CLAIMS IN ANY WAY RELATED TO THIS SOFTWARE WILL NOT EXCEED THE AMOUNT 
-    OF FEES, IF ANY, THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS 
-    SOFTWARE.
+ * IMPORTANTE - MUDEI A FREQ DO TIMER 1 PARA FICAR MAIS RAPIDO
+ * NECESSARIO ALTERAR 
 */
 
 #include <xc.h>
@@ -38,20 +20,28 @@
 #define ON 1
 #define OFF 0
 #define SET 2
+#define MIN_TIME -1
 
 volatile int value = 0;
 void handler_clock_hms(void);
 void copyto_EEPROM(void);
 void LED_bin(unsigned int value);
 void all_LED(void);
+unsigned int ADC_read(void);
+void mod1_LED(void);
+void mod2_LED(void);
+void mod3_LED(void);
+void mod4_LED(void);
         
 volatile unsigned char clkh = CLKH;
 volatile unsigned char clkm = CLKM;
 volatile unsigned char seg;
 
 volatile unsigned char bounce_time = 0;
-volatile unsigned char alarm = 0;
+volatile unsigned char set_mode = 0;
+volatile unsigned char select_mode = 0;
 volatile unsigned char config_mode = OFF;
+volatile unsigned char alarm = 0;
 
 unsigned int convertedValue = 0;
 unsigned int duty_cycle = 0;
@@ -61,21 +51,36 @@ unsigned int lum_threshold = 0;
 
 
 
-
+/*******************************************
+ *  Desc: External Interrupt
+ *******************************************/
 void sw1_EXT(void){
     
-    if (bounce_time - seg <= -1){ // Debouncing SW - WE should use other timer or higher freq
- 
-        if (alarm == ON){
+
+    if (bounce_time - seg <= MIN_TIME){ // Debouncing SW - WE should use other timer or higher freq
+    
+        if (alarm == ON){               // Turn off the alarm 
             alarm = OFF;
+            RA6_SetLow();
             PWM6_LoadDutyValue(OFF); 
         }
         else{
             if(!IO_RB4_GetValue()){
-               if(!config_mode){
+               
+                if(config_mode == OFF){
                    config_mode = ON; 
                 }
                else{
+                   config_mode = SET;
+                   select_mode += 1;
+                   switch(select_mode){
+                        case 1: mod1_LED();break;
+                        case 2: mod2_LED();break;
+                        case 3: mod3_LED();break;
+                        case 4: mod4_LED();break;
+                        default:select_mode =0; config_mode = OFF;alarm = SET;
+                        break;
+                   }
                    
                }
             }    
@@ -88,6 +93,9 @@ void sw1_EXT(void){
 
 }
 
+/*******************************************
+ *  Desc: Timer 0 interrupt
+ *******************************************/
 void ISR_3s(void){
 
     if (lum_threshold){     //check if we still have a issue
@@ -129,23 +137,15 @@ void main(void)
         
         SLEEP();
         NOP();
-        
-       
-        
+
         task_schedule = seg;
-        //if (seg >= 5){
+        //if (seg >= 5){  - ONly debug
                 do{
                     if(!config_mode){
-                       
-                        ADCC_StartConversion(channel_ANA0);
-                        while(!ADCC_IsConversionDone()){
-                            __delay_ms(1);
-                        }
-                        convertedValue = ADCC_GetConversionResult();
-
+  
+                        convertedValue = ADC_read();
                         level_bin = (convertedValue >> 8);
-                        LED_bin(level_bin);
-                        
+                        LED_bin(level_bin);                
                         lum_threshold = (level_bin > ALAL);
 
                         if(lum_threshold){
@@ -167,11 +167,12 @@ void main(void)
                         }
 
                      }
-                    else{
+                    else if(config_mode == ON){
                         
                       all_LED();
                     }
-                }while(1);    //maintain this state 
+                
+                }while(1);    //maintain this state - ONly debug
            
         //}
         
@@ -180,6 +181,9 @@ void main(void)
   
     }
 }
+
+
+
 /*******************************************
  *  Func: all_LED
  *  Desc: Blink all LEDs
@@ -193,9 +197,11 @@ void all_LED(void){
         __delay_ms(100);      
        IO_RA7_SetLow();
        __delay_ms(100); 
-       RA6_SetHigh();
+       //RA6_SetHigh();
+       PWM6_LoadDutyValue(1023);
         __delay_ms(100);        
-       RA6_SetLow();
+       //RA6_SetLow();
+        PWM6_LoadDutyValue(OFF);
         __delay_ms(100);        
        IO_RA5_SetHigh();       
          __delay_ms(100);       
@@ -222,6 +228,22 @@ void LED_bin(unsigned int value){
   
 }
 
+/*******************************************
+ *  Func: ADC_read
+ *  Desc: Read the RB4 port
+ *  Obs:  ADC()
+ *******************************************/
+
+unsigned int ADC_read(void){
+    
+    ADCC_StartConversion(channel_ANA0);
+    while(!ADCC_IsConversionDone()){
+        __delay_ms(1);
+    }
+                        
+    return ADCC_GetConversionResult();
+}
+
 void handler_clock_hms(void){
     if(!config_mode){
             IO_RA7_Toggle();
@@ -240,4 +262,31 @@ void handler_clock_hms(void){
 
 void copyto_EEPROM(void) {
     
+}
+
+
+void mod1_LED(void){
+    LATA = 0;
+    PWM6_LoadDutyValue(OFF);
+    IO_RA7_SetHigh();
+     
+}
+
+void mod2_LED(void){
+    LATA = 0;
+    PWM6_LoadDutyValue(1023);    
+}
+
+void mod3_LED(void){
+    LATA = 0;
+    PWM6_LoadDutyValue(OFF);
+    IO_RA5_SetHigh();
+     
+}
+
+void mod4_LED(void){
+    LATA = 0;
+    PWM6_LoadDutyValue(OFF);
+    IO_RA4_SetHigh();
+     
 }
