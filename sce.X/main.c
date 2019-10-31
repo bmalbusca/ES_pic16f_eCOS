@@ -43,12 +43,13 @@ volatile int value = 0;
 void handler_clock_hms(void);
 void copyto_EEPROM(void);
 void LED_bin(unsigned int value);
+void all_LED(void);
         
 volatile unsigned char clkh = CLKH;
 volatile unsigned char clkm = CLKM;
 volatile unsigned char seg;
 
-volatile unsigned int bounce_time = 0;
+volatile unsigned char bounce_time = 0;
 volatile unsigned char alarm = 0;
 volatile unsigned char config_mode = OFF;
 
@@ -63,28 +64,32 @@ unsigned int lum_threshold = 0;
 
 void sw1_EXT(void){
     
-    if (bounce_time - seg <= -1){
-        
-        // Debouncing SW
-        
+    if (bounce_time - seg <= -1){ // Debouncing SW - WE should use other timer or higher freq
+ 
         if (alarm == ON){
             alarm = OFF;
             PWM6_LoadDutyValue(OFF); 
         }
         else{
             if(!IO_RB4_GetValue()){
-               config_mode = ON; 
-            }
-        }    
+               if(!config_mode){
+                   config_mode = ON; 
+                }
+               else{
+                   
+               }
+            }    
+        }
+        
+        bounce_time = seg;
     }
-    bounce_time = seg;
     
+    
+
 }
 
 void ISR_3s(void){
-    
-    
-    
+
     if (lum_threshold){     //check if we still have a issue
         PWM6_LoadDutyValue(1023);
         alarm = ON;
@@ -110,6 +115,7 @@ void main(void)
   
     PWM6_LoadDutyValue(OFF);
     alarm = OFF ;
+    IO_RB4_SetPullup();                                 //Help debouncing 
 
     // Enable the Global Interrupts
     INTERRUPT_GlobalInterruptEnable();
@@ -160,40 +166,10 @@ void main(void)
                             }
                         }
 
-                    /*    The same thing but less optimized 
-                        if (alarm == SET && lum_threshold ){    //if alarm is set ON you need to press SW1 ON   
-                            duty_cycle +=1 ;   
-                            PWM6_LoadDutyValue(duty_cycle);
-                        }
-                        else if (alarm == SET && !(lum_threshold)) { //
-                            PWM6_LoadDutyValue(OFF);
-                            alarm = OFF ; 
-                        }
-                        else if (alarm == OFF && lum_threshold){
-                            PIE0bits.TMR0IE = 1;
-                            TMR0_StartTimer();
-                            alarm = SET ;
-                        }
-                      */  
                      }
                     else{
                         
-                        IO_RA7_SetHigh();
-                         __delay_ms(100);      
-                        IO_RA7_SetLow();
-                        __delay_ms(100); 
-                        RA6_SetHigh();
-                         __delay_ms(100);        
-                        RA6_SetLow();
-                         __delay_ms(100);        
-                        IO_RA5_SetHigh();       
-                          __delay_ms(100);       
-                        IO_RA5_SetLow();
-                        __delay_ms(100); 
-                        IO_RA4_SetHigh();
-                         __delay_ms(100); 
-                        IO_RA4_SetLow();       
-                                
+                      all_LED();
                     }
                 }while(1);    //maintain this state 
            
@@ -203,6 +179,34 @@ void main(void)
         
   
     }
+}
+/*******************************************
+ *  Func: all_LED
+ *  Desc: Blink all LEDs
+ *  Obs: 
+ *******************************************/
+
+
+void all_LED(void){
+    
+       IO_RA7_SetHigh();
+        __delay_ms(100);      
+       IO_RA7_SetLow();
+       __delay_ms(100); 
+       RA6_SetHigh();
+        __delay_ms(100);        
+       RA6_SetLow();
+        __delay_ms(100);        
+       IO_RA5_SetHigh();       
+         __delay_ms(100);       
+       IO_RA5_SetLow();
+       __delay_ms(100); 
+       IO_RA4_SetHigh();
+        __delay_ms(100); 
+       IO_RA4_SetLow();       
+                                
+    
+    
 }
 
 /*******************************************

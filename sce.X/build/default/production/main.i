@@ -21239,12 +21239,13 @@ volatile int value = 0;
 void handler_clock_hms(void);
 void copyto_EEPROM(void);
 void LED_bin(unsigned int value);
+void all_LED(void);
 
 volatile unsigned char clkh = 0;
 volatile unsigned char clkm = 0;
 volatile unsigned char seg;
 
-volatile unsigned int bounce_time = 0;
+volatile unsigned char bounce_time = 0;
 volatile unsigned char alarm = 0;
 volatile unsigned char config_mode = 0;
 
@@ -21261,25 +21262,29 @@ void sw1_EXT(void){
 
     if (bounce_time - seg <= -1){
 
-
-
         if (alarm == 1){
             alarm = 0;
             PWM6_LoadDutyValue(0);
         }
         else{
             if(!PORTBbits.RB4){
-               config_mode = 1;
+               if(!config_mode){
+                   config_mode = 1;
+                }
+               else{
+
+               }
             }
         }
+
+        bounce_time = seg;
     }
-    bounce_time = seg;
+
+
 
 }
 
 void ISR_3s(void){
-
-
 
     if (lum_threshold){
         PWM6_LoadDutyValue(1023);
@@ -21306,6 +21311,7 @@ void main(void)
 
     PWM6_LoadDutyValue(0);
     alarm = 0 ;
+    do { WPUBbits.WPUB4 = 1; } while(0);
 
 
     (INTCONbits.GIE = 1);
@@ -21355,26 +21361,11 @@ void main(void)
                                 alarm = 0 ;
                             }
                         }
-# 178 "main.c"
+
                      }
                     else{
 
-                        do { LATAbits.LATA7 = 1; } while(0);
-                         _delay((unsigned long)((100)*(1000000/4000.0)));
-                        do { LATAbits.LATA7 = 0; } while(0);
-                        _delay((unsigned long)((100)*(1000000/4000.0)));
-                        do { LATAbits.LATA6 = 1; } while(0);
-                         _delay((unsigned long)((100)*(1000000/4000.0)));
-                        do { LATAbits.LATA6 = 0; } while(0);
-                         _delay((unsigned long)((100)*(1000000/4000.0)));
-                        do { LATAbits.LATA5 = 1; } while(0);
-                          _delay((unsigned long)((100)*(1000000/4000.0)));
-                        do { LATAbits.LATA5 = 0; } while(0);
-                        _delay((unsigned long)((100)*(1000000/4000.0)));
-                        do { LATAbits.LATA4 = 1; } while(0);
-                         _delay((unsigned long)((100)*(1000000/4000.0)));
-                        do { LATAbits.LATA4 = 0; } while(0);
-
+                      all_LED();
                     }
                 }while(1);
 
@@ -21384,6 +21375,34 @@ void main(void)
 
 
     }
+}
+
+
+
+
+
+
+
+void all_LED(void){
+
+       do { LATAbits.LATA7 = 1; } while(0);
+        _delay((unsigned long)((100)*(1000000/4000.0)));
+       do { LATAbits.LATA7 = 0; } while(0);
+       _delay((unsigned long)((100)*(1000000/4000.0)));
+       do { LATAbits.LATA6 = 1; } while(0);
+        _delay((unsigned long)((100)*(1000000/4000.0)));
+       do { LATAbits.LATA6 = 0; } while(0);
+        _delay((unsigned long)((100)*(1000000/4000.0)));
+       do { LATAbits.LATA5 = 1; } while(0);
+         _delay((unsigned long)((100)*(1000000/4000.0)));
+       do { LATAbits.LATA5 = 0; } while(0);
+       _delay((unsigned long)((100)*(1000000/4000.0)));
+       do { LATAbits.LATA4 = 1; } while(0);
+        _delay((unsigned long)((100)*(1000000/4000.0)));
+       do { LATAbits.LATA4 = 0; } while(0);
+
+
+
 }
 
 
