@@ -56,7 +56,7 @@ TMR2_CLC2_OUT 15
 TMR2_CLC3_OUT 16
 TMR2_CLC4_OUT 17
 ]
-"125 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
+"134 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
 [e E12248 . `uc
 channel_ANA0 0
 channel_VSS 60
@@ -72,15 +72,15 @@ channel_FVR_buf1 63
 [v ___eecpymem __eecpymem `(v  1 e 1 0 ]
 "39
 [v ___memcpyee __memcpyee `(v  1 e 1 0 ]
-"61 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
+"64 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
 [v _sw1_EXT sw1_EXT `(v  1 e 1 0 ]
-"69
-[v _ISR_3s ISR_3s `(v  1 e 1 0 ]
 "84
+[v _ISR_3s ISR_3s `(v  1 e 1 0 ]
+"99
 [v _main main `(v  1 e 1 0 ]
-"167
+"214
 [v _LED_bin LED_bin `(v  1 e 1 0 ]
-"174
+"221
 [v _handler_clock_hms handler_clock_hms `(v  1 e 1 0 ]
 "63 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/adcc.c
 [v _ADCC_Initialize ADCC_Initialize `(v  1 e 1 0 ]
@@ -157,6 +157,18 @@ channel_FVR_buf1 63
 "364 /opt/microchip/xc8/v2.10/pic/include/pic16f18875.h
 [u S255 . 1 `S250 1 . 1 0 ]
 [v _INTCONbits INTCONbits `VES255  1 e 1 @11 ]
+[s S1043 . 1 `uc 1 RB0 1 0 :1:0 
+`uc 1 RB1 1 0 :1:1 
+`uc 1 RB2 1 0 :1:2 
+`uc 1 RB3 1 0 :1:3 
+`uc 1 RB4 1 0 :1:4 
+`uc 1 RB5 1 0 :1:5 
+`uc 1 RB6 1 0 :1:6 
+`uc 1 RB7 1 0 :1:7 
+]
+"463
+[u S1052 . 1 `S1043 1 . 1 0 ]
+[v _PORTBbits PORTBbits `VES1052  1 e 1 @13 ]
 "670
 [v _TRISA TRISA `VEuc  1 e 1 @17 ]
 "732
@@ -169,7 +181,7 @@ channel_FVR_buf1 63
 [v _TRISE TRISE `VEuc  1 e 1 @21 ]
 "950
 [v _LATA LATA `VEuc  1 e 1 @22 ]
-[s S1093 . 1 `uc 1 LATA0 1 0 :1:0 
+[s S1114 . 1 `uc 1 LATA0 1 0 :1:0 
 `uc 1 LATA1 1 0 :1:1 
 `uc 1 LATA2 1 0 :1:2 
 `uc 1 LATA3 1 0 :1:3 
@@ -179,8 +191,8 @@ channel_FVR_buf1 63
 `uc 1 LATA7 1 0 :1:7 
 ]
 "967
-[u S1102 . 1 `S1093 1 . 1 0 ]
-[v _LATAbits LATAbits `VES1102  1 e 1 @22 ]
+[u S1123 . 1 `S1114 1 . 1 0 ]
+[v _LATAbits LATAbits `VES1123  1 e 1 @22 ]
 "1012
 [v _LATB LATB `VEuc  1 e 1 @23 ]
 "1074
@@ -638,14 +650,18 @@ channel_FVR_buf1 63
 "49
 [v _seg seg `VEuc  1 e 1 0 ]
 "51
+[v _bounce_time bounce_time `VEui  1 e 2 0 ]
+"52
 [v _alarm alarm `VEuc  1 e 1 0 ]
 "53
+[v _config_mode config_mode `VEuc  1 e 1 0 ]
+"55
 [v _convertedValue convertedValue `ui  1 e 2 0 ]
-"54
-[v _duty_cycle duty_cycle `ui  1 e 2 0 ]
 "56
+[v _duty_cycle duty_cycle `ui  1 e 2 0 ]
+"58
 [v _level_bin level_bin `ui  1 e 2 0 ]
-"57
+"59
 [v _lum_threshold lum_threshold `ui  1 e 2 0 ]
 "30 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/ext_int.c
 [v _INT_InterruptHandler INT_InterruptHandler `*.37(v  1 e 2 0 ]
@@ -655,10 +671,10 @@ channel_FVR_buf1 63
 [v _timer1ReloadVal timer1ReloadVal `VEus  1 e 2 0 ]
 "58
 [v _TMR1_InterruptHandler TMR1_InterruptHandler `*.37(v  1 e 2 0 ]
-"84 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
+"99 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
 [v _main main `(v  1 e 1 0 ]
 {
-"159
+"206
 } 0
 "89 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr0.c
 [v _TMR0_StartTimer TMR0_StartTimer `(v  1 e 1 0 ]
@@ -739,11 +755,11 @@ channel_FVR_buf1 63
 [v PWM6_LoadDutyValue@dutyValue dutyValue `us  1 p 2 0 ]
 "81
 } 0
-"167 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
+"214 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
 [v _LED_bin LED_bin `(v  1 e 1 0 ]
 {
 [v LED_bin@value value `ui  1 p 2 0 ]
-"172
+"219
 } 0
 "106 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/adcc.c
 [v _ADCC_StartConversion ADCC_StartConversion `(v  1 e 1 0 ]
@@ -779,10 +795,10 @@ channel_FVR_buf1 63
 {
 "185
 } 0
-"174 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
+"221 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
 [v _handler_clock_hms handler_clock_hms `(v  1 e 1 0 ]
 {
-"187
+"235
 } 0
 "127 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr1.c
 [v _TMR1_WriteTimer TMR1_WriteTimer `(v  1 e 1 0 ]
@@ -795,10 +811,10 @@ channel_FVR_buf1 63
 {
 "133
 } 0
-"69 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
+"84 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
 [v _ISR_3s ISR_3s `(v  1 e 1 0 ]
 {
-"82
+"97
 } 0
 "140 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/tmr0.c
 [v _TMR0_DefaultInterruptHandler TMR0_DefaultInterruptHandler `(v  1 e 1 0 ]
@@ -825,10 +841,10 @@ channel_FVR_buf1 63
 {
 "57
 } 0
-"61 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
+"64 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/main.c
 [v _sw1_EXT sw1_EXT `(v  1 e 1 0 ]
 {
-"67
+"82
 } 0
 "74 /home/bmalbusca/Documents/IST/SCE/sce/sce.X/mcc_generated_files/pwm6.c
 [v i1_PWM6_LoadDutyValue PWM6_LoadDutyValue `(v  1 e 1 0 ]

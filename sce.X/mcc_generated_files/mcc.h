@@ -53,9 +53,9 @@
 #include <stdbool.h>
 #include "interrupt_manager.h"
 #include "adcc.h"
-#include "ext_int.h"
 #include "pwm6.h"
 #include "tmr1.h"
+#include "ext_int.h"
 #include "tmr2.h"
 #include "tmr0.h"
 

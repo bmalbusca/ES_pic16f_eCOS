@@ -2,6 +2,17 @@ Version 4.0 HI-TECH Software Intermediate Code
 "129 ./mcc_generated_files/pwm6.h
 [; ;./mcc_generated_files/pwm6.h: 129:  void PWM6_LoadDutyValue(uint16_t dutyValue);
 [v _PWM6_LoadDutyValue `(v ~T0 @X0 0 ef1`us ]
+"452 /opt/microchip/xc8/v2.10/pic/include/pic16f18875.h
+[; ;/opt/microchip/xc8/v2.10/pic/include/pic16f18875.h: 452:     struct {
+[s S35 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S35 . RB0 RB1 RB2 RB3 RB4 RB5 RB6 RB7 ]
+"451
+[; ;/opt/microchip/xc8/v2.10/pic/include/pic16f18875.h: 451: typedef union {
+[u S34 `S35 1 ]
+[n S34 . . ]
+"463
+[; ;/opt/microchip/xc8/v2.10/pic/include/pic16f18875.h: 463: extern volatile PORTBbits_t PORTBbits __attribute__((address(0x00D)));
+[v _PORTBbits `VS34 ~T0 @X0 0 e@13 ]
 "161 ./mcc_generated_files/tmr0.h
 [; ;./mcc_generated_files/tmr0.h: 161: void TMR0_StopTimer(void);
 [v _TMR0_StopTimer `(v ~T0 @X0 0 ef ]
@@ -24,17 +35,17 @@ Version 4.0 HI-TECH Software Intermediate Code
 "310 ./mcc_generated_files/tmr0.h
 [; ;./mcc_generated_files/tmr0.h: 310:  void TMR0_SetInterruptHandler(void (* InterruptHandler)(void));
 [v _TMR0_SetInterruptHandler `(v ~T0 @X0 0 ef1`*F12393 ]
-[v F12314 `(v ~T0 @X0 0 tf ]
+[v F12304 `(v ~T0 @X0 0 tf ]
 "385 ./mcc_generated_files/tmr1.h
 [; ;./mcc_generated_files/tmr1.h: 385:  void TMR1_SetInterruptHandler(void (* InterruptHandler)(void));
-[v _TMR1_SetInterruptHandler `(v ~T0 @X0 0 ef1`*F12314 ]
+[v _TMR1_SetInterruptHandler `(v ~T0 @X0 0 ef1`*F12304 ]
 "43 main.c
 [; ;main.c: 43: void handler_clock_hms(void);
 [v _handler_clock_hms `(v ~T0 @X0 0 ef ]
-[v F12294 `(v ~T0 @X0 0 tf ]
+[v F12314 `(v ~T0 @X0 0 tf ]
 "319 ./mcc_generated_files/ext_int.h
 [; ;./mcc_generated_files/ext_int.h: 319: void INT_SetInterruptHandler(void (* InterruptHandler)(void));
-[v _INT_SetInterruptHandler `(v ~T0 @X0 0 ef1`*F12294 ]
+[v _INT_SetInterruptHandler `(v ~T0 @X0 0 ef1`*F12314 ]
 "357 /opt/microchip/xc8/v2.10/pic/include/pic16f18875.h
 [; ;/opt/microchip/xc8/v2.10/pic/include/pic16f18875.h: 357:     struct {
 [s S31 :1 `uc 1 :5 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -49,8 +60,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "31 /opt/microchip/xc8/v2.10/pic/include/pic.h
 [v ___nop `(v ~T0 @X0 0 ef ]
 [p i ___nop ]
-"125 main.c
-[; ;main.c: 125:                 ADCC_StartConversion(channel_ANA0);
+"134 main.c
+[; ;main.c: 134:                         ADCC_StartConversion(channel_ANA0);
 [c E12248 0 60 61 62 63 .. ]
 [n E12248 . channel_ANA0 channel_VSS channel_Temp channel_DAC1 channel_FVR_buf1  ]
 "156 ./mcc_generated_files/adcc.h
@@ -1743,304 +1754,469 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 49: volatile unsigned char seg;
 [v _seg `Vuc ~T0 @X0 1 e ]
 "51
-[; ;main.c: 51: volatile unsigned char alarm = 0;
+[; ;main.c: 51: volatile unsigned int bounce_time = 0;
+[v _bounce_time `Vui ~T0 @X0 1 e ]
+[i _bounce_time
+-> -> 0 `i `ui
+]
+"52
+[; ;main.c: 52: volatile unsigned char alarm = 0;
 [v _alarm `Vuc ~T0 @X0 1 e ]
 [i _alarm
 -> -> 0 `i `uc
 ]
 "53
-[; ;main.c: 53: unsigned int convertedValue = 0;
+[; ;main.c: 53: volatile unsigned char config_mode = 0;
+[v _config_mode `Vuc ~T0 @X0 1 e ]
+[i _config_mode
+-> -> 0 `i `uc
+]
+"55
+[; ;main.c: 55: unsigned int convertedValue = 0;
 [v _convertedValue `ui ~T0 @X0 1 e ]
 [i _convertedValue
 -> -> 0 `i `ui
 ]
-"54
-[; ;main.c: 54: unsigned int duty_cycle = 0;
+"56
+[; ;main.c: 56: unsigned int duty_cycle = 0;
 [v _duty_cycle `ui ~T0 @X0 1 e ]
 [i _duty_cycle
 -> -> 0 `i `ui
 ]
-"56
-[; ;main.c: 56: unsigned int level_bin = 0;
+"58
+[; ;main.c: 58: unsigned int level_bin = 0;
 [v _level_bin `ui ~T0 @X0 1 e ]
 [i _level_bin
 -> -> 0 `i `ui
 ]
-"57
-[; ;main.c: 57: unsigned int lum_threshold = 0;
+"59
+[; ;main.c: 59: unsigned int lum_threshold = 0;
 [v _lum_threshold `ui ~T0 @X0 1 e ]
 [i _lum_threshold
 -> -> 0 `i `ui
 ]
-"61
-[; ;main.c: 61: void sw1_EXT(void){
+"64
+[; ;main.c: 64: void sw1_EXT(void){
 [v _sw1_EXT `(v ~T0 @X0 1 ef ]
 {
 [e :U _sw1_EXT ]
 [f ]
-"63
-[; ;main.c: 63:     alarm = 0;
+"66
+[; ;main.c: 66:     if (bounce_time - seg <= -1){
+[e $ ! <= - _bounce_time -> _seg `ui -> -U -> 1 `i `ui 1626  ]
+{
+"70
+[; ;main.c: 70:         if (alarm == 1){
+[e $ ! == -> _alarm `i -> 1 `i 1627  ]
+{
+"71
+[; ;main.c: 71:             alarm = 0;
 [e = _alarm -> -> 0 `i `uc ]
-"64
-[; ;main.c: 64:     PWM6_LoadDutyValue(0);
+"72
+[; ;main.c: 72:             PWM6_LoadDutyValue(0);
 [e ( _PWM6_LoadDutyValue (1 -> -> 0 `i `us ]
-"67
-[; ;main.c: 67: }
+"73
+[; ;main.c: 73:         }
+}
+[e $U 1628  ]
+"74
+[; ;main.c: 74:         else{
+[e :U 1627 ]
+{
+"75
+[; ;main.c: 75:             if(!PORTBbits.RB4){
+[e $ ! ! != -> . . _PORTBbits 0 4 `i -> 0 `i 1629  ]
+{
+"76
+[; ;main.c: 76:                config_mode = 1;
+[e = _config_mode -> -> 1 `i `uc ]
+"77
+[; ;main.c: 77:             }
+}
+[e :U 1629 ]
+"78
+[; ;main.c: 78:         }
+}
+[e :U 1628 ]
+"79
+[; ;main.c: 79:     }
+}
+[e :U 1626 ]
+"80
+[; ;main.c: 80:     bounce_time = seg;
+[e = _bounce_time -> _seg `ui ]
+"82
+[; ;main.c: 82: }
 [e :UE 1625 ]
 }
-"69
-[; ;main.c: 69: void ISR_3s(void){
+"84
+[; ;main.c: 84: void ISR_3s(void){
 [v _ISR_3s `(v ~T0 @X0 1 ef ]
 {
 [e :U _ISR_3s ]
 [f ]
-"73
-[; ;main.c: 73:     if (lum_threshold){
-[e $ ! != _lum_threshold -> -> 0 `i `ui 1627  ]
+"88
+[; ;main.c: 88:     if (lum_threshold){
+[e $ ! != _lum_threshold -> -> 0 `i `ui 1631  ]
 {
-"74
-[; ;main.c: 74:         PWM6_LoadDutyValue(1023);
+"89
+[; ;main.c: 89:         PWM6_LoadDutyValue(1023);
 [e ( _PWM6_LoadDutyValue (1 -> -> 1023 `i `us ]
-"75
-[; ;main.c: 75:         alarm = 1;
+"90
+[; ;main.c: 90:         alarm = 1;
 [e = _alarm -> -> 1 `i `uc ]
-"77
-[; ;main.c: 77:     }
+"92
+[; ;main.c: 92:     }
 }
-[e :U 1627 ]
-"79
-[; ;main.c: 79:     TMR0_StopTimer();
+[e :U 1631 ]
+"94
+[; ;main.c: 94:     TMR0_StopTimer();
 [e ( _TMR0_StopTimer ..  ]
-"80
-[; ;main.c: 80:     PIE0bits.TMR0IE = 0;
+"95
+[; ;main.c: 95:     PIE0bits.TMR0IE = 0;
 [e = . . _PIE0bits 0 3 -> -> 0 `i `uc ]
-"82
-[; ;main.c: 82: }
-[e :UE 1626 ]
+"97
+[; ;main.c: 97: }
+[e :UE 1630 ]
 }
 [v $root$_main `(v ~T0 @X0 0 e ]
-"84
-[; ;main.c: 84: void main(void)
+"99
+[; ;main.c: 99: void main(void)
 [v _main `(v ~T0 @X0 1 ef ]
-"85
-[; ;main.c: 85: {
+"100
+[; ;main.c: 100: {
 {
 [e :U _main ]
 [f ]
-"88
-[; ;main.c: 88:     SYSTEM_Initialize();
+"103
+[; ;main.c: 103:     SYSTEM_Initialize();
 [e ( _SYSTEM_Initialize ..  ]
-"89
-[; ;main.c: 89:     TMR0_SetInterruptHandler(ISR_3s);
+"104
+[; ;main.c: 104:     TMR0_SetInterruptHandler(ISR_3s);
 [e ( _TMR0_SetInterruptHandler (1 &U _ISR_3s ]
-"90
-[; ;main.c: 90:     TMR1_SetInterruptHandler(handler_clock_hms);
+"105
+[; ;main.c: 105:     TMR1_SetInterruptHandler(handler_clock_hms);
 [e ( _TMR1_SetInterruptHandler (1 &U _handler_clock_hms ]
-"91
-[; ;main.c: 91:     INT_SetInterruptHandler(sw1_EXT);
+"106
+[; ;main.c: 106:     INT_SetInterruptHandler(sw1_EXT);
 [e ( _INT_SetInterruptHandler (1 &U _sw1_EXT ]
-"93
-[; ;main.c: 93:     unsigned int task_schedule = 0;
+"108
+[; ;main.c: 108:     unsigned int task_schedule = 0;
 [v _task_schedule `ui ~T0 @X0 1 a ]
 [e = _task_schedule -> -> 0 `i `ui ]
-"96
-[; ;main.c: 96:     PWM6_LoadDutyValue(0);
+"111
+[; ;main.c: 111:     PWM6_LoadDutyValue(0);
 [e ( _PWM6_LoadDutyValue (1 -> -> 0 `i `us ]
-"97
-[; ;main.c: 97:     alarm = 0 ;
+"112
+[; ;main.c: 112:     alarm = 0 ;
 [e = _alarm -> -> 0 `i `uc ]
-"102
-[; ;main.c: 102:     (INTCONbits.GIE = 1);
+"115
+[; ;main.c: 115:     (INTCONbits.GIE = 1);
 [e = . . _INTCONbits 0 3 -> -> 1 `i `uc ]
-"105
-[; ;main.c: 105:     (INTCONbits.PEIE = 1);
+"118
+[; ;main.c: 118:     (INTCONbits.PEIE = 1);
 [e = . . _INTCONbits 0 2 -> -> 1 `i `uc ]
-"113
-[; ;main.c: 113:     while (1)
-[e :U 1630 ]
-"114
-[; ;main.c: 114:     {
-{
-"116
-[; ;main.c: 116:         __asm("sleep");
-[; <" sleep ;# ">
-"117
-[; ;main.c: 117:         __nop();
-[e ( ___nop ..  ]
 "121
-[; ;main.c: 121:         task_schedule = seg;
-[e = _task_schedule -> _seg `ui ]
-"124
-[; ;main.c: 124:             do{
+[; ;main.c: 121:     while (1)
 [e :U 1634 ]
+"122
+[; ;main.c: 122:     {
 {
+"124
+[; ;main.c: 124:         __asm("sleep");
+[; <" sleep ;# ">
 "125
-[; ;main.c: 125:                 ADCC_StartConversion(channel_ANA0);
-[e ( _ADCC_StartConversion (1 . `E12248 0 ]
-"126
-[; ;main.c: 126:                 while(!ADCC_IsConversionDone()){
-[e $U 1635  ]
-[e :U 1636 ]
-{
-"127
-[; ;main.c: 127:                     _delay((unsigned long)((1)*(1000000/4000.0)));
-[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
-"128
-[; ;main.c: 128:                 }
-}
-[e :U 1635 ]
-"126
-[; ;main.c: 126:                 while(!ADCC_IsConversionDone()){
-[e $ ! != -> ( _ADCC_IsConversionDone ..  `i -> 0 `i 1636  ]
-[e :U 1637 ]
+[; ;main.c: 125:         __nop();
+[e ( ___nop ..  ]
 "129
-[; ;main.c: 129:                 convertedValue = ADCC_GetConversionResult();
-[e = _convertedValue -> ( _ADCC_GetConversionResult ..  `ui ]
+[; ;main.c: 129:         task_schedule = seg;
+[e = _task_schedule -> _seg `ui ]
 "131
-[; ;main.c: 131:                 level_bin = (convertedValue >> 8);
-[e = _level_bin >> _convertedValue -> 8 `i ]
+[; ;main.c: 131:                 do{
+[e :U 1638 ]
+{
 "132
-[; ;main.c: 132:                 LED_bin(level_bin);
-[e ( _LED_bin (1 _level_bin ]
-"133
-[; ;main.c: 133:                 lum_threshold = (level_bin > 2);
-[e = _lum_threshold -> -> > _level_bin -> -> 2 `i `ui `i `ui ]
+[; ;main.c: 132:                     if(!config_mode){
+[e $ ! ! != -> _config_mode `i -> 0 `i 1639  ]
+{
+"134
+[; ;main.c: 134:                         ADCC_StartConversion(channel_ANA0);
+[e ( _ADCC_StartConversion (1 . `E12248 0 ]
 "135
-[; ;main.c: 135:                 if (alarm == 2 && lum_threshold ){
-[e $ ! && == -> _alarm `i -> 2 `i != _lum_threshold -> -> 0 `i `ui 1638  ]
+[; ;main.c: 135:                         while(!ADCC_IsConversionDone()){
+[e $U 1640  ]
+[e :U 1641 ]
 {
 "136
-[; ;main.c: 136:                     duty_cycle +=1 ;
-[e =+ _duty_cycle -> -> 1 `i `ui ]
+[; ;main.c: 136:                             _delay((unsigned long)((1)*(1000000/4000.0)));
+[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
 "137
-[; ;main.c: 137:                     PWM6_LoadDutyValue(duty_cycle);
-[e ( _PWM6_LoadDutyValue (1 -> _duty_cycle `us ]
-"138
-[; ;main.c: 138:                 }
+[; ;main.c: 137:                         }
 }
-[e $U 1639  ]
-"139
-[; ;main.c: 139:                 else if (alarm == 2 && !(lum_threshold)) {
-[e :U 1638 ]
-[e $ ! && == -> _alarm `i -> 2 `i ! != _lum_threshold -> -> 0 `i `ui 1640  ]
-{
-"140
-[; ;main.c: 140:                     PWM6_LoadDutyValue(0);
-[e ( _PWM6_LoadDutyValue (1 -> -> 0 `i `us ]
-"141
-[; ;main.c: 141:                      alarm = 0 ;
-[e = _alarm -> -> 0 `i `uc ]
-"143
-[; ;main.c: 143:                 }
-}
-[e $U 1641  ]
-"144
-[; ;main.c: 144:                 else if (alarm == 0 && lum_threshold){
 [e :U 1640 ]
-[e $ ! && == -> _alarm `i -> 0 `i != _lum_threshold -> -> 0 `i `ui 1642  ]
-{
-"145
-[; ;main.c: 145:                     PIE0bits.TMR0IE = 1;
-[e = . . _PIE0bits 0 3 -> -> 1 `i `uc ]
-"146
-[; ;main.c: 146:                     TMR0_StartTimer();
-[e ( _TMR0_StartTimer ..  ]
-"147
-[; ;main.c: 147:                     alarm = 2 ;
-[e = _alarm -> -> 2 `i `uc ]
-"148
-[; ;main.c: 148:                 }
-}
+"135
+[; ;main.c: 135:                         while(!ADCC_IsConversionDone()){
+[e $ ! != -> ( _ADCC_IsConversionDone ..  `i -> 0 `i 1641  ]
 [e :U 1642 ]
-[e :U 1641 ]
-[e :U 1639 ]
+"138
+[; ;main.c: 138:                         convertedValue = ADCC_GetConversionResult();
+[e = _convertedValue -> ( _ADCC_GetConversionResult ..  `ui ]
+"140
+[; ;main.c: 140:                         level_bin = (convertedValue >> 8);
+[e = _level_bin >> _convertedValue -> 8 `i ]
+"141
+[; ;main.c: 141:                         LED_bin(level_bin);
+[e ( _LED_bin (1 _level_bin ]
+"143
+[; ;main.c: 143:                         lum_threshold = (level_bin > 2);
+[e = _lum_threshold -> -> > _level_bin -> -> 2 `i `ui `i `ui ]
+"145
+[; ;main.c: 145:                         if(lum_threshold){
+[e $ ! != _lum_threshold -> -> 0 `i `ui 1643  ]
+{
+"146
+[; ;main.c: 146:                             if(alarm == 2){
+[e $ ! == -> _alarm `i -> 2 `i 1644  ]
+{
+"147
+[; ;main.c: 147:                                 duty_cycle +=1 ;
+[e =+ _duty_cycle -> -> 1 `i `ui ]
+"148
+[; ;main.c: 148:                                 PWM6_LoadDutyValue(duty_cycle);
+[e ( _PWM6_LoadDutyValue (1 -> _duty_cycle `us ]
+"149
+[; ;main.c: 149:                             }
+}
+[e $U 1645  ]
+"150
+[; ;main.c: 150:                             else if(alarm == 0){
+[e :U 1644 ]
+[e $ ! == -> _alarm `i -> 0 `i 1646  ]
+{
 "151
-[; ;main.c: 151:             }while(1);
+[; ;main.c: 151:                                 PIE0bits.TMR0IE = 1;
+[e = . . _PIE0bits 0 3 -> -> 1 `i `uc ]
+"152
+[; ;main.c: 152:                                 TMR0_StartTimer();
+[e ( _TMR0_StartTimer ..  ]
+"153
+[; ;main.c: 153:                                 alarm = 2 ;
+[e = _alarm -> -> 2 `i `uc ]
+"154
+[; ;main.c: 154:                             }
 }
-[e $ != -> 1 `i -> 0 `i 1634  ]
-[e :U 1633 ]
+[e :U 1646 ]
+[e :U 1645 ]
+"155
+[; ;main.c: 155:                         }
+}
+[e $U 1647  ]
+"156
+[; ;main.c: 156:                         else{
+[e :U 1643 ]
+{
+"157
+[; ;main.c: 157:                             if(alarm == 2){
+[e $ ! == -> _alarm `i -> 2 `i 1648  ]
+{
 "158
-[; ;main.c: 158:     }
-}
-[e :U 1629 ]
-[e $U 1630  ]
-[e :U 1631 ]
+[; ;main.c: 158:                                 PWM6_LoadDutyValue(0);
+[e ( _PWM6_LoadDutyValue (1 -> -> 0 `i `us ]
 "159
-[; ;main.c: 159: }
-[e :UE 1628 ]
+[; ;main.c: 159:                                 alarm = 0 ;
+[e = _alarm -> -> 0 `i `uc ]
+"160
+[; ;main.c: 160:                             }
 }
-"167
-[; ;main.c: 167: void LED_bin(unsigned int value){
+[e :U 1648 ]
+"161
+[; ;main.c: 161:                         }
+}
+[e :U 1647 ]
+"178
+[; ;main.c: 178:                      }
+}
+[e $U 1649  ]
+"179
+[; ;main.c: 179:                     else{
+[e :U 1639 ]
+{
+"181
+[; ;main.c: 181:                         do { LATAbits.LATA7 = 1; } while(0);
+[e :U 1652 ]
+{
+[e = . . _LATAbits 0 7 -> -> 1 `i `uc ]
+}
+[e :U 1651 ]
+"182
+[; ;main.c: 182:                          _delay((unsigned long)((100)*(1000000/4000.0)));
+[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"183
+[; ;main.c: 183:                         do { LATAbits.LATA7 = 0; } while(0);
+[e :U 1655 ]
+{
+[e = . . _LATAbits 0 7 -> -> 0 `i `uc ]
+}
+[e :U 1654 ]
+"184
+[; ;main.c: 184:                         _delay((unsigned long)((100)*(1000000/4000.0)));
+[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"185
+[; ;main.c: 185:                         do { LATAbits.LATA6 = 1; } while(0);
+[e :U 1658 ]
+{
+[e = . . _LATAbits 0 6 -> -> 1 `i `uc ]
+}
+[e :U 1657 ]
+"186
+[; ;main.c: 186:                          _delay((unsigned long)((100)*(1000000/4000.0)));
+[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"187
+[; ;main.c: 187:                         do { LATAbits.LATA6 = 0; } while(0);
+[e :U 1661 ]
+{
+[e = . . _LATAbits 0 6 -> -> 0 `i `uc ]
+}
+[e :U 1660 ]
+"188
+[; ;main.c: 188:                          _delay((unsigned long)((100)*(1000000/4000.0)));
+[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"189
+[; ;main.c: 189:                         do { LATAbits.LATA5 = 1; } while(0);
+[e :U 1664 ]
+{
+[e = . . _LATAbits 0 5 -> -> 1 `i `uc ]
+}
+[e :U 1663 ]
+"190
+[; ;main.c: 190:                           _delay((unsigned long)((100)*(1000000/4000.0)));
+[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"191
+[; ;main.c: 191:                         do { LATAbits.LATA5 = 0; } while(0);
+[e :U 1667 ]
+{
+[e = . . _LATAbits 0 5 -> -> 0 `i `uc ]
+}
+[e :U 1666 ]
+"192
+[; ;main.c: 192:                         _delay((unsigned long)((100)*(1000000/4000.0)));
+[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"193
+[; ;main.c: 193:                         do { LATAbits.LATA4 = 1; } while(0);
+[e :U 1670 ]
+{
+[e = . . _LATAbits 0 4 -> -> 1 `i `uc ]
+}
+[e :U 1669 ]
+"194
+[; ;main.c: 194:                          _delay((unsigned long)((100)*(1000000/4000.0)));
+[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"195
+[; ;main.c: 195:                         do { LATAbits.LATA4 = 0; } while(0);
+[e :U 1673 ]
+{
+[e = . . _LATAbits 0 4 -> -> 0 `i `uc ]
+}
+[e :U 1672 ]
+"197
+[; ;main.c: 197:                     }
+}
+[e :U 1649 ]
+"198
+[; ;main.c: 198:                 }while(1);
+}
+[e $ != -> 1 `i -> 0 `i 1638  ]
+[e :U 1637 ]
+"205
+[; ;main.c: 205:     }
+}
+[e :U 1633 ]
+[e $U 1634  ]
+[e :U 1635 ]
+"206
+[; ;main.c: 206: }
+[e :UE 1632 ]
+}
+"214
+[; ;main.c: 214: void LED_bin(unsigned int value){
 [v _LED_bin `(v ~T0 @X0 1 ef1`ui ]
 {
 [e :U _LED_bin ]
 [v _value `ui ~T0 @X0 1 r1 ]
 [f ]
-"169
-[; ;main.c: 169:     LATAbits.LATA4 = (value & 1);
+"216
+[; ;main.c: 216:     LATAbits.LATA4 = (value & 1);
 [e = . . _LATAbits 0 4 -> & _value -> -> 1 `i `ui `uc ]
-"170
-[; ;main.c: 170:     LATAbits.LATA5 = (value >>1);
+"217
+[; ;main.c: 217:     LATAbits.LATA5 = (value >>1);
 [e = . . _LATAbits 0 5 -> >> _value -> 1 `i `uc ]
-"172
-[; ;main.c: 172: }
-[e :UE 1643 ]
+"219
+[; ;main.c: 219: }
+[e :UE 1674 ]
 }
-"174
-[; ;main.c: 174: void handler_clock_hms(void){
+"221
+[; ;main.c: 221: void handler_clock_hms(void){
 [v _handler_clock_hms `(v ~T0 @X0 1 ef ]
 {
 [e :U _handler_clock_hms ]
 [f ]
-"175
-[; ;main.c: 175:     do { LATAbits.LATA7 = ~LATAbits.LATA7; } while(0);
-[e :U 1647 ]
+"222
+[; ;main.c: 222:     if(!config_mode){
+[e $ ! ! != -> _config_mode `i -> 0 `i 1676  ]
+{
+"223
+[; ;main.c: 223:             do { LATAbits.LATA7 = ~LATAbits.LATA7; } while(0);
+[e :U 1679 ]
 {
 [e = . . _LATAbits 0 7 -> ~ -> . . _LATAbits 0 7 `i `uc ]
 }
-[e :U 1646 ]
-"177
-[; ;main.c: 177:     seg++;
+[e :U 1678 ]
+"224
+[; ;main.c: 224:     }
+}
+[e :U 1676 ]
+"225
+[; ;main.c: 225:     seg++;
 [e ++ _seg -> -> 1 `i `Vuc ]
-"178
-[; ;main.c: 178:     if(seg >= 60) {
-[e $ ! >= -> _seg `i -> 60 `i 1648  ]
+"226
+[; ;main.c: 226:     if(seg >= 60) {
+[e $ ! >= -> _seg `i -> 60 `i 1680  ]
 {
-"179
-[; ;main.c: 179:         clkm++;
+"227
+[; ;main.c: 227:         clkm++;
 [e ++ _clkm -> -> 1 `i `Vuc ]
-"180
-[; ;main.c: 180:         seg = 0;
+"228
+[; ;main.c: 228:         seg = 0;
 [e = _seg -> -> 0 `i `uc ]
-"181
-[; ;main.c: 181:         if(clkm >= 60) {
-[e $ ! >= -> _clkm `i -> 60 `i 1649  ]
+"229
+[; ;main.c: 229:         if(clkm >= 60) {
+[e $ ! >= -> _clkm `i -> 60 `i 1681  ]
 {
-"182
-[; ;main.c: 182:             clkh++;
+"230
+[; ;main.c: 230:             clkh++;
 [e ++ _clkh -> -> 1 `i `Vuc ]
-"183
-[; ;main.c: 183:             clkm = 0;
+"231
+[; ;main.c: 231:             clkm = 0;
 [e = _clkm -> -> 0 `i `uc ]
-"184
-[; ;main.c: 184:         }
+"232
+[; ;main.c: 232:         }
 }
-[e :U 1649 ]
-"185
-[; ;main.c: 185:     }
+[e :U 1681 ]
+"233
+[; ;main.c: 233:     }
 }
-[e :U 1648 ]
-"187
-[; ;main.c: 187: }
-[e :UE 1644 ]
+[e :U 1680 ]
+"235
+[; ;main.c: 235: }
+[e :UE 1675 ]
 }
-"189
-[; ;main.c: 189: void copyto_EEPROM(void) {
+"237
+[; ;main.c: 237: void copyto_EEPROM(void) {
 [v _copyto_EEPROM `(v ~T0 @X0 1 ef ]
 {
 [e :U _copyto_EEPROM ]
 [f ]
-"191
-[; ;main.c: 191: }
-[e :UE 1650 ]
+"239
+[; ;main.c: 239: }
+[e :UE 1682 ]
 }

@@ -48,7 +48,9 @@ volatile unsigned char clkh = CLKH;
 volatile unsigned char clkm = CLKM;
 volatile unsigned char seg;
 
-volatile unsigned char alarm = 0; 
+volatile unsigned int bounce_time = 0;
+volatile unsigned char alarm = 0;
+volatile unsigned char config_mode = OFF;
 
 unsigned int convertedValue = 0;
 unsigned int duty_cycle = 0;
@@ -58,11 +60,24 @@ unsigned int lum_threshold = 0;
 
 
 
+
 void sw1_EXT(void){
     
-    alarm = OFF;
-    PWM6_LoadDutyValue(OFF); 
-    
+    if (bounce_time - seg <= -1){
+        
+        // Debouncing SW
+        
+        if (alarm == ON){
+            alarm = OFF;
+            PWM6_LoadDutyValue(OFF); 
+        }
+        else{
+            if(!IO_RB4_GetValue()){
+               config_mode = ON; 
+            }
+        }    
+    }
+    bounce_time = seg;
     
 }
 
@@ -95,8 +110,6 @@ void main(void)
   
     PWM6_LoadDutyValue(OFF);
     alarm = OFF ;
-    // When using interrupts, you need to set the Global and Peripheral Interrupt Enable bits
-    // Use the following macros to:
 
     // Enable the Global Interrupts
     INTERRUPT_GlobalInterruptEnable();
@@ -104,12 +117,7 @@ void main(void)
     // Enable the Peripheral Interrupts
     INTERRUPT_PeripheralInterruptEnable();
     
-    // Disable the Global Interrupts
-    //INTERRUPT_GlobalInterruptDisable();
-
-    // Disable the Peripheral Interrupts
-    //INTERRUPT_PeripheralInterruptDisable();
-    
+  
     while (1)
     {   
         
@@ -120,36 +128,75 @@ void main(void)
         
         task_schedule = seg;
         //if (seg >= 5){
-        
-            do{
-                ADCC_StartConversion(channel_ANA0);
-                while(!ADCC_IsConversionDone()){
-                    __delay_ms(1);
-                }
-                convertedValue = ADCC_GetConversionResult();
-                
-                level_bin = (convertedValue >> 8);
-                LED_bin(level_bin);
-                lum_threshold = (level_bin > ALAL);
-                
-                if (alarm == SET && lum_threshold ){    //if alarm is set ON you need to press SW1 ON   
-                    duty_cycle +=1 ;   
-                    PWM6_LoadDutyValue(duty_cycle);
-                }
-                else if (alarm == SET && !(lum_threshold)) { //
-                    PWM6_LoadDutyValue(OFF);
-                    alarm = OFF ;
-                   
-                }
-                else if (alarm == OFF && lum_threshold){
-                    PIE0bits.TMR0IE = 1;
-                    TMR0_StartTimer();
-                    alarm = SET ;
-                }
-                
-                
-            }while(1);    //maintain this state 
-            
+                do{
+                    if(!config_mode){
+                       
+                        ADCC_StartConversion(channel_ANA0);
+                        while(!ADCC_IsConversionDone()){
+                            __delay_ms(1);
+                        }
+                        convertedValue = ADCC_GetConversionResult();
+
+                        level_bin = (convertedValue >> 8);
+                        LED_bin(level_bin);
+                        
+                        lum_threshold = (level_bin > ALAL);
+
+                        if(lum_threshold){
+                            if(alarm == SET){           //if alarm is set ON you need to press SW1 ON 
+                                duty_cycle +=1 ;   
+                                PWM6_LoadDutyValue(duty_cycle);
+                            }
+                            else if(alarm == OFF){
+                                PIE0bits.TMR0IE = 1;    // We exceed the limit - forget about of Low Power mode and check the 3 sec 
+                                TMR0_StartTimer();
+                                alarm = SET ;  
+                            }
+                        }
+                        else{
+                            if(alarm == SET){
+                                PWM6_LoadDutyValue(OFF);
+                                alarm = OFF ;
+                            }
+                        }
+
+                    /*    The same thing but less optimized 
+                        if (alarm == SET && lum_threshold ){    //if alarm is set ON you need to press SW1 ON   
+                            duty_cycle +=1 ;   
+                            PWM6_LoadDutyValue(duty_cycle);
+                        }
+                        else if (alarm == SET && !(lum_threshold)) { //
+                            PWM6_LoadDutyValue(OFF);
+                            alarm = OFF ; 
+                        }
+                        else if (alarm == OFF && lum_threshold){
+                            PIE0bits.TMR0IE = 1;
+                            TMR0_StartTimer();
+                            alarm = SET ;
+                        }
+                      */  
+                     }
+                    else{
+                        
+                        IO_RA7_SetHigh();
+                         __delay_ms(100);      
+                        IO_RA7_SetLow();
+                        __delay_ms(100); 
+                        RA6_SetHigh();
+                         __delay_ms(100);        
+                        RA6_SetLow();
+                         __delay_ms(100);        
+                        IO_RA5_SetHigh();       
+                          __delay_ms(100);       
+                        IO_RA5_SetLow();
+                        __delay_ms(100); 
+                        IO_RA4_SetHigh();
+                         __delay_ms(100); 
+                        IO_RA4_SetLow();       
+                                
+                    }
+                }while(1);    //maintain this state 
+           
         //}
         
        
@@ -172,8 +219,9 @@ void LED_bin(unsigned int value){
 }
 
 void handler_clock_hms(void){
-    IO_RA7_Toggle();
-   
+    if(!config_mode){
+            IO_RA7_Toggle();
+    }
     seg++;
     if(seg >= 60) {
         clkm++;

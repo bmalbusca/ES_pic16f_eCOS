@@ -20790,9 +20790,9 @@ extern __bank0 __bit __timeout;
 # 1 "./mcc_generated_files/device_config.h" 1
 # 51 "./mcc_generated_files/mcc.h" 2
 # 1 "./mcc_generated_files/pin_manager.h" 1
-# 182 "./mcc_generated_files/pin_manager.h"
+# 190 "./mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_Initialize (void);
-# 194 "./mcc_generated_files/pin_manager.h"
+# 202 "./mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_IOC(void);
 # 52 "./mcc_generated_files/mcc.h" 2
 # 1 "/opt/microchip/xc8/v2.10/pic/include/c99/stdint.h" 1 3
@@ -20949,26 +20949,12 @@ _Bool ADCC_HasErrorCrossedLowerThreshold(void);
 # 824 "./mcc_generated_files/adcc.h"
 uint8_t ADCC_GetConversionStageStatus(void);
 # 56 "./mcc_generated_files/mcc.h" 2
-# 1 "./mcc_generated_files/ext_int.h" 1
-# 250 "./mcc_generated_files/ext_int.h"
-void EXT_INT_Initialize(void);
-# 272 "./mcc_generated_files/ext_int.h"
-void INT_ISR(void);
-# 296 "./mcc_generated_files/ext_int.h"
-void INT_CallBack(void);
-# 319 "./mcc_generated_files/ext_int.h"
-void INT_SetInterruptHandler(void (* InterruptHandler)(void));
-# 343 "./mcc_generated_files/ext_int.h"
-extern void (*INT_InterruptHandler)(void);
-# 367 "./mcc_generated_files/ext_int.h"
-void INT_DefaultInterruptHandler(void);
-# 57 "./mcc_generated_files/mcc.h" 2
 # 1 "./mcc_generated_files/pwm6.h" 1
 # 102 "./mcc_generated_files/pwm6.h"
  void PWM6_Initialize(void);
 # 129 "./mcc_generated_files/pwm6.h"
  void PWM6_LoadDutyValue(uint16_t dutyValue);
-# 58 "./mcc_generated_files/mcc.h" 2
+# 57 "./mcc_generated_files/mcc.h" 2
 # 1 "./mcc_generated_files/tmr1.h" 1
 # 100 "./mcc_generated_files/tmr1.h"
 void TMR1_Initialize(void);
@@ -20994,6 +20980,20 @@ void TMR1_ISR(void);
 extern void (*TMR1_InterruptHandler)(void);
 # 421 "./mcc_generated_files/tmr1.h"
 void TMR1_DefaultInterruptHandler(void);
+# 58 "./mcc_generated_files/mcc.h" 2
+# 1 "./mcc_generated_files/ext_int.h" 1
+# 250 "./mcc_generated_files/ext_int.h"
+void EXT_INT_Initialize(void);
+# 272 "./mcc_generated_files/ext_int.h"
+void INT_ISR(void);
+# 296 "./mcc_generated_files/ext_int.h"
+void INT_CallBack(void);
+# 319 "./mcc_generated_files/ext_int.h"
+void INT_SetInterruptHandler(void (* InterruptHandler)(void));
+# 343 "./mcc_generated_files/ext_int.h"
+extern void (*INT_InterruptHandler)(void);
+# 367 "./mcc_generated_files/ext_int.h"
+void INT_DefaultInterruptHandler(void);
 # 59 "./mcc_generated_files/mcc.h" 2
 # 1 "./mcc_generated_files/tmr2.h" 1
 # 79 "./mcc_generated_files/tmr2.h"
@@ -21244,7 +21244,9 @@ volatile unsigned char clkh = 0;
 volatile unsigned char clkm = 0;
 volatile unsigned char seg;
 
+volatile unsigned int bounce_time = 0;
 volatile unsigned char alarm = 0;
+volatile unsigned char config_mode = 0;
 
 unsigned int convertedValue = 0;
 unsigned int duty_cycle = 0;
@@ -21254,11 +21256,24 @@ unsigned int lum_threshold = 0;
 
 
 
+
 void sw1_EXT(void){
 
-    alarm = 0;
-    PWM6_LoadDutyValue(0);
+    if (bounce_time - seg <= -1){
 
+
+
+        if (alarm == 1){
+            alarm = 0;
+            PWM6_LoadDutyValue(0);
+        }
+        else{
+            if(!PORTBbits.RB4){
+               config_mode = 1;
+            }
+        }
+    }
+    bounce_time = seg;
 
 }
 
@@ -21293,17 +21308,10 @@ void main(void)
     alarm = 0 ;
 
 
-
-
     (INTCONbits.GIE = 1);
 
 
     (INTCONbits.PEIE = 1);
-
-
-
-
-
 
 
     while (1)
@@ -21316,35 +21324,59 @@ void main(void)
 
         task_schedule = seg;
 
+                do{
+                    if(!config_mode){
 
-            do{
-                ADCC_StartConversion(channel_ANA0);
-                while(!ADCC_IsConversionDone()){
-                    _delay((unsigned long)((1)*(1000000/4000.0)));
-                }
-                convertedValue = ADCC_GetConversionResult();
+                        ADCC_StartConversion(channel_ANA0);
+                        while(!ADCC_IsConversionDone()){
+                            _delay((unsigned long)((1)*(1000000/4000.0)));
+                        }
+                        convertedValue = ADCC_GetConversionResult();
 
-                level_bin = (convertedValue >> 8);
-                LED_bin(level_bin);
-                lum_threshold = (level_bin > 2);
+                        level_bin = (convertedValue >> 8);
+                        LED_bin(level_bin);
 
-                if (alarm == 2 && lum_threshold ){
-                    duty_cycle +=1 ;
-                    PWM6_LoadDutyValue(duty_cycle);
-                }
-                else if (alarm == 2 && !(lum_threshold)) {
-                    PWM6_LoadDutyValue(0);
-                     alarm = 0 ;
+                        lum_threshold = (level_bin > 2);
 
-                }
-                else if (alarm == 0 && lum_threshold){
-                    PIE0bits.TMR0IE = 1;
-                    TMR0_StartTimer();
-                    alarm = 2 ;
-                }
+                        if(lum_threshold){
+                            if(alarm == 2){
+                                duty_cycle +=1 ;
+                                PWM6_LoadDutyValue(duty_cycle);
+                            }
+                            else if(alarm == 0){
+                                PIE0bits.TMR0IE = 1;
+                                TMR0_StartTimer();
+                                alarm = 2 ;
+                            }
+                        }
+                        else{
+                            if(alarm == 2){
+                                PWM6_LoadDutyValue(0);
+                                alarm = 0 ;
+                            }
+                        }
+# 178 "main.c"
+                     }
+                    else{
 
+                        do { LATAbits.LATA7 = 1; } while(0);
+                         _delay((unsigned long)((100)*(1000000/4000.0)));
+                        do { LATAbits.LATA7 = 0; } while(0);
+                        _delay((unsigned long)((100)*(1000000/4000.0)));
+                        do { LATAbits.LATA6 = 1; } while(0);
+                         _delay((unsigned long)((100)*(1000000/4000.0)));
+                        do { LATAbits.LATA6 = 0; } while(0);
+                         _delay((unsigned long)((100)*(1000000/4000.0)));
+                        do { LATAbits.LATA5 = 1; } while(0);
+                          _delay((unsigned long)((100)*(1000000/4000.0)));
+                        do { LATAbits.LATA5 = 0; } while(0);
+                        _delay((unsigned long)((100)*(1000000/4000.0)));
+                        do { LATAbits.LATA4 = 1; } while(0);
+                         _delay((unsigned long)((100)*(1000000/4000.0)));
+                        do { LATAbits.LATA4 = 0; } while(0);
 
-            }while(1);
+                    }
+                }while(1);
 
 
 
@@ -21368,8 +21400,9 @@ void LED_bin(unsigned int value){
 }
 
 void handler_clock_hms(void){
-    do { LATAbits.LATA7 = ~LATAbits.LATA7; } while(0);
-
+    if(!config_mode){
+            do { LATAbits.LATA7 = ~LATAbits.LATA7; } while(0);
+    }
     seg++;
     if(seg >= 60) {
         clkm++;
