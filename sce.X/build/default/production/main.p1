@@ -1,97 +1,147 @@
 Version 4.0 HI-TECH Software Intermediate Code
-[v F12264 `(v ~T0 @X0 0 tf ]
-"6894 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 6894: extern volatile unsigned char T1GCON __attribute__((address(0x20F)));
-[v _T1GCON `Vuc ~T0 @X0 0 e@527 ]
-"7090
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 7090: extern volatile unsigned char T1GATE __attribute__((address(0x210)));
-[v _T1GATE `Vuc ~T0 @X0 0 e@528 ]
-"7256
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 7256: extern volatile unsigned char T1CLK __attribute__((address(0x211)));
-[v _T1CLK `Vuc ~T0 @X0 0 e@529 ]
-"6678
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 6678: extern volatile unsigned char TMR1H __attribute__((address(0x20D)));
-[v _TMR1H `Vuc ~T0 @X0 0 e@525 ]
-"6508
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 6508: extern volatile unsigned char TMR1L __attribute__((address(0x20C)));
-[v _TMR1L `Vuc ~T0 @X0 0 e@524 ]
-"21573
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 21573:     struct {
-[s S979 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S979 . TMR1IF TMR2IF TMR3IF TMR4IF TMR5IF TMR6IF ]
-"21572
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 21572: typedef union {
-[u S978 `S979 1 ]
-[n S978 . . ]
-"21582
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 21582: extern volatile PIR4bits_t PIR4bits __attribute__((address(0x710)));
-[v _PIR4bits `VS978 ~T0 @X0 0 e@1808 ]
-"21995
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 21995:     struct {
-[s S998 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S998 . TMR1IE TMR2IE TMR3IE TMR4IE TMR5IE TMR6IE ]
-"21994
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 21994: typedef union {
-[u S997 `S998 1 ]
-[n S997 . . ]
-"22004
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 22004: extern volatile PIE4bits_t PIE4bits __attribute__((address(0x71A)));
-[v _PIE4bits `VS997 ~T0 @X0 0 e@1818 ]
-[v F12256 `(v ~T0 @X0 0 tf ]
-"385 mcc_generated_files/tmr1.h
-[; ;mcc_generated_files/tmr1.h: 385:  void TMR1_SetInterruptHandler(void (* InterruptHandler)(void));
-[v _TMR1_SetInterruptHandler `(v ~T0 @X0 0 ef1`*F12256 ]
-"421
-[; ;mcc_generated_files/tmr1.h: 421: void TMR1_DefaultInterruptHandler(void);
-[v _TMR1_DefaultInterruptHandler `(v ~T0 @X0 0 ef ]
-"6798 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 6798: extern volatile unsigned char T1CON __attribute__((address(0x20E)));
-[v _T1CON `Vuc ~T0 @X0 0 e@526 ]
-"6804
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 6804:     struct {
-[s S306 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :2 `uc 1 ]
-[n S306 . ON RD16 nSYNC . CKPS ]
-"6811
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 6811:     struct {
-[s S307 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S307 . TMR1ON T1RD16 nT1SYNC . T1CKPS0 T1CKPS1 ]
-"6819
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 6819:     struct {
-[s S308 :4 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S308 . . CKPS0 CKPS1 ]
-"6824
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 6824:     struct {
-[s S309 :1 `uc 1 :1 `uc 1 ]
-[n S309 . . RD161 ]
-"6803
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 6803: typedef union {
-[u S305 `S306 1 `S307 1 `S308 1 `S309 1 ]
-[n S305 . . . . . ]
-"6829
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 6829: extern volatile T1CONbits_t T1CONbits __attribute__((address(0x20E)));
-[v _T1CONbits `VS305 ~T0 @X0 0 e@526 ]
-"6905
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 6905:     struct {
-[s S311 :2 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S311 . . GVAL GGO_nDONE GSPM GTM GPOL GE ]
-"6914
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 6914:     struct {
-[s S312 :2 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S312 . . T1GVAL T1GGO_nDONE T1GSPM T1GTM T1GPOL T1GE ]
-"6923
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 6923:     struct {
-[s S313 :3 `uc 1 :1 `uc 1 ]
-[n S313 . . T1GGO ]
-"6904
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 6904: typedef union {
-[u S310 `S311 1 `S312 1 `S313 1 ]
-[n S310 . . . . ]
-"6928
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 6928: extern volatile T1GCONbits_t T1GCONbits __attribute__((address(0x20F)));
-[v _T1GCONbits `VS310 ~T0 @X0 0 e@527 ]
-[v F12279 `(v ~T0 @X0 0 tf ]
-[v F12281 `(v ~T0 @X0 0 tf ]
-[v F12283 `(v ~T0 @X0 0 tf ]
+[v F12646 `(v ~T0 @X0 0 tf ]
+[v F12648 `(v ~T0 @X0 0 tf ]
+[p mainexit ]
+"248 ./mcc_generated_files/memory.h
+[; ;./mcc_generated_files/memory.h: 248: uint8_t DATAEE_ReadByte(uint16_t bAdd);
+[v _DATAEE_ReadByte `(uc ~T0 @X0 0 ef1`us ]
+"19 ./eeprom_rw.h
+[; ;./eeprom_rw.h: 19: unsigned char cksum();
+[v _cksum `(uc ~T0 @X0 0 e? ]
+"20
+[; ;./eeprom_rw.h: 20: void reset_recv();
+[v _reset_recv `(v ~T0 @X0 0 e? ]
+"222 ./mcc_generated_files/memory.h
+[; ;./mcc_generated_files/memory.h: 222: void DATAEE_WriteByte(uint16_t bAdd, uint8_t bData);
+[v _DATAEE_WriteByte `(v ~T0 @X0 0 ef2`us`uc ]
+"18 ./eeprom_rw.h
+[; ;./eeprom_rw.h: 18: void cksum_w();
+[v _cksum_w `(v ~T0 @X0 0 e? ]
+"79 ./mcc_generated_files/mcc.h
+[; ;./mcc_generated_files/mcc.h: 79: void SYSTEM_Initialize(void);
+[v _SYSTEM_Initialize `(v ~T0 @X0 0 ef ]
+"152 ./I2C/i2c.h
+[; ;./I2C/i2c.h: 152: void I2C_Initialize(void);
+[v _I2C_Initialize `(v ~T0 @X0 0 ef ]
+"357 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 357:     struct {
+[s S31 :1 `uc 1 :5 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S31 . INTEDG . PEIE GIE ]
+"356
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 356: typedef union {
+[u S30 `S31 1 ]
+[n S30 . . ]
+"364
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 364: extern volatile INTCONbits_t INTCONbits __attribute__((address(0x00B)));
+[v _INTCONbits `VS30 ~T0 @X0 0 e@11 ]
+[v F12742 `(v ~T0 @X0 0 tf ]
+"310 ./mcc_generated_files/tmr0.h
+[; ;./mcc_generated_files/tmr0.h: 310:  void TMR0_SetInterruptHandler(void (* InterruptHandler)(void));
+[v _TMR0_SetInterruptHandler `(v ~T0 @X0 0 ef1`*F12742 ]
+"20 main.c
+[; ;main.c: 20: void h_precisionclock(void);
+[v _h_precisionclock `(v ~T0 @X0 0 ef ]
+[v F12663 `(v ~T0 @X0 0 tf ]
+"385 ./mcc_generated_files/tmr1.h
+[; ;./mcc_generated_files/tmr1.h: 385:  void TMR1_SetInterruptHandler(void (* InterruptHandler)(void));
+[v _TMR1_SetInterruptHandler `(v ~T0 @X0 0 ef1`*F12663 ]
+"19 main.c
+[; ;main.c: 19: void h_clock(void);
+[v _h_clock `(v ~T0 @X0 0 ef ]
+[v F12795 `(v ~T0 @X0 0 tf ]
+"319 ./mcc_generated_files/ext_int.h
+[; ;./mcc_generated_files/ext_int.h: 319: void INT_SetInterruptHandler(void (* InterruptHandler)(void));
+[v _INT_SetInterruptHandler `(v ~T0 @X0 0 ef1`*F12795 ]
+"21 main.c
+[; ;main.c: 21: void sw1_EXT(void);
+[v _sw1_EXT `(v ~T0 @X0 0 ef ]
+"32
+[; ;main.c: 32: unsigned char Read_S1();
+[v _Read_S1 `(uc ~T0 @X0 0 e? ]
+"129 ./mcc_generated_files/pwm6.h
+[; ;./mcc_generated_files/pwm6.h: 129:  void PWM6_LoadDutyValue(uint16_t dutyValue);
+[v _PWM6_LoadDutyValue `(v ~T0 @X0 0 ef1`us ]
+"24 main.c
+[; ;main.c: 24: void mod1_LED(void);
+[v _mod1_LED `(v ~T0 @X0 0 ef ]
+"33
+[; ;main.c: 33: unsigned char Read_S2();
+[v _Read_S2 `(uc ~T0 @X0 0 e? ]
+"36
+[; ;main.c: 36: void represent_led(unsigned char val, unsigned char high_digit);
+[v _represent_led `(v ~T0 @X0 0 ef2`uc`uc ]
+"25
+[; ;main.c: 25: void mod2_LED(void);
+[v _mod2_LED `(v ~T0 @X0 0 ef ]
+"26
+[; ;main.c: 26: void mod3_LED(void);
+[v _mod3_LED `(v ~T0 @X0 0 ef ]
+"27
+[; ;main.c: 27: void mod4_LED(void);
+[v _mod4_LED `(v ~T0 @X0 0 ef ]
+"31 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic.h
+[v ___nop `(v ~T0 @X0 0 ef ]
+[p i ___nop ]
+"154 ./I2C/i2c.h
+[; ;./I2C/i2c.h: 154: unsigned char tsttc (void);
+[v _tsttc `(uc ~T0 @X0 0 ef ]
+"35 main.c
+[; ;main.c: 35: unsigned int ADC_read(void);
+[v _ADC_read `(ui ~T0 @X0 0 ef ]
+"28
+[; ;main.c: 28: void LED_bin(unsigned int value);
+[v _LED_bin `(v ~T0 @X0 0 ef1`ui ]
+"17 ./eeprom_rw.h
+[; ;./eeprom_rw.h: 17: unsigned char read_ring(unsigned char nreg_pt, unsigned char nreg, unsigned char nreg_init, unsigned char index, unsigned char subindex);
+[v _read_ring `(uc ~T0 @X0 0 ef5`uc`uc`uc`uc`uc ]
+"16
+[; ;./eeprom_rw.h: 16: void push_ring(unsigned char* nreg_pt, unsigned char nreg, unsigned char* nreg_init, unsigned char* ring_byte);
+[v _push_ring `(v ~T0 @X0 0 ef4`*uc`uc`*uc`*uc ]
+"956 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 956:     struct {
+[s S53 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S53 . LATA0 LATA1 LATA2 LATA3 LATA4 LATA5 LATA6 LATA7 ]
+"955
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 955: typedef union {
+[u S52 `S53 1 ]
+[n S52 . . ]
+"967
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 967: extern volatile LATAbits_t LATAbits __attribute__((address(0x016)));
+[v _LATAbits `VS52 ~T0 @X0 0 e@22 ]
+"34 main.c
+[; ;main.c: 34: void update_clock(void);
+[v _update_clock `(v ~T0 @X0 0 ef ]
+"1080 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 1080:     struct {
+[s S57 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S57 . LATC0 LATC1 LATC2 LATC3 LATC4 LATC5 LATC6 LATC7 ]
+"1079
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 1079: typedef union {
+[u S56 `S57 1 ]
+[n S56 . . ]
+"1091
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 1091: extern volatile LATCbits_t LATCbits __attribute__((address(0x018)));
+[v _LATCbits `VS56 ~T0 @X0 0 e@24 ]
+"950
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 950: extern volatile unsigned char LATA __attribute__((address(0x016)));
+[v _LATA `Vuc ~T0 @X0 0 e@22 ]
+[v F12204 `(v ~T0 @X0 1 tf1`ul ]
+"92 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic.h
+[v __delay `JF12204 ~T0 @X0 0 e ]
+[p i __delay ]
+"440 main.c
+[; ;main.c: 440:    ADCC_StartConversion(channel_ANA0);
+[c E12749 0 60 61 62 63 .. ]
+[n E12749 . channel_ANA0 channel_VSS channel_Temp channel_DAC1 channel_FVR_buf1  ]
+"156 ./mcc_generated_files/adcc.h
+[; ;./mcc_generated_files/adcc.h: 156: void ADCC_StartConversion(adcc_channel_t channel);
+[v _ADCC_StartConversion `(v ~T0 @X0 0 ef1`E12749 ]
+"186
+[; ;./mcc_generated_files/adcc.h: 186: _Bool ADCC_IsConversionDone();
+[v _ADCC_IsConversionDone `(a ~T0 @X0 0 e? ]
+"218
+[; ;./mcc_generated_files/adcc.h: 218: adc_result_t ADCC_GetConversionResult(void);
+[v _ADCC_GetConversionResult `(us ~T0 @X0 0 ef ]
 "54 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 54: __asm("INDF0 equ 00h");
 [; <" INDF0 equ 00h ;# ">
@@ -1730,274 +1780,1298 @@ Version 4.0 HI-TECH Software Intermediate Code
 "36645
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 36645: __asm("TOSH equ 0FEFh");
 [; <" TOSH equ 0FEFh ;# ">
-"57 mcc_generated_files/tmr1.c
-[; ;mcc_generated_files/tmr1.c: 57: volatile uint16_t timer1ReloadVal;
-[v _timer1ReloadVal `Vus ~T0 @X0 1 e ]
+"78 ./mcc_generated_files/i2c1_driver.h
+[; ;./mcc_generated_files/i2c1_driver.h: 78: void (*i2c1_driver_busCollisionISR)(void);
+[v _i2c1_driver_busCollisionISR `*F12646 ~T0 @X0 1 e ]
+"79
+[; ;./mcc_generated_files/i2c1_driver.h: 79: void (*i2c1_driver_i2cISR)(void);
+[v _i2c1_driver_i2cISR `*F12648 ~T0 @X0 1 e ]
+"40 main.c
+[; ;main.c: 40: volatile unsigned char clkh, clkm, seg;
+[v _clkh `Vuc ~T0 @X0 1 e ]
+[v _clkm `Vuc ~T0 @X0 1 e ]
+[v _seg `Vuc ~T0 @X0 1 e ]
+"41
+[; ;main.c: 41: volatile unsigned int ms;
+[v _ms `Vui ~T0 @X0 1 e ]
+"42
+[; ;main.c: 42: volatile unsigned char last5s, last1m;
+[v _last5s `Vuc ~T0 @X0 1 e ]
+[v _last1m `Vuc ~T0 @X0 1 e ]
+"43
+[; ;main.c: 43: volatile __bit half;
+[v _half `Vb ~T0 @X0 1 e ]
+"44
+[; ;main.c: 44: volatile unsigned char duty_cycle, last3000ms;
+[v _duty_cycle `Vuc ~T0 @X0 1 e ]
+[v _last3000ms `Vuc ~T0 @X0 1 e ]
+"45
+[; ;main.c: 45: volatile unsigned char delta10ms_2, delta10ms;
+[v _delta10ms_2 `Vuc ~T0 @X0 1 e ]
+[v _delta10ms `Vuc ~T0 @X0 1 e ]
+"46
+[; ;main.c: 46: volatile __bit s1_pressed, s2_pressed;
+[v _s1_pressed `Vb ~T0 @X0 1 e ]
+[v _s2_pressed `Vb ~T0 @X0 1 e ]
+"47
+[; ;main.c: 47: volatile __bit alarm;
+[v _alarm `Vb ~T0 @X0 1 e ]
+"49
+[; ;main.c: 49: __bit config_mode;
+[v _config_mode `b ~T0 @X0 1 e ]
+"50
+[; ;main.c: 50: unsigned char select_mode;
+[v _select_mode `uc ~T0 @X0 1 e ]
+"52
+[; ;main.c: 52: unsigned char nreg, nreg_pt;
+[v _nreg `uc ~T0 @X0 1 e ]
+[v _nreg_pt `uc ~T0 @X0 1 e ]
+"53
+[; ;main.c: 53: unsigned char nreg_init;
+[v _nreg_init `uc ~T0 @X0 1 e ]
+"54
+[; ;main.c: 54: unsigned char ring_byte[5];
+[v _ring_byte `uc ~T0 @X0 -> 5 `i e ]
+"56
+[; ;main.c: 56: __bit running;
+[v _running `b ~T0 @X0 1 e ]
+"57
+[; ;main.c: 57: unsigned char pmon;
+[v _pmon `uc ~T0 @X0 1 e ]
 "58
-[; ;mcc_generated_files/tmr1.c: 58: void (*TMR1_InterruptHandler)(void);
-[v _TMR1_InterruptHandler `*F12264 ~T0 @X0 1 e ]
+[; ;main.c: 58: unsigned char temp, alat;
+[v _temp `uc ~T0 @X0 1 e ]
+[v _alat `uc ~T0 @X0 1 e ]
+"59
+[; ;main.c: 59: unsigned char lum_bin, alal;
+[v _lum_bin `uc ~T0 @X0 1 e ]
+[v _alal `uc ~T0 @X0 1 e ]
+"60
+[; ;main.c: 60: unsigned char alaf, tala;
+[v _alaf `uc ~T0 @X0 1 e ]
+[v _tala `uc ~T0 @X0 1 e ]
+"61
+[; ;main.c: 61: unsigned char aux, aux1;
+[v _aux `uc ~T0 @X0 1 e ]
+[v _aux1 `uc ~T0 @X0 1 e ]
+[v $root$_main `(v ~T0 @X0 0 e ]
+"63
+[; ;main.c: 63: void main(void)
+[v _main `(v ~T0 @X0 1 ef ]
 "64
-[; ;mcc_generated_files/tmr1.c: 64: void TMR1_Initialize(void)
-[v _TMR1_Initialize `(v ~T0 @X0 1 ef ]
-"65
-[; ;mcc_generated_files/tmr1.c: 65: {
+[; ;main.c: 64: {
 {
-[e :U _TMR1_Initialize ]
+[e :U _main ]
 [f ]
-"69
-[; ;mcc_generated_files/tmr1.c: 69:     T1GCON = 0x00;
-[e = _T1GCON -> -> 0 `i `uc ]
+"66
+[; ;main.c: 66:     running = 1;
+[e = _running -> -> 1 `i `b ]
+"67
+[; ;main.c: 67:     half = 0;
+[e = _half -> -> 0 `i `b ]
+"68
+[; ;main.c: 68:     duty_cycle = 0;
+[e = _duty_cycle -> -> 0 `i `uc ]
+"70
+[; ;main.c: 70:     clkh = 0; clkm = 0; seg = 0;
+[e = _clkh -> -> 0 `i `uc ]
+[e = _clkm -> -> 0 `i `uc ]
+[e = _seg -> -> 0 `i `uc ]
+"71
+[; ;main.c: 71:     last5s = 0;
+[e = _last5s -> -> 0 `i `uc ]
 "72
-[; ;mcc_generated_files/tmr1.c: 72:     T1GATE = 0x00;
-[e = _T1GATE -> -> 0 `i `uc ]
+[; ;main.c: 72:     last1m = 0;
+[e = _last1m -> -> 0 `i `uc ]
+"73
+[; ;main.c: 73:     last3000ms = 0;
+[e = _last3000ms -> -> 0 `i `uc ]
+"74
+[; ;main.c: 74:     delta10ms = 0;
+[e = _delta10ms -> -> 0 `i `uc ]
 "75
-[; ;mcc_generated_files/tmr1.c: 75:     T1CLK = 0x04;
-[e = _T1CLK -> -> 4 `i `uc ]
+[; ;main.c: 75:     delta10ms_2 = 0;
+[e = _delta10ms_2 -> -> 0 `i `uc ]
+"77
+[; ;main.c: 77:     s1_pressed = 0;
+[e = _s1_pressed -> -> 0 `i `b ]
 "78
-[; ;mcc_generated_files/tmr1.c: 78:     TMR1H = 0xE1;
-[e = _TMR1H -> -> 225 `i `uc ]
+[; ;main.c: 78:     s2_pressed = 0;
+[e = _s2_pressed -> -> 0 `i `b ]
+"80
+[; ;main.c: 80:     nreg = (unsigned char) (0xF000 + 5 * 30 >= 0xF0FF - 10 ? 256 : 5 * 30);
+[e = _nreg -> ? >= + -> 61440 `ui -> * -> 5 `i -> 30 `i `ui - -> 61695 `ui -> -> 10 `i `ui : -> 256 `i * -> 5 `i -> 30 `i `uc ]
 "81
-[; ;mcc_generated_files/tmr1.c: 81:     TMR1L = 0xBA;
-[e = _TMR1L -> -> 186 `i `uc ]
+[; ;main.c: 81:     nreg_pt = 0;
+[e = _nreg_pt -> -> 0 `i `uc ]
+"82
+[; ;main.c: 82:     nreg_init = 0;
+[e = _nreg_init -> -> 0 `i `uc ]
 "84
-[; ;mcc_generated_files/tmr1.c: 84:     timer1ReloadVal=(uint16_t)((TMR1H << 8) | TMR1L);
-[e = _timer1ReloadVal -> | << -> _TMR1H `i -> 8 `i -> _TMR1L `i `us ]
+[; ;main.c: 84:     pmon = 5;
+[e = _pmon -> -> 5 `i `uc ]
+"85
+[; ;main.c: 85:     alarm = 0;
+[e = _alarm -> -> 0 `i `b ]
+"86
+[; ;main.c: 86:     alaf = 0;
+[e = _alaf -> -> 0 `i `uc ]
 "87
-[; ;mcc_generated_files/tmr1.c: 87:     PIR4bits.TMR1IF = 0;
-[e = . . _PIR4bits 0 0 -> -> 0 `i `uc ]
+[; ;main.c: 87:     tala = 3;
+[e = _tala -> -> 3 `i `uc ]
+"88
+[; ;main.c: 88:     tala = (tala*1000 << 10);
+[e = _tala -> << * -> _tala `i -> 1000 `i -> 10 `i `uc ]
+"89
+[; ;main.c: 89:     duty_cycle = 0;
+[e = _duty_cycle -> -> 0 `i `uc ]
 "90
-[; ;mcc_generated_files/tmr1.c: 90:     PIE4bits.TMR1IE = 1;
-[e = . . _PIE4bits 0 0 -> -> 1 `i `uc ]
+[; ;main.c: 90:     temp = 0;
+[e = _temp -> -> 0 `i `uc ]
+"91
+[; ;main.c: 91:     alat = 25;
+[e = _alat -> -> 25 `i `uc ]
+"92
+[; ;main.c: 92:     lum_bin = 0;
+[e = _lum_bin -> -> 0 `i `uc ]
 "93
-[; ;mcc_generated_files/tmr1.c: 93:     TMR1_SetInterruptHandler(TMR1_DefaultInterruptHandler);
-[e ( _TMR1_SetInterruptHandler (1 &U _TMR1_DefaultInterruptHandler ]
+[; ;main.c: 93:     alal = (__bit) 2;
+[e = _alal -> -> -> 2 `i `b `uc ]
 "96
-[; ;mcc_generated_files/tmr1.c: 96:     T1CON = 0x15;
-[e = _T1CON -> -> 21 `i `uc ]
+[; ;main.c: 96:     if(DATAEE_ReadByte(0xF0FF - 10) == 0xAB) {
+[e $ ! == -> ( _DATAEE_ReadByte (1 -> - -> 61695 `ui -> -> 10 `i `ui `us `i -> 171 `i 1628  ]
+{
 "97
-[; ;mcc_generated_files/tmr1.c: 97: }
-[e :UE 1625 ]
-}
+[; ;main.c: 97:         if(DATAEE_ReadByte(0xF0FF) == cksum()) {
+[e $ ! == -> ( _DATAEE_ReadByte (1 -> -> 61695 `ui `us `i -> ( _cksum ..  `i 1629  ]
+{
+"98
+[; ;main.c: 98:             clkh = DATAEE_ReadByte(0xF0FF - 10 + 1);
+[e = _clkh ( _DATAEE_ReadByte (1 -> + - -> 61695 `ui -> -> 10 `i `ui -> -> 1 `i `ui `us ]
 "99
-[; ;mcc_generated_files/tmr1.c: 99: void TMR1_StartTimer(void)
-[v _TMR1_StartTimer `(v ~T0 @X0 1 ef ]
+[; ;main.c: 99:             clkm = DATAEE_ReadByte(0xF0FF - 10 + 2);
+[e = _clkm ( _DATAEE_ReadByte (1 -> + - -> 61695 `ui -> -> 10 `i `ui -> -> 2 `i `ui `us ]
 "100
-[; ;mcc_generated_files/tmr1.c: 100: {
-{
-[e :U _TMR1_StartTimer ]
-[f ]
+[; ;main.c: 100:             nreg = DATAEE_ReadByte(0xF0FF - 10 + 3);
+[e = _nreg ( _DATAEE_ReadByte (1 -> + - -> 61695 `ui -> -> 10 `i `ui -> -> 3 `i `ui `us ]
+"101
+[; ;main.c: 101:             nreg_pt = DATAEE_ReadByte(0xF0FF - 10 + 4);
+[e = _nreg_pt ( _DATAEE_ReadByte (1 -> + - -> 61695 `ui -> -> 10 `i `ui -> -> 4 `i `ui `us ]
 "102
-[; ;mcc_generated_files/tmr1.c: 102:     T1CONbits.TMR1ON = 1;
-[e = . . _T1CONbits 1 0 -> -> 1 `i `uc ]
+[; ;main.c: 102:             pmon = DATAEE_ReadByte(0xF0FF - 10 + 5);
+[e = _pmon ( _DATAEE_ReadByte (1 -> + - -> 61695 `ui -> -> 10 `i `ui -> -> 5 `i `ui `us ]
 "103
-[; ;mcc_generated_files/tmr1.c: 103: }
-[e :UE 1626 ]
+[; ;main.c: 103:             tala = DATAEE_ReadByte(0xF0FF - 10 + 6);
+[e = _tala ( _DATAEE_ReadByte (1 -> + - -> 61695 `ui -> -> 10 `i `ui -> -> 6 `i `ui `us ]
+"104
+[; ;main.c: 104:         }
 }
+[e :U 1629 ]
 "105
-[; ;mcc_generated_files/tmr1.c: 105: void TMR1_StopTimer(void)
-[v _TMR1_StopTimer `(v ~T0 @X0 1 ef ]
-"106
-[; ;mcc_generated_files/tmr1.c: 106: {
-{
-[e :U _TMR1_StopTimer ]
-[f ]
-"108
-[; ;mcc_generated_files/tmr1.c: 108:     T1CONbits.TMR1ON = 0;
-[e = . . _T1CONbits 1 0 -> -> 0 `i `uc ]
-"109
-[; ;mcc_generated_files/tmr1.c: 109: }
-[e :UE 1627 ]
+[; ;main.c: 105:     }
 }
+[e :U 1628 ]
+"107
+[; ;main.c: 107:     reset_recv();
+[e ( _reset_recv ..  ]
+"110
+[; ;main.c: 110:     DATAEE_WriteByte(0xF0FF - 10, 0xAB);
+[e ( _DATAEE_WriteByte (2 , -> - -> 61695 `ui -> -> 10 `i `ui `us -> -> 171 `i `uc ]
 "111
-[; ;mcc_generated_files/tmr1.c: 111: uint16_t TMR1_ReadTimer(void)
-[v _TMR1_ReadTimer `(us ~T0 @X0 1 ef ]
+[; ;main.c: 111:     DATAEE_WriteByte(0xF0FF - 10 + 3, nreg);
+[e ( _DATAEE_WriteByte (2 , -> + - -> 61695 `ui -> -> 10 `i `ui -> -> 3 `i `ui `us _nreg ]
 "112
-[; ;mcc_generated_files/tmr1.c: 112: {
-{
-[e :U _TMR1_ReadTimer ]
-[f ]
+[; ;main.c: 112:     DATAEE_WriteByte(0xF0FF - 10 + 5, pmon);
+[e ( _DATAEE_WriteByte (2 , -> + - -> 61695 `ui -> -> 10 `i `ui -> -> 5 `i `ui `us _pmon ]
 "113
-[; ;mcc_generated_files/tmr1.c: 113:     uint16_t readVal;
-[v _readVal `us ~T0 @X0 1 a ]
+[; ;main.c: 113:     DATAEE_WriteByte(0xF0FF - 10 + 6, tala);
+[e ( _DATAEE_WriteByte (2 , -> + - -> 61695 `ui -> -> 10 `i `ui -> -> 6 `i `ui `us _tala ]
 "114
-[; ;mcc_generated_files/tmr1.c: 114:     uint8_t readValHigh;
-[v _readValHigh `uc ~T0 @X0 1 a ]
-"115
-[; ;mcc_generated_files/tmr1.c: 115:     uint8_t readValLow;
-[v _readValLow `uc ~T0 @X0 1 a ]
+[; ;main.c: 114:     cksum_w();
+[e ( _cksum_w ..  ]
 "117
-[; ;mcc_generated_files/tmr1.c: 117:     T1CONbits.T1RD16 = 1;
-[e = . . _T1CONbits 1 1 -> -> 1 `i `uc ]
+[; ;main.c: 117:     SYSTEM_Initialize();
+[e ( _SYSTEM_Initialize ..  ]
+"118
+[; ;main.c: 118:     I2C_Initialize();
+[e ( _I2C_Initialize ..  ]
 "119
-[; ;mcc_generated_files/tmr1.c: 119:     readValLow = TMR1L;
-[e = _readValLow _TMR1L ]
+[; ;main.c: 119:     (INTCONbits.GIE = 1);
+[e = . . _INTCONbits 0 3 -> -> 1 `i `uc ]
 "120
-[; ;mcc_generated_files/tmr1.c: 120:     readValHigh = TMR1H;
-[e = _readValHigh _TMR1H ]
-"122
-[; ;mcc_generated_files/tmr1.c: 122:     readVal = ((uint16_t)readValHigh << 8) | readValLow;
-[e = _readVal -> | << -> -> _readValHigh `us `ui -> 8 `i -> _readValLow `ui `us ]
+[; ;main.c: 120:     (INTCONbits.PEIE = 1);
+[e = . . _INTCONbits 0 2 -> -> 1 `i `uc ]
+"123
+[; ;main.c: 123:     TMR0_SetInterruptHandler(h_precisionclock);
+[e ( _TMR0_SetInterruptHandler (1 &U _h_precisionclock ]
 "124
-[; ;mcc_generated_files/tmr1.c: 124:     return readVal;
-[e ) _readVal ]
-[e $UE 1628  ]
+[; ;main.c: 124:     TMR1_SetInterruptHandler(h_clock);
+[e ( _TMR1_SetInterruptHandler (1 &U _h_clock ]
 "125
-[; ;mcc_generated_files/tmr1.c: 125: }
-[e :UE 1628 ]
-}
+[; ;main.c: 125:     INT_SetInterruptHandler(sw1_EXT);
+[e ( _INT_SetInterruptHandler (1 &U _sw1_EXT ]
 "127
-[; ;mcc_generated_files/tmr1.c: 127: void TMR1_WriteTimer(uint16_t timerVal)
-[v _TMR1_WriteTimer `(v ~T0 @X0 1 ef1`us ]
+[; ;main.c: 127:     while (running)
+[e $U 1630  ]
+[e :U 1631 ]
 "128
-[; ;mcc_generated_files/tmr1.c: 128: {
+[; ;main.c: 128:     {
 {
-[e :U _TMR1_WriteTimer ]
-"127
-[; ;mcc_generated_files/tmr1.c: 127: void TMR1_WriteTimer(uint16_t timerVal)
-[v _timerVal `us ~T0 @X0 1 r1 ]
-"128
-[; ;mcc_generated_files/tmr1.c: 128: {
-[f ]
 "129
-[; ;mcc_generated_files/tmr1.c: 129:     if (T1CONbits.nT1SYNC == 1)
-[e $ ! == -> . . _T1CONbits 1 2 `i -> 1 `i 1630  ]
-"130
-[; ;mcc_generated_files/tmr1.c: 130:     {
+[; ;main.c: 129:         if(Read_S1()) {
+[e $ ! != -> ( _Read_S1 ..  `i -> 0 `i 1633  ]
+{
+"131
+[; ;main.c: 131:             if(alarm == 1) {
+[e $ ! == -> _alarm `i -> 1 `i 1634  ]
 {
 "132
-[; ;mcc_generated_files/tmr1.c: 132:         T1CONbits.TMR1ON = 0;
-[e = . . _T1CONbits 1 0 -> -> 0 `i `uc ]
+[; ;main.c: 132:                 alarm = 0;
+[e = _alarm -> -> 0 `i `b ]
+"133
+[; ;main.c: 133:                 PWM6_LoadDutyValue(0);
+[e ( _PWM6_LoadDutyValue (1 -> -> 0 `i `us ]
+"134
+[; ;main.c: 134:                 select_mode = 0;
+[e = _select_mode -> -> 0 `i `uc ]
 "135
-[; ;mcc_generated_files/tmr1.c: 135:         TMR1H = (timerVal >> 8);
-[e = _TMR1H -> >> -> _timerVal `ui -> 8 `i `uc ]
-"136
-[; ;mcc_generated_files/tmr1.c: 136:         TMR1L = timerVal;
-[e = _TMR1L -> _timerVal `uc ]
-"139
-[; ;mcc_generated_files/tmr1.c: 139:         T1CONbits.TMR1ON =1;
-[e = . . _T1CONbits 1 0 -> -> 1 `i `uc ]
-"140
-[; ;mcc_generated_files/tmr1.c: 140:     }
+[; ;main.c: 135:             }
 }
-[e $U 1631  ]
+[e $U 1635  ]
+"137
+[; ;main.c: 137:             else{
+[e :U 1634 ]
+{
+"138
+[; ;main.c: 138:                 switch(select_mode) {
+[e $U 1637  ]
+{
+"139
+[; ;main.c: 139:                     case 1: mod1_LED();
+[e :U 1638 ]
+[e ( _mod1_LED ..  ]
+"140
+[; ;main.c: 140:                             while(!Read_S1() & !Read_S2());
+[e $U 1639  ]
+[e :U 1640 ]
+[e :U 1639 ]
+[e $ & ! != -> ( _Read_S1 ..  `i -> 0 `i ! != -> ( _Read_S2 ..  `i -> 0 `i 1640  ]
+[e :U 1641 ]
 "141
-[; ;mcc_generated_files/tmr1.c: 141:     else
-[e :U 1630 ]
+[; ;main.c: 141:                             if(Read_S1())
+[e $ ! != -> ( _Read_S1 ..  `i -> 0 `i 1642  ]
 "142
-[; ;mcc_generated_files/tmr1.c: 142:     {
+[; ;main.c: 142:                                 break;
+[e $U 1636  ]
+[e :U 1642 ]
+"143
+[; ;main.c: 143:                             while(!Read_S1()) {
+[e $U 1643  ]
+[e :U 1644 ]
 {
 "144
-[; ;mcc_generated_files/tmr1.c: 144:         TMR1H = (timerVal >> 8);
-[e = _TMR1H -> >> -> _timerVal `ui -> 8 `i `uc ]
+[; ;main.c: 144:                                 represent_led(clkh, 1);
+[e ( _represent_led (2 , _clkh -> -> 1 `i `uc ]
 "145
-[; ;mcc_generated_files/tmr1.c: 145:         TMR1L = timerVal;
-[e = _TMR1L -> _timerVal `uc ]
+[; ;main.c: 145:                                 if(Read_S2())
+[e $ ! != -> ( _Read_S2 ..  `i -> 0 `i 1646  ]
 "146
-[; ;mcc_generated_files/tmr1.c: 146:     }
-}
-[e :U 1631 ]
+[; ;main.c: 146:                                     clkh += 0x10;
+[e =+ _clkh -> -> 16 `i `Vuc ]
+[e :U 1646 ]
 "147
-[; ;mcc_generated_files/tmr1.c: 147: }
-[e :UE 1629 ]
+[; ;main.c: 147:                                     if(clkh >= 24) clkh = 0;
+[e $ ! >= -> _clkh `i -> 24 `i 1647  ]
+[e = _clkh -> -> 0 `i `uc ]
+[e :U 1647 ]
+"148
+[; ;main.c: 148:                             }
 }
+[e :U 1643 ]
+"143
+[; ;main.c: 143:                             while(!Read_S1()) {
+[e $ ! != -> ( _Read_S1 ..  `i -> 0 `i 1644  ]
+[e :U 1645 ]
 "149
-[; ;mcc_generated_files/tmr1.c: 149: void TMR1_Reload(void)
-[v _TMR1_Reload `(v ~T0 @X0 1 ef ]
+[; ;main.c: 149:                             while(!Read_S1()) {
+[e $U 1648  ]
+[e :U 1649 ]
+{
 "150
-[; ;mcc_generated_files/tmr1.c: 150: {
-{
-[e :U _TMR1_Reload ]
-[f ]
+[; ;main.c: 150:                                 represent_led(clkh, 0);
+[e ( _represent_led (2 , _clkh -> -> 0 `i `uc ]
 "151
-[; ;mcc_generated_files/tmr1.c: 151:     TMR1_WriteTimer(timer1ReloadVal);
-[e ( _TMR1_WriteTimer (1 _timer1ReloadVal ]
+[; ;main.c: 151:                                 if(Read_S2())
+[e $ ! != -> ( _Read_S2 ..  `i -> 0 `i 1651  ]
 "152
-[; ;mcc_generated_files/tmr1.c: 152: }
-[e :UE 1632 ]
-}
+[; ;main.c: 152:                                     clkh += 0x01;
+[e =+ _clkh -> -> 1 `i `Vuc ]
+[e :U 1651 ]
+"153
+[; ;main.c: 153:                                     if(clkh >= 24) clkh = 0;
+[e $ ! >= -> _clkh `i -> 24 `i 1652  ]
+[e = _clkh -> -> 0 `i `uc ]
+[e :U 1652 ]
 "154
-[; ;mcc_generated_files/tmr1.c: 154: void TMR1_StartSinglePulseAcquisition(void)
-[v _TMR1_StartSinglePulseAcquisition `(v ~T0 @X0 1 ef ]
+[; ;main.c: 154:                             }
+}
+[e :U 1648 ]
+"149
+[; ;main.c: 149:                             while(!Read_S1()) {
+[e $ ! != -> ( _Read_S1 ..  `i -> 0 `i 1649  ]
+[e :U 1650 ]
 "155
-[; ;mcc_generated_files/tmr1.c: 155: {
+[; ;main.c: 155:                             while(!Read_S1()) {
+[e $U 1653  ]
+[e :U 1654 ]
 {
-[e :U _TMR1_StartSinglePulseAcquisition ]
-[f ]
 "156
-[; ;mcc_generated_files/tmr1.c: 156:     T1GCONbits.T1GGO = 1;
-[e = . . _T1GCONbits 2 1 -> -> 1 `i `uc ]
+[; ;main.c: 156:                                 represent_led(clkh, 1);
+[e ( _represent_led (2 , _clkh -> -> 1 `i `uc ]
 "157
-[; ;mcc_generated_files/tmr1.c: 157: }
-[e :UE 1633 ]
-}
+[; ;main.c: 157:                                 if(Read_S2())
+[e $ ! != -> ( _Read_S2 ..  `i -> 0 `i 1656  ]
+"158
+[; ;main.c: 158:                                     clkm += 0x10;
+[e =+ _clkm -> -> 16 `i `Vuc ]
+[e :U 1656 ]
 "159
-[; ;mcc_generated_files/tmr1.c: 159: uint8_t TMR1_CheckGateValueStatus(void)
-[v _TMR1_CheckGateValueStatus `(uc ~T0 @X0 1 ef ]
+[; ;main.c: 159:                                     if(clkm >= 60) clkm = 0;
+[e $ ! >= -> _clkm `i -> 60 `i 1657  ]
+[e = _clkm -> -> 0 `i `uc ]
+[e :U 1657 ]
 "160
-[; ;mcc_generated_files/tmr1.c: 160: {
-{
-[e :U _TMR1_CheckGateValueStatus ]
-[f ]
-"161
-[; ;mcc_generated_files/tmr1.c: 161:     return (T1GCONbits.T1GVAL);
-[e ) . . _T1GCONbits 1 1 ]
-[e $UE 1634  ]
-"162
-[; ;mcc_generated_files/tmr1.c: 162: }
-[e :UE 1634 ]
+[; ;main.c: 160:                             }
 }
-"164
-[; ;mcc_generated_files/tmr1.c: 164: void TMR1_ISR(void)
-[v _TMR1_ISR `(v ~T0 @X0 1 ef ]
-"165
-[; ;mcc_generated_files/tmr1.c: 165: {
+[e :U 1653 ]
+"155
+[; ;main.c: 155:                             while(!Read_S1()) {
+[e $ ! != -> ( _Read_S1 ..  `i -> 0 `i 1654  ]
+[e :U 1655 ]
+"161
+[; ;main.c: 161:                             while(!Read_S1()) {
+[e $U 1658  ]
+[e :U 1659 ]
 {
-[e :U _TMR1_ISR ]
-[f ]
+"162
+[; ;main.c: 162:                                 represent_led(clkm, 0);
+[e ( _represent_led (2 , _clkm -> -> 0 `i `uc ]
+"163
+[; ;main.c: 163:                                 if(Read_S2())
+[e $ ! != -> ( _Read_S2 ..  `i -> 0 `i 1661  ]
+"164
+[; ;main.c: 164:                                     clkm += 0x01;
+[e =+ _clkm -> -> 1 `i `Vuc ]
+[e :U 1661 ]
+"165
+[; ;main.c: 165:                                     if(clkm >= 60) clkm = 0;
+[e $ ! >= -> _clkm `i -> 60 `i 1662  ]
+[e = _clkm -> -> 0 `i `uc ]
+[e :U 1662 ]
+"166
+[; ;main.c: 166:                             }
+}
+[e :U 1658 ]
+"161
+[; ;main.c: 161:                             while(!Read_S1()) {
+[e $ ! != -> ( _Read_S1 ..  `i -> 0 `i 1659  ]
+[e :U 1660 ]
+"167
+[; ;main.c: 167:                             break;
+[e $U 1636  ]
 "168
-[; ;mcc_generated_files/tmr1.c: 168:     PIR4bits.TMR1IF = 0;
-[e = . . _PIR4bits 0 0 -> -> 0 `i `uc ]
+[; ;main.c: 168:                     case 2: mod2_LED();
+[e :U 1663 ]
+[e ( _mod2_LED ..  ]
 "169
-[; ;mcc_generated_files/tmr1.c: 169:     TMR1_WriteTimer(timer1ReloadVal);
-[e ( _TMR1_WriteTimer (1 _timer1ReloadVal ]
+[; ;main.c: 169:                             while(!Read_S1() & !Read_S2());
+[e $U 1664  ]
+[e :U 1665 ]
+[e :U 1664 ]
+[e $ & ! != -> ( _Read_S1 ..  `i -> 0 `i ! != -> ( _Read_S2 ..  `i -> 0 `i 1665  ]
+[e :U 1666 ]
+"170
+[; ;main.c: 170:                             if(Read_S1())
+[e $ ! != -> ( _Read_S1 ..  `i -> 0 `i 1667  ]
 "171
-[; ;mcc_generated_files/tmr1.c: 171:     if(TMR1_InterruptHandler)
-[e $ ! != _TMR1_InterruptHandler -> -> 0 `i `*F12279 1636  ]
+[; ;main.c: 171:                                 break;
+[e $U 1636  ]
+[e :U 1667 ]
 "172
-[; ;mcc_generated_files/tmr1.c: 172:     {
+[; ;main.c: 172:                             while(!Read_S1()) {
+[e $U 1668  ]
+[e :U 1669 ]
 {
 "173
-[; ;mcc_generated_files/tmr1.c: 173:         TMR1_InterruptHandler();
-[e ( *U _TMR1_InterruptHandler ..  ]
+[; ;main.c: 173:                                 represent_led(alat, 1);
+[e ( _represent_led (2 , _alat -> -> 1 `i `uc ]
 "174
-[; ;mcc_generated_files/tmr1.c: 174:     }
-}
-[e :U 1636 ]
+[; ;main.c: 174:                                 if(Read_S2())
+[e $ ! != -> ( _Read_S2 ..  `i -> 0 `i 1671  ]
 "175
-[; ;mcc_generated_files/tmr1.c: 175: }
-[e :UE 1635 ]
+[; ;main.c: 175:                                     alat += 0x10;
+[e =+ _alat -> -> 16 `i `uc ]
+[e :U 1671 ]
+"176
+[; ;main.c: 176:                                     if(alat > 50) alat = 0;
+[e $ ! > -> _alat `i -> 50 `i 1672  ]
+[e = _alat -> -> 0 `i `uc ]
+[e :U 1672 ]
+"177
+[; ;main.c: 177:                             }
 }
+[e :U 1668 ]
+"172
+[; ;main.c: 172:                             while(!Read_S1()) {
+[e $ ! != -> ( _Read_S1 ..  `i -> 0 `i 1669  ]
+[e :U 1670 ]
 "178
-[; ;mcc_generated_files/tmr1.c: 178: void TMR1_SetInterruptHandler(void (* InterruptHandler)(void)){
-[v _TMR1_SetInterruptHandler `(v ~T0 @X0 1 ef1`*F12281 ]
+[; ;main.c: 178:                             while(!Read_S1()) {
+[e $U 1673  ]
+[e :U 1674 ]
 {
-[e :U _TMR1_SetInterruptHandler ]
-[v _InterruptHandler `*F12283 ~T0 @X0 1 r1 ]
-[f ]
 "179
-[; ;mcc_generated_files/tmr1.c: 179:     TMR1_InterruptHandler = InterruptHandler;
-[e = _TMR1_InterruptHandler _InterruptHandler ]
+[; ;main.c: 179:                                 represent_led(alat, 0);
+[e ( _represent_led (2 , _alat -> -> 0 `i `uc ]
 "180
-[; ;mcc_generated_files/tmr1.c: 180: }
-[e :UE 1637 ]
-}
+[; ;main.c: 180:                                 if(Read_S2())
+[e $ ! != -> ( _Read_S2 ..  `i -> 0 `i 1676  ]
+"181
+[; ;main.c: 181:                                     alat += 0x01;
+[e =+ _alat -> -> 1 `i `uc ]
+[e :U 1676 ]
 "182
-[; ;mcc_generated_files/tmr1.c: 182: void TMR1_DefaultInterruptHandler(void){
-[v _TMR1_DefaultInterruptHandler `(v ~T0 @X0 1 ef ]
-{
-[e :U _TMR1_DefaultInterruptHandler ]
-[f ]
+[; ;main.c: 182:                                     if(alat > 50) alat = 0;
+[e $ ! > -> _alat `i -> 50 `i 1677  ]
+[e = _alat -> -> 0 `i `uc ]
+[e :U 1677 ]
+"183
+[; ;main.c: 183:                             }
+}
+[e :U 1673 ]
+"178
+[; ;main.c: 178:                             while(!Read_S1()) {
+[e $ ! != -> ( _Read_S1 ..  `i -> 0 `i 1674  ]
+[e :U 1675 ]
+"184
+[; ;main.c: 184:                             break;
+[e $U 1636  ]
 "185
-[; ;mcc_generated_files/tmr1.c: 185: }
-[e :UE 1638 ]
+[; ;main.c: 185:                     case 3: mod3_LED();
+[e :U 1678 ]
+[e ( _mod3_LED ..  ]
+"186
+[; ;main.c: 186:                             while(!Read_S1() & !Read_S2());
+[e $U 1679  ]
+[e :U 1680 ]
+[e :U 1679 ]
+[e $ & ! != -> ( _Read_S1 ..  `i -> 0 `i ! != -> ( _Read_S2 ..  `i -> 0 `i 1680  ]
+[e :U 1681 ]
+"187
+[; ;main.c: 187:                             if(Read_S1())
+[e $ ! != -> ( _Read_S1 ..  `i -> 0 `i 1682  ]
+"188
+[; ;main.c: 188:                                 break;
+[e $U 1636  ]
+[e :U 1682 ]
+"189
+[; ;main.c: 189:                             while(!Read_S1()) {
+[e $U 1683  ]
+[e :U 1684 ]
+{
+"190
+[; ;main.c: 190:                                 represent_led(alal, 0);
+[e ( _represent_led (2 , _alal -> -> 0 `i `uc ]
+"191
+[; ;main.c: 191:                                 if(Read_S2())
+[e $ ! != -> ( _Read_S2 ..  `i -> 0 `i 1686  ]
+"192
+[; ;main.c: 192:                                     alal += 0x01;
+[e =+ _alal -> -> 1 `i `uc ]
+[e :U 1686 ]
+"193
+[; ;main.c: 193:                                     if(alal > 3) alal = 0;
+[e $ ! > -> _alal `i -> 3 `i 1687  ]
+[e = _alal -> -> 0 `i `uc ]
+[e :U 1687 ]
+"194
+[; ;main.c: 194:                             }
+}
+[e :U 1683 ]
+"189
+[; ;main.c: 189:                             while(!Read_S1()) {
+[e $ ! != -> ( _Read_S1 ..  `i -> 0 `i 1684  ]
+[e :U 1685 ]
+"195
+[; ;main.c: 195:                             break;
+[e $U 1636  ]
+"196
+[; ;main.c: 196:                     case 4: mod4_LED();
+[e :U 1688 ]
+[e ( _mod4_LED ..  ]
+"197
+[; ;main.c: 197:                             while(!Read_S1() & !Read_S2());
+[e $U 1689  ]
+[e :U 1690 ]
+[e :U 1689 ]
+[e $ & ! != -> ( _Read_S1 ..  `i -> 0 `i ! != -> ( _Read_S2 ..  `i -> 0 `i 1690  ]
+[e :U 1691 ]
+"198
+[; ;main.c: 198:                             if(Read_S1())
+[e $ ! != -> ( _Read_S1 ..  `i -> 0 `i 1692  ]
+"199
+[; ;main.c: 199:                                 break;
+[e $U 1636  ]
+[e :U 1692 ]
+"200
+[; ;main.c: 200:                             while(!Read_S1()) {
+[e $U 1693  ]
+[e :U 1694 ]
+{
+"201
+[; ;main.c: 201:                                 represent_led(alaf, 0);
+[e ( _represent_led (2 , _alaf -> -> 0 `i `uc ]
+"202
+[; ;main.c: 202:                                 if(Read_S2())
+[e $ ! != -> ( _Read_S2 ..  `i -> 0 `i 1696  ]
+"203
+[; ;main.c: 203:                                     alaf = ~alaf;
+[e = _alaf -> ~ -> _alaf `i `uc ]
+[e :U 1696 ]
+"204
+[; ;main.c: 204:                             }
+}
+[e :U 1693 ]
+"200
+[; ;main.c: 200:                             while(!Read_S1()) {
+[e $ ! != -> ( _Read_S1 ..  `i -> 0 `i 1694  ]
+[e :U 1695 ]
+"205
+[; ;main.c: 205:                             break;
+[e $U 1636  ]
+"206
+[; ;main.c: 206:                     default: select_mode = 0;
+[e :U 1697 ]
+[e = _select_mode -> -> 0 `i `uc ]
+"207
+[; ;main.c: 207:                 }
+}
+[e $U 1636  ]
+[e :U 1637 ]
+[e [\ -> _select_mode `i , $ -> 1 `i 1638
+ , $ -> 2 `i 1663
+ , $ -> 3 `i 1678
+ , $ -> 4 `i 1688
+ 1697 ]
+[e :U 1636 ]
+"208
+[; ;main.c: 208:             }
+}
+[e :U 1635 ]
+"209
+[; ;main.c: 209:         }
+}
+[e :U 1633 ]
+"211
+[; ;main.c: 211:         if(pmon) {
+[e $ ! != -> _pmon `i -> 0 `i 1698  ]
+{
+"212
+[; ;main.c: 212:             (INTCONbits.GIE = 0);
+[e = . . _INTCONbits 0 3 -> -> 0 `i `uc ]
+"213
+[; ;main.c: 213:             if(last5s >= pmon) {
+[e $ ! >= -> _last5s `i -> _pmon `i 1699  ]
+{
+"214
+[; ;main.c: 214:                 last5s = 0;
+[e = _last5s -> -> 0 `i `uc ]
+"215
+[; ;main.c: 215:                (INTCONbits.GIE = 1);
+[e = . . _INTCONbits 0 3 -> -> 1 `i `uc ]
+"218
+[; ;main.c: 218:                 __nop();
+[e ( ___nop ..  ]
+"219
+[; ;main.c: 219:                 temp = tsttc();
+[e = _temp ( _tsttc ..  ]
+"220
+[; ;main.c: 220:                 __nop();
+[e ( ___nop ..  ]
+"223
+[; ;main.c: 223:                 lum_bin = (ADC_read() >> 8);
+[e = _lum_bin -> >> ( _ADC_read ..  -> 8 `i `uc ]
+"224
+[; ;main.c: 224:                 LED_bin(lum_bin);
+[e ( _LED_bin (1 -> _lum_bin `ui ]
+"227
+[; ;main.c: 227:                 if(((temp > alat) || (lum_bin > alal)) && alaf) alarm = 1;
+[e $ ! && || > -> _temp `i -> _alat `i > -> _lum_bin `i -> _alal `i != -> _alaf `i -> 0 `i 1700  ]
+[e = _alarm -> -> 1 `i `b ]
+[e :U 1700 ]
+"230
+[; ;main.c: 230:                 if (temp != read_ring(nreg_pt, nreg, nreg_init, 0, 3) || lum_bin != read_ring(nreg_pt, nreg, nreg_init, 0, 4)) {
+[e $ ! || != -> _temp `i -> ( _read_ring (4 , , , , _nreg_pt _nreg _nreg_init -> -> 0 `i `uc -> -> 3 `i `uc `i != -> _lum_bin `i -> ( _read_ring (4 , , , , _nreg_pt _nreg _nreg_init -> -> 0 `i `uc -> -> 4 `i `uc `i 1701  ]
+{
+"231
+[; ;main.c: 231:                     (INTCONbits.GIE = 0);
+[e = . . _INTCONbits 0 3 -> -> 0 `i `uc ]
+"232
+[; ;main.c: 232:                     ring_byte[0] = clkh;
+[e = *U + &U _ring_byte * -> -> -> 0 `i `ui `ux -> -> # *U &U _ring_byte `ui `ux _clkh ]
+"233
+[; ;main.c: 233:                     ring_byte[1] = clkm;
+[e = *U + &U _ring_byte * -> -> -> 1 `i `ui `ux -> -> # *U &U _ring_byte `ui `ux _clkm ]
+"234
+[; ;main.c: 234:                     ring_byte[2] = seg;
+[e = *U + &U _ring_byte * -> -> -> 2 `i `ui `ux -> -> # *U &U _ring_byte `ui `ux _seg ]
+"235
+[; ;main.c: 235:                     (INTCONbits.GIE = 1);
+[e = . . _INTCONbits 0 3 -> -> 1 `i `uc ]
+"236
+[; ;main.c: 236:                     ring_byte[3] = temp;
+[e = *U + &U _ring_byte * -> -> -> 3 `i `ui `ux -> -> # *U &U _ring_byte `ui `ux _temp ]
+"237
+[; ;main.c: 237:                     ring_byte[4] = lum_bin;
+[e = *U + &U _ring_byte * -> -> -> 4 `i `ui `ux -> -> # *U &U _ring_byte `ui `ux _lum_bin ]
+"238
+[; ;main.c: 238:                     push_ring(&nreg_pt, nreg, &nreg_init, ring_byte);
+[e ( _push_ring (4 , , , &U _nreg_pt _nreg &U _nreg_init &U _ring_byte ]
+"241
+[; ;main.c: 241:                     DATAEE_WriteByte(0xF0FF - 10 + 4, nreg_pt);
+[e ( _DATAEE_WriteByte (2 , -> + - -> 61695 `ui -> -> 10 `i `ui -> -> 4 `i `ui `us _nreg_pt ]
+"242
+[; ;main.c: 242:                     cksum_w();
+[e ( _cksum_w ..  ]
+"243
+[; ;main.c: 243:                 }
+}
+[e :U 1701 ]
+"244
+[; ;main.c: 244:             }
+}
+[e $U 1702  ]
+"245
+[; ;main.c: 245:             else
+[e :U 1699 ]
+"246
+[; ;main.c: 246:                 (INTCONbits.GIE = 1);
+[e = . . _INTCONbits 0 3 -> -> 1 `i `uc ]
+[e :U 1702 ]
+"247
+[; ;main.c: 247:         }
+}
+[e :U 1698 ]
+"250
+[; ;main.c: 250:         (INTCONbits.GIE = 0);
+[e = . . _INTCONbits 0 3 -> -> 0 `i `uc ]
+"251
+[; ;main.c: 251:         if (last1m >= 1) {
+[e $ ! >= -> _last1m `i -> 1 `i 1703  ]
+{
+"253
+[; ;main.c: 253:             last1m = 0;
+[e = _last1m -> -> 0 `i `uc ]
+"254
+[; ;main.c: 254:             aux = clkh;
+[e = _aux _clkh ]
+"255
+[; ;main.c: 255:             aux1 = clkm;
+[e = _aux1 _clkm ]
+"256
+[; ;main.c: 256:             (INTCONbits.GIE = 1);
+[e = . . _INTCONbits 0 3 -> -> 1 `i `uc ]
+"257
+[; ;main.c: 257:             DATAEE_WriteByte(0xF0FF - 10 + 1, aux);
+[e ( _DATAEE_WriteByte (2 , -> + - -> 61695 `ui -> -> 10 `i `ui -> -> 1 `i `ui `us _aux ]
+"258
+[; ;main.c: 258:             DATAEE_WriteByte(0xF0FF - 10 + 2, aux1);
+[e ( _DATAEE_WriteByte (2 , -> + - -> 61695 `ui -> -> 10 `i `ui -> -> 2 `i `ui `us _aux1 ]
+"259
+[; ;main.c: 259:             cksum_w();
+[e ( _cksum_w ..  ]
+"260
+[; ;main.c: 260:         }
+}
+[e $U 1704  ]
+"261
+[; ;main.c: 261:         else
+[e :U 1703 ]
+"262
+[; ;main.c: 262:             (INTCONbits.GIE = 1);
+[e = . . _INTCONbits 0 3 -> -> 1 `i `uc ]
+[e :U 1704 ]
+"263
+[; ;main.c: 263:     }
+}
+[e :U 1630 ]
+"127
+[; ;main.c: 127:     while (running)
+[e $ _running 1631  ]
+[e :U 1632 ]
+"264
+[; ;main.c: 264: }
+[e :UE 1627 ]
+}
+"271
+[; ;main.c: 271: void h_clock(void)
+[v _h_clock `(v ~T0 @X0 1 ef ]
+"272
+[; ;main.c: 272: {
+{
+[e :U _h_clock ]
+[f ]
+"273
+[; ;main.c: 273:     do { LATAbits.LATA7 = ~LATAbits.LATA7; } while(0);
+[e :U 1708 ]
+{
+[e = . . _LATAbits 0 7 -> ~ -> . . _LATAbits 0 7 `i `uc ]
+}
+[e :U 1707 ]
+"274
+[; ;main.c: 274:     if(!half) {
+[e $ ! ! _half 1709  ]
+{
+"275
+[; ;main.c: 275:         update_clock();
+[e ( _update_clock ..  ]
+"276
+[; ;main.c: 276:         half = 1;
+[e = _half -> -> 1 `i `b ]
+"277
+[; ;main.c: 277:     }
+}
+[e $U 1710  ]
+"278
+[; ;main.c: 278:     else {
+[e :U 1709 ]
+{
+"279
+[; ;main.c: 279:         half = 0;
+[e = _half -> -> 0 `i `b ]
+"280
+[; ;main.c: 280:     }
+}
+[e :U 1710 ]
+"281
+[; ;main.c: 281: }
+[e :UE 1705 ]
+}
+"283
+[; ;main.c: 283: void h_precisionclock(void)
+[v _h_precisionclock `(v ~T0 @X0 1 ef ]
+"284
+[; ;main.c: 284: {
+{
+[e :U _h_precisionclock ]
+[f ]
+"285
+[; ;main.c: 285:     if(alarm) {
+[e $ ! _alarm 1712  ]
+{
+"286
+[; ;main.c: 286:         if(last3000ms >= tala) {
+[e $ ! >= -> _last3000ms `i -> _tala `i 1713  ]
+{
+"287
+[; ;main.c: 287:             duty_cycle++;
+[e ++ _duty_cycle -> -> 1 `i `Vuc ]
+"288
+[; ;main.c: 288:             PWM6_LoadDutyValue(duty_cycle);
+[e ( _PWM6_LoadDutyValue (1 -> _duty_cycle `us ]
+"289
+[; ;main.c: 289:         }
+}
+[e :U 1713 ]
+"290
+[; ;main.c: 290:     }
+}
+[e $U 1714  ]
+"291
+[; ;main.c: 291:     else {
+[e :U 1712 ]
+{
+"292
+[; ;main.c: 292:         duty_cycle = 0;
+[e = _duty_cycle -> -> 0 `i `uc ]
+"293
+[; ;main.c: 293:         last3000ms = 0;
+[e = _last3000ms -> -> 0 `i `uc ]
+"294
+[; ;main.c: 294:     }
+}
+[e :U 1714 ]
+"297
+[; ;main.c: 297:     if(LATCbits.LATC5) {
+[e $ ! != -> . . _LATCbits 0 5 `i -> 0 `i 1715  ]
+{
+"298
+[; ;main.c: 298:         if (!delta10ms_2) {
+[e $ ! ! != -> _delta10ms_2 `i -> 0 `i 1716  ]
+{
+"299
+[; ;main.c: 299:             delta10ms_2 = ms;
+[e = _delta10ms_2 -> _ms `uc ]
+"300
+[; ;main.c: 300:             s2_pressed = 1;
+[e = _s2_pressed -> -> 1 `i `b ]
+"301
+[; ;main.c: 301:         } else if ((delta10ms_2 - ms >= 10) || (delta10ms_2 - ms <= -10)) {
+}
+[e $U 1717  ]
+[e :U 1716 ]
+[e $ ! || >= - -> _delta10ms_2 `ui _ms -> -> 10 `i `ui <= - -> _delta10ms_2 `ui _ms -> -U -> 10 `i `ui 1718  ]
+{
+"302
+[; ;main.c: 302:             delta10ms_2 = 0;
+[e = _delta10ms_2 -> -> 0 `i `uc ]
+"303
+[; ;main.c: 303:         }
+}
+[e :U 1718 ]
+[e :U 1717 ]
+"304
+[; ;main.c: 304:     }
+}
+[e :U 1715 ]
+"306
+[; ;main.c: 306:     ms++;
+[e ++ _ms -> -> 1 `i `Vui ]
+"307
+[; ;main.c: 307:     last3000ms++;
+[e ++ _last3000ms -> -> 1 `i `Vuc ]
+"308
+[; ;main.c: 308: }
+[e :UE 1711 ]
+}
+"310
+[; ;main.c: 310: void sw1_EXT(void)
+[v _sw1_EXT `(v ~T0 @X0 1 ef ]
+"311
+[; ;main.c: 311: {
+{
+[e :U _sw1_EXT ]
+[f ]
+"312
+[; ;main.c: 312:     if(!delta10ms) {
+[e $ ! ! != -> _delta10ms `i -> 0 `i 1720  ]
+{
+"313
+[; ;main.c: 313:         delta10ms = ms;
+[e = _delta10ms -> _ms `uc ]
+"314
+[; ;main.c: 314:         s1_pressed = 1;
+[e = _s1_pressed -> -> 1 `i `b ]
+"315
+[; ;main.c: 315:         select_mode++;
+[e ++ _select_mode -> -> 1 `i `uc ]
+"316
+[; ;main.c: 316:     }
+}
+[e $U 1721  ]
+"317
+[; ;main.c: 317:     else if((delta10ms - ms >= 10) || (delta10ms - ms <= -10)) {
+[e :U 1720 ]
+[e $ ! || >= - -> _delta10ms `ui _ms -> -> 10 `i `ui <= - -> _delta10ms `ui _ms -> -U -> 10 `i `ui 1722  ]
+{
+"318
+[; ;main.c: 318:         delta10ms = 0;
+[e = _delta10ms -> -> 0 `i `uc ]
+"319
+[; ;main.c: 319:     }
+}
+[e :U 1722 ]
+[e :U 1721 ]
+"320
+[; ;main.c: 320: }
+[e :UE 1719 ]
+}
+"327
+[; ;main.c: 327: void mod1_LED(void)
+[v _mod1_LED `(v ~T0 @X0 1 ef ]
+"328
+[; ;main.c: 328: {
+{
+[e :U _mod1_LED ]
+[f ]
+"329
+[; ;main.c: 329:     LATA = 0;
+[e = _LATA -> -> 0 `i `uc ]
+"330
+[; ;main.c: 330:     PWM6_LoadDutyValue(0);
+[e ( _PWM6_LoadDutyValue (1 -> -> 0 `i `us ]
+"331
+[; ;main.c: 331:     do { LATAbits.LATA7 = 1; } while(0);
+[e :U 1726 ]
+{
+[e = . . _LATAbits 0 7 -> -> 1 `i `uc ]
+}
+[e :U 1725 ]
+"332
+[; ;main.c: 332: }
+[e :UE 1723 ]
+}
+"334
+[; ;main.c: 334: void mod2_LED(void)
+[v _mod2_LED `(v ~T0 @X0 1 ef ]
+"335
+[; ;main.c: 335: {
+{
+[e :U _mod2_LED ]
+[f ]
+"336
+[; ;main.c: 336:     LATA = 0;
+[e = _LATA -> -> 0 `i `uc ]
+"337
+[; ;main.c: 337:     PWM6_LoadDutyValue(1023);
+[e ( _PWM6_LoadDutyValue (1 -> -> 1023 `i `us ]
+"338
+[; ;main.c: 338: }
+[e :UE 1727 ]
+}
+"340
+[; ;main.c: 340: void mod3_LED(void)
+[v _mod3_LED `(v ~T0 @X0 1 ef ]
+"341
+[; ;main.c: 341: {
+{
+[e :U _mod3_LED ]
+[f ]
+"342
+[; ;main.c: 342:     LATA = 0;
+[e = _LATA -> -> 0 `i `uc ]
+"343
+[; ;main.c: 343:     PWM6_LoadDutyValue(0);
+[e ( _PWM6_LoadDutyValue (1 -> -> 0 `i `us ]
+"344
+[; ;main.c: 344:     do { LATAbits.LATA5 = 1; } while(0);
+[e :U 1731 ]
+{
+[e = . . _LATAbits 0 5 -> -> 1 `i `uc ]
+}
+[e :U 1730 ]
+"345
+[; ;main.c: 345: }
+[e :UE 1728 ]
+}
+"347
+[; ;main.c: 347: void mod4_LED(void)
+[v _mod4_LED `(v ~T0 @X0 1 ef ]
+"348
+[; ;main.c: 348: {
+{
+[e :U _mod4_LED ]
+[f ]
+"349
+[; ;main.c: 349:     LATA = 0;
+[e = _LATA -> -> 0 `i `uc ]
+"350
+[; ;main.c: 350:     PWM6_LoadDutyValue(0);
+[e ( _PWM6_LoadDutyValue (1 -> -> 0 `i `us ]
+"351
+[; ;main.c: 351:     do { LATAbits.LATA4 = 1; } while(0);
+[e :U 1735 ]
+{
+[e = . . _LATAbits 0 4 -> -> 1 `i `uc ]
+}
+[e :U 1734 ]
+"352
+[; ;main.c: 352: }
+[e :UE 1732 ]
+}
+"359
+[; ;main.c: 359: void LED_bin(unsigned int value)
+[v _LED_bin `(v ~T0 @X0 1 ef1`ui ]
+"360
+[; ;main.c: 360: {
+{
+[e :U _LED_bin ]
+"359
+[; ;main.c: 359: void LED_bin(unsigned int value)
+[v _value `ui ~T0 @X0 1 r1 ]
+"360
+[; ;main.c: 360: {
+[f ]
+"362
+[; ;main.c: 362:     LATAbits.LATA4 = (value & 1);
+[e = . . _LATAbits 0 4 -> & _value -> -> 1 `i `ui `uc ]
+"363
+[; ;main.c: 363:     LATAbits.LATA5 = (value >> 1);
+[e = . . _LATAbits 0 5 -> >> _value -> 1 `i `uc ]
+"364
+[; ;main.c: 364: }
+[e :UE 1736 ]
+}
+"370
+[; ;main.c: 370: void all_LED(void)
+[v _all_LED `(v ~T0 @X0 1 ef ]
+"371
+[; ;main.c: 371: {
+{
+[e :U _all_LED ]
+[f ]
+"373
+[; ;main.c: 373:        do { LATAbits.LATA7 = 1; } while(0);
+[e :U 1740 ]
+{
+[e = . . _LATAbits 0 7 -> -> 1 `i `uc ]
+}
+[e :U 1739 ]
+"374
+[; ;main.c: 374:         _delay((unsigned long)((100)*(1000000/4000.0)));
+[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"375
+[; ;main.c: 375:        do { LATAbits.LATA7 = 0; } while(0);
+[e :U 1743 ]
+{
+[e = . . _LATAbits 0 7 -> -> 0 `i `uc ]
+}
+[e :U 1742 ]
+"376
+[; ;main.c: 376:        _delay((unsigned long)((100)*(1000000/4000.0)));
+[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"378
+[; ;main.c: 378:        PWM6_LoadDutyValue(1023);
+[e ( _PWM6_LoadDutyValue (1 -> -> 1023 `i `us ]
+"379
+[; ;main.c: 379:         _delay((unsigned long)((100)*(1000000/4000.0)));
+[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"381
+[; ;main.c: 381:         PWM6_LoadDutyValue(0);
+[e ( _PWM6_LoadDutyValue (1 -> -> 0 `i `us ]
+"382
+[; ;main.c: 382:         _delay((unsigned long)((100)*(1000000/4000.0)));
+[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"383
+[; ;main.c: 383:        do { LATAbits.LATA5 = 1; } while(0);
+[e :U 1746 ]
+{
+[e = . . _LATAbits 0 5 -> -> 1 `i `uc ]
+}
+[e :U 1745 ]
+"384
+[; ;main.c: 384:          _delay((unsigned long)((100)*(1000000/4000.0)));
+[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"385
+[; ;main.c: 385:        do { LATAbits.LATA5 = 0; } while(0);
+[e :U 1749 ]
+{
+[e = . . _LATAbits 0 5 -> -> 0 `i `uc ]
+}
+[e :U 1748 ]
+"386
+[; ;main.c: 386:        _delay((unsigned long)((100)*(1000000/4000.0)));
+[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"387
+[; ;main.c: 387:        do { LATAbits.LATA4 = 1; } while(0);
+[e :U 1752 ]
+{
+[e = . . _LATAbits 0 4 -> -> 1 `i `uc ]
+}
+[e :U 1751 ]
+"388
+[; ;main.c: 388:         _delay((unsigned long)((100)*(1000000/4000.0)));
+[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"389
+[; ;main.c: 389:        do { LATAbits.LATA4 = 0; } while(0);
+[e :U 1755 ]
+{
+[e = . . _LATAbits 0 4 -> -> 0 `i `uc ]
+}
+[e :U 1754 ]
+"390
+[; ;main.c: 390: }
+[e :UE 1737 ]
+}
+"399
+[; ;main.c: 399: unsigned char Read_S1()
+[v _Read_S1 `(uc ~T0 @X0 1 ef ]
+"400
+[; ;main.c: 400: {
+{
+[e :U _Read_S1 ]
+[f ]
+"401
+[; ;main.c: 401:     unsigned char val;
+[v _val `uc ~T0 @X0 1 a ]
+"402
+[; ;main.c: 402:     (INTCONbits.GIE = 0);
+[e = . . _INTCONbits 0 3 -> -> 0 `i `uc ]
+"403
+[; ;main.c: 403:     val = s1_pressed;
+[e = _val -> _s1_pressed `uc ]
+"404
+[; ;main.c: 404:     s1_pressed = 0;
+[e = _s1_pressed -> -> 0 `i `b ]
+"405
+[; ;main.c: 405:     (INTCONbits.GIE = 1);
+[e = . . _INTCONbits 0 3 -> -> 1 `i `uc ]
+"406
+[; ;main.c: 406:     return val;
+[e ) _val ]
+[e $UE 1756  ]
+"407
+[; ;main.c: 407: }
+[e :UE 1756 ]
+}
+"409
+[; ;main.c: 409: unsigned char Read_S2()
+[v _Read_S2 `(uc ~T0 @X0 1 ef ]
+"410
+[; ;main.c: 410: {
+{
+[e :U _Read_S2 ]
+[f ]
+"411
+[; ;main.c: 411:     unsigned char val;
+[v _val `uc ~T0 @X0 1 a ]
+"412
+[; ;main.c: 412:     (INTCONbits.GIE = 0);
+[e = . . _INTCONbits 0 3 -> -> 0 `i `uc ]
+"413
+[; ;main.c: 413:     val = s1_pressed;
+[e = _val -> _s1_pressed `uc ]
+"414
+[; ;main.c: 414:     s1_pressed = 0;
+[e = _s1_pressed -> -> 0 `i `b ]
+"415
+[; ;main.c: 415:     (INTCONbits.GIE = 1);
+[e = . . _INTCONbits 0 3 -> -> 1 `i `uc ]
+"416
+[; ;main.c: 416:     return val;
+[e ) _val ]
+[e $UE 1757  ]
+"417
+[; ;main.c: 417: }
+[e :UE 1757 ]
+}
+"419
+[; ;main.c: 419: void update_clock(void) {
+[v _update_clock `(v ~T0 @X0 1 ef ]
+{
+[e :U _update_clock ]
+[f ]
+"420
+[; ;main.c: 420:     seg++;
+[e ++ _seg -> -> 1 `i `Vuc ]
+"421
+[; ;main.c: 421:     last5s++;
+[e ++ _last5s -> -> 1 `i `Vuc ]
+"422
+[; ;main.c: 422:     if(seg >= 60) {
+[e $ ! >= -> _seg `i -> 60 `i 1759  ]
+{
+"423
+[; ;main.c: 423:         clkm++;
+[e ++ _clkm -> -> 1 `i `Vuc ]
+"424
+[; ;main.c: 424:         last1m++;
+[e ++ _last1m -> -> 1 `i `Vuc ]
+"425
+[; ;main.c: 425:         seg = 0;
+[e = _seg -> -> 0 `i `uc ]
+"426
+[; ;main.c: 426:         if(clkm >= 60) {
+[e $ ! >= -> _clkm `i -> 60 `i 1760  ]
+{
+"427
+[; ;main.c: 427:             clkh++;
+[e ++ _clkh -> -> 1 `i `Vuc ]
+"428
+[; ;main.c: 428:             clkm = 0;
+[e = _clkm -> -> 0 `i `uc ]
+"429
+[; ;main.c: 429:         }
+}
+[e :U 1760 ]
+"430
+[; ;main.c: 430:     }
+}
+[e :U 1759 ]
+"431
+[; ;main.c: 431: }
+[e :UE 1758 ]
+}
+"438
+[; ;main.c: 438: unsigned int ADC_read(void)
+[v _ADC_read `(ui ~T0 @X0 1 ef ]
+"439
+[; ;main.c: 439: {
+{
+[e :U _ADC_read ]
+[f ]
+"440
+[; ;main.c: 440:    ADCC_StartConversion(channel_ANA0);
+[e ( _ADCC_StartConversion (1 . `E12749 0 ]
+"441
+[; ;main.c: 441:     while(!ADCC_IsConversionDone()){
+[e $U 1762  ]
+[e :U 1763 ]
+{
+"442
+[; ;main.c: 442:         _delay((unsigned long)((1)*(1000000/4000.0)));
+[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"443
+[; ;main.c: 443:     }
+}
+[e :U 1762 ]
+"441
+[; ;main.c: 441:     while(!ADCC_IsConversionDone()){
+[e $ ! != -> ( _ADCC_IsConversionDone ..  `i -> 0 `i 1763  ]
+[e :U 1764 ]
+"445
+[; ;main.c: 445:     return ADCC_GetConversionResult();
+[e ) -> ( _ADCC_GetConversionResult ..  `ui ]
+[e $UE 1761  ]
+"446
+[; ;main.c: 446: }
+[e :UE 1761 ]
+}
+"456
+[; ;main.c: 456: void represent_led(unsigned char val, unsigned char high_digit)
+[v _represent_led `(v ~T0 @X0 1 ef2`uc`uc ]
+"457
+[; ;main.c: 457: {
+{
+[e :U _represent_led ]
+"456
+[; ;main.c: 456: void represent_led(unsigned char val, unsigned char high_digit)
+[v _val `uc ~T0 @X0 1 r1 ]
+[v _high_digit `uc ~T0 @X0 1 r2 ]
+"457
+[; ;main.c: 457: {
+[f ]
+"458
+[; ;main.c: 458:     unsigned char aux = val;
+[v _aux `uc ~T0 @X0 1 a ]
+[e = _aux _val ]
+"459
+[; ;main.c: 459:     if(val > 99)
+[e $ ! > -> _val `i -> 99 `i 1766  ]
+"460
+[; ;main.c: 460:         return;
+[e $UE 1765  ]
+[e :U 1766 ]
+"461
+[; ;main.c: 461:     if(high_digit)
+[e $ ! != -> _high_digit `i -> 0 `i 1767  ]
+"462
+[; ;main.c: 462:         aux = val / 10;
+[e = _aux -> / -> _val `i -> 10 `i `uc ]
+[e :U 1767 ]
+"463
+[; ;main.c: 463:     LATAbits.LATA4 = aux >> 3;
+[e = . . _LATAbits 0 4 -> >> -> _aux `i -> 3 `i `uc ]
+"464
+[; ;main.c: 464:     LATAbits.LATA5 = aux >> 2;
+[e = . . _LATAbits 0 5 -> >> -> _aux `i -> 2 `i `uc ]
+"465
+[; ;main.c: 465:     LATAbits.LATA6 = aux >> 1;
+[e = . . _LATAbits 0 6 -> >> -> _aux `i -> 1 `i `uc ]
+"466
+[; ;main.c: 466:     LATAbits.LATA7 = aux >> 0;
+[e = . . _LATAbits 0 7 -> >> -> _aux `i -> 0 `i `uc ]
+"467
+[; ;main.c: 467: }
+[e :UE 1765 ]
 }

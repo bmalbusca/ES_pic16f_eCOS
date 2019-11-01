@@ -7,8 +7,8 @@
 #define CLKH        0
 #define CLKM        0
 
-#define ON          1
-#define OFF         0
+// #define ON          1        // Estavam a dar erros. Why? \_(?)_/
+// #define OFF         0
 
 #include <xc.h>
 #include "mcc_generated_files/mcc.h"
@@ -33,7 +33,7 @@ unsigned char Read_S1();
 unsigned char Read_S2();
 void update_clock(void);
 unsigned int ADC_read(void);
-unsigned int represent_led(unsigned char val, __bit two_digits, __bit high_digit);
+void represent_led(unsigned char val, unsigned char high_digit);
 
 //
 
@@ -41,12 +41,11 @@ volatile unsigned char clkh, clkm, seg;
 volatile unsigned int ms;
 volatile unsigned char last5s, last1m;                      // 'last' variables are counters named with their default values; pmon counter default value is 5s; so 'last5s'
 volatile __bit half; // h_clock()
-volatile __bit alarm, alal;
 volatile unsigned char duty_cycle, last3000ms;              // 'last3000ms' is used for alarm PWM
 volatile unsigned char delta10ms_2, delta10ms;              // debouncing s1 and s2
 volatile __bit s1_pressed, s2_pressed;
+volatile __bit alarm;
 
-__bit s2_pressed;
 __bit config_mode;
 unsigned char select_mode;
 
@@ -55,10 +54,9 @@ unsigned char nreg_init;
 unsigned char ring_byte[5];
 
 __bit running;
-__bit alarm;
 unsigned char pmon;
 unsigned char temp, alat;
-unsigned char lum_bin;
+unsigned char lum_bin, alal;
 unsigned char alaf, tala;
 unsigned char aux, aux1;
 
@@ -79,26 +77,27 @@ void main(void)
     s1_pressed = 0;
     s2_pressed = 0;
 
-    nreg = EE_FST + 5 * NREG >= EE_RECV ? EE_SIZE : 5 * NREG;
+    nreg = (unsigned char) (EE_FST + 5 * NREG >= EE_RECV ? EE_SIZE : 5 * NREG);
     nreg_pt = 0;
     nreg_init = 0;
 
     pmon = PMON;
     alarm = 0;
     alaf = 0;
-    tala = (TALA*1000 << 10);
+    tala = TALA;
+    tala = (tala*1000 << 10);
     duty_cycle = 0;
     temp = 0;
     alat = ALAT;
     lum_bin = 0;
-    alal = ALAL;
+    alal = (__bit) ALAL;
 
     /* Recover Parameters */
     if(DATAEE_ReadByte(EE_RECV) == WORD_MG) {
         if(DATAEE_ReadByte(EE_LST) == cksum()) {
             clkh = DATAEE_ReadByte(EE_RECV + 1);
             clkm = DATAEE_ReadByte(EE_RECV + 2);
-            nreg = DATAEE_ReadByte(EE_RECV + 3)
+            nreg = DATAEE_ReadByte(EE_RECV + 3);
             nreg_pt = DATAEE_ReadByte(EE_RECV + 4);
             pmon = DATAEE_ReadByte(EE_RECV + 5);
             tala = DATAEE_ReadByte(EE_RECV + 6);
@@ -129,9 +128,9 @@ void main(void)
     {
         if(Read_S1()) {          
             /* Alarm Dismiss */
-            if(alarm == ON) {                                               // Turn off the alarm
-                alarm = OFF;
-                PWM6_LoadDutyValue(OFF);
+            if(alarm == 1) {                                               // Turn off the alarm
+                alarm = 0;
+                PWM6_LoadDutyValue(0);
                 select_mode = 0;                                            // By default select_mode is incremented when s1 is pressed
             }
             /* User UI -- configuration mode */
@@ -141,26 +140,26 @@ void main(void)
                             while(!Read_S1() & !Read_S2());                 // Wait for a switch to be pressed
                             if(Read_S1())
                                 break;
-                            represent_led(clkh, 1);                         // There are 4 subfields, one for each digit of hours and minutes -- in order to represent in 4 leds
                             while(!Read_S1()) {                             // Increment process
+                                represent_led(clkh, 1);                     // There are 4 subfields, one for each digit of hours and minutes -- in order to represent in 4 leds
                                 if(Read_S2())
                                     clkh += 0x10;
                                     if(clkh >= 24) clkh = 0;
                             }
-                            represent_led(clkh, 0);
                             while(!Read_S1()) {                             // Increment process
+                                represent_led(clkh, 0);
                                 if(Read_S2())
                                     clkh += 0x01;
                                     if(clkh >= 24) clkh = 0;
                             }
-                            represent_led(clkh, 1);
                             while(!Read_S1()) {                             // Increment process
+                                represent_led(clkh, 1);
                                 if(Read_S2())
                                     clkm += 0x10;
                                     if(clkm >= 60) clkm = 0;
                             }
-                            represent_led(clkm, 0);
                             while(!Read_S1()) {                             // Increment process
+                                represent_led(clkm, 0);
                                 if(Read_S2())
                                     clkm += 0x01;
                                     if(clkm >= 60) clkm = 0;
@@ -170,14 +169,14 @@ void main(void)
                             while(!Read_S1() & !Read_S2());                 // Wait for a switch to be pressed
                             if(Read_S1())
                                 break;
-                            represent_led(alat, 1);                         // There are 2 subfields -- one for each digit of temperature alarm treshold
                             while(!Read_S1()) {                             // Increment process
+                                represent_led(alat, 1);                     // There are 2 subfields -- one for each digit of temperature alarm treshold
                                 if(Read_S2())
                                     alat += 0x10;
                                     if(alat > 50) alat = 0;
                             }
-                            represent_led(alat, 0);
                             while(!Read_S1()) {                             // Increment process
+                                represent_led(alat, 0);
                                 if(Read_S2())
                                     alat += 0x01;
                                     if(alat > 50) alat = 0;
@@ -187,8 +186,8 @@ void main(void)
                             while(!Read_S1() & !Read_S2());                 // Wait for a switch to be pressed
                             if(Read_S1())
                                 break;
-                            represent_led(alal, 0);                         // There are 1 subfield -- for one digit of luminosity alarm treshold
                             while(!Read_S1()) {                             // Increment process
+                                represent_led(alal, 0);                     // There are 1 subfield -- for one digit of luminosity alarm treshold
                                 if(Read_S2())
                                     alal += 0x01;
                                     if(alal > 3) alal = 0;
@@ -198,10 +197,10 @@ void main(void)
                             while(!Read_S1() & !Read_S2());                 // Wait for a switch to be pressed
                             if(Read_S1())
                                 break;
-                            represent_led(alaf, 0);                         // There are 1 subfield -- for one digit of luminosity alarm treshold
                             while(!Read_S1()) {                             // Increment process
+                                represent_led(alaf, 0);                     // There are 1 subfield -- for one digit of bit of alarm enabled flag
                                 if(Read_S2())
-                                    alaf^1;
+                                    alaf = ~alaf;
                             }
                             break;
                     default: select_mode = 0;
@@ -217,7 +216,7 @@ void main(void)
 
                 /* Temperature Sensor Aquisition */
                 NOP();
-                temp = tsttc
+                temp = tsttc();
                 NOP();
 
                 /* Light Sensor Aquisition */
@@ -328,7 +327,7 @@ void sw1_EXT(void)
 void mod1_LED(void)
 {
     LATA = 0;
-    PWM6_LoadDutyValue(OFF);
+    PWM6_LoadDutyValue(0);
     IO_RA7_SetHigh();
 }
 
@@ -341,14 +340,14 @@ void mod2_LED(void)
 void mod3_LED(void)
 {
     LATA = 0;
-    PWM6_LoadDutyValue(OFF);
+    PWM6_LoadDutyValue(0);
     IO_RA5_SetHigh();
 }
 
 void mod4_LED(void)
 {
     LATA = 0;
-    PWM6_LoadDutyValue(OFF);
+    PWM6_LoadDutyValue(0);
     IO_RA4_SetHigh();
 }
 
@@ -379,7 +378,7 @@ void all_LED(void)
        PWM6_LoadDutyValue(1023);
         __delay_ms(100);
        //RA6_SetLow();
-        PWM6_LoadDutyValue(OFF);
+        PWM6_LoadDutyValue(0);
         __delay_ms(100);
        IO_RA5_SetHigh();
          __delay_ms(100);
@@ -446,13 +445,23 @@ unsigned int ADC_read(void)
     return ADCC_GetConversionResult();
 }
 
-unsigned int represent_led(unsigned char val, __bit high_digit)
+/*******************************************
+ *  Func: represent_led
+ *  Desc: Represents a varibale in 4 LEDS
+ *  Obs:  high_digit is 0/1 indicates
+ *  if most significant 4 bits are to
+ *  be displayed or if zero
+ *  the 4 less significant bits. 
+ *******************************************/
+void represent_led(unsigned char val, unsigned char high_digit)
 {
-    unsigned char aux, i = high_digit ? 4 : 0;
-    if(val > 99) return 0;
-    aux = val / 10;
-    LATAbits.LATA4 = (aux >> 3 + i);
-    LATAbits.LATA5 = (aux >> 2 + i);
-    LATAbits.LATA6 = (aux >> 1 + i);
-    LATAbits.LATA7 = (aux >> 0 + i); 
+    unsigned char aux = val;
+    if(val > 99)
+        return;
+    if(high_digit)
+        aux = val / 10;
+    LATAbits.LATA4 = aux >> 3;
+    LATAbits.LATA5 = aux >> 2;
+    LATAbits.LATA6 = aux >> 1;
+    LATAbits.LATA7 = aux >> 0; 
 }

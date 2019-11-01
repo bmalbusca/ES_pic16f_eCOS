@@ -1851,7 +1851,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U _mssp1_IRQisEnabled ]
 [f ]
 "46
-[; ;mcc_generated_files/i2c1_driver.c: 46:             _delay((unsigned long)((100)*(4000000/4000000.0)));
+[; ;mcc_generated_files/i2c1_driver.c: 46:             _delay((unsigned long)((100)*(1000000/4000000.0)));
 [e ) -> . . _PIE3bits 0 0 `b ]
 [e $UE 1629  ]
 "47
@@ -1946,7 +1946,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e $U 1638  ]
 [e :U 1639 ]
 "79
-[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 4000000 `l `d .4000000.0 `ul ]
+[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 1000000 `l `d .4000000.0 `ul ]
 "80
 }
 [e :U 1636 ]
@@ -1975,7 +1975,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 "90
 [e = _SSP1CON2 -> -> 0 `i `uc ]
 "91
-[e = _SSP1ADD -> -> 9 `i `uc ]
+[e = _SSP1ADD -> -> 3 `i `uc ]
 "92
 [e ) -> -> 1 `i `b ]
 [e $UE 1640  ]

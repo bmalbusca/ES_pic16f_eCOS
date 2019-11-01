@@ -104,6 +104,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 "36266
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 36266: extern volatile unsigned char INLVLE __attribute__((address(0xF68)));
 [v _INLVLE `Vuc ~T0 @X0 0 e@3944 ]
+"30066
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 30066: extern volatile unsigned char INTPPS __attribute__((address(0xE90)));
+[v _INTPPS `Vuc ~T0 @X0 0 e@3728 ]
 "31672
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 31672: extern volatile unsigned char SSP1CLKPPS __attribute__((address(0xEC5)));
 [v _SSP1CLKPPS `Vuc ~T0 @X0 0 e@3781 ]
@@ -113,6 +116,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 "33088
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 33088: extern volatile unsigned char RC4PPS __attribute__((address(0xF24)));
 [v _RC4PPS `Vuc ~T0 @X0 0 e@3876 ]
+"32388
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 32388: extern volatile unsigned char RA6PPS __attribute__((address(0xF16)));
+[v _RA6PPS `Vuc ~T0 @X0 0 e@3862 ]
 "31724
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 31724: extern volatile unsigned char SSP1DATPPS __attribute__((address(0xEC6)));
 [v _SSP1DATPPS `Vuc ~T0 @X0 0 e@3782 ]
@@ -1781,8 +1787,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;mcc_generated_files/pin_manager.c: 69:     TRISE = 0x07;
 [e = _TRISE -> -> 7 `i `uc ]
 "70
-[; ;mcc_generated_files/pin_manager.c: 70:     TRISA = 0x6F;
-[e = _TRISA -> -> 111 `i `uc ]
+[; ;mcc_generated_files/pin_manager.c: 70:     TRISA = 0x0F;
+[e = _TRISA -> -> 15 `i `uc ]
 "71
 [; ;mcc_generated_files/pin_manager.c: 71:     TRISB = 0xFF;
 [e = _TRISB -> -> 255 `i `uc ]
@@ -1796,11 +1802,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;mcc_generated_files/pin_manager.c: 78:     ANSELD = 0xFF;
 [e = _ANSELD -> -> 255 `i `uc ]
 "79
-[; ;mcc_generated_files/pin_manager.c: 79:     ANSELC = 0xE7;
-[e = _ANSELC -> -> 231 `i `uc ]
+[; ;mcc_generated_files/pin_manager.c: 79:     ANSELC = 0xC7;
+[e = _ANSELC -> -> 199 `i `uc ]
 "80
-[; ;mcc_generated_files/pin_manager.c: 80:     ANSELB = 0xFF;
-[e = _ANSELB -> -> 255 `i `uc ]
+[; ;mcc_generated_files/pin_manager.c: 80:     ANSELB = 0xEF;
+[e = _ANSELB -> -> 239 `i `uc ]
 "81
 [; ;mcc_generated_files/pin_manager.c: 81:     ANSELE = 0x07;
 [e = _ANSELE -> -> 7 `i `uc ]
@@ -1868,30 +1874,36 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;mcc_generated_files/pin_manager.c: 118:     INLVLE = 0x07;
 [e = _INLVLE -> -> 7 `i `uc ]
 "127
-[; ;mcc_generated_files/pin_manager.c: 127:     SSP1CLKPPS = 0x13;
-[e = _SSP1CLKPPS -> -> 19 `i `uc ]
+[; ;mcc_generated_files/pin_manager.c: 127:     INTPPS = 0x0C;
+[e = _INTPPS -> -> 12 `i `uc ]
 "128
-[; ;mcc_generated_files/pin_manager.c: 128:     RC3PPS = 0x14;
-[e = _RC3PPS -> -> 20 `i `uc ]
+[; ;mcc_generated_files/pin_manager.c: 128:     SSP1CLKPPS = 0x13;
+[e = _SSP1CLKPPS -> -> 19 `i `uc ]
 "129
-[; ;mcc_generated_files/pin_manager.c: 129:     RC4PPS = 0x15;
-[e = _RC4PPS -> -> 21 `i `uc ]
+[; ;mcc_generated_files/pin_manager.c: 129:     RC3PPS = 0x14;
+[e = _RC3PPS -> -> 20 `i `uc ]
 "130
-[; ;mcc_generated_files/pin_manager.c: 130:     SSP1DATPPS = 0x14;
-[e = _SSP1DATPPS -> -> 20 `i `uc ]
+[; ;mcc_generated_files/pin_manager.c: 130:     RC4PPS = 0x15;
+[e = _RC4PPS -> -> 21 `i `uc ]
 "131
-[; ;mcc_generated_files/pin_manager.c: 131: }
+[; ;mcc_generated_files/pin_manager.c: 131:     RA6PPS = 0x0E;
+[e = _RA6PPS -> -> 14 `i `uc ]
+"132
+[; ;mcc_generated_files/pin_manager.c: 132:     SSP1DATPPS = 0x14;
+[e = _SSP1DATPPS -> -> 20 `i `uc ]
+"133
+[; ;mcc_generated_files/pin_manager.c: 133: }
 [e :UE 1625 ]
 }
-"133
-[; ;mcc_generated_files/pin_manager.c: 133: void PIN_MANAGER_IOC(void)
+"135
+[; ;mcc_generated_files/pin_manager.c: 135: void PIN_MANAGER_IOC(void)
 [v _PIN_MANAGER_IOC `(v ~T0 @X0 1 ef ]
-"134
-[; ;mcc_generated_files/pin_manager.c: 134: {
+"136
+[; ;mcc_generated_files/pin_manager.c: 136: {
 {
 [e :U _PIN_MANAGER_IOC ]
 [f ]
-"135
-[; ;mcc_generated_files/pin_manager.c: 135: }
+"137
+[; ;mcc_generated_files/pin_manager.c: 137: }
 [e :UE 1626 ]
 }

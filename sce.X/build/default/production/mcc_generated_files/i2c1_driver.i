@@ -21123,7 +21123,7 @@ __attribute__((inline)) void mssp1_waitForEvent(uint16_t *timeout)
         while(1)
         {
             if(PIR3bits.SSP1IF) break;
-            _delay((unsigned long)((100)*(4000000/4000000.0)));
+            _delay((unsigned long)((100)*(1000000/4000000.0)));
         }
     }
 }
@@ -21135,7 +21135,7 @@ __bit i2c1_driver_open(void)
         SSP1STAT = 0x00;
         SSP1CON1 = 0x28;
         SSP1CON2 = 0x00;
-        SSP1ADD = 0x9;
+        SSP1ADD = 0x3;
         return 1;
     }
     else

@@ -1,4 +1,4 @@
-# 1 "mcc_generated_files/tmr1.c"
+# 1 "mcc_generated_files/tmr2.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 288 "<built-in>" 3
@@ -6,8 +6,8 @@
 # 1 "<built-in>" 2
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "mcc_generated_files/tmr1.c" 2
-# 51 "mcc_generated_files/tmr1.c"
+# 1 "mcc_generated_files/tmr2.c" 2
+# 51 "mcc_generated_files/tmr2.c"
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\xc.h" 1 3
 # 18 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -20791,13 +20791,10 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 27 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\xc.h" 2 3
-# 51 "mcc_generated_files/tmr1.c" 2
+# 51 "mcc_generated_files/tmr2.c" 2
 
-# 1 "mcc_generated_files/tmr1.h" 1
-# 54 "mcc_generated_files/tmr1.h"
-# 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\stdbool.h" 1 3
-# 54 "mcc_generated_files/tmr1.h" 2
-
+# 1 "mcc_generated_files/tmr2.h" 1
+# 54 "mcc_generated_files/tmr2.h"
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\stdint.h" 1 3
 # 22 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\stdint.h" 3
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\bits/alltypes.h" 1 3
@@ -20881,163 +20878,323 @@ typedef int32_t int_fast32_t;
 typedef uint32_t uint_fast16_t;
 typedef uint32_t uint_fast32_t;
 # 139 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\stdint.h" 2 3
-# 55 "mcc_generated_files/tmr1.h" 2
-# 100 "mcc_generated_files/tmr1.h"
-void TMR1_Initialize(void);
-# 129 "mcc_generated_files/tmr1.h"
-void TMR1_StartTimer(void);
-# 161 "mcc_generated_files/tmr1.h"
-void TMR1_StopTimer(void);
-# 196 "mcc_generated_files/tmr1.h"
-uint16_t TMR1_ReadTimer(void);
-# 235 "mcc_generated_files/tmr1.h"
-void TMR1_WriteTimer(uint16_t timerVal);
-# 271 "mcc_generated_files/tmr1.h"
-void TMR1_Reload(void);
-# 310 "mcc_generated_files/tmr1.h"
-void TMR1_StartSinglePulseAcquisition(void);
-# 349 "mcc_generated_files/tmr1.h"
-uint8_t TMR1_CheckGateValueStatus(void);
-# 367 "mcc_generated_files/tmr1.h"
-void TMR1_ISR(void);
-# 385 "mcc_generated_files/tmr1.h"
- void TMR1_SetInterruptHandler(void (* InterruptHandler)(void));
-# 403 "mcc_generated_files/tmr1.h"
-extern void (*TMR1_InterruptHandler)(void);
-# 421 "mcc_generated_files/tmr1.h"
-void TMR1_DefaultInterruptHandler(void);
-# 52 "mcc_generated_files/tmr1.c" 2
+# 54 "mcc_generated_files/tmr2.h" 2
+
+# 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\stdbool.h" 1 3
+# 55 "mcc_generated_files/tmr2.h" 2
+# 79 "mcc_generated_files/tmr2.h"
+typedef enum
+{
+# 89 "mcc_generated_files/tmr2.h"
+   TMR2_ROP_STARTS_TMRON,
+
+
+
+
+   TMR2_ROP_STARTS_TMRON_ERSHIGH,
+
+
+
+
+   TMR2_ROP_STARTS_TMRON_ERSLOW,
+
+
+
+
+   TMR2_ROP_RESETS_ERSBOTHEDGE,
+
+
+
+
+   TMR2_ROP_RESETS_ERSRISINGEDGE,
+
+
+
+
+   TMR2_ROP_RESETS_ERSFALLINGEDGE,
+
+
+
+
+   TMR2_ROP_RESETS_ERSLOW,
+
+
+
+
+   TMR2_ROP_RESETS_ERSHIGH,
+# 135 "mcc_generated_files/tmr2.h"
+   TMR2_OS_STARTS_TMRON,
+
+
+
+
+   TMR2_OS_STARTS_ERSRISINGEDGE ,
+
+
+
+
+   TMR2_OS_STARTS_ERSFALLINGEDGE ,
+
+
+
+
+   TMR2_OS_STARTS_ERSBOTHEDGE,
 
 
 
 
 
-volatile uint16_t timer1ReloadVal;
-void (*TMR1_InterruptHandler)(void);
+   TMR2_OS_STARTS_ERSFIRSTRISINGEDGE,
 
 
 
 
 
-void TMR1_Initialize(void)
+   TMR2_OS_STARTS_ERSFIRSTFALLINGEDGE,
+
+
+
+
+
+   TMR2_OS_STARTS_ERSRISINGEDGEDETECT,
+
+
+
+
+   TMR2_OS_STARTS_ERSFALLINGEDGEDETECT,
+
+
+
+
+   TMR2_OS_STARTS_TMRON_ERSHIGH = 0x16,
+
+
+
+
+   TMR2_OS_STARTS_TMRON_ERSLOW = 0x17,
+# 192 "mcc_generated_files/tmr2.h"
+   TMR2_MS_STARTS_TMRON_ERSRISINGEDGEDETECT = 0x11,
+
+
+
+
+   TMR2_MS_STARTS_TMRON_ERSFALLINGEDGEDETECT = 0x12,
+
+
+
+
+
+   TMR2_MS_STARTS_TMRON_ERSBOTHEDGE = 0x13
+
+} TMR2_HLT_MODE;
+# 220 "mcc_generated_files/tmr2.h"
+typedef enum
+{
+
+
+    TMR2_T2INPPS,
+
+
+
+    TMR2_RESERVED,
+
+
+
+    TMR2_T4POSTSCALED,
+
+
+
+    TMR2_T6POSTSCALED,
+
+
+    TMR2_CCP1_OUT,
+
+
+
+    TMR2_CCP2_OUT,
+
+
+
+    TMR2_CCP3_OUT,
+
+
+
+    TMR2_CCP4_OUT,
+
+
+
+    TMR2_CCP5_OUT,
+
+
+
+    TMR2_PWM6_OUT,
+
+
+
+    TMR2_PWM7_OUT,
+
+
+
+    TMR2_C1_OUT_SYNC,
+
+
+
+    TMR2_C2_OUT_SYNC,
+
+
+
+    TMR2_ZCD_OUTPUT,
+
+
+
+    TMR2_CLC1_OUT,
+
+
+
+    TMR2_CLC2_OUT,
+
+
+
+    TMR2_CLC3_OUT,
+
+
+
+    TMR2_CLC4_OUT
+
+} TMR2_HLT_EXT_RESET_SOURCE;
+# 335 "mcc_generated_files/tmr2.h"
+void TMR2_Initialize(void);
+# 371 "mcc_generated_files/tmr2.h"
+void TMR2_ModeSet(TMR2_HLT_MODE mode);
+# 406 "mcc_generated_files/tmr2.h"
+void TMR2_ExtResetSourceSet(TMR2_HLT_EXT_RESET_SOURCE reset);
+# 435 "mcc_generated_files/tmr2.h"
+void TMR2_Start(void);
+# 464 "mcc_generated_files/tmr2.h"
+void TMR2_StartTimer(void);
+# 496 "mcc_generated_files/tmr2.h"
+void TMR2_Stop(void);
+# 528 "mcc_generated_files/tmr2.h"
+void TMR2_StopTimer(void);
+# 563 "mcc_generated_files/tmr2.h"
+uint8_t TMR2_Counter8BitGet(void);
+# 598 "mcc_generated_files/tmr2.h"
+uint8_t TMR2_ReadTimer(void);
+# 637 "mcc_generated_files/tmr2.h"
+void TMR2_Counter8BitSet(uint8_t timerVal);
+# 676 "mcc_generated_files/tmr2.h"
+void TMR2_WriteTimer(uint8_t timerVal);
+# 728 "mcc_generated_files/tmr2.h"
+void TMR2_Period8BitSet(uint8_t periodVal);
+# 780 "mcc_generated_files/tmr2.h"
+void TMR2_LoadPeriodRegister(uint8_t periodVal);
+# 818 "mcc_generated_files/tmr2.h"
+_Bool TMR2_HasOverflowOccured(void);
+# 52 "mcc_generated_files/tmr2.c" 2
+# 62 "mcc_generated_files/tmr2.c"
+void TMR2_Initialize(void)
 {
 
 
 
-    T1GCON = 0x00;
+    T2CLKCON = 0x01;
 
 
-    T1GATE = 0x00;
+    T2HLT = 0x20;
 
 
-    T1CLK = 0x04;
+    T2RST = 0x00;
 
 
-    TMR1H = 0xE1;
+    T2PR = 0xF9;
 
 
-    TMR1L = 0xBA;
+    T2TMR = 0x00;
 
 
-    timer1ReloadVal=(uint16_t)((TMR1H << 8) | TMR1L);
+    PIR4bits.TMR2IF = 0;
 
 
-    PIR4bits.TMR1IF = 0;
-
-
-    PIE4bits.TMR1IE = 1;
-
-
-    TMR1_SetInterruptHandler(TMR1_DefaultInterruptHandler);
-
-
-    T1CON = 0x15;
+    T2CON = 0x80;
 }
 
-void TMR1_StartTimer(void)
+void TMR2_ModeSet(TMR2_HLT_MODE mode)
 {
 
-    T1CONbits.TMR1ON = 1;
+    T2HLTbits.MODE = mode;
 }
 
-void TMR1_StopTimer(void)
+void TMR2_ExtResetSourceSet(TMR2_HLT_EXT_RESET_SOURCE reset)
 {
 
-    T1CONbits.TMR1ON = 0;
+    T2RSTbits.RSEL = reset;
 }
 
-uint16_t TMR1_ReadTimer(void)
+void TMR2_Start(void)
 {
-    uint16_t readVal;
-    uint8_t readValHigh;
-    uint8_t readValLow;
 
-    T1CONbits.T1RD16 = 1;
+    T2CONbits.TMR2ON = 1;
+}
 
-    readValLow = TMR1L;
-    readValHigh = TMR1H;
+void TMR2_StartTimer(void)
+{
+    TMR2_Start();
+}
 
-    readVal = ((uint16_t)readValHigh << 8) | readValLow;
+void TMR2_Stop(void)
+{
+
+    T2CONbits.TMR2ON = 0;
+}
+
+void TMR2_StopTimer(void)
+{
+    TMR2_Stop();
+}
+
+uint8_t TMR2_Counter8BitGet(void)
+{
+    uint8_t readVal;
+
+    readVal = TMR2;
 
     return readVal;
 }
 
-void TMR1_WriteTimer(uint16_t timerVal)
+uint8_t TMR2_ReadTimer(void)
 {
-    if (T1CONbits.nT1SYNC == 1)
+    return TMR2_Counter8BitGet();
+}
+
+void TMR2_Counter8BitSet(uint8_t timerVal)
+{
+
+    TMR2 = timerVal;
+}
+
+void TMR2_WriteTimer(uint8_t timerVal)
+{
+    TMR2_Counter8BitSet(timerVal);
+}
+
+void TMR2_Period8BitSet(uint8_t periodVal)
+{
+   PR2 = periodVal;
+}
+
+void TMR2_LoadPeriodRegister(uint8_t periodVal)
+{
+   TMR2_Period8BitSet(periodVal);
+}
+
+_Bool TMR2_HasOverflowOccured(void)
+{
+
+    _Bool status = PIR4bits.TMR2IF;
+    if(status)
     {
 
-        T1CONbits.TMR1ON = 0;
-
-
-        TMR1H = (timerVal >> 8);
-        TMR1L = timerVal;
-
-
-        T1CONbits.TMR1ON =1;
+        PIR4bits.TMR2IF = 0;
     }
-    else
-    {
-
-        TMR1H = (timerVal >> 8);
-        TMR1L = timerVal;
-    }
-}
-
-void TMR1_Reload(void)
-{
-    TMR1_WriteTimer(timer1ReloadVal);
-}
-
-void TMR1_StartSinglePulseAcquisition(void)
-{
-    T1GCONbits.T1GGO = 1;
-}
-
-uint8_t TMR1_CheckGateValueStatus(void)
-{
-    return (T1GCONbits.T1GVAL);
-}
-
-void TMR1_ISR(void)
-{
-
-
-    PIR4bits.TMR1IF = 0;
-    TMR1_WriteTimer(timer1ReloadVal);
-
-    if(TMR1_InterruptHandler)
-    {
-        TMR1_InterruptHandler();
-    }
-}
-
-
-void TMR1_SetInterruptHandler(void (* InterruptHandler)(void)){
-    TMR1_InterruptHandler = InterruptHandler;
-}
-
-void TMR1_DefaultInterruptHandler(void){
-
-
+    return status;
 }

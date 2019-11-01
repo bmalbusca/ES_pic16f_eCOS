@@ -1,4 +1,6 @@
 Version 4.0 HI-TECH Software Intermediate Code
+[v F12689 `(v ~T0 @X0 0 tf ]
+[v F12691 `(v ~T0 @X0 0 tf ]
 "3042 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 3042: extern volatile unsigned char ADLTHL __attribute__((address(0x10E)));
 [v _ADLTHL `Vuc ~T0 @X0 0 e@270 ]
@@ -1817,6 +1819,12 @@ Version 4.0 HI-TECH Software Intermediate Code
 "36645
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f18875.h: 36645: __asm("TOSH equ 0FEFh");
 [; <" TOSH equ 0FEFh ;# ">
+"78 mcc_generated_files/i2c1_driver.h
+[; ;mcc_generated_files/i2c1_driver.h: 78: void (*i2c1_driver_busCollisionISR)(void);
+[v _i2c1_driver_busCollisionISR `*F12689 ~T0 @X0 1 e ]
+"79
+[; ;mcc_generated_files/i2c1_driver.h: 79: void (*i2c1_driver_i2cISR)(void);
+[v _i2c1_driver_i2cISR `*F12691 ~T0 @X0 1 e ]
 "63 mcc_generated_files/adcc.c
 [; ;mcc_generated_files/adcc.c: 63: void ADCC_Initialize(void)
 [v _ADCC_Initialize `(v ~T0 @X0 1 ef ]
@@ -1881,7 +1889,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = _ADACQ -> -> 0 `i `uc ]
 "104
 [; ;mcc_generated_files/adcc.c: 104: }
-[e :UE 1625 ]
+[e :UE 1627 ]
 }
 "106
 [; ;mcc_generated_files/adcc.c: 106: void ADCC_StartConversion(adcc_channel_t channel)
@@ -1907,7 +1915,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = . . _ADCON0bits 0 0 -> -> 1 `i `uc ]
 "116
 [; ;mcc_generated_files/adcc.c: 116: }
-[e :UE 1626 ]
+[e :UE 1628 ]
 }
 "118
 [; ;mcc_generated_files/adcc.c: 118: _Bool ADCC_IsConversionDone()
@@ -1920,10 +1928,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 "121
 [; ;mcc_generated_files/adcc.c: 121:     return ((unsigned char)(!ADCON0bits.ADGO));
 [e ) -> -> -> ! != -> . . _ADCON0bits 0 0 `i -> 0 `i `i `uc `a ]
-[e $UE 1627  ]
+[e $UE 1629  ]
 "122
 [; ;mcc_generated_files/adcc.c: 122: }
-[e :UE 1627 ]
+[e :UE 1629 ]
 }
 "124
 [; ;mcc_generated_files/adcc.c: 124: adc_result_t ADCC_GetConversionResult(void)
@@ -1936,10 +1944,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 "127
 [; ;mcc_generated_files/adcc.c: 127:     return ((adc_result_t)((ADRESH << 8) + ADRESL));
 [e ) -> + << -> _ADRESH `i -> 8 `i -> _ADRESL `i `us ]
-[e $UE 1628  ]
+[e $UE 1630  ]
 "128
 [; ;mcc_generated_files/adcc.c: 128: }
-[e :UE 1628 ]
+[e :UE 1630 ]
 }
 "130
 [; ;mcc_generated_files/adcc.c: 130: adc_result_t ADCC_GetSingleConversion(adcc_channel_t channel)
@@ -1971,26 +1979,26 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e ( ___nop ..  ]
 "148
 [; ;mcc_generated_files/adcc.c: 148:     while (ADCON0bits.ADGO)
-[e $U 1630  ]
-[e :U 1631 ]
+[e $U 1632  ]
+[e :U 1633 ]
 "149
 [; ;mcc_generated_files/adcc.c: 149:     {
 {
 "150
 [; ;mcc_generated_files/adcc.c: 150:     }
 }
-[e :U 1630 ]
+[e :U 1632 ]
 "148
 [; ;mcc_generated_files/adcc.c: 148:     while (ADCON0bits.ADGO)
-[e $ != -> . . _ADCON0bits 0 0 `i -> 0 `i 1631  ]
-[e :U 1632 ]
+[e $ != -> . . _ADCON0bits 0 0 `i -> 0 `i 1633  ]
+[e :U 1634 ]
 "154
 [; ;mcc_generated_files/adcc.c: 154:     return ((adc_result_t)((ADRESH << 8) + ADRESL));
 [e ) -> + << -> _ADRESH `i -> 8 `i -> _ADRESL `i `us ]
-[e $UE 1629  ]
+[e $UE 1631  ]
 "155
 [; ;mcc_generated_files/adcc.c: 155: }
-[e :UE 1629 ]
+[e :UE 1631 ]
 }
 "157
 [; ;mcc_generated_files/adcc.c: 157: void ADCC_StopConversion(void)
@@ -2005,7 +2013,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = . . _ADCON0bits 0 0 -> -> 0 `i `uc ]
 "161
 [; ;mcc_generated_files/adcc.c: 161: }
-[e :UE 1633 ]
+[e :UE 1635 ]
 }
 "163
 [; ;mcc_generated_files/adcc.c: 163: void ADCC_SetStopOnInterrupt(void)
@@ -2020,7 +2028,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = . . _ADCON3bits 1 1 -> -> 1 `i `uc ]
 "167
 [; ;mcc_generated_files/adcc.c: 167: }
-[e :UE 1634 ]
+[e :UE 1636 ]
 }
 "169
 [; ;mcc_generated_files/adcc.c: 169: void ADCC_DischargeSampleCapacitor(void)
@@ -2035,7 +2043,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = _ADPCH -> -> 60 `i `uc ]
 "173
 [; ;mcc_generated_files/adcc.c: 173: }
-[e :UE 1635 ]
+[e :UE 1637 ]
 }
 "175
 [; ;mcc_generated_files/adcc.c: 175: void ADCC_LoadAcquisitionRegister(uint8_t acquisitionValue)
@@ -2055,7 +2063,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = _ADACQ _acquisitionValue ]
 "179
 [; ;mcc_generated_files/adcc.c: 179: }
-[e :UE 1636 ]
+[e :UE 1638 ]
 }
 "181
 [; ;mcc_generated_files/adcc.c: 181: void ADCC_SetPrechargeTime(uint8_t prechargeTime)
@@ -2075,7 +2083,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = _ADPRE _prechargeTime ]
 "185
 [; ;mcc_generated_files/adcc.c: 185: }
-[e :UE 1637 ]
+[e :UE 1639 ]
 }
 "187
 [; ;mcc_generated_files/adcc.c: 187: void ADCC_SetRepeatCount(uint8_t repeatCount)
@@ -2095,7 +2103,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = _ADRPT _repeatCount ]
 "191
 [; ;mcc_generated_files/adcc.c: 191: }
-[e :UE 1638 ]
+[e :UE 1640 ]
 }
 "193
 [; ;mcc_generated_files/adcc.c: 193: uint8_t ADCC_GetCurrentCountofConversions(void)
@@ -2108,10 +2116,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 "196
 [; ;mcc_generated_files/adcc.c: 196:     return ADCNT;
 [e ) _ADCNT ]
-[e $UE 1639  ]
+[e $UE 1641  ]
 "197
 [; ;mcc_generated_files/adcc.c: 197: }
-[e :UE 1639 ]
+[e :UE 1641 ]
 }
 "199
 [; ;mcc_generated_files/adcc.c: 199: void ADCC_ClearAccumulator(void)
@@ -2126,7 +2134,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = . . _ADCON2bits 0 1 -> -> 1 `i `uc ]
 "203
 [; ;mcc_generated_files/adcc.c: 203: }
-[e :UE 1640 ]
+[e :UE 1642 ]
 }
 "205
 [; ;mcc_generated_files/adcc.c: 205: uint16_t ADCC_GetAccumulatorValue(void)
@@ -2139,10 +2147,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 "208
 [; ;mcc_generated_files/adcc.c: 208:     return ((uint16_t)((ADACCH << 8) + ADACCL));
 [e ) -> + << -> _ADACCH `i -> 8 `i -> _ADACCL `i `us ]
-[e $UE 1641  ]
+[e $UE 1643  ]
 "209
 [; ;mcc_generated_files/adcc.c: 209: }
-[e :UE 1641 ]
+[e :UE 1643 ]
 }
 "211
 [; ;mcc_generated_files/adcc.c: 211: _Bool ADCC_HasAccumulatorOverflowed(void)
@@ -2155,10 +2163,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 "214
 [; ;mcc_generated_files/adcc.c: 214:     return ADSTATbits.ADAOV;
 [e ) -> . . _ADSTATbits 0 5 `a ]
-[e $UE 1642  ]
+[e $UE 1644  ]
 "215
 [; ;mcc_generated_files/adcc.c: 215: }
-[e :UE 1642 ]
+[e :UE 1644 ]
 }
 "217
 [; ;mcc_generated_files/adcc.c: 217: uint16_t ADCC_GetFilterValue(void)
@@ -2171,10 +2179,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 "220
 [; ;mcc_generated_files/adcc.c: 220:     return ((uint16_t)((ADFLTRH << 8) + ADFLTRL));
 [e ) -> + << -> _ADFLTRH `i -> 8 `i -> _ADFLTRL `i `us ]
-[e $UE 1643  ]
+[e $UE 1645  ]
 "221
 [; ;mcc_generated_files/adcc.c: 221: }
-[e :UE 1643 ]
+[e :UE 1645 ]
 }
 "223
 [; ;mcc_generated_files/adcc.c: 223: uint16_t ADCC_GetPreviousResult(void)
@@ -2187,10 +2195,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 "226
 [; ;mcc_generated_files/adcc.c: 226:     return ((uint16_t)((ADPREVH << 8) + ADPREVL));
 [e ) -> + << -> _ADPREVH `i -> 8 `i -> _ADPREVL `i `us ]
-[e $UE 1644  ]
+[e $UE 1646  ]
 "227
 [; ;mcc_generated_files/adcc.c: 227: }
-[e :UE 1644 ]
+[e :UE 1646 ]
 }
 "229
 [; ;mcc_generated_files/adcc.c: 229: void ADCC_DefineSetPoint(uint16_t setPoint)
@@ -2213,7 +2221,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = _ADSTPTL -> _setPoint `uc ]
 "234
 [; ;mcc_generated_files/adcc.c: 234: }
-[e :UE 1645 ]
+[e :UE 1647 ]
 }
 "236
 [; ;mcc_generated_files/adcc.c: 236: void ADCC_SetUpperThreshold(uint16_t upperThreshold)
@@ -2236,7 +2244,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = _ADUTHL -> _upperThreshold `uc ]
 "241
 [; ;mcc_generated_files/adcc.c: 241: }
-[e :UE 1646 ]
+[e :UE 1648 ]
 }
 "243
 [; ;mcc_generated_files/adcc.c: 243: void ADCC_SetLowerThreshold(uint16_t lowerThreshold)
@@ -2259,7 +2267,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = _ADLTHL -> _lowerThreshold `uc ]
 "248
 [; ;mcc_generated_files/adcc.c: 248: }
-[e :UE 1647 ]
+[e :UE 1649 ]
 }
 "250
 [; ;mcc_generated_files/adcc.c: 250: uint16_t ADCC_GetErrorCalculation(void)
@@ -2272,10 +2280,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 "257
 [; ;mcc_generated_files/adcc.c: 257:  return ((uint16_t)((ADERRH << 8) + ADERRL));
 [e ) -> + << -> _ADERRH `i -> 8 `i -> _ADERRL `i `us ]
-[e $UE 1648  ]
+[e $UE 1650  ]
 "259
 [; ;mcc_generated_files/adcc.c: 259: }
-[e :UE 1648 ]
+[e :UE 1650 ]
 }
 "261
 [; ;mcc_generated_files/adcc.c: 261: void ADCC_EnableDoubleSampling(void)
@@ -2290,7 +2298,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = . . _ADCON1bits 0 0 -> -> 1 `i `uc ]
 "265
 [; ;mcc_generated_files/adcc.c: 265: }
-[e :UE 1649 ]
+[e :UE 1651 ]
 }
 "267
 [; ;mcc_generated_files/adcc.c: 267: void ADCC_EnableContinuousConversion(void)
@@ -2305,7 +2313,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = . . _ADCON0bits 0 5 -> -> 1 `i `uc ]
 "271
 [; ;mcc_generated_files/adcc.c: 271: }
-[e :UE 1650 ]
+[e :UE 1652 ]
 }
 "273
 [; ;mcc_generated_files/adcc.c: 273: void ADCC_DisableContinuousConversion(void)
@@ -2320,7 +2328,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = . . _ADCON0bits 0 5 -> -> 0 `i `uc ]
 "277
 [; ;mcc_generated_files/adcc.c: 277: }
-[e :UE 1651 ]
+[e :UE 1653 ]
 }
 "279
 [; ;mcc_generated_files/adcc.c: 279: _Bool ADCC_HasErrorCrossedUpperThreshold(void)
@@ -2333,10 +2341,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 "282
 [; ;mcc_generated_files/adcc.c: 282:     return ADSTATbits.ADUTHR;
 [e ) -> . . _ADSTATbits 0 4 `a ]
-[e $UE 1652  ]
+[e $UE 1654  ]
 "283
 [; ;mcc_generated_files/adcc.c: 283: }
-[e :UE 1652 ]
+[e :UE 1654 ]
 }
 "285
 [; ;mcc_generated_files/adcc.c: 285: _Bool ADCC_HasErrorCrossedLowerThreshold(void)
@@ -2349,10 +2357,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 "288
 [; ;mcc_generated_files/adcc.c: 288:     return ADSTATbits.ADLTHR;
 [e ) -> . . _ADSTATbits 0 3 `a ]
-[e $UE 1653  ]
+[e $UE 1655  ]
 "289
 [; ;mcc_generated_files/adcc.c: 289: }
-[e :UE 1653 ]
+[e :UE 1655 ]
 }
 "291
 [; ;mcc_generated_files/adcc.c: 291: uint8_t ADCC_GetConversionStageStatus(void)
@@ -2365,8 +2373,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "294
 [; ;mcc_generated_files/adcc.c: 294:     return ADSTATbits.ADSTAT;
 [e ) . . _ADSTATbits 0 0 ]
-[e $UE 1654  ]
+[e $UE 1656  ]
 "295
 [; ;mcc_generated_files/adcc.c: 295: }
-[e :UE 1654 ]
+[e :UE 1656 ]
 }

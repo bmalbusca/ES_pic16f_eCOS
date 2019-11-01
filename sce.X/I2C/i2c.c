@@ -1,5 +1,6 @@
 #include <xc.h>
 #include "i2c.h"
+#include "../mcc_generated_files/mcc.h"
 
 void I2C_Initialize()
 {
