@@ -5,7 +5,7 @@ Acho que está tudo menos o SLEEP() e adicionar parâmetros de recuperação.
 aos nomes que o stôr deu no projeto: alat, alal, alaf (flag se queremos alarmes)
 e deixei o alarm.
 
-- O **configuration mode** foi feito esperando em while() por alterações nos switch,
+- No **configuration mode** espera-se no while() por botões premidos,
 o select_mode está a ser incrementado na rotina de interrupção do S1.
 
 - Os botões têm o *debounce* feito e estão protegidos das interrupções.
