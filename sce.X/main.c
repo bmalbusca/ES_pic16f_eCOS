@@ -17,8 +17,8 @@
 
 /* Interrupt Handlers */
 void h_clock(void);
+void h_precisionclock(void);
 void sw1_EXT(void);
-void sw2_EXT(void);
 
 /* UI Leds */
 void mod1_LED(void);
@@ -26,6 +26,7 @@ void mod2_LED(void);
 void mod3_LED(void);
 void mod4_LED(void);
 void LED_bin(unsigned int value);
+void all_LED(void);
 
 /* Other */
 unsigned char Read_S1();
@@ -367,7 +368,8 @@ void LED_bin(unsigned int value)
  *  Func: all_LED
  *  Desc: Blink all LEDs
  *******************************************/
-void all_LED(void){
+void all_LED(void)
+{
 
        IO_RA7_SetHigh();
         __delay_ms(100);
