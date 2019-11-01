@@ -11,8 +11,8 @@
  *
  * Software License Agreement
  * The software supplied herewith by Microchip Technology Incorporated
- * (the “Company”) for its PICmicro® Microcontroller is intended and
- * supplied to you, the Company’s customer, for use solely and
+ * (the ï¿½Companyï¿½) for its PICmicroï¿½ Microcontroller is intended and
+ * supplied to you, the Companyï¿½s customer, for use solely and
  * exclusively on Microchip PICmicro Microcontroller products. The
  * software is owned by the Company and/or its supplier, and is
  * protected under applicable copyright laws. All rights are reserved.
@@ -21,14 +21,14 @@
  * civil liability for the breach of the terms and conditions of this
  * license.
  *
- * THIS SOFTWARE IS PROVIDED IN AN “AS IS” CONDITION. NO WARRANTIES,
+ * THIS SOFTWARE IS PROVIDED IN AN ï¿½AS ISï¿½ CONDITION. NO WARRANTIES,
  * WHETHER EXPRESS, IMPLIED OR STATUTORY, INCLUDING, BUT NOT LIMITED
  * TO, IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
  * PARTICULAR PURPOSE APPLY TO THIS SOFTWARE. THE COMPANY SHALL NOT,
  * IN ANY CIRCUMSTANCES, BE LIABLE FOR SPECIAL, INCIDENTAL OR
  * CONSEQUENTIAL DAMAGES, FOR ANY REASON WHATSOEVER.
  *****************************************************************************/
- 
+
 #include <xc.h>
 
 /* SSPCON1 REGISTER */
@@ -52,11 +52,11 @@ Macro       : EnableIntI2C
 
 Include     : i2c.h
 
-Description : Macro enables I2C  Interrupt 
- 
+Description : Macro enables I2C  Interrupt
+
 Arguments   : None
- 
-Remarks     : None 
+
+Remarks     : None
 ***********************************************************************************/
 //#define EnableIntI2C                   (PIE1bits.SSPIE = 1)
 #define EnableIntI2C                   (PIE3bits.SSP1IE = 1;)
@@ -68,11 +68,11 @@ Macro       : DisableIntI2C
 
 Include     : i2c.h
 
-Description : Macro disables I2C  Interrupt 
- 
+Description : Macro disables I2C  Interrupt
+
 Arguments   : None
- 
-Remarks     : None 
+
+Remarks     : None
 ***********************************************************************************/
 //#define DisableIntI2C                   (PIE1bits.SSPIE = 0)
 #define DisableIntI2C                   (PIE3bits.SSP1IE = 0)
@@ -81,11 +81,11 @@ Remarks     : None
 
 /***********************************************************************************
 Macro       : SetPriorityIntI2C(priority)
- 
+
 Include     : i2c.h
- 
+
 Description : Macro sets the priority level for I2C interrupt.
- 
+
 Arguments   : priority - This input parameter is the level of interrupt priority.
 		* 0 -- Low priority (Default Value)
 		* 1 -- High Priority
@@ -98,13 +98,13 @@ Arguments   : priority - This input parameter is the level of interrupt priority
 /*******************************************************************
 Macro       : I2C_Clear_Intr_Status_Bit
 
-Include     : i2c.h 
+Include     : i2c.h
 
-Description : Macro to Clear I2C  Interrupt Status bit 
+Description : Macro to Clear I2C  Interrupt Status bit
 
-Arguments   : None 
+Arguments   : None
 
-Remarks     : None 
+Remarks     : None
 *******************************************************************/
 //#define I2C_Clear_Intr_Status_Bit     (PIR1bits.SSPIF = 0)
 #define I2C_Clear_Intr_Status_Bit     (PIR3bits.SSP1IF = 0)
@@ -114,13 +114,13 @@ Remarks     : None
 /*******************************************************************
 Macro       : I2C_Intr_Status
 
-Include     : i2c.h 
+Include     : i2c.h
 
-Description : Macro to return I2C Interrupt Status  
+Description : Macro to return I2C Interrupt Status
 
-Arguments   : None 
+Arguments   : None
 
-Remarks     : None 
+Remarks     : None
 *******************************************************************/
 //#define I2C_Intr_Status		PIR1bits.SSPIF
 #define I2C_Intr_Status		PIR3bits.SSP1IF
@@ -131,10 +131,10 @@ Remarks     : None
 Macro       : getcI2C
 
 Description : macro is identical to ReadI2C,#define to ReadI2C in i2c.h
- 
+
 Arguments   : None
- 
-Remarks     : None 
+
+Remarks     : None
 ***************************************************************************/
 #define  getcI2C  ReadI2C
 
@@ -142,12 +142,16 @@ Remarks     : None
 Macro       : putcI2C
 
 Description : macro is identical to WriteI2C,#define to WriteI2C in i2c.h
- 
+
 Arguments   : None
- 
-Remarks     : None 
+
+Remarks     : None
 ***************************************************************************/
 #define  putcI2C  WriteI2C
+
+void I2C_Initialize(void);
+
+unsigned char tsttc (void);
 
 //void IdleI2C( void );
 
@@ -228,7 +232,7 @@ Description : Macro to initiate negetive acknowledgement sequence
 
 Arguments   : None
 
-Remarks     : This macro initiates negetive acknowledgement condition and 
+Remarks     : This macro initiates negetive acknowledgement condition and
 		waits till the acknowledgement sequence is terminated.
 		This macro is applicable only to master
 *******************************************************************/
@@ -244,7 +248,7 @@ Description : Macro to initiate positive acknowledgement sequence
 
 Arguments   : None
 
-Remarks     : This macro initiates positive acknowledgement condition and 
+Remarks     : This macro initiates positive acknowledgement condition and
 		waits till the acknowledgement sequence is terminated.
 		This macro is applicable only to master
 *******************************************************************/
@@ -252,14 +256,14 @@ Remarks     : This macro initiates positive acknowledgement condition and
 #define AckI2C()        SSP1CON2bits.ACKDT=0;SSP1CON2bits.ACKEN=1;while(SSP1CON2bits.ACKEN)
 
 /************************************************************************
-Macro :  DataRdyI2C() 
+Macro :  DataRdyI2C()
 
-Include            : i2c.h 
+Include            : i2c.h
 
 Description        : This Macro provides status back to user if SSPxBUF
-			register contain data. 
-                     
-Arguments          : None 
+			register contain data.
+
+Arguments          : None
 
 Remarks            : This Macro determines if there is any byte to read from
 			SSPxBUF register.
@@ -271,10 +275,10 @@ Remarks            : This Macro determines if there is any byte to read from
 Macro       : putcI2C
 
 Description : macro is identical to WriteI2C,#define to WriteI2C in i2c.h
- 
+
 Arguments   : None
- 
-Remarks     : None 
+
+Remarks     : None
 ***************************************************************************/
 #define  putcI2C  WriteI2C
 
@@ -313,4 +317,3 @@ signed char EESequentialRead(  unsigned char control,
 
 
 #endif
-

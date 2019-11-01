@@ -7,7 +7,7 @@
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
 # 1 "main.c" 2
-# 21 "main.c"
+# 13 "main.c"
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\xc.h" 1 3
 # 18 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -2501,7 +2501,7 @@ __asm("T1CON equ 020Eh");
 
 typedef union {
     struct {
-        unsigned ON :1;
+        unsigned 1 :1;
         unsigned RD16 :1;
         unsigned nSYNC :1;
         unsigned :1;
@@ -2777,7 +2777,7 @@ __asm("T3CON equ 0214h");
 
 typedef union {
     struct {
-        unsigned ON :1;
+        unsigned 1 :1;
         unsigned RD16 :1;
         unsigned nSYNC :1;
         unsigned :1;
@@ -3053,7 +3053,7 @@ __asm("T5CON equ 021Ah");
 
 typedef union {
     struct {
-        unsigned ON :1;
+        unsigned 1 :1;
         unsigned RD16 :1;
         unsigned nSYNC :1;
         unsigned :1;
@@ -3357,7 +3357,7 @@ typedef union {
     struct {
         unsigned OUTPS :4;
         unsigned CKPS :3;
-        unsigned ON :1;
+        unsigned 1 :1;
     };
     struct {
         unsigned T2OUTPS :4;
@@ -3573,7 +3573,7 @@ typedef union {
     struct {
         unsigned OUTPS :4;
         unsigned CKPS :3;
-        unsigned ON :1;
+        unsigned 1 :1;
     };
     struct {
         unsigned T4OUTPS :4;
@@ -3789,7 +3789,7 @@ typedef union {
     struct {
         unsigned OUTPS :4;
         unsigned CKPS :3;
-        unsigned ON :1;
+        unsigned 1 :1;
     };
     struct {
         unsigned T6OUTPS :4;
@@ -8409,7 +8409,7 @@ typedef union {
         unsigned POL :1;
         unsigned :1;
         unsigned OUT :1;
-        unsigned ON :1;
+        unsigned 1 :1;
     };
     struct {
         unsigned C1SYNC :1;
@@ -8504,7 +8504,7 @@ typedef union {
         unsigned POL :1;
         unsigned :1;
         unsigned OUT :1;
-        unsigned ON :1;
+        unsigned 1 :1;
     };
     struct {
         unsigned C2SYNC :1;
@@ -20791,7 +20791,7 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 27 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\xc.h" 2 3
-# 21 "main.c" 2
+# 13 "main.c" 2
 
 # 1 "./mcc_generated_files/mcc.h" 1
 # 50 "./mcc_generated_files/mcc.h"
@@ -20896,217 +20896,73 @@ typedef uint32_t uint_fast32_t;
 # 1 "./mcc_generated_files/interrupt_manager.h" 1
 # 54 "./mcc_generated_files/mcc.h" 2
 
-# 1 "./mcc_generated_files/i2c1_driver.h" 1
-# 26 "./mcc_generated_files/i2c1_driver.h"
-# 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\stdio.h" 1 3
-# 24 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\stdio.h" 3
-# 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\bits/alltypes.h" 1 3
-
-
-
-
-
-typedef void * va_list[1];
-
-
-
-
-typedef void * __isoc_va_list[1];
-# 137 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\bits/alltypes.h" 3
-typedef long ssize_t;
-# 246 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\bits/alltypes.h" 3
-typedef long long off_t;
-# 399 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\bits/alltypes.h" 3
-typedef struct _IO_FILE FILE;
-# 24 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\stdio.h" 2 3
-# 52 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c99\\stdio.h" 3
-typedef union _G_fpos64_t {
- char __opaque[16];
- double __align;
-} fpos_t;
-
-extern FILE *const stdin;
-extern FILE *const stdout;
-extern FILE *const stderr;
-
-
-
-
-
-FILE *fopen(const char *restrict, const char *restrict);
-FILE *freopen(const char *restrict, const char *restrict, FILE *restrict);
-int fclose(FILE *);
-
-int remove(const char *);
-int rename(const char *, const char *);
-
-int feof(FILE *);
-int ferror(FILE *);
-int fflush(FILE *);
-void clearerr(FILE *);
-
-int fseek(FILE *, long, int);
-long ftell(FILE *);
-void rewind(FILE *);
-
-int fgetpos(FILE *restrict, fpos_t *restrict);
-int fsetpos(FILE *, const fpos_t *);
-
-size_t fread(void *restrict, size_t, size_t, FILE *restrict);
-size_t fwrite(const void *restrict, size_t, size_t, FILE *restrict);
-
-int fgetc(FILE *);
-int getc(FILE *);
-int getchar(void);
-int ungetc(int, FILE *);
-
-int fputc(int, FILE *);
-int putc(int, FILE *);
-int putchar(int);
-
-char *fgets(char *restrict, int, FILE *restrict);
-
-char *gets(char *);
-
-
-int fputs(const char *restrict, FILE *restrict);
-int puts(const char *);
-
-#pragma printf_check(printf) const
-#pragma printf_check(vprintf) const
-#pragma printf_check(sprintf) const
-#pragma printf_check(snprintf) const
-#pragma printf_check(vsprintf) const
-#pragma printf_check(vsnprintf) const
-
-int printf(const char *restrict, ...);
-int fprintf(FILE *restrict, const char *restrict, ...);
-int sprintf(char *restrict, const char *restrict, ...);
-int snprintf(char *restrict, size_t, const char *restrict, ...);
-
-int vprintf(const char *restrict, __isoc_va_list);
-int vfprintf(FILE *restrict, const char *restrict, __isoc_va_list);
-int vsprintf(char *restrict, const char *restrict, __isoc_va_list);
-int vsnprintf(char *restrict, size_t, const char *restrict, __isoc_va_list);
-
-int scanf(const char *restrict, ...);
-int fscanf(FILE *restrict, const char *restrict, ...);
-int sscanf(const char *restrict, const char *restrict, ...);
-int vscanf(const char *restrict, __isoc_va_list);
-int vfscanf(FILE *restrict, const char *restrict, __isoc_va_list);
-int vsscanf(const char *restrict, const char *restrict, __isoc_va_list);
-
-void perror(const char *);
-
-int setvbuf(FILE *restrict, char *restrict, int, size_t);
-void setbuf(FILE *restrict, char *restrict);
-
-char *tmpnam(char *);
-FILE *tmpfile(void);
-
-
-
-
-FILE *fmemopen(void *restrict, size_t, const char *restrict);
-FILE *open_memstream(char **, size_t *);
-FILE *fdopen(int, const char *);
-FILE *popen(const char *, const char *);
-int pclose(FILE *);
-int fileno(FILE *);
-int fseeko(FILE *, off_t, int);
-off_t ftello(FILE *);
-int dprintf(int, const char *restrict, ...);
-int vdprintf(int, const char *restrict, __isoc_va_list);
-void flockfile(FILE *);
-int ftrylockfile(FILE *);
-void funlockfile(FILE *);
-int getc_unlocked(FILE *);
-int getchar_unlocked(void);
-int putc_unlocked(int, FILE *);
-int putchar_unlocked(int);
-ssize_t getdelim(char **restrict, size_t *restrict, int, FILE *restrict);
-ssize_t getline(char **restrict, size_t *restrict, FILE *restrict);
-int renameat(int, const char *, int, const char *);
-char *ctermid(char *);
-
-
-
-
-
-
-
-char *tempnam(const char *, const char *);
-# 26 "./mcc_generated_files/i2c1_driver.h" 2
-
-
-
-
-
-
-
-
-typedef void (*interruptHandler)(void);
-
-
-__attribute__((inline)) void i2c1_driver_close(void);
-
-
-__attribute__((inline)) void mssp1_enableIRQ(void);
-__attribute__((inline)) __bit mssp1_IRQisEnabled(void);
-__attribute__((inline)) void mssp1_disableIRQ(void);
-__attribute__((inline)) void mssp1_clearIRQ(void);
-__attribute__((inline)) void mssp1_setIRQ(void);
-__attribute__((inline)) __bit mssp1_IRQisSet(void);
-__attribute__((inline)) void mssp1_waitForEvent(uint16_t*);
-
-
-__bit i2c1_driver_open(void);
-__attribute__((inline)) char i2c1_driver_getRXData(void);
-__attribute__((inline)) char i2c1_driver_getAddr(void);
-__attribute__((inline)) void i2c1_driver_setAddr(char addr);
-__attribute__((inline)) void i2c1_driver_setMask(char mask);
-__attribute__((inline)) void i2c1_driver_TXData(char d);
-__attribute__((inline)) void i2c1_driver_resetBus(void);
-__attribute__((inline)) void i2c1_driver_start(void);
-__attribute__((inline)) void i2c1_driver_restart(void);
-__attribute__((inline)) void i2c1_driver_stop(void);
-__attribute__((inline)) __bit i2c1_driver_isNACK(void);
-__attribute__((inline)) void i2c1_driver_startRX(void);
-__attribute__((inline)) void i2c1_driver_sendACK(void);
-__attribute__((inline)) void i2c1_driver_sendNACK(void);
-__attribute__((inline)) void i2c1_driver_clearBusCollision(void);
-
-__bit i2c1_driver_initSlaveHardware(void);
-__attribute__((inline)) void i2c1_driver_releaseClock(void);
-__attribute__((inline)) __bit i2c1_driver_isBufferFull(void);
-__attribute__((inline)) __bit i2c1_driver_isStart(void);
-__attribute__((inline)) __bit i2c1_driver_isStop(void);
-__attribute__((inline)) __bit i2c1_driver_isAddress(void);
-__attribute__((inline)) __bit i2c1_driver_isData(void);
-__attribute__((inline)) __bit i2c1_driver_isRead(void);
-__attribute__((inline)) __bit i2c1_driver_isWriteCollision(void);
-__attribute__((inline)) __bit i2c1_driver_isReceiveOverflow(void);
-
-__attribute__((inline)) void i2c1_driver_setBusCollisionISR(interruptHandler handler);
-__attribute__((inline)) void i2c1_driver_setI2cISR(interruptHandler handler);
-void (*i2c1_driver_busCollisionISR)(void);
-void (*i2c1_driver_i2cISR)(void);
+# 1 "./mcc_generated_files/adcc.h" 1
+# 72 "./mcc_generated_files/adcc.h"
+typedef uint16_t adc_result_t;
+# 86 "./mcc_generated_files/adcc.h"
+typedef enum
+{
+    channel_ANA0 = 0x0,
+    channel_VSS = 0x3C,
+    channel_Temp = 0x3D,
+    channel_DAC1 = 0x3E,
+    channel_FVR_buf1 = 0x3F
+} adcc_channel_t;
+# 127 "./mcc_generated_files/adcc.h"
+void ADCC_Initialize(void);
+# 156 "./mcc_generated_files/adcc.h"
+void ADCC_StartConversion(adcc_channel_t channel);
+# 186 "./mcc_generated_files/adcc.h"
+_Bool ADCC_IsConversionDone();
+# 218 "./mcc_generated_files/adcc.h"
+adc_result_t ADCC_GetConversionResult(void);
+# 249 "./mcc_generated_files/adcc.h"
+adc_result_t ADCC_GetSingleConversion(adcc_channel_t channel);
+# 274 "./mcc_generated_files/adcc.h"
+void ADCC_StopConversion(void);
+# 301 "./mcc_generated_files/adcc.h"
+void ADCC_SetStopOnInterrupt(void);
+# 326 "./mcc_generated_files/adcc.h"
+void ADCC_DischargeSampleCapacitor(void);
+# 352 "./mcc_generated_files/adcc.h"
+void ADCC_LoadAcquisitionRegister(uint8_t);
+# 378 "./mcc_generated_files/adcc.h"
+void ADCC_SetPrechargeTime(uint8_t);
+# 403 "./mcc_generated_files/adcc.h"
+void ADCC_SetRepeatCount(uint8_t);
+# 431 "./mcc_generated_files/adcc.h"
+uint8_t ADCC_GetCurrentCountofConversions(void);
+# 455 "./mcc_generated_files/adcc.h"
+void ADCC_ClearAccumulator(void);
+# 480 "./mcc_generated_files/adcc.h"
+uint16_t ADCC_GetAccumulatorValue(void);
+# 508 "./mcc_generated_files/adcc.h"
+_Bool ADCC_HasAccumulatorOverflowed(void);
+# 533 "./mcc_generated_files/adcc.h"
+uint16_t ADCC_GetFilterValue(void);
+# 561 "./mcc_generated_files/adcc.h"
+uint16_t ADCC_GetPreviousResult(void);
+# 587 "./mcc_generated_files/adcc.h"
+void ADCC_DefineSetPoint(uint16_t);
+# 613 "./mcc_generated_files/adcc.h"
+void ADCC_SetUpperThreshold(uint16_t);
+# 639 "./mcc_generated_files/adcc.h"
+void ADCC_SetLowerThreshold(uint16_t);
+# 666 "./mcc_generated_files/adcc.h"
+uint16_t ADCC_GetErrorCalculation(void);
+# 693 "./mcc_generated_files/adcc.h"
+void ADCC_EnableDoubleSampling(void);
+# 717 "./mcc_generated_files/adcc.h"
+void ADCC_EnableContinuousConversion(void);
+# 741 "./mcc_generated_files/adcc.h"
+void ADCC_DisableContinuousConversion(void);
+# 769 "./mcc_generated_files/adcc.h"
+_Bool ADCC_HasErrorCrossedUpperThreshold(void);
+# 797 "./mcc_generated_files/adcc.h"
+_Bool ADCC_HasErrorCrossedLowerThreshold(void);
+# 824 "./mcc_generated_files/adcc.h"
+uint8_t ADCC_GetConversionStageStatus(void);
 # 55 "./mcc_generated_files/mcc.h" 2
-
-# 1 "./mcc_generated_files/memory.h" 1
-# 99 "./mcc_generated_files/memory.h"
-uint16_t FLASH_ReadWord(uint16_t flashAddr);
-# 128 "./mcc_generated_files/memory.h"
-void FLASH_WriteWord(uint16_t flashAddr, uint16_t *ramBuf, uint16_t word);
-# 164 "./mcc_generated_files/memory.h"
-int8_t FLASH_WriteBlock(uint16_t writeAddr, uint16_t *flashWordArray);
-# 189 "./mcc_generated_files/memory.h"
-void FLASH_EraseBlock(uint16_t startAddr);
-# 222 "./mcc_generated_files/memory.h"
-void DATAEE_WriteByte(uint16_t bAdd, uint8_t bData);
-# 248 "./mcc_generated_files/memory.h"
-uint8_t DATAEE_ReadByte(uint16_t bAdd);
-# 56 "./mcc_generated_files/mcc.h" 2
 
 # 1 "./mcc_generated_files/tmr1.h" 1
 # 100 "./mcc_generated_files/tmr1.h"
@@ -21133,84 +20989,279 @@ void TMR1_ISR(void);
 extern void (*TMR1_InterruptHandler)(void);
 # 421 "./mcc_generated_files/tmr1.h"
 void TMR1_DefaultInterruptHandler(void);
+# 56 "./mcc_generated_files/mcc.h" 2
+
+# 1 "./mcc_generated_files/ext_int.h" 1
+# 250 "./mcc_generated_files/ext_int.h"
+void EXT_INT_Initialize(void);
+# 272 "./mcc_generated_files/ext_int.h"
+void INT_ISR(void);
+# 296 "./mcc_generated_files/ext_int.h"
+void INT_CallBack(void);
+# 319 "./mcc_generated_files/ext_int.h"
+void INT_SetInterruptHandler(void (* InterruptHandler)(void));
+# 343 "./mcc_generated_files/ext_int.h"
+extern void (*INT_InterruptHandler)(void);
+# 367 "./mcc_generated_files/ext_int.h"
+void INT_DefaultInterruptHandler(void);
 # 57 "./mcc_generated_files/mcc.h" 2
 
-# 1 "./mcc_generated_files/drivers/i2c_simple_master.h" 1
-# 28 "./mcc_generated_files/drivers/i2c_simple_master.h"
-# 1 "./mcc_generated_files/drivers/../drivers/i2c_types.h" 1
-# 29 "./mcc_generated_files/drivers/../drivers/i2c_types.h"
-typedef enum {
-    I2C_NOERR,
-    I2C_BUSY,
-    I2C_FAIL
-
-
-} i2c_error_t;
-
-typedef enum
-{
-    i2c_stop=1,
-    i2c_restart_read,
-    i2c_restart_write,
-    i2c_continue,
-    i2c_reset_link
-} i2c_operations_t;
-
-typedef i2c_operations_t (*i2c_callback)(void *p);
-
-typedef uint8_t i2c_address_t;
-
-
-i2c_operations_t i2c_returnStop(void *p);
-i2c_operations_t i2c_returnReset(void *p);
-i2c_operations_t i2c_restartWrite(void *p);
-i2c_operations_t i2c_restartRead(void *p);
-# 28 "./mcc_generated_files/drivers/i2c_simple_master.h" 2
-
-
-uint8_t i2c_read1ByteRegister(i2c_address_t address, uint8_t reg);
-uint16_t i2c_read2ByteRegister(i2c_address_t address, uint8_t reg);
-void i2c_write1ByteRegister(i2c_address_t address, uint8_t reg, uint8_t data);
-void i2c_write2ByteRegister(i2c_address_t address, uint8_t reg, uint16_t data);
-
-void i2c_writeNBytes(i2c_address_t address, void* data, size_t len);
-void i2c_readDataBlock(i2c_address_t address, uint8_t reg, void *data, size_t len);
-void i2c_readNBytes(i2c_address_t address, void *data, size_t len);
+# 1 "./mcc_generated_files/pwm6.h" 1
+# 102 "./mcc_generated_files/pwm6.h"
+ void PWM6_Initialize(void);
+# 129 "./mcc_generated_files/pwm6.h"
+ void PWM6_LoadDutyValue(uint16_t dutyValue);
 # 58 "./mcc_generated_files/mcc.h" 2
 
-# 1 "./mcc_generated_files/drivers/i2c_master.h" 1
-# 33 "./mcc_generated_files/drivers/i2c_master.h"
-i2c_error_t i2c_open(i2c_address_t address);
-void i2c_setAddress(i2c_address_t address);
-i2c_error_t i2c_close(void);
-i2c_error_t i2c_masterOperation(_Bool read);
-i2c_error_t i2c_masterWrite(void);
-i2c_error_t i2c_masterRead(void);
-
-void i2c_setTimeOut(uint8_t to);
-void i2c_setBuffer(void *buffer, size_t bufferSize);
+# 1 "./mcc_generated_files/tmr2.h" 1
+# 79 "./mcc_generated_files/tmr2.h"
+typedef enum
+{
+# 89 "./mcc_generated_files/tmr2.h"
+   TMR2_ROP_STARTS_TMRON,
 
 
-void i2c_setDataCompleteCallback(i2c_callback cb, void *p);
-void i2c_setWriteCollisionCallback(i2c_callback cb, void *p);
-void i2c_setAddressNACKCallback(i2c_callback cb, void *p);
-void i2c_setDataNACKCallback(i2c_callback cb, void *p);
-void i2c_setTimeOutCallback(i2c_callback cb, void *p);
 
 
-void i2c_ISR(void);
-void i2c_busCollisionISR(void);
+   TMR2_ROP_STARTS_TMRON_ERSHIGH,
+
+
+
+
+   TMR2_ROP_STARTS_TMRON_ERSLOW,
+
+
+
+
+   TMR2_ROP_RESETS_ERSBOTHEDGE,
+
+
+
+
+   TMR2_ROP_RESETS_ERSRISINGEDGE,
+
+
+
+
+   TMR2_ROP_RESETS_ERSFALLINGEDGE,
+
+
+
+
+   TMR2_ROP_RESETS_ERSLOW,
+
+
+
+
+   TMR2_ROP_RESETS_ERSHIGH,
+# 135 "./mcc_generated_files/tmr2.h"
+   TMR2_OS_STARTS_TMRON,
+
+
+
+
+   TMR2_OS_STARTS_ERSRISINGEDGE ,
+
+
+
+
+   TMR2_OS_STARTS_ERSFALLINGEDGE ,
+
+
+
+
+   TMR2_OS_STARTS_ERSBOTHEDGE,
+
+
+
+
+
+   TMR2_OS_STARTS_ERSFIRSTRISINGEDGE,
+
+
+
+
+
+   TMR2_OS_STARTS_ERSFIRSTFALLINGEDGE,
+
+
+
+
+
+   TMR2_OS_STARTS_ERSRISINGEDGEDETECT,
+
+
+
+
+   TMR2_OS_STARTS_ERSFALLINGEDGEDETECT,
+
+
+
+
+   TMR2_OS_STARTS_TMRON_ERSHIGH = 0x16,
+
+
+
+
+   TMR2_OS_STARTS_TMRON_ERSLOW = 0x17,
+# 192 "./mcc_generated_files/tmr2.h"
+   TMR2_MS_STARTS_TMRON_ERSRISINGEDGEDETECT = 0x11,
+
+
+
+
+   TMR2_MS_STARTS_TMRON_ERSFALLINGEDGEDETECT = 0x12,
+
+
+
+
+
+   TMR2_MS_STARTS_TMRON_ERSBOTHEDGE = 0x13
+
+} TMR2_HLT_MODE;
+# 220 "./mcc_generated_files/tmr2.h"
+typedef enum
+{
+
+
+    TMR2_T2INPPS,
+
+
+
+    TMR2_RESERVED,
+
+
+
+    TMR2_T4POSTSCALED,
+
+
+
+    TMR2_T6POSTSCALED,
+
+
+    TMR2_CCP1_OUT,
+
+
+
+    TMR2_CCP2_OUT,
+
+
+
+    TMR2_CCP3_OUT,
+
+
+
+    TMR2_CCP4_OUT,
+
+
+
+    TMR2_CCP5_OUT,
+
+
+
+    TMR2_PWM6_OUT,
+
+
+
+    TMR2_PWM7_OUT,
+
+
+
+    TMR2_C1_OUT_SYNC,
+
+
+
+    TMR2_C2_OUT_SYNC,
+
+
+
+    TMR2_ZCD_OUTPUT,
+
+
+
+    TMR2_CLC1_OUT,
+
+
+
+    TMR2_CLC2_OUT,
+
+
+
+    TMR2_CLC3_OUT,
+
+
+
+    TMR2_CLC4_OUT
+
+} TMR2_HLT_EXT_RESET_SOURCE;
+# 335 "./mcc_generated_files/tmr2.h"
+void TMR2_Initialize(void);
+# 371 "./mcc_generated_files/tmr2.h"
+void TMR2_ModeSet(TMR2_HLT_MODE mode);
+# 406 "./mcc_generated_files/tmr2.h"
+void TMR2_ExtResetSourceSet(TMR2_HLT_EXT_RESET_SOURCE reset);
+# 435 "./mcc_generated_files/tmr2.h"
+void TMR2_Start(void);
+# 464 "./mcc_generated_files/tmr2.h"
+void TMR2_StartTimer(void);
+# 496 "./mcc_generated_files/tmr2.h"
+void TMR2_Stop(void);
+# 528 "./mcc_generated_files/tmr2.h"
+void TMR2_StopTimer(void);
+# 563 "./mcc_generated_files/tmr2.h"
+uint8_t TMR2_Counter8BitGet(void);
+# 598 "./mcc_generated_files/tmr2.h"
+uint8_t TMR2_ReadTimer(void);
+# 637 "./mcc_generated_files/tmr2.h"
+void TMR2_Counter8BitSet(uint8_t timerVal);
+# 676 "./mcc_generated_files/tmr2.h"
+void TMR2_WriteTimer(uint8_t timerVal);
+# 728 "./mcc_generated_files/tmr2.h"
+void TMR2_Period8BitSet(uint8_t periodVal);
+# 780 "./mcc_generated_files/tmr2.h"
+void TMR2_LoadPeriodRegister(uint8_t periodVal);
+# 818 "./mcc_generated_files/tmr2.h"
+_Bool TMR2_HasOverflowOccured(void);
 # 59 "./mcc_generated_files/mcc.h" 2
-# 74 "./mcc_generated_files/mcc.h"
+
+# 1 "./mcc_generated_files/tmr0.h" 1
+# 100 "./mcc_generated_files/tmr0.h"
+void TMR0_Initialize(void);
+# 129 "./mcc_generated_files/tmr0.h"
+void TMR0_StartTimer(void);
+# 161 "./mcc_generated_files/tmr0.h"
+void TMR0_StopTimer(void);
+# 196 "./mcc_generated_files/tmr0.h"
+uint8_t TMR0_ReadTimer(void);
+# 235 "./mcc_generated_files/tmr0.h"
+void TMR0_WriteTimer(uint8_t timerVal);
+# 272 "./mcc_generated_files/tmr0.h"
+void TMR0_Reload(uint8_t periodVal);
+# 291 "./mcc_generated_files/tmr0.h"
+void TMR0_ISR(void);
+# 310 "./mcc_generated_files/tmr0.h"
+ void TMR0_SetInterruptHandler(void (* InterruptHandler)(void));
+# 328 "./mcc_generated_files/tmr0.h"
+extern void (*TMR0_InterruptHandler)(void);
+# 346 "./mcc_generated_files/tmr0.h"
+void TMR0_DefaultInterruptHandler(void);
+# 60 "./mcc_generated_files/mcc.h" 2
+# 75 "./mcc_generated_files/mcc.h"
 void SYSTEM_Initialize(void);
-# 87 "./mcc_generated_files/mcc.h"
+# 88 "./mcc_generated_files/mcc.h"
 void OSCILLATOR_Initialize(void);
-# 100 "./mcc_generated_files/mcc.h"
+# 101 "./mcc_generated_files/mcc.h"
 void PMD_Initialize(void);
-# 22 "main.c" 2
+# 14 "main.c" 2
 
 # 1 "./I2C/i2c.h" 1
-# 154 "./I2C/i2c.h"
+# 152 "./I2C/i2c.h"
+void I2C_Initialize(void);
+
+unsigned char tsttc (void);
+
+
+
 void OpenI2C( unsigned char sync_mode, unsigned char slew );
 
 signed char WriteI2C( unsigned char data_out );
@@ -21218,73 +21269,91 @@ signed char WriteI2C( unsigned char data_out );
 signed char putsI2C( unsigned char *wrptr );
 
 unsigned char ReadI2C( void );
-# 281 "./I2C/i2c.h"
+# 285 "./I2C/i2c.h"
 signed char WriteI2C( unsigned char data_out );
 
 signed char getsI2C( unsigned char *rdptr, unsigned char length );
-# 23 "main.c" 2
+# 15 "main.c" 2
+
+# 1 "./eeprom_rw.h" 1
+# 16 "./eeprom_rw.h"
+void push_ring(unsigned char* nreg_pt, unsigned char nreg, unsigned char* nreg_init, unsigned char* ring_byte);
+unsigned char read_ring(unsigned char nreg_pt, unsigned char nreg, unsigned char nreg_init, unsigned char index, unsigned char subindex);
+void cksum_w();
+unsigned char cksum();
+void reset_recv();
+# 16 "main.c" 2
 
 
-void reset_recv(void);
-void cksum_w(void);
-unsigned char cksum(void);
-unsigned char read_ring(unsigned char index, unsigned char subindex);
-void push_ring(void);
+
+void h_clock(void);
+void sw1_EXT(void);
+void sw2_EXT(void);
+
+
+void mod1_LED(void);
+void mod2_LED(void);
+void mod3_LED(void);
+void mod4_LED(void);
+void LED_bin(unsigned int value);
+
+
 void update_clock(void);
-unsigned char tsttc (void);
+unsigned int ADC_read(void);
 
 
-
-volatile __bit half = 0;
-void h_clock(void) {
-    do { LATAbits.LATA7 = ~LATAbits.LATA7; } while(0);
-    if(!half) {
-        update_clock();
-        half = 1;
-    }
-    else {
-        half = 0;
-    }
-}
 
 volatile unsigned char clkh;
 volatile unsigned char clkm;
-volatile unsigned char seg;
+volatile unsigned char seg, mseg;
 volatile unsigned char last5s, last1m;
+volatile __bit half = 0;
 
-__bit configuration_mode;
+volatile __bit s1_pressed, s2_pressed;
+__bit config_mode;
+unsigned char select_mode;
+__bit alarm;
 
 unsigned char nreg, nreg_pt;
-__bit nreg_init;
+unsigned char nreg_init;
 unsigned char ring_byte[5];
 
 __bit running;
 unsigned char pmon;
-unsigned char temp, lum;
+unsigned char temp, alat;
+unsigned char lum_bin, alal;
+unsigned char alaf, tala;
 unsigned char aux, aux1;
 
 void main(void)
 {
+
+    running = 1;
+
     clkh = 0; clkm = 0; seg = 0;
     last5s = 0; last1m = 0;
 
-    configuration_mode = 0;
+    s1_pressed = 0, s2_pressed = 0;
 
     nreg = 0xF000 + 5 * 30 >= 0xF0FF - 10 ? 256 : 5 * 30;
     nreg_pt = 0;
     nreg_init = 0;
 
     pmon = 5;
-    running = 1;
-    temp = 0;
-    lum = 0;
+    tala = 3;
+    alaf = 0;
+    temp = 0; alat = 25;
+    lum_bin = 0; alal = 2;
 
 
     if(DATAEE_ReadByte(0xF0FF - 10) == 0xAB) {
         if(DATAEE_ReadByte(0xF0FF) == cksum()) {
             clkh = DATAEE_ReadByte(0xF0FF - 10 + 1);
-            clkm = DATAEE_ReadByte(0xF0FF - 10 + 2);;
-            nreg_pt = DATAEE_ReadByte(0xF0FF - 10 + 3);;
+            clkm = DATAEE_ReadByte(0xF0FF - 10 + 2);
+            nreg = DATAEE_ReadByte(0xF0FF - 10 + 3)
+            nreg_pt = DATAEE_ReadByte(0xF0FF - 10 + 4);
+            pmon = DATAEE_ReadByte(0xF0FF - 10 + 5);
+            tala = DATAEE_ReadByte(0xF0FF - 10 + 6);
         }
     }
 
@@ -21292,25 +21361,59 @@ void main(void)
 
 
     DATAEE_WriteByte(0xF0FF - 10, 0xAB);
+    DATAEE_WriteByte(0xF0FF - 10 + 3, nreg);
+    DATAEE_WriteByte(0xF0FF - 10 + 5, pmon);
+    DATAEE_WriteByte(0xF0FF - 10 + 6, tala);
     cksum_w();
 
+
     SYSTEM_Initialize();
+    I2C_Initialize();
     (INTCONbits.GIE = 1);
     (INTCONbits.PEIE = 1);
 
+
+    TMR0_SetInterruptHandler(h_precisionclock);
     TMR1_SetInterruptHandler(h_clock);
-
-
-    i2c1_driver_open();
-    TRISCbits.TRISC3 = 1;
-    TRISCbits.TRISC4 = 1;
-    WPUC3 = 1;
-    WPUC4 = 1;
+    INT_SetInterruptHandler(sw1_EXT);
 
     while (running)
     {
-        if(configuration_mode) {
+        PWM6_LoadDutyValue(1023);
 
+        if(s1_pressed) {
+
+            s1_pressed = 0;
+            if (alarm == 1) {
+                alarm = 0;
+                RA6_SetLow();
+                PWM6_LoadDutyValue(0);
+            }
+            else{
+                select_mode += 1;
+                switch(select_mode) {
+                    case 1: mod1_LED();
+                        while(!s2_pressed && !s1_pressed);
+                        if(s2_pressed) {
+
+                        }
+                        else if(s1_pressed) {
+
+                        }
+                        break;
+                    case 2: mod2_LED();
+
+                            break;
+                    case 3: mod3_LED();
+
+                            break;
+                    case 4: mod4_LED();
+
+                            break;
+                    default:select_mode =0; config_mode = 0;alarm = SET;
+                            break;
+                }
+            }
         }
 
         if(pmon) {
@@ -21325,20 +21428,22 @@ void main(void)
                 __nop();
 
 
+                lum_bin = (ADC_read() >> 8);
+                LED_bin(lum_bin);
 
 
-                if (temp != read_ring(0, 3) || lum != read_ring(0, 4)) {
+                if (temp != read_ring(nreg_pt, nreg, nreg_init, 0, 3) || lum_bin != read_ring(nreg_pt, nreg, nreg_init, 0, 4)) {
                     (INTCONbits.GIE = 0);
                     ring_byte[0] = clkh;
                     ring_byte[1] = clkm;
                     ring_byte[2] = seg;
                     (INTCONbits.GIE = 1);
                     ring_byte[3] = temp;
-                    ring_byte[4] = lum;
-                    push_ring();
+                    ring_byte[4] = lum_bin;
+                    push_ring(&nreg_pt, nreg, &nreg_init, ring_byte);
 
 
-                    DATAEE_WriteByte(0xF0FF - 10 + 3, nreg_pt);
+                    DATAEE_WriteByte(0xF0FF - 10 + 4, nreg_pt);
                     cksum_w();
                 }
             }
@@ -21363,52 +21468,118 @@ void main(void)
     }
 }
 
-void reset_recv() {
-    for(unsigned int i = 0xF0FF - 10; i <= 0xF0FF; i ++)
-        DATAEE_WriteByte(i, 0);
-}
 
-void cksum_w()
-{
-    DATAEE_WriteByte(0xF0FF, cksum());
-}
 
-unsigned char cksum()
+
+
+
+void h_clock(void)
 {
-    unsigned char res = 0;
-    for(unsigned int i = 0xF0FF - 10; i < 0xF0FF; i ++) {
-        res += DATAEE_ReadByte(i);
+    do { LATAbits.LATA7 = ~LATAbits.LATA7; } while(0);
+    if(!half) {
+        update_clock();
+        half = 1;
     }
-    return res;
-}
-
-unsigned char read_ring(unsigned char index, unsigned char subindex)
-{
-    unsigned char absindex;
-    unsigned char i = 0;
-
-    if(index <= nreg && nreg_init) {
-        absindex = 5 * index + subindex;
-        if(absindex <= nreg_pt)
-            i = nreg_pt - 5 + absindex;
-        else
-            i = nreg - (nreg_pt - 5 + absindex);
-    }
-    else
-        return 0;
-
-    return DATAEE_ReadByte(0xF000 + i);
-}
-
-void push_ring()
-{ if(!nreg_init) nreg_init = 1;
-    for(unsigned char i = 0; i < 5; i++) {
-        if(nreg_pt >= nreg) nreg_pt = 0;
-        DATAEE_WriteByte(0xF000 + nreg_pt, ring_byte[i]);
-        nreg_pt ++;
+    else {
+        half = 0;
     }
 }
 
+void h_precisionclock(void)
+{
+    mseg++;
+}
+
+void sw1_EXT(void)
+{
+    s1_pressed = 1;
+}
+
+void sw2_EXT(void)
+{
+    s2_pressed = 1;
+}
+
+
+void ISR_3s(void){
+
+    if (alal) {
+        alarm = 1;
+    }
+
+    TMR0_StopTimer();
+    PIE0bits.TMR0IE = 0;
+}
+
+
+
+
+
+
+void mod1_LED(void)
+{
+    LATA = 0;
+    PWM6_LoadDutyValue(0);
+    do { LATAbits.LATA7 = 1; } while(0);
+}
+
+void mod2_LED(void)
+{
+    LATA = 0;
+    PWM6_LoadDutyValue(1023);
+}
+
+void mod3_LED(void)
+{
+    LATA = 0;
+    PWM6_LoadDutyValue(0);
+    IO_RA5_SetHigh();
+}
+
+void mod4_LED(void)
+{
+    LATA = 0;
+    PWM6_LoadDutyValue(0);
+    do { LATAbits.LATA4 = 1; } while(0);
+}
+
+
+
+
+
+
+void LED_bin(unsigned int value)
+{
+
+    LATAbits.LATA4 = (value & 1);
+    IO_RA5_LAT = (value >> 1);
+}
+
+
+
+
+
+void all_LED(void){
+
+       do { LATAbits.LATA7 = 1; } while(0);
+        _delay((unsigned long)((100)*(4000000/4000.0)));
+       do { LATAbits.LATA7 = 0; } while(0);
+       _delay((unsigned long)((100)*(4000000/4000.0)));
+
+       PWM6_LoadDutyValue(1023);
+        _delay((unsigned long)((100)*(4000000/4000.0)));
+
+        PWM6_LoadDutyValue(0);
+        _delay((unsigned long)((100)*(4000000/4000.0)));
+       IO_RA5_SetHigh();
+         _delay((unsigned long)((100)*(4000000/4000.0)));
+       IO_RA5_SetLow();
+       _delay((unsigned long)((100)*(4000000/4000.0)));
+       do { LATAbits.LATA4 = 1; } while(0);
+        _delay((unsigned long)((100)*(4000000/4000.0)));
+       do { LATAbits.LATA4 = 0; } while(0);
+}
+# 320 "main.c"
 void update_clock(void) {
     seg++;
     last5s++;
@@ -21423,32 +21594,22 @@ void update_clock(void) {
     }
 }
 
-unsigned char tsttc (void)
+
+
+
+
+
+unsigned int ADC_read(void)
 {
- unsigned char value;
+   ADCC_StartConversion(channel_ANA0);
+    while(!ADCC_IsConversionDone()){
+        _delay((unsigned long)((1)*(4000000/4000.0)));
+    }
 
-    do{
-        while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
-        SSP1CON2bits.SEN=1;while(SSP1CON2bits.SEN); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
+    return ADCC_GetConversionResult();
+}
 
-        WriteI2C(0x9a | 0x00); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
-        WriteI2C(0x01); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
-        SSP1CON2bits.RSEN=1;while(SSP1CON2bits.RSEN); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
-        WriteI2C(0x9a | 0x01); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
-        value = ReadI2C(); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
-        SSP1CON2bits.ACKDT=1;SSP1CON2bits.ACKEN=1;while(SSP1CON2bits.ACKEN); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
-        SSP1CON2bits.PEN = 1;while(SSP1CON2bits.PEN);
-    } while (!(value & 0x40));
+unsigned int pwm_rise()
+{
 
- while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
- SSP1CON2bits.SEN=1;while(SSP1CON2bits.SEN); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
- WriteI2C(0x9a | 0x00); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
- WriteI2C(0x00); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
- SSP1CON2bits.RSEN=1;while(SSP1CON2bits.RSEN); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
- WriteI2C(0x9a | 0x01); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
- value = ReadI2C(); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
- SSP1CON2bits.ACKDT=1;SSP1CON2bits.ACKEN=1;while(SSP1CON2bits.ACKEN); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
- SSP1CON2bits.PEN = 1;while(SSP1CON2bits.PEN);
-
- return value;
 }

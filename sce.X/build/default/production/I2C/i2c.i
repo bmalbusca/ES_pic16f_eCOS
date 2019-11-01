@@ -20792,7 +20792,13 @@ extern __bank0 __bit __timeout;
 # 27 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\xc.h" 2 3
 # 2 "I2C/i2c.c" 2
 # 1 "I2C/i2c.h" 1
-# 154 "I2C/i2c.h"
+# 152 "I2C/i2c.h"
+void I2C_Initialize(void);
+
+unsigned char tsttc (void);
+
+
+
 void OpenI2C( unsigned char sync_mode, unsigned char slew );
 
 signed char WriteI2C( unsigned char data_out );
@@ -20800,15 +20806,55 @@ signed char WriteI2C( unsigned char data_out );
 signed char putsI2C( unsigned char *wrptr );
 
 unsigned char ReadI2C( void );
-# 281 "I2C/i2c.h"
+# 285 "I2C/i2c.h"
 signed char WriteI2C( unsigned char data_out );
 
 signed char getsI2C( unsigned char *rdptr, unsigned char length );
 # 3 "I2C/i2c.c" 2
-# 12 "I2C/i2c.c"
+
+void I2C_Initialize()
+{
+    i2c1_driver_open();
+    TRISCbits.TRISC3 = 1;
+    TRISCbits.TRISC4 = 1;
+    WPUC3 = 1;
+    WPUC4 = 1;
+}
+
+
+unsigned char tsttc (void)
+{
+ unsigned char value;
+
+    do{
+        while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
+        SSP1CON2bits.SEN=1;while(SSP1CON2bits.SEN); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
+
+        WriteI2C(0x9a | 0x00); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
+        WriteI2C(0x01); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
+        SSP1CON2bits.RSEN=1;while(SSP1CON2bits.RSEN); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
+        WriteI2C(0x9a | 0x01); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
+        value = ReadI2C(); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
+        SSP1CON2bits.ACKDT=1;SSP1CON2bits.ACKEN=1;while(SSP1CON2bits.ACKEN); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
+        SSP1CON2bits.PEN = 1;while(SSP1CON2bits.PEN);
+    } while (!(value & 0x40));
+
+ while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
+ SSP1CON2bits.SEN=1;while(SSP1CON2bits.SEN); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
+ WriteI2C(0x9a | 0x00); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
+ WriteI2C(0x00); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
+ SSP1CON2bits.RSEN=1;while(SSP1CON2bits.RSEN); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
+ WriteI2C(0x9a | 0x01); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
+ value = ReadI2C(); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
+ SSP1CON2bits.ACKDT=1;SSP1CON2bits.ACKEN=1;while(SSP1CON2bits.ACKEN); while ((SSP1CON2 & 0x1F) | (SSP1STATbits.R_W));
+ SSP1CON2bits.PEN = 1;while(SSP1CON2bits.PEN);
+
+ return value;
+}
+# 52 "I2C/i2c.c"
 void OpenI2C( unsigned char sync_mode, unsigned char slew )
 {
-# 24 "I2C/i2c.c"
+# 64 "I2C/i2c.c"
 }
 
 
@@ -20824,7 +20870,7 @@ if( ((SSP1CON1&0x0F)==0x08) || ((SSP1CON1&0x0F)==0x0B) )
   while ( !SSP1STATbits.BF );
   return ( SSP1BUF );
 }
-# 47 "I2C/i2c.c"
+# 87 "I2C/i2c.c"
 signed char WriteI2C( unsigned char data_out )
 {
   SSP1BUF = data_out;

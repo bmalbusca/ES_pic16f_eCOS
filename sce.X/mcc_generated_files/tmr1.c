@@ -74,11 +74,11 @@ void TMR1_Initialize(void)
     //CS LFINTOSC; 
     T1CLK = 0x04;
 
-    //TMR1H 195; 
-    TMR1H = 0xC3;
+    //TMR1H 225; 
+    TMR1H = 0xE1;
 
-    //TMR1L 116; 
-    TMR1L = 0x74;
+    //TMR1L 186; 
+    TMR1L = 0xBA;
 
     // Load the TMR value to reload variable
     timer1ReloadVal=(uint16_t)((TMR1H << 8) | TMR1L);
@@ -92,8 +92,8 @@ void TMR1_Initialize(void)
     // Set Default Interrupt Handler
     TMR1_SetInterruptHandler(TMR1_DefaultInterruptHandler);
 
-    // CKPS 1:1; nT1SYNC do_not_synchronize; TMR1ON enabled; T1RD16 disabled; 
-    T1CON = 0x05;
+    // CKPS 1:2; nT1SYNC do_not_synchronize; TMR1ON enabled; T1RD16 disabled; 
+    T1CON = 0x15;
 }
 
 void TMR1_StartTimer(void)
