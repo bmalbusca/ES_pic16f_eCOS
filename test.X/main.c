@@ -76,7 +76,8 @@ void sw1_EXT(void){
                 if(config_mode == OFF){
                    config_mode = ON; 			// NOTE after changing to Configure mode disable the EXT interrupt and only check if is pressed at main loop		
                    select_mode = ON;
-	 		
+	 	   EXT_INT_InterruptDisable();
+
 		}					// for not overloading the interrupt vector ISR            
                }
             }    
@@ -164,26 +165,26 @@ void main(void){
                      }
                     else if(config_mode == ON){	// NOTE Do all your field selection routines here 
                         			// NOTE write a do while until the Config mode OFF
-                      all_LED();		// NOTE Check if SW1 and SW2 was pressed - Disable EXT Interrupt
+                      //all_LED();		// NOTE Check if SW1 and SW2 was pressed - Disable EXT Interrupt
+		      //config_mode = SET;			// NOTE Do this in the main loop
+		      //EXT_INT_InterruptDisable()
+			while(select_mode){ 
+				if(!IO_RB4_GetValue()){		  
+                   			select_mode +=1; 
+                    			switch(select_mode){			// NOTE this should be on main loop
+                        			case 1: mod1_LED();break;
+                        			case 2: mod2_LED();break;
+                        			case 3: mod3_LED();break;
+                        			case 4: mod4_LED();break;
+                        			default:select_mode =0; config_mode = OFF;alarm = SET;	// NOTE Enable EXT interrupt or at that moment when the pic is moving to normal operation
+                        			break;
 
-		   //config_mode = SET;			// NOTE Do this in the main loop
-           /* while(select_mode){ 
-		    		
-			if(!IO_RB4_GetValue()){		  
-                   		select_mode +=1; 
-                    switch(select_mode){			// NOTE this should be on main loop
-                        	case 1: mod1_LED();break;
-                        	case 2: mod2_LED();break;
-                        	case 3: mod3_LED();break;
-                        	case 4: mod4_LED();break;
-                        	default:select_mode =0; config_mode = OFF;alarm = SET;	// NOTE Enable EXT interrupt or at that moment when the pic is moving to normal operation
-                        	break;
-
-                            }
-                        }
+                            		}
+                        	}
                 
-                     } */
-                  }
+                     	}
+			EXT_INT_InterruptEnable(); 
+                }
 		
 
 
