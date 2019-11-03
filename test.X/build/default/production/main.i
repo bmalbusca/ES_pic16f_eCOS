@@ -21678,12 +21678,14 @@ void ISR_3s(void){
 }
 
 void main(void){
-    SYSTEM_Initialize();
 
+    SYSTEM_Initialize();
+    I2C_Initialize();
     TMR0_SetInterruptHandler(ISR_3s);
     TMR1_SetInterruptHandler(handler_clock_hms);
     INT_SetInterruptHandler(sw1_EXT);
     TMR2_SetInterruptHandler(handler_clock_ms);
+
 
 
     unsigned char t5s =0;
@@ -21694,6 +21696,16 @@ void main(void){
     nreg_init = 0;
     alaf = 1;
     temp = 0;
+    lum_bin = 0;
+    lum_threshold = 0;
+    duty_cycle = 0;
+    set_mode= 0;
+
+    i2c1_driver_open();
+
+
+
+
 
     recoverData();
 
@@ -21727,14 +21739,20 @@ void main(void){
                          if(!config_mode){
 
                              convertedValue = ADC_read();
+
                              lum_bin = (convertedValue >> 8);
+
                              LED_bin(lum_bin);
 
-                             __nop();
+                             _delay((unsigned long)((1)*(1000000/4000.0)));
+
 
                              __nop();
+                             temp = tsttc();
+                             __nop();
 
-                             lum_threshold = (lum_bin > 2 || temp > 25 ) & alaf;
+
+                             lum_threshold = (lum_bin > 2 || temp > 100 ) & alaf;
 
                            if (temp != read_ring(nreg_pt, nreg, nreg_init, 0, 3) || lum_bin != read_ring(nreg_pt, nreg, nreg_init, 0, 4)) {
 
@@ -21921,7 +21939,7 @@ void clock_subfields(void){
 
 
 }
-# 398 "main.c"
+# 416 "main.c"
 void all_LED(void){
 
        do { LATAbits.LATA7 = 1; } while(0);
@@ -21997,7 +22015,7 @@ void handler_clock_hms(void){
 void handler_clock_ms(void){
     clkms++;
 
-    if(clkms > 300){
+    if(clkms > 200){
         clkms = 0;
     }
 }
@@ -22037,7 +22055,7 @@ unsigned char checkDebounceSW1(){
 
     if(clkms - last_ms < 0){
 
-        if ((300 - last_ms)+ clkms > 2 ){
+        if ((200 - last_ms)+ clkms > 2 ){
             last_ms = clkms;
             PIE4bits.TMR1IE = 1;
             return 1;
@@ -22060,7 +22078,7 @@ unsigned char checkDebounceSW2(){
 
     if(clkms - last_ms2 < 0){
 
-        if ((300 - last_ms2)+ clkms > 2 ){
+        if ((200 - last_ms2)+ clkms > 2 ){
             last_ms2 = clkms;
             return 1;
         }

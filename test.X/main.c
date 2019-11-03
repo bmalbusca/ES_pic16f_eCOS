@@ -14,7 +14,7 @@
 #define NREG 30
 #define PMON 5
 #define TALA 3
-#define ALAT 25
+#define ALAT 100
 #define ALAL 2
 #define ALAF 0
 #define CLKH 0
@@ -30,7 +30,7 @@
 #define NONE -1
 #define MIN_TIME -1
 
-#define TIMER_MS_RESET 300
+#define TIMER_MS_RESET 200
 #define DEBNC_TIME 2     //200ms
 
 volatile int value = 0;
@@ -142,12 +142,14 @@ void ISR_3s(void){
 }
 
 void main(void){
+    
     SYSTEM_Initialize();
-   
+    I2C_Initialize();
     TMR0_SetInterruptHandler(ISR_3s);
     TMR1_SetInterruptHandler(handler_clock_hms);
     INT_SetInterruptHandler(sw1_EXT);
     TMR2_SetInterruptHandler(handler_clock_ms);
+    
    
    
     unsigned char t5s =0;
@@ -158,6 +160,16 @@ void main(void){
     nreg_init = 0;
     alaf = 1;
     temp = 0;
+    lum_bin = 0;
+    lum_threshold = 0;
+    duty_cycle = 0;
+    set_mode= OFF;
+    
+    i2c1_driver_open();
+    //I2C_SCL = 1;
+    //I2C_SDA = 1;
+    //WPUC3 = 1;
+    //WPUC4 = 1;
     
     recoverData();
   
@@ -191,12 +203,18 @@ void main(void){
                          if(!config_mode){
 
                              convertedValue = ADC_read();
+                             
                              lum_bin = (convertedValue >> 8);
+                             
                              LED_bin(lum_bin);
-
+                             
+                             __delay_ms(1);
+                            
+                             
                              NOP();
-                             //temp = tsttc();
+                             temp = tsttc();
                              NOP();
+                             
 
                              lum_threshold = (lum_bin > ALAL || temp > ALAT  ) & alaf;
 
