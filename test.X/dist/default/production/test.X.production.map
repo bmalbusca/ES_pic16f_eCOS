@@ -5,7 +5,7 @@ Linker command line:
 -W-3 --edf=/opt/microchip/xc8/v2.10/pic/dat/en_msgs.txt -cs \
   -h+dist/default/production/test.X.production.sym \
   --cmf=dist/default/production/test.X.production.cmf -z -Q16F18875 \
-  -o/tmp/xcXCvpxAC --defsym=__MPLAB_BUILD=1 \
+  -o/tmp/xcXDQVGRE --defsym=__MPLAB_BUILD=1 \
   -Mdist/default/production/test.X.production.map -E1 -ver=XC8 --acfsm=1493 \
   -ASTACK=0207Ch-023EFh -pstack=STACK -ACODE=00h-07FFhx4 \
   -ASTRCODE=00h-01FFFh -ASTRING=00h-0FFhx32 -ACONST=00h-0FFhx32 \
@@ -31,7 +31,7 @@ Linker command line:
   -ppowerup=CODE -pcinit=CODE -pfunctab=ENTRY -ACONFIG=08007h-0800Bh \
   -pconfig=CONFIG -DCONFIG=2 -AIDLOC=08000h-08003h -pidloc=IDLOC -DIDLOC=2 \
   -AEEDATA=00h-0FFh/0F000h -peeprom_data=EEDATA -DEEDATA=2 -DCODE=2 \
-  -DSTRCODE=2 -DSTRING=2 -DCONST=2 -DENTRY=2 -k /tmp/xcXzth8Gu.o \
+  -DSTRCODE=2 -DSTRING=2 -DCONST=2 -DENTRY=2 -k /tmp/xcXcrZcuh.o \
   dist/default/production/test.X.production.o 
 
 Object code version is 3.11
@@ -41,7 +41,7 @@ Machine type is 16F18875
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-/tmp/xcXzth8Gu.o
+/tmp/xcXcrZcuh.o
                 end_init                             5B       5B        2        8       0
                 reset_vec                             0        0        2        0       0
                 config                             8007     8007        5    1000E       0
@@ -1863,7 +1863,7 @@ Total ram usage:        4 bytes
 
  *************** function _config_routine *****************
  Defined at:
-		line 277 in file "main.c"
+		line 274 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -1901,7 +1901,7 @@ Total ram usage:        3 bytes
 
  *************** function _mode_select_LED *****************
  Defined at:
-		line 554 in file "main.c"
+		line 551 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -1931,7 +1931,7 @@ Total ram usage:        1 bytes
 
  *************** function _clock_subfields *****************
  Defined at:
-		line 352 in file "main.c"
+		line 349 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -1967,7 +1967,7 @@ Total ram usage:        3 bytes
 
  *************** function _mod4_LED *****************
  Defined at:
-		line 505 in file "main.c"
+		line 502 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -1998,7 +1998,7 @@ Total ram usage:        0 bytes
 
  *************** function _mod3_LED *****************
  Defined at:
-		line 498 in file "main.c"
+		line 495 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -2029,7 +2029,7 @@ Total ram usage:        0 bytes
 
  *************** function _mod2_LED *****************
  Defined at:
-		line 493 in file "main.c"
+		line 490 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -2060,7 +2060,7 @@ Total ram usage:        0 bytes
 
  *************** function _mod1_LED *****************
  Defined at:
-		line 486 in file "main.c"
+		line 483 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -2091,7 +2091,7 @@ Total ram usage:        0 bytes
 
  *************** function _increment_subfield *****************
  Defined at:
-		line 328 in file "main.c"
+		line 325 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -2124,7 +2124,7 @@ Total ram usage:        4 bytes
 
  *************** function _checkDebounceSW2 *****************
  Defined at:
-		line 534 in file "main.c"
+		line 531 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -2156,7 +2156,7 @@ Total ram usage:        7 bytes
 
  *************** function _checkDebounceSW1 *****************
  Defined at:
-		line 511 in file "main.c"
+		line 508 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -2188,7 +2188,7 @@ Total ram usage:        7 bytes
 
  *************** function _all_LED *****************
  Defined at:
-		line 401 in file "main.c"
+		line 398 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -2721,7 +2721,7 @@ Total ram usage:        0 bytes
 
  *************** function _LED_bin *****************
  Defined at:
-		line 431 in file "main.c"
+		line 428 in file "main.c"
  Parameters:    Size  Location     Type
   value           2    3[BANK0 ] unsigned int 
  Auto vars:     Size  Location     Type
@@ -2751,7 +2751,7 @@ Total ram usage:        5 bytes
 
  *************** function _ADC_read *****************
  Defined at:
-		line 444 in file "main.c"
+		line 441 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -4368,7 +4368,7 @@ Total ram usage:        0 bytes
 
  *************** function _handler_clock_ms *****************
  Defined at:
-		line 473 in file "main.c"
+		line 470 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -4461,7 +4461,7 @@ Total ram usage:        0 bytes
 
  *************** function _handler_clock_hms *****************
  Defined at:
-		line 454 in file "main.c"
+		line 451 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -4768,7 +4768,7 @@ Total ram usage:        1 bytes
 
  *************** function i1_checkDebounceSW1 *****************
  Defined at:
-		line 511 in file "main.c"
+		line 508 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type

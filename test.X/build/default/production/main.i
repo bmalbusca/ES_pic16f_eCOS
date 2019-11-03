@@ -21798,9 +21798,6 @@ void main(void){
                         }else{
                           PIE4bits.TMR1IE = 1;}
 
-
-
-
              }
     }
 
@@ -21924,7 +21921,7 @@ void clock_subfields(void){
 
 
 }
-# 401 "main.c"
+# 398 "main.c"
 void all_LED(void){
 
        do { LATAbits.LATA7 = 1; } while(0);

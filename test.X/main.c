@@ -261,10 +261,7 @@ void main(void){
                          
                         }else{
                           PIE4bits.TMR1IE = 1;}
-                 
-                    
-                
-   
+
              }
     }
 

@@ -1,7 +1,7 @@
 
 
 Microchip MPLAB XC8 Assembler V2.10 build 88905656 
-                                                                                               Sun Nov  3 18:54:42 2019
+                                                                                               Sun Nov  3 19:00:26 2019
 
 Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1 
      1                           	processor	16F18875
@@ -11805,7 +11805,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
  11731  02B5                     __ptext10:	
  11732 ;; *************** function _config_routine *****************
  11733 ;; Defined at:
- 11734 ;;		line 277 in file "main.c"
+ 11734 ;;		line 274 in file "main.c"
  11735 ;; Parameters:    Size  Location     Type
  11736 ;;		None
  11737 ;; Auto vars:     Size  Location     Type
@@ -11854,27 +11854,27 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
  11775                           ; Regs used in _config_routine: [wreg-fsr0h+status,2+status,0+pclath+cstack]
  11776                           
  11777                           
- 11778                           ;main.c: 279:     unsigned int select_mode =0;
+ 11778                           ;main.c: 276:     unsigned int select_mode =0;
  11779  02B5  0020               	movlb	0	; select bank0
  11780  02B6  01D6               	clrf	config_routine@select_mode
  11781  02B7  01D7               	clrf	config_routine@select_mode+1
  11782  02B8                     l6147:	
  11783                           
- 11784                           ;main.c: 280:       last_ms = clkms;
+ 11784                           ;main.c: 277:       last_ms = clkms;
  11785  02B8  087D               	movf	_clkms,w	;volatile
  11786  02B9  00D5               	movwf	??_config_routine
  11787  02BA  0855               	movf	??_config_routine,w
  11788  02BB  00BE               	movwf	_last_ms
  11789  02BC                     l6149:	
  11790                           
- 11791                           ;main.c: 281:       last_ms2 = clkms;
+ 11791                           ;main.c: 278:       last_ms2 = clkms;
  11792  02BC  087D               	movf	_clkms,w	;volatile
  11793  02BD  00D5               	movwf	??_config_routine
  11794  02BE  0855               	movf	??_config_routine,w
  11795  02BF  00BD               	movwf	_last_ms2
  11796  02C0                     l6151:	
  11797                           
- 11798                           ;main.c: 285:                 if(mode_field_subfield[0] == -1 && select_mode == 0){
+ 11798                           ;main.c: 282:                 if(mode_field_subfield[0] == -1 && select_mode == 0){
  11799  02C0  0A5D               	incf	_mode_field_subfield,w
  11800  02C1  1D03               	skipz
  11801  02C2  2AC7               	goto	u3131
@@ -11896,11 +11896,11 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
  11817  02CE                     u3140:	
  11818  02CE                     l6155:	
  11819                           
- 11820                           ;main.c: 286:                         all_LED();}
+ 11820                           ;main.c: 283:                         all_LED();}
  11821  02CE  3183  23A5  3182   	fcall	_all_LED
  11822  02D1                     l6157:	
  11823                           
- 11824                           ;main.c: 288:                 if(!PORTBbits.RB4){
+ 11824                           ;main.c: 285:                 if(!PORTBbits.RB4){
  11825  02D1  0020               	movlb	0	; select bank0
  11826  02D2  1A0D               	btfsc	13,4	;volatile
  11827  02D3  2AD5               	goto	u3151
@@ -11910,7 +11910,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
  11831  02D6                     u3150:	
  11832  02D6                     l6159:	
  11833                           
- 11834                           ;main.c: 289:                     if(checkDebounceSW1()){
+ 11834                           ;main.c: 286:                     if(checkDebounceSW1()){
  11835  02D6  3184  2400  3182   	fcall	_checkDebounceSW1
  11836  02D9  3A00               	xorlw	0
  11837  02DA  1903               	skipnz
@@ -11921,14 +11921,14 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
  11842  02DE                     u3160:	
  11843  02DE                     l6161:	
  11844                           
- 11845                           ;main.c: 291:                             select_mode +=1;
+ 11845                           ;main.c: 288:                             select_mode +=1;
  11846  02DE  3001               	movlw	1
  11847  02DF  0020               	movlb	0	; select bank0
  11848  02E0  07D6               	addwf	config_routine@select_mode,f
  11849  02E1  3000               	movlw	0
  11850  02E2  3DD7               	addwfc	config_routine@select_mode+1,f
  11851                           
- 11852                           ;main.c: 293:                         switch(select_mode){
+ 11852                           ;main.c: 290:                         switch(select_mode){
  11853  02E3  2AF9               	goto	l6175
  11854  02E4                     l6163:	
  11855  02E4  318D  256D  3182   	fcall	_mod1_LED
@@ -11948,7 +11948,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
  11869  02F6  01B9               	clrf	_config_mode	;volatile
  11870  02F7  01B8               	clrf	_alarm	;volatile
  11871                           
- 11872                           ;main.c: 299:                             break;
+ 11872                           ;main.c: 296:                             break;
  11873  02F8  2B0C               	goto	l6177
  11874  02F9                     l6175:	
  11875                           
@@ -11993,7 +11993,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
  11913  030B  2AF4               	goto	l6171
  11914  030C                     l6177:	
  11915                           
- 11916                           ;main.c: 304:                         last_ms = clkms;
+ 11916                           ;main.c: 301:                         last_ms = clkms;
  11917  030C  087D               	movf	_clkms,w	;volatile
  11918  030D  0020               	movlb	0	; select bank0
  11919  030E  00D5               	movwf	??_config_routine
@@ -12001,7 +12001,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
  11921  0310  00BE               	movwf	_last_ms
  11922  0311                     l6179:	
  11923                           
- 11924                           ;main.c: 308:                 if(!PORTCbits.RC5){
+ 11924                           ;main.c: 305:                 if(!PORTCbits.RC5){
  11925  0311  1A8E               	btfsc	14,5	;volatile
  11926  0312  2B14               	goto	u3171
  11927  0313  2B15               	goto	u3170
@@ -12010,7 +12010,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
  11930  0315                     u3170:	
  11931  0315                     l6181:	
  11932                           
- 11933                           ;main.c: 309:                     if(checkDebounceSW2()){
+ 11933                           ;main.c: 306:                     if(checkDebounceSW2()){
  11934  0315  3185  2508  3182   	fcall	_checkDebounceSW2
  11935  0318  3A00               	xorlw	0
  11936  0319  1903               	skipnz
@@ -12021,7 +12021,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
  11941  031D                     u3180:	
  11942  031D                     l6183:	
  11943                           
- 11944                           ;main.c: 310:                         mode_field_subfield[0] = select_mode;
+ 11944                           ;main.c: 307:                         mode_field_subfield[0] = select_mode;
  11945  031D  0020               	movlb	0	; select bank0
  11946  031E  0857               	movf	config_routine@select_mode+1,w
  11947  031F  00DE               	movwf	_mode_field_subfield+1
@@ -12029,11 +12029,11 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
  11949  0321  00DD               	movwf	_mode_field_subfield
  11950  0322                     l6185:	
  11951                           
- 11952                           ;main.c: 311:                         mode_select_LED();
+ 11952                           ;main.c: 308:                         mode_select_LED();
  11953  0322  318F  27C0  3182   	fcall	_mode_select_LED
  11954  0325                     l6187:	
  11955                           
- 11956                           ;main.c: 313:                         if(select_mode== 1){
+ 11956                           ;main.c: 310:                         if(select_mode== 1){
  11957  0325  0020               	movlb	0	; select bank0
  11958  0326  0356               	decf	config_routine@select_mode,w
  11959  0327  0457               	iorwf	config_routine@select_mode+1,w
@@ -12045,11 +12045,11 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
  11965  032C                     u3190:	
  11966  032C                     l6189:	
  11967                           
- 11968                           ;main.c: 314:                             clock_subfields();
+ 11968                           ;main.c: 311:                             clock_subfields();
  11969  032C  3183  2342  3182   	fcall	_clock_subfields
  11970  032F                     l6191:	
  11971                           
- 11972                           ;main.c: 320:                    _delay((unsigned long)((2)*(1000000/4000.0)));
+ 11972                           ;main.c: 317:                    _delay((unsigned long)((2)*(1000000/4000.0)));
  11973  032F  30A6               	movlw	166
  11974  0330                     u3377:	
  11975  0330  0B89               	decfsz	9,f
@@ -12057,7 +12057,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
  11977  0332  3200               	nop2
  11978  0333                     l6193:	
  11979                           
- 11980                           ;main.c: 322:             }while(config_mode == 1);
+ 11980                           ;main.c: 319:             }while(config_mode == 1);
  11981  0333  0020               	movlb	0	; select bank0
  11982  0334  0339               	decf	_config_mode,w	;volatile
  11983  0335  1903               	btfsc	3,2
@@ -12068,13 +12068,13 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
  11988  0339                     u3200:	
  11989  0339                     l6195:	
  11990                           
- 11991                           ;main.c: 324:     mode_field_subfield[0] = -1;
+ 11991                           ;main.c: 321:     mode_field_subfield[0] = -1;
  11992  0339  30FF               	movlw	255
  11993  033A  00DD               	movwf	_mode_field_subfield
  11994  033B  30FF               	movlw	255
  11995  033C  00DE               	movwf	_mode_field_subfield+1
  11996                           
- 11997                           ;main.c: 325:     mode_field_subfield[1] = -1;
+ 11997                           ;main.c: 322:     mode_field_subfield[1] = -1;
  11998  033D  30FF               	movlw	255
  11999  033E  00DF               	movwf	_mode_field_subfield+2
  12000  033F  30FF               	movlw	255
@@ -12087,7 +12087,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
  12007  0FC0                     __ptext11:	
  12008 ;; *************** function _mode_select_LED *****************
  12009 ;; Defined at:
- 12010 ;;		line 554 in file "main.c"
+ 12010 ;;		line 551 in file "main.c"
  12011 ;; Parameters:    Size  Location     Type
  12012 ;;		None
  12013 ;; Auto vars:     Size  Location     Type
@@ -12128,7 +12128,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
  12043                           ; Regs used in _mode_select_LED: [wreg+status,2+status,0+pclath+cstack]
  12044                           
  12045                           
- 12046                           ;main.c: 557:             PWM6_LoadDutyValue(1023);
+ 12046                           ;main.c: 554:             PWM6_LoadDutyValue(1023);
  12047  0FC0  30FF               	movlw	255
  12048  0FC1  0020               	movlb	0	; select bank0
  12049  0FC2  00C7               	movwf	PWM6_LoadDutyValue@dutyValue
@@ -12140,7 +12140,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
  12055  0FC9  1616               	bsf	22,4	;volatile
  12056  0FCA                     l5983:	
  12057                           
- 12058                           ;main.c: 559:             _delay((unsigned long)((500)*(1000000/4000.0)));
+ 12058                           ;main.c: 556:             _delay((unsigned long)((500)*(1000000/4000.0)));
  12059  0FCA  30A3               	movlw	163
  12060  0FCB  0020               	movlb	0	; select bank0
  12061  0FCC  00CB               	movwf	??_mode_select_LED
@@ -12155,7 +12155,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
  12070  0FD3  1696               	bsf	22,5	;volatile
  12071  0FD4                     l5987:	
  12072                           
- 12073                           ;main.c: 561:             _delay((unsigned long)((500)*(1000000/4000.0)));
+ 12073                           ;main.c: 558:             _delay((unsigned long)((500)*(1000000/4000.0)));
  12074  0FD4  30A3               	movlw	163
  12075  0FD5  0020               	movlb	0	; select bank0
  12076  0FD6  00CB               	movwf	??_mode_select_LED
@@ -12178,7 +12178,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
  12093  0342                     __ptext12:	
  12094 ;; *************** function _clock_subfields *****************
  12095 ;; Defined at:
- 12096 ;;		line 352 in file "main.c"
+ 12096 ;;		line 349 in file "main.c"
  12097 ;; Parameters:    Size  Location     Type
  12098 ;;		None
  12099 ;; Auto vars:     Size  Location     Type
@@ -12225,7 +12225,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
  12135                           ; Regs used in _clock_subfields: [wreg-fsr0h+status,2+status,0+pclath+cstack]
  12136                           
  12137                           
- 12138                           ;main.c: 354:     unsigned int subfield = 1;
+ 12138                           ;main.c: 351:     unsigned int subfield = 1;
  12139  0342  3001               	movlw	1
  12140  0343  0020               	movlb	0	; select bank0
  12141  0344  00D3               	movwf	clock_subfields@subfield
@@ -12233,7 +12233,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
  12143  0346  00D4               	movwf	clock_subfields@subfield+1
  12144  0347                     l5995:	
  12145                           
- 12146                           ;main.c: 358:                 if(!PORTBbits.RB4){
+ 12146                           ;main.c: 355:                 if(!PORTBbits.RB4){
  12147  0347  1A0D               	btfsc	13,4	;volatile
  12148  0348  2B4A               	goto	u2961
  12149  0349  2B4B               	goto	u2960
@@ -12242,7 +12242,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
  12152  034B                     u2960:	
  12153  034B                     l5997:	
  12154                           
- 12155                           ;main.c: 359:                     if(checkDebounceSW1()){
+ 12155                           ;main.c: 356:                     if(checkDebounceSW1()){
  12156  034B  3184  2400  3183   	fcall	_checkDebounceSW1
  12157  034E  3A00               	xorlw	0
  12158  034F  1903               	skipnz
@@ -12253,17 +12253,17 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
  12163  0353                     u2970:	
  12164  0353                     l5999:	
  12165                           
- 12166                           ;main.c: 360:                             subfield +=1;
+ 12166                           ;main.c: 357:                             subfield +=1;
  12167  0353  3001               	movlw	1
  12168  0354  0020               	movlb	0	; select bank0
  12169  0355  07D3               	addwf	clock_subfields@subfield,f
  12170  0356  3000               	movlw	0
  12171  0357  3DD4               	addwfc	clock_subfields@subfield+1,f
  12172  0358                     l1272:	
- 12173                           ;main.c: 361:                         }
+ 12173                           ;main.c: 358:                         }
  12174                           
  12175                           
- 12176                           ;main.c: 362:                         last_ms = clkms;
+ 12176                           ;main.c: 359:                         last_ms = clkms;
  12177  0358  087D               	movf	_clkms,w	;volatile
  12178  0359  0020               	movlb	0	; select bank0
  12179  035A  00D2               	movwf	??_clock_subfields
@@ -12325,7 +12325,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
  12234  0380  2B81               	goto	l1275
  12235  0381                     l1275:	
  12236                           
- 12237                           ;main.c: 376:                 if(!PORTCbits.RC5){
+ 12237                           ;main.c: 373:                 if(!PORTCbits.RC5){
  12238  0381  0020               	movlb	0	; select bank0
  12239  0382  1A8E               	btfsc	14,5	;volatile
  12240  0383  2B85               	goto	u2981
@@ -12335,7 +12335,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
  12244  0386                     u2980:	
  12245  0386                     l6013:	
  12246                           
- 12247                           ;main.c: 377:                     if(checkDebounceSW2()){
+ 12247                           ;main.c: 374:                     if(checkDebounceSW2()){
  12248  0386  3185  2508  3183   	fcall	_checkDebounceSW2
  12249  0389  3A00               	xorlw	0
  12250  038A  1903               	skipnz
@@ -12346,7 +12346,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
  12255  038E                     u2990:	
  12256  038E                     l6015:	
  12257                           
- 12258                           ;main.c: 379:                         mode_field_subfield[1] = subfield;
+ 12258                           ;main.c: 376:                         mode_field_subfield[1] = subfield;
  12259  038E  0020               	movlb	0	; select bank0
  12260  038F  0854               	movf	clock_subfields@subfield+1,w
  12261  0390  00E0               	movwf	_mode_field_subfield+3
@@ -12354,11 +12354,11 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
  12263  0392  00DF               	movwf	_mode_field_subfield+2
  12264  0393                     l6017:	
  12265                           
- 12266                           ;main.c: 380:                         increment_subfield();
+ 12266                           ;main.c: 377:                         increment_subfield();
  12267  0393  3186  262F  3183   	fcall	_increment_subfield
  12268  0396                     l6019:	
  12269                           
- 12270                           ;main.c: 384:                    _delay((unsigned long)((2)*(1000000/4000.0)));
+ 12270                           ;main.c: 381:                    _delay((unsigned long)((2)*(1000000/4000.0)));
  12271  0396  30A6               	movlw	166
  12272  0397                     u3407:	
  12273  0397  0B89               	decfsz	9,f
@@ -12366,7 +12366,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
  12275  0399  3200               	nop2
  12276  039A                     l6021:	
  12277                           
- 12278                           ;main.c: 386:             }while(subfield <= 4 );
+ 12278                           ;main.c: 383:             }while(subfield <= 4 );
  12279  039A  3000               	movlw	0
  12280  039B  0020               	movlb	0	; select bank0
  12281  039C  0254               	subwf	clock_subfields@subfield+1,w
@@ -12387,7 +12387,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
  12296  0D83                     __ptext13:	
  12297 ;; *************** function _mod4_LED *****************
  12298 ;; Defined at:
- 12299 ;;		line 505 in file "main.c"
+ 12299 ;;		line 502 in file "main.c"
  12300 ;; Parameters:    Size  Location     Type
  12301 ;;		None
  12302 ;; Auto vars:     Size  Location     Type
@@ -12429,12 +12429,12 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
  12333                           ; Regs used in _mod4_LED: [wreg+status,2+status,0+pclath+cstack]
  12334                           
  12335                           
- 12336                           ;main.c: 506:     LATA = 0;
+ 12336                           ;main.c: 503:     LATA = 0;
  12337  0D83  0020               	movlb	0	; select bank0
  12338  0D84  0196               	clrf	22	;volatile
  12339  0D85                     l5773:	
  12340                           
- 12341                           ;main.c: 507:     PWM6_LoadDutyValue(0);
+ 12341                           ;main.c: 504:     PWM6_LoadDutyValue(0);
  12342  0D85  3000               	movlw	0
  12343  0D86  00C7               	movwf	PWM6_LoadDutyValue@dutyValue
  12344  0D87  00C8               	movwf	PWM6_LoadDutyValue@dutyValue+1
@@ -12450,7 +12450,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
  12354  0D78                     __ptext14:	
  12355 ;; *************** function _mod3_LED *****************
  12356 ;; Defined at:
- 12357 ;;		line 498 in file "main.c"
+ 12357 ;;		line 495 in file "main.c"
  12358 ;; Parameters:    Size  Location     Type
  12359 ;;		None
  12360 ;; Auto vars:     Size  Location     Type
@@ -12492,12 +12492,12 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
  12391                           ; Regs used in _mod3_LED: [wreg+status,2+status,0+pclath+cstack]
  12392                           
  12393                           
- 12394                           ;main.c: 499:     LATA = 0;
+ 12394                           ;main.c: 496:     LATA = 0;
  12395  0D78  0020               	movlb	0	; select bank0
  12396  0D79  0196               	clrf	22	;volatile
  12397  0D7A                     l5767:	
  12398                           
- 12399                           ;main.c: 500:     PWM6_LoadDutyValue(0);
+ 12399                           ;main.c: 497:     PWM6_LoadDutyValue(0);
  12400  0D7A  3000               	movlw	0
  12401  0D7B  00C7               	movwf	PWM6_LoadDutyValue@dutyValue
  12402  0D7C  00C8               	movwf	PWM6_LoadDutyValue@dutyValue+1
@@ -12513,7 +12513,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
  12412  0D63                     __ptext15:	
  12413 ;; *************** function _mod2_LED *****************
  12414 ;; Defined at:
- 12415 ;;		line 493 in file "main.c"
+ 12415 ;;		line 490 in file "main.c"
  12416 ;; Parameters:    Size  Location     Type
  12417 ;;		None
  12418 ;; Auto vars:     Size  Location     Type
@@ -12555,12 +12555,12 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
  12449                           ; Regs used in _mod2_LED: [wreg+status,2+status,0+pclath+cstack]
  12450                           
  12451                           
- 12452                           ;main.c: 494:     LATA = 0;
+ 12452                           ;main.c: 491:     LATA = 0;
  12453  0D63  0020               	movlb	0	; select bank0
  12454  0D64  0196               	clrf	22	;volatile
  12455  0D65                     l5763:	
  12456                           
- 12457                           ;main.c: 495:     PWM6_LoadDutyValue(1023);
+ 12457                           ;main.c: 492:     PWM6_LoadDutyValue(1023);
  12458  0D65  30FF               	movlw	255
  12459  0D66  00C7               	movwf	PWM6_LoadDutyValue@dutyValue
  12460  0D67  3003               	movlw	3
@@ -12574,7 +12574,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
  12468  0D6D                     __ptext16:	
  12469 ;; *************** function _mod1_LED *****************
  12470 ;; Defined at:
- 12471 ;;		line 486 in file "main.c"
+ 12471 ;;		line 483 in file "main.c"
  12472 ;; Parameters:    Size  Location     Type
  12473 ;;		None
  12474 ;; Auto vars:     Size  Location     Type
@@ -12616,12 +12616,12 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
  12505                           ; Regs used in _mod1_LED: [wreg+status,2+status,0+pclath+cstack]
  12506                           
  12507                           
- 12508                           ;main.c: 487:     LATA = 0;
+ 12508                           ;main.c: 484:     LATA = 0;
  12509  0D6D  0020               	movlb	0	; select bank0
  12510  0D6E  0196               	clrf	22	;volatile
  12511  0D6F                     l5757:	
  12512                           
- 12513                           ;main.c: 488:     PWM6_LoadDutyValue(0);
+ 12513                           ;main.c: 485:     PWM6_LoadDutyValue(0);
  12514  0D6F  3000               	movlw	0
  12515  0D70  00C7               	movwf	PWM6_LoadDutyValue@dutyValue
  12516  0D71  00C8               	movwf	PWM6_LoadDutyValue@dutyValue+1
@@ -12637,7 +12637,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
  12526  062F                     __ptext17:	
  12527 ;; *************** function _increment_subfield *****************
  12528 ;; Defined at:
- 12529 ;;		line 328 in file "main.c"
+ 12529 ;;		line 325 in file "main.c"
  12530 ;; Parameters:    Size  Location     Type
  12531 ;;		None
  12532 ;; Auto vars:     Size  Location     Type
@@ -12681,7 +12681,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
  12565                           ; Regs used in _increment_subfield: [wreg+status,2+status,0+pclath+cstack]
  12566                           
  12567                           
- 12568                           ;main.c: 330:     int plus = 10;
+ 12568                           ;main.c: 327:     int plus = 10;
  12569  062F  300A               	movlw	10
  12570  0630  0020               	movlb	0	; select bank0
  12571  0631  00CE               	movwf	increment_subfield@plus
@@ -12689,22 +12689,22 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
  12573  0633  00CF               	movwf	increment_subfield@plus+1
  12574  0634                     l5779:	
  12575                           
- 12576                           ;main.c: 331:     int exit = 0;
+ 12576                           ;main.c: 328:     int exit = 0;
  12577  0634  01D0               	clrf	increment_subfield@exit
  12578  0635  01D1               	clrf	increment_subfield@exit+1
  12579  0636                     l5781:	
  12580                           
- 12581                           ;main.c: 333:     PWM6_LoadDutyValue(0);
+ 12581                           ;main.c: 330:     PWM6_LoadDutyValue(0);
  12582  0636  3000               	movlw	0
  12583  0637  00C7               	movwf	PWM6_LoadDutyValue@dutyValue
  12584  0638  00C8               	movwf	PWM6_LoadDutyValue@dutyValue+1
  12585  0639  318F  271C  3186   	fcall	_PWM6_LoadDutyValue
  12586                           
- 12587                           ;main.c: 335:            while(exit == 0) {
+ 12587                           ;main.c: 332:            while(exit == 0) {
  12588  063C  2E67               	goto	l5795
  12589  063D                     l1261:	
  12590                           
- 12591                           ;main.c: 337:                if(!PORTCbits.RC5){
+ 12591                           ;main.c: 334:                if(!PORTCbits.RC5){
  12592  063D  1A8E               	btfsc	14,5	;volatile
  12593  063E  2E40               	goto	u2901
  12594  063F  2E41               	goto	u2900
@@ -12713,7 +12713,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
  12597  0641                     u2900:	
  12598  0641                     l5783:	
  12599                           
- 12600                           ;main.c: 338:                     if(checkDebounceSW2()){
+ 12600                           ;main.c: 335:                     if(checkDebounceSW2()){
  12601  0641  3185  2508  3186   	fcall	_checkDebounceSW2
  12602  0644  3A00               	xorlw	0
  12603  0645  1903               	skipnz
@@ -12724,7 +12724,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
  12608  0649                     u2910:	
  12609  0649                     l5785:	
  12610                           
- 12611                           ;main.c: 339:                          plus += 100;
+ 12611                           ;main.c: 336:                          plus += 100;
  12612  0649  3064               	movlw	100
  12613  064A  0020               	movlb	0	; select bank0
  12614  064B  07CE               	addwf	increment_subfield@plus,f
@@ -12732,7 +12732,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
  12616  064D  3DCF               	addwfc	increment_subfield@plus+1,f
  12617  064E                     l5787:	
  12618                           
- 12619                           ;main.c: 340:                          PWM6_LoadDutyValue(plus);
+ 12619                           ;main.c: 337:                          PWM6_LoadDutyValue(plus);
  12620  064E  084F               	movf	increment_subfield@plus+1,w
  12621  064F  00C8               	movwf	PWM6_LoadDutyValue@dutyValue+1
  12622  0650  084E               	movf	increment_subfield@plus,w
@@ -12740,7 +12740,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
  12624  0652  318F  271C  3186   	fcall	_PWM6_LoadDutyValue
  12625  0655                     l5789:	
  12626                           
- 12627                           ;main.c: 343:                if(!PORTBbits.RB4){
+ 12627                           ;main.c: 340:                if(!PORTBbits.RB4){
  12628  0655  0020               	movlb	0	; select bank0
  12629  0656  1A0D               	btfsc	13,4	;volatile
  12630  0657  2E59               	goto	u2921
@@ -12750,7 +12750,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
  12634  065A                     u2920:	
  12635  065A                     l5791:	
  12636                           
- 12637                           ;main.c: 344:                     if(checkDebounceSW1()){
+ 12637                           ;main.c: 341:                     if(checkDebounceSW1()){
  12638  065A  3184  2400  3186   	fcall	_checkDebounceSW1
  12639  065D  3A00               	xorlw	0
  12640  065E  1903               	skipnz
@@ -12761,7 +12761,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
  12645  0662                     u2930:	
  12646  0662                     l5793:	
  12647                           
- 12648                           ;main.c: 345:                         exit = 1;
+ 12648                           ;main.c: 342:                         exit = 1;
  12649  0662  3001               	movlw	1
  12650  0663  0020               	movlb	0	; select bank0
  12651  0664  00D0               	movwf	increment_subfield@exit
@@ -12769,7 +12769,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
  12653  0666  00D1               	movwf	increment_subfield@exit+1
  12654  0667                     l5795:	
  12655                           
- 12656                           ;main.c: 335:            while(exit == 0) {
+ 12656                           ;main.c: 332:            while(exit == 0) {
  12657  0667  0020               	movlb	0	; select bank0
  12658  0668  0850               	movf	increment_subfield@exit,w
  12659  0669  0451               	iorwf	increment_subfield@exit+1,w
@@ -12787,7 +12787,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
  12671  0508                     __ptext18:	
  12672 ;; *************** function _checkDebounceSW2 *****************
  12673 ;; Defined at:
- 12674 ;;		line 534 in file "main.c"
+ 12674 ;;		line 531 in file "main.c"
  12675 ;; Parameters:    Size  Location     Type
  12676 ;;		None
  12677 ;; Auto vars:     Size  Location     Type
@@ -12830,7 +12830,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
  12709                           ; Regs used in _checkDebounceSW2: [wreg+status,2+status,0]
  12710                           
  12711                           
- 12712                           ;main.c: 537:     if(clkms - last_ms2 < 0){
+ 12712                           ;main.c: 534:     if(clkms - last_ms2 < 0){
  12713  0508  087D               	movf	_clkms,w	;volatile
  12714  0509  0020               	movlb	0	; select bank0
  12715  050A  00C7               	movwf	??_checkDebounceSW2
@@ -12850,7 +12850,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
  12729  0517                     u2860:	
  12730  0517                     l5709:	
  12731                           
- 12732                           ;main.c: 539:         if ((300 - last_ms2)+ clkms > 2 ){
+ 12732                           ;main.c: 536:         if ((300 - last_ms2)+ clkms > 2 ){
  12733  0517  087D               	movf	_clkms,w	;volatile
  12734  0518  00C7               	movwf	??_checkDebounceSW2
  12735  0519  01C8               	clrf	??_checkDebounceSW2+1
@@ -12885,19 +12885,19 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
  12764  0534                     u2870:	
  12765  0534                     l5711:	
  12766                           
- 12767                           ;main.c: 540:             last_ms2 = clkms;
+ 12767                           ;main.c: 537:             last_ms2 = clkms;
  12768  0534  087D               	movf	_clkms,w	;volatile
  12769  0535  0020               	movlb	0	; select bank0
  12770  0536  00C7               	movwf	??_checkDebounceSW2
  12771  0537  0847               	movf	??_checkDebounceSW2,w
  12772  0538  00BD               	movwf	_last_ms2
  12773                           
- 12774                           ;main.c: 541:             return 1;
+ 12774                           ;main.c: 538:             return 1;
  12775  0539  3001               	movlw	1
  12776  053A  2D54               	goto	l1352
  12777  053B                     l5715:	
  12778                           
- 12779                           ;main.c: 545:     if(clkms - last_ms2 < 2){
+ 12779                           ;main.c: 542:     if(clkms - last_ms2 < 2){
  12780  053B  087D               	movf	_clkms,w	;volatile
  12781  053C  0020               	movlb	0	; select bank0
  12782  053D  00C7               	movwf	??_checkDebounceSW2
@@ -12927,7 +12927,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
  12806  0553                     u2880:	
  12807  0553                     l5717:	
  12808                           
- 12809                           ;main.c: 546:         return 0;
+ 12809                           ;main.c: 543:         return 0;
  12810  0553  3000               	movlw	0
  12811  0554                     l1352:	
  12812  0554  0008               	return
@@ -12937,7 +12937,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
  12816  0400                     __ptext19:	
  12817 ;; *************** function _checkDebounceSW1 *****************
  12818 ;; Defined at:
- 12819 ;;		line 511 in file "main.c"
+ 12819 ;;		line 508 in file "main.c"
  12820 ;; Parameters:    Size  Location     Type
  12821 ;;		None
  12822 ;; Auto vars:     Size  Location     Type
@@ -12980,12 +12980,12 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
  12854                           ; Regs used in _checkDebounceSW1: [wreg+status,2+status,0]
  12855                           
  12856                           
- 12857                           ;main.c: 512:    PIE4bits.TMR1IE = 0;
+ 12857                           ;main.c: 509:    PIE4bits.TMR1IE = 0;
  12858  0400  002E               	movlb	14	; select bank14
  12859  0401  101A               	bcf	26,0	;volatile
  12860  0402                     l5683:	
  12861                           
- 12862                           ;main.c: 514:     if(clkms - last_ms < 0){
+ 12862                           ;main.c: 511:     if(clkms - last_ms < 0){
  12863  0402  087D               	movf	_clkms,w	;volatile
  12864  0403  0020               	movlb	0	; select bank0
  12865  0404  00C7               	movwf	??_checkDebounceSW1
@@ -13005,7 +13005,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
  12879  0411                     u2830:	
  12880  0411                     l5685:	
  12881                           
- 12882                           ;main.c: 516:         if ((300 - last_ms)+ clkms > 2 ){
+ 12882                           ;main.c: 513:         if ((300 - last_ms)+ clkms > 2 ){
  12883  0411  087D               	movf	_clkms,w	;volatile
  12884  0412  00C7               	movwf	??_checkDebounceSW1
  12885  0413  01C8               	clrf	??_checkDebounceSW1+1
@@ -13040,7 +13040,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
  12914  042E                     u2840:	
  12915  042E                     l5687:	
  12916                           
- 12917                           ;main.c: 517:             last_ms = clkms;
+ 12917                           ;main.c: 514:             last_ms = clkms;
  12918  042E  087D               	movf	_clkms,w	;volatile
  12919  042F  0020               	movlb	0	; select bank0
  12920  0430  00C7               	movwf	??_checkDebounceSW1
@@ -13048,16 +13048,16 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
  12922  0432  00BE               	movwf	_last_ms
  12923  0433                     l5689:	
  12924                           
- 12925                           ;main.c: 518:             PIE4bits.TMR1IE = 1;
+ 12925                           ;main.c: 515:             PIE4bits.TMR1IE = 1;
  12926  0433  002E               	movlb	14	; select bank14
  12927  0434  141A               	bsf	26,0	;volatile
  12928                           
- 12929                           ;main.c: 519:             return 1;
+ 12929                           ;main.c: 516:             return 1;
  12930  0435  3001               	movlw	1
  12931  0436  2C59               	goto	l1345
  12932  0437                     l5693:	
  12933                           
- 12934                           ;main.c: 523:     if(clkms - last_ms < 2){
+ 12934                           ;main.c: 520:     if(clkms - last_ms < 2){
  12935  0437  087D               	movf	_clkms,w	;volatile
  12936  0438  0020               	movlb	0	; select bank0
  12937  0439  00C7               	movwf	??_checkDebounceSW1
@@ -13087,12 +13087,12 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
  12961  044F                     u2850:	
  12962  044F                     l5695:	
  12963                           
- 12964                           ;main.c: 524:         return 0;
+ 12964                           ;main.c: 521:         return 0;
  12965  044F  3000               	movlw	0
  12966  0450  2C59               	goto	l1345
  12967  0451                     l5701:	
  12968                           
- 12969                           ;main.c: 527:         last_ms = clkms;
+ 12969                           ;main.c: 524:         last_ms = clkms;
  12970  0451  087D               	movf	_clkms,w	;volatile
  12971  0452  0020               	movlb	0	; select bank0
  12972  0453  00C7               	movwf	??_checkDebounceSW1
@@ -13100,11 +13100,11 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
  12974  0455  00BE               	movwf	_last_ms
  12975  0456                     l5703:	
  12976                           
- 12977                           ;main.c: 528:         PIE4bits.TMR1IE = 1;
+ 12977                           ;main.c: 525:         PIE4bits.TMR1IE = 1;
  12978  0456  002E               	movlb	14	; select bank14
  12979  0457  141A               	bsf	26,0	;volatile
  12980                           
- 12981                           ;main.c: 529:         return 1;
+ 12981                           ;main.c: 526:         return 1;
  12982  0458  3001               	movlw	1
  12983  0459                     l1345:	
  12984  0459  0008               	return
@@ -13114,7 +13114,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
  12988  03A5                     __ptext20:	
  12989 ;; *************** function _all_LED *****************
  12990 ;; Defined at:
- 12991 ;;		line 401 in file "main.c"
+ 12991 ;;		line 398 in file "main.c"
  12992 ;; Parameters:    Size  Location     Type
  12993 ;;		None
  12994 ;; Auto vars:     Size  Location     Type
@@ -13153,13 +13153,13 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
  13022  03A5                     l1286:	
  13023                           ;incstack = 0
  13024                           ; Regs used in _all_LED: [wreg+status,2+status,0+pclath+cstack]
- 13025                           ;main.c: 403:        do { LATAbits.LATA7 = 1; } while(0);
+ 13025                           ;main.c: 400:        do { LATAbits.LATA7 = 1; } while(0);
  13026                           
  13027  03A5  0020               	movlb	0	; select bank0
  13028  03A6  1796               	bsf	22,7	;volatile
  13029  03A7                     l5955:	
  13030                           
- 13031                           ;main.c: 404:         _delay((unsigned long)((100)*(1000000/4000.0)));
+ 13031                           ;main.c: 401:         _delay((unsigned long)((100)*(1000000/4000.0)));
  13032  03A7  3021               	movlw	33
  13033  03A8  0020               	movlb	0	; select bank0
  13034  03A9  00CB               	movwf	??_all_LED
@@ -13175,7 +13175,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
  13044  03B1  1396               	bcf	22,7	;volatile
  13045  03B2                     l1289:	
  13046                           
- 13047                           ;main.c: 406:        _delay((unsigned long)((100)*(1000000/4000.0)));
+ 13047                           ;main.c: 403:        _delay((unsigned long)((100)*(1000000/4000.0)));
  13048  03B2  3021               	movlw	33
  13049  03B3  0020               	movlb	0	; select bank0
  13050  03B4  00CB               	movwf	??_all_LED
@@ -13188,7 +13188,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
  13057  03BA  0000               	nop
  13058  03BB                     l5959:	
  13059                           
- 13060                           ;main.c: 408:        PWM6_LoadDutyValue(1023);
+ 13060                           ;main.c: 405:        PWM6_LoadDutyValue(1023);
  13061  03BB  30FF               	movlw	255
  13062  03BC  0020               	movlb	0	; select bank0
  13063  03BD  00C7               	movwf	PWM6_LoadDutyValue@dutyValue
@@ -13197,7 +13197,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
  13066  03C0  318F  271C  3183   	fcall	_PWM6_LoadDutyValue
  13067  03C3                     l5961:	
  13068                           
- 13069                           ;main.c: 409:         _delay((unsigned long)((100)*(1000000/4000.0)));
+ 13069                           ;main.c: 406:         _delay((unsigned long)((100)*(1000000/4000.0)));
  13070  03C3  3021               	movlw	33
  13071  03C4  0020               	movlb	0	; select bank0
  13072  03C5  00CB               	movwf	??_all_LED
@@ -13209,7 +13209,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
  13078  03CA  2BC7               	goto	u3437
  13079  03CB  0000               	nop
  13080                           
- 13081                           ;main.c: 411:         PWM6_LoadDutyValue(0);
+ 13081                           ;main.c: 408:         PWM6_LoadDutyValue(0);
  13082  03CC  3000               	movlw	0
  13083  03CD  0020               	movlb	0	; select bank0
  13084  03CE  00C7               	movwf	PWM6_LoadDutyValue@dutyValue
@@ -13217,7 +13217,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
  13086  03D0  318F  271C  3183   	fcall	_PWM6_LoadDutyValue
  13087  03D3                     l5963:	
  13088                           
- 13089                           ;main.c: 412:         _delay((unsigned long)((100)*(1000000/4000.0)));
+ 13089                           ;main.c: 409:         _delay((unsigned long)((100)*(1000000/4000.0)));
  13090  03D3  3021               	movlw	33
  13091  03D4  0020               	movlb	0	; select bank0
  13092  03D5  00CB               	movwf	??_all_LED
@@ -13233,7 +13233,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
  13102  03DD  1696               	bsf	22,5	;volatile
  13103  03DE                     l5967:	
  13104                           
- 13105                           ;main.c: 414:          _delay((unsigned long)((100)*(1000000/4000.0)));
+ 13105                           ;main.c: 411:          _delay((unsigned long)((100)*(1000000/4000.0)));
  13106  03DE  3021               	movlw	33
  13107  03DF  0020               	movlb	0	; select bank0
  13108  03E0  00CB               	movwf	??_all_LED
@@ -13249,7 +13249,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
  13118  03E8  1296               	bcf	22,5	;volatile
  13119  03E9                     l5971:	
  13120                           
- 13121                           ;main.c: 416:        _delay((unsigned long)((100)*(1000000/4000.0)));
+ 13121                           ;main.c: 413:        _delay((unsigned long)((100)*(1000000/4000.0)));
  13122  03E9  3021               	movlw	33
  13123  03EA  0020               	movlb	0	; select bank0
  13124  03EB  00CB               	movwf	??_all_LED
@@ -13265,7 +13265,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
  13134  03F3  1616               	bsf	22,4	;volatile
  13135  03F4                     l5975:	
  13136                           
- 13137                           ;main.c: 418:         _delay((unsigned long)((100)*(1000000/4000.0)));
+ 13137                           ;main.c: 415:         _delay((unsigned long)((100)*(1000000/4000.0)));
  13138  03F4  3021               	movlw	33
  13139  03F5  0020               	movlb	0	; select bank0
  13140  03F6  00CB               	movwf	??_all_LED
@@ -14645,7 +14645,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
  14428  0F4F                     __ptext37:	
  14429 ;; *************** function _LED_bin *****************
  14430 ;; Defined at:
- 14431 ;;		line 431 in file "main.c"
+ 14431 ;;		line 428 in file "main.c"
  14432 ;; Parameters:    Size  Location     Type
  14433 ;;  value           2    3[BANK0 ] unsigned int 
  14434 ;; Auto vars:     Size  Location     Type
@@ -14686,7 +14686,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
  14464                           ; Regs used in _LED_bin: [wreg+status,2+status,0]
  14465                           
  14466                           
- 14467                           ;main.c: 433:     LATAbits.LATA4 = (value & 1);
+ 14467                           ;main.c: 430:     LATAbits.LATA4 = (value & 1);
  14468  0F4F  0020               	movlb	0	; select bank0
  14469  0F50  0847               	movf	LED_bin@value,w
  14470  0F51  3901               	andlw	1
@@ -14698,7 +14698,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
  14476  0F57  0649               	xorwf	??_LED_bin,w
  14477  0F58  0096               	movwf	22	;volatile
  14478                           
- 14479                           ;main.c: 434:     LATAbits.LATA5 = (value >>1);
+ 14479                           ;main.c: 431:     LATAbits.LATA5 = (value >>1);
  14480  0F59  0848               	movf	LED_bin@value+1,w
  14481  0F5A  00CA               	movwf	??_LED_bin+1
  14482  0F5B  0847               	movf	LED_bin@value,w
@@ -14722,7 +14722,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
  14500  0F35                     __ptext38:	
  14501 ;; *************** function _ADC_read *****************
  14502 ;; Defined at:
- 14503 ;;		line 444 in file "main.c"
+ 14503 ;;		line 441 in file "main.c"
  14504 ;; Parameters:    Size  Location     Type
  14505 ;;		None
  14506 ;; Auto vars:     Size  Location     Type
@@ -14765,15 +14765,15 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
  14538                           ; Regs used in _ADC_read: [wreg+status,2+status,0+pclath+cstack]
  14539                           
  14540                           
- 14541                           ;main.c: 446:     ADCC_StartConversion(channel_ANA0);
+ 14541                           ;main.c: 443:     ADCC_StartConversion(channel_ANA0);
  14542  0F35  3000               	movlw	0
  14543  0F36  318D  2526  318F   	fcall	_ADCC_StartConversion
  14544                           
- 14545                           ;main.c: 447:     while(!ADCC_IsConversionDone()){
+ 14545                           ;main.c: 444:     while(!ADCC_IsConversionDone()){
  14546  0F39  2F3E               	goto	l6091
  14547  0F3A                     l6089:	
  14548                           
- 14549                           ;main.c: 448:         _delay((unsigned long)((1)*(1000000/4000.0)));
+ 14549                           ;main.c: 445:         _delay((unsigned long)((1)*(1000000/4000.0)));
  14550  0F3A  3053               	movlw	83
  14551  0F3B                     u3487:	
  14552  0F3B  0B89               	decfsz	9,f
@@ -14781,7 +14781,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
  14554  0F3D  0000               	nop
  14555  0F3E                     l6091:	
  14556                           
- 14557                           ;main.c: 447:     while(!ADCC_IsConversionDone()){
+ 14557                           ;main.c: 444:     while(!ADCC_IsConversionDone()){
  14558  0F3E  318D  2500  318F   	fcall	_ADCC_IsConversionDone
  14559  0F41  3A00               	xorlw	0
  14560  0F42  1903               	skipnz
@@ -14792,7 +14792,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
  14565  0F46                     u3060:	
  14566  0F46                     l6093:	
  14567                           
- 14568                           ;main.c: 451:     return ADCC_GetConversionResult();
+ 14568                           ;main.c: 448:     return ADCC_GetConversionResult();
  14569  0F46  318D  253F  318F   	fcall	_ADCC_GetConversionResult
  14570  0F49  0020               	movlb	0	; select bank0
  14571  0F4A  0848               	movf	?_ADCC_GetConversionResult+1,w
@@ -18380,7 +18380,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
  17823  0CA9                     __ptext86:	
  17824 ;; *************** function _handler_clock_ms *****************
  17825 ;; Defined at:
- 17826 ;;		line 473 in file "main.c"
+ 17826 ;;		line 470 in file "main.c"
  17827 ;; Parameters:    Size  Location     Type
  17828 ;;		None
  17829 ;; Auto vars:     Size  Location     Type
@@ -18421,13 +18421,13 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
  17859                           ; Regs used in _handler_clock_ms: [wreg+status,2+status,0]
  17860                           
  17861                           
- 17862                           ;main.c: 474:     clkms++;
+ 17862                           ;main.c: 471:     clkms++;
  17863  0CA9  3001               	movlw	1
  17864  0CAA  00F0               	movwf	??_handler_clock_ms
  17865  0CAB  0870               	movf	??_handler_clock_ms,w
  17866  0CAC  07FD               	addwf	_clkms,f	;volatile
  17867  0CAD                     i1l1319:	
- 17868                           ;main.c: 476:     if(clkms > 300){
+ 17868                           ;main.c: 473:     if(clkms > 300){
  17869                           
  17870  0CAD  0008               	return
  17871  0CAE                     __end_of_handler_clock_ms:	
@@ -18568,7 +18568,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
  17995  06AE                     __ptext89:	
  17996 ;; *************** function _handler_clock_hms *****************
  17997 ;; Defined at:
- 17998 ;;		line 454 in file "main.c"
+ 17998 ;;		line 451 in file "main.c"
  17999 ;; Parameters:    Size  Location     Type
  18000 ;;		None
  18001 ;; Auto vars:     Size  Location     Type
@@ -18609,7 +18609,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
  18031                           ; Regs used in _handler_clock_hms: [wreg+status,2+status,0]
  18032                           
  18033                           
- 18034                           ;main.c: 456:     if(!config_mode){
+ 18034                           ;main.c: 453:     if(!config_mode){
  18035  06AE  0020               	movlb	0	; select bank0
  18036  06AF  0839               	movf	_config_mode,w	;volatile
  18037  06B0  1D03               	btfss	3,2
@@ -18635,21 +18635,21 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
  18057  06BF                     u205_24:	
  18058  06BF                     i1l4891:	
  18059                           
- 18060                           ;main.c: 460:     last5s++;
+ 18060                           ;main.c: 457:     last5s++;
  18061  06BF  3001               	movlw	1
  18062  06C0  00F0               	movwf	??_handler_clock_hms
  18063  06C1  0870               	movf	??_handler_clock_hms,w
  18064  06C2  07BC               	addwf	_last5s,f	;volatile
  18065  06C3                     i1l4893:	
  18066                           
- 18067                           ;main.c: 461:     seg++;
+ 18067                           ;main.c: 458:     seg++;
  18068  06C3  3001               	movlw	1
  18069  06C4  00F0               	movwf	??_handler_clock_hms
  18070  06C5  0870               	movf	??_handler_clock_hms,w
  18071  06C6  07BF               	addwf	_seg,f	;volatile
  18072  06C7                     i1l4895:	
  18073                           
- 18074                           ;main.c: 462:     if(seg >= 60) {
+ 18074                           ;main.c: 459:     if(seg >= 60) {
  18075  06C7  303C               	movlw	60
  18076  06C8  023F               	subwf	_seg,w	;volatile
  18077  06C9  1C03               	skipc
@@ -18660,24 +18660,24 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
  18082  06CD                     u206_20:	
  18083  06CD                     i1l4897:	
  18084                           
- 18085                           ;main.c: 463:         clkm++;
+ 18085                           ;main.c: 460:         clkm++;
  18086  06CD  3001               	movlw	1
  18087  06CE  00F0               	movwf	??_handler_clock_hms
  18088  06CF  0870               	movf	??_handler_clock_hms,w
  18089  06D0  07C0               	addwf	_clkm,f	;volatile
  18090                           
- 18091                           ;main.c: 464:         last1m++;
+ 18091                           ;main.c: 461:         last1m++;
  18092  06D1  3001               	movlw	1
  18093  06D2  00F0               	movwf	??_handler_clock_hms
  18094  06D3  0870               	movf	??_handler_clock_hms,w
  18095  06D4  07BB               	addwf	_last1m,f	;volatile
  18096  06D5                     i1l4899:	
  18097                           
- 18098                           ;main.c: 465:         seg = 0;
+ 18098                           ;main.c: 462:         seg = 0;
  18099  06D5  01BF               	clrf	_seg	;volatile
  18100  06D6                     i1l4901:	
  18101                           
- 18102                           ;main.c: 466:         if(clkm >= 60) {
+ 18102                           ;main.c: 463:         if(clkm >= 60) {
  18103  06D6  303C               	movlw	60
  18104  06D7  0240               	subwf	_clkm,w	;volatile
  18105  06D8  1C03               	skipc
@@ -18688,14 +18688,14 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
  18110  06DC                     u207_20:	
  18111  06DC                     i1l4903:	
  18112                           
- 18113                           ;main.c: 467:             clkh++;
+ 18113                           ;main.c: 464:             clkh++;
  18114  06DC  3001               	movlw	1
  18115  06DD  00F0               	movwf	??_handler_clock_hms
  18116  06DE  0870               	movf	??_handler_clock_hms,w
  18117  06DF  07C1               	addwf	_clkh,f	;volatile
  18118  06E0                     i1l4905:	
  18119                           
- 18120                           ;main.c: 468:             clkm = 0;
+ 18120                           ;main.c: 465:             clkm = 0;
  18121  06E0  01C0               	clrf	_clkm	;volatile
  18122  06E1                     i1l1315:	
  18123  06E1  0008               	return
@@ -19362,7 +19362,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
  18734  045A                     __ptext99:	
  18735 ;; *************** function i1_checkDebounceSW1 *****************
  18736 ;; Defined at:
- 18737 ;;		line 511 in file "main.c"
+ 18737 ;;		line 508 in file "main.c"
  18738 ;; Parameters:    Size  Location     Type
  18739 ;;		None
  18740 ;; Auto vars:     Size  Location     Type
@@ -19402,12 +19402,12 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
  18769                           ; Regs used in i1_checkDebounceSW1: [wreg+status,2+status,0]
  18770                           
  18771                           
- 18772                           ;main.c: 512:    PIE4bits.TMR1IE = 0;
+ 18772                           ;main.c: 509:    PIE4bits.TMR1IE = 0;
  18773  045A  002E               	movlb	14	; select bank14
  18774  045B  101A               	bcf	26,0	;volatile
  18775  045C                     i1l4223:	
  18776                           
- 18777                           ;main.c: 514:     if(clkms - last_ms < 0){
+ 18777                           ;main.c: 511:     if(clkms - last_ms < 0){
  18778  045C  087D               	movf	_clkms,w	;volatile
  18779  045D  00F0               	movwf	??i1_checkDebounceSW1
  18780  045E  01F1               	clrf	??i1_checkDebounceSW1+1
@@ -19427,7 +19427,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
  18794  046B                     u174_20:	
  18795  046B                     i1l4225:	
  18796                           
- 18797                           ;main.c: 516:         if ((300 - last_ms)+ clkms > 2 ){
+ 18797                           ;main.c: 513:         if ((300 - last_ms)+ clkms > 2 ){
  18798  046B  087D               	movf	_clkms,w	;volatile
  18799  046C  00F0               	movwf	??i1_checkDebounceSW1
  18800  046D  01F1               	clrf	??i1_checkDebounceSW1+1
@@ -19462,7 +19462,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
  18829  0488                     u175_20:	
  18830  0488                     i1l4227:	
  18831                           
- 18832                           ;main.c: 517:             last_ms = clkms;
+ 18832                           ;main.c: 514:             last_ms = clkms;
  18833  0488  087D               	movf	_clkms,w	;volatile
  18834  0489  00F0               	movwf	??i1_checkDebounceSW1
  18835  048A  0870               	movf	??i1_checkDebounceSW1,w
@@ -19470,16 +19470,16 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
  18837  048C  00BE               	movwf	_last_ms
  18838  048D                     i1l4229:	
  18839                           
- 18840                           ;main.c: 518:             PIE4bits.TMR1IE = 1;
+ 18840                           ;main.c: 515:             PIE4bits.TMR1IE = 1;
  18841  048D  002E               	movlb	14	; select bank14
  18842  048E  141A               	bsf	26,0	;volatile
  18843                           
- 18844                           ;main.c: 519:             return 1;
+ 18844                           ;main.c: 516:             return 1;
  18845  048F  3001               	movlw	1
  18846  0490  2CB3               	goto	i1l1345
  18847  0491                     i1l4233:	
  18848                           
- 18849                           ;main.c: 523:     if(clkms - last_ms < 2){
+ 18849                           ;main.c: 520:     if(clkms - last_ms < 2){
  18850  0491  087D               	movf	_clkms,w	;volatile
  18851  0492  00F0               	movwf	??i1_checkDebounceSW1
  18852  0493  01F1               	clrf	??i1_checkDebounceSW1+1
@@ -19509,12 +19509,12 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
  18876  04A9                     u176_20:	
  18877  04A9                     i1l4235:	
  18878                           
- 18879                           ;main.c: 524:         return 0;
+ 18879                           ;main.c: 521:         return 0;
  18880  04A9  3000               	movlw	0
  18881  04AA  2CB3               	goto	i1l1345
  18882  04AB                     i1l4241:	
  18883                           
- 18884                           ;main.c: 527:         last_ms = clkms;
+ 18884                           ;main.c: 524:         last_ms = clkms;
  18885  04AB  087D               	movf	_clkms,w	;volatile
  18886  04AC  00F0               	movwf	??i1_checkDebounceSW1
  18887  04AD  0870               	movf	??i1_checkDebounceSW1,w
@@ -19522,11 +19522,11 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
  18889  04AF  00BE               	movwf	_last_ms
  18890  04B0                     i1l4243:	
  18891                           
- 18892                           ;main.c: 528:         PIE4bits.TMR1IE = 1;
+ 18892                           ;main.c: 525:         PIE4bits.TMR1IE = 1;
  18893  04B0  002E               	movlb	14	; select bank14
  18894  04B1  141A               	bsf	26,0	;volatile
  18895                           
- 18896                           ;main.c: 529:         return 1;
+ 18896                           ;main.c: 526:         return 1;
  18897  04B2  3001               	movlw	1
  18898  04B3                     i1l1345:	
  18899  04B3  0008               	return
@@ -20827,7 +20827,7 @@ SFR31                0      0       0      32        0.0%
 
 
 Microchip Technology PIC Macro Assembler V2.10 build 88905656 
-Symbol Table                                                                                   Sun Nov  3 18:54:42 2019
+Symbol Table                                                                                   Sun Nov  3 19:00:26 2019
 
                             returnReset@p 0079          __end_of_TMR2_SetInterruptHandler 0D63  
                           ___bmul@product 0049                               __CFG_CP$OFF 0000  

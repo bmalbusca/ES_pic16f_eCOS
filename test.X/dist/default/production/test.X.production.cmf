@@ -127,7 +127,7 @@ dataBANK0 BANK0 1 5D 5D 7 1
 clrtext CODE 0 CED CED 6 2
 text100 CODE 0 E7A E7A 16 2
 bssCOMMON COMMON 1 7D 7D 1 1
-$/tmp/xcXzth8Gu.o
+$/tmp/xcXcrZcuh.o
 reset_vec CODE 0 0 0 2 2
 end_init CODE 0 5B 5B 2 2
 config CONFIG 0 8007 8007 5 2
@@ -223,35 +223,35 @@ STRING 1000-1FFF 2
 # All other numeric values are in decimal.
 %LINETAB
 $dist/default/production/test.X.production.o
-5D cinit CODE >18221:/tmp/xcXpSnU9W.s
-5D cinit CODE >18224:/tmp/xcXpSnU9W.s
-5D cinit CODE >18359:/tmp/xcXpSnU9W.s
-5E cinit CODE >18360:/tmp/xcXpSnU9W.s
-5F cinit CODE >18361:/tmp/xcXpSnU9W.s
-60 cinit CODE >18362:/tmp/xcXpSnU9W.s
-61 cinit CODE >18363:/tmp/xcXpSnU9W.s
-62 cinit CODE >18364:/tmp/xcXpSnU9W.s
-63 cinit CODE >18365:/tmp/xcXpSnU9W.s
-64 cinit CODE >18366:/tmp/xcXpSnU9W.s
-65 cinit CODE >18367:/tmp/xcXpSnU9W.s
-66 cinit CODE >18368:/tmp/xcXpSnU9W.s
-69 cinit CODE >18385:/tmp/xcXpSnU9W.s
-6A cinit CODE >18389:/tmp/xcXpSnU9W.s
-6B cinit CODE >18390:/tmp/xcXpSnU9W.s
-6C cinit CODE >18391:/tmp/xcXpSnU9W.s
-6D cinit CODE >18392:/tmp/xcXpSnU9W.s
-6E cinit CODE >18393:/tmp/xcXpSnU9W.s
-6F cinit CODE >18394:/tmp/xcXpSnU9W.s
-72 cinit CODE >18398:/tmp/xcXpSnU9W.s
-73 cinit CODE >18399:/tmp/xcXpSnU9W.s
-74 cinit CODE >18400:/tmp/xcXpSnU9W.s
-75 cinit CODE >18401:/tmp/xcXpSnU9W.s
-76 cinit CODE >18402:/tmp/xcXpSnU9W.s
-77 cinit CODE >18403:/tmp/xcXpSnU9W.s
-7A cinit CODE >18409:/tmp/xcXpSnU9W.s
-7A cinit CODE >18411:/tmp/xcXpSnU9W.s
-7B cinit CODE >18412:/tmp/xcXpSnU9W.s
-7C cinit CODE >18413:/tmp/xcXpSnU9W.s
+5D cinit CODE >18221:/tmp/xcXbLHFX1.s
+5D cinit CODE >18224:/tmp/xcXbLHFX1.s
+5D cinit CODE >18359:/tmp/xcXbLHFX1.s
+5E cinit CODE >18360:/tmp/xcXbLHFX1.s
+5F cinit CODE >18361:/tmp/xcXbLHFX1.s
+60 cinit CODE >18362:/tmp/xcXbLHFX1.s
+61 cinit CODE >18363:/tmp/xcXbLHFX1.s
+62 cinit CODE >18364:/tmp/xcXbLHFX1.s
+63 cinit CODE >18365:/tmp/xcXbLHFX1.s
+64 cinit CODE >18366:/tmp/xcXbLHFX1.s
+65 cinit CODE >18367:/tmp/xcXbLHFX1.s
+66 cinit CODE >18368:/tmp/xcXbLHFX1.s
+69 cinit CODE >18385:/tmp/xcXbLHFX1.s
+6A cinit CODE >18389:/tmp/xcXbLHFX1.s
+6B cinit CODE >18390:/tmp/xcXbLHFX1.s
+6C cinit CODE >18391:/tmp/xcXbLHFX1.s
+6D cinit CODE >18392:/tmp/xcXbLHFX1.s
+6E cinit CODE >18393:/tmp/xcXbLHFX1.s
+6F cinit CODE >18394:/tmp/xcXbLHFX1.s
+72 cinit CODE >18398:/tmp/xcXbLHFX1.s
+73 cinit CODE >18399:/tmp/xcXbLHFX1.s
+74 cinit CODE >18400:/tmp/xcXbLHFX1.s
+75 cinit CODE >18401:/tmp/xcXbLHFX1.s
+76 cinit CODE >18402:/tmp/xcXbLHFX1.s
+77 cinit CODE >18403:/tmp/xcXbLHFX1.s
+7A cinit CODE >18409:/tmp/xcXbLHFX1.s
+7A cinit CODE >18411:/tmp/xcXbLHFX1.s
+7B cinit CODE >18412:/tmp/xcXbLHFX1.s
+7C cinit CODE >18413:/tmp/xcXbLHFX1.s
 4 intentry CODE >52:/home/bmalbusca/MPLABXProjects/sce/test.X/mcc_generated_files/interrupt_manager.c
 6 intentry CODE >55:/home/bmalbusca/MPLABXProjects/sce/test.X/mcc_generated_files/interrupt_manager.c
 F intentry CODE >57:/home/bmalbusca/MPLABXProjects/sce/test.X/mcc_generated_files/interrupt_manager.c
@@ -278,19 +278,19 @@ E7A text100 CODE >74:/home/bmalbusca/MPLABXProjects/sce/test.X/mcc_generated_fil
 E7A text100 CODE >77:/home/bmalbusca/MPLABXProjects/sce/test.X/mcc_generated_files/pwm6.c
 E85 text100 CODE >80:/home/bmalbusca/MPLABXProjects/sce/test.X/mcc_generated_files/pwm6.c
 E8F text100 CODE >81:/home/bmalbusca/MPLABXProjects/sce/test.X/mcc_generated_files/pwm6.c
-45A text99 CODE >511:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-45A text99 CODE >512:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-45C text99 CODE >514:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-46B text99 CODE >516:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-488 text99 CODE >517:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-48D text99 CODE >518:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-48F text99 CODE >519:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-491 text99 CODE >523:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-4A9 text99 CODE >524:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-4AB text99 CODE >527:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-4B0 text99 CODE >528:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-4B2 text99 CODE >529:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-4B3 text99 CODE >531:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+45A text99 CODE >508:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+45A text99 CODE >509:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+45C text99 CODE >511:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+46B text99 CODE >513:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+488 text99 CODE >514:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+48D text99 CODE >515:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+48F text99 CODE >516:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+491 text99 CODE >520:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+4A9 text99 CODE >521:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+4AB text99 CODE >524:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+4B0 text99 CODE >525:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+4B2 text99 CODE >526:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+4B3 text99 CODE >528:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
 715 text98 CODE >99:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
 715 text98 CODE >102:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
 71D text98 CODE >103:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
@@ -344,19 +344,19 @@ E1B text90 CODE >140:/home/bmalbusca/MPLABXProjects/sce/test.X/mcc_generated_fil
 E1C text90 CODE >144:/home/bmalbusca/MPLABXProjects/sce/test.X/mcc_generated_files/tmr1.c
 E1E text90 CODE >145:/home/bmalbusca/MPLABXProjects/sce/test.X/mcc_generated_files/tmr1.c
 E20 text90 CODE >147:/home/bmalbusca/MPLABXProjects/sce/test.X/mcc_generated_files/tmr1.c
-6AE text89 CODE >454:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-6AE text89 CODE >456:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-6B4 text89 CODE >457:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-6BF text89 CODE >460:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-6C3 text89 CODE >461:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-6C7 text89 CODE >462:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-6CD text89 CODE >463:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-6D1 text89 CODE >464:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-6D5 text89 CODE >465:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-6D6 text89 CODE >466:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-6DC text89 CODE >467:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-6E0 text89 CODE >468:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-6E1 text89 CODE >472:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+6AE text89 CODE >451:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+6AE text89 CODE >453:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+6B4 text89 CODE >454:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+6BF text89 CODE >457:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+6C3 text89 CODE >458:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+6C7 text89 CODE >459:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+6CD text89 CODE >460:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+6D1 text89 CODE >461:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+6D5 text89 CODE >462:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+6D6 text89 CODE >463:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+6DC text89 CODE >464:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+6E0 text89 CODE >465:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+6E1 text89 CODE >469:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
 C7B text88 CODE >182:/home/bmalbusca/MPLABXProjects/sce/test.X/mcc_generated_files/tmr1.c
 C7B text88 CODE >185:/home/bmalbusca/MPLABXProjects/sce/test.X/mcc_generated_files/tmr1.c
 EBC text87 CODE >164:/home/bmalbusca/MPLABXProjects/sce/test.X/mcc_generated_files/tmr1.c
@@ -365,9 +365,9 @@ EBE text87 CODE >169:/home/bmalbusca/MPLABXProjects/sce/test.X/mcc_generated_fil
 EC6 text87 CODE >171:/home/bmalbusca/MPLABXProjects/sce/test.X/mcc_generated_files/tmr1.c
 ECD text87 CODE >173:/home/bmalbusca/MPLABXProjects/sce/test.X/mcc_generated_files/tmr1.c
 ED2 text87 CODE >175:/home/bmalbusca/MPLABXProjects/sce/test.X/mcc_generated_files/tmr1.c
-CA9 text86 CODE >473:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-CA9 text86 CODE >474:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-CAD text86 CODE >479:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+CA9 text86 CODE >470:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+CA9 text86 CODE >471:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+CAD text86 CODE >476:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
 C7C text85 CODE >182:/home/bmalbusca/MPLABXProjects/sce/test.X/mcc_generated_files/tmr2.c
 C7C text85 CODE >185:/home/bmalbusca/MPLABXProjects/sce/test.X/mcc_generated_files/tmr2.c
 DD2 text84 CODE >165:/home/bmalbusca/MPLABXProjects/sce/test.X/mcc_generated_files/tmr2.c
@@ -577,17 +577,17 @@ D28 text39 CODE >109:/home/bmalbusca/MPLABXProjects/sce/test.X/mcc_generated_fil
 D2B text39 CODE >112:/home/bmalbusca/MPLABXProjects/sce/test.X/mcc_generated_files/adcc.c
 D2C text39 CODE >115:/home/bmalbusca/MPLABXProjects/sce/test.X/mcc_generated_files/adcc.c
 D2D text39 CODE >116:/home/bmalbusca/MPLABXProjects/sce/test.X/mcc_generated_files/adcc.c
-F35 text38 CODE >444:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-F35 text38 CODE >446:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-F39 text38 CODE >447:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-F3A text38 CODE >448:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-F3E text38 CODE >447:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-F46 text38 CODE >451:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-F4E text38 CODE >452:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-F4F text37 CODE >431:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-F4F text37 CODE >433:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-F59 text37 CODE >434:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-F68 text37 CODE >436:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+F35 text38 CODE >441:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+F35 text38 CODE >443:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+F39 text38 CODE >444:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+F3A text38 CODE >445:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+F3E text38 CODE >444:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+F46 text38 CODE >448:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+F4E text38 CODE >449:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+F4F text37 CODE >428:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+F4F text37 CODE >430:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+F59 text37 CODE >431:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+F68 text37 CODE >433:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
 E90 text36 CODE >63:/home/bmalbusca/MPLABXProjects/sce/test.X/mcc_generated_files/adcc.c
 E90 text36 CODE >67:/home/bmalbusca/MPLABXProjects/sce/test.X/mcc_generated_files/adcc.c
 E92 text36 CODE >69:/home/bmalbusca/MPLABXProjects/sce/test.X/mcc_generated_files/adcc.c
@@ -740,134 +740,134 @@ F1C text21 CODE >74:/home/bmalbusca/MPLABXProjects/sce/test.X/mcc_generated_file
 F1C text21 CODE >77:/home/bmalbusca/MPLABXProjects/sce/test.X/mcc_generated_files/pwm6.c
 F28 text21 CODE >80:/home/bmalbusca/MPLABXProjects/sce/test.X/mcc_generated_files/pwm6.c
 F34 text21 CODE >81:/home/bmalbusca/MPLABXProjects/sce/test.X/mcc_generated_files/pwm6.c
-3A5 text20 CODE >401:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-3A5 text20 CODE >403:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-3A7 text20 CODE >404:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-3B0 text20 CODE >405:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-3B2 text20 CODE >406:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-3BB text20 CODE >408:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-3C3 text20 CODE >409:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-3CC text20 CODE >411:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-3D3 text20 CODE >412:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-3DC text20 CODE >413:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-3DE text20 CODE >414:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-3E7 text20 CODE >415:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-3E9 text20 CODE >416:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-3F2 text20 CODE >417:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-3F4 text20 CODE >418:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-3FD text20 CODE >419:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-3FF text20 CODE >423:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-400 text19 CODE >511:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-400 text19 CODE >512:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-402 text19 CODE >514:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-411 text19 CODE >516:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-42E text19 CODE >517:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-433 text19 CODE >518:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-435 text19 CODE >519:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-437 text19 CODE >523:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-44F text19 CODE >524:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-451 text19 CODE >527:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-456 text19 CODE >528:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-458 text19 CODE >529:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-459 text19 CODE >531:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+3A5 text20 CODE >398:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+3A5 text20 CODE >400:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+3A7 text20 CODE >401:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+3B0 text20 CODE >402:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+3B2 text20 CODE >403:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+3BB text20 CODE >405:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+3C3 text20 CODE >406:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+3CC text20 CODE >408:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+3D3 text20 CODE >409:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+3DC text20 CODE >410:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+3DE text20 CODE >411:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+3E7 text20 CODE >412:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+3E9 text20 CODE >413:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+3F2 text20 CODE >414:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+3F4 text20 CODE >415:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+3FD text20 CODE >416:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+3FF text20 CODE >420:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+400 text19 CODE >508:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+400 text19 CODE >509:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+402 text19 CODE >511:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+411 text19 CODE >513:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+42E text19 CODE >514:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+433 text19 CODE >515:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+435 text19 CODE >516:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+437 text19 CODE >520:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+44F text19 CODE >521:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+451 text19 CODE >524:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+456 text19 CODE >525:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+458 text19 CODE >526:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+459 text19 CODE >528:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+508 text18 CODE >531:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
 508 text18 CODE >534:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-508 text18 CODE >537:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-517 text18 CODE >539:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-534 text18 CODE >540:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-539 text18 CODE >541:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-53B text18 CODE >545:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-553 text18 CODE >546:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-554 text18 CODE >551:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-62F text17 CODE >328:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-62F text17 CODE >330:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-634 text17 CODE >331:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-636 text17 CODE >333:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-63C text17 CODE >335:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-63D text17 CODE >337:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-641 text17 CODE >338:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-649 text17 CODE >339:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-64E text17 CODE >340:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-655 text17 CODE >343:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-65A text17 CODE >344:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-662 text17 CODE >345:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-667 text17 CODE >335:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-66E text17 CODE >350:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-D6D text16 CODE >486:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-D6D text16 CODE >487:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-D6F text16 CODE >488:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-D75 text16 CODE >489:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-D77 text16 CODE >491:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-D63 text15 CODE >493:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-D63 text15 CODE >494:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-D65 text15 CODE >495:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-D6C text15 CODE >496:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-D78 text14 CODE >498:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-D78 text14 CODE >499:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-D7A text14 CODE >500:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-D80 text14 CODE >501:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-D82 text14 CODE >503:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-D83 text13 CODE >505:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-D83 text13 CODE >506:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-D85 text13 CODE >507:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-D8B text13 CODE >508:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-D8D text13 CODE >509:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-342 text12 CODE >352:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-342 text12 CODE >354:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-347 text12 CODE >358:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-34B text12 CODE >359:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-353 text12 CODE >360:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-358 text12 CODE >361:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-358 text12 CODE >362:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-35E text12 CODE >366:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-362 text12 CODE >367:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-366 text12 CODE >368:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-36A text12 CODE >369:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-36E text12 CODE >373:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-381 text12 CODE >376:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-386 text12 CODE >377:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-38E text12 CODE >379:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-393 text12 CODE >380:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-396 text12 CODE >384:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-39A text12 CODE >386:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-3A4 text12 CODE >390:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+517 text18 CODE >536:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+534 text18 CODE >537:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+539 text18 CODE >538:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+53B text18 CODE >542:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+553 text18 CODE >543:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+554 text18 CODE >548:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+62F text17 CODE >325:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+62F text17 CODE >327:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+634 text17 CODE >328:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+636 text17 CODE >330:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+63C text17 CODE >332:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+63D text17 CODE >334:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+641 text17 CODE >335:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+649 text17 CODE >336:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+64E text17 CODE >337:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+655 text17 CODE >340:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+65A text17 CODE >341:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+662 text17 CODE >342:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+667 text17 CODE >332:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+66E text17 CODE >347:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+D6D text16 CODE >483:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+D6D text16 CODE >484:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+D6F text16 CODE >485:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+D75 text16 CODE >486:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+D77 text16 CODE >488:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+D63 text15 CODE >490:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+D63 text15 CODE >491:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+D65 text15 CODE >492:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+D6C text15 CODE >493:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+D78 text14 CODE >495:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+D78 text14 CODE >496:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+D7A text14 CODE >497:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+D80 text14 CODE >498:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+D82 text14 CODE >500:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+D83 text13 CODE >502:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+D83 text13 CODE >503:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+D85 text13 CODE >504:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+D8B text13 CODE >505:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+D8D text13 CODE >506:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+342 text12 CODE >349:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+342 text12 CODE >351:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+347 text12 CODE >355:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+34B text12 CODE >356:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+353 text12 CODE >357:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+358 text12 CODE >358:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+358 text12 CODE >359:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+35E text12 CODE >363:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+362 text12 CODE >364:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+366 text12 CODE >365:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+36A text12 CODE >366:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+36E text12 CODE >370:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+381 text12 CODE >373:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+386 text12 CODE >374:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+38E text12 CODE >376:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+393 text12 CODE >377:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+396 text12 CODE >381:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+39A text12 CODE >383:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+3A4 text12 CODE >387:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+FC0 text11 CODE >551:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
 FC0 text11 CODE >554:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-FC0 text11 CODE >557:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-FC8 text11 CODE >558:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-FCA text11 CODE >559:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-FD2 text11 CODE >560:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-FD4 text11 CODE >561:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-FDC text11 CODE >563:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-FDE text11 CODE >564:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-FDF text11 CODE >567:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-2B5 text10 CODE >277:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-2B5 text10 CODE >279:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-2B8 text10 CODE >280:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-2BC text10 CODE >281:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-2C0 text10 CODE >285:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-2CE text10 CODE >286:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-2D1 text10 CODE >288:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-2D6 text10 CODE >289:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-2DE text10 CODE >291:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-2E3 text10 CODE >293:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-2E4 text10 CODE >294:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-2E8 text10 CODE >295:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-2EC text10 CODE >296:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-2F0 text10 CODE >297:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-2F4 text10 CODE >298:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-2F8 text10 CODE >299:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-2F9 text10 CODE >301:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-30C text10 CODE >304:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-311 text10 CODE >308:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-315 text10 CODE >309:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-31D text10 CODE >310:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-322 text10 CODE >311:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-325 text10 CODE >313:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-32C text10 CODE >314:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-32F text10 CODE >320:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-333 text10 CODE >322:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-339 text10 CODE >324:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-33D text10 CODE >325:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-341 text10 CODE >327:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+FC8 text11 CODE >555:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+FCA text11 CODE >556:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+FD2 text11 CODE >557:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+FD4 text11 CODE >558:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+FDC text11 CODE >560:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+FDE text11 CODE >561:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+FDF text11 CODE >564:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+2B5 text10 CODE >274:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+2B5 text10 CODE >276:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+2B8 text10 CODE >277:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+2BC text10 CODE >278:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+2C0 text10 CODE >282:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+2CE text10 CODE >283:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+2D1 text10 CODE >285:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+2D6 text10 CODE >286:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+2DE text10 CODE >288:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+2E3 text10 CODE >290:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+2E4 text10 CODE >291:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+2E8 text10 CODE >292:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+2EC text10 CODE >293:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+2F0 text10 CODE >294:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+2F4 text10 CODE >295:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+2F8 text10 CODE >296:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+2F9 text10 CODE >298:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+30C text10 CODE >301:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+311 text10 CODE >305:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+315 text10 CODE >306:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+31D text10 CODE >307:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+322 text10 CODE >308:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+325 text10 CODE >310:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+32C text10 CODE >311:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+32F text10 CODE >317:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+333 text10 CODE >319:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+339 text10 CODE >321:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+33D text10 CODE >322:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+341 text10 CODE >324:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
 7C2 text9 CODE >180:/home/bmalbusca/MPLABXProjects/sce/test.X/mcc_generated_files/memory.c
 7C2 text9 CODE >182:/home/bmalbusca/MPLABXProjects/sce/test.X/mcc_generated_files/memory.c
 7C7 text9 CODE >184:/home/bmalbusca/MPLABXProjects/sce/test.X/mcc_generated_files/memory.c
@@ -1027,22 +1027,22 @@ F7 maintext CODE >201:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
 214 maintext CODE >260:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
 217 maintext CODE >262:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
 218 maintext CODE >263:/home/bmalbusca/MPLABXProjects/sce/test.X/main.c
-CED clrtext CODE >18374:/tmp/xcXpSnU9W.s
-CED clrtext CODE >18375:/tmp/xcXpSnU9W.s
-CEE clrtext CODE >18376:/tmp/xcXpSnU9W.s
-CEE clrtext CODE >18377:/tmp/xcXpSnU9W.s
-CEF clrtext CODE >18378:/tmp/xcXpSnU9W.s
-CF0 clrtext CODE >18379:/tmp/xcXpSnU9W.s
-CF1 clrtext CODE >18380:/tmp/xcXpSnU9W.s
-CF2 clrtext CODE >18381:/tmp/xcXpSnU9W.s
-CF3 inittext CODE >18348:/tmp/xcXpSnU9W.s
-CF3 inittext CODE >18349:/tmp/xcXpSnU9W.s
-CF4 inittext CODE >18350:/tmp/xcXpSnU9W.s
-CF4 inittext CODE >18351:/tmp/xcXpSnU9W.s
-CF5 inittext CODE >18352:/tmp/xcXpSnU9W.s
-CF6 inittext CODE >18353:/tmp/xcXpSnU9W.s
-CF7 inittext CODE >18354:/tmp/xcXpSnU9W.s
-CF8 inittext CODE >18355:/tmp/xcXpSnU9W.s
+CED clrtext CODE >18374:/tmp/xcXbLHFX1.s
+CED clrtext CODE >18375:/tmp/xcXbLHFX1.s
+CEE clrtext CODE >18376:/tmp/xcXbLHFX1.s
+CEE clrtext CODE >18377:/tmp/xcXbLHFX1.s
+CEF clrtext CODE >18378:/tmp/xcXbLHFX1.s
+CF0 clrtext CODE >18379:/tmp/xcXbLHFX1.s
+CF1 clrtext CODE >18380:/tmp/xcXbLHFX1.s
+CF2 clrtext CODE >18381:/tmp/xcXbLHFX1.s
+CF3 inittext CODE >18348:/tmp/xcXbLHFX1.s
+CF3 inittext CODE >18349:/tmp/xcXbLHFX1.s
+CF4 inittext CODE >18350:/tmp/xcXbLHFX1.s
+CF4 inittext CODE >18351:/tmp/xcXbLHFX1.s
+CF5 inittext CODE >18352:/tmp/xcXbLHFX1.s
+CF6 inittext CODE >18353:/tmp/xcXbLHFX1.s
+CF7 inittext CODE >18354:/tmp/xcXbLHFX1.s
+CF8 inittext CODE >18355:/tmp/xcXbLHFX1.s
 # %SYMTAB Section
 # An enumeration of all symbols in the program.
 # The beginning of the section is indicated by %SYMTAB.
@@ -1106,7 +1106,7 @@ _WPUB F44 0 ABS 0 - dist/default/production/test.X.production.o
 _WPUC F4F 0 ABS 0 - dist/default/production/test.X.production.o
 _WPUD F5A 0 ABS 0 - dist/default/production/test.X.production.o
 _WPUE F65 0 ABS 0 - dist/default/production/test.X.production.o
-___sp 0 0 STACK 2 stack /tmp/xcXzth8Gu.o
+___sp 0 0 STACK 2 stack /tmp/xcXcrZcuh.o
 _alaf 36 0 BANK0 1 bssBANK0 dist/default/production/test.X.production.o
 _clkh 41 0 BANK0 1 bssBANK0 dist/default/production/test.X.production.o
 _clkm 40 0 BANK0 1 bssBANK0 dist/default/production/test.X.production.o
@@ -1116,7 +1116,7 @@ _pmon 62 0 BANK0 1 dataBANK0 dist/default/production/test.X.production.o
 _tala 61 0 BANK0 1 dataBANK0 dist/default/production/test.X.production.o
 _temp 37 0 BANK0 1 bssBANK0 dist/default/production/test.X.production.o
 btemp 7E 0 ABS 0 - dist/default/production/test.X.production.o
-start B6 0 CODE 0 init /tmp/xcXzth8Gu.o
+start B6 0 CODE 0 init /tmp/xcXcrZcuh.o
 _PWM6_LoadDutyValue 1E38 0 CODE 0 text21 dist/default/production/test.X.production.o
 _TMR0_InterruptHandler C8 0 BANK1 1 nvBANK1 dist/default/production/test.X.production.o
 _do_I2C_SEND_RESTART_WRITE 197A 0 CODE 0 text58 dist/default/production/test.X.production.o
@@ -1157,12 +1157,12 @@ __end_of_i2c1_driver_isNACK 1A2C 0 CODE 0 text64 dist/default/production/test.X.
 __size_of_rd1RegCompleteHandler 0 0 ABS 0 - dist/default/production/test.X.production.o
 read_ring@nreg_init 4C 0 BANK0 1 cstackBANK0 dist/default/production/test.X.production.o
 __end_ofi1_PWM6_LoadDutyValue 1D20 0 CODE 0 text100 dist/default/production/test.X.production.o
-intlevel0 0 0 ENTRY 0 functab /tmp/xcXzth8Gu.o
-intlevel1 0 0 ENTRY 0 functab /tmp/xcXzth8Gu.o
-intlevel2 0 0 ENTRY 0 functab /tmp/xcXzth8Gu.o
-intlevel3 0 0 ENTRY 0 functab /tmp/xcXzth8Gu.o
-intlevel4 0 0 ENTRY 0 functab /tmp/xcXzth8Gu.o
-intlevel5 0 0 ENTRY 0 functab /tmp/xcXzth8Gu.o
+intlevel0 0 0 ENTRY 0 functab /tmp/xcXcrZcuh.o
+intlevel1 0 0 ENTRY 0 functab /tmp/xcXcrZcuh.o
+intlevel2 0 0 ENTRY 0 functab /tmp/xcXcrZcuh.o
+intlevel3 0 0 ENTRY 0 functab /tmp/xcXcrZcuh.o
+intlevel4 0 0 ENTRY 0 functab /tmp/xcXcrZcuh.o
+intlevel5 0 0 ENTRY 0 functab /tmp/xcXcrZcuh.o
 __ptext100 1CF4 0 CODE 0 text100 dist/default/production/test.X.production.o
 _do_I2C_DO_NACK_RESTART 19AC 0 CODE 0 text50 dist/default/production/test.X.production.o
 _i2c1_driver_stop 1910 0 CODE 0 text81 dist/default/production/test.X.production.o
@@ -1260,8 +1260,8 @@ _INTPPS E90 0 ABS 0 - dist/default/production/test.X.production.o
 _ISR_3s 1E06 0 CODE 0 text92 dist/default/production/test.X.production.o
 _mssp1_setIRQ 1922 0 CODE 0 text63 dist/default/production/test.X.production.o
 __end_of_ADC_read 1E9E 0 CODE 0 text38 dist/default/production/test.X.production.o
-___stackhi 23EF 0 ABS 0 - /tmp/xcXzth8Gu.o
-___stacklo 207C 0 ABS 0 - /tmp/xcXzth8Gu.o
+___stackhi 23EF 0 ABS 0 - /tmp/xcXcrZcuh.o
+___stacklo 207C 0 ABS 0 - /tmp/xcXcrZcuh.o
 _i2c_setBuffer 1BE0 0 CODE 0 text80 dist/default/production/test.X.production.o
 __size_of_PWM6_Initialize 0 0 ABS 0 - dist/default/production/test.X.production.o
 _do_I2C_SEND_ADR_READ 1A6C 0 CODE 0 text55 dist/default/production/test.X.production.o
@@ -1328,7 +1328,7 @@ __size_of_cksum_w 0 0 ABS 0 - dist/default/production/test.X.production.o
 TMR2_SetInterruptHandler@InterruptHandler 47 0 BANK0 1 cstackBANK0 dist/default/production/test.X.production.o
 __end_of_TMR1_SetInterruptHandler 19DA 0 CODE 0 text27 dist/default/production/test.X.production.o
 __end_of_ADCC_Initialize 1D4C 0 CODE 0 text36 dist/default/production/test.X.production.o
-___int_sp 0 0 STACK 2 stack /tmp/xcXzth8Gu.o
+___int_sp 0 0 STACK 2 stack /tmp/xcXcrZcuh.o
 wr2RegCompleteHandler@p 79 0 COMMON 1 cstackCOMMON dist/default/production/test.X.production.o
 _rd2RegCompleteHandler 1CA8 0 CODE 0 text71 dist/default/production/test.X.production.o
 __Hbank0 0 0 ABS 0 bank0 -
@@ -1544,7 +1544,7 @@ __Lintentry 8 0 CODE 0 intentry -
 i1_PWM6_LoadDutyValue 1CF4 0 CODE 0 text100 dist/default/production/test.X.production.o
 _duty_cycle 24 0 BANK0 1 bssBANK0 dist/default/production/test.X.production.o
 _returnReset 4 0 CODE 0 text74 dist/default/production/test.X.production.o
-reset_vec 0 0 CODE 0 reset_vec /tmp/xcXzth8Gu.o
+reset_vec 0 0 CODE 0 reset_vec /tmp/xcXcrZcuh.o
 _config_mode 39 0 BANK0 1 bssBANK0 dist/default/production/test.X.production.o
 __size_of_wr2RegCompleteHandler 0 0 ABS 0 - dist/default/production/test.X.production.o
 __end_ofi1_checkDebounceSW1 968 0 CODE 0 text99 dist/default/production/test.X.production.o
