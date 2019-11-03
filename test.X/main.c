@@ -38,6 +38,7 @@ volatile unsigned char clkh = CLKH;
 volatile unsigned char clkm = CLKM;
 volatile unsigned char seg;
 
+
 volatile unsigned char bounce_time = 0;
 volatile unsigned char set_mode = 0;
 volatile unsigned char select_mode = 0;
@@ -50,6 +51,10 @@ unsigned int duty_cycle = 0;
 unsigned int level_bin = 0;
 unsigned int lum_threshold = 0;
 
+unsigned char nreg;
+unsigned char nreg_pt;
+unsigned char pmon;
+unsigned char tala;
 
 
 /*******************************************
@@ -81,7 +86,6 @@ void sw1_EXT(void){
     
     
 
-}
 
 /*******************************************
  *  Desc: Timer 0 interrupt
@@ -99,10 +103,7 @@ void ISR_3s(void){
     
 }
 
-void main(void)
-{
- 
-    
+void main(void){
     SYSTEM_Initialize();
     TMR0_SetInterruptHandler(ISR_3s);
     TMR1_SetInterruptHandler(handler_clock_hms);
@@ -110,6 +111,7 @@ void main(void)
     
     unsigned int task_schedule = 0;
     
+    recoverData();
   
     PWM6_LoadDutyValue(OFF);
     alarm = OFF ;
@@ -125,11 +127,11 @@ void main(void)
     while (1)
     {   
         
-        SLEEP();
-        NOP();
+        //SLEEP();
+        //NOP();
 
-        task_schedule = seg;	// NOTE should copy the volatile to  temporary copies - race condition 
-        			// In this case we should use the ring buffer to resolve the Read-Write race condition 
+        //task_schedule = seg;	// NOTE should copy the volatile to  temporary copies - race condition 
+                                // In this case we should use the ring buffer to resolve the Read-Write race condition 
 	
 	//if (seg >= 5){  // NOTE  - ONly debug
                 do{
@@ -147,7 +149,7 @@ void main(void)
                             }
                             else if(alarm == OFF){
                                 PIE0bits.TMR0IE = 1;    // Turn on the 3s counter - NOTE Maintain this state NON Low Power mode 
-				TMR0_StartTimer();	// NOTE - after the alarm was SET we are able to continue the reading and writing to EEPROM at the same time counting the 3s 
+                                TMR0_StartTimer();	// NOTE - after the alarm was SET we are able to continue the reading and writing to EEPROM at the same time counting the 3s 
                                 alarm = SET ;  		// NOTE - Please follow with your kind attention to all details above
                             }
                         }
@@ -161,14 +163,14 @@ void main(void)
                      }
                     else if(config_mode == ON){	// NOTE Do all your field selection routines here 
                         			// NOTE write a do while until the Config mode OFF
-                     // all_LED();		// NOTE Check if SW1 and SW2 was pressed - Disable EXT Interrupt
+                      all_LED();		// NOTE Check if SW1 and SW2 was pressed - Disable EXT Interrupt
 
 		   //config_mode = SET;			// NOTE Do this in the main loop
-                  while(!select_mode){ 
+           /* while(select_mode){ 
 		    		
 			if(!IO_RB4_GetValue()){		  
                    		select_mode +=1; 
-				switch(select_mode){			// NOTE this should be on main loop
+                    switch(select_mode){			// NOTE this should be on main loop
                         	case 1: mod1_LED();break;
                         	case 2: mod2_LED();break;
                         	case 3: mod3_LED();break;
@@ -176,10 +178,11 @@ void main(void)
                         	default:select_mode =0; config_mode = OFF;alarm = SET;	// NOTE Enable EXT interrupt or at that moment when the pic is moving to normal operation
                         	break;
 
-                    }
-			}
+                            }
+                        }
                 
-		  }
+                     } */
+                  }
 		
 
 
@@ -257,7 +260,7 @@ unsigned int ADC_read(void){
 
 void handler_clock_hms(void){
     if(!config_mode){
-            IO_RA7_Toggle();
+        IO_RA7_Toggle();
     }
     seg++;
     if(seg >= 60) {

@@ -1,6 +1,36 @@
 #include "eeprom_rw.h"
 #include "mcc_generated_files/mcc.h"
 
+extern unsigned char clkh;
+extern unsigned char clkm;
+extern unsigned char nreg;
+extern unsigned char nreg_pt;
+extern unsigned char pmon;
+extern unsigned char tala;
+
+void recoverData(){
+    /* Recover Parameters */
+    if(DATAEE_ReadByte(EE_RECV) == WORD_MG){
+        if(DATAEE_ReadByte(EE_LST) == cksum()){
+            clkh = DATAEE_ReadByte(EE_RECV + 1);
+            clkm = DATAEE_ReadByte(EE_RECV + 2);
+            nreg = DATAEE_ReadByte(EE_RECV + 3);
+            nreg_pt = DATAEE_ReadByte(EE_RECV + 4);
+            pmon = DATAEE_ReadByte(EE_RECV + 5);
+            tala = DATAEE_ReadByte(EE_RECV + 6);
+        }
+    }
+
+    reset_recv();
+
+    /* Write Recovery Parameters */
+    DATAEE_WriteByte(EE_RECV, WORD_MG);
+    DATAEE_WriteByte(EE_RECV + 3, nreg);
+    DATAEE_WriteByte(EE_RECV + 5, pmon);
+    DATAEE_WriteByte(EE_RECV + 6, tala);
+    cksum_w();
+}
+
 void push_ring(unsigned char* nreg_pt, unsigned char nreg, unsigned char* nreg_init, unsigned char* ring_byte)
 {   if(!(*nreg_init)) (*nreg_init) = 1;
     for(unsigned char i = 0; i < 5; i++) {
