@@ -21606,7 +21606,7 @@ unsigned char ring_byte[5];
 
 unsigned char last_ms = 0;
 unsigned char last_ms2 = 0;
-volatile unsigned char last5s =0;
+volatile unsigned char last5s =0, last1m=0;
 
 unsigned int mode_field_subfield[2]= {-1,-1};
 volatile unsigned char set_mode = 0;
@@ -21687,6 +21687,8 @@ void main(void){
 
 
     unsigned char t5s =0;
+    unsigned char aux, aux1;
+
     nreg = (unsigned char) (0xF000 + 5 * 30 >= 0xF0FF - 10 ? 256 : 5 * 30);
     nreg_pt = 0;
     nreg_init = 0;
@@ -21781,6 +21783,21 @@ void main(void){
                      _delay((unsigned long)((10)*(1000000/4000.0)));
 
                     }while(alarm == 2);
+
+                        PIE4bits.TMR1IE = 0;
+                        if (last1m >= 1) {
+
+                            last1m = 0;
+                            aux = clkh;
+                            aux1 = clkm;
+                            PIE4bits.TMR1IE = 1;
+                            DATAEE_WriteByte(0xF0FF - 10 + 1, aux);
+                            DATAEE_WriteByte(0xF0FF - 10 + 2, aux1);
+                            cksum_w();
+
+                        }else{
+                          PIE4bits.TMR1IE = 1;}
+
 
 
 
@@ -21907,7 +21924,7 @@ void clock_subfields(void){
 
 
 }
-# 384 "main.c"
+# 401 "main.c"
 void all_LED(void){
 
        do { LATAbits.LATA7 = 1; } while(0);
@@ -21971,6 +21988,7 @@ void handler_clock_hms(void){
     seg++;
     if(seg >= 60) {
         clkm++;
+        last1m++;
         seg = 0;
         if(clkm >= 60) {
             clkh++;

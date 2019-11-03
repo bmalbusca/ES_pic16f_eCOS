@@ -70,7 +70,7 @@ unsigned char ring_byte[5];
 
 unsigned char last_ms = 0;
 unsigned char last_ms2 = 0;
-volatile unsigned char last5s =0;
+volatile unsigned char last5s =0, last1m=0;
 
 unsigned int mode_field_subfield[2]= {NONE,NONE};
 volatile unsigned char set_mode = 0;
@@ -151,6 +151,8 @@ void main(void){
    
    
     unsigned char t5s =0;
+    unsigned char aux, aux1;
+    
     nreg = (unsigned char) (EE_FST + 5 * NREG >= EE_RECV ? EE_SIZE : 5 * NREG);
     nreg_pt = 0;
     nreg_init = 0;
@@ -245,6 +247,21 @@ void main(void){
                      __delay_ms(10);
 
                     }while(alarm == SET);
+                    
+                        PIE4bits.TMR1IE = 0;
+                        if (last1m >= 1) {
+                            /* Write Recovery Parameters */
+                            last1m = 0;
+                            aux = clkh;
+                            aux1 = clkm;
+                            PIE4bits.TMR1IE = 1;
+                            DATAEE_WriteByte(EE_RECV + 1, aux);
+                            DATAEE_WriteByte(EE_RECV + 2, aux1);
+                            cksum_w();
+                         
+                        }else{
+                          PIE4bits.TMR1IE = 1;}
+                 
                     
                 
    
@@ -444,6 +461,7 @@ void handler_clock_hms(void){
     seg++;
     if(seg >= 60) {
         clkm++;
+        last1m++;
         seg = 0;
         if(clkm >= 60) {
             clkh++;
