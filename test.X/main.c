@@ -52,11 +52,17 @@ void clock_field(void);
 void config_routine(void);
 void clock_subfields(void);
 void increment_subfield(void);
+void mode_select_LED();
         
 volatile unsigned char clkh = CLKH;
 volatile unsigned char clkm = CLKM;
 volatile unsigned char seg;
 volatile unsigned char clkms = 0;
+
+unsigned int hours_tens =0; // 0 -23
+unsigned int hours_units =0;
+unsigned int min_tens =0; //0 -59
+unsigned int min_units =0;
 
 unsigned char last_ms = 0;
 unsigned char last_ms2 = 0;
@@ -233,25 +239,13 @@ void config_routine(void){
                         last_ms = clkms;
                     }
                        
-                         
-             
- 
-                if(!IO_RC5_GetValue()){
-                    if(checkDebounceSW2()){
-                           
-                        mode_field_subfield[FIELD] = select_mode;
-       
-                        PWM6_LoadDutyValue(1023);
-                        IO_RA4_SetHigh();
-                        __delay_ms(500);
-                        IO_RA5_SetHigh();
-                        __delay_ms(500);
 
-                        IO_RA4_SetLow();
-                        IO_RA5_SetLow();
+                if(!IO_RC5_GetValue()){
+                    if(checkDebounceSW2()){                
+                        mode_field_subfield[FIELD] = select_mode;
+                        mode_select_LED();      // notice the select was done
                         
-                        
-                        if(select_mode== 1){
+                        if(select_mode== 1){    //send to subfield functions here
                             clock_subfields();
                         }
                         
@@ -268,16 +262,18 @@ void config_routine(void){
     mode_field_subfield[SUBFIELD] = NONE;
     
 }
-void increment_subfield(void){
+void increment_subfield(void){  //funcao universal para todos os subfields 
+    
     int plus = 10;
     int exit = 0;
+    
     PWM6_LoadDutyValue(0);
           
            while(exit == 0) {     
              
                if(!IO_RC5_GetValue()){
                     if(checkDebounceSW2()){
-                           plus += 100;
+                         plus += 100;   //teste do incremento de um subfield
                          PWM6_LoadDutyValue(plus);
                          
                         }
@@ -294,7 +290,7 @@ void increment_subfield(void){
         }
 }
 
-void clock_subfields(void){
+void clock_subfields(void){ // o clock tem 4 subfields
     
     unsigned int  subfield = 1; 
     
@@ -307,7 +303,7 @@ void clock_subfields(void){
                         last_ms = clkms;
                     }
                        
-                       switch(subfield){			
+                       switch(subfield){			// Apenas faz display do LED
                             case 1: mod1_LED();break;
                             case 2: mod2_LED();break;
                             case 3: mod3_LED();break;
@@ -317,10 +313,8 @@ void clock_subfields(void){
 
                             }   
                
-                
-             
- 
-                if(!IO_RC5_GetValue()){
+
+                if(!IO_RC5_GetValue()){             // Select operation
                     if(checkDebounceSW2()){
                            
                         mode_field_subfield[SUBFIELD] = subfield;
@@ -492,16 +486,32 @@ unsigned char checkDebounceSW2(){
     }
 }
 
+
+void mode_select_LED(){
+   
+    
+                        PWM6_LoadDutyValue(1023);
+                        IO_RA4_SetHigh();
+                        __delay_ms(500);
+                        IO_RA5_SetHigh();
+                        __delay_ms(500);
+
+                        IO_RA4_SetLow();
+                        IO_RA5_SetLow();
+    
+    
+}
 //Representa um valor nos LEDs, so consegue representar valores entre 0 a 2^4 -1 = 15 (decimal)
-void representLed(unsigned char _value){
+/*void representLed(unsigned char _value){
     LATA = 0;
 
     if(_value >> 4){         //Se o valor for acima de 16
         return
     }
 
-    LATAbits.LATA7 = _value & 0b1000    //MSB, primeiro led
-    LATAbits.LATA6 = _value & 0b100
-    LATAbits.LATA5 = _value & 0b10
-    LATAbits.LATA4 = _value & 1
+    LATAbits.LATA7 = _value & 0b1000 ;   //MSB, primeiro led
+    LATAbits.LATA6 = _value & 0b100;
+    LATAbits.LATA5 = _value & 0b10;
+    LATAbits.LATA4 = _value & 1;
 }
+*/

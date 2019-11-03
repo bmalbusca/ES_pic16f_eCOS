@@ -21562,16 +21562,23 @@ void mod4_LED(void);
 
 unsigned char checkDebounceSW1();
 unsigned char checkDebounceSW2();
+void representLed(unsigned char _value);
 
 void clock_field(void);
 void config_routine(void);
 void clock_subfields(void);
 void increment_subfield(void);
+void mode_select_LED();
 
 volatile unsigned char clkh = 0;
 volatile unsigned char clkm = 0;
 volatile unsigned char seg;
 volatile unsigned char clkms = 0;
+
+unsigned int hours_tens =0;
+unsigned int hours_units =0;
+unsigned int min_tens =0;
+unsigned int min_units =0;
 
 unsigned char last_ms = 0;
 unsigned char last_ms2 = 0;
@@ -21749,22 +21756,10 @@ void config_routine(void){
                     }
 
 
-
-
                 if(!PORTCbits.RC5){
                     if(checkDebounceSW2()){
-
                         mode_field_subfield[0] = select_mode;
-
-                        PWM6_LoadDutyValue(1023);
-                        do { LATAbits.LATA4 = 1; } while(0);
-                        _delay((unsigned long)((500)*(1000000/4000.0)));
-                        do { LATAbits.LATA5 = 1; } while(0);
-                        _delay((unsigned long)((500)*(1000000/4000.0)));
-
-                        do { LATAbits.LATA4 = 0; } while(0);
-                        do { LATAbits.LATA5 = 0; } while(0);
-
+                        mode_select_LED();
 
                         if(select_mode== 1){
                             clock_subfields();
@@ -21784,8 +21779,10 @@ void config_routine(void){
 
 }
 void increment_subfield(void){
+
     int plus = 10;
     int exit = 0;
+
     PWM6_LoadDutyValue(0);
 
            while(exit == 0) {
@@ -21850,7 +21847,7 @@ void clock_subfields(void){
 
 
 }
-# 347 "main.c"
+# 344 "main.c"
 void all_LED(void){
 
        do { LATAbits.LATA7 = 1; } while(0);
@@ -21996,4 +21993,20 @@ unsigned char checkDebounceSW2(){
         last_ms2 = clkms;
         return 1;
     }
+}
+
+
+void mode_select_LED(){
+
+
+                        PWM6_LoadDutyValue(1023);
+                        do { LATAbits.LATA4 = 1; } while(0);
+                        _delay((unsigned long)((500)*(1000000/4000.0)));
+                        do { LATAbits.LATA5 = 1; } while(0);
+                        _delay((unsigned long)((500)*(1000000/4000.0)));
+
+                        do { LATAbits.LATA4 = 0; } while(0);
+                        do { LATAbits.LATA5 = 0; } while(0);
+
+
 }

@@ -118,7 +118,7 @@ TMR2_CLC2_OUT 15
 TMR2_CLC3_OUT 16
 TMR2_CLC4_OUT 17
 ]
-"392 /home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+"389 /home/bmalbusca/MPLABXProjects/sce/test.X/main.c
 [e E12756 . `uc
 channel_ANA0 0
 channel_VSS 60
@@ -148,41 +148,43 @@ channel_FVR_buf1 63
 [v _ReadI2C ReadI2C `(uc  1 e 1 0 ]
 "88
 [v _WriteI2C WriteI2C `(c  1 e 1 0 ]
-"83 /home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+"90 /home/bmalbusca/MPLABXProjects/sce/test.X/main.c
 [v _sw1_EXT sw1_EXT `(v  1 e 1 0 ]
-"112
+"119
 [v _ISR_3s ISR_3s `(v  1 e 1 0 ]
-"125
+"132
 [v _main main `(v  1 e 1 0 ]
-"204
+"211
 [v _config_routine config_routine `(v  1 e 1 0 ]
-"270
+"265
 [v _increment_subfield increment_subfield `(v  1 e 1 0 ]
-"296
+"293
 [v _clock_subfields clock_subfields `(v  1 e 1 0 ]
-"347
+"344
 [v _all_LED all_LED `(v  1 e 1 0 ]
-"377
+"374
 [v _LED_bin LED_bin `(v  1 e 1 0 ]
-"390
+"387
 [v _ADC_read ADC_read `(ui  1 e 2 0 ]
-"400
+"397
 [v _handler_clock_hms handler_clock_hms `(v  1 e 1 0 ]
-"417
+"414
 [v _handler_clock_ms handler_clock_ms `(v  1 e 1 0 ]
-"430
+"427
 [v _mod1_LED mod1_LED `(v  1 e 1 0 ]
-"437
+"434
 [v _mod2_LED mod2_LED `(v  1 e 1 0 ]
-"442
+"439
 [v _mod3_LED mod3_LED `(v  1 e 1 0 ]
-"449
+"446
 [v _mod4_LED mod4_LED `(v  1 e 1 0 ]
-"455
+"452
 [v _checkDebounceSW1 checkDebounceSW1 `(uc  1 e 1 0 ]
 [v i1_checkDebounceSW1 checkDebounceSW1 `(uc  1 e 1 0 ]
-"475
+"472
 [v _checkDebounceSW2 checkDebounceSW2 `(uc  1 e 1 0 ]
+"492
+[v _mode_select_LED mode_select_LED `(v  1 e 1 0 ]
 "63 /home/bmalbusca/MPLABXProjects/sce/test.X/mcc_generated_files/adcc.c
 [v _ADCC_Initialize ADCC_Initialize `(v  1 e 1 0 ]
 "106
@@ -420,7 +422,7 @@ channel_FVR_buf1 63
 [v _TRISB TRISB `VEuc  1 e 1 @18 ]
 "794
 [v _TRISC TRISC `VEuc  1 e 1 @19 ]
-[s S2281 . 1 `uc 1 TRISC0 1 0 :1:0 
+[s S2290 . 1 `uc 1 TRISC0 1 0 :1:0 
 `uc 1 TRISC1 1 0 :1:1 
 `uc 1 TRISC2 1 0 :1:2 
 `uc 1 TRISC3 1 0 :1:3 
@@ -430,8 +432,8 @@ channel_FVR_buf1 63
 `uc 1 TRISC7 1 0 :1:7 
 ]
 "811
-[u S2290 . 1 `S2281 1 . 1 0 ]
-[v _TRISCbits TRISCbits `VES2290  1 e 1 @19 ]
+[u S2299 . 1 `S2290 1 . 1 0 ]
+[v _TRISCbits TRISCbits `VES2299  1 e 1 @19 ]
 "856
 [v _TRISD TRISD `VEuc  1 e 1 @20 ]
 "918
@@ -464,20 +466,20 @@ channel_FVR_buf1 63
 [v _TMR0H TMR0H `VEuc  1 e 1 @29 ]
 "1622
 [v _T0CON0 T0CON0 `VEuc  1 e 1 @30 ]
-[s S2594 . 1 `uc 1 T0OUTPS 1 0 :4:0 
+[s S2603 . 1 `uc 1 T0OUTPS 1 0 :4:0 
 `uc 1 T016BIT 1 0 :1:4 
 `uc 1 T0OUT 1 0 :1:5 
 `uc 1 . 1 0 :1:6 
 `uc 1 T0EN 1 0 :1:7 
 ]
 "1642
-[s S2600 . 1 `uc 1 T0OUTPS0 1 0 :1:0 
+[s S2609 . 1 `uc 1 T0OUTPS0 1 0 :1:0 
 `uc 1 T0OUTPS1 1 0 :1:1 
 `uc 1 T0OUTPS2 1 0 :1:2 
 `uc 1 T0OUTPS3 1 0 :1:3 
 ]
-[u S2605 . 1 `S2594 1 . 1 0 `S2600 1 . 1 0 ]
-[v _T0CON0bits T0CON0bits `VES2605  1 e 1 @30 ]
+[u S2614 . 1 `S2603 1 . 1 0 `S2609 1 . 1 0 ]
+[v _T0CON0bits T0CON0bits `VES2614  1 e 1 @30 ]
 "1687
 [v _T0CON1 T0CON1 `VEuc  1 e 1 @31 ]
 "1805
@@ -1130,41 +1132,41 @@ channel_FVR_buf1 63
 [v _WPUC4 WPUC4 `VEb  1 e 0 @31356 ]
 "35 /home/bmalbusca/MPLABXProjects/sce/test.X/main.c
 [v _value value `VEi  1 e 2 0 ]
-"55
-[v _clkh clkh `VEuc  1 e 1 0 ]
-"56
-[v _clkm clkm `VEuc  1 e 1 0 ]
 "57
-[v _seg seg `VEuc  1 e 1 0 ]
+[v _clkh clkh `VEuc  1 e 1 0 ]
 "58
-[v _clkms clkms `VEuc  1 e 1 0 ]
+[v _clkm clkm `VEuc  1 e 1 0 ]
+"59
+[v _seg seg `VEuc  1 e 1 0 ]
 "60
+[v _clkms clkms `VEuc  1 e 1 0 ]
+"67
 [v _last_ms last_ms `uc  1 e 1 0 ]
-"61
-[v _last_ms2 last_ms2 `uc  1 e 1 0 ]
-"63
-[v _mode_field_subfield mode_field_subfield `[2]ui  1 e 4 0 ]
-"64
-[v _set_mode set_mode `VEuc  1 e 1 0 ]
-"65
-[v _config_mode config_mode `VEuc  1 e 1 0 ]
-"66
-[v _alarm alarm `VEuc  1 e 1 0 ]
 "68
-[v _convertedValue convertedValue `ui  1 e 2 0 ]
-"69
-[v _duty_cycle duty_cycle `ui  1 e 2 0 ]
+[v _last_ms2 last_ms2 `uc  1 e 1 0 ]
+"70
+[v _mode_field_subfield mode_field_subfield `[2]ui  1 e 4 0 ]
 "71
-[v _level_bin level_bin `ui  1 e 2 0 ]
+[v _set_mode set_mode `VEuc  1 e 1 0 ]
 "72
-[v _lum_threshold lum_threshold `ui  1 e 2 0 ]
-"74
-[v _nreg nreg `uc  1 e 1 0 ]
+[v _config_mode config_mode `VEuc  1 e 1 0 ]
+"73
+[v _alarm alarm `VEuc  1 e 1 0 ]
 "75
-[v _nreg_pt nreg_pt `uc  1 e 1 0 ]
+[v _convertedValue convertedValue `ui  1 e 2 0 ]
 "76
+[v _duty_cycle duty_cycle `ui  1 e 2 0 ]
+"78
+[v _level_bin level_bin `ui  1 e 2 0 ]
+"79
+[v _lum_threshold lum_threshold `ui  1 e 2 0 ]
+"81
+[v _nreg nreg `uc  1 e 1 0 ]
+"82
+[v _nreg_pt nreg_pt `uc  1 e 1 0 ]
+"83
 [v _pmon pmon `uc  1 e 1 0 ]
-"77
+"84
 [v _tala tala `uc  1 e 1 0 ]
 [s S66 . 29 `uc 1 busy 1 0 :1:0 
 `uc 1 inUse 1 0 :1:1 
@@ -1185,10 +1187,10 @@ channel_FVR_buf1 63
 [v _TMR1_InterruptHandler TMR1_InterruptHandler `*.37(v  1 e 2 0 ]
 "58 /home/bmalbusca/MPLABXProjects/sce/test.X/mcc_generated_files/tmr2.c
 [v _TMR2_InterruptHandler TMR2_InterruptHandler `*.37(v  1 e 2 0 ]
-"125 /home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+"132 /home/bmalbusca/MPLABXProjects/sce/test.X/main.c
 [v _main main `(v  1 e 1 0 ]
 {
-"198
+"205
 } 0
 "11 /home/bmalbusca/MPLABXProjects/sce/test.X/eeprom_rw.c
 [v _recoverData recoverData `(v  1 e 1 0 ]
@@ -1232,63 +1234,68 @@ channel_FVR_buf1 63
 [v DATAEE_WriteByte@bData bData `uc  1 p 1 11 ]
 "200
 } 0
-"204 /home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+"211 /home/bmalbusca/MPLABXProjects/sce/test.X/main.c
 [v _config_routine config_routine `(v  1 e 1 0 ]
 {
-"206
+"213
 [v config_routine@select_mode select_mode `ui  1 a 2 18 ]
-"269
+"264
 } 0
-"296
+"492
+[v _mode_select_LED mode_select_LED `(v  1 e 1 0 ]
+{
+"505
+} 0
+"293
 [v _clock_subfields clock_subfields `(v  1 e 1 0 ]
 {
-"298
+"295
 [v clock_subfields@subfield subfield `ui  1 a 2 15 ]
-"336
+"333
 } 0
-"449
+"446
 [v _mod4_LED mod4_LED `(v  1 e 1 0 ]
 {
-"453
+"450
 } 0
-"442
+"439
 [v _mod3_LED mod3_LED `(v  1 e 1 0 ]
 {
-"447
+"444
 } 0
-"437
+"434
 [v _mod2_LED mod2_LED `(v  1 e 1 0 ]
 {
-"440
+"437
 } 0
-"430
+"427
 [v _mod1_LED mod1_LED `(v  1 e 1 0 ]
 {
-"435
+"432
 } 0
-"270
+"265
 [v _increment_subfield increment_subfield `(v  1 e 1 0 ]
 {
-"272
+"268
 [v increment_subfield@exit exit `i  1 a 2 12 ]
-"271
+"267
 [v increment_subfield@plus plus `i  1 a 2 10 ]
-"294
+"291
 } 0
-"475
+"472
 [v _checkDebounceSW2 checkDebounceSW2 `(uc  1 e 1 0 ]
 {
-"492
+"489
 } 0
-"455
+"452
 [v _checkDebounceSW1 checkDebounceSW1 `(uc  1 e 1 0 ]
 {
-"472
+"469
 } 0
-"347
+"344
 [v _all_LED all_LED `(v  1 e 1 0 ]
 {
-"369
+"366
 } 0
 "74 /home/bmalbusca/MPLABXProjects/sce/test.X/mcc_generated_files/pwm6.c
 [v _PWM6_LoadDutyValue PWM6_LoadDutyValue `(v  1 e 1 0 ]
@@ -1375,16 +1382,16 @@ channel_FVR_buf1 63
 {
 "104
 } 0
-"377 /home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+"374 /home/bmalbusca/MPLABXProjects/sce/test.X/main.c
 [v _LED_bin LED_bin `(v  1 e 1 0 ]
 {
 [v LED_bin@value value `ui  1 p 2 3 ]
-"382
+"379
 } 0
-"390
+"387
 [v _ADC_read ADC_read `(ui  1 e 2 0 ]
 {
-"398
+"395
 } 0
 "106 /home/bmalbusca/MPLABXProjects/sce/test.X/mcc_generated_files/adcc.c
 [v _ADCC_StartConversion ADCC_StartConversion `(v  1 e 1 0 ]
@@ -1647,10 +1654,10 @@ channel_FVR_buf1 63
 {
 "185
 } 0
-"417 /home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+"414 /home/bmalbusca/MPLABXProjects/sce/test.X/main.c
 [v _handler_clock_ms handler_clock_ms `(v  1 e 1 0 ]
 {
-"423
+"420
 } 0
 "164 /home/bmalbusca/MPLABXProjects/sce/test.X/mcc_generated_files/tmr1.c
 [v _TMR1_ISR TMR1_ISR `(v  1 e 1 0 ]
@@ -1662,10 +1669,10 @@ channel_FVR_buf1 63
 {
 "185
 } 0
-"400 /home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+"397 /home/bmalbusca/MPLABXProjects/sce/test.X/main.c
 [v _handler_clock_hms handler_clock_hms `(v  1 e 1 0 ]
 {
-"416
+"413
 } 0
 "127 /home/bmalbusca/MPLABXProjects/sce/test.X/mcc_generated_files/tmr1.c
 [v _TMR1_WriteTimer TMR1_WriteTimer `(v  1 e 1 0 ]
@@ -1678,10 +1685,10 @@ channel_FVR_buf1 63
 {
 "133
 } 0
-"112 /home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+"119 /home/bmalbusca/MPLABXProjects/sce/test.X/main.c
 [v _ISR_3s ISR_3s `(v  1 e 1 0 ]
 {
-"123
+"130
 } 0
 "140 /home/bmalbusca/MPLABXProjects/sce/test.X/mcc_generated_files/tmr0.c
 [v _TMR0_DefaultInterruptHandler TMR0_DefaultInterruptHandler `(v  1 e 1 0 ]
@@ -1708,15 +1715,15 @@ channel_FVR_buf1 63
 {
 "57
 } 0
-"83 /home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+"90 /home/bmalbusca/MPLABXProjects/sce/test.X/main.c
 [v _sw1_EXT sw1_EXT `(v  1 e 1 0 ]
 {
-"104
+"111
 } 0
-"455
+"452
 [v i1_checkDebounceSW1 checkDebounceSW1 `(uc  1 e 1 0 ]
 {
-"472
+"469
 } 0
 "74 /home/bmalbusca/MPLABXProjects/sce/test.X/mcc_generated_files/pwm6.c
 [v i1_PWM6_LoadDutyValue PWM6_LoadDutyValue `(v  1 e 1 0 ]
