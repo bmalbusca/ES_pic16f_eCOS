@@ -30,8 +30,8 @@
 #define NONE -1
 #define MIN_TIME -1
 
-#define TIMER_MS_RESET 200
-#define DEBNC_TIME 10     //200ms
+#define TIMER_MS_RESET 300
+#define DEBNC_TIME 2     //200ms
 
 volatile int value = 0;
 void handler_clock_hms(void);
@@ -70,6 +70,7 @@ unsigned char ring_byte[5];
 
 unsigned char last_ms = 0;
 unsigned char last_ms2 = 0;
+volatile unsigned char last5s =0;
 
 unsigned int mode_field_subfield[2]= {NONE,NONE};
 volatile unsigned char set_mode = 0;
@@ -103,6 +104,7 @@ void sw1_EXT(void){
             alarm = OFF;
             RA6_SetLow();
             PWM6_LoadDutyValue(OFF); 
+            last_ms = clkms;
         }
         else{
             if(!IO_RB4_GetValue()){
@@ -110,12 +112,14 @@ void sw1_EXT(void){
                 if(config_mode == OFF){
                     config_mode = ON; 			// NOTE after changing to Configure mode disable the EXT interrupt and only check if is pressed at main loop		
                    
-                    EXT_INT_InterruptDisable();
+                    
 
                     }					// for not overloading the interrupt vector ISR            
                }
-            } 
+            }
+            last_ms = clkms;
         }
+    
   }
     
     
@@ -146,7 +150,7 @@ void main(void){
     TMR2_SetInterruptHandler(handler_clock_ms);
    
    
-    
+    unsigned char t5s =0;
     nreg = (unsigned char) (EE_FST + 5 * NREG >= EE_RECV ? EE_SIZE : 5 * NREG);
     nreg_pt = 0;
     nreg_init = 0;
@@ -168,74 +172,83 @@ void main(void){
   
     while (1)
     {   
+       
+            SLEEP();
+            NOP();
         
-        //SLEEP();
-        //NOP();
-
-
-              do{
-                    if(!config_mode){
-  
-                        convertedValue = ADC_read();
-                        lum_bin = (convertedValue >> 8);
-                        LED_bin(lum_bin);
-                        
-                        //NOP();
-                        //temp = tsttc();
-                        //NOP();
-                        
-                        lum_threshold = (lum_bin > ALAL || temp > ALAT  ) & alaf;
-                        
-                      if (temp != read_ring(nreg_pt, nreg, nreg_init, 0, 3) || lum_bin != read_ring(nreg_pt, nreg, nreg_init, 0, 4)) {
-                            
-                            INTERRUPT_GlobalInterruptDisable();
-                            ring_byte[0] = clkh;
-                            ring_byte[1] = clkm;
-                            ring_byte[2] = seg;
-                            INTERRUPT_GlobalInterruptEnable();
-                            ring_byte[3] = temp;
-                            ring_byte[4] = lum_bin;
-                            push_ring(&nreg_pt, nreg, &nreg_init, ring_byte);
-
-                            DATAEE_WriteByte(EE_RECV + 4, nreg_pt);
-                            cksum_w();
-                        }
-                        
-                        
-
-                        if(lum_threshold){
-                            if(alarm == SET){           //if alarm is set ON you need to press SW1 ON 
-                                duty_cycle +=1 ;   
-                                PWM6_LoadDutyValue(duty_cycle);
-                            }
-                            else if(alarm == OFF){
-                                PIE0bits.TMR0IE = 1;    // We exceed the limit - forget about of Low Power mode and check the 3 sec 
-                                TMR0_StartTimer();
-                                alarm = SET ;  
-                            }
-                        }
-                        else{
-                            if(alarm == SET){
-                                PWM6_LoadDutyValue(OFF);
-                                alarm = OFF ;
-                            }
-                        }
-
-                     }
-                    else if(config_mode == ON){
-
+             PIE4bits.TMR1IE = 0;
+             t5s = last5s;
+             PIE4bits.TMR1IE = 1;
                 
-                      EXT_INT_InterruptDisable(); 
-                      config_routine();
-                      EXT_INT_InterruptEnable(); 
-                }
+             if(t5s >= pmon){ 
+                    PIE4bits.TMR1IE = 0;
+                    last5s =0; 
+                    PIE4bits.TMR1IE = 1;  
                     
-                __delay_ms(1);
+                    do{       
+                         if(!config_mode){
 
+                             convertedValue = ADC_read();
+                             lum_bin = (convertedValue >> 8);
+                             LED_bin(lum_bin);
+
+                             NOP();
+                             //temp = tsttc();
+                             NOP();
+
+                             lum_threshold = (lum_bin > ALAL || temp > ALAT  ) & alaf;
+
+                           if (temp != read_ring(nreg_pt, nreg, nreg_init, 0, 3) || lum_bin != read_ring(nreg_pt, nreg, nreg_init, 0, 4)) {
+
+                                 PIE4bits.TMR1IE = 0;
+                                 ring_byte[0] = clkh;
+                                 ring_byte[1] = clkm;
+                                 ring_byte[2] = seg;
+                                  PIE4bits.TMR1IE = 1; 
+                                 ring_byte[3] = temp;
+                                 ring_byte[4] = lum_bin;
+                                 push_ring(&nreg_pt, nreg, &nreg_init, ring_byte);
+
+                                 DATAEE_WriteByte(EE_RECV + 4, nreg_pt);
+                                 cksum_w();
+                             }
+
+
+
+                             if(lum_threshold){
+                                 if(alarm == SET){           //if alarm is set ON you need to press SW1 ON 
+                                     duty_cycle +=1 ;   
+                                     PWM6_LoadDutyValue(duty_cycle);
+                                 }
+                                 else if(alarm == OFF){
+                                     PIE0bits.TMR0IE = 1;    // We exceed the limit - forget about of Low Power mode and check the 3 sec 
+                                     TMR0_StartTimer();
+                                     alarm = SET ;  
+                                 }
+                             }
+                             else{
+                                 if(alarm == SET){
+                                     PWM6_LoadDutyValue(OFF);
+                                     alarm = OFF ;
+                                 }
+                             }
+
+                          }
+                        
+                         else if(config_mode == ON){
+
+                           EXT_INT_InterruptDisable(); 
+                           config_routine();
+                           EXT_INT_InterruptEnable(); 
+                     }
+                        
+                     __delay_ms(10);
+
+                    }while(alarm == SET);
                     
-                }while(1);    // NOTE maintain this state - ONly debug
+                
    
-    
+             }
     }
 
 }
@@ -427,6 +440,7 @@ void handler_clock_hms(void){
         IO_RA7_Toggle();
     }
     
+    last5s++;
     seg++;
     if(seg >= 60) {
         clkm++;
@@ -477,20 +491,23 @@ void mod4_LED(void){
 }
 
 unsigned char checkDebounceSW1(){
-    //Fazer disable interrupt clkms
+   PIE4bits.TMR1IE = 0;
     
     if(clkms - last_ms < 0){       // clkms deu reset
         
         if ((TIMER_MS_RESET - last_ms)+ clkms > DEBNC_TIME ){
             last_ms = clkms;
+            PIE4bits.TMR1IE = 1;
             return 1;
         }
     }
     
     if(clkms - last_ms < DEBNC_TIME){
         return 0;
+        PIE4bits.TMR1IE = 1;
     }else{
         last_ms = clkms;
+        PIE4bits.TMR1IE = 1;
         return 1;
     }
 }
@@ -518,16 +535,16 @@ unsigned char checkDebounceSW2(){
 
 void mode_select_LED(){
    
-    
-                        PWM6_LoadDutyValue(1023);
-                        IO_RA4_SetHigh();
-                        __delay_ms(500);
-                        IO_RA5_SetHigh();
-                        __delay_ms(500);
 
-                        IO_RA4_SetLow();
-                        IO_RA5_SetLow();
-    
+            PWM6_LoadDutyValue(1023);
+            IO_RA4_SetHigh();
+            __delay_ms(500);
+            IO_RA5_SetHigh();
+            __delay_ms(500);
+
+            IO_RA4_SetLow();
+            IO_RA5_SetLow();
+
     
 }
 

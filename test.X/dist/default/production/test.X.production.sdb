@@ -118,7 +118,7 @@ TMR2_CLC2_OUT 15
 TMR2_CLC3_OUT 16
 TMR2_CLC4_OUT 17
 ]
-"416 /home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+"429 /home/bmalbusca/MPLABXProjects/sce/test.X/main.c
 [e E12756 . `uc
 channel_ANA0 0
 channel_VSS 60
@@ -152,42 +152,42 @@ channel_FVR_buf1 63
 [v _ReadI2C ReadI2C `(uc  1 e 1 0 ]
 "88
 [v _WriteI2C WriteI2C `(c  1 e 1 0 ]
-"98 /home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+"99 /home/bmalbusca/MPLABXProjects/sce/test.X/main.c
 [v _sw1_EXT sw1_EXT `(v  1 e 1 0 ]
-"127
+"131
 [v _ISR_3s ISR_3s `(v  1 e 1 0 ]
-"140
+"144
 [v _main main `(v  1 e 1 0 ]
-"247
+"260
 [v _config_routine config_routine `(v  1 e 1 0 ]
-"298
+"311
 [v _increment_subfield increment_subfield `(v  1 e 1 0 ]
-"322
+"335
 [v _clock_subfields clock_subfields `(v  1 e 1 0 ]
-"371
+"384
 [v _all_LED all_LED `(v  1 e 1 0 ]
-"401
-[v _LED_bin LED_bin `(v  1 e 1 0 ]
 "414
+[v _LED_bin LED_bin `(v  1 e 1 0 ]
+"427
 [v _ADC_read ADC_read `(ui  1 e 2 0 ]
-"424
+"437
 [v _handler_clock_hms handler_clock_hms `(v  1 e 1 0 ]
-"441
+"455
 [v _handler_clock_ms handler_clock_ms `(v  1 e 1 0 ]
-"454
+"468
 [v _mod1_LED mod1_LED `(v  1 e 1 0 ]
-"461
+"475
 [v _mod2_LED mod2_LED `(v  1 e 1 0 ]
-"466
+"480
 [v _mod3_LED mod3_LED `(v  1 e 1 0 ]
-"473
+"487
 [v _mod4_LED mod4_LED `(v  1 e 1 0 ]
-"479
+"493
 [v _checkDebounceSW1 checkDebounceSW1 `(uc  1 e 1 0 ]
 [v i1_checkDebounceSW1 checkDebounceSW1 `(uc  1 e 1 0 ]
-"499
+"516
 [v _checkDebounceSW2 checkDebounceSW2 `(uc  1 e 1 0 ]
-"519
+"536
 [v _mode_select_LED mode_select_LED `(v  1 e 1 0 ]
 "63 /home/bmalbusca/MPLABXProjects/sce/test.X/mcc_generated_files/adcc.c
 [v _ADCC_Initialize ADCC_Initialize `(v  1 e 1 0 ]
@@ -408,7 +408,7 @@ channel_FVR_buf1 63
 "463
 [u S2035 . 1 `S2026 1 . 1 0 ]
 [v _PORTBbits PORTBbits `VES2035  1 e 1 @13 ]
-[s S2174 . 1 `uc 1 RC0 1 0 :1:0 
+[s S2185 . 1 `uc 1 RC0 1 0 :1:0 
 `uc 1 RC1 1 0 :1:1 
 `uc 1 RC2 1 0 :1:2 
 `uc 1 RC3 1 0 :1:3 
@@ -418,15 +418,15 @@ channel_FVR_buf1 63
 `uc 1 RC7 1 0 :1:7 
 ]
 "525
-[u S2183 . 1 `S2174 1 . 1 0 ]
-[v _PORTCbits PORTCbits `VES2183  1 e 1 @14 ]
+[u S2194 . 1 `S2185 1 . 1 0 ]
+[v _PORTCbits PORTCbits `VES2194  1 e 1 @14 ]
 "670
 [v _TRISA TRISA `VEuc  1 e 1 @17 ]
 "732
 [v _TRISB TRISB `VEuc  1 e 1 @18 ]
 "794
 [v _TRISC TRISC `VEuc  1 e 1 @19 ]
-[s S2331 . 1 `uc 1 TRISC0 1 0 :1:0 
+[s S2344 . 1 `uc 1 TRISC0 1 0 :1:0 
 `uc 1 TRISC1 1 0 :1:1 
 `uc 1 TRISC2 1 0 :1:2 
 `uc 1 TRISC3 1 0 :1:3 
@@ -436,8 +436,8 @@ channel_FVR_buf1 63
 `uc 1 TRISC7 1 0 :1:7 
 ]
 "811
-[u S2340 . 1 `S2331 1 . 1 0 ]
-[v _TRISCbits TRISCbits `VES2340  1 e 1 @19 ]
+[u S2353 . 1 `S2344 1 . 1 0 ]
+[v _TRISCbits TRISCbits `VES2353  1 e 1 @19 ]
 "856
 [v _TRISD TRISD `VEuc  1 e 1 @20 ]
 "918
@@ -470,20 +470,20 @@ channel_FVR_buf1 63
 [v _TMR0H TMR0H `VEuc  1 e 1 @29 ]
 "1622
 [v _T0CON0 T0CON0 `VEuc  1 e 1 @30 ]
-[s S2633 . 1 `uc 1 T0OUTPS 1 0 :4:0 
+[s S2646 . 1 `uc 1 T0OUTPS 1 0 :4:0 
 `uc 1 T016BIT 1 0 :1:4 
 `uc 1 T0OUT 1 0 :1:5 
 `uc 1 . 1 0 :1:6 
 `uc 1 T0EN 1 0 :1:7 
 ]
 "1642
-[s S2639 . 1 `uc 1 T0OUTPS0 1 0 :1:0 
+[s S2652 . 1 `uc 1 T0OUTPS0 1 0 :1:0 
 `uc 1 T0OUTPS1 1 0 :1:1 
 `uc 1 T0OUTPS2 1 0 :1:2 
 `uc 1 T0OUTPS3 1 0 :1:3 
 ]
-[u S2644 . 1 `S2633 1 . 1 0 `S2639 1 . 1 0 ]
-[v _T0CON0bits T0CON0bits `VES2644  1 e 1 @30 ]
+[u S2657 . 1 `S2646 1 . 1 0 `S2652 1 . 1 0 ]
+[v _T0CON0bits T0CON0bits `VES2657  1 e 1 @30 ]
 "1687
 [v _T0CON1 T0CON1 `VEuc  1 e 1 @31 ]
 "1805
@@ -963,7 +963,7 @@ channel_FVR_buf1 63
 "21425
 [u S447 . 1 `S442 1 . 1 0 ]
 [v _PIR0bits PIR0bits `VES447  1 e 1 @1804 ]
-[s S557 . 1 `uc 1 SSP1IF 1 0 :1:0 
+[s S595 . 1 `uc 1 SSP1IF 1 0 :1:0 
 `uc 1 BCL1IF 1 0 :1:1 
 `uc 1 SSP2IF 1 0 :1:2 
 `uc 1 BCL2IF 1 0 :1:3 
@@ -971,9 +971,9 @@ channel_FVR_buf1 63
 `uc 1 RCIF 1 0 :1:5 
 ]
 "21532
-[u S564 . 1 `S557 1 . 1 0 ]
-[v _PIR3bits PIR3bits `VES564  1 e 1 @1807 ]
-[s S591 . 1 `uc 1 TMR1IF 1 0 :1:0 
+[u S602 . 1 `S595 1 . 1 0 ]
+[v _PIR3bits PIR3bits `VES602  1 e 1 @1807 ]
+[s S557 . 1 `uc 1 TMR1IF 1 0 :1:0 
 `uc 1 TMR2IF 1 0 :1:1 
 `uc 1 TMR3IF 1 0 :1:2 
 `uc 1 TMR4IF 1 0 :1:3 
@@ -981,8 +981,8 @@ channel_FVR_buf1 63
 `uc 1 TMR6IF 1 0 :1:5 
 ]
 "21582
-[u S598 . 1 `S591 1 . 1 0 ]
-[v _PIR4bits PIR4bits `VES598  1 e 1 @1808 ]
+[u S564 . 1 `S557 1 . 1 0 ]
+[v _PIR4bits PIR4bits `VES564  1 e 1 @1808 ]
 [s S475 . 1 `uc 1 INTE 1 0 :1:0 
 `uc 1 . 1 0 :3:1 
 `uc 1 IOCIE 1 0 :1:4 
@@ -991,7 +991,7 @@ channel_FVR_buf1 63
 "21847
 [u S480 . 1 `S475 1 . 1 0 ]
 [v _PIE0bits PIE0bits `VES480  1 e 1 @1814 ]
-[s S540 . 1 `uc 1 SSP1IE 1 0 :1:0 
+[s S578 . 1 `uc 1 SSP1IE 1 0 :1:0 
 `uc 1 BCL1IE 1 0 :1:1 
 `uc 1 SSP2IE 1 0 :1:2 
 `uc 1 BCL2IE 1 0 :1:3 
@@ -999,9 +999,9 @@ channel_FVR_buf1 63
 `uc 1 RCIE 1 0 :1:5 
 ]
 "21954
-[u S547 . 1 `S540 1 . 1 0 ]
-[v _PIE3bits PIE3bits `VES547  1 e 1 @1817 ]
-[s S574 . 1 `uc 1 TMR1IE 1 0 :1:0 
+[u S585 . 1 `S578 1 . 1 0 ]
+[v _PIE3bits PIE3bits `VES585  1 e 1 @1817 ]
+[s S540 . 1 `uc 1 TMR1IE 1 0 :1:0 
 `uc 1 TMR2IE 1 0 :1:1 
 `uc 1 TMR3IE 1 0 :1:2 
 `uc 1 TMR4IE 1 0 :1:3 
@@ -1009,8 +1009,8 @@ channel_FVR_buf1 63
 `uc 1 TMR6IE 1 0 :1:5 
 ]
 "22004
-[u S581 . 1 `S574 1 . 1 0 ]
-[v _PIE4bits PIE4bits `VES581  1 e 1 @1818 ]
+[u S547 . 1 `S540 1 . 1 0 ]
+[v _PIE4bits PIE4bits `VES547  1 e 1 @1818 ]
 "22256
 [v _PMD0 PMD0 `VEuc  1 e 1 @1942 ]
 "22313
@@ -1152,33 +1152,35 @@ channel_FVR_buf1 63
 [v _last_ms last_ms `uc  1 e 1 0 ]
 "72
 [v _last_ms2 last_ms2 `uc  1 e 1 0 ]
-"74
-[v _mode_field_subfield mode_field_subfield `[2]ui  1 e 4 0 ]
+"73
+[v _last5s last5s `VEuc  1 e 1 0 ]
 "75
-[v _set_mode set_mode `VEuc  1 e 1 0 ]
+[v _mode_field_subfield mode_field_subfield `[2]ui  1 e 4 0 ]
 "76
+[v _set_mode set_mode `VEuc  1 e 1 0 ]
+"77
 [v _config_mode config_mode `VEuc  1 e 1 0 ]
-"78
+"79
 [v _alarm alarm `VEuc  1 e 1 0 ]
-"80
-[v _temp temp `uc  1 e 1 0 ]
 "81
+[v _temp temp `uc  1 e 1 0 ]
+"82
 [v _alaf alaf `uc  1 e 1 0 ]
-"83
-[v _convertedValue convertedValue `ui  1 e 2 0 ]
 "84
+[v _convertedValue convertedValue `ui  1 e 2 0 ]
+"85
 [v _duty_cycle duty_cycle `ui  1 e 2 0 ]
-"86
-[v _lum_bin lum_bin `ui  1 e 2 0 ]
 "87
+[v _lum_bin lum_bin `ui  1 e 2 0 ]
+"88
 [v _lum_threshold lum_threshold `ui  1 e 2 0 ]
-"89
-[v _nreg nreg `uc  1 e 1 0 ]
 "90
-[v _nreg_pt nreg_pt `uc  1 e 1 0 ]
+[v _nreg nreg `uc  1 e 1 0 ]
 "91
-[v _pmon pmon `uc  1 e 1 0 ]
+[v _nreg_pt nreg_pt `uc  1 e 1 0 ]
 "92
+[v _pmon pmon `uc  1 e 1 0 ]
+"93
 [v _tala tala `uc  1 e 1 0 ]
 [s S66 . 29 `uc 1 busy 1 0 :1:0 
 `uc 1 inUse 1 0 :1:1 
@@ -1199,10 +1201,12 @@ channel_FVR_buf1 63
 [v _TMR1_InterruptHandler TMR1_InterruptHandler `*.37(v  1 e 2 0 ]
 "58 /home/bmalbusca/MPLABXProjects/sce/test.X/mcc_generated_files/tmr2.c
 [v _TMR2_InterruptHandler TMR2_InterruptHandler `*.37(v  1 e 2 0 ]
-"140 /home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+"144 /home/bmalbusca/MPLABXProjects/sce/test.X/main.c
 [v _main main `(v  1 e 1 0 ]
 {
-"241
+"153
+[v main@t5s t5s `uc  1 a 1 2 ]
+"254
 } 0
 "11 /home/bmalbusca/MPLABXProjects/sce/test.X/eeprom_rw.c
 [v _recoverData recoverData `(v  1 e 1 0 ]
@@ -1290,68 +1294,68 @@ channel_FVR_buf1 63
 [v DATAEE_WriteByte@bData bData `uc  1 p 1 11 ]
 "200
 } 0
-"247 /home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+"260 /home/bmalbusca/MPLABXProjects/sce/test.X/main.c
 [v _config_routine config_routine `(v  1 e 1 0 ]
 {
-"249
+"262
 [v config_routine@select_mode select_mode `ui  1 a 2 18 ]
-"297
+"310
 } 0
-"519
+"536
 [v _mode_select_LED mode_select_LED `(v  1 e 1 0 ]
 {
-"532
+"549
 } 0
-"322
+"335
 [v _clock_subfields clock_subfields `(v  1 e 1 0 ]
 {
-"324
+"337
 [v clock_subfields@subfield subfield `ui  1 a 2 15 ]
-"360
+"373
 } 0
-"473
+"487
 [v _mod4_LED mod4_LED `(v  1 e 1 0 ]
 {
-"477
+"491
 } 0
-"466
+"480
 [v _mod3_LED mod3_LED `(v  1 e 1 0 ]
 {
-"471
+"485
 } 0
-"461
+"475
 [v _mod2_LED mod2_LED `(v  1 e 1 0 ]
 {
-"464
+"478
 } 0
-"454
+"468
 [v _mod1_LED mod1_LED `(v  1 e 1 0 ]
 {
-"459
+"473
 } 0
-"298
+"311
 [v _increment_subfield increment_subfield `(v  1 e 1 0 ]
 {
-"301
+"314
 [v increment_subfield@exit exit `i  1 a 2 12 ]
-"300
+"313
 [v increment_subfield@plus plus `i  1 a 2 10 ]
-"320
+"333
 } 0
-"499
+"516
 [v _checkDebounceSW2 checkDebounceSW2 `(uc  1 e 1 0 ]
 {
-"516
+"533
 } 0
-"479
+"493
 [v _checkDebounceSW1 checkDebounceSW1 `(uc  1 e 1 0 ]
 {
-"496
+"513
 } 0
-"371
+"384
 [v _all_LED all_LED `(v  1 e 1 0 ]
 {
-"393
+"406
 } 0
 "74 /home/bmalbusca/MPLABXProjects/sce/test.X/mcc_generated_files/pwm6.c
 [v _PWM6_LoadDutyValue PWM6_LoadDutyValue `(v  1 e 1 0 ]
@@ -1438,16 +1442,16 @@ channel_FVR_buf1 63
 {
 "104
 } 0
-"401 /home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+"414 /home/bmalbusca/MPLABXProjects/sce/test.X/main.c
 [v _LED_bin LED_bin `(v  1 e 1 0 ]
 {
 [v LED_bin@value value `ui  1 p 2 3 ]
-"406
+"419
 } 0
-"414
+"427
 [v _ADC_read ADC_read `(ui  1 e 2 0 ]
 {
-"422
+"435
 } 0
 "106 /home/bmalbusca/MPLABXProjects/sce/test.X/mcc_generated_files/adcc.c
 [v _ADCC_StartConversion ADCC_StartConversion `(v  1 e 1 0 ]
@@ -1710,10 +1714,10 @@ channel_FVR_buf1 63
 {
 "185
 } 0
-"441 /home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+"455 /home/bmalbusca/MPLABXProjects/sce/test.X/main.c
 [v _handler_clock_ms handler_clock_ms `(v  1 e 1 0 ]
 {
-"447
+"461
 } 0
 "164 /home/bmalbusca/MPLABXProjects/sce/test.X/mcc_generated_files/tmr1.c
 [v _TMR1_ISR TMR1_ISR `(v  1 e 1 0 ]
@@ -1725,10 +1729,10 @@ channel_FVR_buf1 63
 {
 "185
 } 0
-"424 /home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+"437 /home/bmalbusca/MPLABXProjects/sce/test.X/main.c
 [v _handler_clock_hms handler_clock_hms `(v  1 e 1 0 ]
 {
-"440
+"454
 } 0
 "127 /home/bmalbusca/MPLABXProjects/sce/test.X/mcc_generated_files/tmr1.c
 [v _TMR1_WriteTimer TMR1_WriteTimer `(v  1 e 1 0 ]
@@ -1741,10 +1745,10 @@ channel_FVR_buf1 63
 {
 "133
 } 0
-"127 /home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+"131 /home/bmalbusca/MPLABXProjects/sce/test.X/main.c
 [v _ISR_3s ISR_3s `(v  1 e 1 0 ]
 {
-"138
+"142
 } 0
 "140 /home/bmalbusca/MPLABXProjects/sce/test.X/mcc_generated_files/tmr0.c
 [v _TMR0_DefaultInterruptHandler TMR0_DefaultInterruptHandler `(v  1 e 1 0 ]
@@ -1771,15 +1775,15 @@ channel_FVR_buf1 63
 {
 "57
 } 0
-"98 /home/bmalbusca/MPLABXProjects/sce/test.X/main.c
+"99 /home/bmalbusca/MPLABXProjects/sce/test.X/main.c
 [v _sw1_EXT sw1_EXT `(v  1 e 1 0 ]
 {
-"119
+"123
 } 0
-"479
+"493
 [v i1_checkDebounceSW1 checkDebounceSW1 `(uc  1 e 1 0 ]
 {
-"496
+"513
 } 0
 "74 /home/bmalbusca/MPLABXProjects/sce/test.X/mcc_generated_files/pwm6.c
 [v i1_PWM6_LoadDutyValue PWM6_LoadDutyValue `(v  1 e 1 0 ]

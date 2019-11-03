@@ -21092,13 +21092,6 @@ void (*i2c1_driver_busCollisionISR)(void);
 void (*i2c1_driver_i2cISR)(void);
 # 55 "./mcc_generated_files/mcc.h" 2
 
-# 1 "./mcc_generated_files/pwm6.h" 1
-# 102 "./mcc_generated_files/pwm6.h"
- void PWM6_Initialize(void);
-# 129 "./mcc_generated_files/pwm6.h"
- void PWM6_LoadDutyValue(uint16_t dutyValue);
-# 56 "./mcc_generated_files/mcc.h" 2
-
 # 1 "./mcc_generated_files/tmr1.h" 1
 # 100 "./mcc_generated_files/tmr1.h"
 void TMR1_Initialize(void);
@@ -21124,6 +21117,13 @@ void TMR1_ISR(void);
 extern void (*TMR1_InterruptHandler)(void);
 # 421 "./mcc_generated_files/tmr1.h"
 void TMR1_DefaultInterruptHandler(void);
+# 56 "./mcc_generated_files/mcc.h" 2
+
+# 1 "./mcc_generated_files/pwm6.h" 1
+# 102 "./mcc_generated_files/pwm6.h"
+ void PWM6_Initialize(void);
+# 129 "./mcc_generated_files/pwm6.h"
+ void PWM6_LoadDutyValue(uint16_t dutyValue);
 # 57 "./mcc_generated_files/mcc.h" 2
 
 # 1 "./mcc_generated_files/tmr2.h" 1
@@ -21434,21 +21434,6 @@ _Bool ADCC_HasErrorCrossedLowerThreshold(void);
 uint8_t ADCC_GetConversionStageStatus(void);
 # 60 "./mcc_generated_files/mcc.h" 2
 
-# 1 "./mcc_generated_files/ext_int.h" 1
-# 250 "./mcc_generated_files/ext_int.h"
-void EXT_INT_Initialize(void);
-# 272 "./mcc_generated_files/ext_int.h"
-void INT_ISR(void);
-# 296 "./mcc_generated_files/ext_int.h"
-void INT_CallBack(void);
-# 319 "./mcc_generated_files/ext_int.h"
-void INT_SetInterruptHandler(void (* InterruptHandler)(void));
-# 343 "./mcc_generated_files/ext_int.h"
-extern void (*INT_InterruptHandler)(void);
-# 367 "./mcc_generated_files/ext_int.h"
-void INT_DefaultInterruptHandler(void);
-# 61 "./mcc_generated_files/mcc.h" 2
-
 # 1 "./mcc_generated_files/memory.h" 1
 # 99 "./mcc_generated_files/memory.h"
 uint16_t FLASH_ReadWord(uint16_t flashAddr);
@@ -21462,6 +21447,21 @@ void FLASH_EraseBlock(uint16_t startAddr);
 void DATAEE_WriteByte(uint16_t bAdd, uint8_t bData);
 # 248 "./mcc_generated_files/memory.h"
 uint8_t DATAEE_ReadByte(uint16_t bAdd);
+# 61 "./mcc_generated_files/mcc.h" 2
+
+# 1 "./mcc_generated_files/ext_int.h" 1
+# 250 "./mcc_generated_files/ext_int.h"
+void EXT_INT_Initialize(void);
+# 272 "./mcc_generated_files/ext_int.h"
+void INT_ISR(void);
+# 296 "./mcc_generated_files/ext_int.h"
+void INT_CallBack(void);
+# 319 "./mcc_generated_files/ext_int.h"
+void INT_SetInterruptHandler(void (* InterruptHandler)(void));
+# 343 "./mcc_generated_files/ext_int.h"
+extern void (*INT_InterruptHandler)(void);
+# 367 "./mcc_generated_files/ext_int.h"
+void INT_DefaultInterruptHandler(void);
 # 62 "./mcc_generated_files/mcc.h" 2
 
 # 1 "./mcc_generated_files/drivers/i2c_simple_master.h" 1
@@ -21606,6 +21606,7 @@ unsigned char ring_byte[5];
 
 unsigned char last_ms = 0;
 unsigned char last_ms2 = 0;
+volatile unsigned char last5s =0;
 
 unsigned int mode_field_subfield[2]= {-1,-1};
 volatile unsigned char set_mode = 0;
@@ -21639,6 +21640,7 @@ void sw1_EXT(void){
             alarm = 0;
             do { LATAbits.LATA6 = 0; } while(0);
             PWM6_LoadDutyValue(0);
+            last_ms = clkms;
         }
         else{
             if(!PORTBbits.RB4){
@@ -21646,12 +21648,14 @@ void sw1_EXT(void){
                 if(config_mode == 0){
                     config_mode = 1;
 
-                    (PIE0bits.INTE = 0);
+
 
                     }
                }
             }
+            last_ms = clkms;
         }
+
   }
 
 
@@ -21682,7 +21686,7 @@ void main(void){
     TMR2_SetInterruptHandler(handler_clock_ms);
 
 
-
+    unsigned char t5s =0;
     nreg = (unsigned char) (0xF000 + 5 * 30 >= 0xF0FF - 10 ? 256 : 5 * 30);
     nreg_pt = 0;
     nreg_init = 0;
@@ -21705,73 +21709,82 @@ void main(void){
     while (1)
     {
 
+            __asm("sleep");
+            __nop();
+
+             PIE4bits.TMR1IE = 0;
+             t5s = last5s;
+             PIE4bits.TMR1IE = 1;
+
+             if(t5s >= pmon){
+                    PIE4bits.TMR1IE = 0;
+                    last5s =0;
+                    PIE4bits.TMR1IE = 1;
+
+                    do{
+                         if(!config_mode){
+
+                             convertedValue = ADC_read();
+                             lum_bin = (convertedValue >> 8);
+                             LED_bin(lum_bin);
+
+                             __nop();
+
+                             __nop();
+
+                             lum_threshold = (lum_bin > 2 || temp > 25 ) & alaf;
+
+                           if (temp != read_ring(nreg_pt, nreg, nreg_init, 0, 3) || lum_bin != read_ring(nreg_pt, nreg, nreg_init, 0, 4)) {
+
+                                 PIE4bits.TMR1IE = 0;
+                                 ring_byte[0] = clkh;
+                                 ring_byte[1] = clkm;
+                                 ring_byte[2] = seg;
+                                  PIE4bits.TMR1IE = 1;
+                                 ring_byte[3] = temp;
+                                 ring_byte[4] = lum_bin;
+                                 push_ring(&nreg_pt, nreg, &nreg_init, ring_byte);
+
+                                 DATAEE_WriteByte(0xF0FF - 10 + 4, nreg_pt);
+                                 cksum_w();
+                             }
 
 
 
+                             if(lum_threshold){
+                                 if(alarm == 2){
+                                     duty_cycle +=1 ;
+                                     PWM6_LoadDutyValue(duty_cycle);
+                                 }
+                                 else if(alarm == 0){
+                                     PIE0bits.TMR0IE = 1;
+                                     TMR0_StartTimer();
+                                     alarm = 2 ;
+                                 }
+                             }
+                             else{
+                                 if(alarm == 2){
+                                     PWM6_LoadDutyValue(0);
+                                     alarm = 0 ;
+                                 }
+                             }
 
-              do{
-                    if(!config_mode){
+                          }
 
-                        convertedValue = ADC_read();
-                        lum_bin = (convertedValue >> 8);
-                        LED_bin(lum_bin);
+                         else if(config_mode == 1){
 
-
-
-
-
-                        lum_threshold = (lum_bin > 2 || temp > 25 ) & alaf;
-
-                      if (temp != read_ring(nreg_pt, nreg, nreg_init, 0, 3) || lum_bin != read_ring(nreg_pt, nreg, nreg_init, 0, 4)) {
-
-                            (INTCONbits.GIE = 0);
-                            ring_byte[0] = clkh;
-                            ring_byte[1] = clkm;
-                            ring_byte[2] = seg;
-                            (INTCONbits.GIE = 1);
-                            ring_byte[3] = temp;
-                            ring_byte[4] = lum_bin;
-                            push_ring(&nreg_pt, nreg, &nreg_init, ring_byte);
-
-                            DATAEE_WriteByte(0xF0FF - 10 + 4, nreg_pt);
-                            cksum_w();
-                        }
-
-
-
-                        if(lum_threshold){
-                            if(alarm == 2){
-                                duty_cycle +=1 ;
-                                PWM6_LoadDutyValue(duty_cycle);
-                            }
-                            else if(alarm == 0){
-                                PIE0bits.TMR0IE = 1;
-                                TMR0_StartTimer();
-                                alarm = 2 ;
-                            }
-                        }
-                        else{
-                            if(alarm == 2){
-                                PWM6_LoadDutyValue(0);
-                                alarm = 0 ;
-                            }
-                        }
-
+                           (PIE0bits.INTE = 0);
+                           config_routine();
+                           (PIE0bits.INTE = 1);
                      }
-                    else if(config_mode == 1){
+
+                     _delay((unsigned long)((10)*(1000000/4000.0)));
+
+                    }while(alarm == 2);
 
 
-                      (PIE0bits.INTE = 0);
-                      config_routine();
-                      (PIE0bits.INTE = 1);
-                }
 
-                _delay((unsigned long)((1)*(1000000/4000.0)));
-
-
-                }while(1);
-
-
+             }
     }
 
 }
@@ -21894,7 +21907,7 @@ void clock_subfields(void){
 
 
 }
-# 371 "main.c"
+# 384 "main.c"
 void all_LED(void){
 
        do { LATAbits.LATA7 = 1; } while(0);
@@ -21954,6 +21967,7 @@ void handler_clock_hms(void){
         do { LATAbits.LATA7 = ~LATAbits.LATA7; } while(0);
     }
 
+    last5s++;
     seg++;
     if(seg >= 60) {
         clkm++;
@@ -21968,7 +21982,7 @@ void handler_clock_hms(void){
 void handler_clock_ms(void){
     clkms++;
 
-    if(clkms > 200){
+    if(clkms > 300){
         clkms = 0;
     }
 }
@@ -22004,20 +22018,23 @@ void mod4_LED(void){
 }
 
 unsigned char checkDebounceSW1(){
-
+   PIE4bits.TMR1IE = 0;
 
     if(clkms - last_ms < 0){
 
-        if ((200 - last_ms)+ clkms > 10 ){
+        if ((300 - last_ms)+ clkms > 2 ){
             last_ms = clkms;
+            PIE4bits.TMR1IE = 1;
             return 1;
         }
     }
 
-    if(clkms - last_ms < 10){
+    if(clkms - last_ms < 2){
         return 0;
+        PIE4bits.TMR1IE = 1;
     }else{
         last_ms = clkms;
+        PIE4bits.TMR1IE = 1;
         return 1;
     }
 }
@@ -22028,13 +22045,13 @@ unsigned char checkDebounceSW2(){
 
     if(clkms - last_ms2 < 0){
 
-        if ((200 - last_ms2)+ clkms > 10 ){
+        if ((300 - last_ms2)+ clkms > 2 ){
             last_ms2 = clkms;
             return 1;
         }
     }
 
-    if(clkms - last_ms2 < 10){
+    if(clkms - last_ms2 < 2){
         return 0;
     }else{
         last_ms2 = clkms;
@@ -22046,14 +22063,14 @@ unsigned char checkDebounceSW2(){
 void mode_select_LED(){
 
 
-                        PWM6_LoadDutyValue(1023);
-                        do { LATAbits.LATA4 = 1; } while(0);
-                        _delay((unsigned long)((500)*(1000000/4000.0)));
-                        do { LATAbits.LATA5 = 1; } while(0);
-                        _delay((unsigned long)((500)*(1000000/4000.0)));
+            PWM6_LoadDutyValue(1023);
+            do { LATAbits.LATA4 = 1; } while(0);
+            _delay((unsigned long)((500)*(1000000/4000.0)));
+            do { LATAbits.LATA5 = 1; } while(0);
+            _delay((unsigned long)((500)*(1000000/4000.0)));
 
-                        do { LATAbits.LATA4 = 0; } while(0);
-                        do { LATAbits.LATA5 = 0; } while(0);
+            do { LATAbits.LATA4 = 0; } while(0);
+            do { LATAbits.LATA5 = 0; } while(0);
 
 
 }
