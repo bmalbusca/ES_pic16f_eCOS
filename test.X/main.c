@@ -24,7 +24,7 @@
 #define SET 2
 #define MIN_TIME -1
 
-#define DEBNC_TIME 20       //200ms
+#define DEBNC_TIME 18       //200ms
 
 volatile int value = 0;
 void handler_clock_hms(void);
@@ -38,6 +38,7 @@ void mod2_LED(void);
 void mod3_LED(void);
 void mod4_LED(void);
 unsigned char checkDebounce();
+void clock_field(void);
         
 volatile unsigned char clkh = CLKH;
 volatile unsigned char clkm = CLKM;
@@ -170,47 +171,50 @@ void main(void){
 
                      }
                     else if(config_mode == ON){	
-                      if(select_mode == 0){  			
-                      all_LED();}		
+                      		
                
                 
                       EXT_INT_InterruptDisable(); 
                 
-                do{
-                    if(!IO_RB4_GetValue()){		  
-                   		if(checkDebounce())
-                            select_mode +=1; 
-                            switch(select_mode){			// NOTE this should be on main loop
-                                case 1: mod1_LED();break;
-                                case 2: mod2_LED();break;
-                                case 3: mod3_LED();break;
-                                case 4: mod4_LED();break;
-                                default:select_mode =0; /*config_mode = OFF;*/ alarm = SET;	// NOTE Enable EXT interrupt or at that moment when the pic is moving to normal operation
-                                break;
+                            do{
+                                if(select_mode == 0){  			
+                                        all_LED();} 
+                                
+                                if(!IO_RB4_GetValue()){		  
+                                    if(checkDebounce()){
+                                        select_mode +=1; 
+                                        
+                                        switch(select_mode){			// NOTE this should be on main loop
+                                            case 1: mod1_LED();break;
+                                            case 2: mod2_LED();break;
+                                            case 3: mod3_LED();break;
+                                            case 4: mod4_LED();break;
+                                            default: select_mode = 0; config_mode = OFF; alarm = OFF;	// NOTE Enable EXT interrupt or at that moment when the pic is moving to normal operation
+                                            break;
+
+                                            }
+                                        
+                                    }
+                                    last_ms = clkms;
+                                }
+
+                              /*  if(!IO_RC5_GetValue()){
+
+                                   switch(select_mode){			// NOTE this should be on main loop
+                                            case 1: mod1_LED();break;
+                                            case 2:  clock_field();break;
+                                            case 3:  mod1_LED();break;
+                                            case 4:  mod1_LED();break;
+                                            default:	// NOTE Enable EXT interrupt or at that moment when the pic is moving to normal operation
+                                            break;
+
+                                          }
 
                                 }
-                            last_ms = clkms;
-                        }
+                                */    __delay_ms(20);
+                                }while(config_mode == ON);
 
-		      if(!IO_RC5_GetValue()){
-
-				 switch(select_mode){			// NOTE this should be on main loop
-                                	case 1: mod1_LED();break;
-                                	case 2: mod2_LED();break;
-                                	case 3: mod3_LED();break;
-                                	case 4: mod4_LED();break;
-                                	default:select_mode =0; /*config_mode = OFF;*/ alarm = SET;	// NOTE Enable EXT interrupt or at that moment when the pic is moving to normal operation
-                                	break;
-
-		      
-		      
-		      }
-
-
-                
-                   }while(config_mode == ON);
-                
-                    EXT_INT_InterruptEnable(); 
+                                EXT_INT_InterruptEnable(); 
                 }
 		
 
@@ -233,6 +237,41 @@ void main(void){
  *  Obs: 
  *******************************************/
 
+void clock_field(void){
+     unsigned int select =0;    
+     all_LED();
+    do{ 
+        if(!IO_RB4_GetValue()){		
+            select += 1;
+                if(checkDebounce()){
+                    switch(select){			// NOTE this should be on main loop
+                        case 1: mod1_LED();break;
+                        case 2: mod2_LED();break;
+                        case 3: mod3_LED();break;
+                        case 4: mod4_LED();break;
+                        default:select =0; break;
+
+                        }
+                }
+                    last_ms = clkms;
+                }
+        
+         if(!IO_RC5_GetValue()){
+
+                       switch(select){			// NOTE this should be on main loop
+                                case 1: mod1_LED();break;
+                                case 2: mod2_LED() ;break;
+                                case 3:  mod3_LED();break;
+                                case 4:  mod1_LED();break;
+                                default: select_mode =0; break;
+
+                              }
+
+                    }
+    }while(select);
+    
+     
+}
 
 void all_LED(void){
     
