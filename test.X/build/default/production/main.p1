@@ -47,9 +47,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "79 ./mcc_generated_files/mcc.h
 [; ;./mcc_generated_files/mcc.h: 79: void SYSTEM_Initialize(void);
 [v _SYSTEM_Initialize `(v ~T0 @X0 0 ef ]
-"152 ./I2C/i2c.h
-[; ;./I2C/i2c.h: 152: void I2C_Initialize(void);
-[v _I2C_Initialize `(v ~T0 @X0 0 ef ]
 [v F12749 `(v ~T0 @X0 0 tf ]
 "310 ./mcc_generated_files/tmr0.h
 [; ;./mcc_generated_files/tmr0.h: 310:  void TMR0_SetInterruptHandler(void (* InterruptHandler)(void));
@@ -75,6 +72,23 @@ Version 4.0 HI-TECH Software Intermediate Code
 "49 ./mcc_generated_files/i2c1_driver.h
 [; ;./mcc_generated_files/i2c1_driver.h: 49: __bit i2c1_driver_open(void);
 [v _i2c1_driver_open `(b ~T0 @X0 0 ef ]
+"800 /opt/microchip/xc8/v2.10/pic/include/pic16f18875.h
+[; ;/opt/microchip/xc8/v2.10/pic/include/pic16f18875.h: 800:     struct {
+[s S47 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S47 . TRISC0 TRISC1 TRISC2 TRISC3 TRISC4 TRISC5 TRISC6 TRISC7 ]
+"799
+[; ;/opt/microchip/xc8/v2.10/pic/include/pic16f18875.h: 799: typedef union {
+[u S46 `S47 1 ]
+[n S46 . . ]
+"811
+[; ;/opt/microchip/xc8/v2.10/pic/include/pic16f18875.h: 811: extern volatile TRISCbits_t TRISCbits __attribute__((address(0x013)));
+[v _TRISCbits `VS46 ~T0 @X0 0 e@19 ]
+"45036
+[; ;/opt/microchip/xc8/v2.10/pic/include/pic16f18875.h: 45036: extern volatile __bit WPUC3 __attribute__((address(0x7A7B)));
+[v _WPUC3 `Vb ~T0 @X0 0 e@31355 ]
+"45039
+[; ;/opt/microchip/xc8/v2.10/pic/include/pic16f18875.h: 45039: extern volatile __bit WPUC4 __attribute__((address(0x7A7C)));
+[v _WPUC4 `Vb ~T0 @X0 0 e@31356 ]
 "16 ./eeprom_rw.h
 [; ;./eeprom_rw.h: 16: void recoverData();
 [v _recoverData `(v ~T0 @X0 0 e? ]
@@ -120,10 +134,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "40
 [; ;main.c: 40: void LED_bin(unsigned int value);
 [v _LED_bin `(v ~T0 @X0 0 ef1`ui ]
-[v F12204 `(v ~T0 @X0 1 tf1`ul ]
-"92 /opt/microchip/xc8/v2.10/pic/include/pic.h
-[v __delay `JF12204 ~T0 @X0 0 e ]
-[p i __delay ]
 "154 ./I2C/i2c.h
 [; ;./I2C/i2c.h: 154: unsigned char tsttc (void);
 [v _tsttc `(uc ~T0 @X0 0 ef ]
@@ -145,7 +155,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 "53 main.c
 [; ;main.c: 53: void config_routine(void);
 [v _config_routine `(v ~T0 @X0 0 ef ]
-"41
+[v F12204 `(v ~T0 @X0 1 tf1`ul ]
+"92 /opt/microchip/xc8/v2.10/pic/include/pic.h
+[v __delay `JF12204 ~T0 @X0 0 e ]
+[p i __delay ]
+"41 main.c
 [; ;main.c: 41: void all_LED(void);
 [v _all_LED `(v ~T0 @X0 0 ef ]
 "43
@@ -2118,9 +2132,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "146
 [; ;main.c: 146:     SYSTEM_Initialize();
 [e ( _SYSTEM_Initialize ..  ]
-"147
-[; ;main.c: 147:     I2C_Initialize();
-[e ( _I2C_Initialize ..  ]
 "148
 [; ;main.c: 148:     TMR0_SetInterruptHandler(ISR_3s);
 [e ( _TMR0_SetInterruptHandler (1 &U _ISR_3s ]
@@ -2151,8 +2162,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 160:     nreg_init = 0;
 [e = _nreg_init -> -> 0 `i `uc ]
 "161
-[; ;main.c: 161:     alaf = 1;
-[e = _alaf -> -> 1 `i `uc ]
+[; ;main.c: 161:     alaf = 0;
+[e = _alaf -> -> 0 `i `uc ]
 "162
 [; ;main.c: 162:     temp = 0;
 [e = _temp -> -> 0 `i `uc ]
@@ -2171,6 +2182,18 @@ Version 4.0 HI-TECH Software Intermediate Code
 "168
 [; ;main.c: 168:     i2c1_driver_open();
 [e ( _i2c1_driver_open ..  ]
+"169
+[; ;main.c: 169:     TRISCbits.TRISC3 = 1;
+[e = . . _TRISCbits 0 3 -> -> 1 `i `uc ]
+"170
+[; ;main.c: 170:     TRISCbits.TRISC4 = 1;
+[e = . . _TRISCbits 0 4 -> -> 1 `i `uc ]
+"171
+[; ;main.c: 171:     WPUC3 = 1;
+[e = _WPUC3 -> -> 1 `i `b ]
+"172
+[; ;main.c: 172:     WPUC4 = 1;
+[e = _WPUC4 -> -> 1 `i `b ]
 "174
 [; ;main.c: 174:     recoverData();
 [e ( _recoverData ..  ]
@@ -2244,9 +2267,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "209
 [; ;main.c: 209:                              LED_bin(lum_bin);
 [e ( _LED_bin (1 _lum_bin ]
-"211
-[; ;main.c: 211:                              _delay((unsigned long)((1)*(1000000/4000.0)));
-[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
 "214
 [; ;main.c: 214:                              __nop();
 [e ( ___nop ..  ]

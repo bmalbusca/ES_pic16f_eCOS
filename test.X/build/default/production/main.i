@@ -21680,7 +21680,7 @@ void ISR_3s(void){
 void main(void){
 
     SYSTEM_Initialize();
-    I2C_Initialize();
+
     TMR0_SetInterruptHandler(ISR_3s);
     TMR1_SetInterruptHandler(handler_clock_hms);
     INT_SetInterruptHandler(sw1_EXT);
@@ -21694,7 +21694,7 @@ void main(void){
     nreg = (unsigned char) (0xF000 + 5 * 30 >= 0xF0FF - 10 ? 256 : 5 * 30);
     nreg_pt = 0;
     nreg_init = 0;
-    alaf = 1;
+    alaf = 0;
     temp = 0;
     lum_bin = 0;
     lum_threshold = 0;
@@ -21702,10 +21702,10 @@ void main(void){
     set_mode= 0;
 
     i2c1_driver_open();
-
-
-
-
+    TRISCbits.TRISC3 = 1;
+    TRISCbits.TRISC4 = 1;
+    WPUC3 = 1;
+    WPUC4 = 1;
 
     recoverData();
 
@@ -21744,7 +21744,7 @@ void main(void){
 
                              LED_bin(lum_bin);
 
-                             _delay((unsigned long)((1)*(1000000/4000.0)));
+
 
 
                              __nop();
