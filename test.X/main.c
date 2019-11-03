@@ -24,6 +24,7 @@
 #define SET 2
 #define MIN_TIME -1
 
+#define TIMER_MS_RESET 200
 #define DEBNC_TIME 40      //200ms
 
 volatile int value = 0;
@@ -75,8 +76,7 @@ unsigned char tala = TALA;
  *******************************************/
 void sw1_EXT(void){
     
-						// NOTE Add here a simple delay 
-    //if (bounce_time - seg <= MIN_TIME){ 	// NOTE Debouncing SW - WE should use other timer or higher freq
+
     if(checkDebounceSW1()){
         if (alarm == ON){               	// Turn off the alarm 
             alarm = OFF;
@@ -94,11 +94,7 @@ void sw1_EXT(void){
                     }					// for not overloading the interrupt vector ISR            
                }
             } 
-           
-            last_ms = clkms;
         }
-        
-        //bounce_time = seg;
   }
     
     
@@ -236,15 +232,12 @@ void config_routine(void){
 
                             }
                         last_ms = clkms;
-
-                    }
-                    
+                    }                
                 }
 
                 if(!IO_RC5_GetValue()){
                     if(checkDebounceSW2()){
                         select_routine(select_mode);
-                     last_ms2 = clkms;
                     }
                 }
                    __delay_ms(1);
@@ -337,7 +330,7 @@ void handler_clock_hms(void){
 void handler_clock_ms(void){   
     clkms++;
     
-    if(clkms >= 200){
+    if(clkms > TIMER_MS_RESET){
         clkms = 0;
     }
 }
@@ -377,7 +370,8 @@ unsigned char checkDebounceSW1(){
     
     if(clkms - last_ms < 0){       // clkms deu reset
         
-        if ((200 - last_ms)+ clkms > DEBNC_TIME ){
+        if ((TIMER_MS_RESET - last_ms)+ clkms > DEBNC_TIME ){
+            last_ms = clkms;
             return 1;
         }
     }
@@ -385,6 +379,7 @@ unsigned char checkDebounceSW1(){
     if(clkms - last_ms < DEBNC_TIME){
         return 0;
     }else{
+        last_ms = clkms;
         return 1;
     }
 }
@@ -395,7 +390,8 @@ unsigned char checkDebounceSW2(){
     
     if(clkms - last_ms2 < 0){       // clkms deu reset
         
-        if ((200 - last_ms2)+ clkms > DEBNC_TIME ){
+        if ((TIMER_MS_RESET - last_ms2)+ clkms > DEBNC_TIME ){
+            last_ms2 = clkms;
             return 1;
         }
     }
@@ -403,6 +399,7 @@ unsigned char checkDebounceSW2(){
     if(clkms - last_ms2 < DEBNC_TIME){
         return 0;
     }else{
+        last_ms2 = clkms;
         return 1;
     }
 }

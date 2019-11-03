@@ -21547,7 +21547,7 @@ void cksum_w();
 unsigned char cksum();
 void reset_recv();
 # 11 "main.c" 2
-# 29 "main.c"
+# 30 "main.c"
 volatile int value = 0;
 void handler_clock_hms(void);
 void handler_clock_ms(void);
@@ -21598,7 +21598,6 @@ unsigned char tala = 3;
 void sw1_EXT(void){
 
 
-
     if(checkDebounceSW1()){
         if (alarm == 1){
             alarm = 0;
@@ -21616,11 +21615,7 @@ void sw1_EXT(void){
                     }
                }
             }
-
-            last_ms = clkms;
         }
-
-
   }
 
 
@@ -21758,15 +21753,12 @@ void config_routine(void){
 
                             }
                         last_ms = clkms;
-
                     }
-
                 }
 
                 if(!PORTCbits.RC5){
                     if(checkDebounceSW2()){
                         select_routine(select_mode);
-                     last_ms2 = clkms;
                     }
                 }
                    _delay((unsigned long)((1)*(1000000/4000.0)));
@@ -21775,7 +21767,7 @@ void config_routine(void){
 
 
 }
-# 267 "main.c"
+# 260 "main.c"
 void all_LED(void){
 
        do { LATAbits.LATA7 = 1; } while(0);
@@ -21849,7 +21841,7 @@ void handler_clock_hms(void){
 void handler_clock_ms(void){
     clkms++;
 
-    if(clkms >= 200){
+    if(clkms > 200){
         clkms = 0;
     }
 }
@@ -21890,6 +21882,7 @@ unsigned char checkDebounceSW1(){
     if(clkms - last_ms < 0){
 
         if ((200 - last_ms)+ clkms > 40 ){
+            last_ms = clkms;
             return 1;
         }
     }
@@ -21897,6 +21890,7 @@ unsigned char checkDebounceSW1(){
     if(clkms - last_ms < 40){
         return 0;
     }else{
+        last_ms = clkms;
         return 1;
     }
 }
@@ -21908,6 +21902,7 @@ unsigned char checkDebounceSW2(){
     if(clkms - last_ms2 < 0){
 
         if ((200 - last_ms2)+ clkms > 40 ){
+            last_ms2 = clkms;
             return 1;
         }
     }
@@ -21915,6 +21910,7 @@ unsigned char checkDebounceSW2(){
     if(clkms - last_ms2 < 40){
         return 0;
     }else{
+        last_ms2 = clkms;
         return 1;
     }
 }
