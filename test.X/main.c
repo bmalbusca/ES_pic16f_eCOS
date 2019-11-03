@@ -52,10 +52,10 @@ unsigned int duty_cycle = 0;
 unsigned int level_bin = 0;
 unsigned int lum_threshold = 0;
 
-unsigned char nreg;
+unsigned char nreg = NREG;
 unsigned char nreg_pt;
-unsigned char pmon;
-unsigned char tala;
+unsigned char pmon = PMON;
+unsigned char tala = TALA;
 
 
 /*******************************************
