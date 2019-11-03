@@ -30,7 +30,7 @@
 #define MIN_TIME -1
 
 #define TIMER_MS_RESET 200
-#define DEBNC_TIME 20      //200ms
+#define DEBNC_TIME 10     //200ms
 
 volatile int value = 0;
 void handler_clock_hms(void);
@@ -49,7 +49,8 @@ unsigned char checkDebounceSW2();
 
 void clock_field(void);
 void config_routine(void);
-void select_routine( int mode); 
+void clock_subfields(void);
+void increment_subfield(void);
         
 volatile unsigned char clkh = CLKH;
 volatile unsigned char clkm = CLKM;
@@ -196,19 +197,8 @@ void main(void){
 
 }
 
-void select_routine( int mode){
-   
-    int mode_num = mode; 
-        switch(mode_num){			// NOTE this should be on main loop       
-                case 1: mod3_LED();break;
-                case 2:  mod3_LED();break;
-                case 3:  mod3_LED();break;
-                case 4:  mod3_LED();break;
-                default:break;	// NOTE Enable EXT interrupt or at that moment when the pic is moving to normal operation
-                   }
-    return;
-   
-}
+
+
 
 
 void config_routine(void){
@@ -224,14 +214,9 @@ void config_routine(void){
 
                 if(!IO_RB4_GetValue()){		  
                     if(checkDebounceSW1()){
-                        
-                        if (mode_field_subfield[FIELD] == 2 || mode_field_subfield[0] == 4 ){
-                            mode_field_subfield[SUBFIELD] = 1;
-                        }
-                        else{
-                       
-                        select_mode +=1; 
 
+                            select_mode +=1;
+ 
                         switch(select_mode){			
                             case 1: mod1_LED();break;
                             case 2: mod2_LED();break;
@@ -240,40 +225,115 @@ void config_routine(void){
                             default: select_mode = 0; config_mode = OFF; alarm = OFF;	// NOTE Enable EXT interrupt or at that moment when the pic is moving to normal operation
                             break;
 
-                            }
-                            
+                            }   
                         }
+                        
+                        
                         last_ms = clkms;
                     }
                        
-                    }                
+                         
              
  
                 if(!IO_RC5_GetValue()){
                     if(checkDebounceSW2()){
-                        if(mode_field_subfield[SUBFIELD] != NONE){     
-                         PWM6_LoadDutyValue(1023);
-                         IO_RA5_SetHigh();
-                         IO_RA4_SetHigh();
-                         __delay_ms(2000);
+                           
+                        mode_field_subfield[FIELD] = select_mode;
+       
+                        PWM6_LoadDutyValue(1023);
+                        IO_RA4_SetHigh();
+                        __delay_ms(500);
+                        IO_RA5_SetHigh();
+                        __delay_ms(500);
+
+                        IO_RA4_SetLow();
+                        IO_RA5_SetLow();
+                        
+                        
+                        if(select_mode== 1){
+                            clock_subfields();
                         }
-                        else{
-                           mode_field_subfield[FIELD] = select_mode;
-                           PWM6_LoadDutyValue(1023);
-                            IO_RA4_SetHigh();
-                            __delay_ms(500);
-                            IO_RA5_SetHigh();
-                           select_mode = 0; 
+                        
+                        
+
                         }
                     }
-                }
+              
                    __delay_ms(2);
                
             }while(config_mode == ON);  
     
+    mode_field_subfield[FIELD] = NONE;
+    mode_field_subfield[SUBFIELD] = NONE;
     
 }
+void increment_subfield(void){
+    int plus = 10;
+    int exit = 0;
+    PWM6_LoadDutyValue(0);
+          
+           while(exit == 0) {     
+             
+               if(!IO_RC5_GetValue()){
+                    if(checkDebounceSW2()){
+                           plus += 100;
+                         PWM6_LoadDutyValue(plus);
+                         
+                        }
+              }
+               if(!IO_RB4_GetValue()){		  
+                    if(checkDebounceSW1()){
+                        exit = 1;
+                    }
+             
+             
+          }
+             
+             
+        }
+}
 
+void clock_subfields(void){
+    
+    unsigned int  subfield = 1; 
+    
+         do{
+      
+                if(!IO_RB4_GetValue()){		  
+                    if(checkDebounceSW1()){
+                            subfield +=1;
+                        }
+                        last_ms = clkms;
+                    }
+                       
+                       switch(subfield){			
+                            case 1: mod1_LED();break;
+                            case 2: mod2_LED();break;
+                            case 3: mod3_LED();break;
+                            case 4: mod4_LED();break;
+                            default: 
+                            break;
+
+                            }   
+               
+                
+             
+ 
+                if(!IO_RC5_GetValue()){
+                    if(checkDebounceSW2()){
+                           
+                        mode_field_subfield[SUBFIELD] = subfield;
+                        increment_subfield();
+                        }
+                    }
+              
+                   __delay_ms(2);
+               
+            }while(subfield <= 4 );  
+    
+    
+    
+}
 
 
 /*******************************************
