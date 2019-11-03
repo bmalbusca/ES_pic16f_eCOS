@@ -13,6 +13,7 @@
  * 256B -- 256 x 1B  
  */
 
+void recoverData();
 void push_ring(unsigned char* nreg_pt, unsigned char nreg, unsigned char* nreg_init, unsigned char* ring_byte);
 unsigned char read_ring(unsigned char nreg_pt, unsigned char nreg, unsigned char nreg_init, unsigned char index, unsigned char subindex);
 void cksum_w();

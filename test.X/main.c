@@ -8,6 +8,7 @@
 
 #include <xc.h>
 #include "mcc_generated_files/mcc.h"
+#include "eeprom_rw.h"
 
 #define NREG 30
 #define PMON 5
