@@ -191,6 +191,22 @@ void main(void){
                                 }
                             last_ms = clkms;
                         }
+
+		      if(!IO_RC5_GetValue()){
+
+				 switch(select_mode){			// NOTE this should be on main loop
+                                	case 1: mod1_LED();break;
+                                	case 2: mod2_LED();break;
+                                	case 3: mod3_LED();break;
+                                	case 4: mod4_LED();break;
+                                	default:select_mode =0; /*config_mode = OFF;*/ alarm = SET;	// NOTE Enable EXT interrupt or at that moment when the pic is moving to normal operation
+                                	break;
+
+		      
+		      
+		      }
+
+
                 
                    }while(config_mode == ON);
                 
