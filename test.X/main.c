@@ -22,10 +22,15 @@
 #define ON 1
 #define OFF 0
 #define SET 2
+
+#define FIELD 0
+#define SUBFIELD 1
+
+#define NONE -1
 #define MIN_TIME -1
 
 #define TIMER_MS_RESET 200
-#define DEBNC_TIME 40      //200ms
+#define DEBNC_TIME 20      //200ms
 
 volatile int value = 0;
 void handler_clock_hms(void);
@@ -54,7 +59,7 @@ volatile unsigned char clkms = 0;
 unsigned char last_ms = 0;
 unsigned char last_ms2 = 0;
 
-volatile unsigned char bounce_time = 0;
+unsigned int mode_field_subfield[2]= {NONE,NONE};
 volatile unsigned char set_mode = 0;
 volatile unsigned char config_mode = OFF;
 volatile unsigned char alarm = 0;
@@ -214,15 +219,20 @@ void config_routine(void){
     
     
             do{
-                if(select_mode == 0){  			
+                if(mode_field_subfield[FIELD] == NONE && select_mode == 0){  			
                         all_LED();} 
 
                 if(!IO_RB4_GetValue()){		  
                     if(checkDebounceSW1()){
                         
+                        if (mode_field_subfield[FIELD] == 2 || mode_field_subfield[0] == 4 ){
+                            mode_field_subfield[SUBFIELD] = 1;
+                        }
+                        else{
+                       
                         select_mode +=1; 
 
-                        switch(select_mode){			// NOTE this should be on main loop
+                        switch(select_mode){			
                             case 1: mod1_LED();break;
                             case 2: mod2_LED();break;
                             case 3: mod3_LED();break;
@@ -231,16 +241,33 @@ void config_routine(void){
                             break;
 
                             }
+                            
+                        }
                         last_ms = clkms;
+                    }
+                       
                     }                
-                }
-
+             
+ 
                 if(!IO_RC5_GetValue()){
                     if(checkDebounceSW2()){
-                        select_routine(select_mode);
+                        if(mode_field_subfield[SUBFIELD] != NONE){     
+                         PWM6_LoadDutyValue(1023);
+                         IO_RA5_SetHigh();
+                         IO_RA4_SetHigh();
+                         __delay_ms(2000);
+                        }
+                        else{
+                           mode_field_subfield[FIELD] = select_mode;
+                           PWM6_LoadDutyValue(1023);
+                            IO_RA4_SetHigh();
+                            __delay_ms(500);
+                            IO_RA5_SetHigh();
+                           select_mode = 0; 
+                        }
                     }
                 }
-                   __delay_ms(1);
+                   __delay_ms(2);
                
             }while(config_mode == ON);  
     

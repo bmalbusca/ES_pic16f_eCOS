@@ -21547,7 +21547,7 @@ void cksum_w();
 unsigned char cksum();
 void reset_recv();
 # 11 "main.c" 2
-# 30 "main.c"
+# 35 "main.c"
 volatile int value = 0;
 void handler_clock_hms(void);
 void handler_clock_ms(void);
@@ -21575,7 +21575,7 @@ volatile unsigned char clkms = 0;
 unsigned char last_ms = 0;
 unsigned char last_ms2 = 0;
 
-volatile unsigned char bounce_time = 0;
+unsigned int mode_field_subfield[2]= {-1,-1};
 volatile unsigned char set_mode = 0;
 volatile unsigned char config_mode = 0;
 volatile unsigned char alarm = 0;
@@ -21735,11 +21735,16 @@ void config_routine(void){
 
 
             do{
-                if(select_mode == 0){
+                if(mode_field_subfield[0] == -1 && select_mode == 0){
                         all_LED();}
 
                 if(!PORTBbits.RB4){
                     if(checkDebounceSW1()){
+
+                        if (mode_field_subfield[0] == 2 || mode_field_subfield[0] == 4 ){
+                            mode_field_subfield[1] = 1;
+                        }
+                        else{
 
                         select_mode +=1;
 
@@ -21752,22 +21757,39 @@ void config_routine(void){
                             break;
 
                             }
+
+                        }
                         last_ms = clkms;
                     }
-                }
+
+                    }
+
 
                 if(!PORTCbits.RC5){
                     if(checkDebounceSW2()){
-                        select_routine(select_mode);
+                        if(mode_field_subfield[1] != -1){
+                         PWM6_LoadDutyValue(1023);
+                         do { LATAbits.LATA5 = 1; } while(0);
+                         do { LATAbits.LATA4 = 1; } while(0);
+                         _delay((unsigned long)((2000)*(1000000/4000.0)));
+                        }
+                        else{
+                           mode_field_subfield[0] = select_mode;
+                           PWM6_LoadDutyValue(1023);
+                            do { LATAbits.LATA4 = 1; } while(0);
+                            _delay((unsigned long)((500)*(1000000/4000.0)));
+                            do { LATAbits.LATA5 = 1; } while(0);
+                           select_mode = 0;
+                        }
                     }
                 }
-                   _delay((unsigned long)((1)*(1000000/4000.0)));
+                   _delay((unsigned long)((2)*(1000000/4000.0)));
 
             }while(config_mode == 1);
 
 
 }
-# 260 "main.c"
+# 287 "main.c"
 void all_LED(void){
 
        do { LATAbits.LATA7 = 1; } while(0);
@@ -21881,13 +21903,13 @@ unsigned char checkDebounceSW1(){
 
     if(clkms - last_ms < 0){
 
-        if ((200 - last_ms)+ clkms > 40 ){
+        if ((200 - last_ms)+ clkms > 20 ){
             last_ms = clkms;
             return 1;
         }
     }
 
-    if(clkms - last_ms < 40){
+    if(clkms - last_ms < 20){
         return 0;
     }else{
         last_ms = clkms;
@@ -21901,13 +21923,13 @@ unsigned char checkDebounceSW2(){
 
     if(clkms - last_ms2 < 0){
 
-        if ((200 - last_ms2)+ clkms > 40 ){
+        if ((200 - last_ms2)+ clkms > 20 ){
             last_ms2 = clkms;
             return 1;
         }
     }
 
-    if(clkms - last_ms2 < 40){
+    if(clkms - last_ms2 < 20){
         return 0;
     }else{
         last_ms2 = clkms;
