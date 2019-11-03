@@ -46,6 +46,7 @@ void mod4_LED(void);
 
 unsigned char checkDebounceSW1();
 unsigned char checkDebounceSW2();
+void representLed(unsigned char _value);
 
 void clock_field(void);
 void config_routine(void);
@@ -429,4 +430,18 @@ unsigned char checkDebounceSW2(){
         last_ms2 = clkms;
         return 1;
     }
+}
+
+//Representa um valor nos LEDs, so consegue representar valores entre 0 a 2^4 -1 = 15 (decimal)
+void representLed(unsigned char _value){
+    LATA = 0;
+
+    if(_value >> 4){         //Se o valor for acima de 16
+        return
+    }
+
+    LATAbits.LATA7 = _value & 0b1000    //MSB, primeiro led
+    LATAbits.LATA6 = _value & 0b100
+    LATAbits.LATA5 = _value & 0b10
+    LATAbits.LATA4 = _value & 1
 }
