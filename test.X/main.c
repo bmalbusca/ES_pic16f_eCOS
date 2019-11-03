@@ -24,7 +24,7 @@
 #define SET 2
 #define MIN_TIME -1
 
-#define DEBNC_TIME 80      //200ms
+#define DEBNC_TIME 40      //200ms
 
 volatile int value = 0;
 void handler_clock_hms(void);
@@ -37,9 +37,13 @@ void mod1_LED(void);
 void mod2_LED(void);
 void mod3_LED(void);
 void mod4_LED(void);
+
 unsigned char checkDebounceSW1();
+unsigned char checkDebounceSW2();
+
 void clock_field(void);
 void config_routine(void);
+void select_routine( int mode); 
         
 volatile unsigned char clkh = CLKH;
 volatile unsigned char clkm = CLKM;
@@ -47,6 +51,7 @@ volatile unsigned char seg;
 volatile unsigned char clkms = 0;
 
 unsigned char last_ms = 0;
+unsigned char last_ms2 = 0;
 
 volatile unsigned char bounce_time = 0;
 volatile unsigned char set_mode = 0;
@@ -179,9 +184,10 @@ void main(void){
                       config_routine();
                       EXT_INT_InterruptEnable(); 
                 }
-               
+                    
+                __delay_ms(1);
 
-
+                    
                 }while(1);    // NOTE maintain this state - ONly debug
    
     
@@ -189,11 +195,26 @@ void main(void){
 
 }
 
+void select_routine( int mode){
+   
+    int mode_num = mode; 
+        switch(mode_num){			// NOTE this should be on main loop       
+                case 1: mod3_LED();break;
+                case 2:  mod3_LED();break;
+                case 3:  mod3_LED();break;
+                case 4:  mod3_LED();break;
+                default:break;	// NOTE Enable EXT interrupt or at that moment when the pic is moving to normal operation
+                   }
+    return;
+   
+}
+
 
 void config_routine(void){
     
     unsigned int select_mode =0;
       last_ms = clkms;
+      last_ms2 = clkms;
     
     
             do{
@@ -221,17 +242,10 @@ void config_routine(void){
                 }
 
                 if(!IO_RC5_GetValue()){
-
-                   switch(select_mode){			// NOTE this should be on main loop
-                            case 1: mod1_LED();break;
-                            case 2:  clock_field();break;
-                            case 3:  mod1_LED();break;
-                            case 4:  mod1_LED();break;
-                            default:	// NOTE Enable EXT interrupt or at that moment when the pic is moving to normal operation
-                            break;
-
-                          }
-
+                    if(checkDebounceSW2()){
+                        select_routine(select_mode);
+                     last_ms2 = clkms;
+                    }
                 }
                    __delay_ms(1);
                
@@ -248,47 +262,7 @@ void config_routine(void){
  *  Obs: 
  *******************************************/
 
-void clock_field(void){
-     unsigned int select =0;    
-       last_ms = clkms;
-     if (select == 0){
-     all_LED();}
-    
-     do{ 
-        if(!IO_RB4_GetValue()){		
-            select = +1;
-                if(checkDebounceSW1()){
-                    switch(select){			// NOTE this should be on main loop
-                        case 1: mod1_LED();break;
-                        case 2: mod2_LED();break;
-                        case 3: mod3_LED();break;
-                        case 4: mod4_LED();break;
-                        default:select =-1; break;
 
-                        }
-                    last_ms = clkms;
-                }
-                    
-                }
-        
-         if(!IO_RC5_GetValue()){
-
-                       switch(select){			// NOTE this should be on main loop
-                                case 1: mod1_LED();break;
-                                case 2: mod2_LED() ;break;
-                                case 3:  mod3_LED();break;
-                                case 4:  mod1_LED();break;
-                                default: select=0; break;
-
-                              }
-
-                    }
-       
-        __delay_ms(1);
-    }while(select != -1);
-    
-     
-}
 
 void all_LED(void){
     
@@ -409,6 +383,24 @@ unsigned char checkDebounceSW1(){
     }
     
     if(clkms - last_ms < DEBNC_TIME){
+        return 0;
+    }else{
+        return 1;
+    }
+}
+
+
+unsigned char checkDebounceSW2(){
+    //Fazer disable interrupt clkms
+    
+    if(clkms - last_ms2 < 0){       // clkms deu reset
+        
+        if ((200 - last_ms2)+ clkms > DEBNC_TIME ){
+            return 1;
+        }
+    }
+    
+    if(clkms - last_ms2 < DEBNC_TIME){
         return 0;
     }else{
         return 1;
