@@ -21547,7 +21547,28 @@ void cksum_w();
 unsigned char cksum();
 void reset_recv();
 # 11 "main.c" 2
-# 35 "main.c"
+
+# 1 "./I2C/i2c.h" 1
+# 152 "./I2C/i2c.h"
+void I2C_Initialize(void);
+
+unsigned char tsttc (void);
+
+
+
+void OpenI2C( unsigned char sync_mode, unsigned char slew );
+
+signed char WriteI2C( unsigned char data_out );
+
+signed char putsI2C( unsigned char *wrptr );
+
+unsigned char ReadI2C( void );
+# 285 "./I2C/i2c.h"
+signed char WriteI2C( unsigned char data_out );
+
+signed char getsI2C( unsigned char *rdptr, unsigned char length );
+# 12 "main.c" 2
+# 36 "main.c"
 volatile int value = 0;
 void handler_clock_hms(void);
 void handler_clock_ms(void);
@@ -21580,18 +21601,25 @@ unsigned int hours_units =0;
 unsigned int min_tens =0;
 unsigned int min_units =0;
 
+unsigned char nreg_init;
+unsigned char ring_byte[5];
+
 unsigned char last_ms = 0;
 unsigned char last_ms2 = 0;
 
 unsigned int mode_field_subfield[2]= {-1,-1};
 volatile unsigned char set_mode = 0;
 volatile unsigned char config_mode = 0;
+
 volatile unsigned char alarm = 0;
+
+unsigned char temp;
+unsigned char alaf;
 
 unsigned int convertedValue = 0;
 unsigned int duty_cycle = 0;
 
-unsigned int level_bin = 0;
+unsigned int lum_bin = 0;
 unsigned int lum_threshold = 0;
 
 unsigned char nreg = 30;
@@ -21653,7 +21681,13 @@ void main(void){
     INT_SetInterruptHandler(sw1_EXT);
     TMR2_SetInterruptHandler(handler_clock_ms);
 
-    unsigned int task_schedule = 0;
+
+
+    nreg = (unsigned char) (0xF000 + 5 * 30 >= 0xF0FF - 10 ? 256 : 5 * 30);
+    nreg_pt = 0;
+    nreg_init = 0;
+    alaf = 1;
+    temp = 0;
 
     recoverData();
 
@@ -21679,9 +21713,31 @@ void main(void){
                     if(!config_mode){
 
                         convertedValue = ADC_read();
-                        level_bin = (convertedValue >> 8);
-                        LED_bin(level_bin);
-                        lum_threshold = (level_bin > 2);
+                        lum_bin = (convertedValue >> 8);
+                        LED_bin(lum_bin);
+
+
+
+
+
+                        lum_threshold = (lum_bin > 2 || temp > 25 ) & alaf;
+
+                      if (temp != read_ring(nreg_pt, nreg, nreg_init, 0, 3) || lum_bin != read_ring(nreg_pt, nreg, nreg_init, 0, 4)) {
+
+                            (INTCONbits.GIE = 0);
+                            ring_byte[0] = clkh;
+                            ring_byte[1] = clkm;
+                            ring_byte[2] = seg;
+                            (INTCONbits.GIE = 1);
+                            ring_byte[3] = temp;
+                            ring_byte[4] = lum_bin;
+                            push_ring(&nreg_pt, nreg, &nreg_init, ring_byte);
+
+                            DATAEE_WriteByte(0xF0FF - 10 + 4, nreg_pt);
+                            cksum_w();
+                        }
+
+
 
                         if(lum_threshold){
                             if(alarm == 2){
@@ -21751,7 +21807,6 @@ void config_routine(void){
                             }
                         }
 
-
                         last_ms = clkms;
                     }
 
@@ -21764,8 +21819,6 @@ void config_routine(void){
                         if(select_mode== 1){
                             clock_subfields();
                         }
-
-
 
                         }
                     }
@@ -21789,19 +21842,15 @@ void increment_subfield(void){
 
                if(!PORTCbits.RC5){
                     if(checkDebounceSW2()){
-                           plus += 100;
+                         plus += 100;
                          PWM6_LoadDutyValue(plus);
-
                         }
               }
                if(!PORTBbits.RB4){
                     if(checkDebounceSW1()){
                         exit = 1;
                     }
-
-
           }
-
 
         }
 }
@@ -21830,8 +21879,6 @@ void clock_subfields(void){
                             }
 
 
-
-
                 if(!PORTCbits.RC5){
                     if(checkDebounceSW2()){
 
@@ -21847,7 +21894,7 @@ void clock_subfields(void){
 
 
 }
-# 344 "main.c"
+# 371 "main.c"
 void all_LED(void){
 
        do { LATAbits.LATA7 = 1; } while(0);
@@ -22009,4 +22056,44 @@ void mode_select_LED(){
                         do { LATAbits.LATA5 = 0; } while(0);
 
 
+}
+
+void recover(){
+
+
+    if(DATAEE_ReadByte(0xF0FF - 10) == 0xAB) {
+        if(DATAEE_ReadByte(0xF0FF) == cksum()) {
+            clkh = DATAEE_ReadByte(0xF0FF - 10 + 1);
+            clkm = DATAEE_ReadByte(0xF0FF - 10 + 2);
+            nreg = DATAEE_ReadByte(0xF0FF - 10 + 3);
+            nreg_pt = DATAEE_ReadByte(0xF0FF - 10 + 4);
+            pmon = DATAEE_ReadByte(0xF0FF - 10 + 5);
+            tala = DATAEE_ReadByte(0xF0FF - 10 + 6);
+        }
+    }
+
+    reset_recv();
+
+
+    DATAEE_WriteByte(0xF0FF - 10, 0xAB);
+    DATAEE_WriteByte(0xF0FF - 10 + 3, nreg);
+    DATAEE_WriteByte(0xF0FF - 10 + 5, pmon);
+    DATAEE_WriteByte(0xF0FF - 10 + 6, tala);
+    cksum_w();
+
+
+
+}
+
+void representLed(unsigned char _value){
+    LATA = 0;
+
+    if(_value >> 4){
+        return;
+    }
+
+    LATAbits.LATA7 = _value & 0b1000 ;
+    LATAbits.LATA6 = _value & 0b100;
+    LATAbits.LATA5 = _value & 0b10;
+    LATAbits.LATA4 = _value & 1;
 }

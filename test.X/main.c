@@ -9,6 +9,7 @@
 #include <xc.h>
 #include "mcc_generated_files/mcc.h"
 #include "eeprom_rw.h"
+#include "I2C/i2c.h" 
 
 #define NREG 30
 #define PMON 5
@@ -64,18 +65,25 @@ unsigned int hours_units =0;
 unsigned int min_tens =0; //0 -59
 unsigned int min_units =0;
 
+unsigned char nreg_init;
+unsigned char ring_byte[5];
+
 unsigned char last_ms = 0;
 unsigned char last_ms2 = 0;
 
 unsigned int mode_field_subfield[2]= {NONE,NONE};
 volatile unsigned char set_mode = 0;
 volatile unsigned char config_mode = OFF;
+
 volatile unsigned char alarm = 0;
+
+unsigned char temp;
+unsigned char alaf;
 
 unsigned int convertedValue = 0;
 unsigned int duty_cycle = 0;
 
-unsigned int level_bin = 0;
+unsigned int lum_bin = 0;
 unsigned int lum_threshold = 0;
 
 unsigned char nreg = NREG;
@@ -137,7 +145,13 @@ void main(void){
     INT_SetInterruptHandler(sw1_EXT);
     TMR2_SetInterruptHandler(handler_clock_ms);
    
-    unsigned int task_schedule = 0;
+   
+    
+    nreg = (unsigned char) (EE_FST + 5 * NREG >= EE_RECV ? EE_SIZE : 5 * NREG);
+    nreg_pt = 0;
+    nreg_init = 0;
+    alaf = 1;
+    temp = 0;
     
     recoverData();
   
@@ -163,9 +177,31 @@ void main(void){
                     if(!config_mode){
   
                         convertedValue = ADC_read();
-                        level_bin = (convertedValue >> 8);
-                        LED_bin(level_bin);                
-                        lum_threshold = (level_bin > ALAL);
+                        lum_bin = (convertedValue >> 8);
+                        LED_bin(lum_bin);
+                        
+                        //NOP();
+                        //temp = tsttc();
+                        //NOP();
+                        
+                        lum_threshold = (lum_bin > ALAL || temp > ALAT  ) & alaf;
+                        
+                      if (temp != read_ring(nreg_pt, nreg, nreg_init, 0, 3) || lum_bin != read_ring(nreg_pt, nreg, nreg_init, 0, 4)) {
+                            
+                            INTERRUPT_GlobalInterruptDisable();
+                            ring_byte[0] = clkh;
+                            ring_byte[1] = clkm;
+                            ring_byte[2] = seg;
+                            INTERRUPT_GlobalInterruptEnable();
+                            ring_byte[3] = temp;
+                            ring_byte[4] = lum_bin;
+                            push_ring(&nreg_pt, nreg, &nreg_init, ring_byte);
+
+                            DATAEE_WriteByte(EE_RECV + 4, nreg_pt);
+                            cksum_w();
+                        }
+                        
+                        
 
                         if(lum_threshold){
                             if(alarm == SET){           //if alarm is set ON you need to press SW1 ON 
@@ -234,8 +270,7 @@ void config_routine(void){
 
                             }   
                         }
-                        
-                        
+
                         last_ms = clkms;
                     }
                        
@@ -249,8 +284,6 @@ void config_routine(void){
                             clock_subfields();
                         }
                         
-                        
-
                         }
                     }
               
@@ -274,19 +307,15 @@ void increment_subfield(void){  //funcao universal para todos os subfields
                if(!IO_RC5_GetValue()){
                     if(checkDebounceSW2()){
                          plus += 100;   //teste do incremento de um subfield
-                         PWM6_LoadDutyValue(plus);
-                         
+                         PWM6_LoadDutyValue(plus);   
                         }
               }
                if(!IO_RB4_GetValue()){		  
                     if(checkDebounceSW1()){
                         exit = 1;
                     }
-             
-             
           }
-             
-             
+     
         }
 }
 
@@ -501,12 +530,39 @@ void mode_select_LED(){
     
     
 }
+
+void recover(){
+    
+    /* Recover Parameters */
+    if(DATAEE_ReadByte(EE_RECV) == WORD_MG) {
+        if(DATAEE_ReadByte(EE_LST) == cksum()) {
+            clkh = DATAEE_ReadByte(EE_RECV + 1);
+            clkm = DATAEE_ReadByte(EE_RECV + 2);
+            nreg = DATAEE_ReadByte(EE_RECV + 3);
+            nreg_pt = DATAEE_ReadByte(EE_RECV + 4);
+            pmon = DATAEE_ReadByte(EE_RECV + 5);
+            tala = DATAEE_ReadByte(EE_RECV + 6);
+        }
+    }
+
+    reset_recv();
+
+    /* Write Recovery Parameters */
+    DATAEE_WriteByte(EE_RECV, WORD_MG);
+    DATAEE_WriteByte(EE_RECV + 3, nreg);
+    DATAEE_WriteByte(EE_RECV + 5, pmon);
+    DATAEE_WriteByte(EE_RECV + 6, tala);
+    cksum_w();
+    
+    
+    
+}
 //Representa um valor nos LEDs, so consegue representar valores entre 0 a 2^4 -1 = 15 (decimal)
-/*void representLed(unsigned char _value){
+void representLed(unsigned char _value){
     LATA = 0;
 
     if(_value >> 4){         //Se o valor for acima de 16
-        return
+        return;
     }
 
     LATAbits.LATA7 = _value & 0b1000 ;   //MSB, primeiro led
@@ -514,4 +570,3 @@ void mode_select_LED(){
     LATAbits.LATA5 = _value & 0b10;
     LATAbits.LATA4 = _value & 1;
 }
-*/

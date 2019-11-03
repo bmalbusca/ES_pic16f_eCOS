@@ -15,4 +15,5 @@ mcc_generated_files/memory.h  \
 mcc_generated_files/drivers/i2c_simple_master.h  \
 mcc_generated_files/drivers/../drivers/i2c_types.h  \
 mcc_generated_files/drivers/i2c_master.h  \
-eeprom_rw.h 
+eeprom_rw.h  \
+I2C/i2c.h 
