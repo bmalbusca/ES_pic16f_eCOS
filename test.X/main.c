@@ -39,6 +39,7 @@ void mod3_LED(void);
 void mod4_LED(void);
 unsigned char checkDebounce();
 void clock_field(void);
+void config_routine(void);
         
 volatile unsigned char clkh = CLKH;
 volatile unsigned char clkm = CLKM;
@@ -49,7 +50,6 @@ unsigned char last_ms = 0;
 
 volatile unsigned char bounce_time = 0;
 volatile unsigned char set_mode = 0;
-volatile unsigned char select_mode = 0;
 volatile unsigned char config_mode = OFF;
 volatile unsigned char alarm = 0;
 
@@ -71,7 +71,8 @@ unsigned char tala = TALA;
 void sw1_EXT(void){
     
 						// NOTE Add here a simple delay 
-    if (bounce_time - seg <= MIN_TIME){ 	// NOTE Debouncing SW - WE should use other timer or higher freq
+    //if (bounce_time - seg <= MIN_TIME){ 	// NOTE Debouncing SW - WE should use other timer or higher freq
+    if(checkDebounce()){
         if (alarm == ON){               	// Turn off the alarm 
             alarm = OFF;
             RA6_SetLow();
@@ -81,17 +82,19 @@ void sw1_EXT(void){
             if(!IO_RB4_GetValue()){
                
                 if(config_mode == OFF){
-                   config_mode = ON; 			// NOTE after changing to Configure mode disable the EXT interrupt and only check if is pressed at main loop		
-                   select_mode = ON;
-	 	   //EXT_INT_InterruptDisable();
+                    config_mode = ON; 			// NOTE after changing to Configure mode disable the EXT interrupt and only check if is pressed at main loop		
+                   
+                    EXT_INT_InterruptDisable();
 
-		}					// for not overloading the interrupt vector ISR            
+                    }					// for not overloading the interrupt vector ISR            
                }
-            }    
+            } 
+           
+            last_ms = clkms;
         }
         
-        bounce_time = seg;
-    }
+        //bounce_time = seg;
+  }
     
     
 
@@ -114,10 +117,12 @@ void ISR_3s(void){
 
 void main(void){
     SYSTEM_Initialize();
+   
     TMR0_SetInterruptHandler(ISR_3s);
     TMR1_SetInterruptHandler(handler_clock_hms);
     INT_SetInterruptHandler(sw1_EXT);
     TMR2_SetInterruptHandler(handler_clock_ms);
+   
     unsigned int task_schedule = 0;
     
     recoverData();
@@ -139,11 +144,8 @@ void main(void){
         //SLEEP();
         //NOP();
 
-        //task_schedule = seg;	// NOTE should copy the volatile to  temporary copies - race condition 
-                                // In this case we should use the ring buffer to resolve the Read-Write race condition 
-	
-	//if (seg >= 5){  // NOTE  - ONly debug
-                do{
+
+              do{
                     if(!config_mode){
   
                         convertedValue = ADC_read();
@@ -151,82 +153,90 @@ void main(void){
                         LED_bin(level_bin);                
                         lum_threshold = (level_bin > ALAL);
 
-                        if(lum_threshold){		// In average we only do 2 comparisons
-                            if(alarm == SET){           // If alarm is SET the LED blinks 
+                        if(lum_threshold){
+                            if(alarm == SET){           //if alarm is set ON you need to press SW1 ON 
                                 duty_cycle +=1 ;   
                                 PWM6_LoadDutyValue(duty_cycle);
                             }
                             else if(alarm == OFF){
-                                PIE0bits.TMR0IE = 1;    // Turn on the 3s counter - NOTE Maintain this state NON Low Power mode 
-                                TMR0_StartTimer();	// NOTE - after the alarm was SET we are able to continue the reading and writing to EEPROM at the same time counting the 3s 
-                                alarm = SET ;  		// NOTE - Please follow with your kind attention to all details above
+                                PIE0bits.TMR0IE = 1;    // We exceed the limit - forget about of Low Power mode and check the 3 sec 
+                                TMR0_StartTimer();
+                                alarm = SET ;  
                             }
                         }
                         else{
-                            if(alarm == SET){		// If everything is OK turn off the alarm 
+                            if(alarm == SET){
                                 PWM6_LoadDutyValue(OFF);
                                 alarm = OFF ;
                             }
                         }
 
                      }
-                    else if(config_mode == ON){	
-                      		
-               
+                    else if(config_mode == ON){
+
                 
                       EXT_INT_InterruptDisable(); 
-                
-                            do{
-                                if(select_mode == 0){  			
-                                        all_LED();} 
-                                
-                                if(!IO_RB4_GetValue()){		  
-                                    if(checkDebounce()){
-                                        select_mode +=1; 
-                                        
-                                        switch(select_mode){			// NOTE this should be on main loop
-                                            case 1: mod1_LED();break;
-                                            case 2: mod2_LED();break;
-                                            case 3: mod3_LED();break;
-                                            case 4: mod4_LED();break;
-                                            default: select_mode = 0; config_mode = OFF; alarm = OFF;	// NOTE Enable EXT interrupt or at that moment when the pic is moving to normal operation
-                                            break;
-
-                                            }
-                                        
-                                    }
-                                    last_ms = clkms;
-                                }
-
-                              /*  if(!IO_RC5_GetValue()){
-
-                                   switch(select_mode){			// NOTE this should be on main loop
-                                            case 1: mod1_LED();break;
-                                            case 2:  clock_field();break;
-                                            case 3:  mod1_LED();break;
-                                            case 4:  mod1_LED();break;
-                                            default:	// NOTE Enable EXT interrupt or at that moment when the pic is moving to normal operation
-                                            break;
-
-                                          }
-
-                                }
-                                */    __delay_ms(20);
-                                }while(config_mode == ON);
-
-                                EXT_INT_InterruptEnable(); 
+                        config_routine();
+                        EXT_INT_InterruptEnable(); 
                 }
-		
+               
 
 
                 }while(1);    // NOTE maintain this state - ONly debug
-           
-        //}
-        
-       
-        
-  
+   
+    
     }
+
+}
+
+
+void config_routine(void){
+    
+    unsigned int select_mode =0;
+    
+    
+    
+            do{
+                if(select_mode == 0){  			
+                        all_LED();} 
+
+                if(!IO_RB4_GetValue()){		  
+                    if(checkDebounce()){
+                        
+                        select_mode +=1; 
+
+                        switch(select_mode){			// NOTE this should be on main loop
+                            case 1: mod1_LED();break;
+                            case 2: mod2_LED();break;
+                            case 3: mod3_LED();break;
+                            case 4: mod4_LED();break;
+                            default: select_mode = 0; config_mode = OFF; alarm = OFF;	// NOTE Enable EXT interrupt or at that moment when the pic is moving to normal operation
+                            break;
+
+                            }
+
+                    }
+                    last_ms = clkms;
+                }
+
+                if(!IO_RC5_GetValue()){
+
+                   switch(select_mode){			// NOTE this should be on main loop
+                            case 1: mod1_LED();break;
+                            case 2:  clock_field();break;
+                            case 3:  mod1_LED();break;
+                            case 4:  mod1_LED();break;
+                            default:	// NOTE Enable EXT interrupt or at that moment when the pic is moving to normal operation
+                            break;
+
+                          }
+
+                }
+                   __delay_ms(10);
+               
+            }while(config_mode == ON);  
+    
+    
 }
 
 
@@ -239,17 +249,20 @@ void main(void){
 
 void clock_field(void){
      unsigned int select =0;    
-     all_LED();
-    do{ 
+     
+     if (select == 0){
+     all_LED();}
+    
+     do{ 
         if(!IO_RB4_GetValue()){		
-            select += 1;
+            select = +1;
                 if(checkDebounce()){
                     switch(select){			// NOTE this should be on main loop
                         case 1: mod1_LED();break;
                         case 2: mod2_LED();break;
                         case 3: mod3_LED();break;
                         case 4: mod4_LED();break;
-                        default:select =0; break;
+                        default:select =-1; break;
 
                         }
                 }
@@ -263,12 +276,12 @@ void clock_field(void){
                                 case 2: mod2_LED() ;break;
                                 case 3:  mod3_LED();break;
                                 case 4:  mod1_LED();break;
-                                default: select_mode =0; break;
+                                default: select=0; break;
 
                               }
 
                     }
-    }while(select);
+    }while(select != -1);
     
      
 }

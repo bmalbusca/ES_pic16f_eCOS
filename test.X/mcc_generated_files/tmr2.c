@@ -55,6 +55,8 @@
   Section: Global Variables Definitions
 */
 
+void (*TMR2_InterruptHandler)(void);
+
 /**
   Section: TMR2 APIs
 */
@@ -72,17 +74,23 @@ void TMR2_Initialize(void)
     // T2RSEL T2CKIPPS pin; 
     T2RST = 0x00;
 
-    // PR2 249; 
-    T2PR = 0xF9;
+    // PR2 155; 
+    T2PR = 0x9B;
 
     // TMR2 0; 
     T2TMR = 0x00;
 
-    // Clearing IF flag.
+    // Clearing IF flag before enabling the interrupt.
     PIR4bits.TMR2IF = 0;
 
-    // T2CKPS 1:1; T2OUTPS 1:1; TMR2ON on; 
-    T2CON = 0x80;
+    // Enabling TMR2 interrupt.
+    PIE4bits.TMR2IE = 1;
+
+    // Set Default Interrupt Handler
+    TMR2_SetInterruptHandler(TMR2_DefaultInterruptHandler);
+
+    // T2CKPS 1:8; T2OUTPS 1:2; TMR2ON on; 
+    T2CON = 0xB1;
 }
 
 void TMR2_ModeSet(TMR2_HLT_MODE mode)
@@ -154,17 +162,28 @@ void TMR2_LoadPeriodRegister(uint8_t periodVal)
    TMR2_Period8BitSet(periodVal);
 }
 
-bool TMR2_HasOverflowOccured(void)
+void TMR2_ISR(void)
 {
-    // check if  overflow has occurred by checking the TMRIF bit
-    bool status = PIR4bits.TMR2IF;
-    if(status)
+
+    // clear the TMR2 interrupt flag
+    PIR4bits.TMR2IF = 0;
+
+    if(TMR2_InterruptHandler)
     {
-        // Clearing IF flag.
-        PIR4bits.TMR2IF = 0;
+        TMR2_InterruptHandler();
     }
-    return status;
 }
+
+
+void TMR2_SetInterruptHandler(void (* InterruptHandler)(void)){
+    TMR2_InterruptHandler = InterruptHandler;
+}
+
+void TMR2_DefaultInterruptHandler(void){
+    // add your TMR2 interrupt custom code
+    // or set custom function using TMR2_SetInterruptHandler()
+}
+
 /**
   End of File
 */
