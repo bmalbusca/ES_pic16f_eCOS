@@ -24,8 +24,11 @@
 #define SET 2
 #define MIN_TIME -1
 
+#define DEBNC_TIME 20       //200ms
+
 volatile int value = 0;
 void handler_clock_hms(void);
+void handler_clock_ms(void);
 void copyto_EEPROM(void);
 void LED_bin(unsigned int value);
 void all_LED(void);
@@ -34,11 +37,14 @@ void mod1_LED(void);
 void mod2_LED(void);
 void mod3_LED(void);
 void mod4_LED(void);
+unsigned char checkDebounce();
         
 volatile unsigned char clkh = CLKH;
 volatile unsigned char clkm = CLKM;
 volatile unsigned char seg;
+volatile unsigned char clkms = 0;
 
+unsigned char last_ms = 0;
 
 volatile unsigned char bounce_time = 0;
 volatile unsigned char set_mode = 0;
@@ -76,7 +82,7 @@ void sw1_EXT(void){
                 if(config_mode == OFF){
                    config_mode = ON; 			// NOTE after changing to Configure mode disable the EXT interrupt and only check if is pressed at main loop		
                    select_mode = ON;
-	 	   EXT_INT_InterruptDisable();
+	 	   //EXT_INT_InterruptDisable();
 
 		}					// for not overloading the interrupt vector ISR            
                }
@@ -110,7 +116,7 @@ void main(void){
     TMR0_SetInterruptHandler(ISR_3s);
     TMR1_SetInterruptHandler(handler_clock_hms);
     INT_SetInterruptHandler(sw1_EXT);
-    
+    TMR2_SetInterruptHandler(handler_clock_ms);
     unsigned int task_schedule = 0;
     
     recoverData();
@@ -163,27 +169,32 @@ void main(void){
                         }
 
                      }
-                    else if(config_mode == ON){	// NOTE Do all your field selection routines here 
-                        			// NOTE write a do while until the Config mode OFF
-                      //all_LED();		// NOTE Check if SW1 and SW2 was pressed - Disable EXT Interrupt
-		      //config_mode = SET;			// NOTE Do this in the main loop
-		      //EXT_INT_InterruptDisable()
-			while(select_mode){ 
-				if(!IO_RB4_GetValue()){		  
-                   			select_mode +=1; 
-                    			switch(select_mode){			// NOTE this should be on main loop
-                        			case 1: mod1_LED();break;
-                        			case 2: mod2_LED();break;
-                        			case 3: mod3_LED();break;
-                        			case 4: mod4_LED();break;
-                        			default:select_mode =0; config_mode = OFF;alarm = SET;	// NOTE Enable EXT interrupt or at that moment when the pic is moving to normal operation
-                        			break;
-
-                            		}
-                        	}
+                    else if(config_mode == ON){	
+                      if(select_mode == 0){  			
+                      all_LED();}		
+               
                 
-                     	}
-			EXT_INT_InterruptEnable(); 
+                      EXT_INT_InterruptDisable(); 
+                
+                do{
+                    if(!IO_RB4_GetValue()){		  
+                   		if(checkDebounce())
+                            select_mode +=1; 
+                            switch(select_mode){			// NOTE this should be on main loop
+                                case 1: mod1_LED();break;
+                                case 2: mod2_LED();break;
+                                case 3: mod3_LED();break;
+                                case 4: mod4_LED();break;
+                                default:select_mode =0; /*config_mode = OFF;*/ alarm = SET;	// NOTE Enable EXT interrupt or at that moment when the pic is moving to normal operation
+                                break;
+
+                                }
+                            last_ms = clkms;
+                        }
+                
+                   }while(config_mode == ON);
+                
+                    EXT_INT_InterruptEnable(); 
                 }
 		
 
@@ -261,9 +272,11 @@ unsigned int ADC_read(void){
 }
 
 void handler_clock_hms(void){
+   
     if(!config_mode){
         IO_RA7_Toggle();
     }
+    
     seg++;
     if(seg >= 60) {
         clkm++;
@@ -274,6 +287,13 @@ void handler_clock_hms(void){
         }
     }
     
+}
+void handler_clock_ms(void){   
+    clkms++;
+    
+    if(clkms >= 100){
+        clkms = 0;
+    }
 }
 
 void copyto_EEPROM(void) {
@@ -304,5 +324,24 @@ void mod4_LED(void){
     LATA = 0;
     PWM6_LoadDutyValue(OFF);
     IO_RA4_SetHigh();
-     
+}
+
+unsigned char checkDebounce(){
+    //Fazer disable interrupt clkms
+    
+    if(clkms - last_ms < 0){       // clkms deu reset
+        clkms+= 100;
+    }
+    
+    if(clkms - last_ms < DEBNC_TIME){
+        if(clkms > 100){
+            clkms -= 100;
+        }
+        return 0;
+    }else{
+        if(clkms > 100){
+            clkms -= 100;
+        }
+        return 1;
+    }
 }
