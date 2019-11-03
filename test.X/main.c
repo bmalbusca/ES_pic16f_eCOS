@@ -24,7 +24,7 @@
 #define SET 2
 #define MIN_TIME -1
 
-#define DEBNC_TIME 18       //200ms
+#define DEBNC_TIME 80      //200ms
 
 volatile int value = 0;
 void handler_clock_hms(void);
@@ -37,7 +37,7 @@ void mod1_LED(void);
 void mod2_LED(void);
 void mod3_LED(void);
 void mod4_LED(void);
-unsigned char checkDebounce();
+unsigned char checkDebounceSW1();
 void clock_field(void);
 void config_routine(void);
         
@@ -72,7 +72,7 @@ void sw1_EXT(void){
     
 						// NOTE Add here a simple delay 
     //if (bounce_time - seg <= MIN_TIME){ 	// NOTE Debouncing SW - WE should use other timer or higher freq
-    if(checkDebounce()){
+    if(checkDebounceSW1()){
         if (alarm == ON){               	// Turn off the alarm 
             alarm = OFF;
             RA6_SetLow();
@@ -176,8 +176,8 @@ void main(void){
 
                 
                       EXT_INT_InterruptDisable(); 
-                        config_routine();
-                        EXT_INT_InterruptEnable(); 
+                      config_routine();
+                      EXT_INT_InterruptEnable(); 
                 }
                
 
@@ -193,7 +193,7 @@ void main(void){
 void config_routine(void){
     
     unsigned int select_mode =0;
-    
+      last_ms = clkms;
     
     
             do{
@@ -201,7 +201,7 @@ void config_routine(void){
                         all_LED();} 
 
                 if(!IO_RB4_GetValue()){		  
-                    if(checkDebounce()){
+                    if(checkDebounceSW1()){
                         
                         select_mode +=1; 
 
@@ -214,9 +214,10 @@ void config_routine(void){
                             break;
 
                             }
+                        last_ms = clkms;
 
                     }
-                    last_ms = clkms;
+                    
                 }
 
                 if(!IO_RC5_GetValue()){
@@ -232,7 +233,7 @@ void config_routine(void){
                           }
 
                 }
-                   __delay_ms(10);
+                   __delay_ms(1);
                
             }while(config_mode == ON);  
     
@@ -249,14 +250,14 @@ void config_routine(void){
 
 void clock_field(void){
      unsigned int select =0;    
-     
+       last_ms = clkms;
      if (select == 0){
      all_LED();}
     
      do{ 
         if(!IO_RB4_GetValue()){		
             select = +1;
-                if(checkDebounce()){
+                if(checkDebounceSW1()){
                     switch(select){			// NOTE this should be on main loop
                         case 1: mod1_LED();break;
                         case 2: mod2_LED();break;
@@ -265,8 +266,9 @@ void clock_field(void){
                         default:select =-1; break;
 
                         }
-                }
                     last_ms = clkms;
+                }
+                    
                 }
         
          if(!IO_RC5_GetValue()){
@@ -281,6 +283,8 @@ void clock_field(void){
                               }
 
                     }
+       
+        __delay_ms(1);
     }while(select != -1);
     
      
@@ -354,12 +358,12 @@ void handler_clock_hms(void){
             clkm = 0;
         }
     }
-    
+     
 }
 void handler_clock_ms(void){   
     clkms++;
     
-    if(clkms >= 100){
+    if(clkms >= 200){
         clkms = 0;
     }
 }
@@ -394,22 +398,19 @@ void mod4_LED(void){
     IO_RA4_SetHigh();
 }
 
-unsigned char checkDebounce(){
+unsigned char checkDebounceSW1(){
     //Fazer disable interrupt clkms
     
     if(clkms - last_ms < 0){       // clkms deu reset
-        clkms+= 100;
+        
+        if ((200 - last_ms)+ clkms > DEBNC_TIME ){
+            return 1;
+        }
     }
     
     if(clkms - last_ms < DEBNC_TIME){
-        if(clkms > 100){
-            clkms -= 100;
-        }
         return 0;
     }else{
-        if(clkms > 100){
-            clkms -= 100;
-        }
         return 1;
     }
 }

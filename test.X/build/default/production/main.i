@@ -21559,7 +21559,7 @@ void mod1_LED(void);
 void mod2_LED(void);
 void mod3_LED(void);
 void mod4_LED(void);
-unsigned char checkDebounce();
+unsigned char checkDebounceSW1();
 void clock_field(void);
 void config_routine(void);
 
@@ -21594,7 +21594,7 @@ void sw1_EXT(void){
 
 
 
-    if(checkDebounce()){
+    if(checkDebounceSW1()){
         if (alarm == 1){
             alarm = 0;
             do { LATAbits.LATA6 = 0; } while(0);
@@ -21698,8 +21698,8 @@ void main(void){
 
 
                       (PIE0bits.INTE = 0);
-                        config_routine();
-                        (PIE0bits.INTE = 1);
+                      config_routine();
+                      (PIE0bits.INTE = 1);
                 }
 
 
@@ -21715,7 +21715,7 @@ void main(void){
 void config_routine(void){
 
     unsigned int select_mode =0;
-
+      last_ms = clkms;
 
 
             do{
@@ -21723,7 +21723,7 @@ void config_routine(void){
                         all_LED();}
 
                 if(!PORTBbits.RB4){
-                    if(checkDebounce()){
+                    if(checkDebounceSW1()){
 
                         select_mode +=1;
 
@@ -21736,9 +21736,10 @@ void config_routine(void){
                             break;
 
                             }
+                        last_ms = clkms;
 
                     }
-                    last_ms = clkms;
+
                 }
 
                 if(!PORTCbits.RC5){
@@ -21754,23 +21755,23 @@ void config_routine(void){
                           }
 
                 }
-                   _delay((unsigned long)((10)*(1000000/4000.0)));
+                   _delay((unsigned long)((1)*(1000000/4000.0)));
 
             }while(config_mode == 1);
 
 
 }
-# 250 "main.c"
+# 251 "main.c"
 void clock_field(void){
      unsigned int select =0;
-
+       last_ms = clkms;
      if (select == 0){
      all_LED();}
 
      do{
         if(!PORTBbits.RB4){
             select = +1;
-                if(checkDebounce()){
+                if(checkDebounceSW1()){
                     switch(select){
                         case 1: mod1_LED();break;
                         case 2: mod2_LED();break;
@@ -21779,8 +21780,9 @@ void clock_field(void){
                         default:select =-1; break;
 
                         }
-                }
                     last_ms = clkms;
+                }
+
                 }
 
          if(!PORTCbits.RC5){
@@ -21795,6 +21797,8 @@ void clock_field(void){
                               }
 
                     }
+
+        _delay((unsigned long)((1)*(1000000/4000.0)));
     }while(select != -1);
 
 
@@ -21873,7 +21877,7 @@ void handler_clock_hms(void){
 void handler_clock_ms(void){
     clkms++;
 
-    if(clkms >= 100){
+    if(clkms >= 200){
         clkms = 0;
     }
 }
@@ -21908,22 +21912,19 @@ void mod4_LED(void){
     do { LATAbits.LATA4 = 1; } while(0);
 }
 
-unsigned char checkDebounce(){
+unsigned char checkDebounceSW1(){
 
 
     if(clkms - last_ms < 0){
-        clkms+= 100;
+
+        if ((200 - last_ms)+ clkms > 80 ){
+            return 1;
+        }
     }
 
-    if(clkms - last_ms < 18){
-        if(clkms > 100){
-            clkms -= 100;
-        }
+    if(clkms - last_ms < 80){
         return 0;
     }else{
-        if(clkms > 100){
-            clkms -= 100;
-        }
         return 1;
     }
 }
