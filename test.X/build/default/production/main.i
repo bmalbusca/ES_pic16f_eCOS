@@ -21092,6 +21092,13 @@ void (*i2c1_driver_busCollisionISR)(void);
 void (*i2c1_driver_i2cISR)(void);
 # 55 "./mcc_generated_files/mcc.h" 2
 
+# 1 "./mcc_generated_files/pwm6.h" 1
+# 102 "./mcc_generated_files/pwm6.h"
+ void PWM6_Initialize(void);
+# 129 "./mcc_generated_files/pwm6.h"
+ void PWM6_LoadDutyValue(uint16_t dutyValue);
+# 56 "./mcc_generated_files/mcc.h" 2
+
 # 1 "./mcc_generated_files/tmr1.h" 1
 # 100 "./mcc_generated_files/tmr1.h"
 void TMR1_Initialize(void);
@@ -21117,13 +21124,6 @@ void TMR1_ISR(void);
 extern void (*TMR1_InterruptHandler)(void);
 # 421 "./mcc_generated_files/tmr1.h"
 void TMR1_DefaultInterruptHandler(void);
-# 56 "./mcc_generated_files/mcc.h" 2
-
-# 1 "./mcc_generated_files/pwm6.h" 1
-# 102 "./mcc_generated_files/pwm6.h"
- void PWM6_Initialize(void);
-# 129 "./mcc_generated_files/pwm6.h"
- void PWM6_LoadDutyValue(uint16_t dutyValue);
 # 57 "./mcc_generated_files/mcc.h" 2
 
 # 1 "./mcc_generated_files/tmr2.h" 1
@@ -21569,6 +21569,17 @@ signed char WriteI2C( unsigned char data_out );
 signed char getsI2C( unsigned char *rdptr, unsigned char length );
 # 12 "main.c" 2
 # 36 "main.c"
+typedef struct Subfield_Info_Struct{
+    unsigned char(*limit)(void);
+    void(*reconstruct_subfield)(unsigned char);
+}Subfield_Info;
+
+
+
+
+
+
+
 volatile int value = 0;
 void handler_clock_hms(void);
 void handler_clock_ms(void);
@@ -21576,6 +21587,14 @@ void copyto_EEPROM(void);
 void LED_bin(unsigned int value);
 void all_LED(void);
 unsigned int ADC_read(void);
+void recAlarm(unsigned char _value);
+void recMinutes(unsigned char _value);
+void recHour(unsigned char _value);
+unsigned char limitTempThreshUnits(void);
+unsigned char limitHoursUnits(void);
+void recTempThresh(unsigned char _value);
+void recLumThresh(unsigned char _value);
+
 void mod1_LED(void);
 void mod2_LED(void);
 void mod3_LED(void);
@@ -21583,13 +21602,18 @@ void mod4_LED(void);
 
 unsigned char checkDebounceSW1();
 unsigned char checkDebounceSW2();
-void representLed(unsigned char _value);
+void representLed(unsigned char val);
 
 void clock_field(void);
 void config_routine(void);
-void clock_subfields(void);
-void increment_subfield(void);
+void selectSubfield(void);
+void increment_subfield();
+void getSubfieldInfo(void);
 void mode_select_LED();
+
+
+
+
 
 volatile unsigned char clkh = 0;
 volatile unsigned char clkm = 0;
@@ -21628,6 +21652,12 @@ unsigned char nreg_pt;
 unsigned char pmon = 5;
 unsigned char tala = 3;
 
+Subfield_Info subfield_info = {.limit = ((void*)0), .reconstruct_subfield = ((void*)0)};
+
+const unsigned char num_subfields[4] = {4, 1, 2, 1};
+unsigned char temp_thresh = 100;
+unsigned char lum_thresh = 2;
+
 
 
 
@@ -21650,13 +21680,13 @@ void sw1_EXT(void){
 
 
 
-                    }
-               }
+                }
             }
-            last_ms = clkms;
         }
+        last_ms = clkms;
+    }
 
-  }
+}
 
 
 
@@ -21677,10 +21707,14 @@ void ISR_3s(void){
 
 }
 
+
+
+
+
+
 void main(void){
 
     SYSTEM_Initialize();
-
     TMR0_SetInterruptHandler(ISR_3s);
     TMR1_SetInterruptHandler(handler_clock_hms);
     INT_SetInterruptHandler(sw1_EXT);
@@ -21701,11 +21735,13 @@ void main(void){
     duty_cycle = 0;
     set_mode= 0;
 
+
     i2c1_driver_open();
     TRISCbits.TRISC3 = 1;
     TRISCbits.TRISC4 = 1;
     WPUC3 = 1;
     WPUC4 = 1;
+
 
     recoverData();
 
@@ -21723,100 +21759,200 @@ void main(void){
     while (1)
     {
 
-            __asm("sleep");
-            __nop();
+        __asm("sleep");
+        __nop();
 
-             PIE4bits.TMR1IE = 0;
-             t5s = last5s;
-             PIE4bits.TMR1IE = 1;
+        PIE4bits.TMR1IE = 0;
+        t5s = last5s;
+        PIE4bits.TMR1IE = 1;
 
-             if(t5s >= pmon){
-                    PIE4bits.TMR1IE = 0;
-                    last5s =0;
-                    PIE4bits.TMR1IE = 1;
+        if(t5s >= pmon){
+            PIE4bits.TMR1IE = 0;
+            last5s =0;
+            PIE4bits.TMR1IE = 1;
 
-                    do{
-                         if(!config_mode){
+            do{
+                if(!config_mode){
 
-                             convertedValue = ADC_read();
+                    convertedValue = ADC_read();
 
-                             lum_bin = (convertedValue >> 8);
+                    lum_bin = (convertedValue >> 8);
 
-                             LED_bin(lum_bin);
-
-
+                    LED_bin(lum_bin);
 
 
-                             __nop();
-                             temp = tsttc();
-                             __nop();
+                    __nop();
+                    temp = tsttc();
+                    __nop();
 
 
-                             lum_threshold = (lum_bin > 2 || temp > 100 ) & alaf;
+                    lum_threshold = (lum_bin > 2 || temp > 100 ) & alaf;
 
-                           if (temp != read_ring(nreg_pt, nreg, nreg_init, 0, 3) || lum_bin != read_ring(nreg_pt, nreg, nreg_init, 0, 4)) {
-
-                                 PIE4bits.TMR1IE = 0;
-                                 ring_byte[0] = clkh;
-                                 ring_byte[1] = clkm;
-                                 ring_byte[2] = seg;
-                                  PIE4bits.TMR1IE = 1;
-                                 ring_byte[3] = temp;
-                                 ring_byte[4] = lum_bin;
-                                 push_ring(&nreg_pt, nreg, &nreg_init, ring_byte);
-
-                                 DATAEE_WriteByte(0xF0FF - 10 + 4, nreg_pt);
-                                 cksum_w();
-                             }
-
-
-
-                             if(lum_threshold){
-                                 if(alarm == 2){
-                                     duty_cycle +=1 ;
-                                     PWM6_LoadDutyValue(duty_cycle);
-                                 }
-                                 else if(alarm == 0){
-                                     PIE0bits.TMR0IE = 1;
-                                     TMR0_StartTimer();
-                                     alarm = 2 ;
-                                 }
-                             }
-                             else{
-                                 if(alarm == 2){
-                                     PWM6_LoadDutyValue(0);
-                                     alarm = 0 ;
-                                 }
-                             }
-
-                          }
-
-                         else if(config_mode == 1){
-
-                           (PIE0bits.INTE = 0);
-                           config_routine();
-                           (PIE0bits.INTE = 1);
-                     }
-
-                     _delay((unsigned long)((10)*(1000000/4000.0)));
-
-                    }while(alarm == 2);
+                    if (temp != read_ring(nreg_pt, nreg, nreg_init, 0, 3) || lum_bin != read_ring(nreg_pt, nreg, nreg_init, 0, 4)) {
 
                         PIE4bits.TMR1IE = 0;
-                        if (last1m >= 1) {
+                        ring_byte[0] = clkh;
+                        ring_byte[1] = clkm;
+                        ring_byte[2] = seg;
+                        PIE4bits.TMR1IE = 1;
+                        ring_byte[3] = temp;
+                        ring_byte[4] = lum_bin;
+                        push_ring(&nreg_pt, nreg, &nreg_init, ring_byte);
 
-                            last1m = 0;
-                            aux = clkh;
-                            aux1 = clkm;
-                            PIE4bits.TMR1IE = 1;
-                            DATAEE_WriteByte(0xF0FF - 10 + 1, aux);
-                            DATAEE_WriteByte(0xF0FF - 10 + 2, aux1);
-                            cksum_w();
+                        DATAEE_WriteByte(0xF0FF - 10 + 4, nreg_pt);
+                        cksum_w();
+                    }
 
-                        }else{
-                          PIE4bits.TMR1IE = 1;}
 
-             }
+
+                    if(lum_threshold){
+                        if(alarm == 2){
+                            duty_cycle +=1 ;
+                            PWM6_LoadDutyValue(duty_cycle);
+                        }
+                        else if(alarm == 0){
+                            PIE0bits.TMR0IE = 1;
+                            TMR0_StartTimer();
+                            alarm = 2 ;
+                        }
+                    }
+                    else{
+                        if(alarm == 2){
+                            PWM6_LoadDutyValue(0);
+                            alarm = 0 ;
+                        }
+                    }
+
+                }
+
+                else if(config_mode == 1){
+
+                    (PIE0bits.INTE = 0);
+                    config_routine();
+                    (PIE0bits.INTE = 1);
+                }
+
+                _delay((unsigned long)((10)*(1000000/4000.0)));
+
+            }while(alarm == 2);
+
+            PIE4bits.TMR1IE = 0;
+            if (last1m >= 1) {
+
+                last1m = 0;
+                aux = clkh;
+                aux1 = clkm;
+                PIE4bits.TMR1IE = 1;
+                DATAEE_WriteByte(0xF0FF - 10 + 1, aux);
+                DATAEE_WriteByte(0xF0FF - 10 + 2, aux1);
+                cksum_w();
+
+            }else{
+                PIE4bits.TMR1IE = 1;}
+
+        }
+    }
+
+}
+# 329 "main.c"
+ void config_routine(void){
+
+    unsigned int select_mode =0;
+    last_ms = clkms;
+    last_ms2 = clkms;
+
+    do{
+        if(mode_field_subfield[0] == -1 && select_mode == 0){
+            all_LED();
+        }
+
+        if(!PORTBbits.RB4){
+            if(checkDebounceSW1()){
+
+                select_mode +=1;
+
+                switch(select_mode){
+                    case 1: mod1_LED();break;
+                    case 2: mod2_LED();break;
+                    case 3: mod3_LED();break;
+                    case 4: mod4_LED();break;
+                    default: select_mode = 0; config_mode = 0; alarm = 0;
+                    break;
+
+                }
+            }
+
+            last_ms = clkms;
+        }
+
+
+        if(!PORTCbits.RC5){
+            if(checkDebounceSW2()){
+                mode_field_subfield[0] = select_mode;
+                mode_select_LED();
+
+
+                selectSubfield();
+
+            }
+            last_ms2 = clkms;
+        }
+
+        _delay((unsigned long)((2)*(1000000/4000.0)));
+
+    }while(config_mode == 1);
+
+    mode_field_subfield[0] = -1;
+    mode_field_subfield[1] = -1;
+
+}
+
+
+
+
+
+
+void selectSubfield(void){
+    unsigned int subfield = 1;
+
+    if(mode_field_subfield[0] == 1){
+
+    }
+
+    do{
+        if(!PORTBbits.RB4){
+            if(checkDebounceSW1()){
+                subfield +=1;
+            }
+            last_ms = clkms;
+        }
+
+        switch(subfield){
+            case 1: mod1_LED();break;
+            case 2: mod2_LED();break;
+            case 3: mod3_LED();break;
+            case 4: mod4_LED();break;
+            default:
+            break;
+
+        }
+
+
+        if(!PORTCbits.RC5){
+            if(checkDebounceSW2()){
+                mode_field_subfield[1] = subfield;
+                getSubfieldInfo();
+                increment_subfield();
+            }
+            last_ms2 = clkms;
+        }
+
+        _delay((unsigned long)((2)*(1000000/4000.0)));
+
+    }while(subfield <= num_subfields[mode_field_subfield[0]]);
+
+    if(mode_field_subfield[0] == 1){
+
     }
 
 }
@@ -21825,140 +21961,161 @@ void main(void){
 
 
 
-void config_routine(void){
 
-    unsigned int select_mode =0;
-      last_ms = clkms;
-      last_ms2 = clkms;
+void getSubfieldInfo(void){
+    switch(mode_field_subfield[0]){
+        case 1:
+            switch(mode_field_subfield[1]){
+                case 1:
+                    subfield_info.limit = (unsigned char(*)(void))2;
+                    subfield_info.reconstruct_subfield = &recHour;
+                break;
+                case 2:
+                    subfield_info.limit = &limitHoursUnits;
+                    subfield_info.reconstruct_subfield = &recHour;
+                break;
+                case 3:
+                    subfield_info.limit = (unsigned char(*)(void))5;
+                    subfield_info.reconstruct_subfield = &recMinutes;
+                break;
+                case 4:
+                    subfield_info.limit = (unsigned char(*)(void))9;
+                    subfield_info.reconstruct_subfield = &recMinutes;
+                break;
+            }
+        break;
 
+        case 2:
+            subfield_info.limit = (unsigned char(*)(void))1;
+            subfield_info.reconstruct_subfield = &recAlarm;
+        break;
 
-            do{
-                if(mode_field_subfield[0] == -1 && select_mode == 0){
-                        all_LED();}
+        case 3:
+            switch(mode_field_subfield[1]){
+                case 1:
+                    subfield_info.limit = (unsigned char(*)(void))5;
+                    subfield_info.reconstruct_subfield = &recTempThresh;
+                break;
+                case 2:
+                    subfield_info.limit = &limitTempThreshUnits;
+                    subfield_info.reconstruct_subfield = &recTempThresh;
+                break;
+            }
+        break;
 
-                if(!PORTBbits.RB4){
-                    if(checkDebounceSW1()){
-
-                            select_mode +=1;
-
-                        switch(select_mode){
-                            case 1: mod1_LED();break;
-                            case 2: mod2_LED();break;
-                            case 3: mod3_LED();break;
-                            case 4: mod4_LED();break;
-                            default: select_mode = 0; config_mode = 0; alarm = 0;
-                            break;
-
-                            }
-                        }
-
-                        last_ms = clkms;
-                    }
-
-
-                if(!PORTCbits.RC5){
-                    if(checkDebounceSW2()){
-                        mode_field_subfield[0] = select_mode;
-                        mode_select_LED();
-
-                        if(select_mode== 1){
-                            clock_subfields();
-                        }
-
-                        }
-                    }
-
-                   _delay((unsigned long)((2)*(1000000/4000.0)));
-
-            }while(config_mode == 1);
-
-    mode_field_subfield[0] = -1;
-    mode_field_subfield[1] = -1;
-
+        case 4:
+            subfield_info.limit = (unsigned char(*)(void))3;
+            subfield_info.reconstruct_subfield = &recLumThresh;
+        break;
+    }
 }
+# 491 "main.c"
+void recLumThresh(unsigned char _value){
+    lum_thresh = _value;
+}
+
+void recTempThresh(unsigned char _value){
+    if(mode_field_subfield[1] == 1){
+
+        temp_thresh = _value + (temp_thresh % 10);
+
+    }else{
+        temp_thresh = (temp_thresh / 10) + _value;
+    }
+}
+
+
+void recAlarm(unsigned char _value){
+    alarm = _value;
+}
+# 517 "main.c"
+void recMinutes(unsigned char _value){
+    if(mode_field_subfield[1] == 3){
+
+        clkm = _value + (clkm % 10);
+
+    }else{
+        clkm = (clkm / 10) + _value;
+    }
+}
+# 534 "main.c"
+void recHour(unsigned char _value){
+    if(mode_field_subfield[1] == 1){
+
+        clkh = _value + (clkh % 10);
+
+    }else{
+        clkh = (clkh / 10) + _value;
+    }
+}
+# 551 "main.c"
+unsigned char limitTempThreshUnits(){
+     if((temp_thresh / 10) == 5){
+        return 0;
+    }else{
+        return 9;
+    }
+}
+# 566 "main.c"
+unsigned char limitHoursUnits(){
+
+    if((clkh / 10) == 2){
+        return 3;
+    }else{
+        return 9;
+    }
+}
+# 583 "main.c"
 void increment_subfield(void){
 
-    int plus = 10;
-    int exit = 0;
+    unsigned char exit = 0;
+    unsigned char _value = 0;
 
     PWM6_LoadDutyValue(0);
 
-           while(exit == 0) {
 
-               if(!PORTCbits.RC5){
-                    if(checkDebounceSW2()){
-                         plus += 100;
-                         PWM6_LoadDutyValue(plus);
-                        }
-              }
-               if(!PORTBbits.RB4){
-                    if(checkDebounceSW1()){
-                        exit = 1;
-                    }
-          }
+    while(exit == 0){
 
+        if(!PORTCbits.RC5){
+            if(checkDebounceSW2()){
+
+                _value++;
+                 PWM6_LoadDutyValue(_value);
+                 representLed(_value);
+
+            }
+            last_ms2 = clkms;
         }
+
+        if(!PORTBbits.RB4){
+            if(checkDebounceSW1()){
+                exit = 1;
+            }
+            last_ms = clkms;
+        }
+    }
+    subfield_info.reconstruct_subfield(_value);
 }
-
-void clock_subfields(void){
-
-    unsigned int subfield = 1;
-
-         do{
-
-                if(!PORTBbits.RB4){
-                    if(checkDebounceSW1()){
-                            subfield +=1;
-                        }
-                        last_ms = clkms;
-                    }
-
-                       switch(subfield){
-                            case 1: mod1_LED();break;
-                            case 2: mod2_LED();break;
-                            case 3: mod3_LED();break;
-                            case 4: mod4_LED();break;
-                            default:
-                            break;
-
-                            }
-
-
-                if(!PORTCbits.RC5){
-                    if(checkDebounceSW2()){
-
-                        mode_field_subfield[1] = subfield;
-                        increment_subfield();
-                        }
-                    }
-
-                   _delay((unsigned long)((2)*(1000000/4000.0)));
-
-            }while(subfield <= 4 );
-
-
-
-}
-# 416 "main.c"
+# 625 "main.c"
 void all_LED(void){
 
-       do { LATAbits.LATA7 = 1; } while(0);
-        _delay((unsigned long)((100)*(1000000/4000.0)));
-       do { LATAbits.LATA7 = 0; } while(0);
-       _delay((unsigned long)((100)*(1000000/4000.0)));
+    do { LATAbits.LATA7 = 1; } while(0);
+    _delay((unsigned long)((100)*(1000000/4000.0)));
+    do { LATAbits.LATA7 = 0; } while(0);
+    _delay((unsigned long)((100)*(1000000/4000.0)));
 
-       PWM6_LoadDutyValue(1023);
-        _delay((unsigned long)((100)*(1000000/4000.0)));
+    PWM6_LoadDutyValue(1023);
+    _delay((unsigned long)((100)*(1000000/4000.0)));
 
-        PWM6_LoadDutyValue(0);
-        _delay((unsigned long)((100)*(1000000/4000.0)));
-       do { LATAbits.LATA5 = 1; } while(0);
-         _delay((unsigned long)((100)*(1000000/4000.0)));
-       do { LATAbits.LATA5 = 0; } while(0);
-       _delay((unsigned long)((100)*(1000000/4000.0)));
-       do { LATAbits.LATA4 = 1; } while(0);
-        _delay((unsigned long)((100)*(1000000/4000.0)));
-       do { LATAbits.LATA4 = 0; } while(0);
+    PWM6_LoadDutyValue(0);
+    _delay((unsigned long)((100)*(1000000/4000.0)));
+    do { LATAbits.LATA5 = 1; } while(0);
+    _delay((unsigned long)((100)*(1000000/4000.0)));
+    do { LATAbits.LATA5 = 0; } while(0);
+    _delay((unsigned long)((100)*(1000000/4000.0)));
+    do { LATAbits.LATA4 = 1; } while(0);
+    _delay((unsigned long)((100)*(1000000/4000.0)));
+    do { LATAbits.LATA4 = 0; } while(0);
 
 
 
@@ -21993,6 +22150,12 @@ unsigned int ADC_read(void){
     return ADCC_GetConversionResult();
 }
 
+
+
+
+
+
+
 void handler_clock_hms(void){
 
     if(!config_mode){
@@ -22012,6 +22175,13 @@ void handler_clock_hms(void){
     }
 
 }
+
+
+
+
+
+
+
 void handler_clock_ms(void){
     clkms++;
 
@@ -22019,12 +22189,7 @@ void handler_clock_ms(void){
         clkms = 0;
     }
 }
-
-void copyto_EEPROM(void) {
-
-}
-
-
+# 726 "main.c"
 void mod1_LED(void){
     LATA = 0;
     PWM6_LoadDutyValue(0);
@@ -22050,8 +22215,14 @@ void mod4_LED(void){
     do { LATAbits.LATA4 = 1; } while(0);
 }
 
+
+
+
+
+
+
 unsigned char checkDebounceSW1(){
-   PIE4bits.TMR1IE = 0;
+    PIE4bits.TMR1IE = 0;
 
     if(clkms - last_ms < 0){
 
@@ -22071,8 +22242,7 @@ unsigned char checkDebounceSW1(){
         return 1;
     }
 }
-
-
+# 786 "main.c"
 unsigned char checkDebounceSW2(){
 
 
@@ -22093,17 +22263,22 @@ unsigned char checkDebounceSW2(){
 }
 
 
+
+
+
+
+
 void mode_select_LED(){
 
 
-            PWM6_LoadDutyValue(1023);
-            do { LATAbits.LATA4 = 1; } while(0);
-            _delay((unsigned long)((500)*(1000000/4000.0)));
-            do { LATAbits.LATA5 = 1; } while(0);
-            _delay((unsigned long)((500)*(1000000/4000.0)));
+    PWM6_LoadDutyValue(1023);
+    do { LATAbits.LATA4 = 1; } while(0);
+    _delay((unsigned long)((500)*(1000000/4000.0)));
+    do { LATAbits.LATA5 = 1; } while(0);
+    _delay((unsigned long)((500)*(1000000/4000.0)));
 
-            do { LATAbits.LATA4 = 0; } while(0);
-            do { LATAbits.LATA5 = 0; } while(0);
+    do { LATAbits.LATA4 = 0; } while(0);
+    do { LATAbits.LATA5 = 0; } while(0);
 
 
 }
@@ -22134,16 +22309,17 @@ void recover(){
 
 
 }
-
-void representLed(unsigned char _value){
-    LATA = 0;
-
-    if(_value >> 4){
+# 861 "main.c"
+void representLed(unsigned char val)
+{
+    unsigned char aux = val;
+    if(val > 99)
         return;
-    }
 
-    LATAbits.LATA7 = _value & 0b1000 ;
-    LATAbits.LATA6 = _value & 0b100;
-    LATAbits.LATA5 = _value & 0b10;
-    LATAbits.LATA4 = _value & 1;
+    aux = val >> 2;
+
+    LATAbits.LATA4 = aux >> 3;
+    LATAbits.LATA5 = aux >> 2 & 1;
+    LATAbits.LATA6 = (aux /10) >>1 & 1;
+    LATAbits.LATA7 = (aux /100);
 }

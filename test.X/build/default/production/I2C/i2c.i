@@ -21103,6 +21103,13 @@ void (*i2c1_driver_busCollisionISR)(void);
 void (*i2c1_driver_i2cISR)(void);
 # 55 "I2C/../mcc_generated_files/mcc.h" 2
 
+# 1 "I2C/../mcc_generated_files/pwm6.h" 1
+# 102 "I2C/../mcc_generated_files/pwm6.h"
+ void PWM6_Initialize(void);
+# 129 "I2C/../mcc_generated_files/pwm6.h"
+ void PWM6_LoadDutyValue(uint16_t dutyValue);
+# 56 "I2C/../mcc_generated_files/mcc.h" 2
+
 # 1 "I2C/../mcc_generated_files/tmr1.h" 1
 # 100 "I2C/../mcc_generated_files/tmr1.h"
 void TMR1_Initialize(void);
@@ -21128,13 +21135,6 @@ void TMR1_ISR(void);
 extern void (*TMR1_InterruptHandler)(void);
 # 421 "I2C/../mcc_generated_files/tmr1.h"
 void TMR1_DefaultInterruptHandler(void);
-# 56 "I2C/../mcc_generated_files/mcc.h" 2
-
-# 1 "I2C/../mcc_generated_files/pwm6.h" 1
-# 102 "I2C/../mcc_generated_files/pwm6.h"
- void PWM6_Initialize(void);
-# 129 "I2C/../mcc_generated_files/pwm6.h"
- void PWM6_LoadDutyValue(uint16_t dutyValue);
 # 57 "I2C/../mcc_generated_files/mcc.h" 2
 
 # 1 "I2C/../mcc_generated_files/tmr2.h" 1
