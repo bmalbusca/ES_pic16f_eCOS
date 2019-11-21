@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project>
-  <executable name="dist/default/production\projetct_test.X.production.hex">
+  <executable name="dist/default/production/projetct_uart.production.hex">
     <memory name="program">
       <units>words</units>
       <length>8192</length>
-      <used>574</used>
-      <free>7618</free>
+      <used>701</used>
+      <free>7491</free>
     </memory>
     <memory name="data">
       <units>bytes</units>
       <length>1024</length>
-      <used>51</used>
-      <free>973</free>
+      <used>88</used>
+      <free>936</free>
     </memory>
   </executable>
 </project>
