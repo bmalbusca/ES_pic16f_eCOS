@@ -10,9 +10,9 @@ CND_CONF=default
 CND_DISTDIR=dist
 TMPDIR=build/${CND_CONF}/${IMAGE_TYPE}/tmp-packaging
 TMPDIRNAME=tmp-packaging
-OUTPUT_PATH=dist/${CND_CONF}/${IMAGE_TYPE}/projetct_uart.${IMAGE_TYPE}.${OUTPUT_SUFFIX}
-OUTPUT_BASENAME=projetct_uart.${IMAGE_TYPE}.${OUTPUT_SUFFIX}
-PACKAGE_TOP_DIR=projetctuart/
+OUTPUT_PATH=dist/${CND_CONF}/${IMAGE_TYPE}/uart_pic16f.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}
+OUTPUT_BASENAME=uart_pic16f.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}
+PACKAGE_TOP_DIR=uartpic16f.x/
 
 # Functions
 function checkReturnCode
@@ -57,15 +57,15 @@ mkdir -p ${TMPDIR}
 
 # Copy files and create directories and links
 cd "${TOP}"
-makeDirectory ${TMPDIR}/projetctuart/bin
+makeDirectory ${TMPDIR}/uartpic16f.x/bin
 copyFileToTmpDir "${OUTPUT_PATH}" "${TMPDIR}/${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}" 0755
 
 
 # Generate tar file
 cd "${TOP}"
-rm -f ${CND_DISTDIR}/${CND_CONF}/package/projetctuart.tar
+rm -f ${CND_DISTDIR}/${CND_CONF}/package/uartpic16f.x.tar
 cd ${TMPDIR}
-tar -vcf ../../../../${CND_DISTDIR}/${CND_CONF}/package/projetctuart.tar *
+tar -vcf ../../../../${CND_DISTDIR}/${CND_CONF}/package/uartpic16f.x.tar *
 checkReturnCode
 
 # Cleanup

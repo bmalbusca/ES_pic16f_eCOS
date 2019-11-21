@@ -3,7 +3,7 @@
     <type>com.microchip.mplab.nbide.embedded.makeproject</type>
     <configuration>
         <data xmlns="http://www.netbeans.org/ns/make-project/1">
-            <name>projetct_test</name>
+            <name>uart_pic16f</name>
             <creation-uuid>b1131e40-9e8a-4753-b319-8aa727715c98</creation-uuid>
             <make-project-type>0</make-project-type>
             <c-extensions>c</c-extensions>

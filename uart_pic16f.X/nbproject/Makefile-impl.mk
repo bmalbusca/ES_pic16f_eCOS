@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=projetct_uart
+PROJECTNAME=uart_pic16f.X
 
 # Active Configuration
 DEFAULTCONF=default
