@@ -31,7 +31,7 @@
 #define MIN_TIME -1
 
 #define TIMER_MS_RESET 200
-#define DEBNC_TIME 2     //200ms
+#define DEBNC_TIME 10
 
 typedef struct Subfield_Info_Struct{
     unsigned char(*limit)(void);
@@ -192,7 +192,7 @@ void main(void){
     nreg = (unsigned char) (EE_FST + 5 * NREG >= EE_RECV ? EE_SIZE : 5 * NREG);
     nreg_pt = 0;
     nreg_init = 0;
-    alaf = 0;
+    alaf = 1;
     temp = 0;
     lum_bin = 0;
     lum_threshold = 0;
@@ -440,6 +440,7 @@ void getSubfieldInfo(void){
                 case 1:                             //Hour tens
                     subfield_info.limit = (unsigned char(*)(void))2;
                     subfield_info.reconstruct_subfield = &recHour;
+                    
                 break;
                 case 2:                             //Hour units
                     subfield_info.limit = &limitHoursUnits;
@@ -580,21 +581,22 @@ unsigned char limitHoursUnits(){
  *******************************************/
 
 
-void increment_subfield(void){  //funcao universal para todos os subfields 
+void increment_subfield(unsigned char _value_init){  //funcao universal para todos os subfields 
     
     unsigned char exit = 0;
-    unsigned char _value = 0;
+    unsigned char _value = _value_init;
 
     PWM6_LoadDutyValue(0);
+    LATA = 0;
+    if(_value > (int)((int *) (unsigned char(*)(void))subfield_info.limit)) _value = 0;
 
-          
     while(exit == 0){
             
         if(!IO_RC5_GetValue()){
             if(checkDebounceSW2()){
                
                 _value++;
-                
+                if(_value > (int)((int *) (unsigned char(*)(void))subfield_info.limit)) _value = 0;
                  representLed(_value);
                
             }
@@ -864,10 +866,8 @@ void representLed(unsigned char val)
     if(val > 99)
         return;
     
-    aux = val >> 2;
-    
-    LATAbits.LATA4 = aux >> 3;
-    LATAbits.LATA5 = aux >> 2 & 1;
-    LATAbits.LATA6 = (aux /10) >>1 & 1;
-    LATAbits.LATA7 = (aux /100); 
+    LATAbits.LATA7 = aux >> 3;
+    PWM6_LoadDutyValue(((aux >> 2) & 1)*1023);
+    LATAbits.LATA5 = aux >> 1;
+    LATAbits.LATA4 = aux & 1; 
 }
