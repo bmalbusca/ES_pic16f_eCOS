@@ -11,6 +11,7 @@ void mode_select_LED();
 void LED_bin(unsigned int value);
 void all_LED(void);
 void representLed(unsigned char val);
+void mode_LED(unsigned char subfield);
 
 #endif  //LEDS_H 
 /**

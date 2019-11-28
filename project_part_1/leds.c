@@ -110,6 +110,19 @@ void mode_select_LED(){
 
 }
 
+void mode_LED(unsigned char subfield){
+        switch(subfield){			// Apenas faz display do LED
+            case 1: mod1_LED();break;
+            case 2: mod2_LED();break;
+            case 3: mod3_LED();break;
+            case 4: mod4_LED();break;
+            default: 
+            break;
+        }   
+        
+}
+
+
 /*******************************************
  *  Func: represent_led
  *  Desc: Represents a varibale in 4 LEDS

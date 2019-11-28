@@ -21563,6 +21563,7 @@ void mode_select_LED();
 void LED_bin(unsigned int value);
 void all_LED(void);
 void representLed(unsigned char val);
+void mode_LED(unsigned char subfield);
 # 14 "main.c" 2
 # 37 "main.c"
 typedef struct Subfield_Info_Struct{
@@ -21590,12 +21591,8 @@ unsigned char limitHoursUnits(void);
 void recTempThresh(unsigned char _value);
 void recLumThresh(unsigned char _value);
 
-
-
 unsigned char checkDebounceSW1();
 unsigned char checkDebounceSW2();
-
-typedef unsigned char udch;
 
 void clock_field(void);
 void config_routine(void);
@@ -21603,6 +21600,8 @@ void selectSubfield(void);
 void increment_subfield();
 void getSubfieldInfo(void);
 void save_recovery_params(void);
+
+typedef unsigned char udch;
 void ring_buffer (udch * _ring_byte, udch clock_h, udch clock_m, udch clock_s,udch tem, udch lum);
 
 
@@ -21650,7 +21649,7 @@ unsigned char tala = 3;
 
 Subfield_Info subfield_info = {.limit = ((void*)0), .reconstruct_subfield = ((void*)0)};
 
-const unsigned char num_subfields[4] = {4, 1, 2, 1};
+const unsigned char num_subfields[5] = {0,4, 1, 2, 1};
 unsigned char temp_thresh = 100;
 unsigned char lum_thresh = 2;
 
@@ -21698,32 +21697,12 @@ void ISR_3s(void){
 
 }
 
-void save_recovery_params(){
-
-    unsigned char aux, aux1;
-    PIE4bits.TMR1IE = 0;
-    last1m = 0;
-    aux = clkh;
-    aux1 = clkm;
-    PIE4bits.TMR1IE = 1;
-    DATAEE_WriteByte(0xF0FF - 10 + 1, aux);
-    DATAEE_WriteByte(0xF0FF - 10 + 2, aux1);
-    cksum_w();
 
 
-}
 
-void ring_buffer (unsigned char * _ring_byte, unsigned char clock_h, unsigned char clock_m, unsigned char clock_s, unsigned char tem,unsigned char lum){
 
-    PIE4bits.TMR1IE = 0;
-    _ring_byte[0] = clock_h;
-    _ring_byte[1] = clock_m;
-    _ring_byte[2] = clock_s;
-    PIE4bits.TMR1IE = 1;
-    _ring_byte[3] = tem;
-    _ring_byte[4] = lum;
-}
-# 204 "main.c"
+
+
 void main(void){
 
     SYSTEM_Initialize();
@@ -21849,7 +21828,7 @@ void main(void){
     }
 
 }
-# 337 "main.c"
+# 307 "main.c"
  void config_routine(void){
 
     unsigned int select_mode =0;
@@ -21917,20 +21896,13 @@ void selectSubfield(void){
 
         }
 
-        switch(subfield){
-            case 1: mod1_LED();break;
-            case 2: mod2_LED();break;
-            case 3: mod3_LED();break;
-            case 4: mod4_LED();break;
-            default:
-            break;
-        }
-
+        mode_LED( subfield);
 
         if(!PORTCbits.RC5){
             if(checkDebounceSW2()){
                 mode_field_subfield[1] = subfield;
                 getSubfieldInfo();
+                all_LED();
                 increment_subfield();
             }
 
@@ -21999,7 +21971,7 @@ void getSubfieldInfo(void){
         break;
     }
 }
-# 494 "main.c"
+# 457 "main.c"
 void recLumThresh(unsigned char _value){
     lum_thresh = _value;
 }
@@ -22018,7 +21990,7 @@ void recTempThresh(unsigned char _value){
 void recAlarm(unsigned char _value){
     alarm = _value;
 }
-# 520 "main.c"
+# 483 "main.c"
 void recMinutes(unsigned char _value){
     if(mode_field_subfield[1] == 3){
 
@@ -22028,7 +22000,7 @@ void recMinutes(unsigned char _value){
         clkm = (clkm / 10) + _value;
     }
 }
-# 537 "main.c"
+# 500 "main.c"
 void recHour(unsigned char _value){
     if(mode_field_subfield[1] == 1){
 
@@ -22038,7 +22010,7 @@ void recHour(unsigned char _value){
         clkh = (clkh / 10) + _value;
     }
 }
-# 554 "main.c"
+# 517 "main.c"
 unsigned char limitTempThreshUnits(){
      if((temp_thresh / 10) == 5){
         return 0;
@@ -22046,7 +22018,7 @@ unsigned char limitTempThreshUnits(){
         return 9;
     }
 }
-# 569 "main.c"
+# 532 "main.c"
 unsigned char limitHoursUnits(){
 
     if((clkh / 10) == 2){
@@ -22055,7 +22027,7 @@ unsigned char limitHoursUnits(){
         return 9;
     }
 }
-# 586 "main.c"
+# 549 "main.c"
 void increment_subfield(){
 
     unsigned char exit = 0;
@@ -22087,7 +22059,7 @@ void increment_subfield(){
     }
     subfield_info.reconstruct_subfield(_value);
 }
-# 627 "main.c"
+# 590 "main.c"
 unsigned int ADC_read(void){
 
     ADCC_StartConversion(channel_ANA0);
@@ -22137,7 +22109,7 @@ void handler_clock_ms(void){
         clkms = 0;
     }
 }
-# 684 "main.c"
+# 647 "main.c"
 unsigned char checkDebounceSW1(){
     PIE4bits.TMR1IE = 0;
 
@@ -22159,7 +22131,7 @@ unsigned char checkDebounceSW1(){
         return 1;
     }
 }
-# 713 "main.c"
+# 676 "main.c"
 unsigned char checkDebounceSW2(){
 
 
@@ -22177,4 +22149,31 @@ unsigned char checkDebounceSW2(){
         last_ms2 = clkms;
         return 1;
     }
+}
+
+
+void save_recovery_params(){
+
+    unsigned char aux, aux1;
+    PIE4bits.TMR1IE = 0;
+    last1m = 0;
+    aux = clkh;
+    aux1 = clkm;
+    PIE4bits.TMR1IE = 1;
+    DATAEE_WriteByte(0xF0FF - 10 + 1, aux);
+    DATAEE_WriteByte(0xF0FF - 10 + 2, aux1);
+    cksum_w();
+
+
+}
+
+void ring_buffer (unsigned char * _ring_byte, unsigned char clock_h, unsigned char clock_m, unsigned char clock_s, unsigned char tem,unsigned char lum){
+
+    PIE4bits.TMR1IE = 0;
+    _ring_byte[0] = clock_h;
+    _ring_byte[1] = clock_m;
+    _ring_byte[2] = clock_s;
+    PIE4bits.TMR1IE = 1;
+    _ring_byte[3] = tem;
+    _ring_byte[4] = lum;
 }

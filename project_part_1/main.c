@@ -117,7 +117,7 @@ unsigned char tala = TALA;
 
 Subfield_Info subfield_info = {.limit = NULL, .reconstruct_subfield = NULL};
 
-const unsigned char num_subfields[4] = {4, 1, 2, 1};
+const unsigned char num_subfields[5] = {0,4, 1, 2, 1};
 unsigned char temp_thresh = ALAT;
 unsigned char lum_thresh = ALAL;
 
@@ -371,20 +371,13 @@ void selectSubfield(void){ // o clock tem 4 subfields
 
         }
                 
-        switch(subfield){			// Apenas faz display do LED
-            case 1: mod1_LED();break;
-            case 2: mod2_LED();break;
-            case 3: mod3_LED();break;
-            case 4: mod4_LED();break;
-            default: 
-            break;
-        }   
-        
+        mode_LED( subfield);
 
         if(!IO_RC5_GetValue()){             // Select operation
             if(checkDebounceSW2()){
                 mode_field_subfield[SUBFIELD] = subfield;
                 getSubfieldInfo();
+                all_LED();                  // indication of subfield selection 
                 increment_subfield();
             }
 
