@@ -9,7 +9,8 @@
 #include <xc.h>
 #include "mcc_generated_files/mcc.h"
 #include "eeprom_rw.h"
-#include "I2C/i2c.h" 
+#include "I2C/i2c.h"
+#include "leds.h" 
 
 #define NREG 30
 #define PMON 5
@@ -31,7 +32,7 @@
 #define MIN_TIME -1
 
 #define TIMER_MS_RESET 200
-#define DEBNC_TIME 10
+#define DEBNC_TIME 25
 
 typedef struct Subfield_Info_Struct{
     unsigned char(*limit)(void);
@@ -48,8 +49,7 @@ volatile int value = 0;
 void handler_clock_hms(void);
 void handler_clock_ms(void);
 void copyto_EEPROM(void);
-void LED_bin(unsigned int value);
-void all_LED(void);
+
 unsigned int ADC_read(void);
 void recAlarm(unsigned char _value);
 void recMinutes(unsigned char _value);
@@ -59,21 +59,20 @@ unsigned char limitHoursUnits(void);
 void recTempThresh(unsigned char _value);
 void recLumThresh(unsigned char _value);
 
-void mod1_LED(void);
-void mod2_LED(void);
-void mod3_LED(void);
-void mod4_LED(void);
-
 unsigned char checkDebounceSW1();
 unsigned char checkDebounceSW2();
-void representLed(unsigned char val);
 
 void clock_field(void);
 void config_routine(void);
 void selectSubfield(void);
 void increment_subfield();
 void getSubfieldInfo(void);
-void mode_select_LED();
+void save_recovery_params(void);
+
+typedef unsigned char udch;
+void ring_buffer (udch * _ring_byte, udch clock_h, udch  clock_m, udch  clock_s,udch tem, udch lum);
+
+
 
 /*******************************************
  *  Desc: Global Variables
@@ -99,11 +98,9 @@ volatile unsigned char last5s =0, last1m=0;
 unsigned int mode_field_subfield[2]= {NONE,NONE};
 volatile unsigned char set_mode = 0;
 volatile unsigned char config_mode = OFF;
-
 volatile unsigned char alarm = 0;
 
-unsigned char temp;
-unsigned char alaf;
+
 
 unsigned int convertedValue = 0;
 unsigned int duty_cycle = 0;
@@ -111,6 +108,8 @@ unsigned int duty_cycle = 0;
 unsigned int lum_bin = 0;
 unsigned int lum_threshold = 0;
 
+unsigned char temp;
+unsigned char alaf;
 unsigned char nreg = NREG;
 unsigned char nreg_pt;
 unsigned char pmon = PMON;
@@ -128,11 +127,10 @@ unsigned char lum_thresh = ALAL;
  *******************************************/
 void sw1_EXT(void){
 
-
+    __delay_ms(5);
     if(checkDebounceSW1()){
         if (alarm == ON){               	// Turn off the alarm 
             alarm = OFF;
-            RA6_SetLow();
             PWM6_LoadDutyValue(OFF); 
             last_ms = clkms;
         }
@@ -141,15 +139,11 @@ void sw1_EXT(void){
 
                 if(config_mode == OFF){
                     config_mode = ON; 			// NOTE after changing to Configure mode disable the EXT interrupt and only check if is pressed at main loop		
-
-
-
                 }					// for not overloading the interrupt vector ISR            
             }
         }
-        last_ms = clkms;
+        
     }
-
 }
 
 
@@ -171,6 +165,7 @@ void ISR_3s(void){
 
 }
 
+
 /*******************************************
  *  Desc: Main fucntion
  *******************************************/
@@ -186,8 +181,8 @@ void main(void){
 
     //variables initialization
     
-    unsigned char t5s =0;
-    unsigned char aux, aux1;
+    unsigned char t5s =0, t1m =0;
+    
 
     nreg = (unsigned char) (EE_FST + 5 * NREG >= EE_RECV ? EE_SIZE : 5 * NREG);
     nreg_pt = 0;
@@ -215,7 +210,6 @@ void main(void){
 
     // Enable the Global Interrupts
     INTERRUPT_GlobalInterruptEnable();
-
     // Enable the Peripheral Interrupts
     INTERRUPT_PeripheralInterruptEnable();
 
@@ -236,85 +230,69 @@ void main(void){
             PIE4bits.TMR1IE = 1;  
 
             do{       
-                if(!config_mode){
+                    if(!config_mode){
 
-                    convertedValue = ADC_read();        //read potentiometer
-
-                    lum_bin = (convertedValue >> 8);    //convert into 4 levels
-
-                    LED_bin(lum_bin);                   //LED representation
+                            convertedValue = ADC_read();        //read potentiometer
+                            lum_bin = (convertedValue >> 8);    //convert into 4 levels
+                            LED_bin(lum_bin);                   //LED representation
 
 
-                    NOP();
-                    temp = tsttc();                     //I2C read
-                    NOP();
+                            NOP();
+                            //temp = tsttc();                     //I2C read
+                            NOP();
+                            
+                               // Push to Ring buffer
+                            if (temp != read_ring(nreg_pt, nreg, nreg_init, 0, 3) || lum_bin != read_ring(nreg_pt, nreg, nreg_init, 0, 4)) {
+                                ring_buffer (ring_byte,clkh, clkm, seg, temp,lum_bin);
+                                push_ring(&nreg_pt, nreg, &nreg_init, ring_byte);
+                                DATAEE_WriteByte(EE_RECV + 4, nreg_pt);
+                                cksum_w();
+                            }
 
 
-                    lum_threshold = (lum_bin > ALAL || temp > ALAT  ) & alaf;   //detect alarm 
-                       // Push to Ring buffer
-                    if (temp != read_ring(nreg_pt, nreg, nreg_init, 0, 3) || lum_bin != read_ring(nreg_pt, nreg, nreg_init, 0, 4)) {
+                            lum_threshold = (lum_bin > ALAL || temp > ALAT  ) & alaf;   //detect alarm 
 
-                        PIE4bits.TMR1IE = 0;        
-                        ring_byte[0] = clkh;
-                        ring_byte[1] = clkm;
-                        ring_byte[2] = seg;
-                        PIE4bits.TMR1IE = 1; 
-                        ring_byte[3] = temp;
-                        ring_byte[4] = lum_bin;
-                        push_ring(&nreg_pt, nreg, &nreg_init, ring_byte);
+                            if(lum_threshold){
+                                if(alarm == SET){           //if alarm is set ON you need to press SW1 ON 
+                                    duty_cycle +=1 ;   
+                                    PWM6_LoadDutyValue(duty_cycle);
+                                }
+                                else if(alarm == OFF){
+                                    PIE0bits.TMR0IE = 1;    // We exceed the threshold  check the 3 sec 
+                                    TMR0_StartTimer();
+                                    alarm = SET ;  
+                                }
+                            }
+                            else{
+                                if(alarm == SET){
+                                    PWM6_LoadDutyValue(OFF);
+                                    alarm = OFF ;
+                                }
+                            }
 
-                        DATAEE_WriteByte(EE_RECV + 4, nreg_pt);
-                        cksum_w();
                     }
 
+                    else if(config_mode == ON){
 
-
-                    if(lum_threshold){
-                        if(alarm == SET){           //if alarm is set ON you need to press SW1 ON 
-                            duty_cycle +=1 ;   
-                            PWM6_LoadDutyValue(duty_cycle);
-                        }
-                        else if(alarm == OFF){
-                            PIE0bits.TMR0IE = 1;    // We exceed the threshold  check the 3 sec 
-                            TMR0_StartTimer();
-                            alarm = SET ;  
-                        }
-                    }
-                    else{
-                        if(alarm == SET){
-                            PWM6_LoadDutyValue(OFF);
-                            alarm = OFF ;
-                        }
+                        EXT_INT_InterruptDisable(); 
+                        config_routine();
+                        EXT_INT_InterruptEnable(); 
                     }
 
-                }
-
-                else if(config_mode == ON){
-
-                    EXT_INT_InterruptDisable(); 
-                    config_routine();
-                    EXT_INT_InterruptEnable(); 
-                }
-
-                __delay_ms(10);
+                    __delay_ms(10);
 
             }while(alarm == SET);
-
-            PIE4bits.TMR1IE = 0;    
-            if (last1m >= 1) {
-                /* Write Recovery Parameters */
-                last1m = 0;
-                aux = clkh;
-                aux1 = clkm;
-                PIE4bits.TMR1IE = 1;
-                DATAEE_WriteByte(EE_RECV + 1, aux);
-                DATAEE_WriteByte(EE_RECV + 2, aux1);
-                cksum_w();
-
-            }else{
-                PIE4bits.TMR1IE = 1;}
-
+            
         }
+   
+       PIE4bits.TMR1IE = 0;
+       t1m = last1m;
+       PIE4bits.TMR1IE = 1;
+       
+       if (t1m  >= 1) {
+         save_recovery_params();
+       }
+    
     }
 
 }
@@ -352,21 +330,16 @@ void main(void){
 
                 }   
             }
-                
-            last_ms = clkms;
         }
                 
 
         if(!IO_RC5_GetValue()){
             if(checkDebounceSW2()){                
                 mode_field_subfield[FIELD] = select_mode;
-                mode_select_LED();      // notice the select was done
-                
-                
+                mode_select_LED();      // notice the select was done  
                 selectSubfield();
                 
             }
-            last_ms2 = clkms;
         }
         
         __delay_ms(2);
@@ -387,15 +360,15 @@ void selectSubfield(void){ // o clock tem 4 subfields
     unsigned int  subfield = 1;
 
     if(mode_field_subfield[FIELD] == 1){
-        //FALTA disable int clock
-    }//FALTA resto dos ints
+        PIE4bits.TMR1IE = 0;
+    }
 
     do{
         if(!IO_RB4_GetValue()){
             if(checkDebounceSW1()){
                 subfield +=1;
             }
-            last_ms = clkms;
+
         }
                 
         switch(subfield){			// Apenas faz display do LED
@@ -405,7 +378,6 @@ void selectSubfield(void){ // o clock tem 4 subfields
             case 4: mod4_LED();break;
             default: 
             break;
-
         }   
         
 
@@ -415,7 +387,7 @@ void selectSubfield(void){ // o clock tem 4 subfields
                 getSubfieldInfo();
                 increment_subfield();
             }
-            last_ms2 = clkms;
+
         }
         
         __delay_ms(2);
@@ -423,8 +395,8 @@ void selectSubfield(void){ // o clock tem 4 subfields
     }while(subfield <= num_subfields[mode_field_subfield[FIELD]]);  
 
     if(mode_field_subfield[FIELD] == 1){
-        //FALTA enable int clock
-    }//FALTA resto dos ints
+        PIE4bits.TMR1IE = 1;
+    }
     
 }
 
@@ -581,10 +553,10 @@ unsigned char limitHoursUnits(){
  *******************************************/
 
 
-void increment_subfield(unsigned char _value_init){  //funcao universal para todos os subfields 
+void increment_subfield(){  //funcao universal para todos os subfields 
     
     unsigned char exit = 0;
-    unsigned char _value = _value_init;
+    unsigned char _value = 0;
 
     PWM6_LoadDutyValue(0);
     LATA = 0;
@@ -615,51 +587,6 @@ void increment_subfield(unsigned char _value_init){  //funcao universal para tod
 
 
 
-
-/*******************************************
- *  Func: all_LED
- *  Desc: Blink all LEDs
- *  Obs: 
- *******************************************/
-
-
-
-void all_LED(void){
-
-    IO_RA7_SetHigh();
-    __delay_ms(100);      
-    IO_RA7_SetLow();
-    __delay_ms(100); 
-    //RA6_SetHigh();
-    PWM6_LoadDutyValue(1023);
-    __delay_ms(100);        
-    //RA6_SetLow();
-    PWM6_LoadDutyValue(OFF);
-    __delay_ms(100);        
-    IO_RA5_SetHigh();       
-    __delay_ms(100);       
-    IO_RA5_SetLow();
-    __delay_ms(100); 
-    IO_RA4_SetHigh();
-    __delay_ms(100); 
-    IO_RA4_SetLow();       
-
-
-
-}
-
-/*******************************************
- *  Func: LED_bin
- *  Desc: Convert voltage into 2 bit levels
- *  Obs: Assign the bit code to RA5 and RA4
- *******************************************/
-
-void LED_bin(unsigned int value){
-
-    IO_RA4_LAT =  (value & 1);
-    IO_RA5_LAT =  (value >>1);
-
-}
 
 /*******************************************
  *  Func: ADC_read
@@ -724,38 +651,6 @@ void handler_clock_ms(void){
  *  Obs: 
  *******************************************/
 
-
-void mod1_LED(void){
-    LATA = 0;
-    PWM6_LoadDutyValue(OFF);
-    IO_RA7_SetHigh();
-
-}
-
-void mod2_LED(void){
-    LATA = 0;
-    PWM6_LoadDutyValue(1023);    
-}
-
-void mod3_LED(void){
-    LATA = 0;
-    PWM6_LoadDutyValue(OFF);
-    IO_RA5_SetHigh();
-
-}
-
-void mod4_LED(void){
-    LATA = 0;
-    PWM6_LoadDutyValue(OFF);
-    IO_RA4_SetHigh();
-}
-
-/*******************************************
- *  Func: all_LED
- *  Desc: Blink all LEDs
- *  Obs: 
- *******************************************/
-
 unsigned char checkDebounceSW1(){
     PIE4bits.TMR1IE = 0;
 
@@ -804,70 +699,33 @@ unsigned char checkDebounceSW2(){
     }
 }
 
-/*******************************************
- *  Func: all_LED
- *  Desc: Blink all LEDs
- *  Obs: 
- *******************************************/
-
-void mode_select_LED(){
-
-
-    PWM6_LoadDutyValue(1023);
-    IO_RA4_SetHigh();
-    __delay_ms(500);
-    IO_RA5_SetHigh();
-    __delay_ms(500);
-
-    IO_RA4_SetLow();
-    IO_RA5_SetLow();
-
-
-}
-
-void recover(){
-
-    /* Recover Parameters */
-    if(DATAEE_ReadByte(EE_RECV) == WORD_MG) {
-        if(DATAEE_ReadByte(EE_LST) == cksum()) {
-            clkh = DATAEE_ReadByte(EE_RECV + 1);
-            clkm = DATAEE_ReadByte(EE_RECV + 2);
-            nreg = DATAEE_ReadByte(EE_RECV + 3);
-            nreg_pt = DATAEE_ReadByte(EE_RECV + 4);
-            pmon = DATAEE_ReadByte(EE_RECV + 5);
-            tala = DATAEE_ReadByte(EE_RECV + 6);
-        }
-    }
-
-    reset_recv();
-
-    /* Write Recovery Parameters */
-    DATAEE_WriteByte(EE_RECV, WORD_MG);
-    DATAEE_WriteByte(EE_RECV + 3, nreg);
-    DATAEE_WriteByte(EE_RECV + 5, pmon);
-    DATAEE_WriteByte(EE_RECV + 6, tala);
+/* Write Recovery Parameters */
+void save_recovery_params(){
+        
+    unsigned char aux, aux1;
+    PIE4bits.TMR1IE = 0;  
+    last1m = 0;
+    aux = clkh;
+    aux1 = clkm;
+    PIE4bits.TMR1IE = 1;
+    DATAEE_WriteByte(EE_RECV + 1, aux);
+    DATAEE_WriteByte(EE_RECV + 2, aux1);
     cksum_w();
 
-
-
-}
-
-/*******************************************
- *  Func: represent_led
- *  Desc: Represents a varibale in 4 LEDS
- *  Obs:  high_digit is 0/1 indicates
- *  if most significant 4 bits are to
- *  be displayed or if zero
- *  the 4 less significant bits. 
- *******************************************/
-void representLed(unsigned char val)
-{
-    unsigned char aux = val;
-    if(val > 99)
-        return;
     
-    LATAbits.LATA7 = aux >> 3;
-    PWM6_LoadDutyValue(((aux >> 2) & 1)*1023);
-    LATAbits.LATA5 = aux >> 1;
-    LATAbits.LATA4 = aux & 1; 
 }
+
+void ring_buffer (unsigned char * _ring_byte, unsigned char clock_h, unsigned char clock_m, unsigned char clock_s, unsigned char tem,unsigned char lum){
+
+    PIE4bits.TMR1IE = 0;        
+    _ring_byte[0] = clock_h;
+    _ring_byte[1] = clock_m;
+    _ring_byte[2] = clock_s;
+    PIE4bits.TMR1IE = 1; 
+    _ring_byte[3] = tem;
+    _ring_byte[4] = lum;
+}
+               
+
+
+

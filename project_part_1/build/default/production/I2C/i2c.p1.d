@@ -6,8 +6,8 @@ I2C/../mcc_generated_files/device_config.h  \
 I2C/../mcc_generated_files/pin_manager.h  \
 I2C/../mcc_generated_files/interrupt_manager.h  \
 I2C/../mcc_generated_files/i2c1_driver.h  \
-I2C/../mcc_generated_files/pwm6.h  \
 I2C/../mcc_generated_files/tmr1.h  \
+I2C/../mcc_generated_files/pwm6.h  \
 I2C/../mcc_generated_files/tmr2.h  \
 I2C/../mcc_generated_files/tmr0.h  \
 I2C/../mcc_generated_files/adcc.h  \
