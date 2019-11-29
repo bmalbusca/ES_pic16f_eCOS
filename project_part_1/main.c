@@ -32,7 +32,7 @@
 #define MIN_TIME -1
 
 #define TIMER_MS_RESET 200
-#define DEBNC_TIME 25
+#define DEBNC_TIME 15
 
 typedef struct Subfield_Info_Struct{
     unsigned char(*limit)(void);
@@ -128,7 +128,6 @@ unsigned char lum_thresh = ALAL;
  *******************************************/
 void sw1_EXT(void){
 
-    __delay_ms(5);
     if(checkDebounceSW1()){
         if (alarm == ON){               	// Turn off the alarm 
             alarm = OFF;
@@ -136,14 +135,10 @@ void sw1_EXT(void){
             last_ms = clkms;
         }
         else{
-            if(!IO_RB4_GetValue()){
-
-                if(config_mode == OFF){
-                    config_mode = ON; 			// NOTE after changing to Configure mode disable the EXT interrupt and only check if is pressed at main loop		
-                }					// for not overloading the interrupt vector ISR            
-            }
+            if(config_mode == OFF){
+                config_mode = ON; 			// NOTE after changing to Configure mode disable the EXT interrupt and only check if is pressed at main loop		
+            }					// for not overloading the interrupt vector ISR            
         }
-        
     }
 }
 
@@ -339,7 +334,7 @@ void main(void){
                 mode_field_subfield[FIELD] = select_mode;
                 mode_select_LED();      // notice the select was done  
                 selectSubfield();
-                
+                select_mode = mode_field_subfield[FIELD];
             }
         }
         
@@ -376,7 +371,6 @@ void selectSubfield(void){ // o clock tem 4 subfields
                 mode_field_subfield[SUBFIELD] = subfield;
                 getSubfieldInfo();
                 all_LED();                  // indication of subfield selection 
-                increment_subfield();
             }
 
         }
@@ -589,12 +583,11 @@ unsigned char increment_subfield_clk(unsigned char limit, unsigned init_val){  /
     if(_value > limit) _value = 0;
 
     while(exit == 0){
-
+   		representLed(_value);
         if(!IO_RC5_GetValue()){
             if(checkDebounceSW2()){
                 _value++;
                 if(_value > limit) _value = 0;
-		representLed(_value);
             }
             last_ms2 = clkms;
         }
@@ -649,7 +642,7 @@ void handler_clock_hms(void){
         seg = 0;
         if(clkm >= 60) {
             clkh++;
-            clkm = 0;\\
+            clkm = 0;
         }
     }
 
