@@ -58,7 +58,7 @@ unsigned char limitTempThreshUnits(void);
 unsigned char limitHoursUnits(void);
 void recTempThresh(unsigned char _value);
 void recLumThresh(unsigned char _value);
-unsigned char increment_subfield_clk(unsigned char limit, unsigned init_val); 
+unsigned char increment_subfield(unsigned char limit, unsigned init_val); 
 
 unsigned char checkDebounceSW1();
 unsigned char checkDebounceSW2();
@@ -66,7 +66,6 @@ unsigned char checkDebounceSW2();
 void clock_field(void);
 void config_routine(void);
 void selectSubfield(void);
-void increment_subfield();
 void getSubfieldInfo(void);
 void save_recovery_params(void);
 
@@ -334,7 +333,6 @@ void main(void){
                 mode_field_subfield[FIELD] = select_mode;
                 mode_select_LED();      // notice the select was done  
                 selectSubfield();
-                select_mode = mode_field_subfield[FIELD];
             }
         }
         
@@ -388,35 +386,40 @@ void selectSubfield(void){ // o clock tem 4 subfields
  *  Obs: 
  *******************************************/
 void getSubfieldInfo(void){
-    unsigned char h_tens =0, h_units = 0,m_tens=0,m_units=0 ; 	
+
+    unsigned char h_tens, h_units, m_tens, m_units;
+ 	
     switch(mode_field_subfield[FIELD]){
         case 1: 
-		 PIE4bits.TMR1IE = 0;
-
+            PIE4bits.TMR1IE = 0;
+            h_tens = clkh / 10;
+            h_units = clkh % 10;
+            m_tens = clkm / 10;
+            m_units = clkm % 10;
+        
             switch(mode_field_subfield[SUBFIELD]){
-                case 1:   
-						//Hour tens
-                  	h_tens = increment_subfield_clk(2, (clkh/10));
+                case 1:                             //Hour tens
+                  	h_tens = increment_subfield(2, h_tens);
                 	break;
                 case 2:                             //Hour units
-                    	h_units = increment_subfield_clk( limitHoursUnits() , (clkh % 10 ));
+                    h_units = increment_subfield( limitHoursUnits() , h_units);
                 	break;
                 case 3:                             //minutes tens
-			m_tens = increment_subfield_clk( 5 , (clkm / 10 ));
+                    m_tens = increment_subfield( 5 , m_tens);
                 	break;
                 case 4:                             //minutes units
-                	m_units = increment_subfield_clk( 9, (clkh % 10 ));
+                	m_units = increment_subfield( 9, m_units);
                     	break;
 		
             }
+            clkh = 10*h_tens + h_units;
+            clkm = 10*m_tens + m_units;
 	     PIE4bits.TMR1IE = 0;
 
         break;
         //------------------------
         case 2:
-            subfield_info.limit = (unsigned char(*)(void))1;
-            subfield_info.reconstruct_subfield = &recAlarm;
-            alaf = increment_subfield_clk( 1, alaf );	
+            alaf = increment_subfield( 1, alaf );	
 	break;
         //------------------------
         case 3: 
@@ -461,44 +464,6 @@ void recTempThresh(unsigned char _value){
 }
 
 
-void recAlarm(unsigned char _value){
-    alarm = _value;
-}
-
-/*******************************************
- *  Func: all_LED
- *  Desc: Blink all LEDs
- *  Obs: 
- *******************************************/
-
-
-void recMinutes(unsigned char _value){
-    if(mode_field_subfield[SUBFIELD] == 3){     //Se tivermos a mudar Minutes tens
-        
-        clkm = _value + (clkm % 10);            //tens + units
-        
-    }else{                                      //Se tivermos a mudar Minutes units
-        clkm = (clkm / 10) + _value;            //tens + units
-    }
-}
-
-/*******************************************
- *  Func: all_LED
- *  Desc: Blink all LEDs
- *  Obs: 
- *******************************************/
-
-
-void recHour(unsigned char _value){
-    if(mode_field_subfield[SUBFIELD] == 1){     //Se tivermos a mudar Hour tens
-        
-        clkh = _value + (clkh % 10);            //tens + units
-        
-    }else{                                      //Se tivermos a mudar Hour units
-        clkh = (clkh / 10) + _value;            //tens + units
-    }
-}
-
 /*******************************************
  *  Func: all_LED
  *  Desc: Blink all LEDs
@@ -530,49 +495,7 @@ unsigned char limitHoursUnits(){
     }
 }
 
-
-/*******************************************
- *  Func: all_LED
- *  Desc: Blink all LEDs
- *  Obs: 
- *******************************************/
-
-
-void increment_subfield(){  //funcao universal para todos os subfields 
-    
-    unsigned char exit = 0;
-    unsigned char _value = 0;
-
-    PWM6_LoadDutyValue(0);
-    LATA = 0;
-    if(_value > (int)((int *) (unsigned char(*)(void))subfield_info.limit)) _value = 0;
-
-    while(exit == 0){
-            
-        if(!IO_RC5_GetValue()){
-            if(checkDebounceSW2()){
-               
-                _value++;
-                if(_value > (int)((int *) (unsigned char(*)(void))subfield_info.limit)) _value = 0;
-                 representLed(_value);
-               
-            }
-            last_ms2 = clkms;
-        }
-
-        if(!IO_RB4_GetValue()){		  
-            if(checkDebounceSW1()){
-                exit = 1;
-            }
-            last_ms = clkms;
-        }
-    }
-    subfield_info.reconstruct_subfield(_value);
-}
-
-
-
-unsigned char increment_subfield_clk(unsigned char limit, unsigned init_val){  //funcao universal para todos os subfields
+unsigned char increment_subfield(unsigned char limit, unsigned init_val){  //funcao universal para todos os subfields
 
     unsigned char exit = 0;
     unsigned char _value = init_val;
@@ -601,10 +524,6 @@ unsigned char increment_subfield_clk(unsigned char limit, unsigned init_val){  /
     }
 return _value;  
 }
-
-
-
-
 
 /*******************************************
  *  Func: ADC_read

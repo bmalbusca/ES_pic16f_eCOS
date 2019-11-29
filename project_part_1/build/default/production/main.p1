@@ -227,8 +227,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "13 ./leds.h
 [; ;./leds.h: 13: void representLed(unsigned char val);
 [v _representLed `(v ~T0 @X0 0 ef1`uc ]
-"617 main.c
-[; ;main.c: 617:     ADCC_StartConversion(channel_ANA0);
+"625 main.c
+[; ;main.c: 625:     ADCC_StartConversion(channel_ANA0);
 [c E12756 0 60 61 62 63 .. ]
 [n E12756 . channel_ANA0 channel_VSS channel_Temp channel_DAC1 channel_FVR_buf1  ]
 "156 ./mcc_generated_files/adcc.h
@@ -2583,175 +2583,186 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 336:                 selectSubfield();
 [e ( _selectSubfield ..  ]
 "337
-[; ;main.c: 337:                 select_mode = mode_field_subfield[0];
-[e = _select_mode *U + &U _mode_field_subfield * -> -> -> 0 `i `ui `ux -> -> # *U &U _mode_field_subfield `ui `ux ]
+[; ;main.c: 337:                 __nop();
+[e ( ___nop ..  ]
 "338
-[; ;main.c: 338:             }
+[; ;main.c: 338:                 select_mode = mode_field_subfield[0];
+[e = _select_mode *U + &U _mode_field_subfield * -> -> -> 0 `i `ui `ux -> -> # *U &U _mode_field_subfield `ui `ux ]
+"339
+[; ;main.c: 339:             }
 }
 [e :U 1672 ]
-"339
-[; ;main.c: 339:         }
+"340
+[; ;main.c: 340:         }
 }
 [e :U 1671 ]
-"341
-[; ;main.c: 341:         _delay((unsigned long)((2)*(1000000/4000.0)));
+"342
+[; ;main.c: 342:         _delay((unsigned long)((2)*(1000000/4000.0)));
 [e ( __delay (1 -> * -> -> 2 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
-"343
-[; ;main.c: 343:     }while(config_mode == 1);
+"344
+[; ;main.c: 344:     }while(config_mode == 1);
 }
 [e $ == -> _config_mode `i -> 1 `i 1660  ]
 [e :U 1659 ]
-"345
-[; ;main.c: 345:     mode_field_subfield[0] = -1;
-[e = *U + &U _mode_field_subfield * -> -> -> 0 `i `ui `ux -> -> # *U &U _mode_field_subfield `ui `ux -> -U -> 1 `i `ui ]
 "346
-[; ;main.c: 346:     mode_field_subfield[1] = -1;
+[; ;main.c: 346:     mode_field_subfield[0] = -1;
+[e = *U + &U _mode_field_subfield * -> -> -> 0 `i `ui `ux -> -> # *U &U _mode_field_subfield `ui `ux -> -U -> 1 `i `ui ]
+"347
+[; ;main.c: 347:     mode_field_subfield[1] = -1;
 [e = *U + &U _mode_field_subfield * -> -> -> 1 `i `ui `ux -> -> # *U &U _mode_field_subfield `ui `ux -> -U -> 1 `i `ui ]
-"348
-[; ;main.c: 348: }
+"349
+[; ;main.c: 349: }
 [e :UE 1657 ]
 }
-"355
-[; ;main.c: 355: void selectSubfield(void){
+"356
+[; ;main.c: 356: void selectSubfield(void){
 [v _selectSubfield `(v ~T0 @X0 1 ef ]
 {
 [e :U _selectSubfield ]
 [f ]
-"356
-[; ;main.c: 356:     unsigned int subfield = 1;
+"357
+[; ;main.c: 357:     unsigned int subfield = 1;
 [v _subfield `ui ~T0 @X0 1 a ]
 [e = _subfield -> -> 1 `i `ui ]
-"359
-[; ;main.c: 359:     do{
+"360
+[; ;main.c: 360:     do{
 [e :U 1676 ]
 {
-"360
-[; ;main.c: 360:         if(!PORTBbits.RB4){
+"361
+[; ;main.c: 361:         if(!PORTBbits.RB4){
 [e $ ! ! != -> . . _PORTBbits 0 4 `i -> 0 `i 1677  ]
 {
-"361
-[; ;main.c: 361:             if(checkDebounceSW1()){
+"362
+[; ;main.c: 362:             if(checkDebounceSW1()){
 [e $ ! != -> ( _checkDebounceSW1 ..  `i -> 0 `i 1678  ]
 {
-"362
-[; ;main.c: 362:                 subfield +=1;
-[e =+ _subfield -> -> 1 `i `ui ]
 "363
-[; ;main.c: 363:             }
+[; ;main.c: 363:                 subfield +=1;
+[e =+ _subfield -> -> 1 `i `ui ]
+"364
+[; ;main.c: 364:             }
 }
 [e :U 1678 ]
-"365
-[; ;main.c: 365:         }
+"366
+[; ;main.c: 366:         }
 }
 [e :U 1677 ]
-"367
-[; ;main.c: 367:         mode_LED( subfield);
+"368
+[; ;main.c: 368:         mode_LED( subfield);
 [e ( _mode_LED (1 -> _subfield `uc ]
-"369
-[; ;main.c: 369:         if(!PORTCbits.RC5){
+"370
+[; ;main.c: 370:         if(!PORTCbits.RC5){
 [e $ ! ! != -> . . _PORTCbits 0 5 `i -> 0 `i 1679  ]
 {
-"370
-[; ;main.c: 370:             if(checkDebounceSW2()){
+"371
+[; ;main.c: 371:             if(checkDebounceSW2()){
 [e $ ! != -> ( _checkDebounceSW2 ..  `i -> 0 `i 1680  ]
 {
-"371
-[; ;main.c: 371:                 mode_field_subfield[1] = subfield;
-[e = *U + &U _mode_field_subfield * -> -> -> 1 `i `ui `ux -> -> # *U &U _mode_field_subfield `ui `ux _subfield ]
 "372
-[; ;main.c: 372:                 getSubfieldInfo();
-[e ( _getSubfieldInfo ..  ]
+[; ;main.c: 372:                 mode_field_subfield[1] = subfield;
+[e = *U + &U _mode_field_subfield * -> -> -> 1 `i `ui `ux -> -> # *U &U _mode_field_subfield `ui `ux _subfield ]
 "373
-[; ;main.c: 373:                 all_LED();
-[e ( _all_LED ..  ]
+[; ;main.c: 373:                 getSubfieldInfo();
+[e ( _getSubfieldInfo ..  ]
 "374
-[; ;main.c: 374:             }
+[; ;main.c: 374:                 all_LED();
+[e ( _all_LED ..  ]
+"375
+[; ;main.c: 375:             }
 }
 [e :U 1680 ]
-"376
-[; ;main.c: 376:         }
+"377
+[; ;main.c: 377:         }
 }
 [e :U 1679 ]
-"378
-[; ;main.c: 378:         _delay((unsigned long)((2)*(1000000/4000.0)));
+"379
+[; ;main.c: 379:         _delay((unsigned long)((2)*(1000000/4000.0)));
 [e ( __delay (1 -> * -> -> 2 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
-"380
-[; ;main.c: 380:     }while(subfield <= num_subfields[mode_field_subfield[0]]);
+"381
+[; ;main.c: 381:     }while(subfield <= num_subfields[mode_field_subfield[0]]);
 }
 [e $ <= _subfield -> *U + &U _num_subfields * -> *U + &U _mode_field_subfield * -> -> -> 0 `i `ui `ux -> -> # *U &U _mode_field_subfield `ui `ux `ux -> -> # *U &U _num_subfields `ui `ux `ui 1676  ]
 [e :U 1675 ]
-"383
-[; ;main.c: 383: }
+"384
+[; ;main.c: 384: }
 [e :UE 1673 ]
 }
-"390
-[; ;main.c: 390: void getSubfieldInfo(void){
+"391
+[; ;main.c: 391: void getSubfieldInfo(void){
 [v _getSubfieldInfo `(v ~T0 @X0 1 ef ]
 {
 [e :U _getSubfieldInfo ]
 [f ]
-"391
-[; ;main.c: 391:     unsigned char h_tens =0, h_units = 0,m_tens=0,m_units=0 ;
+"393
+[; ;main.c: 393:     unsigned char h_tens, h_units, m_tens, m_units;
 [v _h_tens `uc ~T0 @X0 1 a ]
-[e = _h_tens -> -> 0 `i `uc ]
 [v _h_units `uc ~T0 @X0 1 a ]
-[e = _h_units -> -> 0 `i `uc ]
 [v _m_tens `uc ~T0 @X0 1 a ]
-[e = _m_tens -> -> 0 `i `uc ]
 [v _m_units `uc ~T0 @X0 1 a ]
-[e = _m_units -> -> 0 `i `uc ]
-"392
-[; ;main.c: 392:     switch(mode_field_subfield[0]){
+"395
+[; ;main.c: 395:     switch(mode_field_subfield[0]){
 [e $U 1683  ]
 {
-"393
-[; ;main.c: 393:         case 1:
-[e :U 1684 ]
-"394
-[; ;main.c: 394:    PIE4bits.TMR1IE = 0;
-[e = . . _PIE4bits 0 0 -> -> 0 `i `uc ]
 "396
-[; ;main.c: 396:             switch(mode_field_subfield[1]){
+[; ;main.c: 396:         case 1:
+[e :U 1684 ]
+"397
+[; ;main.c: 397:             PIE4bits.TMR1IE = 0;
+[e = . . _PIE4bits 0 0 -> -> 0 `i `uc ]
+"398
+[; ;main.c: 398:             h_tens = clkh / 10;
+[e = _h_tens -> / -> _clkh `i -> 10 `i `uc ]
+"399
+[; ;main.c: 399:             h_units = clkh % 10;
+[e = _h_units -> % -> _clkh `i -> 10 `i `uc ]
+"400
+[; ;main.c: 400:             m_tens = clkm / 10;
+[e = _m_tens -> / -> _clkm `i -> 10 `i `uc ]
+"401
+[; ;main.c: 401:             m_units = clkm % 10;
+[e = _m_units -> % -> _clkm `i -> 10 `i `uc ]
+"403
+[; ;main.c: 403:             switch(mode_field_subfield[1]){
 [e $U 1686  ]
 {
-"397
-[; ;main.c: 397:                 case 1:
-[e :U 1687 ]
-"399
-[; ;main.c: 399:                    h_tens = increment_subfield_clk(2, (clkh/10));
-[e = _h_tens ( _increment_subfield_clk (2 , -> -> 2 `i `uc -> / -> _clkh `i -> 10 `i `ui ]
-"400
-[; ;main.c: 400:                  break;
-[e $U 1685  ]
-"401
-[; ;main.c: 401:                 case 2:
-[e :U 1688 ]
-"402
-[; ;main.c: 402:                      h_units = increment_subfield_clk( limitHoursUnits() , (clkh % 10 ));
-[e = _h_units ( _increment_subfield_clk (2 , ( _limitHoursUnits ..  -> % -> _clkh `i -> 10 `i `ui ]
-"403
-[; ;main.c: 403:                  break;
-[e $U 1685  ]
 "404
-[; ;main.c: 404:                 case 3:
-[e :U 1689 ]
+[; ;main.c: 404:                 case 1:
+[e :U 1687 ]
 "405
-[; ;main.c: 405:    m_tens = increment_subfield_clk( 5 , (clkm / 10 ));
-[e = _m_tens ( _increment_subfield_clk (2 , -> -> 5 `i `uc -> / -> _clkm `i -> 10 `i `ui ]
+[; ;main.c: 405:                    h_tens = increment_subfield_clk(2, h_tens);
+[e = _h_tens ( _increment_subfield_clk (2 , -> -> 2 `i `uc -> _h_tens `ui ]
 "406
 [; ;main.c: 406:                  break;
 [e $U 1685  ]
 "407
-[; ;main.c: 407:                 case 4:
-[e :U 1690 ]
+[; ;main.c: 407:                 case 2:
+[e :U 1688 ]
 "408
-[; ;main.c: 408:                  m_units = increment_subfield_clk( 9, (clkh % 10 ));
-[e = _m_units ( _increment_subfield_clk (2 , -> -> 9 `i `uc -> % -> _clkh `i -> 10 `i `ui ]
+[; ;main.c: 408:                     h_units = increment_subfield_clk( limitHoursUnits() , h_units);
+[e = _h_units ( _increment_subfield_clk (2 , ( _limitHoursUnits ..  -> _h_units `ui ]
 "409
-[; ;main.c: 409:                      break;
+[; ;main.c: 409:                  break;
 [e $U 1685  ]
+"410
+[; ;main.c: 410:                 case 3:
+[e :U 1689 ]
 "411
-[; ;main.c: 411:             }
+[; ;main.c: 411:                     m_tens = increment_subfield_clk( 5 , m_tens);
+[e = _m_tens ( _increment_subfield_clk (2 , -> -> 5 `i `uc -> _m_tens `ui ]
+"412
+[; ;main.c: 412:                  break;
+[e $U 1685  ]
+"413
+[; ;main.c: 413:                 case 4:
+[e :U 1690 ]
+"414
+[; ;main.c: 414:                  m_units = increment_subfield_clk( 9, m_units);
+[e = _m_units ( _increment_subfield_clk (2 , -> -> 9 `i `uc -> _m_units `ui ]
+"415
+[; ;main.c: 415:                      break;
+[e $U 1685  ]
+"417
+[; ;main.c: 417:             }
 }
 [e $U 1685  ]
 [e :U 1686 ]
@@ -2761,60 +2772,66 @@ Version 4.0 HI-TECH Software Intermediate Code
  , $ -> -> 4 `i `ui 1690
  1685 ]
 [e :U 1685 ]
-"412
-[; ;main.c: 412:       PIE4bits.TMR1IE = 0;
-[e = . . _PIE4bits 0 0 -> -> 0 `i `uc ]
-"414
-[; ;main.c: 414:         break;
-[e $U 1682  ]
-"416
-[; ;main.c: 416:         case 2:
-[e :U 1691 ]
-"417
-[; ;main.c: 417:             subfield_info.limit = (unsigned char(*)(void))1;
-[e = . _subfield_info 0 -> -> 1 `i `*F13068 ]
 "418
-[; ;main.c: 418:             subfield_info.reconstruct_subfield = &recAlarm;
-[e = . _subfield_info 1 &U _recAlarm ]
+[; ;main.c: 418:             clkh = 10*h_tens + h_units;
+[e = _clkh -> + * -> 10 `i -> _h_tens `i -> _h_units `i `uc ]
 "419
-[; ;main.c: 419:             alaf = increment_subfield_clk( 1, alaf );
-[e = _alaf ( _increment_subfield_clk (2 , -> -> 1 `i `uc -> _alaf `ui ]
+[; ;main.c: 419:             clkm = 10*m_tens + m_units;
+[e = _clkm -> + * -> 10 `i -> _m_tens `i -> _m_units `i `uc ]
 "420
-[; ;main.c: 420:  break;
-[e $U 1682  ]
+[; ;main.c: 420:       PIE4bits.TMR1IE = 0;
+[e = . . _PIE4bits 0 0 -> -> 0 `i `uc ]
 "422
-[; ;main.c: 422:         case 3:
+[; ;main.c: 422:         break;
+[e $U 1682  ]
+"424
+[; ;main.c: 424:         case 2:
+[e :U 1691 ]
+"425
+[; ;main.c: 425:             subfield_info.limit = (unsigned char(*)(void))1;
+[e = . _subfield_info 0 -> -> 1 `i `*F13068 ]
+"426
+[; ;main.c: 426:             subfield_info.reconstruct_subfield = &recAlarm;
+[e = . _subfield_info 1 &U _recAlarm ]
+"427
+[; ;main.c: 427:             alaf = increment_subfield_clk( 1, alaf );
+[e = _alaf ( _increment_subfield_clk (2 , -> -> 1 `i `uc -> _alaf `ui ]
+"428
+[; ;main.c: 428:  break;
+[e $U 1682  ]
+"430
+[; ;main.c: 430:         case 3:
 [e :U 1692 ]
-"423
-[; ;main.c: 423:             switch(mode_field_subfield[1]){
+"431
+[; ;main.c: 431:             switch(mode_field_subfield[1]){
 [e $U 1694  ]
 {
-"424
-[; ;main.c: 424:                 case 1:
-[e :U 1695 ]
-"425
-[; ;main.c: 425:                     subfield_info.limit = (unsigned char(*)(void))5;
-[e = . _subfield_info 0 -> -> 5 `i `*F13077 ]
-"426
-[; ;main.c: 426:                     subfield_info.reconstruct_subfield = &recTempThresh;
-[e = . _subfield_info 1 &U _recTempThresh ]
-"427
-[; ;main.c: 427:                 break;
-[e $U 1693  ]
-"428
-[; ;main.c: 428:                 case 2:
-[e :U 1696 ]
-"429
-[; ;main.c: 429:                     subfield_info.limit = &limitTempThreshUnits;
-[e = . _subfield_info 0 &U _limitTempThreshUnits ]
-"430
-[; ;main.c: 430:                     subfield_info.reconstruct_subfield = &recTempThresh;
-[e = . _subfield_info 1 &U _recTempThresh ]
-"431
-[; ;main.c: 431:                 break;
-[e $U 1693  ]
 "432
-[; ;main.c: 432:             }
+[; ;main.c: 432:                 case 1:
+[e :U 1695 ]
+"433
+[; ;main.c: 433:                     subfield_info.limit = (unsigned char(*)(void))5;
+[e = . _subfield_info 0 -> -> 5 `i `*F13077 ]
+"434
+[; ;main.c: 434:                     subfield_info.reconstruct_subfield = &recTempThresh;
+[e = . _subfield_info 1 &U _recTempThresh ]
+"435
+[; ;main.c: 435:                 break;
+[e $U 1693  ]
+"436
+[; ;main.c: 436:                 case 2:
+[e :U 1696 ]
+"437
+[; ;main.c: 437:                     subfield_info.limit = &limitTempThreshUnits;
+[e = . _subfield_info 0 &U _limitTempThreshUnits ]
+"438
+[; ;main.c: 438:                     subfield_info.reconstruct_subfield = &recTempThresh;
+[e = . _subfield_info 1 &U _recTempThresh ]
+"439
+[; ;main.c: 439:                 break;
+[e $U 1693  ]
+"440
+[; ;main.c: 440:             }
 }
 [e $U 1693  ]
 [e :U 1694 ]
@@ -2822,23 +2839,23 @@ Version 4.0 HI-TECH Software Intermediate Code
  , $ -> -> 2 `i `ui 1696
  1693 ]
 [e :U 1693 ]
-"433
-[; ;main.c: 433:         break;
+"441
+[; ;main.c: 441:         break;
 [e $U 1682  ]
-"435
-[; ;main.c: 435:         case 4:
+"443
+[; ;main.c: 443:         case 4:
 [e :U 1697 ]
-"436
-[; ;main.c: 436:             subfield_info.limit = (unsigned char(*)(void))3;
+"444
+[; ;main.c: 444:             subfield_info.limit = (unsigned char(*)(void))3;
 [e = . _subfield_info 0 -> -> 3 `i `*F13095 ]
-"437
-[; ;main.c: 437:             subfield_info.reconstruct_subfield = &recLumThresh;
+"445
+[; ;main.c: 445:             subfield_info.reconstruct_subfield = &recLumThresh;
 [e = . _subfield_info 1 &U _recLumThresh ]
-"438
-[; ;main.c: 438:         break;
+"446
+[; ;main.c: 446:         break;
 [e $U 1682  ]
-"439
-[; ;main.c: 439:     }
+"447
+[; ;main.c: 447:     }
 }
 [e $U 1682  ]
 [e :U 1683 ]
@@ -2848,679 +2865,679 @@ Version 4.0 HI-TECH Software Intermediate Code
  , $ -> -> 4 `i `ui 1697
  1682 ]
 [e :U 1682 ]
-"440
-[; ;main.c: 440: }
+"448
+[; ;main.c: 448: }
 [e :UE 1681 ]
 }
-"449
-[; ;main.c: 449: void recLumThresh(unsigned char _value){
+"457
+[; ;main.c: 457: void recLumThresh(unsigned char _value){
 [v _recLumThresh `(v ~T0 @X0 1 ef1`uc ]
 {
 [e :U _recLumThresh ]
 [v __value `uc ~T0 @X0 1 r1 ]
 [f ]
-"450
-[; ;main.c: 450:     lum_thresh = _value;
+"458
+[; ;main.c: 458:     lum_thresh = _value;
 [e = _lum_thresh __value ]
-"451
-[; ;main.c: 451: }
+"459
+[; ;main.c: 459: }
 [e :UE 1698 ]
 }
-"453
-[; ;main.c: 453: void recTempThresh(unsigned char _value){
+"461
+[; ;main.c: 461: void recTempThresh(unsigned char _value){
 [v _recTempThresh `(v ~T0 @X0 1 ef1`uc ]
 {
 [e :U _recTempThresh ]
 [v __value `uc ~T0 @X0 1 r1 ]
 [f ]
-"454
-[; ;main.c: 454:     if(mode_field_subfield[1] == 1){
+"462
+[; ;main.c: 462:     if(mode_field_subfield[1] == 1){
 [e $ ! == *U + &U _mode_field_subfield * -> -> -> 1 `i `ui `ux -> -> # *U &U _mode_field_subfield `ui `ux -> -> 1 `i `ui 1700  ]
 {
-"456
-[; ;main.c: 456:         temp_thresh = _value + (temp_thresh % 10);
+"464
+[; ;main.c: 464:         temp_thresh = _value + (temp_thresh % 10);
 [e = _temp_thresh -> + -> __value `i % -> _temp_thresh `i -> 10 `i `uc ]
-"458
-[; ;main.c: 458:     }else{
+"466
+[; ;main.c: 466:     }else{
 }
 [e $U 1701  ]
 [e :U 1700 ]
 {
-"459
-[; ;main.c: 459:         temp_thresh = (temp_thresh / 10) + _value;
+"467
+[; ;main.c: 467:         temp_thresh = (temp_thresh / 10) + _value;
 [e = _temp_thresh -> + / -> _temp_thresh `i -> 10 `i -> __value `i `uc ]
-"460
-[; ;main.c: 460:     }
+"468
+[; ;main.c: 468:     }
 }
 [e :U 1701 ]
-"461
-[; ;main.c: 461: }
+"469
+[; ;main.c: 469: }
 [e :UE 1699 ]
 }
-"464
-[; ;main.c: 464: void recAlarm(unsigned char _value){
+"472
+[; ;main.c: 472: void recAlarm(unsigned char _value){
 [v _recAlarm `(v ~T0 @X0 1 ef1`uc ]
 {
 [e :U _recAlarm ]
 [v __value `uc ~T0 @X0 1 r1 ]
 [f ]
-"465
-[; ;main.c: 465:     alarm = _value;
+"473
+[; ;main.c: 473:     alarm = _value;
 [e = _alarm __value ]
-"466
-[; ;main.c: 466: }
+"474
+[; ;main.c: 474: }
 [e :UE 1702 ]
 }
-"475
-[; ;main.c: 475: void recMinutes(unsigned char _value){
+"483
+[; ;main.c: 483: void recMinutes(unsigned char _value){
 [v _recMinutes `(v ~T0 @X0 1 ef1`uc ]
 {
 [e :U _recMinutes ]
 [v __value `uc ~T0 @X0 1 r1 ]
 [f ]
-"476
-[; ;main.c: 476:     if(mode_field_subfield[1] == 3){
+"484
+[; ;main.c: 484:     if(mode_field_subfield[1] == 3){
 [e $ ! == *U + &U _mode_field_subfield * -> -> -> 1 `i `ui `ux -> -> # *U &U _mode_field_subfield `ui `ux -> -> 3 `i `ui 1704  ]
 {
-"478
-[; ;main.c: 478:         clkm = _value + (clkm % 10);
+"486
+[; ;main.c: 486:         clkm = _value + (clkm % 10);
 [e = _clkm -> + -> __value `i % -> _clkm `i -> 10 `i `uc ]
-"480
-[; ;main.c: 480:     }else{
+"488
+[; ;main.c: 488:     }else{
 }
 [e $U 1705  ]
 [e :U 1704 ]
 {
-"481
-[; ;main.c: 481:         clkm = (clkm / 10) + _value;
+"489
+[; ;main.c: 489:         clkm = (clkm / 10) + _value;
 [e = _clkm -> + / -> _clkm `i -> 10 `i -> __value `i `uc ]
-"482
-[; ;main.c: 482:     }
+"490
+[; ;main.c: 490:     }
 }
 [e :U 1705 ]
-"483
-[; ;main.c: 483: }
+"491
+[; ;main.c: 491: }
 [e :UE 1703 ]
 }
-"492
-[; ;main.c: 492: void recHour(unsigned char _value){
+"500
+[; ;main.c: 500: void recHour(unsigned char _value){
 [v _recHour `(v ~T0 @X0 1 ef1`uc ]
 {
 [e :U _recHour ]
 [v __value `uc ~T0 @X0 1 r1 ]
 [f ]
-"493
-[; ;main.c: 493:     if(mode_field_subfield[1] == 1){
+"501
+[; ;main.c: 501:     if(mode_field_subfield[1] == 1){
 [e $ ! == *U + &U _mode_field_subfield * -> -> -> 1 `i `ui `ux -> -> # *U &U _mode_field_subfield `ui `ux -> -> 1 `i `ui 1707  ]
 {
-"495
-[; ;main.c: 495:         clkh = _value + (clkh % 10);
+"503
+[; ;main.c: 503:         clkh = _value + (clkh % 10);
 [e = _clkh -> + -> __value `i % -> _clkh `i -> 10 `i `uc ]
-"497
-[; ;main.c: 497:     }else{
+"505
+[; ;main.c: 505:     }else{
 }
 [e $U 1708  ]
 [e :U 1707 ]
 {
-"498
-[; ;main.c: 498:         clkh = (clkh / 10) + _value;
+"506
+[; ;main.c: 506:         clkh = (clkh / 10) + _value;
 [e = _clkh -> + / -> _clkh `i -> 10 `i -> __value `i `uc ]
-"499
-[; ;main.c: 499:     }
+"507
+[; ;main.c: 507:     }
 }
 [e :U 1708 ]
-"500
-[; ;main.c: 500: }
+"508
+[; ;main.c: 508: }
 [e :UE 1706 ]
 }
-"509
-[; ;main.c: 509: unsigned char limitTempThreshUnits(){
+"517
+[; ;main.c: 517: unsigned char limitTempThreshUnits(){
 [v _limitTempThreshUnits `(uc ~T0 @X0 1 ef ]
 {
 [e :U _limitTempThreshUnits ]
 [f ]
-"510
-[; ;main.c: 510:      if((temp_thresh / 10) == 5){
+"518
+[; ;main.c: 518:      if((temp_thresh / 10) == 5){
 [e $ ! == / -> _temp_thresh `i -> 10 `i -> 5 `i 1710  ]
 {
-"511
-[; ;main.c: 511:         return 0;
+"519
+[; ;main.c: 519:         return 0;
 [e ) -> -> 0 `i `uc ]
 [e $UE 1709  ]
-"512
-[; ;main.c: 512:     }else{
+"520
+[; ;main.c: 520:     }else{
 }
 [e $U 1711  ]
 [e :U 1710 ]
 {
-"513
-[; ;main.c: 513:         return 9;
+"521
+[; ;main.c: 521:         return 9;
 [e ) -> -> 9 `i `uc ]
 [e $UE 1709  ]
-"514
-[; ;main.c: 514:     }
+"522
+[; ;main.c: 522:     }
 }
 [e :U 1711 ]
-"515
-[; ;main.c: 515: }
+"523
+[; ;main.c: 523: }
 [e :UE 1709 ]
 }
-"524
-[; ;main.c: 524: unsigned char limitHoursUnits(){
+"532
+[; ;main.c: 532: unsigned char limitHoursUnits(){
 [v _limitHoursUnits `(uc ~T0 @X0 1 ef ]
 {
 [e :U _limitHoursUnits ]
 [f ]
-"526
-[; ;main.c: 526:     if((clkh / 10) == 2){
+"534
+[; ;main.c: 534:     if((clkh / 10) == 2){
 [e $ ! == / -> _clkh `i -> 10 `i -> 2 `i 1713  ]
 {
-"527
-[; ;main.c: 527:         return 3;
+"535
+[; ;main.c: 535:         return 3;
 [e ) -> -> 3 `i `uc ]
 [e $UE 1712  ]
-"528
-[; ;main.c: 528:     }else{
+"536
+[; ;main.c: 536:     }else{
 }
 [e $U 1714  ]
 [e :U 1713 ]
 {
-"529
-[; ;main.c: 529:         return 9;
+"537
+[; ;main.c: 537:         return 9;
 [e ) -> -> 9 `i `uc ]
 [e $UE 1712  ]
-"530
-[; ;main.c: 530:     }
+"538
+[; ;main.c: 538:     }
 }
 [e :U 1714 ]
-"531
-[; ;main.c: 531: }
+"539
+[; ;main.c: 539: }
 [e :UE 1712 ]
 }
-"541
-[; ;main.c: 541: void increment_subfield(){
+"549
+[; ;main.c: 549: void increment_subfield(){
 [v _increment_subfield `(v ~T0 @X0 1 ef ]
 {
 [e :U _increment_subfield ]
 [f ]
-"543
-[; ;main.c: 543:     unsigned char exit = 0;
+"551
+[; ;main.c: 551:     unsigned char exit = 0;
 [v _exit `uc ~T0 @X0 1 a ]
 [e = _exit -> -> 0 `i `uc ]
-"544
-[; ;main.c: 544:     unsigned char _value = 0;
+"552
+[; ;main.c: 552:     unsigned char _value = 0;
 [v __value `uc ~T0 @X0 1 a ]
 [e = __value -> -> 0 `i `uc ]
-"546
-[; ;main.c: 546:     PWM6_LoadDutyValue(0);
+"554
+[; ;main.c: 554:     PWM6_LoadDutyValue(0);
 [e ( _PWM6_LoadDutyValue (1 -> -> 0 `i `us ]
-"547
-[; ;main.c: 547:     LATA = 0;
+"555
+[; ;main.c: 555:     LATA = 0;
 [e = _LATA -> -> 0 `i `uc ]
-"548
-[; ;main.c: 548:     if(_value > (int)((int *) (unsigned char(*)(void))subfield_info.limit)) _value = 0;
+"556
+[; ;main.c: 556:     if(_value > (int)((int *) (unsigned char(*)(void))subfield_info.limit)) _value = 0;
 [e $ ! > -> __value `i -> -> . _subfield_info 0 `*i `i 1716  ]
 [e = __value -> -> 0 `i `uc ]
 [e :U 1716 ]
-"550
-[; ;main.c: 550:     while(exit == 0){
+"558
+[; ;main.c: 558:     while(exit == 0){
 [e $U 1717  ]
 [e :U 1718 ]
 {
-"552
-[; ;main.c: 552:         if(!PORTCbits.RC5){
+"560
+[; ;main.c: 560:         if(!PORTCbits.RC5){
 [e $ ! ! != -> . . _PORTCbits 0 5 `i -> 0 `i 1720  ]
 {
-"553
-[; ;main.c: 553:             if(checkDebounceSW2()){
+"561
+[; ;main.c: 561:             if(checkDebounceSW2()){
 [e $ ! != -> ( _checkDebounceSW2 ..  `i -> 0 `i 1721  ]
 {
-"555
-[; ;main.c: 555:                 _value++;
+"563
+[; ;main.c: 563:                 _value++;
 [e ++ __value -> -> 1 `i `uc ]
-"556
-[; ;main.c: 556:                 if(_value > (int)((int *) (unsigned char(*)(void))subfield_info.limit)) _value = 0;
+"564
+[; ;main.c: 564:                 if(_value > (int)((int *) (unsigned char(*)(void))subfield_info.limit)) _value = 0;
 [e $ ! > -> __value `i -> -> . _subfield_info 0 `*i `i 1722  ]
 [e = __value -> -> 0 `i `uc ]
 [e :U 1722 ]
-"557
-[; ;main.c: 557:                  representLed(_value);
+"565
+[; ;main.c: 565:                  representLed(_value);
 [e ( _representLed (1 __value ]
-"559
-[; ;main.c: 559:             }
+"567
+[; ;main.c: 567:             }
 }
 [e :U 1721 ]
-"560
-[; ;main.c: 560:             last_ms2 = clkms;
+"568
+[; ;main.c: 568:             last_ms2 = clkms;
 [e = _last_ms2 _clkms ]
-"561
-[; ;main.c: 561:         }
+"569
+[; ;main.c: 569:         }
 }
 [e :U 1720 ]
-"563
-[; ;main.c: 563:         if(!PORTBbits.RB4){
+"571
+[; ;main.c: 571:         if(!PORTBbits.RB4){
 [e $ ! ! != -> . . _PORTBbits 0 4 `i -> 0 `i 1723  ]
 {
-"564
-[; ;main.c: 564:             if(checkDebounceSW1()){
+"572
+[; ;main.c: 572:             if(checkDebounceSW1()){
 [e $ ! != -> ( _checkDebounceSW1 ..  `i -> 0 `i 1724  ]
 {
-"565
-[; ;main.c: 565:                 exit = 1;
+"573
+[; ;main.c: 573:                 exit = 1;
 [e = _exit -> -> 1 `i `uc ]
-"566
-[; ;main.c: 566:             }
+"574
+[; ;main.c: 574:             }
 }
 [e :U 1724 ]
-"567
-[; ;main.c: 567:             last_ms = clkms;
+"575
+[; ;main.c: 575:             last_ms = clkms;
 [e = _last_ms _clkms ]
-"568
-[; ;main.c: 568:         }
+"576
+[; ;main.c: 576:         }
 }
 [e :U 1723 ]
-"569
-[; ;main.c: 569:     }
+"577
+[; ;main.c: 577:     }
 }
 [e :U 1717 ]
-"550
-[; ;main.c: 550:     while(exit == 0){
+"558
+[; ;main.c: 558:     while(exit == 0){
 [e $ == -> _exit `i -> 0 `i 1718  ]
 [e :U 1719 ]
-"570
-[; ;main.c: 570:     subfield_info.reconstruct_subfield(_value);
+"578
+[; ;main.c: 578:     subfield_info.reconstruct_subfield(_value);
 [e ( *U . _subfield_info 1 (1 __value ]
-"571
-[; ;main.c: 571: }
+"579
+[; ;main.c: 579: }
 [e :UE 1715 ]
 }
-"575
-[; ;main.c: 575: unsigned char increment_subfield_clk(unsigned char limit, unsigned init_val){
+"583
+[; ;main.c: 583: unsigned char increment_subfield_clk(unsigned char limit, unsigned init_val){
 [v _increment_subfield_clk `(uc ~T0 @X0 1 ef2`uc`ui ]
 {
 [e :U _increment_subfield_clk ]
 [v _limit `uc ~T0 @X0 1 r1 ]
 [v _init_val `ui ~T0 @X0 1 r2 ]
 [f ]
-"577
-[; ;main.c: 577:     unsigned char exit = 0;
+"585
+[; ;main.c: 585:     unsigned char exit = 0;
 [v _exit `uc ~T0 @X0 1 a ]
 [e = _exit -> -> 0 `i `uc ]
-"578
-[; ;main.c: 578:     unsigned char _value = init_val;
+"586
+[; ;main.c: 586:     unsigned char _value = init_val;
 [v __value `uc ~T0 @X0 1 a ]
 [e = __value -> _init_val `uc ]
-"580
-[; ;main.c: 580:     PWM6_LoadDutyValue(0);
+"588
+[; ;main.c: 588:     PWM6_LoadDutyValue(0);
 [e ( _PWM6_LoadDutyValue (1 -> -> 0 `i `us ]
-"581
-[; ;main.c: 581:     LATA = 0;
+"589
+[; ;main.c: 589:     LATA = 0;
 [e = _LATA -> -> 0 `i `uc ]
-"583
-[; ;main.c: 583:     if(_value > limit) _value = 0;
+"591
+[; ;main.c: 591:     if(_value > limit) _value = 0;
 [e $ ! > -> __value `i -> _limit `i 1726  ]
 [e = __value -> -> 0 `i `uc ]
 [e :U 1726 ]
-"585
-[; ;main.c: 585:     while(exit == 0){
+"593
+[; ;main.c: 593:     while(exit == 0){
 [e $U 1727  ]
 [e :U 1728 ]
 {
-"586
-[; ;main.c: 586:      representLed(_value);
+"594
+[; ;main.c: 594:      representLed(_value);
 [e ( _representLed (1 __value ]
-"587
-[; ;main.c: 587:         if(!PORTCbits.RC5){
+"595
+[; ;main.c: 595:         if(!PORTCbits.RC5){
 [e $ ! ! != -> . . _PORTCbits 0 5 `i -> 0 `i 1730  ]
 {
-"588
-[; ;main.c: 588:             if(checkDebounceSW2()){
+"596
+[; ;main.c: 596:             if(checkDebounceSW2()){
 [e $ ! != -> ( _checkDebounceSW2 ..  `i -> 0 `i 1731  ]
 {
-"589
-[; ;main.c: 589:                 _value++;
+"597
+[; ;main.c: 597:                 _value++;
 [e ++ __value -> -> 1 `i `uc ]
-"590
-[; ;main.c: 590:                 if(_value > limit) _value = 0;
+"598
+[; ;main.c: 598:                 if(_value > limit) _value = 0;
 [e $ ! > -> __value `i -> _limit `i 1732  ]
 [e = __value -> -> 0 `i `uc ]
 [e :U 1732 ]
-"591
-[; ;main.c: 591:             }
+"599
+[; ;main.c: 599:             }
 }
 [e :U 1731 ]
-"592
-[; ;main.c: 592:             last_ms2 = clkms;
+"600
+[; ;main.c: 600:             last_ms2 = clkms;
 [e = _last_ms2 _clkms ]
-"593
-[; ;main.c: 593:         }
+"601
+[; ;main.c: 601:         }
 }
 [e :U 1730 ]
-"595
-[; ;main.c: 595:         if(!PORTBbits.RB4){
+"603
+[; ;main.c: 603:         if(!PORTBbits.RB4){
 [e $ ! ! != -> . . _PORTBbits 0 4 `i -> 0 `i 1733  ]
 {
-"596
-[; ;main.c: 596:             if(checkDebounceSW1()){
+"604
+[; ;main.c: 604:             if(checkDebounceSW1()){
 [e $ ! != -> ( _checkDebounceSW1 ..  `i -> 0 `i 1734  ]
 {
-"597
-[; ;main.c: 597:                 exit = 1;
+"605
+[; ;main.c: 605:                 exit = 1;
 [e = _exit -> -> 1 `i `uc ]
-"598
-[; ;main.c: 598:             }
+"606
+[; ;main.c: 606:             }
 }
 [e :U 1734 ]
-"599
-[; ;main.c: 599:             last_ms = clkms;
+"607
+[; ;main.c: 607:             last_ms = clkms;
 [e = _last_ms _clkms ]
-"600
-[; ;main.c: 600:         }
+"608
+[; ;main.c: 608:         }
 }
 [e :U 1733 ]
-"601
-[; ;main.c: 601:     }
+"609
+[; ;main.c: 609:     }
 }
 [e :U 1727 ]
-"585
-[; ;main.c: 585:     while(exit == 0){
+"593
+[; ;main.c: 593:     while(exit == 0){
 [e $ == -> _exit `i -> 0 `i 1728  ]
 [e :U 1729 ]
-"602
-[; ;main.c: 602: return _value;
+"610
+[; ;main.c: 610: return _value;
 [e ) __value ]
 [e $UE 1725  ]
-"603
-[; ;main.c: 603: }
+"611
+[; ;main.c: 611: }
 [e :UE 1725 ]
 }
-"615
-[; ;main.c: 615: unsigned int ADC_read(void){
+"623
+[; ;main.c: 623: unsigned int ADC_read(void){
 [v _ADC_read `(ui ~T0 @X0 1 ef ]
 {
 [e :U _ADC_read ]
 [f ]
-"617
-[; ;main.c: 617:     ADCC_StartConversion(channel_ANA0);
+"625
+[; ;main.c: 625:     ADCC_StartConversion(channel_ANA0);
 [e ( _ADCC_StartConversion (1 . `E12756 0 ]
-"618
-[; ;main.c: 618:     while(!ADCC_IsConversionDone()){
+"626
+[; ;main.c: 626:     while(!ADCC_IsConversionDone()){
 [e $U 1736  ]
 [e :U 1737 ]
 {
-"619
-[; ;main.c: 619:         _delay((unsigned long)((1)*(1000000/4000.0)));
+"627
+[; ;main.c: 627:         _delay((unsigned long)((1)*(1000000/4000.0)));
 [e ( __delay (1 -> * -> -> 1 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
-"620
-[; ;main.c: 620:     }
+"628
+[; ;main.c: 628:     }
 }
 [e :U 1736 ]
-"618
-[; ;main.c: 618:     while(!ADCC_IsConversionDone()){
+"626
+[; ;main.c: 626:     while(!ADCC_IsConversionDone()){
 [e $ ! != -> ( _ADCC_IsConversionDone ..  `i -> 0 `i 1737  ]
 [e :U 1738 ]
-"622
-[; ;main.c: 622:     return ADCC_GetConversionResult();
+"630
+[; ;main.c: 630:     return ADCC_GetConversionResult();
 [e ) -> ( _ADCC_GetConversionResult ..  `ui ]
 [e $UE 1735  ]
-"623
-[; ;main.c: 623: }
+"631
+[; ;main.c: 631: }
 [e :UE 1735 ]
 }
-"631
-[; ;main.c: 631: void handler_clock_hms(void){
+"639
+[; ;main.c: 639: void handler_clock_hms(void){
 [v _handler_clock_hms `(v ~T0 @X0 1 ef ]
 {
 [e :U _handler_clock_hms ]
 [f ]
-"633
-[; ;main.c: 633:     if(!config_mode){
+"641
+[; ;main.c: 641:     if(!config_mode){
 [e $ ! ! != -> _config_mode `i -> 0 `i 1740  ]
 {
-"634
-[; ;main.c: 634:         do { LATAbits.LATA7 = ~LATAbits.LATA7; } while(0);
+"642
+[; ;main.c: 642:         do { LATAbits.LATA7 = ~LATAbits.LATA7; } while(0);
 [e :U 1743 ]
 {
 [e = . . _LATAbits 0 7 -> ~ -> . . _LATAbits 0 7 `i `uc ]
 }
 [e :U 1742 ]
-"635
-[; ;main.c: 635:     }
+"643
+[; ;main.c: 643:     }
 }
 [e :U 1740 ]
-"637
-[; ;main.c: 637:     last5s++;
+"645
+[; ;main.c: 645:     last5s++;
 [e ++ _last5s -> -> 1 `i `Vuc ]
-"638
-[; ;main.c: 638:     seg++;
+"646
+[; ;main.c: 646:     seg++;
 [e ++ _seg -> -> 1 `i `Vuc ]
-"639
-[; ;main.c: 639:     if(seg >= 60) {
+"647
+[; ;main.c: 647:     if(seg >= 60) {
 [e $ ! >= -> _seg `i -> 60 `i 1744  ]
 {
-"640
-[; ;main.c: 640:         clkm++;
+"648
+[; ;main.c: 648:         clkm++;
 [e ++ _clkm -> -> 1 `i `Vuc ]
-"641
-[; ;main.c: 641:         last1m++;
+"649
+[; ;main.c: 649:         last1m++;
 [e ++ _last1m -> -> 1 `i `Vuc ]
-"642
-[; ;main.c: 642:         seg = 0;
+"650
+[; ;main.c: 650:         seg = 0;
 [e = _seg -> -> 0 `i `uc ]
-"643
-[; ;main.c: 643:         if(clkm >= 60) {
+"651
+[; ;main.c: 651:         if(clkm >= 60) {
 [e $ ! >= -> _clkm `i -> 60 `i 1745  ]
 {
-"644
-[; ;main.c: 644:             clkh++;
+"652
+[; ;main.c: 652:             clkh++;
 [e ++ _clkh -> -> 1 `i `Vuc ]
-"645
-[; ;main.c: 645:             clkm = 0;
+"653
+[; ;main.c: 653:             clkm = 0;
 [e = _clkm -> -> 0 `i `uc ]
-"646
-[; ;main.c: 646:         }
+"654
+[; ;main.c: 654:         }
 }
 [e :U 1745 ]
-"647
-[; ;main.c: 647:     }
+"655
+[; ;main.c: 655:     }
 }
 [e :U 1744 ]
-"649
-[; ;main.c: 649: }
+"657
+[; ;main.c: 657: }
 [e :UE 1739 ]
 }
-"657
-[; ;main.c: 657: void handler_clock_ms(void){
+"665
+[; ;main.c: 665: void handler_clock_ms(void){
 [v _handler_clock_ms `(v ~T0 @X0 1 ef ]
 {
 [e :U _handler_clock_ms ]
 [f ]
-"658
-[; ;main.c: 658:     clkms++;
+"666
+[; ;main.c: 666:     clkms++;
 [e ++ _clkms -> -> 1 `i `Vuc ]
-"660
-[; ;main.c: 660:     if(clkms > 200){
+"668
+[; ;main.c: 668:     if(clkms > 200){
 [e $ ! > -> _clkms `i -> 200 `i 1747  ]
 {
-"661
-[; ;main.c: 661:         clkms = 0;
+"669
+[; ;main.c: 669:         clkms = 0;
 [e = _clkms -> -> 0 `i `uc ]
-"662
-[; ;main.c: 662:     }
+"670
+[; ;main.c: 670:     }
 }
 [e :U 1747 ]
-"663
-[; ;main.c: 663: }
+"671
+[; ;main.c: 671: }
 [e :UE 1746 ]
 }
-"672
-[; ;main.c: 672: unsigned char checkDebounceSW1(){
+"680
+[; ;main.c: 680: unsigned char checkDebounceSW1(){
 [v _checkDebounceSW1 `(uc ~T0 @X0 1 ef ]
 {
 [e :U _checkDebounceSW1 ]
 [f ]
-"673
-[; ;main.c: 673:     PIE4bits.TMR1IE = 0;
+"681
+[; ;main.c: 681:     PIE4bits.TMR1IE = 0;
 [e = . . _PIE4bits 0 0 -> -> 0 `i `uc ]
-"675
-[; ;main.c: 675:     if(clkms - last_ms < 0){
+"683
+[; ;main.c: 683:     if(clkms - last_ms < 0){
 [e $ ! < - -> _clkms `i -> _last_ms `i -> 0 `i 1749  ]
 {
-"677
-[; ;main.c: 677:         if ((200 - last_ms)+ clkms > 15 ){
+"685
+[; ;main.c: 685:         if ((200 - last_ms)+ clkms > 15 ){
 [e $ ! > + - -> 200 `i -> _last_ms `i -> _clkms `i -> 15 `i 1750  ]
 {
-"678
-[; ;main.c: 678:             last_ms = clkms;
+"686
+[; ;main.c: 686:             last_ms = clkms;
 [e = _last_ms _clkms ]
-"679
-[; ;main.c: 679:             PIE4bits.TMR1IE = 1;
+"687
+[; ;main.c: 687:             PIE4bits.TMR1IE = 1;
 [e = . . _PIE4bits 0 0 -> -> 1 `i `uc ]
-"680
-[; ;main.c: 680:             return 1;
+"688
+[; ;main.c: 688:             return 1;
 [e ) -> -> 1 `i `uc ]
 [e $UE 1748  ]
-"681
-[; ;main.c: 681:         }
+"689
+[; ;main.c: 689:         }
 }
 [e :U 1750 ]
-"682
-[; ;main.c: 682:     }
+"690
+[; ;main.c: 690:     }
 }
 [e :U 1749 ]
-"684
-[; ;main.c: 684:     if(clkms - last_ms < 15){
+"692
+[; ;main.c: 692:     if(clkms - last_ms < 15){
 [e $ ! < - -> _clkms `i -> _last_ms `i -> 15 `i 1751  ]
 {
-"685
-[; ;main.c: 685:         return 0;
+"693
+[; ;main.c: 693:         return 0;
 [e ) -> -> 0 `i `uc ]
 [e $UE 1748  ]
-"686
-[; ;main.c: 686:         PIE4bits.TMR1IE = 1;
+"694
+[; ;main.c: 694:         PIE4bits.TMR1IE = 1;
 [e = . . _PIE4bits 0 0 -> -> 1 `i `uc ]
-"687
-[; ;main.c: 687:     }else{
+"695
+[; ;main.c: 695:     }else{
 }
 [e $U 1752  ]
 [e :U 1751 ]
 {
-"688
-[; ;main.c: 688:         last_ms = clkms;
+"696
+[; ;main.c: 696:         last_ms = clkms;
 [e = _last_ms _clkms ]
-"689
-[; ;main.c: 689:         PIE4bits.TMR1IE = 1;
+"697
+[; ;main.c: 697:         PIE4bits.TMR1IE = 1;
 [e = . . _PIE4bits 0 0 -> -> 1 `i `uc ]
-"690
-[; ;main.c: 690:         return 1;
+"698
+[; ;main.c: 698:         return 1;
 [e ) -> -> 1 `i `uc ]
 [e $UE 1748  ]
-"691
-[; ;main.c: 691:     }
+"699
+[; ;main.c: 699:     }
 }
 [e :U 1752 ]
-"692
-[; ;main.c: 692: }
+"700
+[; ;main.c: 700: }
 [e :UE 1748 ]
 }
-"701
-[; ;main.c: 701: unsigned char checkDebounceSW2(){
+"709
+[; ;main.c: 709: unsigned char checkDebounceSW2(){
 [v _checkDebounceSW2 `(uc ~T0 @X0 1 ef ]
 {
 [e :U _checkDebounceSW2 ]
 [f ]
-"704
-[; ;main.c: 704:     if(clkms - last_ms2 < 0){
+"712
+[; ;main.c: 712:     if(clkms - last_ms2 < 0){
 [e $ ! < - -> _clkms `i -> _last_ms2 `i -> 0 `i 1754  ]
 {
-"706
-[; ;main.c: 706:         if ((200 - last_ms2)+ clkms > 15 ){
+"714
+[; ;main.c: 714:         if ((200 - last_ms2)+ clkms > 15 ){
 [e $ ! > + - -> 200 `i -> _last_ms2 `i -> _clkms `i -> 15 `i 1755  ]
 {
-"707
-[; ;main.c: 707:             last_ms2 = clkms;
+"715
+[; ;main.c: 715:             last_ms2 = clkms;
 [e = _last_ms2 _clkms ]
-"708
-[; ;main.c: 708:             return 1;
+"716
+[; ;main.c: 716:             return 1;
 [e ) -> -> 1 `i `uc ]
 [e $UE 1753  ]
-"709
-[; ;main.c: 709:         }
+"717
+[; ;main.c: 717:         }
 }
 [e :U 1755 ]
-"710
-[; ;main.c: 710:     }
+"718
+[; ;main.c: 718:     }
 }
 [e :U 1754 ]
-"712
-[; ;main.c: 712:     if(clkms - last_ms2 < 15){
+"720
+[; ;main.c: 720:     if(clkms - last_ms2 < 15){
 [e $ ! < - -> _clkms `i -> _last_ms2 `i -> 15 `i 1756  ]
 {
-"713
-[; ;main.c: 713:         return 0;
+"721
+[; ;main.c: 721:         return 0;
 [e ) -> -> 0 `i `uc ]
 [e $UE 1753  ]
-"714
-[; ;main.c: 714:     }else{
+"722
+[; ;main.c: 722:     }else{
 }
 [e $U 1757  ]
 [e :U 1756 ]
 {
-"715
-[; ;main.c: 715:         last_ms2 = clkms;
+"723
+[; ;main.c: 723:         last_ms2 = clkms;
 [e = _last_ms2 _clkms ]
-"716
-[; ;main.c: 716:         return 1;
+"724
+[; ;main.c: 724:         return 1;
 [e ) -> -> 1 `i `uc ]
 [e $UE 1753  ]
-"717
-[; ;main.c: 717:     }
+"725
+[; ;main.c: 725:     }
 }
 [e :U 1757 ]
-"718
-[; ;main.c: 718: }
+"726
+[; ;main.c: 726: }
 [e :UE 1753 ]
 }
-"721
-[; ;main.c: 721: void save_recovery_params(){
+"729
+[; ;main.c: 729: void save_recovery_params(){
 [v _save_recovery_params `(v ~T0 @X0 1 ef ]
 {
 [e :U _save_recovery_params ]
 [f ]
-"723
-[; ;main.c: 723:     unsigned char aux, aux1;
+"731
+[; ;main.c: 731:     unsigned char aux, aux1;
 [v _aux `uc ~T0 @X0 1 a ]
 [v _aux1 `uc ~T0 @X0 1 a ]
-"724
-[; ;main.c: 724:     PIE4bits.TMR1IE = 0;
+"732
+[; ;main.c: 732:     PIE4bits.TMR1IE = 0;
 [e = . . _PIE4bits 0 0 -> -> 0 `i `uc ]
-"725
-[; ;main.c: 725:     last1m = 0;
+"733
+[; ;main.c: 733:     last1m = 0;
 [e = _last1m -> -> 0 `i `uc ]
-"726
-[; ;main.c: 726:     aux = clkh;
-[e = _aux _clkh ]
-"727
-[; ;main.c: 727:     aux1 = clkm;
-[e = _aux1 _clkm ]
-"728
-[; ;main.c: 728:     PIE4bits.TMR1IE = 1;
-[e = . . _PIE4bits 0 0 -> -> 1 `i `uc ]
-"729
-[; ;main.c: 729:     DATAEE_WriteByte(0xF0FF - 10 + 1, aux);
-[e ( _DATAEE_WriteByte (2 , -> + - -> 61695 `ui -> -> 10 `i `ui -> -> 1 `i `ui `us _aux ]
-"730
-[; ;main.c: 730:     DATAEE_WriteByte(0xF0FF - 10 + 2, aux1);
-[e ( _DATAEE_WriteByte (2 , -> + - -> 61695 `ui -> -> 10 `i `ui -> -> 2 `i `ui `us _aux1 ]
-"731
-[; ;main.c: 731:     cksum_w();
-[e ( _cksum_w ..  ]
 "734
-[; ;main.c: 734: }
+[; ;main.c: 734:     aux = clkh;
+[e = _aux _clkh ]
+"735
+[; ;main.c: 735:     aux1 = clkm;
+[e = _aux1 _clkm ]
+"736
+[; ;main.c: 736:     PIE4bits.TMR1IE = 1;
+[e = . . _PIE4bits 0 0 -> -> 1 `i `uc ]
+"737
+[; ;main.c: 737:     DATAEE_WriteByte(0xF0FF - 10 + 1, aux);
+[e ( _DATAEE_WriteByte (2 , -> + - -> 61695 `ui -> -> 10 `i `ui -> -> 1 `i `ui `us _aux ]
+"738
+[; ;main.c: 738:     DATAEE_WriteByte(0xF0FF - 10 + 2, aux1);
+[e ( _DATAEE_WriteByte (2 , -> + - -> 61695 `ui -> -> 10 `i `ui -> -> 2 `i `ui `us _aux1 ]
+"739
+[; ;main.c: 739:     cksum_w();
+[e ( _cksum_w ..  ]
+"742
+[; ;main.c: 742: }
 [e :UE 1758 ]
 }
-"736
-[; ;main.c: 736: void ring_buffer (unsigned char * _ring_byte, unsigned char clock_h, unsigned char clock_m, unsigned char clock_s, unsigned char tem,unsigned char lum){
+"744
+[; ;main.c: 744: void ring_buffer (unsigned char * _ring_byte, unsigned char clock_h, unsigned char clock_m, unsigned char clock_s, unsigned char tem,unsigned char lum){
 [v _ring_buffer `(v ~T0 @X0 1 ef6`*uc`uc`uc`uc`uc`uc ]
 {
 [e :U _ring_buffer ]
@@ -3531,28 +3548,28 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _tem `uc ~T0 @X0 1 r5 ]
 [v _lum `uc ~T0 @X0 1 r6 ]
 [f ]
-"738
-[; ;main.c: 738:     PIE4bits.TMR1IE = 0;
+"746
+[; ;main.c: 746:     PIE4bits.TMR1IE = 0;
 [e = . . _PIE4bits 0 0 -> -> 0 `i `uc ]
-"739
-[; ;main.c: 739:     _ring_byte[0] = clock_h;
+"747
+[; ;main.c: 747:     _ring_byte[0] = clock_h;
 [e = *U + __ring_byte * -> -> 0 `i `x -> -> # *U __ring_byte `i `x _clock_h ]
-"740
-[; ;main.c: 740:     _ring_byte[1] = clock_m;
+"748
+[; ;main.c: 748:     _ring_byte[1] = clock_m;
 [e = *U + __ring_byte * -> -> 1 `i `x -> -> # *U __ring_byte `i `x _clock_m ]
-"741
-[; ;main.c: 741:     _ring_byte[2] = clock_s;
+"749
+[; ;main.c: 749:     _ring_byte[2] = clock_s;
 [e = *U + __ring_byte * -> -> 2 `i `x -> -> # *U __ring_byte `i `x _clock_s ]
-"742
-[; ;main.c: 742:     PIE4bits.TMR1IE = 1;
+"750
+[; ;main.c: 750:     PIE4bits.TMR1IE = 1;
 [e = . . _PIE4bits 0 0 -> -> 1 `i `uc ]
-"743
-[; ;main.c: 743:     _ring_byte[3] = tem;
+"751
+[; ;main.c: 751:     _ring_byte[3] = tem;
 [e = *U + __ring_byte * -> -> 3 `i `x -> -> # *U __ring_byte `i `x _tem ]
-"744
-[; ;main.c: 744:     _ring_byte[4] = lum;
+"752
+[; ;main.c: 752:     _ring_byte[4] = lum;
 [e = *U + __ring_byte * -> -> 4 `i `x -> -> # *U __ring_byte `i `x _lum ]
-"745
-[; ;main.c: 745: }
+"753
+[; ;main.c: 753: }
 [e :UE 1759 ]
 }
