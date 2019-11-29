@@ -58,6 +58,7 @@ unsigned char limitTempThreshUnits(void);
 unsigned char limitHoursUnits(void);
 void recTempThresh(unsigned char _value);
 void recLumThresh(unsigned char _value);
+unsigned char increment_subfield_clk(unsigned char limit, unsigned init_val); 
 
 unsigned char checkDebounceSW1();
 unsigned char checkDebounceSW2();
@@ -359,10 +360,7 @@ void main(void){
 void selectSubfield(void){ // o clock tem 4 subfields
     unsigned int  subfield = 1;
 
-    if(mode_field_subfield[FIELD] == 1){
-        PIE4bits.TMR1IE = 0;
-    }
-
+ 
     do{
         if(!IO_RB4_GetValue()){
             if(checkDebounceSW1()){
@@ -387,10 +385,7 @@ void selectSubfield(void){ // o clock tem 4 subfields
         
     }while(subfield <= num_subfields[mode_field_subfield[FIELD]]);  
 
-    if(mode_field_subfield[FIELD] == 1){
-        PIE4bits.TMR1IE = 1;
-    }
-    
+     
 }
 
 /*******************************************
@@ -399,33 +394,36 @@ void selectSubfield(void){ // o clock tem 4 subfields
  *  Obs: 
  *******************************************/
 void getSubfieldInfo(void){
+    unsigned char h_tens =0, h_units = 0,m_tens=0,m_units=0 ; 	
     switch(mode_field_subfield[FIELD]){
         case 1: 
+		 PIE4bits.TMR1IE = 0;
+
             switch(mode_field_subfield[SUBFIELD]){
-                case 1:                             //Hour tens
-                    subfield_info.limit = (unsigned char(*)(void))2;
-                    subfield_info.reconstruct_subfield = &recHour;
-                    
-                break;
+                case 1:   
+						//Hour tens
+                  	h_tens = increment_subfield_clk(2, (clkh/10));
+                	break;
                 case 2:                             //Hour units
-                    subfield_info.limit = &limitHoursUnits;
-                    subfield_info.reconstruct_subfield = &recHour;
-                break;
+                    	h_units = increment_subfield_clk( limitHoursUnits() , (clkh % 10 ));
+                	break;
                 case 3:                             //minutes tens
-                    subfield_info.limit = (unsigned char(*)(void))5;
-                    subfield_info.reconstruct_subfield = &recMinutes;
-                break;
+			m_tens = increment_subfield_clk( 5 , (clkm / 10 ));
+                	break;
                 case 4:                             //minutes units
-                    subfield_info.limit = (unsigned char(*)(void))9;
-                    subfield_info.reconstruct_subfield = &recMinutes;
-                break;
+                	m_units = increment_subfield_clk( 9, (clkh % 10 ));
+                    	break;
+		
             }
+	     PIE4bits.TMR1IE = 0;
+
         break;
         //------------------------
         case 2:
             subfield_info.limit = (unsigned char(*)(void))1;
             subfield_info.reconstruct_subfield = &recAlarm;
-        break;
+            alaf = increment_subfield_clk( 1, alaf );	
+	break;
         //------------------------
         case 3: 
             switch(mode_field_subfield[SUBFIELD]){
@@ -580,6 +578,40 @@ void increment_subfield(){  //funcao universal para todos os subfields
 
 
 
+unsigned char increment_subfield_clk(unsigned char limit, unsigned init_val){  //funcao universal para todos os subfields
+
+    unsigned char exit = 0;
+    unsigned char _value = init_val;
+
+    PWM6_LoadDutyValue(0);
+    LATA = 0;
+    
+    if(_value > limit) _value = 0;
+
+    while(exit == 0){
+
+        if(!IO_RC5_GetValue()){
+            if(checkDebounceSW2()){
+                _value++;
+                if(_value > limit) _value = 0;
+		representLed(_value);
+            }
+            last_ms2 = clkms;
+        }
+
+        if(!IO_RB4_GetValue()){
+            if(checkDebounceSW1()){
+                exit = 1;
+            }
+            last_ms = clkms;
+        }
+    }
+return _value;  
+}
+
+
+
+
 
 /*******************************************
  *  Func: ADC_read
@@ -617,7 +649,7 @@ void handler_clock_hms(void){
         seg = 0;
         if(clkm >= 60) {
             clkh++;
-            clkm = 0;
+            clkm = 0;\\
         }
     }
 
