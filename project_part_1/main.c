@@ -106,7 +106,7 @@ unsigned int convertedValue = 0;
 unsigned int duty_cycle = 0;
 
 unsigned int lum_bin = 0;
-unsigned int lum_threshold = 0;
+unsigned int threshold = 0;
 
 unsigned char temp;
 unsigned char alaf;
@@ -149,7 +149,7 @@ void sw1_EXT(void){
  *******************************************/
 void ISR_3s(void){
 
-    if (lum_threshold){     //check if we still have a issue
+    if (threshold){     //check if we still have a issue
         PWM6_LoadDutyValue(1023);
         alarm = ON;
 
@@ -185,7 +185,7 @@ void main(void){
     alaf = 1;
     temp = 0;
     lum_bin = 0;
-    lum_threshold = 0;
+    threshold = 0;
     duty_cycle = 0;
     set_mode= OFF;
     
@@ -233,7 +233,7 @@ void main(void){
 
 
                             NOP();
-                            //temp = tsttc();                     //I2C read
+                            temp = tsttc();                     //I2C read
                             NOP();
                             
                                // Push to Ring buffer
@@ -245,9 +245,9 @@ void main(void){
                             }
 
 
-                            lum_threshold = (lum_bin > ALAL || temp > ALAT  ) & alaf;   //detect alarm 
+                            threshold = (lum_bin > lum_thresh || temp > temp_thresh  ) & alaf;   //detect alarm 
 
-                            if(lum_threshold){
+                            if(threshold){
                                 if(alarm == SET){           //if alarm is set ON you need to press SW1 ON 
                                     duty_cycle +=1 ;   
                                     PWM6_LoadDutyValue(duty_cycle);
@@ -272,6 +272,8 @@ void main(void){
                         EXT_INT_InterruptDisable(); 
                         config_routine();
                         EXT_INT_InterruptEnable(); 
+                        DATAEE_WriteByte(EE_RECV + 5, temp_thresh);
+                        DATAEE_WriteByte(EE_RECV + 6, lum_thresh);
                     }
 
                     __delay_ms(10);
@@ -387,7 +389,7 @@ void selectSubfield(void){ // o clock tem 4 subfields
  *******************************************/
 void getSubfieldInfo(void){
 
-    unsigned char h_tens, h_units, m_tens, m_units;
+    unsigned char h_tens, h_units, m_tens, m_units, temp_thresh_tens, temp_thresh_units;
  	
     switch(mode_field_subfield[FIELD]){
         case 1: 
@@ -414,30 +416,29 @@ void getSubfieldInfo(void){
             }
             clkh = 10*h_tens + h_units;
             clkm = 10*m_tens + m_units;
-	     PIE4bits.TMR1IE = 0;
-
+            PIE4bits.TMR1IE = 0;
         break;
         //------------------------
         case 2:
             alaf = increment_subfield( 1, alaf );	
 	break;
         //------------------------
-        case 3: 
+        case 3:
+            temp_thresh_tens = temp_thresh / 10;
+            temp_thresh_units = temp_thresh % 10;
             switch(mode_field_subfield[SUBFIELD]){
                 case 1:                             //Temperature Thresh tens
-                    subfield_info.limit = (unsigned char(*)(void))5;
-                    subfield_info.reconstruct_subfield = &recTempThresh;
+                    temp_thresh_tens = increment_subfield(5, temp_thresh_tens);
                 break;
                 case 2:                             //Temperature Thresh units
-                    subfield_info.limit = &limitTempThreshUnits;
-                    subfield_info.reconstruct_subfield = &recTempThresh;
+                    temp_thresh_units = increment_subfield(limitTempThreshUnits(), temp_thresh_units);
                 break;
             }
+            temp_thresh = 10*temp_thresh_tens + temp_thresh_units;
         break;
         //------------------------
         case 4: 
-            subfield_info.limit = (unsigned char(*)(void))3;
-            subfield_info.reconstruct_subfield = &recLumThresh;
+            lum_thresh = increment_subfield(3, lum_thresh);
         break;
     }
 }

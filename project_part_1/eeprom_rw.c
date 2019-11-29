@@ -7,6 +7,8 @@ extern unsigned char nreg;
 extern unsigned char nreg_pt;
 extern unsigned char pmon;
 extern unsigned char tala;
+extern unsigned char temp_thresh;
+extern unsigned char lum_thresh;
 
 void recoverData(){
     /* Recover Parameters */
@@ -16,8 +18,10 @@ void recoverData(){
             clkm = DATAEE_ReadByte(EE_RECV + 2);
             nreg = DATAEE_ReadByte(EE_RECV + 3);
             nreg_pt = DATAEE_ReadByte(EE_RECV + 4);
-            pmon = DATAEE_ReadByte(EE_RECV + 5);
-            tala = DATAEE_ReadByte(EE_RECV + 6);
+            temp_thresh = DATAEE_ReadByte(EE_RECV + 5);
+            lum_thresh = DATAEE_ReadByte(EE_RECV + 6);
+            pmon = DATAEE_ReadByte(EE_RECV + 7);
+            tala = DATAEE_ReadByte(EE_RECV + 8);
         }
     }
 
@@ -26,8 +30,10 @@ void recoverData(){
     /* Write Recovery Parameters */
     DATAEE_WriteByte(EE_RECV, WORD_MG);
     DATAEE_WriteByte(EE_RECV + 3, nreg);
-    DATAEE_WriteByte(EE_RECV + 5, pmon);
-    DATAEE_WriteByte(EE_RECV + 6, tala);
+    DATAEE_WriteByte(EE_RECV + 5, temp_thresh);
+    DATAEE_WriteByte(EE_RECV + 6, lum_thresh);
+    DATAEE_WriteByte(EE_RECV + 7, pmon);
+    DATAEE_WriteByte(EE_RECV + 8, tala);
     cksum_w();
 }
 
