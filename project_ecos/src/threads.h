@@ -10,10 +10,11 @@
 // mailbox pointers point to an element of an array with this size
 #define FIXED_MBBUFFER  64
 
-#define DELAY 40
+#define DELAY 100
 
 // macros
 #define __DELAY() cyg_thread_delay(DELAY + (rand() % (DELAY << 2)))
+#define __DELAYX(X) cyg_thread_delay(X + (rand() % (X << 2)))
 
 typedef struct {
     cyg_addrword_t  pri;

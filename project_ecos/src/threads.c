@@ -46,29 +46,46 @@ void FreeWrite(cyg_sem_t* s)
 }
 
 /*
-    -- EXAMPLE, how to use commandbus --
+    COMMANDBUS -- EXAMPLE
 
-    // write
-    commandbus = writeCommand('c', 5);
-    commandbus[1] = 1;
-    commandbus[2] = 2;
-    commandbus[3] = 3;
-    commandbus[4] = 4;
-    commandbus[5] = 5;
+    unsigned int* cmd_in;
+    unsigned int* cmd_out;
 
-    // read
-    printf(">> %c\n", getName(commandbus));
-    for(j = 1; j <= getArgc(commandbus); j++)
-    {
-        printf("> %d\n", (int) commandbus[j]);
+    // Asking for Stats to Proc
+    // writes to ring buffer (bytes separated by |):
+    cmd_out = writeCommand('s', 6);
+    //    s|0|0|6->
+    cmd_out[1] = 0;
+    cmd_out[2] = 0;
+    cmd_out[3] = 0;
+    cmd_out[4] = 23;
+    cmd_out[5] = 59;
+    cmd_out[6] = 59;
+    // ->|0|0|0|0->
+    // ->|0|0|0|0->
+    // ->|0|0|0|0->
+    // ->|0|0|1|7->
+    // ->|0|0|3|B->
+    // ->|0|0|3|B
+    cyg_mbox_tryput(proc.mbox_h, cmd_out);
+
+    while(1) {
+        cyg_mutex_lock(&rs_stdin);
+        printf("<us>\n");
+        cyg_mutex_unlock(&rs_stdin);
+
+        __DELAY();
     }
 */
 
 unsigned int* writeCommand(unsigned char name, unsigned short int argc)
 {
+    unsigned int* aux;
     commandbus[cb_index % FIXED_MBBUFFER] = ((unsigned int) name << 24) + (unsigned int) argc;
+    aux = commandbus + (cb_index % FIXED_MBBUFFER);
     cb_index += argc + 1;
-    return commandbus;
+
+    return aux;
 }
 
 char getName(unsigned int* pt)
