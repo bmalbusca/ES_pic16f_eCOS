@@ -7,14 +7,13 @@
 #define DEFAULT_PRI 10
 #define DEFAULT_STACKSZ 4096
 
-// mailbox pointers point to an element of an array with this size
-#define FIXED_MBBUFFER  64
+// mailbox pointers point to an element of an array with this size (commandbus size)
+#define SIZE_CB  64
 
-#define DELAY 100
+#define DELAY 200
 
 // macros
-#define __DELAY() cyg_thread_delay(DELAY + (rand() % (DELAY << 2)))
-#define __DELAYX(X) cyg_thread_delay(X + (rand() % (X << 2)))
+#define __DELAY(X) (cyg_thread_delay(DELAY + (rand() % (DELAY >> (X)))))
 
 typedef struct {
     cyg_addrword_t  pri;
@@ -34,8 +33,10 @@ void AskRead(cyg_sem_t* s);
 void FreeRead(cyg_sem_t* s);
 void AskWrite(cyg_sem_t* s);
 void FreeWrite(cyg_sem_t* s);
-unsigned int* writeCommand(unsigned char name, unsigned short int argc);
-char getName(unsigned int* pt);
-unsigned short int getArgc(unsigned int* pt);
+char* writeCommand(char name, short int argc);
+char getName(char *pt);
+short int getArgc(char* pt);
+short int getArg(char* pt, int arg);
+void setArg(char* pt, int arg, int val);
 
 #endif

@@ -14,13 +14,13 @@
 // macros
 #define DELTA(X,Y) X > Y ? X - Y : Y - X
 
-void proc_F (cyg_addrword_t data);
-void user_F (cyg_addrword_t data);
-void rx_F   (cyg_addrword_t data);
-void tx_F   (cyg_addrword_t data);
-void push   (char clkh, char clkm, char seg, char Temp, char Lum);
-void usart_init();
-void thread_init();
+void proc_F     (cyg_addrword_t data);
+void user_F     (cyg_addrword_t data);
+void rx_F       (cyg_addrword_t data);
+void tx_F       (cyg_addrword_t data);
+void push       (char clkh, char clkm, char seg, char Temp, char Lum);
+void usart_init (void);
+void thread_init(void);
 
 /*
     CONFIGS
@@ -58,8 +58,8 @@ thread_info proc, user, rx, tx;
     USART
 */
 cyg_io_handle_t usart_h;
-char* usart_n = "/dev/sr0";
-cyg_serial_info_t serial_i;
+char* usart_n = "/dev/sr0"; // name
+cyg_serial_info_t serial_i; // struct with configs for usart
 
 void cyg_user_start(void)
 {
@@ -89,7 +89,7 @@ void usart_init() {
         printf("[IO:\"%s\"] Detected\n", usart_n);
         //cyg_io_set_config(usart_h, key, (const void*) , &len);
     }
-    else if(err = -ENOENT)
+    else if(err == -ENOENT)
         printf("[IO:\"%s\"] No such entity\n", usart_n);
     else
         printf("[IO:\"%s\"] Some error with code <%d> (lookup \'CYGONCE_ERROR_CODES_H\')\n", usart_n, err);
@@ -115,8 +115,8 @@ void thread_init() {
 void proc_F(cyg_addrword_t data)
 {
     int now, last = 0;
-    unsigned int* cmd_in;
-    unsigned int* cmd_out;
+    char* cmd_in;
+    char* cmd_out;
     unsigned short int argc = 0;
 
     int max, min, mean;
@@ -138,18 +138,26 @@ void proc_F(cyg_addrword_t data)
             }
         }
 
-        cmd_in = (unsigned int*) cyg_mbox_tryget(proc.mbox_h);
+        cmd_in = (char*) cyg_mbox_tryget(proc.mbox_h);
 
         if(cmd_in != NULL) {
-            switch ((char) getName(cmd_in)) {
+            switch (getName(cmd_in)) {
                 // transfere, replied
                 case 't': checkThresholds(localmem, iread, iwrite, alat, alal, &rs_localmem, &rs_stdin);
-                           iread = iwrite;
+
+                          /* (apagar mais tarde) exemplo,
+                             se quisesse ler argumentos
+                          */
+                          cyg_mutex_lock(&rs_stdin);
+                          printf("EXAMPLE: %d %d %d\n", getArg(cmd_in, 1), getArg(cmd_in, 2), getArg(cmd_in, 3));
+                          cyg_mutex_unlock(&rs_stdin);
+
+                          iread = iwrite;
                           break;
                 // stats, asked for statistics
                 case 's': argc = getArgc(cmd_in);
                           cyg_mutex_lock(&rs_stdin);
-                          printf("Sats\n");
+                          printf("Stats\n");
                           cyg_mutex_unlock(&rs_stdin);
                           if(argc == 6) {
                             memcpy(range, cmd_in + 1, 6);
@@ -158,7 +166,7 @@ void proc_F(cyg_addrword_t data)
             }
         }
 
-        __DELAYX(10);
+        __DELAY(2);
     }
 }
 
@@ -167,42 +175,18 @@ void proc_F(cyg_addrword_t data)
 */
 void user_F(cyg_addrword_t data)
 {
-    unsigned int* cmd_in;
-    unsigned int* cmd_out;
-
-    // EXAMPLE -- Asking for Stats to Proc
-    // writes to ring buffer (bytes separated by |):
-    cmd_out = writeCommand('s', 6);
-    //    s|0|0|6->
-    cmd_out[1] = 0;
-    cmd_out[2] = 0;
-    cmd_out[3] = 0;
-    cmd_out[4] = 23;
-    cmd_out[5] = 59;
-    cmd_out[6] = 59;
-    // ->|0|0|0|0->
-    // ->|0|0|0|0->
-    // ->|0|0|0|0->
-    // ->|0|0|1|7->
-    // ->|0|0|3|B->
-    // ->|0|0|3|B
-    cyg_mbox_tryput(proc.mbox_h, cmd_out);
-
     while(1) {
         cyg_mutex_lock(&rs_stdin);
         printf("<us>\n");
         cyg_mutex_unlock(&rs_stdin);
 
-        __DELAY();
+        __DELAY(0);
     }
 }
 
 void rx_F(cyg_addrword_t data)
 {
     /*
-    unsigned int* cmd_in;
-    unsigned int* cmd_out;
-
     char _buf[32];
     int len = 32;
     void* buf;
@@ -224,32 +208,42 @@ void rx_F(cyg_addrword_t data)
         cyg_mutex_unlock(&rs_stdin);
         */
 
-        __DELAY();
+        __DELAY(0);
     }
 }
 
+// function for transference thread
 void tx_F(cyg_addrword_t data)
 {
-    unsigned int* cmd_in;
-    unsigned int* cmd_out;
+    char* cmd_out;
+    char* cmd_in;
 
     while(1) {
         cyg_mutex_lock(&rs_stdin);
         printf("<tx>\n");
         cyg_mutex_unlock(&rs_stdin);
 
-        cmd_in = (unsigned int*) cyg_mbox_tryget(tx.mbox_h);
+        cmd_in = (char*) cyg_mbox_tryget(tx.mbox_h);
 
         if(cmd_in != NULL) {
-            switch ((char) getName(cmd_in)) {
+            switch (getName(cmd_in)) {
                 // transference, asked to transfere
                 case 't': push((char) 23, (char) 59, (char) 59, (char) 60, (char) 1);
-                          cmd_out = writeCommand('t', 0); // reply
-                          cyg_mbox_tryput(proc.mbox_h, (void*) cmd_out);
+                cmd_out = writeCommand('t', 3);
+
+                /* (apagar mais tarde) exemplo,
+                   se quisesse escrever argumentos
+                   (afinal não foi preciso o índice, fiz get() e set())
+                */
+                setArg(cmd_out, 1, 12);
+                setArg(cmd_out, 2, 00);
+                setArg(cmd_out, 3, 59);
+
+                cyg_mbox_tryput(proc.mbox_h, (void*) cmd_out);
             }
         }
 
-        __DELAY();
+        __DELAY(0);
     }
 }
 

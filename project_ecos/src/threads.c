@@ -1,8 +1,8 @@
 #include "threads.h"
 
+char commandbus[SIZE_CB];
 cyg_mutex_t global;
 int nread = 0;
-unsigned int commandbus[FIXED_MBBUFFER];
 int cb_index = 0;
 
 void thread_create(thread_info* ti, int flag_defaults)
@@ -45,55 +45,36 @@ void FreeWrite(cyg_sem_t* s)
     cyg_semaphore_post(s);
 }
 
-/*
-    COMMANDBUS -- EXAMPLE
-
-    unsigned int* cmd_in;
-    unsigned int* cmd_out;
-
-    // Asking for Stats to Proc
-    // writes to ring buffer (bytes separated by |):
-    cmd_out = writeCommand('s', 6);
-    //    s|0|0|6->
-    cmd_out[1] = 0;
-    cmd_out[2] = 0;
-    cmd_out[3] = 0;
-    cmd_out[4] = 23;
-    cmd_out[5] = 59;
-    cmd_out[6] = 59;
-    // ->|0|0|0|0->
-    // ->|0|0|0|0->
-    // ->|0|0|0|0->
-    // ->|0|0|1|7->
-    // ->|0|0|3|B->
-    // ->|0|0|3|B
-    cyg_mbox_tryput(proc.mbox_h, cmd_out);
-
-    while(1) {
-        cyg_mutex_lock(&rs_stdin);
-        printf("<us>\n");
-        cyg_mutex_unlock(&rs_stdin);
-
-        __DELAY();
-    }
-*/
-
-unsigned int* writeCommand(unsigned char name, unsigned short int argc)
+char* writeCommand(char name, short int argc)
 {
-    unsigned int* aux;
-    commandbus[cb_index % FIXED_MBBUFFER] = ((unsigned int) name << 24) + (unsigned int) argc;
-    aux = commandbus + (cb_index % FIXED_MBBUFFER);
-    cb_index += argc + 1;
+    short int aux;
 
-    return aux;
+    aux = cb_index % SIZE_CB;
+    commandbus[aux] = name;
+    commandbus[(cb_index + 1) % SIZE_CB] = (char) argc;
+    cb_index += argc + 2;
+
+    return (commandbus + aux);
 }
 
-char getName(unsigned int* pt)
+char getName(char *pt)
 {
-    return (char) (pt[0] >> 24);
+    return commandbus[pt - commandbus];
 }
 
-unsigned short int getArgc(unsigned int* pt)
+short int getArgc(char* pt)
 {
-    return (unsigned short int) (pt[0] & 0x00FF);
+    return (short int) commandbus[(pt - commandbus + 1) % SIZE_CB];
+}
+
+short int getArg(char* pt, int arg)
+{
+    if((arg < 1) || (arg > getArgc(pt))) return 0;
+    return (short int) commandbus[(pt - commandbus + 1 + arg) % SIZE_CB];
+}
+
+void setArg(char* pt, int arg, int val)
+{
+    if((arg < 1) || (arg > getArgc(pt))) return;
+    commandbus[(pt - commandbus + 1 + arg) % SIZE_CB] = val;
 }

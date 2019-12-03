@@ -1,7 +1,7 @@
 #include "proc.h"
 
 // macros
-#define DELTA(X,Y) X > Y ? X - Y : Y - X
+#define DELTA(X,Y) ((X) > (Y) ? (X) - (Y) : (Y) - (X))
 
 void checkThresholds(char* localmem, int iread, int iwrite, int alat, int alal, cyg_sem_t* rs_localmem, cyg_mutex_t* rs_stdin)
 {
@@ -36,8 +36,12 @@ void calcStatistics(char* localmem, int iwrite, int mem_filled, int* max, int* m
 
 
 }
-
-void find(char* localmem, int iwrite, int mem_filled, int *start_i, int* end_i, unsigned int range[6])
+/*
+int find(char* localmem, int* i, int *j, unsigned int range[6])
 {
+    int k, size = *i > *j ? *i - *j : *j - *i;
+    for(k = *i; k == *j; k += (k + 1) % size) {
 
+    }
 }
+*/
