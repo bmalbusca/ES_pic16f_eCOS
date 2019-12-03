@@ -14,6 +14,17 @@
 // macros
 #define DELTA(X,Y) X > Y ? X - Y : Y - X
 
+/*
+    THREAD COMMUNICATION PROTOCOL
+    to do ACK send the same command back with no arguments
+
+    t: used by (proc, user, rx)
+       transfere registers to local memory
+
+    s: used by (proc, user)
+       send statistics to user
+*/
+
 void proc_F     (cyg_addrword_t data);
 void user_F     (cyg_addrword_t data);
 void rx_F       (cyg_addrword_t data);
