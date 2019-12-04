@@ -11,27 +11,28 @@
 #define LM_SIZE (5*LM_REGISTERS)
 #define CYG_SERIAL_FLAGS_RTSCTS 0x0001
 
-// macros
-#define DELTA(X,Y) X > Y ? X - Y : Y - X
-
 /*
-    THREAD COMMUNICATION PROTOCOL
-    to do ACK send the same command back with no arguments
-
-    t: used by (proc, user, rx)
-       transfere registers to local memory
-
-    s: used by (proc, user)
-       send statistics to user
+THREAD COMMUNICATION PROTOCOL
+to do ACK send the same command back with no arguments
 */
 
+#define TX_TRANSFERENCE t // used by (proc, user, rx) to transfere registers to local memory
+#define USER_STATISTICS s // used by (proc, user) to send statistics to user
+
+// macros
+#define DELTA(X,Y)      ((X) >= (Y) ? (X) - (Y) : (Y) - (X))
+#define RINGDELTA(X,Y)  ((Y) >= (X) ? (Y) - (X) : LM_SIZE - (X) + (Y)) // X,Y are indexes
+
+void usart_init (void);
+void thread_init(void);
 void proc_F     (cyg_addrword_t data);
 void user_F     (cyg_addrword_t data);
 void rx_F       (cyg_addrword_t data);
 void tx_F       (cyg_addrword_t data);
-void push       (char clkh, char clkm, char seg, char Temp, char Lum);
-void usart_init (void);
-void thread_init(void);
+void pushMem    (char* buffer, unsigned int size);
+char* popMem    (unsigned int* size);
+char getMemP    (unsigned int pos);
+char* getMem    (unsigned int from_i, unsigned int to_j);
 
 /*
     CONFIGS
@@ -54,20 +55,26 @@ int alal = 2;
 /*
     RESOURCES
 */
+
 char        localmem[LM_SIZE];          // 1 register (5 bytes): h | m | s | T | L
 int         iread = 0, iwrite = 0;      // only proc should change iread, it should be updated after reading (iread = iwrite)
-short int   mem_filled = 0;             // 1 if ring buffer was writen fully once
 cyg_mutex_t rs_stdin;
 cyg_sem_t   rs_localmem;
+cyg_sem_t   rs_irw;                     // iread, iwrite
+
+// flags
+char ring_filled = 0;
 
 /*
     THREADS
 */
+
 thread_info proc, user, rx, tx;
 
 /*
     USART
 */
+
 cyg_io_handle_t usart_h;
 char* usart_n = "/dev/sr0"; // name
 cyg_serial_info_t serial_i; // struct with configs for usart
@@ -75,6 +82,7 @@ cyg_serial_info_t serial_i; // struct with configs for usart
 void cyg_user_start(void)
 {
     cyg_semaphore_init(&rs_localmem, 1);
+    cyg_semaphore_init(&rs_irw, 1);
     cyg_mutex_init(&rs_stdin);
     usart_init();
     thread_init();
@@ -126,12 +134,11 @@ void thread_init() {
 void proc_F(cyg_addrword_t data)
 {
     int now, last = 0;
-    char* cmd_in;
-    char* cmd_out;
+    char *cmd_out, *cmd_in;
     unsigned short int argc = 0;
 
     int max, min, mean;
-    unsigned int range[6];
+    char range[6] = {00,00,00,05,20,00};
 
     while(1) {
         cyg_mutex_lock(&rs_stdin);
@@ -154,26 +161,25 @@ void proc_F(cyg_addrword_t data)
         if(cmd_in != NULL) {
             switch (getName(cmd_in)) {
                 // transfere, replied
-                case 't': checkThresholds(localmem, iread, iwrite, alat, alal, &rs_localmem, &rs_stdin);
+                case 't':
+                        checkThresholds(popMem, alat, alal, &rs_stdin);
 
-                          /* (apagar mais tarde) exemplo,
-                             se quisesse ler argumentos
-                          */
-                          cyg_mutex_lock(&rs_stdin);
-                          printf("EXAMPLE: %d %d %d\n", getArg(cmd_in, 1), getArg(cmd_in, 2), getArg(cmd_in, 3));
-                          cyg_mutex_unlock(&rs_stdin);
-
-                          iread = iwrite;
-                          break;
+                        /* (apagar mais tarde) exemplo,
+                           se quisesse ler argumentos
+                        */
+                        cyg_mutex_lock(&rs_stdin);
+                        printf("EXAMPLE: %d %d %d\n", getArg(cmd_in, 1), getArg(cmd_in, 2), getArg(cmd_in, 3));
+                        cyg_mutex_unlock(&rs_stdin);
+                        break;
                 // stats, asked for statistics
-                case 's': argc = getArgc(cmd_in);
-                          cyg_mutex_lock(&rs_stdin);
-                          printf("Stats\n");
-                          cyg_mutex_unlock(&rs_stdin);
-                          if(argc == 6) {
-                            memcpy(range, cmd_in + 1, 6);
-                            calcStatistics(localmem, iwrite, mem_filled, &max, &min, &mean, range);
-                          }
+                case 's':
+                        calcStatistics(getMem, LM_SIZE, &max, &min, &mean, range);
+
+
+                        cyg_mutex_lock(&rs_stdin);
+                        printf("Stats\n");
+                        cyg_mutex_unlock(&rs_stdin);
+                        break;
             }
         }
 
@@ -226,8 +232,13 @@ void rx_F(cyg_addrword_t data)
 // function for transference thread
 void tx_F(cyg_addrword_t data)
 {
-    char* cmd_out;
-    char* cmd_in;
+    char *cmd_out, *cmd_in;
+    char buffer[30] = {(char) 23, (char) 59, (char) 59, (char) 20, (char)  1,
+                       (char)  0, (char) 30, (char) 27, (char) 30, (char)  1,
+                       (char)  0, (char) 32, (char) 10, (char) 20, (char)  2,
+                       (char)  1, (char) 21, (char)  9, (char) 60, (char)  0,
+                       (char)  5, (char) 19, (char) 59, (char) 50, (char)  0,
+                       (char) 13, (char) 59, (char) 59, (char) 10, (char)  1}; // for testing
 
     while(1) {
         cyg_mutex_lock(&rs_stdin);
@@ -239,18 +250,20 @@ void tx_F(cyg_addrword_t data)
         if(cmd_in != NULL) {
             switch (getName(cmd_in)) {
                 // transference, asked to transfere
-                case 't': push((char) 23, (char) 59, (char) 59, (char) 60, (char) 1);
-                cmd_out = writeCommand('t', 3);
+                case 't':
+                    pushMem(buffer, 30);
+                    cmd_out = writeCommand('t', 3);
 
-                /* (apagar mais tarde) exemplo,
-                   se quisesse escrever argumentos
-                   (afinal não foi preciso o índice, fiz get() e set())
-                */
-                setArg(cmd_out, 1, 12);
-                setArg(cmd_out, 2, 00);
-                setArg(cmd_out, 3, 59);
+                    /* (apagar mais tarde) exemplo,
+                       se quisesse escrever argumentos
+                       (afinal não foi preciso o índice, fiz get() e set())
+                    */
+                    setArg(cmd_out, 1, 12);
+                    setArg(cmd_out, 2, 00);
+                    setArg(cmd_out, 3, 59);
 
-                cyg_mbox_tryput(proc.mbox_h, (void*) cmd_out);
+                    cyg_mbox_tryput(proc.mbox_h, (void*) cmd_out);
+                    break;
             }
         }
 
@@ -261,16 +274,87 @@ void tx_F(cyg_addrword_t data)
 
 /*
     LOCAL MEMORY f(x)
+    ================
 */
-void push(char clkh, char clkm, char seg, char Temp, char Lum)
+
+/*
+    This function puts data in local memory in push like way,
+    because caller doesn't control where to write.
+*/
+void pushMem(char* buffer, unsigned int size)
 {
+    int k = 0;
+    if(size % 5)
+        return;
     AskWrite(&rs_localmem);
-    localmem[iwrite % LM_SIZE] = clkh;
-    localmem[(iwrite + 1) % LM_SIZE] = clkm;
-    localmem[(iwrite + 2) % LM_SIZE] = seg;
-    localmem[(iwrite + 3) % LM_SIZE] = Temp;
-    localmem[(iwrite + 4) % LM_SIZE] = Lum;
+    AskWrite(&rs_irw);
+    for(; k < size; iwrite = (iwrite + 1) % LM_SIZE, k++)
+    {
+        localmem[iwrite] = buffer[k];
+    }
+    FreeWrite(&rs_irw);
     FreeWrite(&rs_localmem);
-    iwrite += 5;
-    if(!iwrite) mem_filled = 1;
+    if(!iwrite)
+        ring_filled = 1;
+}
+
+/*
+    This function outputs data in local memory in a pop like way,
+    because caller doesn't control where to read and
+    once data has taken it can't be read again with this function.
+*/
+char* popMem(unsigned int* size)
+{
+    char* buffer;
+    int k = 0;
+
+    AskWrite(&rs_irw);
+    *size = RINGDELTA(iread, iwrite);
+    buffer = (char*) malloc((*size)*sizeof(char));
+
+    AskRead(&rs_localmem);
+    for(; k < *size; iread = (iread + 1) % LM_SIZE, k++)
+    {
+        buffer[k] = localmem[iread];
+    }
+    FreeRead(&rs_localmem);
+    FreeWrite(&rs_irw);
+    return buffer;
+}
+
+/*
+    This functions exists to allow reading positions
+*/
+char getMemP(unsigned int _pos)
+{
+    char aux_c;
+    int pos = ring_filled ? (_pos % LM_SIZE) : (_pos % iwrite);
+
+    AskRead(&rs_localmem);
+    aux_c = localmem[pos];
+    FreeRead(&rs_localmem);
+    return aux_c;
+}
+
+/*
+    This functions exists to allow reading ranges
+*/
+char* getMem(unsigned int from_i, unsigned int to_j)
+{
+    int k = 0, i, j, s;
+    char *buffer;
+
+    s = ring_filled ? LM_SIZE : iwrite;
+    i = from_i % s;
+    j = to_j >= s ? (s - 1) : to_j; // j "saturates" if ring buffer "end" was reached
+
+    buffer = (char*) malloc((j - i)*sizeof(char));
+    if(buffer == NULL)
+        return NULL;
+
+    AskRead(&rs_localmem);
+    for(; i < j; i++, k++)
+        buffer[k] = localmem[i];
+    FreeRead(&rs_localmem);
+    return buffer;
 }

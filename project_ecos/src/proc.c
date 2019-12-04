@@ -1,47 +1,65 @@
 #include "proc.h"
 
 // macros
-#define DELTA(X,Y) ((X) > (Y) ? (X) - (Y) : (Y) - (X))
+#define DELTA(X,Y) ((X) >= (Y) ? (X) - (Y) : (Y) - (X))
 
-void checkThresholds(char* localmem, int iread, int iwrite, int alat, int alal, cyg_sem_t* rs_localmem, cyg_mutex_t* rs_stdin)
+void checkThresholds(char*(*popMem)(unsigned int*), int alat, int alal, cyg_mutex_t* rs_stdin)
 {
-    int j, end = DELTA(iread, iwrite);
-    char buffer[5];
-    short int alarm;
+    char* buffer;
+    short int alarm_T, alarm_L;
+    unsigned int size;
+    int j = 0;
 
-    for(j = 0; j < end; j+=5) {
+    buffer = popMem(&size);
 
-        AskRead(rs_localmem);
-        memcpy(buffer, localmem + j, 5);
-        FreeRead(rs_localmem);
-
-        alarm = ((((int) buffer[3]) > alat) || (((int) buffer[4]) > alal));
-
-        if(alarm) {
+    for(; j < size; j+=5) {
+        alarm_T = ((int) buffer[j+3]) >= alat;
+        alarm_L = ((int) buffer[j+4]) >= alal;
+        if(alarm_T || alarm_L) {
             cyg_mutex_lock(rs_stdin);
-            if(((int) buffer[3]) >= alat)
+            if(alarm_T)
                 printf("[ALARM] Temperature threshold reached (T = %d) at %d:%d:%d\n",
-                       (int) buffer[3], (int) buffer[0], (int) buffer[1], (int) buffer[2]);
-
-            if(((int) buffer[4]) >= alal)
+                       (int) buffer[j+3], (int) buffer[j], (int) buffer[j+1], (int) buffer[j+2]);
+            else
                 printf("[ALARM] Luminosity threshold reached (L = %d) at %d:%d:%d\n",
-                       (int) buffer[5], (int) buffer[0], (int) buffer[1], (int) buffer[2]);
+                       (int) buffer[j+4], (int) buffer[j], (int) buffer[j+1], (int) buffer[j+2]);
             cyg_mutex_unlock(rs_stdin);
         }
     }
+
+    free(buffer);
 }
 
-void calcStatistics(char* localmem, int iwrite, int mem_filled, int* max, int* min, int* mean, unsigned int range[6])
+void calcStatistics(char*(*getMem)(unsigned int,unsigned int), int maxsize, int* max, int* min, int* mean, char range[6])
 {
+    int i, j;
+    char* buffer;
+    buffer = getMem(0, maxsize);
+    find(buffer, &i, &j, f_calc(range,0,1,2), f_calc(range,3,4,5));
 
+    // statistics
 
+    free(buffer);
 }
-/*
-int find(char* localmem, int* i, int *j, unsigned int range[6])
-{
-    int k, size = *i > *j ? *i - *j : *j - *i;
-    for(k = *i; k == *j; k += (k + 1) % size) {
 
+void find(char* buffer, int *i, int *j, int lowbound, int upbound)
+{
+    int size = *j - *i, calc;
+    int k, distL, distU;
+    int bestL = size, bestU = size;
+
+    for(k = 0; k < size; k ++) {
+        calc = f_calc(buffer, k, k+1, k+2);
+        distL = calc - lowbound;
+        distU = upbound - calc;
+        if(distL > 0 && distL < bestL) *i = k;
+        if(distU > 0 && distU < bestU) *j = k;
     }
+
+    printf("%d %d\n", *i, *j);
 }
-*/
+
+int f_calc(char* buffer, int i, int j, int k)
+{
+    return ((int) buffer[i])*60 + ((int) buffer[j])*100 + ((int) buffer[k]);
+}
