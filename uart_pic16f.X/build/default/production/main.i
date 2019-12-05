@@ -21083,94 +21083,141 @@ void OSCILLATOR_Initialize(void);
 void PMD_Initialize(void);
 # 46 "main.c" 2
 
+# 1 "./defines.h" 1
+# 48 "main.c" 2
 
 
 
 
 
 
-uint8_t read_UART ();
-void write_UART( uint8_t rxData);
-void write_str_UART(char * string , unsigned int size);
-uint8_t read_str_UART(char * buff, unsigned int max_len);
-uint8_t simple_rx_uart();
-unsigned char rx(char * string);
+
+
+void write_UART( uint8_t rxData, uint8_t led);
+void write_str_UART(char * string , uint8_t size);
+char * read_str_UART(char * buff, uint8_t max_len);
+void reply_UART_ERROR(unsigned char cmd);
+void reply_UART_OK(unsigned char cmd);
+void parse_message(unsigned char cmd);
+uint8_t echo(char * string, uint8_t string_size);
+
+
+
 
 
 void main(void)
 {
-    int read_num = 0;
 
     SYSTEM_Initialize();
-
+    char str_send[14] = "hello mike\n\r";
     char str_rc[14]="\0";
 
 
     (INTCONbits.GIE = 1);
     (INTCONbits.PEIE = 1);
-    volatile uint8_t rxData;
+
 
 
     do { LATAbits.LATA7 = 0; } while(0);
-
+    write_str_UART(str_send, 14);
 
     while (1)
     {
 
 
-        rx(str_rc);
-# 108 "main.c"
+        if(PIR3bits.RCIF || EUSART_is_rx_ready()){
+
+                echo(str_rc,14 );
+        }
+        else{
+
+            _delay((unsigned long)((1000)*(1000000/4000.0)));
+           reply_UART_OK(0XC4);
+
+        }
+
+
     }
 }
 
 
-uint8_t read_str_UART(char * buff, unsigned int max_len){
-    unsigned int size=0;
-    char c;
+void reply_UART_OK(unsigned char cmd){
+    printf("%02x%02x%02x%02x\n",0xFD,cmd,0,0xFE);
+}
 
-    for (size = 0; size < max_len; ++size){
+void reply_UART_ERROR(unsigned char cmd){
+   printf("%02x%02x%02x%02x\n",0xFD,cmd,0xFF,0xFE);
+}
 
 
-        if (c == '\0' || c == '\n'|| c == '\r'){
-            break;
-        }
+
+void parse_message(unsigned char cmd){
+
+
+    switch(cmd){
+
+            case 0xC0:
+                break;
+            case 0XC1:
+                break;
+            case 0XC2:
+                break;
+            case 0XC3:
+                break;
+            case 0XC4:
+                break;
+            case 0XC5:
+                break;
+            case 0XC6:
+                break;
+            case 0XC7:
+                break;
+            case 0XC8:
+                break;
+            case 0XC9:
+                break;
+            case 0XCA:
+                break;
+            case 0XCB:
+                break;
+            case 0XCC:
+                break;
 
     }
 
-    buff[size+1] = '\0';
-    return size+1;
+
+
 
 }
 
-uint8_t read_UART (){
 
-    volatile uint8_t rxData;
-    volatile eusart_status_t rxStatus;
+char * read_str_UART(char * buff, uint8_t max_len){
 
-    if(EUSART_is_rx_ready())
-            {
-        if(eusartRxCount!=0){
-                rxData = EUSART_Read();
-                rxStatus = EUSART_get_last_status();
-                if(rxStatus.ferr){
-                  do { LATAbits.LATA7 = 1; } while(0);
-                }
+    volatile uint8_t rxData = '0';
+    uint8_t i=0;
 
-        }
-     }
+    for(i=0; i < max_len && rxData !='\n'; i++){
 
+            while(!EUSART_is_rx_ready()){
+                _delay((unsigned long)((1)*(1000000/4000.0)));
+            };
 
+            rxData = EUSART_Read();
+            buff[i] = rxData;
+            buff[i+1] = '\0';
 
-     _delay((unsigned long)((2)*(1000000/4000.0)));
-    do { LATAbits.LATA7 = 0; } while(0);
-    return rxData;
+            }
+
+return buff;
 
 }
-unsigned char rx(char * string)
+
+
+uint8_t echo(char * string, uint8_t string_size)
 {
  volatile uint8_t rxData = '0';
-    int i ;
-    for(i=0; i < 10 && rxData !='\n'; i++){
+    uint8_t i ;
+    for(i=0; i < string_size && rxData !='\n'; i++){
 
         while(!EUSART_is_rx_ready()){
             _delay((unsigned long)((1)*(1000000/4000.0)));
@@ -21181,67 +21228,58 @@ unsigned char rx(char * string)
 
         {
             if (rxData == '\0' ){
-                  EUSART_Write('|');
+                EUSART_Write('|');
             }else if(rxData == '\n'){
-                    EUSART_Write(':');
+                EUSART_Write(':');
             }
             else if(rxData == '\r'){
-                    EUSART_Write('*');
+                EUSART_Write('*');
             }
             else{
-                  EUSART_Write('-');
+                EUSART_Write('-');
 
              }
 
             string[i] = rxData;
             string[i+1] = '\0';
-            EUSART_Write(rxData);
+
         }
 
 
     }
-                write_str_UART(string, 11);
+    write_str_UART(string, string_size);
     return i;
 
 }
 
 
-uint8_t simple_rx_uart(){
-
-    uint8_t rxData;
-     do { LATAbits.LATA7 = 1; } while(0);
-    while(!(EUSART_get_last_status().ferr));
-
-    rxData = EUSART_Read();
 
 
-    do { LATAbits.LATA7 = 0; } while(0);
-    return rxData;
-
-}
-
-void write_str_UART(char * string , unsigned int size){
-    unsigned int id;
+void write_str_UART(char * string , uint8_t size){
+    uint8_t id;
 
     for(id=0; id <= size && string[id]!= '\0'; ++id){
 
-        write_UART(string[id]);
+        write_UART(string[id], 0);
     }
 
    return;
 
 }
 
-void write_UART( uint8_t rxData){
+void write_UART( uint8_t rxData, uint8_t led){
+
 
    if(EUSART_is_tx_ready())
-            {
-    do { LATAbits.LATA7 = 1; } while(0);
-                EUSART_Write(rxData);
-            }
-   if(EUSART_is_tx_done())
-            {
-                do { LATAbits.LATA7 = 0; } while(0);
-            }
+    {
+  if (led){
+            do { LATAbits.LATA7 = 1; } while(0);
+        }
+        EUSART_Write(rxData);
+    }
 
+    if(led){
+        while(!EUSART_is_tx_done());
+        do { LATAbits.LATA7 = 0; } while(0);
+    }
 }
