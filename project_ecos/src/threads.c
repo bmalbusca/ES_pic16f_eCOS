@@ -5,13 +5,10 @@ cyg_mutex_t global;
 int nread = 0;
 int cb_index = 0;
 
-void thread_create(thread_info* ti, int flag_defaults)
+void thread_create(thread* ti, int flag_defaults)
 {
-    if(!flag_defaults) {
-        ti->pri = (cyg_addrword_t) DEFAULT_PRI;
-        ti->data = (cyg_addrword_t) 0;
-        ti->ssize = DEFAULT_STACKSZ;
-    }
+    ti->data = (cyg_addrword_t) 0;
+    ti->ssize = DEFAULT_STACKSZ;
 
     ti->sp = (void *) malloc(ti->ssize*sizeof(char));
     if(ti->sp == NULL) return;

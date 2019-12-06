@@ -7,9 +7,9 @@
 // macros
 #define DELTA(X,Y) ((X) >= (Y) ? (X) - (Y) : (Y) - (X))
 
-void checkThresholds(char*(*popMem)(unsigned int*), int alat, int alal, cyg_mutex_t* rs_stdin)
+void checkThresholds(char*(*popMem)(unsigned int*), int alat, int alal)
 {
-    char* buffer;
+    char* buffer, stdin_buff_[128];
     short int alarm_T, alarm_L;
     unsigned int size;
     int j = 0;
@@ -20,14 +20,15 @@ void checkThresholds(char*(*popMem)(unsigned int*), int alat, int alal, cyg_mute
         alarm_T = ((int) buffer[j+3]) >= alat;
         alarm_L = ((int) buffer[j+4]) >= alal;
         if(alarm_T || alarm_L) {
-            cyg_mutex_lock(rs_stdin);
-            if(alarm_T)
-                printf("[ALARM] Temperature threshold reached (T = %d) at %d:%d:%d\n",
+            if(alarm_T) {
+                sprintf(stdin_buff_, "[ALARM] Temperature threshold reached (T = %d) at %d:%d:%d\n",
                        (int) buffer[j+3], (int) buffer[j], (int) buffer[j+1], (int) buffer[j+2]);
+                stdin_buff_pt = strcat(stdin_buff_pt, stdin_buff_);
+            }
             else
-                printf("[ALARM] Luminosity threshold reached (L = %d) at %d:%d:%d\n",
-                       (int) buffer[j+4], (int) buffer[j], (int) buffer[j+1], (int) buffer[j+2]);
-            cyg_mutex_unlock(rs_stdin);
+                sprintf(stdin_buff_, "[ALARM] Temperature threshold reached (T = %d) at %d:%d:%d\n",
+                       (int) buffer[j+3], (int) buffer[j], (int) buffer[j+1], (int) buffer[j+2]);
+                stdin_buff_pt = strcat(stdin_buff_pt, stdin_buff_);
         }
     }
 

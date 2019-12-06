@@ -6,23 +6,11 @@
 #include <string.h>
 #include "threads.h"
 #include "proc.h" // proc tasks
+#include "monitor.h" // user interface
 
 #define LM_REGISTERS 128
 #define LM_SIZE (5*LM_REGISTERS)
 #define CYG_SERIAL_FLAGS_RTSCTS 0x0001
-
-/*
-    THREAD COMMUNICATION PROTOCOL
-    to do ACK send the same command back with no arguments
-    {x} -- means it corresponds to command x from page 2 of Project_part2.pdf
-*/
-
-#define TX_TRANSFERENCE             'a' // used by (proc, user, rx) to transfere registers to local memory
-#define USER_STATISTICS             'b' // {pr} used by (proc, user) to send statistics to user
-#define USER_MODIFY_PERIOD_TRANSF   'c' // {mpt} used by (proc, user) to change a proc variable (period_transference)
-#define USER_CHANGE_THRESHOLDS      'd' // {dttl} used by (proc, user) to change thresholds used in processing registers
-#define PROC_CHECK_PERIOD_TRANSF    'e' // {cpt} used by (proc, user) to send to user the period of transference
-#define PROC_CHECK_THRESHOLDS       'f' // {cttl} used by (proc, user) to send to user the thresholds
 
 // macros
 #define DELTA(X,Y)      ((X) >= (Y) ? (X) - (Y) : (Y) - (X))
@@ -58,18 +46,11 @@ int alal = 2;
 
 char        localmem[LM_SIZE];          // 1 register (5 bytes): h | m | s | T | L
 int         iread = 0, iwrite = 0;      // only proc should change iread, it should be updated after reading (iread = iwrite)
-cyg_mutex_t rs_stdin;
 cyg_sem_t   rs_localmem;
 cyg_sem_t   rs_irw;                     // iread, iwrite
 
 // flags
 char ring_filled = 0;                   // only change once -- needs thread write protection?
-
-/*
-    THREADS
-*/
-
-thread_info proc, user, rx, tx;
 
 /*
     USART
@@ -79,11 +60,18 @@ cyg_io_handle_t usart_h;
 char* usart_n = "/dev/sr0"; // name
 cyg_serial_info_t serial_i; // struct with configs for usart
 
+/*
+*
+*   ECOS runs this on START (user side inits)
+*
+*/
+
 void cyg_user_start(void)
 {
     cyg_semaphore_init(&rs_localmem, 1);
     cyg_semaphore_init(&rs_irw, 1);
     cyg_mutex_init(&rs_stdin);
+    stdin_buff_pt = stdin_buff;
     usart_init();
     thread_init();
 
@@ -121,15 +109,26 @@ void thread_init() {
     strcpy(rx.name,   "Read");
     strcpy(tx.name,   "Transfere");
     proc.f = proc_F;
-    user.f = user_F;
+    user.f = monitor; // this function is in "monitor.c"
     rx.f = rx_F;
     tx.f = tx_F;
+    proc.pri = (cyg_addrword_t) HIGH_PRI;
+    user.pri = (cyg_addrword_t) LOW_PRI;
+    rx.pri = (cyg_addrword_t) DEFAULT_PRI;
+    tx.pri = (cyg_addrword_t) DEFAULT_PRI;
 
     thread_create(&proc, 0);
     thread_create(&user, 0);
     thread_create(&rx, 0);
     thread_create(&tx, 0);
 }
+
+/*
+    ************
+    THREAD calls
+    ============
+    user thread has its function on "monitor.c"
+*/
 
 void proc_F(cyg_addrword_t data)
 {
@@ -145,10 +144,6 @@ void proc_F(cyg_addrword_t data)
     int tht = alat, thl = alal; // Temperature and Luminosity thresholds reserved to proc
 
     while(1) {
-        cyg_mutex_lock(&rs_stdin);
-        printf("<pc>\n");
-        cyg_mutex_unlock(&rs_stdin);
-
         now = cyg_current_time();
 
         if(period_transference) {
@@ -165,15 +160,11 @@ void proc_F(cyg_addrword_t data)
         if(cmd_in != NULL) {
             switch (getName(cmd_in)) {
                 case TX_TRANSFERENCE:
-                    checkThresholds(popMem, alat, alal, &rs_stdin);
+                    checkThresholds(popMem, alat, alal);
                     break;
                 case USER_STATISTICS:
                     returns = calcStatistics(getMem, LM_SIZE, &temp, &lum, range);
                     if(!returns) break;
-
-                    cyg_mutex_lock(&rs_stdin);
-                    printf("Stats\nTemp\tmax = %d | min = %d | mean = %d\nLum\tmax = %d | min = %d | mean = %d\n", temp.max, temp.min, temp.mean, lum.max, lum.min, lum.mean);
-                    cyg_mutex_unlock(&rs_stdin);
                     break;
                 case USER_MODIFY_PERIOD_TRANSF:
                     if(getArgc(cmd_in) >= 1) {
@@ -200,26 +191,7 @@ void proc_F(cyg_addrword_t data)
             }
         }
 
-        __DELAY(0);
-    }
-}
-
-/*
-    THREADS f(x)
-*/
-void user_F(cyg_addrword_t data)
-{
-    char *cmd_out, *cmd_in;
-
-    while(1) {
-        cyg_mutex_lock(&rs_stdin);
-        printf("<us>\n");
-        cyg_mutex_unlock(&rs_stdin);
-
-        cmd_out = writeCommand(USER_STATISTICS, 0);
-        cyg_mbox_tryput(proc.mbox_h, (void*) cmd_out);
-
-        __DELAY(3);
+        __DELAY();
     }
 }
 
@@ -233,10 +205,6 @@ void rx_F(cyg_addrword_t data)
     */
 
     while(1) {
-        cyg_mutex_lock(&rs_stdin);
-        printf("<rx>\n");
-        cyg_mutex_unlock(&rs_stdin);
-
         /*
         cyg_mutex_unlock(&rs_stdin);
         cyg_io_write(usart_h, buf, &len);
@@ -247,7 +215,7 @@ void rx_F(cyg_addrword_t data)
         cyg_mutex_unlock(&rs_stdin);
         */
 
-        __DELAY(3);
+        __DELAY();
     }
 }
 
@@ -262,31 +230,29 @@ void tx_F(cyg_addrword_t data)
                        (char)  5, (char) 19, (char) 59, (char) 50, (char)  0,
                        (char) 13, (char) 59, (char) 59, (char) 10, (char)  1}; // for testing
 
-    while(1) {
-        cyg_mutex_lock(&rs_stdin);
-        printf("<tx>\n");
-        cyg_mutex_unlock(&rs_stdin);
+    pushMem(buffer, 30);
 
+    while(1) {
         cmd_in = (char*) cyg_mbox_tryget(tx.mbox_h);
 
         if(cmd_in != NULL) {
             switch (getName(cmd_in)) {
                 case TX_TRANSFERENCE:
-                    pushMem(buffer, 30);
                     cmd_out = writeCommand(TX_TRANSFERENCE, 3);
                     cyg_mbox_tryput(proc.mbox_h, (void*) cmd_out);
                     break;
             }
         }
 
-        __DELAY(3);
+        __DELAY();
     }
 }
 
 
 /*
-    LOCAL MEMORY f(x)
-    ================
+    ******************
+    LOCAL MEMORY calls
+    ==================
 */
 
 /*
