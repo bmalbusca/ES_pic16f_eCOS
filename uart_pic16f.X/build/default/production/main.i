@@ -21127,12 +21127,14 @@ void main(void)
 
         if(PIR3bits.RCIF || EUSART_is_rx_ready()){
 
-                echo(str_rc,14 );
+             read_str_UART(str_rc, 14);
+
+
+
         }
         else{
 
             _delay((unsigned long)((1000)*(1000000/4000.0)));
-           reply_UART_OK(0XC4);
 
         }
 
@@ -21155,7 +21157,9 @@ void parse_message(unsigned char cmd){
 
 
     switch(cmd){
-
+            case 0xFD:
+                printf("Begin ");
+                break;
             case 0xC0:
                 break;
             case 0XC1:
@@ -21185,6 +21189,9 @@ void parse_message(unsigned char cmd){
 
     }
 
+    printf("%d\n",cmd);
+
+
 
 
 
@@ -21203,11 +21210,12 @@ char * read_str_UART(char * buff, uint8_t max_len){
             };
 
             rxData = EUSART_Read();
+            parse_message(rxData);
             buff[i] = rxData;
             buff[i+1] = '\0';
 
             }
-
+    write_str_UART(buff, max_len);
 return buff;
 
 }

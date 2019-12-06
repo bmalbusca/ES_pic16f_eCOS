@@ -71,7 +71,7 @@ void main(void)
     SYSTEM_Initialize();
     char str_send[UART_BUFF_SIZE] = "hello mike\n\r";
     char str_rc[UART_BUFF_SIZE]="\0";
-    
+
  
     INTERRUPT_GlobalInterruptEnable();
     INTERRUPT_PeripheralInterruptEnable();
@@ -83,17 +83,19 @@ void main(void)
 
     while (1)
     {
-       
+            
 
         if(PIR3bits.RCIF || EUSART_is_rx_ready()){
-
-                echo(str_rc,UART_BUFF_SIZE );
+                
+             read_str_UART(str_rc, UART_BUFF_SIZE);
+                
+            
+           
         }
         else{
             
             __delay_ms(1000);
-           reply_UART_OK(MMP);
-  
+
         }
         
 
@@ -115,7 +117,9 @@ void parse_message(unsigned char cmd){
 
 
     switch(cmd){
-
+            case SOM:
+                printf("Begin ");
+                break;
             case  RCLK:
                 break;
             case  SCLK:
@@ -144,6 +148,9 @@ void parse_message(unsigned char cmd){
                 break;
 
     }
+    
+    printf("%d\n",cmd);
+   
 
 
     
@@ -163,11 +170,12 @@ char * read_str_UART(char * buff, uint8_t max_len){
             };
                 
             rxData = EUSART_Read();
+            parse_message(rxData);
             buff[i] = rxData;
             buff[i+1] = '\0';
                 
             }
-
+    write_str_UART(buff, max_len);
 return  buff; 
     
 }
