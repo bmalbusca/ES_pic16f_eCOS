@@ -32,7 +32,7 @@
 #define MIN_TIME -1
 
 #define TIMER_MS_RESET 200
-#define DEBNC_TIME 25
+#define DEBNC_TIME 15
 
 typedef struct Subfield_Info_Struct{
     unsigned char(*limit)(void);
@@ -58,6 +58,7 @@ unsigned char limitTempThreshUnits(void);
 unsigned char limitHoursUnits(void);
 void recTempThresh(unsigned char _value);
 void recLumThresh(unsigned char _value);
+unsigned char increment_subfield(unsigned char limit, unsigned init_val); 
 
 unsigned char checkDebounceSW1();
 unsigned char checkDebounceSW2();
@@ -65,7 +66,6 @@ unsigned char checkDebounceSW2();
 void clock_field(void);
 void config_routine(void);
 void selectSubfield(void);
-void increment_subfield();
 void getSubfieldInfo(void);
 void save_recovery_params(void);
 
@@ -106,7 +106,7 @@ unsigned int convertedValue = 0;
 unsigned int duty_cycle = 0;
 
 unsigned int lum_bin = 0;
-unsigned int lum_threshold = 0;
+unsigned int threshold = 0;
 
 unsigned char temp;
 unsigned char alaf;
@@ -127,7 +127,6 @@ unsigned char lum_thresh = ALAL;
  *******************************************/
 void sw1_EXT(void){
 
-    __delay_ms(5);
     if(checkDebounceSW1()){
         if (alarm == ON){               	// Turn off the alarm 
             alarm = OFF;
@@ -135,14 +134,10 @@ void sw1_EXT(void){
             last_ms = clkms;
         }
         else{
-            if(!IO_RB4_GetValue()){
-
-                if(config_mode == OFF){
-                    config_mode = ON; 			// NOTE after changing to Configure mode disable the EXT interrupt and only check if is pressed at main loop		
-                }					// for not overloading the interrupt vector ISR            
-            }
+            if(config_mode == OFF){
+                config_mode = ON; 			// NOTE after changing to Configure mode disable the EXT interrupt and only check if is pressed at main loop		
+            }					// for not overloading the interrupt vector ISR            
         }
-        
     }
 }
 
@@ -154,7 +149,7 @@ void sw1_EXT(void){
  *******************************************/
 void ISR_3s(void){
 
-    if (lum_threshold){     //check if we still have a issue
+    if (threshold){     //check if we still have a issue
         PWM6_LoadDutyValue(1023);
         alarm = ON;
 
@@ -190,7 +185,7 @@ void main(void){
     alaf = 1;
     temp = 0;
     lum_bin = 0;
-    lum_threshold = 0;
+    threshold = 0;
     duty_cycle = 0;
     set_mode= OFF;
     
@@ -238,7 +233,7 @@ void main(void){
 
 
                             NOP();
-                            //temp = tsttc();                     //I2C read
+                            temp = tsttc();                     //I2C read
                             NOP();
                             
                                // Push to Ring buffer
@@ -250,9 +245,9 @@ void main(void){
                             }
 
 
-                            lum_threshold = (lum_bin > ALAL || temp > ALAT  ) & alaf;   //detect alarm 
+                            threshold = (lum_bin > lum_thresh || temp > temp_thresh  ) & alaf;   //detect alarm 
 
-                            if(lum_threshold){
+                            if(threshold){
                                 if(alarm == SET){           //if alarm is set ON you need to press SW1 ON 
                                     duty_cycle +=1 ;   
                                     PWM6_LoadDutyValue(duty_cycle);
@@ -277,6 +272,8 @@ void main(void){
                         EXT_INT_InterruptDisable(); 
                         config_routine();
                         EXT_INT_InterruptEnable(); 
+                        DATAEE_WriteByte(EE_RECV + 5, temp_thresh);
+                        DATAEE_WriteByte(EE_RECV + 6, lum_thresh);
                     }
 
                     __delay_ms(10);
@@ -338,7 +335,6 @@ void main(void){
                 mode_field_subfield[FIELD] = select_mode;
                 mode_select_LED();      // notice the select was done  
                 selectSubfield();
-                
             }
         }
         
@@ -359,10 +355,7 @@ void main(void){
 void selectSubfield(void){ // o clock tem 4 subfields
     unsigned int  subfield = 1;
 
-    if(mode_field_subfield[FIELD] == 1){
-        PIE4bits.TMR1IE = 0;
-    }
-
+ 
     do{
         if(!IO_RB4_GetValue()){
             if(checkDebounceSW1()){
@@ -378,7 +371,6 @@ void selectSubfield(void){ // o clock tem 4 subfields
                 mode_field_subfield[SUBFIELD] = subfield;
                 getSubfieldInfo();
                 all_LED();                  // indication of subfield selection 
-                increment_subfield();
             }
 
         }
@@ -387,10 +379,7 @@ void selectSubfield(void){ // o clock tem 4 subfields
         
     }while(subfield <= num_subfields[mode_field_subfield[FIELD]]);  
 
-    if(mode_field_subfield[FIELD] == 1){
-        PIE4bits.TMR1IE = 1;
-    }
-    
+     
 }
 
 /*******************************************
@@ -399,50 +388,57 @@ void selectSubfield(void){ // o clock tem 4 subfields
  *  Obs: 
  *******************************************/
 void getSubfieldInfo(void){
+
+    unsigned char h_tens, h_units, m_tens, m_units, temp_thresh_tens, temp_thresh_units;
+ 	
     switch(mode_field_subfield[FIELD]){
         case 1: 
+            PIE4bits.TMR1IE = 0;
+            h_tens = clkh / 10;
+            h_units = clkh % 10;
+            m_tens = clkm / 10;
+            m_units = clkm % 10;
+        
             switch(mode_field_subfield[SUBFIELD]){
                 case 1:                             //Hour tens
-                    subfield_info.limit = (unsigned char(*)(void))2;
-                    subfield_info.reconstruct_subfield = &recHour;
-                    
-                break;
+                  	h_tens = increment_subfield(2, h_tens);
+                	break;
                 case 2:                             //Hour units
-                    subfield_info.limit = &limitHoursUnits;
-                    subfield_info.reconstruct_subfield = &recHour;
-                break;
+                    h_units = increment_subfield( limitHoursUnits() , h_units);
+                	break;
                 case 3:                             //minutes tens
-                    subfield_info.limit = (unsigned char(*)(void))5;
-                    subfield_info.reconstruct_subfield = &recMinutes;
-                break;
+                    m_tens = increment_subfield( 5 , m_tens);
+                	break;
                 case 4:                             //minutes units
-                    subfield_info.limit = (unsigned char(*)(void))9;
-                    subfield_info.reconstruct_subfield = &recMinutes;
-                break;
+                	m_units = increment_subfield( 9, m_units);
+                    	break;
+		
             }
+            clkh = 10*h_tens + h_units;
+            clkm = 10*m_tens + m_units;
+            PIE4bits.TMR1IE = 0;
         break;
         //------------------------
         case 2:
-            subfield_info.limit = (unsigned char(*)(void))1;
-            subfield_info.reconstruct_subfield = &recAlarm;
-        break;
+            alaf = increment_subfield( 1, alaf );	
+	break;
         //------------------------
-        case 3: 
+        case 3:
+            temp_thresh_tens = temp_thresh / 10;
+            temp_thresh_units = temp_thresh % 10;
             switch(mode_field_subfield[SUBFIELD]){
                 case 1:                             //Temperature Thresh tens
-                    subfield_info.limit = (unsigned char(*)(void))5;
-                    subfield_info.reconstruct_subfield = &recTempThresh;
+                    temp_thresh_tens = increment_subfield(5, temp_thresh_tens);
                 break;
                 case 2:                             //Temperature Thresh units
-                    subfield_info.limit = &limitTempThreshUnits;
-                    subfield_info.reconstruct_subfield = &recTempThresh;
+                    temp_thresh_units = increment_subfield(limitTempThreshUnits(), temp_thresh_units);
                 break;
             }
+            temp_thresh = 10*temp_thresh_tens + temp_thresh_units;
         break;
         //------------------------
         case 4: 
-            subfield_info.limit = (unsigned char(*)(void))3;
-            subfield_info.reconstruct_subfield = &recLumThresh;
+            lum_thresh = increment_subfield(3, lum_thresh);
         break;
     }
 }
@@ -468,44 +464,6 @@ void recTempThresh(unsigned char _value){
     }
 }
 
-
-void recAlarm(unsigned char _value){
-    alarm = _value;
-}
-
-/*******************************************
- *  Func: all_LED
- *  Desc: Blink all LEDs
- *  Obs: 
- *******************************************/
-
-
-void recMinutes(unsigned char _value){
-    if(mode_field_subfield[SUBFIELD] == 3){     //Se tivermos a mudar Minutes tens
-        
-        clkm = _value + (clkm % 10);            //tens + units
-        
-    }else{                                      //Se tivermos a mudar Minutes units
-        clkm = (clkm / 10) + _value;            //tens + units
-    }
-}
-
-/*******************************************
- *  Func: all_LED
- *  Desc: Blink all LEDs
- *  Obs: 
- *******************************************/
-
-
-void recHour(unsigned char _value){
-    if(mode_field_subfield[SUBFIELD] == 1){     //Se tivermos a mudar Hour tens
-        
-        clkh = _value + (clkh % 10);            //tens + units
-        
-    }else{                                      //Se tivermos a mudar Hour units
-        clkh = (clkh / 10) + _value;            //tens + units
-    }
-}
 
 /*******************************************
  *  Func: all_LED
@@ -538,48 +496,35 @@ unsigned char limitHoursUnits(){
     }
 }
 
+unsigned char increment_subfield(unsigned char limit, unsigned init_val){  //funcao universal para todos os subfields
 
-/*******************************************
- *  Func: all_LED
- *  Desc: Blink all LEDs
- *  Obs: 
- *******************************************/
-
-
-void increment_subfield(){  //funcao universal para todos os subfields 
-    
     unsigned char exit = 0;
-    unsigned char _value = 0;
+    unsigned char _value = init_val;
 
     PWM6_LoadDutyValue(0);
     LATA = 0;
-    if(_value > (int)((int *) (unsigned char(*)(void))subfield_info.limit)) _value = 0;
+    
+    if(_value > limit) _value = 0;
 
     while(exit == 0){
-            
+   		representLed(_value);
         if(!IO_RC5_GetValue()){
             if(checkDebounceSW2()){
-               
                 _value++;
-                if(_value > (int)((int *) (unsigned char(*)(void))subfield_info.limit)) _value = 0;
-                 representLed(_value);
-               
+                if(_value > limit) _value = 0;
             }
             last_ms2 = clkms;
         }
 
-        if(!IO_RB4_GetValue()){		  
+        if(!IO_RB4_GetValue()){
             if(checkDebounceSW1()){
                 exit = 1;
             }
             last_ms = clkms;
         }
     }
-    subfield_info.reconstruct_subfield(_value);
+return _value;  
 }
-
-
-
 
 /*******************************************
  *  Func: ADC_read
