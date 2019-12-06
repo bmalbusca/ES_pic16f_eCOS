@@ -10,10 +10,10 @@
 // mailbox pointers point to an element of an array with this size (commandbus size)
 #define SIZE_CB  64
 
-#define DELAY 200
+#define DELAY 100
 
 // macros
-#define __DELAY(X) (cyg_thread_delay(DELAY + (rand() % (DELAY >> (X)))))
+#define __DELAY(X) (cyg_thread_delay(DELAY + (rand() % (DELAY << (X)))))
 
 typedef struct {
     cyg_addrword_t  pri;
