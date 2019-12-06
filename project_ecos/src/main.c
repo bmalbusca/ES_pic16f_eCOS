@@ -163,6 +163,7 @@ void proc_F(cyg_addrword_t data)
                     checkThresholds(popMem, alat, alal);
                     break;
                 case USER_STATISTICS:
+                    printf("HEYO!\n");
                     returns = calcStatistics(getMem, LM_SIZE, &temp, &lum, range);
                     if(!returns) break;
                     break;
