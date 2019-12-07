@@ -164,14 +164,14 @@ void cmd_lr(int argc, char **argv)
     char *buffer;
 
     i = strtol(argv[2], NULL, 10);
-    size = strtol(argv[1], NULL, 10);
+    size = 5*strtol(argv[1], NULL, 10);
     j = i + size;
     buffer = getMem(&i, &j, &size);
 
     if(!(size % 5))
         return;
 
-    printf("\n***************************\n\tLocal Memory from 0 to %d\n***************************\n", argc);
+    printf("\n***************************\n\tLocal Memory from 0 to %d\n***************************\n", j);
     for(; i < j; i += 5) {
         cyg_mutex_lock(&rs_stdin);
         printf("%d %d %d %d %d\n", buffer[i], buffer[i + 1], buffer[i + 2], buffer[i + 3], buffer[i + 4]);
