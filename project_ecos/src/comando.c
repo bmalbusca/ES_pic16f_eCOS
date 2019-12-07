@@ -152,7 +152,7 @@ void cmd_pr(int argc, char **argv)
         return;
 
     cyg_mutex_lock(&rs_stdin);
-    printf("\n***************************\n\tResults\n***************************\n");
+    printf("\n**********************************\n\tResults\n**********************************\n");
     printf("TEMPERATURE\nmax = %d \tmin = %d \tmean = %d\n", getArg(cmd_in, 1), getArg(cmd_in, 2), getArg(cmd_in, 3));
     printf("LUMINOSITY\nmax = %d \tmin = %d \tmean = %d\n", getArg(cmd_in, 4), getArg(cmd_in, 5), getArg(cmd_in, 6));
     cyg_mutex_unlock(&rs_stdin);
@@ -160,7 +160,7 @@ void cmd_pr(int argc, char **argv)
 
 void cmd_lr(int argc, char **argv)
 {
-    unsigned int size, i, j;
+    unsigned int size, i, j, k = 0;
     char *buffer;
 
     i = strtol(argv[2], NULL, 10);
@@ -168,13 +168,14 @@ void cmd_lr(int argc, char **argv)
     j = i + size;
     buffer = getMem(&i, &j, &size);
 
-    if(!(size % 5))
+    if(size % 5)
         return;
 
-    printf("\n***************************\n\tLocal Memory from 0 to %d\n***************************\n", j);
-    for(; i < j; i += 5) {
+    printf("\n**********************************\n\tLocal Memory from 0 to %d\n**********************************\n", j);
+    printf("HOURS \tMIN \tSEC \tTEMP \tLUM\n");
+    for(; k < size; k += 5) {
         cyg_mutex_lock(&rs_stdin);
-        printf("%d %d %d %d %d\n", buffer[i], buffer[i + 1], buffer[i + 2], buffer[i + 3], buffer[i + 4]);
+        printf("%d \t%d \t%d \t%d \t%d\n", buffer[k], buffer[k + 1], buffer[k + 2], buffer[k + 3], buffer[k + 4]);
         cyg_mutex_unlock(&rs_stdin);
     }
 
