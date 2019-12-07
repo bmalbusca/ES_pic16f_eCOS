@@ -200,8 +200,7 @@ void proc_F(cyg_addrword_t data)
     }
 }
 
-void rx_F(cyg_addrword_t data)
-{
+void rx_F(cyg_addrword_t data){
     char *cmd_out, *cmd_in;
     char buffer[30] = {(char) 23, (char) 59, (char) 59, (char) 20, (char)  1,
                        (char)  0, (char) 30, (char) 27, (char) 30, (char)  1,
@@ -229,10 +228,22 @@ void rx_F(cyg_addrword_t data)
     }
 }
 
-void tx_F(cyg_addrword_t data)
-{
-    while(1) {
+void tx_F(cyg_addrword_t data){
+    char buffer_tx[50];
+    char *cmd_out, *cmd_in;
+    short int i;
+    short int args_num;
 
+    while(1){
+        cmd_in = (char*)cyg_mbox_get(tx.mbox_h);            //Bloquear enquanto não houver cenas para enviar para o PIC
+
+        AskRead(&rs_irw);           //Pedir para ler o ring buffer com inter threads
+        args_num = getArgc(cmd_in);
+        for(i = 1; i <= args_num; i++){
+            buffer_tx[i] = getArg(cmd_in, i);
+        }
+
+        FreeRead(&rs_irw);          //Largar as keys para ler o ring buffer com inter threads
         __DELAY();
     }
 }
