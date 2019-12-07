@@ -8,6 +8,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <cyg/io/io.h>
+#include "main.h"
 #include "threads.h"
 
 Cyg_ErrNo err;
@@ -127,10 +128,11 @@ void cmd_ini(int argc, char **argv)
 void cmd_pr(int argc, char **argv)
 {
     int arg, i = 1, k = 1;
-    char* cmd_out = writeCommand(USER_STATISTICS, argc);
+    char *cmd_in, *cmd_out;
 
-    // range, a pair of H:M:S
+    cmd_out = writeCommand(USER_STATISTICS, argc);
     for(; i <= 2; i++, k += 3) {
+        // range, a pair of H:M:S
         arg = strtol(argv[i], NULL, 10);
         arg = (arg >= 0 && arg <= 23) ? arg : 0;
         setArg(cmd_out, k, arg);
@@ -141,6 +143,40 @@ void cmd_pr(int argc, char **argv)
         arg = (arg >= 0 && arg <= 59) ? arg : 0;
         setArg(cmd_out, k + 2, arg);
     }
-
     cyg_mbox_tryput(proc.mbox_h, (void*) cmd_out);
+    do {
+        cmd_in = cyg_mbox_get(user.mbox_h);
+    } while(getName(cmd_in) != USER_STATISTICS);
+
+    if(getArgc(cmd_in) < 6)
+        return;
+
+    cyg_mutex_lock(&rs_stdin);
+    printf("\n***************************\n\tResults\n***************************\n");
+    printf("TEMPERATURE\nmax = %d \tmin = %d \tmean = %d\n", getArg(cmd_in, 1), getArg(cmd_in, 2), getArg(cmd_in, 3));
+    printf("LUMINOSITY\nmax = %d \tmin = %d \tmean = %d\n", getArg(cmd_in, 4), getArg(cmd_in, 5), getArg(cmd_in, 6));
+    cyg_mutex_unlock(&rs_stdin);
+}
+
+void cmd_lr(int argc, char **argv)
+{
+    unsigned int size, i, j;
+    char *buffer;
+
+    i = strtol(argv[2], NULL, 10);
+    size = strtol(argv[1], NULL, 10);
+    j = i + size;
+    buffer = getMem(&i, &j, &size);
+
+    if(!(size % 5))
+        return;
+
+    printf("\n***************************\n\tLocal Memory from 0 to %d\n***************************\n", argc);
+    for(; i < j; i += 5) {
+        cyg_mutex_lock(&rs_stdin);
+        printf("%d %d %d %d %d\n", buffer[i], buffer[i + 1], buffer[i + 2], buffer[i + 3], buffer[i + 4]);
+        cyg_mutex_unlock(&rs_stdin);
+    }
+
+    free(buffer);
 }

@@ -4,6 +4,7 @@
 #include <cyg/io/serialio.h>
 #include <stdio.h>
 #include <string.h>
+#include "main.h"
 #include "threads.h"
 #include "proc.h" // proc tasks
 #include "monitor.h" // user interface
@@ -22,10 +23,6 @@ void proc_F     (cyg_addrword_t data);
 void user_F     (cyg_addrword_t data);
 void rx_F       (cyg_addrword_t data);
 void tx_F       (cyg_addrword_t data);
-void pushMem    (char* buffer, unsigned int size);
-char* popMem    (unsigned int* size);
-char getMemP    (unsigned int pos);
-char* getMem    (unsigned int* from_i, unsigned int* to_j, unsigned int* buffer_size);
 
 /*
     PIC CONFIGS
@@ -149,8 +146,8 @@ void proc_F(cyg_addrword_t data)
         if(period_transference) {
             if(DELTA(now, last) > period_transference) {
                 // transfere, ask to transfere
-                cmd_out = writeCommand(TX_TRANSFERENCE, 0);
-                cyg_mbox_tryput(tx.mbox_h, (void*) cmd_out);
+                cmd_out = writeCommand(RX_TRANSFERENCE, 0);
+                cyg_mbox_tryput(rx.mbox_h, (void*) cmd_out);
                 last = now;
             }
         }
@@ -159,13 +156,20 @@ void proc_F(cyg_addrword_t data)
 
         if(cmd_in != NULL) {
             switch (getName(cmd_in)) {
-                case TX_TRANSFERENCE:
+                case RX_TRANSFERENCE:
                     checkThresholds(popMem, alat, alal);
                     break;
                 case USER_STATISTICS:
-                    printf("HEYO!\n");
                     returns = calcStatistics(getMem, LM_SIZE, &temp, &lum, range);
                     if(!returns) break;
+                    cmd_out = writeCommand(USER_STATISTICS, 6);
+                    setArg(cmd_out, 1, temp.min);
+                    setArg(cmd_out, 2, temp.max);
+                    setArg(cmd_out, 3, temp.mean);
+                    setArg(cmd_out, 4, lum.min);
+                    setArg(cmd_out, 5, lum.max);
+                    setArg(cmd_out, 6, lum.mean);
+                    cyg_mbox_tryput(user.mbox_h, (void*) cmd_out);
                     break;
                 case USER_MODIFY_PERIOD_TRANSF:
                     if(getArgc(cmd_in) >= 1) {
@@ -198,31 +202,6 @@ void proc_F(cyg_addrword_t data)
 
 void rx_F(cyg_addrword_t data)
 {
-    /*
-    char _buf[32];
-    int len = 32;
-    void* buf;
-    buf = (void*) _buf;
-    */
-
-    while(1) {
-        /*
-        cyg_mutex_unlock(&rs_stdin);
-        cyg_io_write(usart_h, buf, &len);
-        __DELAY();
-        cyg_io_read(usart_h, buf, &len);
-        cyg_mutex_lock(&rs_stdin);
-        printf("%s\n", _buf);
-        cyg_mutex_unlock(&rs_stdin);
-        */
-
-        __DELAY();
-    }
-}
-
-// function for transference thread
-void tx_F(cyg_addrword_t data)
-{
     char *cmd_out, *cmd_in;
     char buffer[30] = {(char) 23, (char) 59, (char) 59, (char) 20, (char)  1,
                        (char)  0, (char) 30, (char) 27, (char) 30, (char)  1,
@@ -234,16 +213,25 @@ void tx_F(cyg_addrword_t data)
     pushMem(buffer, 30);
 
     while(1) {
-        cmd_in = (char*) cyg_mbox_tryget(tx.mbox_h);
+
+        cmd_in = (char*) cyg_mbox_tryget(rx.mbox_h);
 
         if(cmd_in != NULL) {
             switch (getName(cmd_in)) {
-                case TX_TRANSFERENCE:
-                    cmd_out = writeCommand(TX_TRANSFERENCE, 3);
+                case RX_TRANSFERENCE:
+                    cmd_out = writeCommand(RX_TRANSFERENCE, 0);
                     cyg_mbox_tryput(proc.mbox_h, (void*) cmd_out);
                     break;
             }
         }
+
+        __DELAY();
+    }
+}
+
+void tx_F(cyg_addrword_t data)
+{
+    while(1) {
 
         __DELAY();
     }

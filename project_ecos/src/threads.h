@@ -9,7 +9,7 @@
     {x} -- means it corresponds to command x from page 2 of Project_part2.pdf
 */
 
-#define TX_TRANSFERENCE             'a' // used by (proc, user, rx) to transfere registers to local memory
+#define RX_TRANSFERENCE             'a' // used by (proc, user, rx) to transfere registers to local memory
 #define USER_STATISTICS             'b' // {pr} used by (proc, user) to send statistics to user
 #define USER_MODIFY_PERIOD_TRANSF   'c' // {mpt} used by (proc, user) to change a proc variable (period_transference)
 #define USER_CHANGE_THRESHOLDS      'd' // {dttl} used by (proc, user) to change thresholds used in processing registers
