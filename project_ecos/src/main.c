@@ -4,20 +4,14 @@
 #include <cyg/io/serialio.h>
 #include <stdio.h>
 #include <string.h>
+#include "main.h"
 #include "threads.h"
 #include "proc.h" // proc tasks
+#include "monitor.h" // user interface
 
 #define LM_REGISTERS 128
 #define LM_SIZE (5*LM_REGISTERS)
 #define CYG_SERIAL_FLAGS_RTSCTS 0x0001
-
-/*
-THREAD COMMUNICATION PROTOCOL
-to do ACK send the same command back with no arguments
-*/
-
-#define TX_TRANSFERENCE t // used by (proc, user, rx) to transfere registers to local memory
-#define USER_STATISTICS s // used by (proc, user) to send statistics to user
 
 // macros
 #define DELTA(X,Y)      ((X) >= (Y) ? (X) - (Y) : (Y) - (X))
@@ -29,20 +23,11 @@ void proc_F     (cyg_addrword_t data);
 void user_F     (cyg_addrword_t data);
 void rx_F       (cyg_addrword_t data);
 void tx_F       (cyg_addrword_t data);
-void pushMem    (char* buffer, unsigned int size);
-char* popMem    (unsigned int* size);
-char getMemP    (unsigned int pos);
-char* getMem    (unsigned int from_i, unsigned int to_j);
 
 /*
-    CONFIGS
+    PIC CONFIGS
 */
 
-// threads
-short int periodic_transference_EN = 1;
-int period_transference = 5;
-
-// pic
 //int nreg = 30;
 //int pmon = 5;
 //int tala = 3;
@@ -58,18 +43,11 @@ int alal = 2;
 
 char        localmem[LM_SIZE];          // 1 register (5 bytes): h | m | s | T | L
 int         iread = 0, iwrite = 0;      // only proc should change iread, it should be updated after reading (iread = iwrite)
-cyg_mutex_t rs_stdin;
 cyg_sem_t   rs_localmem;
 cyg_sem_t   rs_irw;                     // iread, iwrite
 
 // flags
-char ring_filled = 0;
-
-/*
-    THREADS
-*/
-
-thread_info proc, user, rx, tx;
+char ring_filled = 0;                   // only change once -- needs thread write protection?
 
 /*
     USART
@@ -79,11 +57,18 @@ cyg_io_handle_t usart_h;
 char* usart_n = "/dev/sr0"; // name
 cyg_serial_info_t serial_i; // struct with configs for usart
 
+/*
+*
+*   ECOS runs this on START (user side inits)
+*
+*/
+
 void cyg_user_start(void)
 {
     cyg_semaphore_init(&rs_localmem, 1);
     cyg_semaphore_init(&rs_irw, 1);
     cyg_mutex_init(&rs_stdin);
+    stdin_buff_pt = stdin_buff;
     usart_init();
     thread_init();
 
@@ -121,9 +106,13 @@ void thread_init() {
     strcpy(rx.name,   "Read");
     strcpy(tx.name,   "Transfere");
     proc.f = proc_F;
-    user.f = user_F;
+    user.f = monitor; // this function is in "monitor.c"
     rx.f = rx_F;
     tx.f = tx_F;
+    proc.pri = (cyg_addrword_t) HIGH_PRI;
+    user.pri = (cyg_addrword_t) LOW_PRI;
+    rx.pri = (cyg_addrword_t) DEFAULT_PRI;
+    tx.pri = (cyg_addrword_t) DEFAULT_PRI;
 
     thread_create(&proc, 0);
     thread_create(&user, 0);
@@ -131,27 +120,34 @@ void thread_init() {
     thread_create(&tx, 0);
 }
 
+/*
+    ************
+    THREAD calls
+    ============
+    user thread has its function on "monitor.c"
+*/
+
 void proc_F(cyg_addrword_t data)
 {
     int now, last = 0;
     char *cmd_out, *cmd_in;
+    char returns;
     unsigned short int argc = 0;
 
-    int max, min, mean;
-    char range[6] = {00,00,00,05,20,00};
+    stats temp, lum;
+    char range[6] = {00,00,00,04,20,00};
+
+    int period_transference = 5;
+    int tht = alat, thl = alal; // Temperature and Luminosity thresholds reserved to proc
 
     while(1) {
-        cyg_mutex_lock(&rs_stdin);
-        printf("<pc>\n");
-        cyg_mutex_unlock(&rs_stdin);
-
         now = cyg_current_time();
 
-        if(periodic_transference_EN) {
+        if(period_transference) {
             if(DELTA(now, last) > period_transference) {
                 // transfere, ask to transfere
-                cmd_out = writeCommand('t', 0);
-                cyg_mbox_tryput(tx.mbox_h, (void*) cmd_out);
+                cmd_out = writeCommand(RX_TRANSFERENCE, 0);
+                cyg_mbox_tryput(rx.mbox_h, (void*) cmd_out);
                 last = now;
             }
         }
@@ -160,78 +156,51 @@ void proc_F(cyg_addrword_t data)
 
         if(cmd_in != NULL) {
             switch (getName(cmd_in)) {
-                // transfere, replied
-                case 't':
-                        checkThresholds(popMem, alat, alal, &rs_stdin);
-
-                        /* (apagar mais tarde) exemplo,
-                           se quisesse ler argumentos
-                        */
-                        cyg_mutex_lock(&rs_stdin);
-                        printf("EXAMPLE: %d %d %d\n", getArg(cmd_in, 1), getArg(cmd_in, 2), getArg(cmd_in, 3));
-                        cyg_mutex_unlock(&rs_stdin);
-                        break;
-                // stats, asked for statistics
-                case 's':
-                        calcStatistics(getMem, LM_SIZE, &max, &min, &mean, range);
-
-
-                        cyg_mutex_lock(&rs_stdin);
-                        printf("Stats\n");
-                        cyg_mutex_unlock(&rs_stdin);
-                        break;
+                case RX_TRANSFERENCE:
+                    checkThresholds(popMem, alat, alal);
+                    break;
+                case USER_STATISTICS:
+                    returns = calcStatistics(getMem, LM_SIZE, &temp, &lum, range);
+                    if(!returns) break;
+                    cmd_out = writeCommand(USER_STATISTICS, 6);
+                    setArg(cmd_out, 1, temp.min);
+                    setArg(cmd_out, 2, temp.max);
+                    setArg(cmd_out, 3, temp.mean);
+                    setArg(cmd_out, 4, lum.min);
+                    setArg(cmd_out, 5, lum.max);
+                    setArg(cmd_out, 6, lum.mean);
+                    cyg_mbox_tryput(user.mbox_h, (void*) cmd_out);
+                    break;
+                case USER_MODIFY_PERIOD_TRANSF:
+                    if(getArgc(cmd_in) >= 1) {
+                        period_transference = getArg(cmd_in, 1);
+                    }
+                    break;
+                case USER_CHANGE_THRESHOLDS:
+                    if(getArgc(cmd_in) >= 2) {
+                        tht = getArg(cmd_in, 1);
+                        thl = getArg(cmd_in, 2);
+                    }
+                    break;
+                case PROC_CHECK_PERIOD_TRANSF:
+                    cmd_out = writeCommand(PROC_CHECK_PERIOD_TRANSF, 1);
+                    setArg(cmd_out, 1, period_transference);
+                    cyg_mbox_tryput(user.mbox_h, (void*) cmd_out);
+                    break;
+                case PROC_CHECK_THRESHOLDS:
+                    cmd_out = writeCommand(PROC_CHECK_THRESHOLDS, 2);
+                    setArg(cmd_out, 1, tht);
+                    setArg(cmd_out, 2, thl);
+                    cyg_mbox_tryput(user.mbox_h, (void*) cmd_out);
+                    break;
             }
         }
 
-        __DELAY(2);
-    }
-}
-
-/*
-    THREADS f(x)
-*/
-void user_F(cyg_addrword_t data)
-{
-    while(1) {
-        cyg_mutex_lock(&rs_stdin);
-        printf("<us>\n");
-        cyg_mutex_unlock(&rs_stdin);
-
-        __DELAY(0);
-    }
-}
-
-void rx_F(cyg_addrword_t data)
-{
-    /*
-    char _buf[32];
-    int len = 32;
-    void* buf;
-    buf = (void*) _buf;
-    */
-
-    while(1) {
-        cyg_mutex_lock(&rs_stdin);
-        printf("<rx>\n");
-        cyg_mutex_unlock(&rs_stdin);
-
-        /*
-        cyg_mutex_unlock(&rs_stdin);
-        cyg_io_write(usart_h, buf, &len);
         __DELAY();
-        cyg_io_read(usart_h, buf, &len);
-        cyg_mutex_lock(&rs_stdin);
-        printf("%s\n", _buf);
-        cyg_mutex_unlock(&rs_stdin);
-        */
-
-        __DELAY(0);
     }
 }
 
-// function for transference thread
-void tx_F(cyg_addrword_t data)
-{
+void rx_F(cyg_addrword_t data){
     char *cmd_out, *cmd_in;
     char buffer[30] = {(char) 23, (char) 59, (char) 59, (char) 20, (char)  1,
                        (char)  0, (char) 30, (char) 27, (char) 30, (char)  1,
@@ -240,41 +209,50 @@ void tx_F(cyg_addrword_t data)
                        (char)  5, (char) 19, (char) 59, (char) 50, (char)  0,
                        (char) 13, (char) 59, (char) 59, (char) 10, (char)  1}; // for testing
 
-    while(1) {
-        cyg_mutex_lock(&rs_stdin);
-        printf("<tx>\n");
-        cyg_mutex_unlock(&rs_stdin);
+    pushMem(buffer, 30);
 
-        cmd_in = (char*) cyg_mbox_tryget(tx.mbox_h);
+    while(1) {
+
+        cmd_in = (char*) cyg_mbox_tryget(rx.mbox_h);
 
         if(cmd_in != NULL) {
             switch (getName(cmd_in)) {
-                // transference, asked to transfere
-                case 't':
-                    pushMem(buffer, 30);
-                    cmd_out = writeCommand('t', 3);
-
-                    /* (apagar mais tarde) exemplo,
-                       se quisesse escrever argumentos
-                       (afinal não foi preciso o índice, fiz get() e set())
-                    */
-                    setArg(cmd_out, 1, 12);
-                    setArg(cmd_out, 2, 00);
-                    setArg(cmd_out, 3, 59);
-
+                case RX_TRANSFERENCE:
+                    cmd_out = writeCommand(RX_TRANSFERENCE, 0);
                     cyg_mbox_tryput(proc.mbox_h, (void*) cmd_out);
                     break;
             }
         }
 
-        __DELAY(0);
+        __DELAY();
+    }
+}
+
+void tx_F(cyg_addrword_t data){
+    char buffer_tx[50];
+    char *cmd_out, *cmd_in;
+    short int i;
+    short int args_num;
+
+    while(1){
+        cmd_in = (char*)cyg_mbox_get(tx.mbox_h);            //Bloquear enquanto não houver cenas para enviar para o PIC
+
+        AskRead(&rs_irw);           //Pedir para ler o ring buffer com inter threads
+        args_num = getArgc(cmd_in);
+        for(i = 1; i <= args_num; i++){
+            buffer_tx[i] = getArg(cmd_in, i);
+        }
+
+        FreeRead(&rs_irw);          //Largar as keys para ler o ring buffer com inter threads
+        __DELAY();
     }
 }
 
 
 /*
-    LOCAL MEMORY f(x)
-    ================
+    ******************
+    LOCAL MEMORY calls
+    ==================
 */
 
 /*
@@ -339,18 +317,25 @@ char getMemP(unsigned int _pos)
 /*
     This functions exists to allow reading ranges
 */
-char* getMem(unsigned int from_i, unsigned int to_j)
+char* getMem(unsigned int* from_i, unsigned int* to_j, unsigned int* buffer_size)
 {
-    int k = 0, i, j, s;
+    if(*from_i == *to_j)
+        return NULL; // use getMemP()
+    unsigned int k = 0, i, j, s;
     char *buffer;
-
     s = ring_filled ? LM_SIZE : iwrite;
-    i = from_i % s;
-    j = to_j >= s ? (s - 1) : to_j; // j "saturates" if ring buffer "end" was reached
+    if(!s)
+        return NULL;
+    i = *from_i % s;
+    j = *to_j >= s ? (s - 1) : *to_j; // j "saturates" if ring buffer "end" was reached
 
-    buffer = (char*) malloc((j - i)*sizeof(char));
+    *buffer_size = j - i + 1;
+    buffer = (char*) malloc((*buffer_size)*sizeof(char));
     if(buffer == NULL)
         return NULL;
+
+    *from_i = i;
+    *to_j = j;
 
     AskRead(&rs_localmem);
     for(; i < j; i++, k++)
