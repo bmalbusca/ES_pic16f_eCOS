@@ -5,12 +5,16 @@
  *
  * 	NOTE - KEYWORD PARA ALTERACOES 
  */
-
+#include <stdio.h>
+#include <stdlib.h>
 #include <xc.h>
 #include "mcc_generated_files/mcc.h"
 #include "eeprom_rw.h"
 #include "I2C/i2c.h"
 #include "leds.h" 
+#include "defines.h"
+#include "uartusr.h"
+
 
 #define NREG 30
 #define PMON 5
@@ -34,10 +38,7 @@
 #define TIMER_MS_RESET 200
 #define DEBNC_TIME 15
 
-typedef struct Subfield_Info_Struct{
-    unsigned char(*limit)(void);
-    void(*reconstruct_subfield)(unsigned char);
-}Subfield_Info;
+#define UART_BUFF_SIZE 16
 
 
 
@@ -63,6 +64,7 @@ unsigned char increment_subfield(unsigned char limit, unsigned init_val);
 unsigned char checkDebounceSW1();
 unsigned char checkDebounceSW2();
 
+void check_thresholds(uint8_t threshold);
 void clock_field(void);
 void config_routine(void);
 void selectSubfield(void);
@@ -100,6 +102,8 @@ volatile unsigned char set_mode = 0;
 volatile unsigned char config_mode = OFF;
 volatile unsigned char alarm = 0;
 
+ char str_rc[UART_BUFF_SIZE]="\0";
+ char str_snd[UART_BUFF_SIZE]="hello\0";
 
 
 unsigned int convertedValue = 0;
@@ -115,7 +119,6 @@ unsigned char nreg_pt;
 unsigned char pmon = PMON;
 unsigned char tala = TALA;
 
-Subfield_Info subfield_info = {.limit = NULL, .reconstruct_subfield = NULL};
 
 const unsigned char num_subfields[5] = {0,4, 1, 2, 1};
 unsigned char temp_thresh = ALAT;
@@ -161,6 +164,14 @@ void ISR_3s(void){
 }
 
 
+void UART_RX(void){
+
+    write_str_UART(str_snd, UART_BUFF_SIZE);   
+    read_str_UART(str_rc, UART_BUFF_SIZE);
+
+}
+
+
 /*******************************************
  *  Desc: Main fucntion
  *******************************************/
@@ -173,9 +184,11 @@ void main(void){
     TMR1_SetInterruptHandler(handler_clock_hms);
     INT_SetInterruptHandler(sw1_EXT);
     TMR2_SetInterruptHandler(handler_clock_ms);
+    //EUSART_SetRxInterruptHandler(UART_RX);
+
 
     //variables initialization
-    
+   
     unsigned char t5s =0, t1m =0;
     
 
@@ -215,6 +228,13 @@ void main(void){
         SLEEP();                //sleep mode
         NOP();
 
+        if(EUSART_is_rx_ready()){
+             write_str_UART(str_snd, UART_BUFF_SIZE);
+             read_str_UART(str_rc, UART_BUFF_SIZE);
+         }
+        
+        
+
         PIE4bits.TMR1IE = 0;    //race condition - disable interrupt
         t5s = last5s;
         PIE4bits.TMR1IE = 1;
@@ -224,7 +244,8 @@ void main(void){
             last5s =0; 
             PIE4bits.TMR1IE = 1;  
 
-            do{       
+            do{      
+                    //write_str_UART(str_snd, UART_BUFF_SIZE);
                     if(!config_mode){
 
                             convertedValue = ADC_read();        //read potentiometer
@@ -245,25 +266,9 @@ void main(void){
                             }
 
 
-                            threshold = (lum_bin > lum_thresh || temp > temp_thresh  ) & alaf;   //detect alarm 
-
-                            if(threshold){
-                                if(alarm == SET){           //if alarm is set ON you need to press SW1 ON 
-                                    duty_cycle +=1 ;   
-                                    PWM6_LoadDutyValue(duty_cycle);
-                                }
-                                else if(alarm == OFF){
-                                    PIE0bits.TMR0IE = 1;    // We exceed the threshold  check the 3 sec 
-                                    TMR0_StartTimer();
-                                    alarm = SET ;  
-                                }
-                            }
-                            else{
-                                if(alarm == SET){
-                                    PWM6_LoadDutyValue(OFF);
-                                    alarm = OFF ;
-                                }
-                            }
+                            threshold = (lum_bin > lum_thresh /*|| temp > temp_thresh*/  ) & alaf;   //detect alarm 
+                            check_thresholds(threshold);
+                        
 
                     }
 
@@ -293,6 +298,30 @@ void main(void){
     }
 
 }
+
+
+void check_thresholds(uint8_t threshold){
+    
+    if(threshold){
+            if(alarm == SET){           //if alarm is set ON you need to press SW1 ON 
+                duty_cycle +=1 ;   
+                PWM6_LoadDutyValue(duty_cycle);
+            }
+            else if(alarm == OFF){
+                PIE0bits.TMR0IE = 1;    // We exceed the threshold  check the 3 sec 
+                TMR0_StartTimer();
+                alarm = SET ;  
+            }
+        }
+    else{
+        if(alarm == SET){
+            PWM6_LoadDutyValue(OFF);
+            alarm = OFF ;
+        }
+    }
+    
+}
+
 
 /*******************************************
  *  Func: all_LED

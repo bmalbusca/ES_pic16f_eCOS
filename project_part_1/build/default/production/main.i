@@ -14,42 +14,168 @@
 
 
 
-
-# 1 "/opt/microchip/xc8/v2.10/pic/include/xc.h" 1 3
-# 18 "/opt/microchip/xc8/v2.10/pic/include/xc.h" 3
-extern const char __xc8_OPTIM_SPEED;
-
-extern double __fpnormalize(double);
-
-
-
-# 1 "/opt/microchip/xc8/v2.10/pic/include/c99/xc8debug.h" 1 3
-
-
-
-# 1 "/opt/microchip/xc8/v2.10/pic/include/c99/stdlib.h" 1 3
+# 1 "/opt/microchip/xc8/v2.10/pic/include/c99/stdio.h" 1 3
 
 
 
 # 1 "/opt/microchip/xc8/v2.10/pic/include/c99/musl_xc8.h" 1 3
-# 5 "/opt/microchip/xc8/v2.10/pic/include/c99/stdlib.h" 2 3
+# 5 "/opt/microchip/xc8/v2.10/pic/include/c99/stdio.h" 2 3
 
 
 
 
 
 # 1 "/opt/microchip/xc8/v2.10/pic/include/c99/features.h" 1 3
-# 11 "/opt/microchip/xc8/v2.10/pic/include/c99/stdlib.h" 2 3
-# 21 "/opt/microchip/xc8/v2.10/pic/include/c99/stdlib.h" 3
+# 11 "/opt/microchip/xc8/v2.10/pic/include/c99/stdio.h" 2 3
+# 24 "/opt/microchip/xc8/v2.10/pic/include/c99/stdio.h" 3
 # 1 "/opt/microchip/xc8/v2.10/pic/include/c99/bits/alltypes.h" 1 3
-# 18 "/opt/microchip/xc8/v2.10/pic/include/c99/bits/alltypes.h" 3
-typedef long int wchar_t;
+
+
+
+
+
+typedef void * va_list[1];
+
+
+
+
+typedef void * __isoc_va_list[1];
 # 122 "/opt/microchip/xc8/v2.10/pic/include/c99/bits/alltypes.h" 3
 typedef unsigned size_t;
+# 137 "/opt/microchip/xc8/v2.10/pic/include/c99/bits/alltypes.h" 3
+typedef long ssize_t;
 # 168 "/opt/microchip/xc8/v2.10/pic/include/c99/bits/alltypes.h" 3
 typedef __int24 int24_t;
 # 204 "/opt/microchip/xc8/v2.10/pic/include/c99/bits/alltypes.h" 3
 typedef __uint24 uint24_t;
+# 246 "/opt/microchip/xc8/v2.10/pic/include/c99/bits/alltypes.h" 3
+typedef long long off_t;
+# 399 "/opt/microchip/xc8/v2.10/pic/include/c99/bits/alltypes.h" 3
+typedef struct _IO_FILE FILE;
+# 25 "/opt/microchip/xc8/v2.10/pic/include/c99/stdio.h" 2 3
+# 52 "/opt/microchip/xc8/v2.10/pic/include/c99/stdio.h" 3
+typedef union _G_fpos64_t {
+ char __opaque[16];
+ double __align;
+} fpos_t;
+
+extern FILE *const stdin;
+extern FILE *const stdout;
+extern FILE *const stderr;
+
+
+
+
+
+FILE *fopen(const char *restrict, const char *restrict);
+FILE *freopen(const char *restrict, const char *restrict, FILE *restrict);
+int fclose(FILE *);
+
+int remove(const char *);
+int rename(const char *, const char *);
+
+int feof(FILE *);
+int ferror(FILE *);
+int fflush(FILE *);
+void clearerr(FILE *);
+
+int fseek(FILE *, long, int);
+long ftell(FILE *);
+void rewind(FILE *);
+
+int fgetpos(FILE *restrict, fpos_t *restrict);
+int fsetpos(FILE *, const fpos_t *);
+
+size_t fread(void *restrict, size_t, size_t, FILE *restrict);
+size_t fwrite(const void *restrict, size_t, size_t, FILE *restrict);
+
+int fgetc(FILE *);
+int getc(FILE *);
+int getchar(void);
+int ungetc(int, FILE *);
+
+int fputc(int, FILE *);
+int putc(int, FILE *);
+int putchar(int);
+
+char *fgets(char *restrict, int, FILE *restrict);
+
+char *gets(char *);
+
+
+int fputs(const char *restrict, FILE *restrict);
+int puts(const char *);
+
+#pragma printf_check(printf) const
+#pragma printf_check(vprintf) const
+#pragma printf_check(sprintf) const
+#pragma printf_check(snprintf) const
+#pragma printf_check(vsprintf) const
+#pragma printf_check(vsnprintf) const
+
+int printf(const char *restrict, ...);
+int fprintf(FILE *restrict, const char *restrict, ...);
+int sprintf(char *restrict, const char *restrict, ...);
+int snprintf(char *restrict, size_t, const char *restrict, ...);
+
+int vprintf(const char *restrict, __isoc_va_list);
+int vfprintf(FILE *restrict, const char *restrict, __isoc_va_list);
+int vsprintf(char *restrict, const char *restrict, __isoc_va_list);
+int vsnprintf(char *restrict, size_t, const char *restrict, __isoc_va_list);
+
+int scanf(const char *restrict, ...);
+int fscanf(FILE *restrict, const char *restrict, ...);
+int sscanf(const char *restrict, const char *restrict, ...);
+int vscanf(const char *restrict, __isoc_va_list);
+int vfscanf(FILE *restrict, const char *restrict, __isoc_va_list);
+int vsscanf(const char *restrict, const char *restrict, __isoc_va_list);
+
+void perror(const char *);
+
+int setvbuf(FILE *restrict, char *restrict, int, size_t);
+void setbuf(FILE *restrict, char *restrict);
+
+char *tmpnam(char *);
+FILE *tmpfile(void);
+
+
+
+
+FILE *fmemopen(void *restrict, size_t, const char *restrict);
+FILE *open_memstream(char **, size_t *);
+FILE *fdopen(int, const char *);
+FILE *popen(const char *, const char *);
+int pclose(FILE *);
+int fileno(FILE *);
+int fseeko(FILE *, off_t, int);
+off_t ftello(FILE *);
+int dprintf(int, const char *restrict, ...);
+int vdprintf(int, const char *restrict, __isoc_va_list);
+void flockfile(FILE *);
+int ftrylockfile(FILE *);
+void funlockfile(FILE *);
+int getc_unlocked(FILE *);
+int getchar_unlocked(void);
+int putc_unlocked(int, FILE *);
+int putchar_unlocked(int);
+ssize_t getdelim(char **restrict, size_t *restrict, int, FILE *restrict);
+ssize_t getline(char **restrict, size_t *restrict, FILE *restrict);
+int renameat(int, const char *, int, const char *);
+char *ctermid(char *);
+
+
+
+
+
+
+
+char *tempnam(const char *, const char *);
+# 9 "main.c" 2
+# 1 "/opt/microchip/xc8/v2.10/pic/include/c99/stdlib.h" 1 3
+# 21 "/opt/microchip/xc8/v2.10/pic/include/c99/stdlib.h" 3
+# 1 "/opt/microchip/xc8/v2.10/pic/include/c99/bits/alltypes.h" 1 3
+# 18 "/opt/microchip/xc8/v2.10/pic/include/c99/bits/alltypes.h" 3
+typedef long int wchar_t;
 # 22 "/opt/microchip/xc8/v2.10/pic/include/c99/stdlib.h" 2 3
 
 int atoi (const char *);
@@ -102,14 +228,17 @@ uldiv_t uldiv (unsigned long, unsigned long);
 
 
 size_t __ctype_get_mb_cur_max(void);
-# 5 "/opt/microchip/xc8/v2.10/pic/include/c99/xc8debug.h" 2 3
+# 10 "main.c" 2
+# 1 "/opt/microchip/xc8/v2.10/pic/include/xc.h" 1 3
+# 18 "/opt/microchip/xc8/v2.10/pic/include/xc.h" 3
+extern const char __xc8_OPTIM_SPEED;
+
+extern double __fpnormalize(double);
 
 
 
-
-
-
-
+# 1 "/opt/microchip/xc8/v2.10/pic/include/c99/xc8debug.h" 1 3
+# 12 "/opt/microchip/xc8/v2.10/pic/include/c99/xc8debug.h" 3
 #pragma intrinsic(__builtin_software_breakpoint)
 extern void __builtin_software_breakpoint(void);
 # 24 "/opt/microchip/xc8/v2.10/pic/include/xc.h" 2 3
@@ -20791,15 +20920,15 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 28 "/opt/microchip/xc8/v2.10/pic/include/xc.h" 2 3
-# 10 "main.c" 2
+# 11 "main.c" 2
 # 1 "./mcc_generated_files/mcc.h" 1
 # 50 "./mcc_generated_files/mcc.h"
 # 1 "./mcc_generated_files/device_config.h" 1
 # 51 "./mcc_generated_files/mcc.h" 2
 # 1 "./mcc_generated_files/pin_manager.h" 1
-# 250 "./mcc_generated_files/pin_manager.h"
+# 274 "./mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_Initialize (void);
-# 262 "./mcc_generated_files/pin_manager.h"
+# 286 "./mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_IOC(void);
 # 52 "./mcc_generated_files/mcc.h" 2
 # 1 "/opt/microchip/xc8/v2.10/pic/include/c99/stdint.h" 1 3
@@ -20890,153 +21019,7 @@ typedef uint32_t uint_fast32_t;
 # 1 "./mcc_generated_files/interrupt_manager.h" 1
 # 55 "./mcc_generated_files/mcc.h" 2
 # 1 "./mcc_generated_files/i2c1_driver.h" 1
-# 26 "./mcc_generated_files/i2c1_driver.h"
-# 1 "/opt/microchip/xc8/v2.10/pic/include/c99/stdio.h" 1 3
-# 24 "/opt/microchip/xc8/v2.10/pic/include/c99/stdio.h" 3
-# 1 "/opt/microchip/xc8/v2.10/pic/include/c99/bits/alltypes.h" 1 3
-
-
-
-
-
-typedef void * va_list[1];
-
-
-
-
-typedef void * __isoc_va_list[1];
-# 137 "/opt/microchip/xc8/v2.10/pic/include/c99/bits/alltypes.h" 3
-typedef long ssize_t;
-# 246 "/opt/microchip/xc8/v2.10/pic/include/c99/bits/alltypes.h" 3
-typedef long long off_t;
-# 399 "/opt/microchip/xc8/v2.10/pic/include/c99/bits/alltypes.h" 3
-typedef struct _IO_FILE FILE;
-# 25 "/opt/microchip/xc8/v2.10/pic/include/c99/stdio.h" 2 3
-# 52 "/opt/microchip/xc8/v2.10/pic/include/c99/stdio.h" 3
-typedef union _G_fpos64_t {
- char __opaque[16];
- double __align;
-} fpos_t;
-
-extern FILE *const stdin;
-extern FILE *const stdout;
-extern FILE *const stderr;
-
-
-
-
-
-FILE *fopen(const char *restrict, const char *restrict);
-FILE *freopen(const char *restrict, const char *restrict, FILE *restrict);
-int fclose(FILE *);
-
-int remove(const char *);
-int rename(const char *, const char *);
-
-int feof(FILE *);
-int ferror(FILE *);
-int fflush(FILE *);
-void clearerr(FILE *);
-
-int fseek(FILE *, long, int);
-long ftell(FILE *);
-void rewind(FILE *);
-
-int fgetpos(FILE *restrict, fpos_t *restrict);
-int fsetpos(FILE *, const fpos_t *);
-
-size_t fread(void *restrict, size_t, size_t, FILE *restrict);
-size_t fwrite(const void *restrict, size_t, size_t, FILE *restrict);
-
-int fgetc(FILE *);
-int getc(FILE *);
-int getchar(void);
-int ungetc(int, FILE *);
-
-int fputc(int, FILE *);
-int putc(int, FILE *);
-int putchar(int);
-
-char *fgets(char *restrict, int, FILE *restrict);
-
-char *gets(char *);
-
-
-int fputs(const char *restrict, FILE *restrict);
-int puts(const char *);
-
-#pragma printf_check(printf) const
-#pragma printf_check(vprintf) const
-#pragma printf_check(sprintf) const
-#pragma printf_check(snprintf) const
-#pragma printf_check(vsprintf) const
-#pragma printf_check(vsnprintf) const
-
-int printf(const char *restrict, ...);
-int fprintf(FILE *restrict, const char *restrict, ...);
-int sprintf(char *restrict, const char *restrict, ...);
-int snprintf(char *restrict, size_t, const char *restrict, ...);
-
-int vprintf(const char *restrict, __isoc_va_list);
-int vfprintf(FILE *restrict, const char *restrict, __isoc_va_list);
-int vsprintf(char *restrict, const char *restrict, __isoc_va_list);
-int vsnprintf(char *restrict, size_t, const char *restrict, __isoc_va_list);
-
-int scanf(const char *restrict, ...);
-int fscanf(FILE *restrict, const char *restrict, ...);
-int sscanf(const char *restrict, const char *restrict, ...);
-int vscanf(const char *restrict, __isoc_va_list);
-int vfscanf(FILE *restrict, const char *restrict, __isoc_va_list);
-int vsscanf(const char *restrict, const char *restrict, __isoc_va_list);
-
-void perror(const char *);
-
-int setvbuf(FILE *restrict, char *restrict, int, size_t);
-void setbuf(FILE *restrict, char *restrict);
-
-char *tmpnam(char *);
-FILE *tmpfile(void);
-
-
-
-
-FILE *fmemopen(void *restrict, size_t, const char *restrict);
-FILE *open_memstream(char **, size_t *);
-FILE *fdopen(int, const char *);
-FILE *popen(const char *, const char *);
-int pclose(FILE *);
-int fileno(FILE *);
-int fseeko(FILE *, off_t, int);
-off_t ftello(FILE *);
-int dprintf(int, const char *restrict, ...);
-int vdprintf(int, const char *restrict, __isoc_va_list);
-void flockfile(FILE *);
-int ftrylockfile(FILE *);
-void funlockfile(FILE *);
-int getc_unlocked(FILE *);
-int getchar_unlocked(void);
-int putc_unlocked(int, FILE *);
-int putchar_unlocked(int);
-ssize_t getdelim(char **restrict, size_t *restrict, int, FILE *restrict);
-ssize_t getline(char **restrict, size_t *restrict, FILE *restrict);
-int renameat(int, const char *, int, const char *);
-char *ctermid(char *);
-
-
-
-
-
-
-
-char *tempnam(const char *, const char *);
-# 27 "./mcc_generated_files/i2c1_driver.h" 2
-
-
-
-
-
-
-
+# 34 "./mcc_generated_files/i2c1_driver.h"
 typedef void (*interruptHandler)(void);
 
 
@@ -21421,20 +21404,6 @@ _Bool ADCC_HasErrorCrossedLowerThreshold(void);
 # 824 "./mcc_generated_files/adcc.h"
 uint8_t ADCC_GetConversionStageStatus(void);
 # 61 "./mcc_generated_files/mcc.h" 2
-# 1 "./mcc_generated_files/memory.h" 1
-# 99 "./mcc_generated_files/memory.h"
-uint16_t FLASH_ReadWord(uint16_t flashAddr);
-# 128 "./mcc_generated_files/memory.h"
-void FLASH_WriteWord(uint16_t flashAddr, uint16_t *ramBuf, uint16_t word);
-# 164 "./mcc_generated_files/memory.h"
-int8_t FLASH_WriteBlock(uint16_t writeAddr, uint16_t *flashWordArray);
-# 189 "./mcc_generated_files/memory.h"
-void FLASH_EraseBlock(uint16_t startAddr);
-# 222 "./mcc_generated_files/memory.h"
-void DATAEE_WriteByte(uint16_t bAdd, uint8_t bData);
-# 248 "./mcc_generated_files/memory.h"
-uint8_t DATAEE_ReadByte(uint16_t bAdd);
-# 62 "./mcc_generated_files/mcc.h" 2
 # 1 "./mcc_generated_files/ext_int.h" 1
 # 250 "./mcc_generated_files/ext_int.h"
 void EXT_INT_Initialize(void);
@@ -21448,7 +21417,75 @@ void INT_SetInterruptHandler(void (* InterruptHandler)(void));
 extern void (*INT_InterruptHandler)(void);
 # 367 "./mcc_generated_files/ext_int.h"
 void INT_DefaultInterruptHandler(void);
+# 62 "./mcc_generated_files/mcc.h" 2
+# 1 "./mcc_generated_files/memory.h" 1
+# 99 "./mcc_generated_files/memory.h"
+uint16_t FLASH_ReadWord(uint16_t flashAddr);
+# 128 "./mcc_generated_files/memory.h"
+void FLASH_WriteWord(uint16_t flashAddr, uint16_t *ramBuf, uint16_t word);
+# 164 "./mcc_generated_files/memory.h"
+int8_t FLASH_WriteBlock(uint16_t writeAddr, uint16_t *flashWordArray);
+# 189 "./mcc_generated_files/memory.h"
+void FLASH_EraseBlock(uint16_t startAddr);
+# 222 "./mcc_generated_files/memory.h"
+void DATAEE_WriteByte(uint16_t bAdd, uint8_t bData);
+# 248 "./mcc_generated_files/memory.h"
+uint8_t DATAEE_ReadByte(uint16_t bAdd);
 # 63 "./mcc_generated_files/mcc.h" 2
+# 1 "./mcc_generated_files/eusart.h" 1
+# 76 "./mcc_generated_files/eusart.h"
+typedef union {
+    struct {
+        unsigned perr : 1;
+        unsigned ferr : 1;
+        unsigned oerr : 1;
+        unsigned reserved : 5;
+    };
+    uint8_t status;
+}eusart_status_t;
+
+
+
+
+extern volatile uint8_t eusartTxBufferRemaining;
+extern volatile uint8_t eusartRxCount;
+
+
+
+
+extern void (*EUSART_TxDefaultInterruptHandler)(void);
+extern void (*EUSART_RxDefaultInterruptHandler)(void);
+# 118 "./mcc_generated_files/eusart.h"
+void EUSART_Initialize(void);
+# 166 "./mcc_generated_files/eusart.h"
+_Bool EUSART_is_tx_ready(void);
+# 214 "./mcc_generated_files/eusart.h"
+_Bool EUSART_is_rx_ready(void);
+# 261 "./mcc_generated_files/eusart.h"
+_Bool EUSART_is_tx_done(void);
+# 309 "./mcc_generated_files/eusart.h"
+eusart_status_t EUSART_get_last_status(void);
+# 329 "./mcc_generated_files/eusart.h"
+uint8_t EUSART_Read(void);
+# 349 "./mcc_generated_files/eusart.h"
+void EUSART_Write(uint8_t txData);
+# 370 "./mcc_generated_files/eusart.h"
+void EUSART_Transmit_ISR(void);
+# 391 "./mcc_generated_files/eusart.h"
+void EUSART_Receive_ISR(void);
+# 412 "./mcc_generated_files/eusart.h"
+void EUSART_RxDataHandler(void);
+# 430 "./mcc_generated_files/eusart.h"
+void EUSART_SetFramingErrorHandler(void (* interruptHandler)(void));
+# 448 "./mcc_generated_files/eusart.h"
+void EUSART_SetOverrunErrorHandler(void (* interruptHandler)(void));
+# 466 "./mcc_generated_files/eusart.h"
+void EUSART_SetErrorHandler(void (* interruptHandler)(void));
+# 486 "./mcc_generated_files/eusart.h"
+void EUSART_SetTxInterruptHandler(void (* interruptHandler)(void));
+# 506 "./mcc_generated_files/eusart.h"
+void EUSART_SetRxInterruptHandler(void (* interruptHandler)(void));
+# 64 "./mcc_generated_files/mcc.h" 2
 # 1 "./mcc_generated_files/drivers/i2c_simple_master.h" 1
 # 28 "./mcc_generated_files/drivers/i2c_simple_master.h"
 # 1 "./mcc_generated_files/drivers/../drivers/i2c_types.h" 1
@@ -21489,7 +21526,7 @@ void i2c_write2ByteRegister(i2c_address_t address, uint8_t reg, uint16_t data);
 void i2c_writeNBytes(i2c_address_t address, void* data, size_t len);
 void i2c_readDataBlock(i2c_address_t address, uint8_t reg, void *data, size_t len);
 void i2c_readNBytes(i2c_address_t address, void *data, size_t len);
-# 64 "./mcc_generated_files/mcc.h" 2
+# 65 "./mcc_generated_files/mcc.h" 2
 # 1 "./mcc_generated_files/drivers/i2c_master.h" 1
 # 33 "./mcc_generated_files/drivers/i2c_master.h"
 i2c_error_t i2c_open(i2c_address_t address);
@@ -21512,14 +21549,14 @@ void i2c_setTimeOutCallback(i2c_callback cb, void *p);
 
 void i2c_ISR(void);
 void i2c_busCollisionISR(void);
-# 65 "./mcc_generated_files/mcc.h" 2
-# 79 "./mcc_generated_files/mcc.h"
+# 66 "./mcc_generated_files/mcc.h" 2
+# 80 "./mcc_generated_files/mcc.h"
 void SYSTEM_Initialize(void);
-# 92 "./mcc_generated_files/mcc.h"
+# 93 "./mcc_generated_files/mcc.h"
 void OSCILLATOR_Initialize(void);
-# 105 "./mcc_generated_files/mcc.h"
+# 106 "./mcc_generated_files/mcc.h"
 void PMD_Initialize(void);
-# 11 "main.c" 2
+# 12 "main.c" 2
 # 1 "./eeprom_rw.h" 1
 # 16 "./eeprom_rw.h"
 void recoverData();
@@ -21528,7 +21565,7 @@ unsigned char read_ring(unsigned char nreg_pt, unsigned char nreg, unsigned char
 void cksum_w();
 unsigned char cksum();
 void reset_recv();
-# 12 "main.c" 2
+# 13 "main.c" 2
 # 1 "./I2C/i2c.h" 1
 # 152 "./I2C/i2c.h"
 void I2C_Initialize(void);
@@ -21548,7 +21585,7 @@ unsigned char ReadI2C( void );
 signed char WriteI2C( unsigned char data_out );
 
 signed char getsI2C( unsigned char *rdptr, unsigned char length );
-# 13 "main.c" 2
+# 14 "main.c" 2
 # 1 "./leds.h" 1
 
 
@@ -21564,19 +21601,26 @@ void LED_bin(unsigned int value);
 void all_LED(void);
 void representLed(unsigned char val);
 void mode_LED(unsigned char subfield);
-# 14 "main.c" 2
-# 37 "main.c"
-typedef struct Subfield_Info_Struct{
-    unsigned char(*limit)(void);
-    void(*reconstruct_subfield)(unsigned char);
-}Subfield_Info;
+# 15 "main.c" 2
+# 1 "./defines.h" 1
+# 16 "main.c" 2
+# 1 "./uartusr.h" 1
 
 
 
 
 
-
-
+void write_UART( uint8_t rxData);
+void write_str_UART(char * string , uint8_t size);
+uint8_t read_str_UART(char * buff, uint8_t max_len);
+void reply_UART_ERROR(unsigned char cmd);
+void reply_UART_OK(unsigned char cmd);
+uint8_t echo(char * string, uint8_t string_size);
+uint8_t * char_to_hex(char * message, uint8_t message_size, uint8_t * hex , uint8_t hex_size);
+void dump_UART_FIFO();
+uint8_t read_UART();
+# 17 "main.c" 2
+# 49 "main.c"
 volatile int value = 0;
 void handler_clock_hms(void);
 void handler_clock_ms(void);
@@ -21595,6 +21639,7 @@ unsigned char increment_subfield(unsigned char limit, unsigned init_val);
 unsigned char checkDebounceSW1();
 unsigned char checkDebounceSW2();
 
+void check_thresholds(uint8_t threshold);
 void clock_field(void);
 void config_routine(void);
 void selectSubfield(void);
@@ -21632,6 +21677,8 @@ volatile unsigned char set_mode = 0;
 volatile unsigned char config_mode = 0;
 volatile unsigned char alarm = 0;
 
+ char str_rc[16]="\0";
+ char str_snd[16]="hello\0";
 
 
 unsigned int convertedValue = 0;
@@ -21647,7 +21694,6 @@ unsigned char nreg_pt;
 unsigned char pmon = 5;
 unsigned char tala = 3;
 
-Subfield_Info subfield_info = {.limit = ((void*)0), .reconstruct_subfield = ((void*)0)};
 
 const unsigned char num_subfields[5] = {0,4, 1, 2, 1};
 unsigned char temp_thresh = 100;
@@ -21693,6 +21739,14 @@ void ISR_3s(void){
 }
 
 
+void UART_RX(void){
+
+    write_str_UART(str_snd, 16);
+    read_str_UART(str_rc, 16);
+
+}
+
+
 
 
 
@@ -21705,6 +21759,8 @@ void main(void){
     TMR1_SetInterruptHandler(handler_clock_hms);
     INT_SetInterruptHandler(sw1_EXT);
     TMR2_SetInterruptHandler(handler_clock_ms);
+
+
 
 
 
@@ -21747,6 +21803,13 @@ void main(void){
         __asm("sleep");
         __nop();
 
+        if(EUSART_is_rx_ready()){
+             write_str_UART(str_snd, 16);
+             read_str_UART(str_rc, 16);
+         }
+
+
+
         PIE4bits.TMR1IE = 0;
         t5s = last5s;
         PIE4bits.TMR1IE = 1;
@@ -21757,6 +21820,7 @@ void main(void){
             PIE4bits.TMR1IE = 1;
 
             do{
+
                     if(!config_mode){
 
                             convertedValue = ADC_read();
@@ -21777,25 +21841,9 @@ void main(void){
                             }
 
 
-                            threshold = (lum_bin > lum_thresh || temp > temp_thresh ) & alaf;
+                            threshold = (lum_bin > lum_thresh ) & alaf;
+                            check_thresholds(threshold);
 
-                            if(threshold){
-                                if(alarm == 2){
-                                    duty_cycle +=1 ;
-                                    PWM6_LoadDutyValue(duty_cycle);
-                                }
-                                else if(alarm == 0){
-                                    PIE0bits.TMR0IE = 1;
-                                    TMR0_StartTimer();
-                                    alarm = 2 ;
-                                }
-                            }
-                            else{
-                                if(alarm == 2){
-                                    PWM6_LoadDutyValue(0);
-                                    alarm = 0 ;
-                                }
-                            }
 
                     }
 
@@ -21825,7 +21873,30 @@ void main(void){
     }
 
 }
-# 304 "main.c"
+
+
+void check_thresholds(uint8_t threshold){
+
+    if(threshold){
+            if(alarm == 2){
+                duty_cycle +=1 ;
+                PWM6_LoadDutyValue(duty_cycle);
+            }
+            else if(alarm == 0){
+                PIE0bits.TMR0IE = 1;
+                TMR0_StartTimer();
+                alarm = 2 ;
+            }
+        }
+    else{
+        if(alarm == 2){
+            PWM6_LoadDutyValue(0);
+            alarm = 0 ;
+        }
+    }
+
+}
+# 333 "main.c"
  void config_routine(void){
 
     unsigned int select_mode =0;
@@ -21967,7 +22038,7 @@ void getSubfieldInfo(void){
         break;
     }
 }
-# 453 "main.c"
+# 482 "main.c"
 void recLumThresh(unsigned char _value){
     lum_thresh = _value;
 }
@@ -21981,7 +22052,7 @@ void recTempThresh(unsigned char _value){
         temp_thresh = (temp_thresh / 10) + _value;
     }
 }
-# 475 "main.c"
+# 504 "main.c"
 unsigned char limitTempThreshUnits(){
      if((temp_thresh / 10) == 5){
         return 0;
@@ -21989,7 +22060,7 @@ unsigned char limitTempThreshUnits(){
         return 9;
     }
 }
-# 490 "main.c"
+# 519 "main.c"
 unsigned char limitHoursUnits(){
 
     if((clkh / 10) == 2){
@@ -22084,7 +22155,7 @@ void handler_clock_ms(void){
         clkms = 0;
     }
 }
-# 592 "main.c"
+# 621 "main.c"
 unsigned char checkDebounceSW1(){
     PIE4bits.TMR1IE = 0;
 
@@ -22106,7 +22177,7 @@ unsigned char checkDebounceSW1(){
         return 1;
     }
 }
-# 621 "main.c"
+# 650 "main.c"
 unsigned char checkDebounceSW2(){
 
 

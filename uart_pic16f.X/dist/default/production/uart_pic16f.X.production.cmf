@@ -11,10 +11,6 @@
 # All addresses and the length are given in unqualified hexadecimal
 # in delta units.  Any other numeric values are decimal.
 %PSECTS
-$/tmp/xcXmx2Ey3.o
-reset_vec CODE 0 0 0 2 2
-end_init CODE 0 2B 2B 2 2
-config CONFIG 0 8007 8007 5 2
 $dist/default/production/uart_pic16f.X.production.o
 cinit CODE 0 2D 2D 22 2
 text1 CODE 0 F3 F3 60 2
@@ -59,6 +55,10 @@ idataBANK1 CODE 0 35F 35F 10 2
 dataBANK1 BANK1 1 DC DC 10 1
 clrtext CODE 0 3A5 3A5 6 2
 bssCOMMON COMMON 1 7B 7B 2 1
+$/tmp/xcXwYbIFd.o
+reset_vec CODE 0 0 0 2 2
+end_init CODE 0 2B 2B 2 2
+config CONFIG 0 8007 8007 5 2
 # %UNUSED Section
 # This section enumerates the unused ranges of each CLASS. Each entry
 # is described on a single line as follows:
@@ -150,36 +150,36 @@ STRING 3D6-1FFF 2
 # All other numeric values are in decimal.
 %LINETAB
 $dist/default/production/uart_pic16f.X.production.o
-2D cinit CODE >8036:/tmp/xcXiRj5hR.s
-2D cinit CODE >8039:/tmp/xcXiRj5hR.s
-2D cinit CODE >8105:/tmp/xcXiRj5hR.s
-2E cinit CODE >8106:/tmp/xcXiRj5hR.s
-2F cinit CODE >8107:/tmp/xcXiRj5hR.s
-30 cinit CODE >8108:/tmp/xcXiRj5hR.s
-31 cinit CODE >8109:/tmp/xcXiRj5hR.s
-32 cinit CODE >8110:/tmp/xcXiRj5hR.s
-33 cinit CODE >8111:/tmp/xcXiRj5hR.s
-34 cinit CODE >8112:/tmp/xcXiRj5hR.s
-35 cinit CODE >8113:/tmp/xcXiRj5hR.s
-36 cinit CODE >8114:/tmp/xcXiRj5hR.s
-39 cinit CODE >8131:/tmp/xcXiRj5hR.s
-3A cinit CODE >8132:/tmp/xcXiRj5hR.s
-3B cinit CODE >8136:/tmp/xcXiRj5hR.s
-3C cinit CODE >8137:/tmp/xcXiRj5hR.s
-3D cinit CODE >8138:/tmp/xcXiRj5hR.s
-3E cinit CODE >8139:/tmp/xcXiRj5hR.s
-3F cinit CODE >8140:/tmp/xcXiRj5hR.s
-40 cinit CODE >8141:/tmp/xcXiRj5hR.s
-43 cinit CODE >8145:/tmp/xcXiRj5hR.s
-44 cinit CODE >8146:/tmp/xcXiRj5hR.s
-45 cinit CODE >8147:/tmp/xcXiRj5hR.s
-46 cinit CODE >8148:/tmp/xcXiRj5hR.s
-47 cinit CODE >8149:/tmp/xcXiRj5hR.s
-48 cinit CODE >8150:/tmp/xcXiRj5hR.s
-4B cinit CODE >8156:/tmp/xcXiRj5hR.s
-4B cinit CODE >8158:/tmp/xcXiRj5hR.s
-4C cinit CODE >8159:/tmp/xcXiRj5hR.s
-4D cinit CODE >8160:/tmp/xcXiRj5hR.s
+2D cinit CODE >8036:/tmp/xcX9rjHks.s
+2D cinit CODE >8039:/tmp/xcX9rjHks.s
+2D cinit CODE >8105:/tmp/xcX9rjHks.s
+2E cinit CODE >8106:/tmp/xcX9rjHks.s
+2F cinit CODE >8107:/tmp/xcX9rjHks.s
+30 cinit CODE >8108:/tmp/xcX9rjHks.s
+31 cinit CODE >8109:/tmp/xcX9rjHks.s
+32 cinit CODE >8110:/tmp/xcX9rjHks.s
+33 cinit CODE >8111:/tmp/xcX9rjHks.s
+34 cinit CODE >8112:/tmp/xcX9rjHks.s
+35 cinit CODE >8113:/tmp/xcX9rjHks.s
+36 cinit CODE >8114:/tmp/xcX9rjHks.s
+39 cinit CODE >8131:/tmp/xcX9rjHks.s
+3A cinit CODE >8132:/tmp/xcX9rjHks.s
+3B cinit CODE >8136:/tmp/xcX9rjHks.s
+3C cinit CODE >8137:/tmp/xcX9rjHks.s
+3D cinit CODE >8138:/tmp/xcX9rjHks.s
+3E cinit CODE >8139:/tmp/xcX9rjHks.s
+3F cinit CODE >8140:/tmp/xcX9rjHks.s
+40 cinit CODE >8141:/tmp/xcX9rjHks.s
+43 cinit CODE >8145:/tmp/xcX9rjHks.s
+44 cinit CODE >8146:/tmp/xcX9rjHks.s
+45 cinit CODE >8147:/tmp/xcX9rjHks.s
+46 cinit CODE >8148:/tmp/xcX9rjHks.s
+47 cinit CODE >8149:/tmp/xcX9rjHks.s
+48 cinit CODE >8150:/tmp/xcX9rjHks.s
+4B cinit CODE >8156:/tmp/xcX9rjHks.s
+4B cinit CODE >8158:/tmp/xcX9rjHks.s
+4C cinit CODE >8159:/tmp/xcX9rjHks.s
+4D cinit CODE >8160:/tmp/xcX9rjHks.s
 4 intentry CODE >52:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/interrupt_manager.c
 6 intentry CODE >55:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/interrupt_manager.c
 A intentry CODE >57:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/interrupt_manager.c
@@ -423,22 +423,22 @@ FA text1 CODE >38:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/uartusr.c
 189 maintext CODE >86:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/main.c
 192 maintext CODE >90:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/main.c
 193 maintext CODE >93:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/main.c
-3A5 clrtext CODE >8120:/tmp/xcXiRj5hR.s
-3A5 clrtext CODE >8121:/tmp/xcXiRj5hR.s
-3A6 clrtext CODE >8122:/tmp/xcXiRj5hR.s
-3A6 clrtext CODE >8123:/tmp/xcXiRj5hR.s
-3A7 clrtext CODE >8124:/tmp/xcXiRj5hR.s
-3A8 clrtext CODE >8125:/tmp/xcXiRj5hR.s
-3A9 clrtext CODE >8126:/tmp/xcXiRj5hR.s
-3AA clrtext CODE >8127:/tmp/xcXiRj5hR.s
-39F inittext CODE >8094:/tmp/xcXiRj5hR.s
-39F inittext CODE >8095:/tmp/xcXiRj5hR.s
-3A0 inittext CODE >8096:/tmp/xcXiRj5hR.s
-3A0 inittext CODE >8097:/tmp/xcXiRj5hR.s
-3A1 inittext CODE >8098:/tmp/xcXiRj5hR.s
-3A2 inittext CODE >8099:/tmp/xcXiRj5hR.s
-3A3 inittext CODE >8100:/tmp/xcXiRj5hR.s
-3A4 inittext CODE >8101:/tmp/xcXiRj5hR.s
+3A5 clrtext CODE >8120:/tmp/xcX9rjHks.s
+3A5 clrtext CODE >8121:/tmp/xcX9rjHks.s
+3A6 clrtext CODE >8122:/tmp/xcX9rjHks.s
+3A6 clrtext CODE >8123:/tmp/xcX9rjHks.s
+3A7 clrtext CODE >8124:/tmp/xcX9rjHks.s
+3A8 clrtext CODE >8125:/tmp/xcX9rjHks.s
+3A9 clrtext CODE >8126:/tmp/xcX9rjHks.s
+3AA clrtext CODE >8127:/tmp/xcX9rjHks.s
+39F inittext CODE >8094:/tmp/xcX9rjHks.s
+39F inittext CODE >8095:/tmp/xcX9rjHks.s
+3A0 inittext CODE >8096:/tmp/xcX9rjHks.s
+3A0 inittext CODE >8097:/tmp/xcX9rjHks.s
+3A1 inittext CODE >8098:/tmp/xcX9rjHks.s
+3A2 inittext CODE >8099:/tmp/xcX9rjHks.s
+3A3 inittext CODE >8100:/tmp/xcX9rjHks.s
+3A4 inittext CODE >8101:/tmp/xcX9rjHks.s
 # %SYMTAB Section
 # An enumeration of all symbols in the program.
 # The beginning of the section is indicated by %SYMTAB.
@@ -485,10 +485,10 @@ _WPUB F44 0 ABS 0 - dist/default/production/uart_pic16f.X.production.o
 _WPUC F4F 0 ABS 0 - dist/default/production/uart_pic16f.X.production.o
 _WPUD F5A 0 ABS 0 - dist/default/production/uart_pic16f.X.production.o
 _WPUE F65 0 ABS 0 - dist/default/production/uart_pic16f.X.production.o
-___sp 0 0 STACK 2 stack /tmp/xcXmx2Ey3.o
+___sp 0 0 STACK 2 stack /tmp/xcXwYbIFd.o
 _main 2A6 0 CODE 0 maintext dist/default/production/uart_pic16f.X.production.o
 btemp 7E 0 ABS 0 - dist/default/production/uart_pic16f.X.production.o
-start 56 0 CODE 0 init /tmp/xcXmx2Ey3.o
+start 56 0 CODE 0 init /tmp/xcXwYbIFd.o
 _EUSART_Write 4B6 0 CODE 0 text6 dist/default/production/uart_pic16f.X.production.o
 __size_of_main 0 0 ABS 0 - dist/default/production/uart_pic16f.X.production.o
 __HbssCOMMON 0 0 ABS 0 bssCOMMON -
@@ -501,12 +501,12 @@ __end_of_EUSART_Initialize 444 0 CODE 0 text16 dist/default/production/uart_pic1
 __Hpowerup 0 0 CODE 0 powerup -
 _read_str_UART 1E6 0 CODE 0 text1 dist/default/production/uart_pic16f.X.production.o
 __size_of_SYSTEM_Initialize 0 0 ABS 0 - dist/default/production/uart_pic16f.X.production.o
-intlevel0 0 0 ENTRY 0 functab /tmp/xcXmx2Ey3.o
-intlevel1 0 0 ENTRY 0 functab /tmp/xcXmx2Ey3.o
-intlevel2 0 0 ENTRY 0 functab /tmp/xcXmx2Ey3.o
-intlevel3 0 0 ENTRY 0 functab /tmp/xcXmx2Ey3.o
-intlevel4 0 0 ENTRY 0 functab /tmp/xcXmx2Ey3.o
-intlevel5 0 0 ENTRY 0 functab /tmp/xcXmx2Ey3.o
+intlevel0 0 0 ENTRY 0 functab /tmp/xcXwYbIFd.o
+intlevel1 0 0 ENTRY 0 functab /tmp/xcXwYbIFd.o
+intlevel2 0 0 ENTRY 0 functab /tmp/xcXwYbIFd.o
+intlevel3 0 0 ENTRY 0 functab /tmp/xcXwYbIFd.o
+intlevel4 0 0 ENTRY 0 functab /tmp/xcXwYbIFd.o
+intlevel5 0 0 ENTRY 0 functab /tmp/xcXwYbIFd.o
 __LbssCOMMON 0 0 ABS 0 bssCOMMON -
 _EUSART_is_tx_ready 6F8 0 CODE 0 text4 dist/default/production/uart_pic16f.X.production.o
 wtemp0 7E 0 ABS 0 - dist/default/production/uart_pic16f.X.production.o
@@ -538,8 +538,8 @@ _INLVLB F47 0 ABS 0 - dist/default/production/uart_pic16f.X.production.o
 _INLVLC F52 0 ABS 0 - dist/default/production/uart_pic16f.X.production.o
 _INLVLD F5D 0 ABS 0 - dist/default/production/uart_pic16f.X.production.o
 _INLVLE F68 0 ABS 0 - dist/default/production/uart_pic16f.X.production.o
-___stackhi 23EF 0 ABS 0 - /tmp/xcXmx2Ey3.o
-___stacklo 20A0 0 ABS 0 - /tmp/xcXmx2Ey3.o
+___stackhi 23EF 0 ABS 0 - /tmp/xcXwYbIFd.o
+___stacklo 20A0 0 ABS 0 - /tmp/xcXwYbIFd.o
 main@cmd_hex B0 0 BANK1 1 cstackBANK1 dist/default/production/uart_pic16f.X.production.o
 _EUSART_Initialize 3C6 0 CODE 0 text16 dist/default/production/uart_pic16f.X.production.o
 _EUSART_is_rx_ready 70A 0 CODE 0 text10 dist/default/production/uart_pic16f.X.production.o
@@ -576,7 +576,7 @@ __end_of_EUSART_DefaultFramingErrorHandler 7AC 0 CODE 0 text26 dist/default/prod
 __end_of_EUSART_DefaultOverrunErrorHandler 7A2 0 CODE 0 text25 dist/default/production/uart_pic16f.X.production.o
 __end_of_read_str_UART 2A6 0 CODE 0 text1 dist/default/production/uart_pic16f.X.production.o
 _EUSART_TxDefaultInterruptHandler 48 0 BANK0 1 nvBANK0 dist/default/production/uart_pic16f.X.production.o
-___int_sp 0 0 STACK 2 stack /tmp/xcXmx2Ey3.o
+___int_sp 0 0 STACK 2 stack /tmp/xcXwYbIFd.o
 __end_of_EUSART_Read 55E 0 CODE 0 text11 dist/default/production/uart_pic16f.X.production.o
 main@str_send A0 0 BANK1 1 cstackBANK1 dist/default/production/uart_pic16f.X.production.o
 __Hbank0 0 0 ABS 0 bank0 -
@@ -744,7 +744,7 @@ __HnvBANK0 0 0 ABS 0 nvBANK0 -
 __HnvBANK1 0 0 ABS 0 nvBANK1 -
 __Lintentry 8 0 CODE 0 intentry -
 __size_of_EUSART_is_tx_done 0 0 ABS 0 - dist/default/production/uart_pic16f.X.production.o
-reset_vec 0 0 CODE 0 reset_vec /tmp/xcXmx2Ey3.o
+reset_vec 0 0 CODE 0 reset_vec /tmp/xcXwYbIFd.o
 EUSART_Read@readValue 72 0 COMMON 1 cstackCOMMON dist/default/production/uart_pic16f.X.production.o
 __pdataBANK1 DC 0 BANK1 1 dataBANK1 dist/default/production/uart_pic16f.X.production.o
 __LbssBANK0 0 0 ABS 0 bssBANK0 -

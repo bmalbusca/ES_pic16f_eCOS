@@ -15,6 +15,7 @@
             <sourceRootList>
                 <sourceRootElem>../sce.X/I2C</sourceRootElem>
                 <sourceRootElem>.</sourceRootElem>
+                <sourceRootElem>../uart_pic16f.X</sourceRootElem>
             </sourceRootList>
             <confList>
                 <confElem>

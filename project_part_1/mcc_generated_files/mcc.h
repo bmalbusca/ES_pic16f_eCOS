@@ -58,8 +58,9 @@
 #include "tmr2.h"
 #include "tmr0.h"
 #include "adcc.h"
-#include "memory.h"
 #include "ext_int.h"
+#include "memory.h"
+#include "eusart.h"
 #include "drivers/i2c_simple_master.h"
 #include "drivers/i2c_master.h"
 

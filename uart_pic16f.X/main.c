@@ -75,7 +75,7 @@ void main(void)
     
     
     IO_RA7_SetLow();
-    //write_str_UART(str_send, UART_BUFF_SIZE);
+    
 
     while (1)
     {

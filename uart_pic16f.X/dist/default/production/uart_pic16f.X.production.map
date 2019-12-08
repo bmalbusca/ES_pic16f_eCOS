@@ -5,7 +5,7 @@ Linker command line:
 -W-3 --edf=/opt/microchip/xc8/v2.10/pic/dat/en_msgs.txt -cs \
   -h+dist/default/production/uart_pic16f.X.production.sym \
   --cmf=dist/default/production/uart_pic16f.X.production.cmf -z -Q16F18875 \
-  -o/tmp/xcXIwgRdd --defsym=__MPLAB_BUILD=1 \
+  -o/tmp/xcX3uYsO1 --defsym=__MPLAB_BUILD=1 \
   -Mdist/default/production/uart_pic16f.X.production.map -E1 -ver=XC8 \
   --acfsm=1493 -ASTACK=020A0h-023EFh -pstack=STACK -ACODE=00h-07FFhx4 \
   -ASTRCODE=00h-01FFFh -ASTRING=00h-0FFhx32 -ACONST=00h-0FFhx32 \
@@ -31,7 +31,7 @@ Linker command line:
   -ppowerup=CODE -pcinit=CODE -pfunctab=ENTRY -ACONFIG=08007h-0800Bh \
   -pconfig=CONFIG -DCONFIG=2 -AIDLOC=08000h-08003h -pidloc=IDLOC -DIDLOC=2 \
   -AEEDATA=00h-0FFh/0F000h -peeprom_data=EEDATA -DEEDATA=2 -DCODE=2 \
-  -DSTRCODE=2 -DSTRING=2 -DCONST=2 -DENTRY=2 -k /tmp/xcXmx2Ey3.o \
+  -DSTRCODE=2 -DSTRING=2 -DCONST=2 -DENTRY=2 -k /tmp/xcXwYbIFd.o \
   dist/default/production/uart_pic16f.X.production.o 
 
 Object code version is 3.11
@@ -41,7 +41,7 @@ Machine type is 16F18875
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-/tmp/xcXmx2Ey3.o
+/tmp/xcXwYbIFd.o
                 end_init                             2B       2B        2        8       0
                 reset_vec                             0        0        2        0       0
                 config                             8007     8007        5    1000E       0

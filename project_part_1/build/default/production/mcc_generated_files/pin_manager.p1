@@ -107,6 +107,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 "30066
 [; ;/opt/microchip/xc8/v2.10/pic/include/pic16f18875.h: 30066: extern volatile unsigned char INTPPS __attribute__((address(0xE90)));
 [v _INTPPS `Vuc ~T0 @X0 0 e@3728 ]
+"31984
+[; ;/opt/microchip/xc8/v2.10/pic/include/pic16f18875.h: 31984: extern volatile unsigned char RXPPS __attribute__((address(0xECB)));
+[v _RXPPS `Vuc ~T0 @X0 0 e@3787 ]
 "31672
 [; ;/opt/microchip/xc8/v2.10/pic/include/pic16f18875.h: 31672: extern volatile unsigned char SSP1CLKPPS __attribute__((address(0xEC5)));
 [v _SSP1CLKPPS `Vuc ~T0 @X0 0 e@3781 ]
@@ -119,6 +122,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 "32388
 [; ;/opt/microchip/xc8/v2.10/pic/include/pic16f18875.h: 32388: extern volatile unsigned char RA6PPS __attribute__((address(0xF16)));
 [v _RA6PPS `Vuc ~T0 @X0 0 e@3862 ]
+"33188
+[; ;/opt/microchip/xc8/v2.10/pic/include/pic16f18875.h: 33188: extern volatile unsigned char RC6PPS __attribute__((address(0xF26)));
+[v _RC6PPS `Vuc ~T0 @X0 0 e@3878 ]
 "31724
 [; ;/opt/microchip/xc8/v2.10/pic/include/pic16f18875.h: 31724: extern volatile unsigned char SSP1DATPPS __attribute__((address(0xEC6)));
 [v _SSP1DATPPS `Vuc ~T0 @X0 0 e@3782 ]
@@ -1793,8 +1799,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;mcc_generated_files/pin_manager.c: 71:     TRISB = 0xFF;
 [e = _TRISB -> -> 255 `i `uc ]
 "72
-[; ;mcc_generated_files/pin_manager.c: 72:     TRISC = 0xFF;
-[e = _TRISC -> -> 255 `i `uc ]
+[; ;mcc_generated_files/pin_manager.c: 72:     TRISC = 0xBF;
+[e = _TRISC -> -> 191 `i `uc ]
 "73
 [; ;mcc_generated_files/pin_manager.c: 73:     TRISD = 0xFF;
 [e = _TRISD -> -> 255 `i `uc ]
@@ -1802,8 +1808,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;mcc_generated_files/pin_manager.c: 78:     ANSELD = 0xFF;
 [e = _ANSELD -> -> 255 `i `uc ]
 "79
-[; ;mcc_generated_files/pin_manager.c: 79:     ANSELC = 0xC7;
-[e = _ANSELC -> -> 199 `i `uc ]
+[; ;mcc_generated_files/pin_manager.c: 79:     ANSELC = 0x47;
+[e = _ANSELC -> -> 71 `i `uc ]
 "80
 [; ;mcc_generated_files/pin_manager.c: 80:     ANSELB = 0xEF;
 [e = _ANSELB -> -> 239 `i `uc ]
@@ -1877,33 +1883,39 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;mcc_generated_files/pin_manager.c: 127:     INTPPS = 0x0C;
 [e = _INTPPS -> -> 12 `i `uc ]
 "128
-[; ;mcc_generated_files/pin_manager.c: 128:     SSP1CLKPPS = 0x13;
-[e = _SSP1CLKPPS -> -> 19 `i `uc ]
+[; ;mcc_generated_files/pin_manager.c: 128:     RXPPS = 0x17;
+[e = _RXPPS -> -> 23 `i `uc ]
 "129
-[; ;mcc_generated_files/pin_manager.c: 129:     RC3PPS = 0x14;
-[e = _RC3PPS -> -> 20 `i `uc ]
+[; ;mcc_generated_files/pin_manager.c: 129:     SSP1CLKPPS = 0x13;
+[e = _SSP1CLKPPS -> -> 19 `i `uc ]
 "130
-[; ;mcc_generated_files/pin_manager.c: 130:     RC4PPS = 0x15;
-[e = _RC4PPS -> -> 21 `i `uc ]
+[; ;mcc_generated_files/pin_manager.c: 130:     RC3PPS = 0x14;
+[e = _RC3PPS -> -> 20 `i `uc ]
 "131
-[; ;mcc_generated_files/pin_manager.c: 131:     RA6PPS = 0x0E;
-[e = _RA6PPS -> -> 14 `i `uc ]
+[; ;mcc_generated_files/pin_manager.c: 131:     RC4PPS = 0x15;
+[e = _RC4PPS -> -> 21 `i `uc ]
 "132
-[; ;mcc_generated_files/pin_manager.c: 132:     SSP1DATPPS = 0x14;
-[e = _SSP1DATPPS -> -> 20 `i `uc ]
+[; ;mcc_generated_files/pin_manager.c: 132:     RA6PPS = 0x0E;
+[e = _RA6PPS -> -> 14 `i `uc ]
 "133
-[; ;mcc_generated_files/pin_manager.c: 133: }
+[; ;mcc_generated_files/pin_manager.c: 133:     RC6PPS = 0x10;
+[e = _RC6PPS -> -> 16 `i `uc ]
+"134
+[; ;mcc_generated_files/pin_manager.c: 134:     SSP1DATPPS = 0x14;
+[e = _SSP1DATPPS -> -> 20 `i `uc ]
+"135
+[; ;mcc_generated_files/pin_manager.c: 135: }
 [e :UE 1625 ]
 }
-"135
-[; ;mcc_generated_files/pin_manager.c: 135: void PIN_MANAGER_IOC(void)
+"137
+[; ;mcc_generated_files/pin_manager.c: 137: void PIN_MANAGER_IOC(void)
 [v _PIN_MANAGER_IOC `(v ~T0 @X0 1 ef ]
-"136
-[; ;mcc_generated_files/pin_manager.c: 136: {
+"138
+[; ;mcc_generated_files/pin_manager.c: 138: {
 {
 [e :U _PIN_MANAGER_IOC ]
 [f ]
-"137
-[; ;mcc_generated_files/pin_manager.c: 137: }
+"139
+[; ;mcc_generated_files/pin_manager.c: 139: }
 [e :UE 1626 ]
 }
