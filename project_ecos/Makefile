@@ -5,7 +5,7 @@
 INSTALL_DIR=/home/sce/ecos-work/pc_install
 include $(INSTALL_DIR)/include/pkgconf/ecos.mak
 
-TARGET_EXEC ?=program
+TARGET_EXEC ?=ecos
 LDFLAGS = -nostartfiles -L$(INSTALL_DIR)/lib -Ttarget.ld $(ECOS_GLOBAL_LDFLAGS)
 CFLAGS = -I$(INSTALL_DIR)/include $(ECOS_GLOBAL_CFLAGS)
 CC = $(ECOS_COMMAND_PREFIX)gcc
