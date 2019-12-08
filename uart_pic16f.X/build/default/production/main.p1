@@ -25,10 +25,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 "967
 [; ;/opt/microchip/xc8/v2.10/pic/include/pic16f18875.h: 967: extern volatile LATAbits_t LATAbits __attribute__((address(0x016)));
 [v _LATAbits `VS54 ~T0 @X0 0 e@22 ]
-"57 main.c
-[; ;main.c: 57: void write_str_UART(char * string , uint8_t size);
-[v _write_str_UART `(v ~T0 @X0 0 ef2`*uc`uc ]
-"21523 /opt/microchip/xc8/v2.10/pic/include/pic16f18875.h
+"21523
 [; ;/opt/microchip/xc8/v2.10/pic/include/pic16f18875.h: 21523:     struct {
 [s S979 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S979 . SSP1IF BCL1IF SSP2IF BCL2IF TXIF RCIF ]
@@ -42,30 +39,13 @@ Version 4.0 HI-TECH Software Intermediate Code
 "214 ./mcc_generated_files/eusart.h
 [; ;./mcc_generated_files/eusart.h: 214: _Bool EUSART_is_rx_ready(void);
 [v _EUSART_is_rx_ready `(a ~T0 @X0 0 ef ]
-"58 main.c
-[; ;main.c: 58: char * read_str_UART(char * buff, uint8_t max_len);
-[v _read_str_UART `(*uc ~T0 @X0 0 ef2`*uc`uc ]
+"8 ./uartusr.h
+[; ;./uartusr.h: 8: uint8_t read_str_UART(char * buff, uint8_t max_len);
+[v _read_str_UART `(uc ~T0 @X0 0 ef2`*uc`uc ]
 [v F12522 `(v ~T0 @X0 1 tf1`ul ]
 "92 /opt/microchip/xc8/v2.10/pic/include/pic.h
 [v __delay `JF12522 ~T0 @X0 0 e ]
 [p i __delay ]
-"111 /opt/microchip/xc8/v2.10/pic/include/c99/stdio.h
-[v _printf `(i ~T0 @X0 0 ev`*Cuc ]
-"329 ./mcc_generated_files/eusart.h
-[; ;./mcc_generated_files/eusart.h: 329: uint8_t EUSART_Read(void);
-[v _EUSART_Read `(uc ~T0 @X0 0 ef ]
-"166
-[; ;./mcc_generated_files/eusart.h: 166: _Bool EUSART_is_tx_ready(void);
-[v _EUSART_is_tx_ready `(a ~T0 @X0 0 ef ]
-"349
-[; ;./mcc_generated_files/eusart.h: 349: void EUSART_Write(uint8_t txData);
-[v _EUSART_Write `(v ~T0 @X0 0 ef1`uc ]
-"56 main.c
-[; ;main.c: 56: void write_UART( uint8_t rxData, uint8_t led);
-[v _write_UART `(v ~T0 @X0 0 ef2`uc`uc ]
-"261 ./mcc_generated_files/eusart.h
-[; ;./mcc_generated_files/eusart.h: 261: _Bool EUSART_is_tx_done(void);
-[v _EUSART_is_tx_done `(a ~T0 @X0 0 ef ]
 "54 /opt/microchip/xc8/v2.10/pic/include/pic16f18875.h
 [; ;/opt/microchip/xc8/v2.10/pic/include/pic16f18875.h: 54: __asm("INDF0 equ 00h");
 [; <" INDF0 equ 00h ;# ">
@@ -1705,22 +1685,22 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;/opt/microchip/xc8/v2.10/pic/include/pic16f18875.h: 36645: __asm("TOSH equ 0FEFh");
 [; <" TOSH equ 0FEFh ;# ">
 [v $root$_main `(v ~T0 @X0 0 e ]
-"68 main.c
-[; ;main.c: 68: void main(void)
+"62 main.c
+[; ;main.c: 62: void main(void)
 [v _main `(v ~T0 @X0 1 ef ]
-"69
-[; ;main.c: 69: {
+"63
+[; ;main.c: 63: {
 {
 [e :U _main ]
 [f ]
-"71
-[; ;main.c: 71:     SYSTEM_Initialize();
+"65
+[; ;main.c: 65:     SYSTEM_Initialize();
 [e ( _SYSTEM_Initialize ..  ]
-[v F12633 `uc ~T0 @X0 -> 14 `i s ]
-[i F12633
+[v F12637 `uc ~T0 @X0 -> 16 `i s ]
+[i F12637
 :U ..
-"72
-[; ;main.c: 72:     char str_send[14] = "hello mike\n\r";
+"66
+[; ;main.c: 66:     char str_send[16] = "hello mike\n\r";
 -> 104 `c
 -> 101 `c
 -> 108 `c
@@ -1736,525 +1716,85 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> 0 `c
 ..
 ]
-[v _str_send `uc ~T0 @X0 -> 14 `i a ]
-[e = _str_send F12633 ]
-[v F12635 `uc ~T0 @X0 -> 14 `i s ]
-[i F12635
+[v _str_send `uc ~T0 @X0 -> 16 `i a ]
+[e = _str_send F12637 ]
+[v F12639 `uc ~T0 @X0 -> 16 `i s ]
+[i F12639
 :U ..
-"73
-[; ;main.c: 73:     char str_rc[14]="\0";
+"67
+[; ;main.c: 67:     char str_rc[16]="\0";
 -> 0 `c
 -> 0 `c
 ..
 ]
-[v _str_rc `uc ~T0 @X0 -> 14 `i a ]
-[e = _str_rc F12635 ]
-"76
-[; ;main.c: 76:     (INTCONbits.GIE = 1);
+[v _str_rc `uc ~T0 @X0 -> 16 `i a ]
+[e = _str_rc F12639 ]
+[v F12641 `uc ~T0 @X0 -> 6 `i s ]
+[i F12641
+:U ..
+"69
+[; ;main.c: 69:     uint8_t cmd_hex[6] = {0x00,0x00,0x00,0x00,0x00,0x00};
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+..
+]
+[v _cmd_hex `uc ~T0 @X0 -> 6 `i a ]
+[e = _cmd_hex F12641 ]
+"70
+[; ;main.c: 70:     char val;
+[v _val `uc ~T0 @X0 1 a ]
+"72
+[; ;main.c: 72:     (INTCONbits.GIE = 1);
 [e = . . _INTCONbits 0 3 -> -> 1 `i `uc ]
-"77
-[; ;main.c: 77:     (INTCONbits.PEIE = 1);
+"73
+[; ;main.c: 73:     (INTCONbits.PEIE = 1);
 [e = . . _INTCONbits 0 2 -> -> 1 `i `uc ]
-"81
-[; ;main.c: 81:     do { LATAbits.LATA7 = 0; } while(0);
+"77
+[; ;main.c: 77:     do { LATAbits.LATA7 = 0; } while(0);
 [e :U 1632 ]
 {
 [e = . . _LATAbits 0 7 -> -> 0 `i `uc ]
 }
 [e :U 1631 ]
-"82
-[; ;main.c: 82:     write_str_UART(str_send, 14);
-[e ( _write_str_UART (2 , &U _str_send -> -> 14 `i `uc ]
-"84
-[; ;main.c: 84:     while (1)
+"80
+[; ;main.c: 80:     while (1)
 [e :U 1634 ]
-"85
-[; ;main.c: 85:     {
+"81
+[; ;main.c: 81:     {
 {
-"88
-[; ;main.c: 88:         if(PIR3bits.RCIF || EUSART_is_rx_ready()){
+"84
+[; ;main.c: 84:         if(PIR3bits.RCIF || EUSART_is_rx_ready()){
 [e $ ! || != -> . . _PIR3bits 0 5 `i -> 0 `i != -> ( _EUSART_is_rx_ready ..  `i -> 0 `i 1636  ]
 {
+"86
+[; ;main.c: 86:              read_str_UART(str_rc, 16);
+[e ( _read_str_UART (2 , &U _str_rc -> -> 16 `i `uc ]
 "90
-[; ;main.c: 90:              read_str_UART(str_rc, 14);
-[e ( _read_str_UART (2 , &U _str_rc -> -> 14 `i `uc ]
-"94
-[; ;main.c: 94:         }
+[; ;main.c: 90:         }
 }
 [e $U 1637  ]
-"95
-[; ;main.c: 95:         else{
+"91
+[; ;main.c: 91:         else{
 [e :U 1636 ]
 {
-"97
-[; ;main.c: 97:             _delay((unsigned long)((1000)*(1000000/4000.0)));
+"93
+[; ;main.c: 93:             _delay((unsigned long)((1000)*(1000000/4000.0)));
 [e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
-"99
-[; ;main.c: 99:         }
+"96
+[; ;main.c: 96:         }
 }
 [e :U 1637 ]
-"102
-[; ;main.c: 102:     }
+"99
+[; ;main.c: 99:     }
 }
 [e :U 1633 ]
 [e $U 1634  ]
 [e :U 1635 ]
-"103
-[; ;main.c: 103: }
+"100
+[; ;main.c: 100: }
 [e :UE 1629 ]
 }
-"106
-[; ;main.c: 106: void reply_UART_OK(unsigned char cmd){
-[v _reply_UART_OK `(v ~T0 @X0 1 ef1`uc ]
-{
-[e :U _reply_UART_OK ]
-[v _cmd `uc ~T0 @X0 1 r1 ]
-[f ]
-"107
-[; ;main.c: 107:     printf("%02x%02x%02x%02x\n",0xFD,cmd,0,0xFE);
-[e ( _printf , , , , (. :s 1C -> 253 `i -> _cmd `i -> 0 `i -> 254 `i ]
-"108
-[; ;main.c: 108: }
-[e :UE 1638 ]
-}
-"110
-[; ;main.c: 110: void reply_UART_ERROR(unsigned char cmd){
-[v _reply_UART_ERROR `(v ~T0 @X0 1 ef1`uc ]
-{
-[e :U _reply_UART_ERROR ]
-[v _cmd `uc ~T0 @X0 1 r1 ]
-[f ]
-"111
-[; ;main.c: 111:    printf("%02x%02x%02x%02x\n",0xFD,cmd,0xFF,0xFE);
-[e ( _printf , , , , (. :s 2C -> 253 `i -> _cmd `i -> 255 `i -> 254 `i ]
-"112
-[; ;main.c: 112: }
-[e :UE 1639 ]
-}
-"116
-[; ;main.c: 116: void parse_message(unsigned char cmd){
-[v _parse_message `(v ~T0 @X0 1 ef1`uc ]
-{
-[e :U _parse_message ]
-[v _cmd `uc ~T0 @X0 1 r1 ]
-[f ]
-"119
-[; ;main.c: 119:     switch(cmd){
-[e $U 1642  ]
-{
-"120
-[; ;main.c: 120:             case 0xFD:
-[e :U 1643 ]
-"121
-[; ;main.c: 121:                 printf("Begin ");
-[e ( _printf :s 3C ]
-"122
-[; ;main.c: 122:                 break;
-[e $U 1641  ]
-"123
-[; ;main.c: 123:             case 0xC0:
-[e :U 1644 ]
-"124
-[; ;main.c: 124:                 break;
-[e $U 1641  ]
-"125
-[; ;main.c: 125:             case 0XC1:
-[e :U 1645 ]
-"126
-[; ;main.c: 126:                 break;
-[e $U 1641  ]
-"127
-[; ;main.c: 127:             case 0XC2:
-[e :U 1646 ]
-"128
-[; ;main.c: 128:                 break;
-[e $U 1641  ]
-"129
-[; ;main.c: 129:             case 0XC3:
-[e :U 1647 ]
-"130
-[; ;main.c: 130:                 break;
-[e $U 1641  ]
-"131
-[; ;main.c: 131:             case 0XC4:
-[e :U 1648 ]
-"132
-[; ;main.c: 132:                 break;
-[e $U 1641  ]
-"133
-[; ;main.c: 133:             case 0XC5:
-[e :U 1649 ]
-"134
-[; ;main.c: 134:                 break;
-[e $U 1641  ]
-"135
-[; ;main.c: 135:             case 0XC6:
-[e :U 1650 ]
-"136
-[; ;main.c: 136:                 break;
-[e $U 1641  ]
-"137
-[; ;main.c: 137:             case 0XC7:
-[e :U 1651 ]
-"138
-[; ;main.c: 138:                 break;
-[e $U 1641  ]
-"139
-[; ;main.c: 139:             case 0XC8:
-[e :U 1652 ]
-"140
-[; ;main.c: 140:                 break;
-[e $U 1641  ]
-"141
-[; ;main.c: 141:             case 0XC9:
-[e :U 1653 ]
-"142
-[; ;main.c: 142:                 break;
-[e $U 1641  ]
-"143
-[; ;main.c: 143:             case 0XCA:
-[e :U 1654 ]
-"144
-[; ;main.c: 144:                 break;
-[e $U 1641  ]
-"145
-[; ;main.c: 145:             case 0XCB:
-[e :U 1655 ]
-"146
-[; ;main.c: 146:                 break;
-[e $U 1641  ]
-"147
-[; ;main.c: 147:             case 0XCC:
-[e :U 1656 ]
-"148
-[; ;main.c: 148:                 break;
-[e $U 1641  ]
-"150
-[; ;main.c: 150:     }
-}
-[e $U 1641  ]
-[e :U 1642 ]
-[e [\ -> _cmd `i , $ -> 253 `i 1643
- , $ -> 192 `i 1644
- , $ -> 193 `i 1645
- , $ -> 194 `i 1646
- , $ -> 195 `i 1647
- , $ -> 196 `i 1648
- , $ -> 197 `i 1649
- , $ -> 198 `i 1650
- , $ -> 199 `i 1651
- , $ -> 200 `i 1652
- , $ -> 201 `i 1653
- , $ -> 202 `i 1654
- , $ -> 203 `i 1655
- , $ -> 204 `i 1656
- 1641 ]
-[e :U 1641 ]
-"152
-[; ;main.c: 152:     printf("%d\n",cmd);
-[e ( _printf , (. :s 4C -> _cmd `i ]
-"158
-[; ;main.c: 158: }
-[e :UE 1640 ]
-}
-"161
-[; ;main.c: 161: char * read_str_UART(char * buff, uint8_t max_len){
-[v _read_str_UART `(*uc ~T0 @X0 1 ef2`*uc`uc ]
-{
-[e :U _read_str_UART ]
-[v _buff `*uc ~T0 @X0 1 r1 ]
-[v _max_len `uc ~T0 @X0 1 r2 ]
-[f ]
-"163
-[; ;main.c: 163:     volatile uint8_t rxData = '0';
-[v _rxData `Vuc ~T0 @X0 1 a ]
-[e = _rxData -> -> 48 `ui `uc ]
-"164
-[; ;main.c: 164:     uint8_t i=0;
-[v _i `uc ~T0 @X0 1 a ]
-[e = _i -> -> 0 `i `uc ]
-"166
-[; ;main.c: 166:     for(i=0; i < max_len && rxData !='\n'; i++){
-{
-[e = _i -> -> 0 `i `uc ]
-[e $U 1661  ]
-[e :U 1658 ]
-{
-"168
-[; ;main.c: 168:             while(!EUSART_is_rx_ready()){
-[e $U 1662  ]
-[e :U 1663 ]
-{
-"169
-[; ;main.c: 169:                 _delay((unsigned long)((1)*(1000000/4000.0)));
-[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
-"170
-[; ;main.c: 170:             };
-}
-[e :U 1662 ]
-"168
-[; ;main.c: 168:             while(!EUSART_is_rx_ready()){
-[e $ ! != -> ( _EUSART_is_rx_ready ..  `i -> 0 `i 1663  ]
-[e :U 1664 ]
-"172
-[; ;main.c: 172:             rxData = EUSART_Read();
-[e = _rxData ( _EUSART_Read ..  ]
-"173
-[; ;main.c: 173:             parse_message(rxData);
-[e ( _parse_message (1 _rxData ]
-"174
-[; ;main.c: 174:             buff[i] = rxData;
-[e = *U + _buff * -> _i `ux -> -> # *U _buff `ui `ux -> _rxData `uc ]
-"175
-[; ;main.c: 175:             buff[i+1] = '\0';
-[e = *U + _buff * -> + -> _i `i -> 1 `i `x -> -> # *U _buff `i `x -> -> 0 `ui `uc ]
-"177
-[; ;main.c: 177:             }
-}
-[e ++ _i -> -> 1 `i `uc ]
-[e :U 1661 ]
-[e $ && < -> _i `i -> _max_len `i != -> _rxData `ui -> 10 `ui 1658  ]
-[e :U 1659 ]
-}
-"178
-[; ;main.c: 178:     write_str_UART(buff, max_len);
-[e ( _write_str_UART (2 , _buff _max_len ]
-"179
-[; ;main.c: 179: return buff;
-[e ) _buff ]
-[e $UE 1657  ]
-"181
-[; ;main.c: 181: }
-[e :UE 1657 ]
-}
-"184
-[; ;main.c: 184: uint8_t echo(char * string, uint8_t string_size)
-[v _echo `(uc ~T0 @X0 1 ef2`*uc`uc ]
-"185
-[; ;main.c: 185: {
-{
-[e :U _echo ]
-"184
-[; ;main.c: 184: uint8_t echo(char * string, uint8_t string_size)
-[v _string `*uc ~T0 @X0 1 r1 ]
-[v _string_size `uc ~T0 @X0 1 r2 ]
-"185
-[; ;main.c: 185: {
-[f ]
-"186
-[; ;main.c: 186:  volatile uint8_t rxData = '0';
-[v _rxData `Vuc ~T0 @X0 1 a ]
-[e = _rxData -> -> 48 `ui `uc ]
-"187
-[; ;main.c: 187:     uint8_t i ;
-[v _i `uc ~T0 @X0 1 a ]
-"188
-[; ;main.c: 188:     for(i=0; i < string_size && rxData !='\n'; i++){
-{
-[e = _i -> -> 0 `i `uc ]
-[e $U 1669  ]
-[e :U 1666 ]
-{
-"190
-[; ;main.c: 190:         while(!EUSART_is_rx_ready()){
-[e $U 1670  ]
-[e :U 1671 ]
-{
-"191
-[; ;main.c: 191:             _delay((unsigned long)((1)*(1000000/4000.0)));
-[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
-"192
-[; ;main.c: 192:         };
-}
-[e :U 1670 ]
-"190
-[; ;main.c: 190:         while(!EUSART_is_rx_ready()){
-[e $ ! != -> ( _EUSART_is_rx_ready ..  `i -> 0 `i 1671  ]
-[e :U 1672 ]
-"194
-[; ;main.c: 194:         rxData = EUSART_Read();
-[e = _rxData ( _EUSART_Read ..  ]
-"195
-[; ;main.c: 195:         if(EUSART_is_tx_ready())
-[e $ ! != -> ( _EUSART_is_tx_ready ..  `i -> 0 `i 1673  ]
-"197
-[; ;main.c: 197:         {
-{
-"198
-[; ;main.c: 198:             if (rxData == '\0' ){
-[e $ ! == -> _rxData `ui -> 0 `ui 1674  ]
-{
-"199
-[; ;main.c: 199:                 EUSART_Write('|');
-[e ( _EUSART_Write (1 -> -> 124 `ui `uc ]
-"200
-[; ;main.c: 200:             }else if(rxData == '\n'){
-}
-[e $U 1675  ]
-[e :U 1674 ]
-[e $ ! == -> _rxData `ui -> 10 `ui 1676  ]
-{
-"201
-[; ;main.c: 201:                 EUSART_Write(':');
-[e ( _EUSART_Write (1 -> -> 58 `ui `uc ]
-"202
-[; ;main.c: 202:             }
-}
-[e $U 1677  ]
-"203
-[; ;main.c: 203:             else if(rxData == '\r'){
-[e :U 1676 ]
-[e $ ! == -> _rxData `ui -> 13 `ui 1678  ]
-{
-"204
-[; ;main.c: 204:                 EUSART_Write('*');
-[e ( _EUSART_Write (1 -> -> 42 `ui `uc ]
-"205
-[; ;main.c: 205:             }
-}
-[e $U 1679  ]
-"206
-[; ;main.c: 206:             else{
-[e :U 1678 ]
-{
-"207
-[; ;main.c: 207:                 EUSART_Write('-');
-[e ( _EUSART_Write (1 -> -> 45 `ui `uc ]
-"209
-[; ;main.c: 209:              }
-}
-[e :U 1679 ]
-[e :U 1677 ]
-[e :U 1675 ]
-"211
-[; ;main.c: 211:             string[i] = rxData;
-[e = *U + _string * -> _i `ux -> -> # *U _string `ui `ux -> _rxData `uc ]
-"212
-[; ;main.c: 212:             string[i+1] = '\0';
-[e = *U + _string * -> + -> _i `i -> 1 `i `x -> -> # *U _string `i `x -> -> 0 `ui `uc ]
-"214
-[; ;main.c: 214:         }
-}
-[e :U 1673 ]
-"217
-[; ;main.c: 217:     }
-}
-[e ++ _i -> -> 1 `i `uc ]
-[e :U 1669 ]
-[e $ && < -> _i `i -> _string_size `i != -> _rxData `ui -> 10 `ui 1666  ]
-[e :U 1667 ]
-}
-"218
-[; ;main.c: 218:     write_str_UART(string, string_size);
-[e ( _write_str_UART (2 , _string _string_size ]
-"219
-[; ;main.c: 219:     return i;
-[e ) _i ]
-[e $UE 1665  ]
-"221
-[; ;main.c: 221: }
-[e :UE 1665 ]
-}
-"226
-[; ;main.c: 226: void write_str_UART(char * string , uint8_t size){
-[v _write_str_UART `(v ~T0 @X0 1 ef2`*uc`uc ]
-{
-[e :U _write_str_UART ]
-[v _string `*uc ~T0 @X0 1 r1 ]
-[v _size `uc ~T0 @X0 1 r2 ]
-[f ]
-"227
-[; ;main.c: 227:     uint8_t id;
-[v _id `uc ~T0 @X0 1 a ]
-"229
-[; ;main.c: 229:     for(id=0; id <= size && string[id]!= '\0'; ++id){
-{
-[e = _id -> -> 0 `i `uc ]
-[e $U 1684  ]
-[e :U 1681 ]
-{
-"231
-[; ;main.c: 231:         write_UART(string[id], 0);
-[e ( _write_UART (2 , -> *U + _string * -> _id `ux -> -> # *U _string `ui `ux `uc -> -> 0 `i `uc ]
-"232
-[; ;main.c: 232:     }
-}
-[e =+ _id -> -> 1 `i `uc ]
-[e :U 1684 ]
-[e $ && <= -> _id `i -> _size `i != -> *U + _string * -> _id `ux -> -> # *U _string `ui `ux `ui -> 0 `ui 1681  ]
-[e :U 1682 ]
-}
-"234
-[; ;main.c: 234:    return;
-[e $UE 1680  ]
-"236
-[; ;main.c: 236: }
-[e :UE 1680 ]
-}
-"238
-[; ;main.c: 238: void write_UART( uint8_t rxData, uint8_t led){
-[v _write_UART `(v ~T0 @X0 1 ef2`uc`uc ]
-{
-[e :U _write_UART ]
-[v _rxData `uc ~T0 @X0 1 r1 ]
-[v _led `uc ~T0 @X0 1 r2 ]
-[f ]
-"241
-[; ;main.c: 241:    if(EUSART_is_tx_ready())
-[e $ ! != -> ( _EUSART_is_tx_ready ..  `i -> 0 `i 1686  ]
-"242
-[; ;main.c: 242:     {
-{
-"243
-[; ;main.c: 243:   if (led){
-[e $ ! != -> _led `i -> 0 `i 1687  ]
-{
-"244
-[; ;main.c: 244:             do { LATAbits.LATA7 = 1; } while(0);
-[e :U 1690 ]
-{
-[e = . . _LATAbits 0 7 -> -> 1 `i `uc ]
-}
-[e :U 1689 ]
-"245
-[; ;main.c: 245:         }
-}
-[e :U 1687 ]
-"246
-[; ;main.c: 246:         EUSART_Write(rxData);
-[e ( _EUSART_Write (1 _rxData ]
-"247
-[; ;main.c: 247:     }
-}
-[e :U 1686 ]
-"249
-[; ;main.c: 249:     if(led){
-[e $ ! != -> _led `i -> 0 `i 1691  ]
-{
-"250
-[; ;main.c: 250:         while(!EUSART_is_tx_done());
-[e $U 1692  ]
-[e :U 1693 ]
-[e :U 1692 ]
-[e $ ! != -> ( _EUSART_is_tx_done ..  `i -> 0 `i 1693  ]
-[e :U 1694 ]
-"251
-[; ;main.c: 251:         do { LATAbits.LATA7 = 0; } while(0);
-[e :U 1697 ]
-{
-[e = . . _LATAbits 0 7 -> -> 0 `i `uc ]
-}
-[e :U 1696 ]
-"252
-[; ;main.c: 252:     }
-}
-[e :U 1691 ]
-"253
-[; ;main.c: 253: }
-[e :UE 1685 ]
-}
-[p f _printf 12615812 ]
-[a 3C 66 101 103 105 110 32 0 ]
-[a 1C 37 48 50 120 37 48 50 120 37 48 50 120 37 48 50 120 10 0 ]
-[a 2C 37 48 50 120 37 48 50 120 37 48 50 120 37 48 50 120 10 0 ]
-[a 4C 37 100 10 0 ]
