@@ -24,9 +24,12 @@ int alal = 2;
     USART
 */
 
-cyg_io_handle_t usart_h;
-char* usart_n = "/dev/ttyS3"; // name
+extern cyg_io_handle_t serial_h;
+char* usart_n = "/dev/ser0"; // name
 cyg_serial_info_t serial_i; // struct with configs for usart
+
+extern Cyg_ErrNo err;
+
 
 /*
 *
@@ -52,7 +55,7 @@ void cyg_user_start(void)
 }
 
 // On configuration... (not working)
-void usart_init() {
+void usart_init(){
     int err;//, len;
 
     serial_i.baud =  CYGNUM_SERIAL_BAUD_9600;
@@ -61,10 +64,10 @@ void usart_init() {
     serial_i.word_length = CYGNUM_SERIAL_WORD_LENGTH_8;
     serial_i.flags = CYG_SERIAL_FLAGS_RTSCTS;
 
-    err = cyg_io_lookup(usart_n, &usart_h);
+    err = cyg_io_lookup(usart_n, &serial_h);
     if(err == ENOERR) {
         printf("[IO:\"%s\"] Detected\n", usart_n);
-        //cyg_io_set_config(usart_h, key, (const void*) , &len);
+        //cyg_io_set_config(serial_h, key, (const void*) , &len);
     }
     else if(err == -ENOENT) 
         printf("[IO:\"%s\"] No such entity\n", usart_n);
@@ -180,49 +183,65 @@ void proc_F(cyg_addrword_t data)
 
 void rx_F(cyg_addrword_t data){
     char *cmd_out, *cmd_in;
-    char buffer[30] = {(char) 23, (char) 59, (char) 59, (char) 20, (char)  1,
-                       (char)  0, (char) 30, (char) 27, (char) 30, (char)  1,
-                       (char)  0, (char) 32, (char) 10, (char) 20, (char)  2,
-                       (char)  1, (char) 21, (char)  9, (char) 60, (char)  0,
-                       (char)  5, (char) 19, (char) 59, (char) 50, (char)  0,
-                       (char) 13, (char) 59, (char) 59, (char) 10, (char)  1}; // for testing
 
-    pushMem(buffer, 30);
+    char buffer_rx[10];
 
-    while(1) {
+    int num_bytes = 7;
 
-        cmd_in = (char*) cyg_mbox_tryget(rx.mbox_h);
+    //pushMem(buffer, 30);
 
-        if(cmd_in != NULL) {
+    
+
+    while(1){
+
+        cmd_in = (char*)cyg_io_read(serial_h, (void*)buffer_rx, &num_bytes);        //7 = nº bytes a serem lidos
+
+        /*if(cmd_in != NULL){
             switch (getName(cmd_in)) {
                 case RX_TRANSFERENCE:
                     cmd_out = writeCommand(RX_TRANSFERENCE, 0);
                     cyg_mbox_tryput(proc.mbox_h, (void*) cmd_out);
                     break;
             }
-        }
-
-        __DELAY();
+        }*/
+        printf("%s\n", buffer_rx);
     }
 }
 
 void tx_F(cyg_addrword_t data){
     char buffer_tx[50];
     char *cmd_out, *cmd_in;
-    short int i;
-    short int args_num;
+    int i;
+    int num_args = 0;
+    int num_bytes = 5;
 
     while(1){
-        cmd_in = (char*)cyg_mbox_get(tx.mbox_h);            //Bloquear enquanto não houver cenas para enviar para o PIC
+        //cmd_in = (char*)cyg_mbox_get(tx.mbox_h);            //Bloquear enquanto não houver cenas para enviar para o PIC
 
+        buffer_tx[0] = ':';
+        /*
         AskRead(&rs_rwf);           //Pedir para ler o ring buffer com inter threads
-        args_num = getArgc(cmd_in);
-        for(i = 1; i <= args_num; i++){
-            buffer_tx[i] = getArg(cmd_in, i);
-        }
 
+        buffer_tx[1] = getName(cmd_in);
+        num_args = getArgc(cmd_in);
+
+        for(i = 2; i < num_args + 2; i++){
+            buffer_tx[i] = getArg(cmd_in, i-1);
+        }
         FreeRead(&rs_rwf);          //Largar as keys para ler o ring buffer com inter threads
-        __DELAY();
+        */
+        buffer_tx[1] = 'c';
+        buffer_tx[2] = 'r';
+        buffer_tx[3] = 'l';
+        buffer_tx[4] = '?';
+        err = cyg_io_write(serial_h, buffer_tx, &num_bytes);
+        printf("Sent, err =%x\n", err);
+
+        cyg_thread_delay(40);
+
+        /*buffer_tx[num_args + 2] = '?';
+        num_bytes = num_args + 3;
+        cyg_io_write(serial_h, buffer_tx, &num_bytes)*/
     }
 }
 

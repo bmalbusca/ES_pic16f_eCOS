@@ -1,6 +1,7 @@
 #ifndef DEFINES_H
 #define DEFINES_H
 
+//Defines comunicação PIC-ECOS + Comandos que recebemos do user
 
 #define SOM   0x3A	/* start of message : */
 #define EOM   0x3F	/* end of message ?*/
@@ -19,6 +20,10 @@
 #define NMFL  0XCC  /* notification memory (half) full */
 #define CMD_OK    0     /* command successful */
 #define CMD_ERROR 0xFF  /* error in command */
+
+//----------------------------------------------------------------------------------------
+
+//Defines nossos de comunicação inter thread
 
 
 
