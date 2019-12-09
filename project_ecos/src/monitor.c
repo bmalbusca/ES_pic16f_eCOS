@@ -46,6 +46,10 @@ struct 	command_d {
   {cmd_lr,   "lr",      1,  " \tn i \t \t \tlistnregisters (local memory) from indexi(0 - oldest)"}
 };
 
+#define PR 8;           //ID do comando "pr"
+#define LR 9;           //ID do comando "LR"
+
+
 #define NCOMMANDS  (sizeof(commands)/sizeof(struct command_d))
 #define ARGVECSIZE 10
 #define MAX_LINE   50

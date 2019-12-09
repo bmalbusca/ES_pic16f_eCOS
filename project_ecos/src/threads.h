@@ -9,12 +9,15 @@
     {x} -- means it corresponds to command x from page 2 of Project_part2.pdf
 */
 
-#define RX_TRANSFERENCE             'a' // used by (proc, user, rx) to transfere registers to local memory
-#define USER_STATISTICS             'b' // {pr} used by (proc, user) to send statistics to user
-#define USER_MODIFY_PERIOD_TRANSF   'c' // {mpt} used by (proc, user) to change a proc variable (period_transference)
-#define USER_CHANGE_THRESHOLDS      'd' // {dttl} used by (proc, user) to change thresholds used in processing registers
-#define PROC_CHECK_PERIOD_TRANSF    'e' // {cpt} used by (proc, user) to send to user the period of transference
-#define PROC_CHECK_THRESHOLDS       'f' // {cttl} used by (proc, user) to send to user the thresholds
+#define RX_TRANSFERENCE             0 // used by (proc, user, rx) to transfere registers to local memory
+#define USER_STATISTICS             1 // {pr} used by (proc, user) to send statistics to user
+#define USER_MODIFY_PERIOD_TRANSF   2 // {mpt} used by (proc, user) to change a proc variable (period_transference)
+#define USER_CHANGE_THRESHOLDS      3 // {dttl} used by (proc, user) to change thresholds used in processing registers
+#define PROC_CHECK_PERIOD_TRANSF    4 // {cpt} used by (proc, user) to send to user the period of transference
+#define PROC_CHECK_THRESHOLDS       5 // {cttl} used by (proc, user) to send to user the thresholds
+
+#define RC
+
 
 #define LOW_PRI 11
 #define DEFAULT_PRI 10

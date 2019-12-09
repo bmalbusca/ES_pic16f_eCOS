@@ -232,20 +232,20 @@ void tx_F(cyg_addrword_t data){
     char buffer_tx[50];
     char *cmd_out, *cmd_in;
     short int i;
-    short int args_num;
 
     while(1){
         cmd_in = (char*)cyg_mbox_get(tx.mbox_h);            //Bloquear enquanto não houver cenas para enviar para o PIC
 
-        AskRead(&rs_irw);           //Pedir para ler o ring buffer com inter threads
-        args_num = getArgc(cmd_in);
-        for(i = 1; i <= args_num; i++){
+        AskRead(&rs_irw);           //Pedir para ler o ring buffer com. inter threads
+        buffer_tx[1] = getArgc(cmd_in); //buffer_tx[1] tem o numero de argumentos
+
+        for(i = 1; i <= buffer_tx[1]; i++){
             buffer_tx[i] = getArg(cmd_in, i);
         }
-
         FreeRead(&rs_irw);          //Largar as keys para ler o ring buffer com inter threads
-        __DELAY();
+        
     }
+
 }
 
 
@@ -263,7 +263,8 @@ void pushMem(char* buffer, unsigned int size)
 {
     int k = 0;
     if(size % 5)
-        return;
+        return;#define RTL 1
+
     AskWrite(&rs_localmem);
     AskWrite(&rs_irw);
     for(; k < size; iwrite = (iwrite + 1) % LM_SIZE, k++)
