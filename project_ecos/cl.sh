@@ -1,3 +1,3 @@
 rm -rd ./build
-rm program
+rm ecos ecos.bin
 touch ./src/*

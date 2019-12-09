@@ -2,8 +2,8 @@
 #define DEFINES_H
 
 
-#define SOM   0xFD	/* start of message */
-#define EOM   0xFE	/* end of message */
+#define SOM   0x3A	/* start of message : */
+#define EOM   0x3F	/* end of message ?*/
 #define RCLK  0xC0  /* read clock */
 #define SCLK  0XC1  /* set clock */
 #define RTL   0XC2  /* read temperature and luminosity */

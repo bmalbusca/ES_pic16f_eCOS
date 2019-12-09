@@ -1830,8 +1830,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;mcc_generated_files/eusart.c: 94:     EUSART_SetTxInterruptHandler(EUSART_Transmit_ISR);
 [e ( _EUSART_SetTxInterruptHandler (1 &U _EUSART_Transmit_ISR ]
 "98
-[; ;mcc_generated_files/eusart.c: 98:     BAUD1CON = 0x0A;
-[e = _BAUD1CON -> -> 10 `i `uc ]
+[; ;mcc_generated_files/eusart.c: 98:     BAUD1CON = 0x0B;
+[e = _BAUD1CON -> -> 11 `i `uc ]
 "101
 [; ;mcc_generated_files/eusart.c: 101:     RC1STA = 0x90;
 [e = _RC1STA -> -> 144 `i `uc ]
