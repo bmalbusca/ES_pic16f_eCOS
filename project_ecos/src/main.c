@@ -83,9 +83,9 @@ void thread_init() {
     rx.f = rx_F;
     tx.f = tx_F;
     proc.pri = (cyg_addrword_t) HIGH_PRI;
-    user.pri = (cyg_addrword_t) LOW_PRI;
-    rx.pri = (cyg_addrword_t) DEFAULT_PRI;
-    tx.pri = (cyg_addrword_t) DEFAULT_PRI;
+    user.pri = (cyg_addrword_t) DEFAULT_PRI;
+    rx.pri = (cyg_addrword_t) HIGH_PRI;
+    tx.pri = (cyg_addrword_t) HIGH_PRI;
 
     thread_create(&proc, 0);
     thread_create(&user, 0);
@@ -113,6 +113,10 @@ void proc_F(cyg_addrword_t data)
     int tht = alat, thl = alal; // Temperature and Luminosity thresholds reserved to proc
 
     while(1) {
+        cyg_mutex_lock(&rs_stdin);
+        printf("PROC\n");
+        cyg_mutex_unlock(&rs_stdin);
+
         now = cyg_current_time();
 
         if(period_transference) {
@@ -180,16 +184,19 @@ void proc_F(cyg_addrword_t data)
 
 void rx_F(cyg_addrword_t data){
     char *cmd_out, *cmd_in;
-    char buffer[30] = {(char) 23, (char) 59, (char) 59, (char) 20, (char)  1,
-                       (char)  0, (char) 30, (char) 27, (char) 30, (char)  1,
+    char buffer[30] = {(char)  0, (char) 30, (char) 27, (char) 30, (char)  1,
                        (char)  0, (char) 32, (char) 10, (char) 20, (char)  2,
                        (char)  1, (char) 21, (char)  9, (char) 60, (char)  0,
                        (char)  5, (char) 19, (char) 59, (char) 50, (char)  0,
-                       (char) 13, (char) 59, (char) 59, (char) 10, (char)  1}; // for testing
+                       (char) 13, (char) 59, (char) 59, (char) 10, (char)  1,
+                       (char) 23, (char) 59, (char) 59, (char) 20, (char)  1}; // for testing
 
     pushMem(buffer, 30);
 
     while(1) {
+        cyg_mutex_lock(&rs_stdin);
+        printf("RX\n");
+        cyg_mutex_unlock(&rs_stdin);
 
         cmd_in = (char*) cyg_mbox_tryget(rx.mbox_h);
 
@@ -213,15 +220,10 @@ void tx_F(cyg_addrword_t data){
     short int args_num;
 
     while(1){
-        cmd_in = (char*)cyg_mbox_get(tx.mbox_h);            //Bloquear enquanto não houver cenas para enviar para o PIC
+        cyg_mutex_lock(&rs_stdin);
+        printf("TX\n");
+        cyg_mutex_unlock(&rs_stdin);
 
-        AskRead(&rs_rwf);           //Pedir para ler o ring buffer com inter threads
-        args_num = getArgc(cmd_in);
-        for(i = 1; i <= args_num; i++){
-            buffer_tx[i] = getArg(cmd_in, i);
-        }
-
-        FreeRead(&rs_rwf);          //Largar as keys para ler o ring buffer com inter threads
         __DELAY();
     }
 }
@@ -313,13 +315,17 @@ char* getMem(unsigned int from_i, unsigned int to_j, unsigned int* size)
     if(!getValidIndexes(&i, &j, size))
         return NULL;
 
+    cyg_mutex_lock(&rs_stdin);
+    printf("!!!\n");
+    cyg_mutex_unlock(&rs_stdin);
+
     buffer = (char*) malloc((*size)*sizeof(char));
     if(buffer == NULL)
         return NULL;
 
     AskRead(&rs_localmem);
     for(; i != j; i++, k++)
-        buffer[k] = localmem[i % ];
+        buffer[k] = localmem[i % *size];
     FreeRead(&rs_localmem);
     return buffer;
 }
@@ -330,7 +336,12 @@ char* getMem(unsigned int from_i, unsigned int to_j, unsigned int* size)
 */
 char getValidIndexes(unsigned int* from_i, unsigned int* to_j, unsigned int* size)
 {
-    unsigned int s, _iwrite, _iread, _ring_filled, aux;
+    int lm_size, delta, aux_j, _iwrite, _iread, _ring_filled, i, j;
+    i = *from_i; j = *to_j;
+
+    cyg_mutex_lock(&rs_stdin);
+    printf("HERE\n");
+    cyg_mutex_unlock(&rs_stdin);
 
     AskRead(&rs_rwf);
     _iwrite = iwrite;
@@ -338,15 +349,21 @@ char getValidIndexes(unsigned int* from_i, unsigned int* to_j, unsigned int* siz
     _ring_filled = ring_filled;
     FreeRead(&rs_rwf);
 
-    s = _ring_filled ? LM_SIZE : _iwrite + 1;
-    if(!s) {
-        *buffer_size = 0;
+    delta = j - i;
+    lm_size = _ring_filled ? LM_SIZE : _iwrite;
+    if(delta > lm_size) delta = lm_size - 1;
+    if(!lm_size || delta <= 0) {
+        *size = 0;
         return 0;
     }
-    *from_i = (_read + *from_i) % s;
-    *to_j = (_read + *to_j) > s ? _iwrite - 1 : *to_j;
+    i = (_iwrite + i) % lm_size;
+    aux_j = (iwrite + *from_i + delta) % lm_size;
+    j = (aux_j >= _iread) && (aux_j < _iwrite) ? _iread - 1 : aux_j;
 
-    *buffer_size = RINGDELTA(*from_i, *to_j);
+    *from_i = (unsigned int) i;
+    *to_j = (unsigned int) j;
+    *size = RINGDELTA(*from_i, *to_j);
 
+    printf("%d %d\n", i ,j);
     return 1; // success
 }

@@ -17,7 +17,8 @@
 
 // macros
 #define DELTA(X,Y)      ((X) >= (Y) ? (X) - (Y) : (Y) - (X))
-#define RINGDELTA(X,Y)  ((Y) >= (X) ? (Y) - (X) : LM_SIZE - (X) + (Y)) // X,Y are indexes
+#define RINGDELTA(X,Y)  ((Y) >= (X) ? (Y) - (X) + 1 : LM_SIZE - (X) + (Y) + 1) // X,Y are indexes
+#define ABS(X)          ((X) < 0 ? -(X) : (X))
 
 /*
     RESOURCES

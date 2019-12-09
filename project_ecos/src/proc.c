@@ -13,7 +13,6 @@ void checkThresholds(char*(*popMem)(unsigned int*), int alat, int alal)
     short int alarm_T, alarm_L;
     unsigned int size;
     int j = 0;
-
     buffer = popMem(&size);
 
     for(; j < size; j+=5) {
@@ -40,28 +39,15 @@ void checkThresholds(char*(*popMem)(unsigned int*), int alat, int alal)
     return 0 -> statistics invalid (error)
     return 1 -> statistics valid (success)
 */
-char calcStatistics(char*(*getMem)(unsigned int*,unsigned int*,unsigned int*), int maxsize, stats* temp, stats* lum, char range[6])
+char calcStatistics(char*(*getMem)(unsigned int,unsigned int,unsigned int*), int maxsize, stats* temp, stats* lum, char range[6])
 {
     unsigned int i = 0, j = maxsize - 1, k, newsize, resized;
     char* buffer;
     int temp_sum, lum_sum;
 
-    for (i = 0; i < 6; i++) {
-        printf("%d\n", range[i]);
-    }
-    i = 0;
-
-    buffer = getMem(&i, &j, &newsize);
+    buffer = getMem(i, j, &newsize);
     if(buffer == NULL)
         return 0;
-
-        cyg_mutex_lock(&rs_stdin);
-        printf("\n**********************************\n\tLocal Memory from 0 to %d\n**********************************\n", j);
-        printf("HOURS \tMIN \tSEC \tTEMP \tLUM");
-        for(k = 0; k < newsize; k += 5) {
-            printf("\n%d \t%d \t%d \t%d \t%d\n", buffer[k], buffer[k + 1], buffer[k + 2], buffer[k + 3], buffer[k + 4]);
-        }
-        cyg_mutex_unlock(&rs_stdin);
 
     find(buffer, newsize, &i, &j, f_calc(range,0,1,2), f_calc(range,3,4,5));
     resized = j - i + 1;
@@ -70,7 +56,6 @@ char calcStatistics(char*(*getMem)(unsigned int*,unsigned int*,unsigned int*), i
     temp_sum = 0; lum_sum = 0;
 
     for(k = i; k < j; k += 5) {
-        printf("heyo!\n");
         temp_sum += buffer[k + 3];
         lum_sum += buffer[k + 4];
         if(temp->max < buffer[k + 3]) temp->max = buffer[k + 3];
@@ -96,7 +81,6 @@ void find(char* buffer, unsigned int size, unsigned int *i, unsigned int *j, int
         calc = f_calc(buffer, k, k+1, k+2);
         distL = calc - lowbound;
         distU = upbound - calc;
-        printf("%d %d\n", *i, *j);
         if(distL >= 0 && distL <= bestL) {
             *i = k;
             bestL = distL;

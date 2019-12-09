@@ -142,21 +142,23 @@ void cmd_irl(int argc, char **argv)
 
 void cmd_lr(int argc, char **argv)
 {
-    unsigned int size, i, j, k = 0;
+    unsigned int i, n, k = 0;
     char *buffer;
 
-    i = strtol(argv[2], NULL, 10);
-    size = 5*strtol(argv[1], NULL, 10);
-    j = i + size;
-    buffer = getMem(&i, &j, &size);
+    i = 5*strtol(argv[2], NULL, 10);
+    n = 5*strtol(argv[1], NULL, 10) - 1;
+    printf("HEYO!!!\n");
+    buffer = getMem(i, i + n, &n);
+    printf("HEYO!!\n");
 
-    if(size % 5)
+    if(n % 5)
         return;
 
+    printf("HEYO!\n");
     cyg_mutex_lock(&rs_stdin);
-    printf("\n**********************************\n\tLocal Memory from 0 to %d\n**********************************\n", j);
+    printf("\n**********************************\n\tLocal Memory from %d to %d\n**********************************\n", i, i + n);
     printf("HOURS \tMIN \tSEC \tTEMP \tLUM");
-    for(; k < size; k += 5) {
+    for(; k < n; k += 5) {
         printf("\n%d \t%d \t%d \t%d \t%d", buffer[k], buffer[k + 1], buffer[k + 2], buffer[k + 3], buffer[k + 4]);
     }
     cyg_mutex_unlock(&rs_stdin);
@@ -184,12 +186,11 @@ void cmd_mpt(int argc, char **argv)
 
 void cmd_cpt(int argc, char **argv)
 {
-    int now, last;
     char *cmd_out, *cmd_in;
 
     cmd_out = writeCommand(PROC_CHECK_PERIOD_TRANSF, 0);
     cyg_mbox_tryput(proc.mbox_h, (void*) cmd_out);
-
+    cmd_in = cyg_mbox_get(user.mbox_h);
     if(getName(cmd_in) != PROC_CHECK_PERIOD_TRANSF)
         return;
 
@@ -210,12 +211,11 @@ void cmd_dttl(int argc, char **argv)
 
 void cmd_cttl(int argc, char **argv)
 {
-    int now, last;
     char *cmd_out, *cmd_in;
 
     cmd_out = writeCommand(PROC_CHECK_THRESHOLDS, 0);
     cyg_mbox_tryput(proc.mbox_h, (void*) cmd_out);
-
+    cmd_in = cyg_mbox_tryget(user.mbox_h);
     if(getName(cmd_in) != PROC_CHECK_THRESHOLDS)
         return;
 
@@ -226,7 +226,7 @@ void cmd_cttl(int argc, char **argv)
 
 void cmd_pr(int argc, char **argv)
 {
-    int arg, k, now, last;
+    int arg, k;
     char *cmd_in, *cmd_out;
 
     cmd_out = writeCommand(USER_STATISTICS, argc);
@@ -250,11 +250,17 @@ void cmd_pr(int argc, char **argv)
     }
 
     cyg_mbox_tryput(proc.mbox_h, (void*) cmd_out);
-    cmd_in = cyg_mbox_tryget(user.mbox_h);
-
-    if(getArgc(cmd_in) < 6 || getName(cmd_in) != USER_STATISTICS)
-        return;
-
+    printf("----@@----\n");
+    cmd_in = cyg_mbox_get(user.mbox_h);
+    printf("%d ---------- %c\n", getArgc(cmd_in), getName(cmd_in));
+    if(getArgc(cmd_in) < 6 || getName(cmd_in) != USER_STATISTICS) {
+        if(getName(cmd_in) == ERROR_MEMEMPTY) {
+            cyg_mutex_lock(&rs_stdin);
+            printf("No registers found in local memory\n");
+            cyg_mutex_unlock(&rs_stdin);
+        }
+    }
+    printf("----##---\n");
     cyg_mutex_lock(&rs_stdin);
     printf("\n**********************************\n\tResults\n**********************************\n");
     printf("TEMPERATURE (celsius)\nmax = %d \tmin = %d \tmean = %d\n", getArg(cmd_in, 1), getArg(cmd_in, 2), getArg(cmd_in, 3));
