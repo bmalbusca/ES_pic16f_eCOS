@@ -350,3 +350,24 @@ char getValidIndexes(unsigned int* from_i, unsigned int* to_j, unsigned int* siz
 
     return 1; // success
 }
+
+
+void tx_F(cyg_addrword_t data){
+    char buffer_tx[50];
+    char *cmd_out, *cmd_in;
+    short int i;
+
+    while(1){
+        cmd_in = (char*)cyg_mbox_get(tx.mbox_h);            //Bloquear enquanto não houver cenas para enviar para o PIC
+
+        AskRead(&rs_irw);           //Pedir para ler o ring buffer com. inter threads
+        buffer_tx[1] = getArgc(cmd_in); //buffer_tx[1] tem o numero de argumentos
+
+        for(i = 1; i <= buffer_tx[1]; i++){
+            buffer_tx[i] = getArg(cmd_in, i);
+        }
+        FreeRead(&rs_irw);          //Largar as keys para ler o ring buffer com inter threads
+        
+    }
+
+}
