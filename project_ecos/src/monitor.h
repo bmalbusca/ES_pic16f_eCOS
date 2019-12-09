@@ -7,6 +7,6 @@
 #include <ctype.h>
 #include "threads.h"
 
-void monitor (void);
+void monitor (cyg_addrword_t data);
 
 #endif

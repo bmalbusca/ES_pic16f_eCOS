@@ -1,21 +1,4 @@
-#include <cyg/kernel/kapi.h>
-#include <cyg/error/codes.h>
-#include <cyg/io/io.h>
-#include <cyg/io/serialio.h>
-#include <stdio.h>
-#include <string.h>
 #include "main.h"
-#include "threads.h"
-#include "proc.h" // proc tasks
-#include "monitor.h" // user interface
-
-#define LM_REGISTERS 128
-#define LM_SIZE (5*LM_REGISTERS)
-#define CYG_SERIAL_FLAGS_RTSCTS 0x0001
-
-// macros
-#define DELTA(X,Y)      ((X) >= (Y) ? (X) - (Y) : (Y) - (X))
-#define RINGDELTA(X,Y)  ((Y) >= (X) ? (Y) - (X) : LM_SIZE - (X) + (Y)) // X,Y are indexes
 
 void usart_init (void);
 void thread_init(void);
@@ -38,18 +21,6 @@ int alal = 2;
 //int clkm = 0;
 
 /*
-    RESOURCES
-*/
-
-char        localmem[LM_SIZE];          // 1 register (5 bytes): h | m | s | T | L
-int         iread = 0, iwrite = 0;      // only proc should change iread, it should be updated after reading (iread = iwrite)
-cyg_sem_t   rs_localmem;
-cyg_sem_t   rs_irw;                     // iread, iwrite
-
-// flags
-char ring_filled = 0;                   // only change once -- needs thread write protection?
-
-/*
     USART
 */
 
@@ -65,8 +36,10 @@ cyg_serial_info_t serial_i; // struct with configs for usart
 
 void cyg_user_start(void)
 {
+    iwrite = 0; iread = 0; ring_filled = 0;
+
     cyg_semaphore_init(&rs_localmem, 1);
-    cyg_semaphore_init(&rs_irw, 1);
+    cyg_semaphore_init(&rs_rwf, 1);
     cyg_mutex_init(&rs_stdin);
     stdin_buff_pt = stdin_buff;
     usart_init();
@@ -80,7 +53,7 @@ void cyg_user_start(void)
 
 // On configuration... (not working)
 void usart_init() {
-    int err, len;
+    int err;//, len;
 
     serial_i.baud =  CYGNUM_SERIAL_BAUD_9600;
     serial_i.stop = CYGNUM_SERIAL_STOP_1;
@@ -129,13 +102,12 @@ void thread_init() {
 
 void proc_F(cyg_addrword_t data)
 {
-    int now, last = 0;
+    int now, last = 0, k;
     char *cmd_out, *cmd_in;
     char returns;
-    unsigned short int argc = 0;
 
     stats temp, lum;
-    char range[6] = {00,00,00,04,20,00};
+    char range[6];
 
     int period_transference = 5;
     int tht = alat, thl = alal; // Temperature and Luminosity thresholds reserved to proc
@@ -160,15 +132,21 @@ void proc_F(cyg_addrword_t data)
                     checkThresholds(popMem, alat, alal);
                     break;
                 case USER_STATISTICS:
+                    for(k = 0; k < 6; k ++) {
+                        range[k] = getArg(cmd_in, k + 1);
+                    }
                     returns = calcStatistics(getMem, LM_SIZE, &temp, &lum, range);
-                    if(!returns) break;
-                    cmd_out = writeCommand(USER_STATISTICS, 6);
-                    setArg(cmd_out, 1, temp.min);
-                    setArg(cmd_out, 2, temp.max);
-                    setArg(cmd_out, 3, temp.mean);
-                    setArg(cmd_out, 4, lum.min);
-                    setArg(cmd_out, 5, lum.max);
-                    setArg(cmd_out, 6, lum.mean);
+                    if(returns) {
+                        cmd_out = writeCommand(ERROR_MEMEMPTY, 0);
+                    } else {
+                        cmd_out = writeCommand(USER_STATISTICS, 6);
+                        setArg(cmd_out, 1, temp.min);
+                        setArg(cmd_out, 2, temp.max);
+                        setArg(cmd_out, 3, temp.mean);
+                        setArg(cmd_out, 4, lum.min);
+                        setArg(cmd_out, 5, lum.max);
+                        setArg(cmd_out, 6, lum.mean);
+                    }
                     cyg_mbox_tryput(user.mbox_h, (void*) cmd_out);
                     break;
                 case USER_MODIFY_PERIOD_TRANSF:
@@ -237,13 +215,13 @@ void tx_F(cyg_addrword_t data){
     while(1){
         cmd_in = (char*)cyg_mbox_get(tx.mbox_h);            //Bloquear enquanto não houver cenas para enviar para o PIC
 
-        AskRead(&rs_irw);           //Pedir para ler o ring buffer com inter threads
+        AskRead(&rs_rwf);           //Pedir para ler o ring buffer com inter threads
         args_num = getArgc(cmd_in);
         for(i = 1; i <= args_num; i++){
             buffer_tx[i] = getArg(cmd_in, i);
         }
 
-        FreeRead(&rs_irw);          //Largar as keys para ler o ring buffer com inter threads
+        FreeRead(&rs_rwf);          //Largar as keys para ler o ring buffer com inter threads
         __DELAY();
     }
 }
@@ -265,15 +243,18 @@ void pushMem(char* buffer, unsigned int size)
     if(size % 5)
         return;
     AskWrite(&rs_localmem);
-    AskWrite(&rs_irw);
+    AskWrite(&rs_rwf);
     for(; k < size; iwrite = (iwrite + 1) % LM_SIZE, k++)
     {
         localmem[iwrite] = buffer[k];
     }
-    FreeWrite(&rs_irw);
+    FreeWrite(&rs_rwf);
     FreeWrite(&rs_localmem);
-    if(!iwrite)
+    if(!iwrite) {
+        AskRead(&rs_rwf);
         ring_filled = 1;
+        FreeRead(&rs_rwf);
+    }
 }
 
 /*
@@ -286,7 +267,7 @@ char* popMem(unsigned int* size)
     char* buffer;
     int k = 0;
 
-    AskWrite(&rs_irw);
+    AskWrite(&rs_rwf);
     *size = RINGDELTA(iread, iwrite);
     buffer = (char*) malloc((*size)*sizeof(char));
 
@@ -296,7 +277,7 @@ char* popMem(unsigned int* size)
         buffer[k] = localmem[iread];
     }
     FreeRead(&rs_localmem);
-    FreeWrite(&rs_irw);
+    FreeWrite(&rs_rwf);
     return buffer;
 }
 
@@ -316,30 +297,56 @@ char getMemP(unsigned int _pos)
 
 /*
     This functions exists to allow reading ranges
+    returns a buffer with size "size" from older to the
+    most recent resgisters
 */
-char* getMem(unsigned int* from_i, unsigned int* to_j, unsigned int* buffer_size)
+char* getMem(unsigned int from_i, unsigned int to_j, unsigned int* size)
 {
-    if(*from_i == *to_j)
-        return NULL; // use getMemP()
-    unsigned int k = 0, i, j, s;
-    char *buffer;
-    s = ring_filled ? LM_SIZE : iwrite;
-    if(!s)
-        return NULL;
-    i = *from_i % s;
-    j = *to_j >= s ? (s - 1) : *to_j; // j "saturates" if ring buffer "end" was reached
+    if(from_i == to_j) return NULL; // use getMemP
 
-    *buffer_size = j - i + 1;
-    buffer = (char*) malloc((*buffer_size)*sizeof(char));
+    unsigned int k = 0, i, j;
+    char *buffer;
+
+    i = from_i;
+    j = to_j;
+
+    if(!getValidIndexes(&i, &j, size))
+        return NULL;
+
+    buffer = (char*) malloc((*size)*sizeof(char));
     if(buffer == NULL)
         return NULL;
 
-    *from_i = i;
-    *to_j = j;
-
     AskRead(&rs_localmem);
-    for(; i < j; i++, k++)
-        buffer[k] = localmem[i];
+    for(; i != j; i++, k++)
+        buffer[k] = localmem[i % ];
     FreeRead(&rs_localmem);
     return buffer;
+}
+
+/*
+    Validates memory indexes, adjusting them if position requested wasn't
+    writen or if index was higher than buffer size
+*/
+char getValidIndexes(unsigned int* from_i, unsigned int* to_j, unsigned int* size)
+{
+    unsigned int s, _iwrite, _iread, _ring_filled, aux;
+
+    AskRead(&rs_rwf);
+    _iwrite = iwrite;
+    _iread = iread;
+    _ring_filled = ring_filled;
+    FreeRead(&rs_rwf);
+
+    s = _ring_filled ? LM_SIZE : _iwrite + 1;
+    if(!s) {
+        *buffer_size = 0;
+        return 0;
+    }
+    *from_i = (_iwrite + *from_i) % s;
+    *to_j = (_iwrite + *to_j) > s ? _iwrite - 1 : *to_j;
+
+    *buffer_size = RINGDELTA(*from_i, *to_j);
+
+    return 1; // success
 }

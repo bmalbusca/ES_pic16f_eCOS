@@ -6,20 +6,9 @@
 | Data:  Nov 2002
 ***************************************************************************/
 #include "monitor.h"
+#include "comando.h"
 
-/*-------------------------------------------------------------------------+
-| Headers of command functions
-+--------------------------------------------------------------------------*/
-extern void cmd_sair(int, char** );
-extern void cmd_ini (int, char** );
-extern void cmd_ems (int, char** );
-extern void cmd_emh (int, char** );
-extern void cmd_rms (int, char** );
-extern void cmd_rmh (int, char** );
-extern void cmd_test(int, char** );
-extern void cmd_pr  (int, char** );
-extern void cmd_lr  (int, char** );
-       void cmd_sos (int, char** );
+void cmd_sos (int argc, char **argv);
 
 /*-------------------------------------------------------------------------+
 | Variable and constants definition
@@ -29,21 +18,27 @@ const char Group[] = "\n\t***************************\n\tBruno Figueiredo\n\t\tF
 const char InvalMsg[] = "\nInvalid command!";
 
 struct 	command_d {
-  void  (*cmd_fnct)(int, char**);
-  char*	cmd_name;
-  char  min_args;
-  char*	cmd_help;
+    void  (*cmd_fnct)(int, char**);
+    char*	cmd_name;
+    char  min_args;
+    char*	cmd_help;
 } const commands[] = {
-  {cmd_sos,  "sos",     0,  " \t \t \t \thelp"},
-  {cmd_sair, "sair",    0,  " \t \t \t \texit"},
-  {cmd_ini,  "ini",     0,  " \t<d> \t \t \tstart devices (0/1) ser0/ser1"},
-  {cmd_ems,  "ems",     0,  " \t<str> \t \t \tsend message (string)"},
-  {cmd_emh,  "emh",     0,  " \t<h1> <h2> <...> \tsend message (hexadecimal)"},
-  {cmd_rms,  "rms",     0,  " \t<n> \t \t \treceive message (string)"},
-  {cmd_rmh,  "rmh",     0,  " \t<n> \t \t \treceive message (hexadecimal)"},
-  {cmd_test, "test",    0,  " \t<arg1> <arg2> \t \ttest cmd"},
-  {cmd_pr,   "pr",      6,  " \t[h1m1s1 [h2m2s2]] \tmax, min e average in specified interval"},
-  {cmd_lr,   "lr",      1,  " \tn i \t \t \tlistnregisters (local memory) from indexi(0 - oldest)"}
+    {cmd_sos,  "sos",     0,  " \t \t \t \thelp"},
+    {cmd_sair, "sair",    0,  " \t \t \t \texit"},
+    {cmd_ini,  "ini",     0,  " \t<d> \t \t \tstart devices (0/1) ser0/ser1"},
+    {cmd_ems,  "ems",     0,  " \t<str> \t \t \tsend message (string)"},
+    {cmd_emh,  "emh",     0,  " \t<h1> <h2> <...> \tsend message (hexadecimal)"},
+    {cmd_rms,  "rms",     0,  " \t<n> \t \t \treceive message (string)"},
+    {cmd_rmh,  "rmh",     0,  " \t<n> \t \t \treceive message (hexadecimal)"},
+    {cmd_test, "test",    0,  " \t<arg1> <arg2> \t \ttest cmd"},
+    {cmd_irl,  "irl",     0,  " \t \t \t \tinformation about local registers (NRBUF, nr, iread, iwrite)"},
+    {cmd_lr,   "lr",      2,  " \tn i \t \t \tlist n registers (local memory) from index i (0 - oldest)"},
+    {cmd_dr,   "dr",      0,  " \t \t \t \tdelete registers (local memory)"},
+    {cmd_cpt,  "cpt",     1,  " \t \t \t \tcheck period of transference"},
+    {cmd_mpt,  "mpt",     1,  " \tp \t \t \tmodify period of transference (minutes - 0 deactivate)"},
+    {cmd_cttl, "cttl",    0,  " \t \t \t \tcheck threshold temperature and luminosity for processing"},
+    {cmd_dttl, "dttl",    2,  " \tn i \t \t \tdefine threshold temperature and luminosity for processing"},
+    {cmd_pr,   "pr",      6,  " \t[h1m1s1 [h2m2s2]] \tmax, min e average in specified interval"}
 };
 
 #define NCOMMANDS  (sizeof(commands)/sizeof(struct command_d))
@@ -88,7 +83,7 @@ int my_getline (char** argv, int argvsize)
 /*-------------------------------------------------------------------------+
 | Function: monitor (called from main) (user thread)
 +--------------------------------------------------------------------------*/
-void monitor (void)
+void monitor (cyg_addrword_t data)
 {
     static char *argv[ARGVECSIZE+1], *p;
     int argc, i;
@@ -102,7 +97,7 @@ void monitor (void)
 
         cyg_mutex_lock(&rs_stdin);
         // dump strings waiting to be written
-        printf("\n%s", stdin_buff);
+        printf("\n\n%s", stdin_buff);
         *stdin_buff = '\0';
         stdin_buff_pt = stdin_buff;
         printf("\nCmd> ");

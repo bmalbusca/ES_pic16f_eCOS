@@ -15,6 +15,8 @@
 #define USER_CHANGE_THRESHOLDS      'd' // {dttl} used by (proc, user) to change thresholds used in processing registers
 #define PROC_CHECK_PERIOD_TRANSF    'e' // {cpt} used by (proc, user) to send to user the period of transference
 #define PROC_CHECK_THRESHOLDS       'f' // {cttl} used by (proc, user) to send to user the thresholds
+#define ERROR                       'x' // used to communicate a request error
+#define ERROR_MEMEMPTY              'u' // local memory is empty
 
 #define LOW_PRI 11
 #define DEFAULT_PRI 10
@@ -26,8 +28,8 @@
 // mailbox pointers point to an element of an array with this size (commandbus size)
 #define SIZE_CB  64
 
-#define DELAY 100
-#define SHORT_DELAY 20
+#define DELAY 50
+#define SHORT_DELAY 10
 
 // macros
 #define __DELAY() (cyg_thread_delay(DELAY + (rand() % (DELAY >> 2))))
