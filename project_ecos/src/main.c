@@ -25,7 +25,7 @@ int alal = 2;
 */
 
 cyg_io_handle_t usart_h;
-char* usart_n = "/dev/sr0"; // name
+char* usart_n = "/dev/ttyS3"; // name
 cyg_serial_info_t serial_i; // struct with configs for usart
 
 /*
@@ -66,7 +66,7 @@ void usart_init() {
         printf("[IO:\"%s\"] Detected\n", usart_n);
         //cyg_io_set_config(usart_h, key, (const void*) , &len);
     }
-    else if(err == -ENOENT)
+    else if(err == -ENOENT) 
         printf("[IO:\"%s\"] No such entity\n", usart_n);
     else
         printf("[IO:\"%s\"] Some error with code <%d> (lookup \'CYGONCE_ERROR_CODES_H\')\n", usart_n, err);
@@ -319,7 +319,7 @@ char* getMem(unsigned int from_i, unsigned int to_j, unsigned int* size)
 
     AskRead(&rs_localmem);
     for(; i != j; i++, k++)
-        buffer[k] = localmem[i % ];
+        buffer[k] = localmem[i % *size];
     FreeRead(&rs_localmem);
     return buffer;
 }
@@ -340,34 +340,13 @@ char getValidIndexes(unsigned int* from_i, unsigned int* to_j, unsigned int* siz
 
     s = _ring_filled ? LM_SIZE : _iwrite + 1;
     if(!s) {
-        *buffer_size = 0;
+        *size = 0;
         return 0;
     }
     *from_i = (_iwrite + *from_i) % s;
     *to_j = (_iwrite + *to_j) > s ? _iwrite - 1 : *to_j;
 
-    *buffer_size = RINGDELTA(*from_i, *to_j);
+    *size = RINGDELTA(*from_i, *to_j);
 
     return 1; // success
-}
-
-
-void tx_F(cyg_addrword_t data){
-    char buffer_tx[50];
-    char *cmd_out, *cmd_in;
-    short int i;
-
-    while(1){
-        cmd_in = (char*)cyg_mbox_get(tx.mbox_h);            //Bloquear enquanto não houver cenas para enviar para o PIC
-
-        AskRead(&rs_irw);           //Pedir para ler o ring buffer com. inter threads
-        buffer_tx[1] = getArgc(cmd_in); //buffer_tx[1] tem o numero de argumentos
-
-        for(i = 1; i <= buffer_tx[1]; i++){
-            buffer_tx[i] = getArg(cmd_in, i);
-        }
-        FreeRead(&rs_irw);          //Largar as keys para ler o ring buffer com inter threads
-        
-    }
-
 }
