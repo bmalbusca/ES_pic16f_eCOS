@@ -2,10 +2,10 @@ Microchip MPLAB XC8 Compiler V2.10 ()
 
 Linker command line:
 
--W-3 --edf=/opt/microchip/xc8/v2.10/pic/dat/en_msgs.txt -cs \
+-W-3 --edf=/Applications/microchip/xc8/v2.10/pic/dat/en_msgs.txt -cs \
   -h+dist/default/production/uart_pic16f.X.production.sym \
   --cmf=dist/default/production/uart_pic16f.X.production.cmf -z -Q16F18875 \
-  -o/tmp/xcX3uYsO1 --defsym=__MPLAB_BUILD=1 \
+  -o/tmp/xcSWFFU7V --defsym=__MPLAB_BUILD=1 \
   -Mdist/default/production/uart_pic16f.X.production.map -E1 -ver=XC8 \
   --acfsm=1493 -ASTACK=020A0h-023EFh -pstack=STACK -ACODE=00h-07FFhx4 \
   -ASTRCODE=00h-01FFFh -ASTRING=00h-0FFhx32 -ACONST=00h-0FFhx32 \
@@ -31,7 +31,7 @@ Linker command line:
   -ppowerup=CODE -pcinit=CODE -pfunctab=ENTRY -ACONFIG=08007h-0800Bh \
   -pconfig=CONFIG -DCONFIG=2 -AIDLOC=08000h-08003h -pidloc=IDLOC -DIDLOC=2 \
   -AEEDATA=00h-0FFh/0F000h -peeprom_data=EEDATA -DEEDATA=2 -DCODE=2 \
-  -DSTRCODE=2 -DSTRING=2 -DCONST=2 -DENTRY=2 -k /tmp/xcXwYbIFd.o \
+  -DSTRCODE=2 -DSTRING=2 -DCONST=2 -DENTRY=2 -k /tmp/xcEokEckR.o \
   dist/default/production/uart_pic16f.X.production.o 
 
 Object code version is 3.11
@@ -41,7 +41,7 @@ Machine type is 16F18875
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-/tmp/xcXwYbIFd.o
+/tmp/xcEokEckR.o
                 end_init                             2B       2B        2        8       0
                 reset_vec                             0        0        2        0       0
                 config                             8007     8007        5    1000E       0
@@ -297,13 +297,13 @@ TOTAL           Name                               Link     Load   Length     Sp
 SEGMENTS        Name                           Load    Length   Top    Selector   Space  Class     Delta
 
                 reset_vec                      000000  000002  000002         0       0  CODE        2
-                intentry                       000004  000338  00033C         8       0  CODE        2
-                bssBANK0                       000020  00002B  00004B        20       1  BANK0       1
-                cstackCOMMON                   000070  00000D  00007D        70       1  COMMON      1
-                cstackBANK1                    0000A0  000050  0000F0        A0       1  BANK1       1
                 stringtext1                    00033C  000012  00034E       678       0  STRCODE     2
                 text7                          00034E  000088  0003D6       69C       0  CODE        2
                 config                         008007  000005  00800C     1000E       0  CONFIG      2
+                intentry                       000004  000338  00033C         8       0  CODE        2
+                cstackBANK1                    0000A0  000050  0000F0        A0       1  BANK1       1
+                bssBANK0                       000020  00002B  00004B        20       1  BANK0       1
+                cstackCOMMON                   000070  00000D  00007D        70       1  COMMON      1
 
 
 UNUSED ADDRESS RANGES
@@ -1094,8 +1094,8 @@ Total ram usage:        2 bytes
 		Nothing
  This function is called by:
 		_write_UART
-		_putch
 		_echo
+		_putch
  This function uses a non-reentrant model
 
 
@@ -1132,7 +1132,7 @@ Total ram usage:        0 bytes
 
  *************** function _memset *****************
  Defined at:
-		line 4 in file "/opt/microchip/xc8/v2.10/pic/sources/c99/common/memset.c"
+		line 4 in file "/Applications/microchip/xc8/v2.10/pic/sources/c99/common/memset.c"
  Parameters:    Size  Location     Type
   dest            1    wreg     PTR void 
 		 -> main@str_rc(16), 
@@ -1259,8 +1259,8 @@ Total ram usage:        2 bytes
  This function is called by:
 		_read_UART
 		_dump_UART_FIFO
-		_getch
 		_echo
+		_getch
  This function uses a non-reentrant model
 
 
@@ -1798,6 +1798,11 @@ Total ram usage:        1 bytes
 MODULE INFORMATION
 
 Module		Function		Class		Link	Load	Size
+/Applications/microchip/xc8/v2.10/pic/sources/c99/common/memset.c
+		_memset        		CODE           	004F	0000	165
+
+/Applications/microchip/xc8/v2.10/pic/sources/c99/common/memset.c estimated size: 165
+
 mcc_generated_files/interrupt_manager.c
 		_INTERRUPT_InterruptManager		CODE           	0004	0000	40
 
@@ -1807,11 +1812,6 @@ mcc_generated_files/pin_manager.c
 		_PIN_MANAGER_Initialize		CODE           	01A3	0000	65
 
 mcc_generated_files/pin_manager.c estimated size: 65
-
-/opt/microchip/xc8/v2.10/pic/sources/c99/common/memset.c
-		_memset        		CODE           	004F	0000	165
-
-/opt/microchip/xc8/v2.10/pic/sources/c99/common/memset.c estimated size: 165
 
 shared
 		__initialization		CODE           	002D	0000	31

@@ -18,13 +18,18 @@ uint8_t echo(char * string, uint8_t string_size);
 uint8_t * char_to_hex(char * message, uint8_t message_size, uint8_t * hex , uint8_t hex_size);
 */
 
-void reply_UART_OK(uint8_t cmd){
-    printf("%02x%02x%02x%02x\n", SOM,cmd,CMD_OK,EOM);
+void reply_UART_OK(char cmd){
+    //printf("%02x%02x%02x%02x\n", SOM,cmd,CMD_OK,EOM);
+    printf("%c%c%c%c\n",(char)SOM,(char)cmd,(char)CMD_OK,(char)EOM);
 }
 
 
-void reply_UART_ERROR(uint8_t cmd){
-   printf("%02x%02x%02x%02x\n",SOM,cmd,CMD_ERROR,EOM);
+void reply_UART_ERROR(char cmd){
+    //printf("%02x%02x%02x%02x\n",SOM,cmd,CMD_ERROR,EOM);
+     printf("%c%c%c%c",(char)SOM,cmd,(char)CMD_ERROR,(char)EOM);
+    //char rply[5] = {(char)SOM,(char)cmd,(char)CMD_ERROR,(char)EOM,'\0'};
+    //write_str_UART(rply, 5);
+    
 }
 
 
@@ -41,19 +46,112 @@ uint8_t read_str_UART(char * buff, uint8_t max_len){
     if( rxData == (char)SOM ){
         for(i=0; i < max_len && (rxData !='\n'&& rxData != (char)EOM ); i++){
                 buff[i] = rxData;
-                
                 rxData = read_UART();
                 
            }
+           
+        buff[i+1] = '\0'; 
+        parse_message(buff,max_len);
+    }
+    else{
+     reply_UART_ERROR((char)CMD_ERROR);   
     }
     dump_UART_FIFO();
     
-    buff[i+1] = '\0';
-    write_str_UART(buff, max_len);
 
     return  i; 
     
 }
+
+uint8_t read_UART(){
+    
+    while(!EUSART_is_rx_ready()){
+               __delay_ms(1);
+            };
+    return EUSART_Read();
+    
+    
+}
+
+
+void parse_message(char * message, uint8_t max_size){
+    uint8_t i;
+    char c = '0', cmd =message[1] ;
+    //reply_UART_OK(cmd);
+    switch (cmd)
+    {
+     case (char)RCLK : 
+        printf("%c%i%i%i%c",(char)SOM,1,2,3,(char)EOM );
+        break;
+    
+    case (char)SCLK:
+        break;
+    case (char)RTL:
+        break;
+    case (char)RPAR:
+        break;
+    case (char)MMP:
+        break;
+    case (char) MTA:
+        break;
+    case (char) RALA:
+        break;
+    case (char)DATL:
+        break;
+    case (char)AALA:
+        break;
+    case (char)IREG:
+        break;
+    case (char)TRGC:
+        break;
+    case (char)TRGI:
+        break;
+    case (char)NMFL:
+        break;
+    default:
+        reply_UART_ERROR((char)CMD_ERROR);
+        
+    }
+
+}
+
+
+
+
+void dump_UART_FIFO(){
+    uint8_t dump;
+    if(EUSART_is_rx_ready() && (dump != SOM || dump != EOM )) dump = EUSART_Read();
+    
+}
+
+
+void write_str_UART(char * string , uint8_t size){
+    uint8_t  id;
+   
+    for(id=0; id <= size && (string[id]!= '\0' || string[id]!=(char)EOM); ++id){
+        
+        write_UART(string[id]);
+    }
+    
+   return;   
+}
+
+
+void write_UART( uint8_t rxData){
+   
+   while(!EUSART_is_tx_done());
+
+   if(EUSART_is_tx_ready())
+    {
+		
+        EUSART_Write(rxData);
+    }
+	
+   
+}
+
+
+
 
 
 uint8_t echo(char * string, uint8_t string_size)
@@ -80,62 +178,17 @@ uint8_t echo(char * string, uint8_t string_size)
             }
             else{
                 EUSART_Write('-');
-
              }
 
             string[i] = rxData;
             EUSART_Write(rxData);
             
         }
-               
-                
+         
     }
+    
     string[i+1] = '\0'; 
     write_str_UART(string, string_size);
     return i;            
     
-}
-
-uint8_t read_UART(){
-    
-    while(!EUSART_is_rx_ready()){
-               __delay_ms(1);
-            };
-    
-   return EUSART_Read();
-    
-    
-}
-
-
-void dump_UART_FIFO(){
-    uint8_t dump;
-    if(EUSART_is_rx_ready() && (dump != SOM || dump != EOM )) dump = EUSART_Read();
-    
-}
-
-
-void write_str_UART(char * string , uint8_t size){
-    uint8_t  id;
-   
-    for(id=0; id <= size && string[id]!= '\0'; ++id){
-        
-        write_UART(string[id]);
-    }
-    
-   return;  
-  
-}
-
-void write_UART( uint8_t rxData){
-   
-   while(!EUSART_is_tx_done());
-
-   if(EUSART_is_tx_ready())
-    {
-		
-        EUSART_Write(rxData);
-    }
-	
-   
 }

@@ -3,21 +3,21 @@
 [d edition pro ]
 [d chip 16F18875 ]
 [d frameptr 6 ]
-"4 /opt/microchip/xc8/v2.10/pic/sources/c99/common/memset.c
+"4 /Applications/microchip/xc8/v2.10/pic/sources/c99/common/memset.c
 [v _memset memset `(*.4v  1 e 1 0 ]
-"5 /opt/microchip/xc8/v2.10/pic/sources/c99/common/printf.c
+"5 /Applications/microchip/xc8/v2.10/pic/sources/c99/common/printf.c
 [v _printf printf `(i  1 e 2 0 ]
-"10 /opt/microchip/xc8/v2.10/pic/sources/c99/common/sprcadd.c
+"10 /Applications/microchip/xc8/v2.10/pic/sources/c99/common/sprcadd.c
 [v ___fladd __fladd `(d  1 e 4 0 ]
-"4 /opt/microchip/xc8/v2.10/pic/sources/c99/common/Umul8_16.c
+"4 /Applications/microchip/xc8/v2.10/pic/sources/c99/common/Umul8_16.c
 [v __Umul8_16 _Umul8_16 `(ui  1 e 2 0 ]
-"6 /opt/microchip/xc8/v2.10/pic/sources/c99/pic/__eeprom.c
+"6 /Applications/microchip/xc8/v2.10/pic/sources/c99/pic/__eeprom.c
 [v ___eecpymem __eecpymem `(v  1 e 1 0 ]
 "39
 [v ___memcpyee __memcpyee `(v  1 e 1 0 ]
-"62 /home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/main.c
+"62 /Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/main.c
 [v _main main `(v  1 e 1 0 ]
-"88 /home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+"88 /Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
 [v _EUSART_Initialize EUSART_Initialize `(v  1 e 1 0 ]
 "132
 [v _EUSART_is_tx_ready EUSART_is_tx_ready `(a  1 e 1 0 ]
@@ -51,17 +51,17 @@
 [v _EUSART_SetTxInterruptHandler EUSART_SetTxInterruptHandler `(v  1 e 1 0 ]
 "289
 [v _EUSART_SetRxInterruptHandler EUSART_SetRxInterruptHandler `(v  1 e 1 0 ]
-"52 /home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/interrupt_manager.c
+"52 /Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/interrupt_manager.c
 [v _INTERRUPT_InterruptManager INTERRUPT_InterruptManager `II(v  1 e 1 0 ]
-"50 /home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/mcc.c
+"50 /Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/mcc.c
 [v _SYSTEM_Initialize SYSTEM_Initialize `(v  1 e 1 0 ]
 "58
 [v _OSCILLATOR_Initialize OSCILLATOR_Initialize `(v  1 e 1 0 ]
 "72
 [v _PMD_Initialize PMD_Initialize `(v  1 e 1 0 ]
-"55 /home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/pin_manager.c
+"55 /Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/pin_manager.c
 [v _PIN_MANAGER_Initialize PIN_MANAGER_Initialize `(v  1 e 1 0 ]
-"34 /home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/uartusr.c
+"34 /Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/uartusr.c
 [v _read_str_UART read_str_UART `(uc  1 e 1 0 ]
 "99
 [v _read_UART read_UART `(uc  1 e 1 0 ]
@@ -71,14 +71,14 @@
 [v _write_str_UART write_str_UART `(v  1 e 1 0 ]
 "130
 [v _write_UART write_UART `(v  1 e 1 0 ]
-[s S245 . 1 `uc 1 INTEDG 1 0 :1:0 
+[s S26 . 1 `uc 1 INTEDG 1 0 :1:0 
 `uc 1 . 1 0 :5:1 
 `uc 1 PEIE 1 0 :1:6 
 `uc 1 GIE 1 0 :1:7 
 ]
-"364 /opt/microchip/xc8/v2.10/pic/include/pic16f18875.h
-[u S250 . 1 `S245 1 . 1 0 ]
-[v _INTCONbits INTCONbits `VES250  1 e 1 @11 ]
+"364 /Applications/microchip/xc8/v2.10/pic/include/pic16f18875.h
+[u S31 . 1 `S26 1 . 1 0 ]
+[v _INTCONbits INTCONbits `VES31  1 e 1 @11 ]
 "670
 [v _TRISA TRISA `VEuc  1 e 1 @17 ]
 "732
@@ -91,7 +91,7 @@
 [v _TRISE TRISE `VEuc  1 e 1 @21 ]
 "950
 [v _LATA LATA `VEuc  1 e 1 @22 ]
-[s S382 . 1 `uc 1 LATA0 1 0 :1:0 
+[s S39 . 1 `uc 1 LATA0 1 0 :1:0 
 `uc 1 LATA1 1 0 :1:1 
 `uc 1 LATA2 1 0 :1:2 
 `uc 1 LATA3 1 0 :1:3 
@@ -101,8 +101,8 @@
 `uc 1 LATA7 1 0 :1:7 
 ]
 "967
-[u S391 . 1 `S382 1 . 1 0 ]
-[v _LATAbits LATAbits `VES391  1 e 1 @22 ]
+[u S48 . 1 `S39 1 . 1 0 ]
+[v _LATAbits LATAbits `VES48  1 e 1 @22 ]
 "1012
 [v _LATB LATB `VEuc  1 e 1 @23 ]
 "1074
@@ -121,7 +121,7 @@
 [v _SP1BRGH SP1BRGH `VEuc  1 e 1 @284 ]
 "4009
 [v _RC1STA RC1STA `VEuc  1 e 1 @285 ]
-[s S129 . 1 `uc 1 RX9D 1 0 :1:0 
+[s S306 . 1 `uc 1 RX9D 1 0 :1:0 
 `uc 1 OERR 1 0 :1:1 
 `uc 1 FERR 1 0 :1:2 
 `uc 1 ADDEN 1 0 :1:3 
@@ -131,11 +131,11 @@
 `uc 1 SPEN 1 0 :1:7 
 ]
 "4035
-[u S138 . 1 `S129 1 . 1 0 ]
-[v _RC1STAbits RC1STAbits `VES138  1 e 1 @285 ]
+[u S315 . 1 `S306 1 . 1 0 ]
+[v _RC1STAbits RC1STAbits `VES315  1 e 1 @285 ]
 "4189
 [v _TX1STA TX1STA `VEuc  1 e 1 @286 ]
-[s S107 . 1 `uc 1 TX9D 1 0 :1:0 
+[s S284 . 1 `uc 1 TX9D 1 0 :1:0 
 `uc 1 TRMT 1 0 :1:1 
 `uc 1 BRGH 1 0 :1:2 
 `uc 1 SENDB 1 0 :1:3 
@@ -145,11 +145,11 @@
 `uc 1 CSRC 1 0 :1:7 
 ]
 "4215
-[u S116 . 1 `S107 1 . 1 0 ]
-[v _TX1STAbits TX1STAbits `VES116  1 e 1 @286 ]
+[u S293 . 1 `S284 1 . 1 0 ]
+[v _TX1STAbits TX1STAbits `VES293  1 e 1 @286 ]
 "4369
 [v _BAUD1CON BAUD1CON `VEuc  1 e 1 @287 ]
-[s S268 . 1 `uc 1 SSP1IF 1 0 :1:0 
+[s S60 . 1 `uc 1 SSP1IF 1 0 :1:0 
 `uc 1 BCL1IF 1 0 :1:1 
 `uc 1 SSP2IF 1 0 :1:2 
 `uc 1 BCL2IF 1 0 :1:3 
@@ -157,9 +157,9 @@
 `uc 1 RCIF 1 0 :1:5 
 ]
 "21532
-[u S275 . 1 `S268 1 . 1 0 ]
-[v _PIR3bits PIR3bits `VES275  1 e 1 @1807 ]
-[s S35 . 1 `uc 1 SSP1IE 1 0 :1:0 
+[u S67 . 1 `S60 1 . 1 0 ]
+[v _PIR3bits PIR3bits `VES67  1 e 1 @1807 ]
+[s S212 . 1 `uc 1 SSP1IE 1 0 :1:0 
 `uc 1 BCL1IE 1 0 :1:1 
 `uc 1 SSP2IE 1 0 :1:2 
 `uc 1 BCL2IE 1 0 :1:3 
@@ -167,8 +167,8 @@
 `uc 1 RCIE 1 0 :1:5 
 ]
 "21954
-[u S42 . 1 `S35 1 . 1 0 ]
-[v _PIE3bits PIE3bits `VES42  1 e 1 @1817 ]
+[u S219 . 1 `S212 1 . 1 0 ]
+[v _PIE3bits PIE3bits `VES219  1 e 1 @1817 ]
 "22256
 [v _PMD0 PMD0 `VEuc  1 e 1 @1942 ]
 "22313
@@ -245,7 +245,7 @@
 [v _SLRCONE SLRCONE `VEuc  1 e 1 @3943 ]
 "36266
 [v _INLVLE INLVLE `VEuc  1 e 1 @3944 ]
-"62 /home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+"62 /Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
 [v _eusartTxHead eusartTxHead `VEuc  1 e 1 0 ]
 "63
 [v _eusartTxTail eusartTxTail `VEuc  1 e 1 0 ]
@@ -259,18 +259,18 @@
 [v _eusartRxTail eusartRxTail `VEuc  1 e 1 0 ]
 "69
 [v _eusartRxBuffer eusartRxBuffer `VE[8]uc  1 e 8 0 ]
-[s S22 . 1 `uc 1 perr 1 0 :1:0 
+[s S199 . 1 `uc 1 perr 1 0 :1:0 
 `uc 1 ferr 1 0 :1:1 
 `uc 1 oerr 1 0 :1:2 
 `uc 1 reserved 1 0 :5:3 
 ]
 "70
-[u S27 . 1 `S22 1 . 1 0 `uc 1 status 1 0 ]
-[v _eusartRxStatusBuffer eusartRxStatusBuffer `VE[8]S27  1 e 8 0 ]
+[u S204 . 1 `S199 1 . 1 0 `uc 1 status 1 0 ]
+[v _eusartRxStatusBuffer eusartRxStatusBuffer `VE[8]S204  1 e 8 0 ]
 "71
 [v _eusartRxCount eusartRxCount `VEuc  1 e 1 0 ]
 "72
-[v _eusartRxLastError eusartRxLastError `VES27  1 e 1 0 ]
+[v _eusartRxLastError eusartRxLastError `VES204  1 e 1 0 ]
 "77
 [v _EUSART_TxDefaultInterruptHandler EUSART_TxDefaultInterruptHandler `*.37(v  1 e 2 0 ]
 "78
@@ -281,7 +281,7 @@
 [v _EUSART_OverrunErrorHandler EUSART_OverrunErrorHandler `*.37(v  1 e 2 0 ]
 "82
 [v _EUSART_ErrorHandler EUSART_ErrorHandler `*.37(v  1 e 2 0 ]
-"62 /home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/main.c
+"62 /Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/main.c
 [v _main main `(v  1 e 1 0 ]
 {
 "67
@@ -294,7 +294,7 @@
 [v main@F12637 F12637 `[16]uc  1 s 16 F12637 ]
 "100
 } 0
-"34 /home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/uartusr.c
+"34 /Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/uartusr.c
 [v _read_str_UART read_str_UART `(uc  1 e 1 0 ]
 {
 [v read_str_UART@buff buff `*.4uc  1 a 1 wreg ]
@@ -330,7 +330,7 @@
 [v write_UART@rxData rxData `uc  1 a 1 3 ]
 "141
 } 0
-"132 /home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+"132 /Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
 [v _EUSART_is_tx_ready EUSART_is_tx_ready `(a  1 e 1 0 ]
 {
 "135
@@ -348,12 +348,12 @@
 [v EUSART_Write@txData txData `uc  1 a 1 2 ]
 "194
 } 0
-"99 /home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/uartusr.c
+"99 /Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/uartusr.c
 [v _read_UART read_UART `(uc  1 e 1 0 ]
 {
 "108
 } 0
-"4 /opt/microchip/xc8/v2.10/pic/sources/c99/common/memset.c
+"4 /Applications/microchip/xc8/v2.10/pic/sources/c99/common/memset.c
 [v _memset memset `(*.4v  1 e 1 0 ]
 {
 [v memset@dest dest `*.4v  1 a 1 wreg ]
@@ -369,14 +369,14 @@
 [v memset@dest dest `*.4v  1 a 1 7 ]
 "90
 } 0
-"111 /home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/uartusr.c
+"111 /Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/uartusr.c
 [v _dump_UART_FIFO dump_UART_FIFO `(v  1 e 1 0 ]
 {
 "112
 [v dump_UART_FIFO@dump dump `uc  1 a 1 3 ]
 "115
 } 0
-"137 /home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+"137 /Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
 [v _EUSART_is_rx_ready EUSART_is_rx_ready `(a  1 e 1 0 ]
 {
 "140
@@ -388,7 +388,7 @@
 [v EUSART_Read@readValue readValue `uc  1 a 1 2 ]
 "171
 } 0
-"50 /home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/mcc.c
+"50 /Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/mcc.c
 [v _SYSTEM_Initialize SYSTEM_Initialize `(v  1 e 1 0 ]
 {
 "56
@@ -398,17 +398,17 @@
 {
 "86
 } 0
-"55 /home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/pin_manager.c
+"55 /Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/pin_manager.c
 [v _PIN_MANAGER_Initialize PIN_MANAGER_Initialize `(v  1 e 1 0 ]
 {
 "129
 } 0
-"58 /home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/mcc.c
+"58 /Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/mcc.c
 [v _OSCILLATOR_Initialize OSCILLATOR_Initialize `(v  1 e 1 0 ]
 {
 "70
 } 0
-"88 /home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+"88 /Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
 [v _EUSART_Initialize EUSART_Initialize `(v  1 e 1 0 ]
 {
 "130
@@ -443,12 +443,12 @@
 [v EUSART_SetErrorHandler@interruptHandler interruptHandler `*.37(v  1 p 2 1 ]
 "283
 } 0
-"52 /home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/interrupt_manager.c
+"52 /Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/interrupt_manager.c
 [v _INTERRUPT_InterruptManager INTERRUPT_InterruptManager `II(v  1 e 1 0 ]
 {
 "74
 } 0
-"206 /home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+"206 /Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
 [v _EUSART_Transmit_ISR EUSART_Transmit_ISR `(v  1 e 1 0 ]
 {
 "223

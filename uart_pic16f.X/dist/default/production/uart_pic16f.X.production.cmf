@@ -55,7 +55,7 @@ idataBANK1 CODE 0 35F 35F 10 2
 dataBANK1 BANK1 1 DC DC 10 1
 clrtext CODE 0 3A5 3A5 6 2
 bssCOMMON COMMON 1 7B 7B 2 1
-$/tmp/xcXwYbIFd.o
+$/tmp/xcEokEckR.o
 reset_vec CODE 0 0 0 2 2
 end_init CODE 0 2B 2B 2 2
 config CONFIG 0 8007 8007 5 2
@@ -150,295 +150,295 @@ STRING 3D6-1FFF 2
 # All other numeric values are in decimal.
 %LINETAB
 $dist/default/production/uart_pic16f.X.production.o
-2D cinit CODE >8036:/tmp/xcX9rjHks.s
-2D cinit CODE >8039:/tmp/xcX9rjHks.s
-2D cinit CODE >8105:/tmp/xcX9rjHks.s
-2E cinit CODE >8106:/tmp/xcX9rjHks.s
-2F cinit CODE >8107:/tmp/xcX9rjHks.s
-30 cinit CODE >8108:/tmp/xcX9rjHks.s
-31 cinit CODE >8109:/tmp/xcX9rjHks.s
-32 cinit CODE >8110:/tmp/xcX9rjHks.s
-33 cinit CODE >8111:/tmp/xcX9rjHks.s
-34 cinit CODE >8112:/tmp/xcX9rjHks.s
-35 cinit CODE >8113:/tmp/xcX9rjHks.s
-36 cinit CODE >8114:/tmp/xcX9rjHks.s
-39 cinit CODE >8131:/tmp/xcX9rjHks.s
-3A cinit CODE >8132:/tmp/xcX9rjHks.s
-3B cinit CODE >8136:/tmp/xcX9rjHks.s
-3C cinit CODE >8137:/tmp/xcX9rjHks.s
-3D cinit CODE >8138:/tmp/xcX9rjHks.s
-3E cinit CODE >8139:/tmp/xcX9rjHks.s
-3F cinit CODE >8140:/tmp/xcX9rjHks.s
-40 cinit CODE >8141:/tmp/xcX9rjHks.s
-43 cinit CODE >8145:/tmp/xcX9rjHks.s
-44 cinit CODE >8146:/tmp/xcX9rjHks.s
-45 cinit CODE >8147:/tmp/xcX9rjHks.s
-46 cinit CODE >8148:/tmp/xcX9rjHks.s
-47 cinit CODE >8149:/tmp/xcX9rjHks.s
-48 cinit CODE >8150:/tmp/xcX9rjHks.s
-4B cinit CODE >8156:/tmp/xcX9rjHks.s
-4B cinit CODE >8158:/tmp/xcX9rjHks.s
-4C cinit CODE >8159:/tmp/xcX9rjHks.s
-4D cinit CODE >8160:/tmp/xcX9rjHks.s
-4 intentry CODE >52:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/interrupt_manager.c
-6 intentry CODE >55:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/interrupt_manager.c
-A intentry CODE >57:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/interrupt_manager.c
-13 intentry CODE >59:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/interrupt_manager.c
-19 intentry CODE >60:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/interrupt_manager.c
-1A intentry CODE >61:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/interrupt_manager.c
-22 intentry CODE >63:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/interrupt_manager.c
-28 intentry CODE >64:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/interrupt_manager.c
-29 intentry CODE >68:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/interrupt_manager.c
-29 intentry CODE >74:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/interrupt_manager.c
-2F4 text28 CODE >249:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-2F4 text28 CODE >251:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-301 text28 CODE >252:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-307 text28 CODE >254:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-308 text28 CODE >256:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-30D text28 CODE >257:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-3D1 text27 CODE >269:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-3D1 text27 CODE >270:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-3D4 text27 CODE >271:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-3D5 text26 CODE >259:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-3CD text25 CODE >261:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-3CD text25 CODE >264:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-3CF text25 CODE >265:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-3D0 text25 CODE >267:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-222 text24 CODE >225:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-222 text24 CODE >228:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-227 text24 CODE >230:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-22C text24 CODE >231:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-231 text24 CODE >232:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-237 text24 CODE >235:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-23C text24 CODE >236:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-241 text24 CODE >237:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-247 text24 CODE >240:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-250 text24 CODE >241:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-256 text24 CODE >242:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-257 text24 CODE >243:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-25A text24 CODE >247:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-2D2 text23 CODE >206:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-2D2 text23 CODE >210:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-2D9 text23 CODE >212:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-2E5 text23 CODE >213:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-2EB text23 CODE >215:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-2EC text23 CODE >217:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-2F0 text23 CODE >218:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-2F1 text23 CODE >219:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-2F1 text23 CODE >221:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-2F3 text23 CODE >223:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-3C3 text21 CODE >281:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-3C3 text21 CODE >282:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-3C8 text21 CODE >283:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-3BD text20 CODE >273:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-3BD text20 CODE >274:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-3C2 text20 CODE >275:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-3B7 text19 CODE >277:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-3B7 text19 CODE >278:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-3BC text19 CODE >279:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-3B1 text18 CODE >289:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-3B1 text18 CODE >290:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-3B6 text18 CODE >291:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-3AB text17 CODE >285:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-3AB text17 CODE >286:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-3B0 text17 CODE >287:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-1E3 text16 CODE >88:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-1E3 text16 CODE >91:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-1E5 text16 CODE >92:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-1EC text16 CODE >93:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-1EE text16 CODE >94:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-1F5 text16 CODE >98:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-1F8 text16 CODE >101:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-1FA text16 CODE >104:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-1FC text16 CODE >107:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-1FE text16 CODE >110:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-1FF text16 CODE >113:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-206 text16 CODE >114:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-20D text16 CODE >115:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-214 text16 CODE >117:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-216 text16 CODE >120:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-217 text16 CODE >121:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-218 text16 CODE >122:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-21C text16 CODE >124:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-21D text16 CODE >125:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-21E text16 CODE >126:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-21F text16 CODE >129:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-221 text16 CODE >130:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-38E text15 CODE >58:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/mcc.c
-38E text15 CODE >61:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/mcc.c
-391 text15 CODE >63:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/mcc.c
-392 text15 CODE >65:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/mcc.c
-393 text15 CODE >67:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/mcc.c
-395 text15 CODE >69:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/mcc.c
-396 text15 CODE >70:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/mcc.c
-1A3 text14 CODE >55:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/pin_manager.c
-1A3 text14 CODE >60:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/pin_manager.c
-1A5 text14 CODE >61:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/pin_manager.c
-1A6 text14 CODE >62:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/pin_manager.c
-1A7 text14 CODE >63:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/pin_manager.c
-1A8 text14 CODE >64:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/pin_manager.c
-1A9 text14 CODE >69:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/pin_manager.c
-1AB text14 CODE >70:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/pin_manager.c
-1AD text14 CODE >71:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/pin_manager.c
-1AF text14 CODE >72:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/pin_manager.c
-1B1 text14 CODE >73:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/pin_manager.c
-1B3 text14 CODE >78:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/pin_manager.c
-1B6 text14 CODE >79:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/pin_manager.c
-1B8 text14 CODE >80:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/pin_manager.c
-1BA text14 CODE >81:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/pin_manager.c
-1BC text14 CODE >82:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/pin_manager.c
-1BE text14 CODE >87:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/pin_manager.c
-1BF text14 CODE >88:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/pin_manager.c
-1C0 text14 CODE >89:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/pin_manager.c
-1C1 text14 CODE >90:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/pin_manager.c
-1C2 text14 CODE >91:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/pin_manager.c
-1C3 text14 CODE >96:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/pin_manager.c
-1C4 text14 CODE >97:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/pin_manager.c
-1C5 text14 CODE >98:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/pin_manager.c
-1C6 text14 CODE >99:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/pin_manager.c
-1C7 text14 CODE >100:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/pin_manager.c
-1C8 text14 CODE >105:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/pin_manager.c
-1CA text14 CODE >106:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/pin_manager.c
-1CC text14 CODE >107:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/pin_manager.c
-1CE text14 CODE >108:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/pin_manager.c
-1D0 text14 CODE >109:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/pin_manager.c
-1D2 text14 CODE >114:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/pin_manager.c
-1D4 text14 CODE >115:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/pin_manager.c
-1D6 text14 CODE >116:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/pin_manager.c
-1D8 text14 CODE >117:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/pin_manager.c
-1DA text14 CODE >118:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/pin_manager.c
-1DC text14 CODE >127:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/pin_manager.c
-1DF text14 CODE >128:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/pin_manager.c
-1E2 text14 CODE >129:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/pin_manager.c
-397 text13 CODE >72:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/mcc.c
-397 text13 CODE >75:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/mcc.c
-399 text13 CODE >77:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/mcc.c
-39A text13 CODE >79:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/mcc.c
-39B text13 CODE >81:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/mcc.c
-39C text13 CODE >83:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/mcc.c
-39D text13 CODE >85:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/mcc.c
-39E text13 CODE >86:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/mcc.c
-36F text12 CODE >50:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/mcc.c
-36F text12 CODE >52:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/mcc.c
-372 text12 CODE >53:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/mcc.c
-375 text12 CODE >54:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/mcc.c
-378 text12 CODE >55:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/mcc.c
-37B text12 CODE >56:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/mcc.c
-285 text11 CODE >151:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-285 text11 CODE >153:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-285 text11 CODE >155:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-28B text11 CODE >159:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-293 text11 CODE >161:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-29F text11 CODE >162:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-2A5 text11 CODE >164:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-2A6 text11 CODE >166:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-2A8 text11 CODE >167:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-2AB text11 CODE >168:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-2AD text11 CODE >170:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-2AE text11 CODE >171:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-385 text10 CODE >137:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-385 text10 CODE >139:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-38D text10 CODE >140:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-30E text9 CODE >111:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/uartusr.c
-30E text9 CODE >113:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/uartusr.c
-325 text9 CODE >115:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/uartusr.c
-4F text8 CODE >4:/opt/microchip/xc8/v2.10/pic/sources/c99/common/memset.c
-50 text8 CODE >6:/opt/microchip/xc8/v2.10/pic/sources/c99/common/memset.c
-54 text8 CODE >13:/opt/microchip/xc8/v2.10/pic/sources/c99/common/memset.c
-5B text8 CODE >14:/opt/microchip/xc8/v2.10/pic/sources/c99/common/memset.c
-62 text8 CODE >15:/opt/microchip/xc8/v2.10/pic/sources/c99/common/memset.c
-6D text8 CODE >16:/opt/microchip/xc8/v2.10/pic/sources/c99/common/memset.c
-77 text8 CODE >17:/opt/microchip/xc8/v2.10/pic/sources/c99/common/memset.c
-7E text8 CODE >18:/opt/microchip/xc8/v2.10/pic/sources/c99/common/memset.c
-86 text8 CODE >19:/opt/microchip/xc8/v2.10/pic/sources/c99/common/memset.c
-91 text8 CODE >20:/opt/microchip/xc8/v2.10/pic/sources/c99/common/memset.c
-9C text8 CODE >21:/opt/microchip/xc8/v2.10/pic/sources/c99/common/memset.c
-A6 text8 CODE >22:/opt/microchip/xc8/v2.10/pic/sources/c99/common/memset.c
-AE text8 CODE >23:/opt/microchip/xc8/v2.10/pic/sources/c99/common/memset.c
-B9 text8 CODE >24:/opt/microchip/xc8/v2.10/pic/sources/c99/common/memset.c
-C3 text8 CODE >31:/opt/microchip/xc8/v2.10/pic/sources/c99/common/memset.c
-D0 text8 CODE >32:/opt/microchip/xc8/v2.10/pic/sources/c99/common/memset.c
-D4 text8 CODE >33:/opt/microchip/xc8/v2.10/pic/sources/c99/common/memset.c
-D8 text8 CODE >34:/opt/microchip/xc8/v2.10/pic/sources/c99/common/memset.c
-DC text8 CODE >86:/opt/microchip/xc8/v2.10/pic/sources/c99/common/memset.c
-F2 text8 CODE >90:/opt/microchip/xc8/v2.10/pic/sources/c99/common/memset.c
-34E text7 CODE >99:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/uartusr.c
-34E text7 CODE >101:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/uartusr.c
-34F text7 CODE >102:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/uartusr.c
-353 text7 CODE >101:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/uartusr.c
-35B text7 CODE >105:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/uartusr.c
-35E text7 CODE >108:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/uartusr.c
-25B text6 CODE >173:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-25C text6 CODE >175:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-262 text6 CODE >179:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-267 text6 CODE >181:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-26A text6 CODE >182:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-26B text6 CODE >183:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-26B text6 CODE >185:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-26C text6 CODE >186:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-279 text6 CODE >187:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-27F text6 CODE >189:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-280 text6 CODE >191:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-282 text6 CODE >193:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-284 text6 CODE >194:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-3C9 text5 CODE >142:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-3C9 text5 CODE >144:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-3CC text5 CODE >145:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-37C text4 CODE >132:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-37C text4 CODE >134:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-384 text4 CODE >135:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
-326 text3 CODE >130:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/uartusr.c
-327 text3 CODE >132:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/uartusr.c
-32F text3 CODE >134:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/uartusr.c
-337 text3 CODE >137:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/uartusr.c
-33B text3 CODE >141:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/uartusr.c
-2AF text2 CODE >118:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/uartusr.c
-2B0 text2 CODE >121:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/uartusr.c
-2B2 text2 CODE >123:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/uartusr.c
-2BC text2 CODE >124:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/uartusr.c
-2D1 text2 CODE >128:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/uartusr.c
-F3 text1 CODE >34:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/uartusr.c
-F5 text1 CODE >36:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/uartusr.c
-F9 text1 CODE >37:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/uartusr.c
-FA text1 CODE >38:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/uartusr.c
-108 text1 CODE >40:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/uartusr.c
-10F text1 CODE >41:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/uartusr.c
-115 text1 CODE >42:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/uartusr.c
-117 text1 CODE >43:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/uartusr.c
-121 text1 CODE >45:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/uartusr.c
-128 text1 CODE >47:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/uartusr.c
-13F text1 CODE >49:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/uartusr.c
-142 text1 CODE >51:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/uartusr.c
-14A text1 CODE >52:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/uartusr.c
-152 text1 CODE >56:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/uartusr.c
-153 maintext CODE >62:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/main.c
-153 maintext CODE >65:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/main.c
-156 maintext CODE >66:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/main.c
-165 maintext CODE >67:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/main.c
-16F maintext CODE >69:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/main.c
-179 maintext CODE >72:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/main.c
-17A maintext CODE >73:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/main.c
-17B maintext CODE >77:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/main.c
-17C maintext CODE >84:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/main.c
-189 maintext CODE >86:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/main.c
-192 maintext CODE >90:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/main.c
-193 maintext CODE >93:/home/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/main.c
-3A5 clrtext CODE >8120:/tmp/xcX9rjHks.s
-3A5 clrtext CODE >8121:/tmp/xcX9rjHks.s
-3A6 clrtext CODE >8122:/tmp/xcX9rjHks.s
-3A6 clrtext CODE >8123:/tmp/xcX9rjHks.s
-3A7 clrtext CODE >8124:/tmp/xcX9rjHks.s
-3A8 clrtext CODE >8125:/tmp/xcX9rjHks.s
-3A9 clrtext CODE >8126:/tmp/xcX9rjHks.s
-3AA clrtext CODE >8127:/tmp/xcX9rjHks.s
-39F inittext CODE >8094:/tmp/xcX9rjHks.s
-39F inittext CODE >8095:/tmp/xcX9rjHks.s
-3A0 inittext CODE >8096:/tmp/xcX9rjHks.s
-3A0 inittext CODE >8097:/tmp/xcX9rjHks.s
-3A1 inittext CODE >8098:/tmp/xcX9rjHks.s
-3A2 inittext CODE >8099:/tmp/xcX9rjHks.s
-3A3 inittext CODE >8100:/tmp/xcX9rjHks.s
-3A4 inittext CODE >8101:/tmp/xcX9rjHks.s
+2D cinit CODE >8036:/tmp/xc4bxhXtg.s
+2D cinit CODE >8039:/tmp/xc4bxhXtg.s
+2D cinit CODE >8105:/tmp/xc4bxhXtg.s
+2E cinit CODE >8106:/tmp/xc4bxhXtg.s
+2F cinit CODE >8107:/tmp/xc4bxhXtg.s
+30 cinit CODE >8108:/tmp/xc4bxhXtg.s
+31 cinit CODE >8109:/tmp/xc4bxhXtg.s
+32 cinit CODE >8110:/tmp/xc4bxhXtg.s
+33 cinit CODE >8111:/tmp/xc4bxhXtg.s
+34 cinit CODE >8112:/tmp/xc4bxhXtg.s
+35 cinit CODE >8113:/tmp/xc4bxhXtg.s
+36 cinit CODE >8114:/tmp/xc4bxhXtg.s
+39 cinit CODE >8131:/tmp/xc4bxhXtg.s
+3A cinit CODE >8132:/tmp/xc4bxhXtg.s
+3B cinit CODE >8136:/tmp/xc4bxhXtg.s
+3C cinit CODE >8137:/tmp/xc4bxhXtg.s
+3D cinit CODE >8138:/tmp/xc4bxhXtg.s
+3E cinit CODE >8139:/tmp/xc4bxhXtg.s
+3F cinit CODE >8140:/tmp/xc4bxhXtg.s
+40 cinit CODE >8141:/tmp/xc4bxhXtg.s
+43 cinit CODE >8145:/tmp/xc4bxhXtg.s
+44 cinit CODE >8146:/tmp/xc4bxhXtg.s
+45 cinit CODE >8147:/tmp/xc4bxhXtg.s
+46 cinit CODE >8148:/tmp/xc4bxhXtg.s
+47 cinit CODE >8149:/tmp/xc4bxhXtg.s
+48 cinit CODE >8150:/tmp/xc4bxhXtg.s
+4B cinit CODE >8156:/tmp/xc4bxhXtg.s
+4B cinit CODE >8158:/tmp/xc4bxhXtg.s
+4C cinit CODE >8159:/tmp/xc4bxhXtg.s
+4D cinit CODE >8160:/tmp/xc4bxhXtg.s
+4 intentry CODE >52:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/interrupt_manager.c
+6 intentry CODE >55:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/interrupt_manager.c
+A intentry CODE >57:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/interrupt_manager.c
+13 intentry CODE >59:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/interrupt_manager.c
+19 intentry CODE >60:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/interrupt_manager.c
+1A intentry CODE >61:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/interrupt_manager.c
+22 intentry CODE >63:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/interrupt_manager.c
+28 intentry CODE >64:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/interrupt_manager.c
+29 intentry CODE >68:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/interrupt_manager.c
+29 intentry CODE >74:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/interrupt_manager.c
+2F4 text28 CODE >249:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+2F4 text28 CODE >251:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+301 text28 CODE >252:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+307 text28 CODE >254:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+308 text28 CODE >256:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+30D text28 CODE >257:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+3D1 text27 CODE >269:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+3D1 text27 CODE >270:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+3D4 text27 CODE >271:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+3D5 text26 CODE >259:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+3CD text25 CODE >261:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+3CD text25 CODE >264:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+3CF text25 CODE >265:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+3D0 text25 CODE >267:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+222 text24 CODE >225:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+222 text24 CODE >228:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+227 text24 CODE >230:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+22C text24 CODE >231:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+231 text24 CODE >232:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+237 text24 CODE >235:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+23C text24 CODE >236:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+241 text24 CODE >237:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+247 text24 CODE >240:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+250 text24 CODE >241:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+256 text24 CODE >242:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+257 text24 CODE >243:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+25A text24 CODE >247:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+2D2 text23 CODE >206:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+2D2 text23 CODE >210:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+2D9 text23 CODE >212:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+2E5 text23 CODE >213:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+2EB text23 CODE >215:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+2EC text23 CODE >217:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+2F0 text23 CODE >218:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+2F1 text23 CODE >219:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+2F1 text23 CODE >221:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+2F3 text23 CODE >223:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+3C3 text21 CODE >281:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+3C3 text21 CODE >282:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+3C8 text21 CODE >283:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+3BD text20 CODE >273:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+3BD text20 CODE >274:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+3C2 text20 CODE >275:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+3B7 text19 CODE >277:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+3B7 text19 CODE >278:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+3BC text19 CODE >279:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+3B1 text18 CODE >289:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+3B1 text18 CODE >290:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+3B6 text18 CODE >291:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+3AB text17 CODE >285:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+3AB text17 CODE >286:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+3B0 text17 CODE >287:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+1E3 text16 CODE >88:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+1E3 text16 CODE >91:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+1E5 text16 CODE >92:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+1EC text16 CODE >93:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+1EE text16 CODE >94:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+1F5 text16 CODE >98:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+1F8 text16 CODE >101:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+1FA text16 CODE >104:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+1FC text16 CODE >107:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+1FE text16 CODE >110:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+1FF text16 CODE >113:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+206 text16 CODE >114:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+20D text16 CODE >115:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+214 text16 CODE >117:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+216 text16 CODE >120:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+217 text16 CODE >121:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+218 text16 CODE >122:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+21C text16 CODE >124:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+21D text16 CODE >125:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+21E text16 CODE >126:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+21F text16 CODE >129:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+221 text16 CODE >130:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+38E text15 CODE >58:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/mcc.c
+38E text15 CODE >61:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/mcc.c
+391 text15 CODE >63:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/mcc.c
+392 text15 CODE >65:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/mcc.c
+393 text15 CODE >67:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/mcc.c
+395 text15 CODE >69:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/mcc.c
+396 text15 CODE >70:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/mcc.c
+1A3 text14 CODE >55:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/pin_manager.c
+1A3 text14 CODE >60:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/pin_manager.c
+1A5 text14 CODE >61:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/pin_manager.c
+1A6 text14 CODE >62:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/pin_manager.c
+1A7 text14 CODE >63:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/pin_manager.c
+1A8 text14 CODE >64:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/pin_manager.c
+1A9 text14 CODE >69:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/pin_manager.c
+1AB text14 CODE >70:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/pin_manager.c
+1AD text14 CODE >71:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/pin_manager.c
+1AF text14 CODE >72:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/pin_manager.c
+1B1 text14 CODE >73:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/pin_manager.c
+1B3 text14 CODE >78:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/pin_manager.c
+1B6 text14 CODE >79:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/pin_manager.c
+1B8 text14 CODE >80:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/pin_manager.c
+1BA text14 CODE >81:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/pin_manager.c
+1BC text14 CODE >82:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/pin_manager.c
+1BE text14 CODE >87:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/pin_manager.c
+1BF text14 CODE >88:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/pin_manager.c
+1C0 text14 CODE >89:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/pin_manager.c
+1C1 text14 CODE >90:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/pin_manager.c
+1C2 text14 CODE >91:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/pin_manager.c
+1C3 text14 CODE >96:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/pin_manager.c
+1C4 text14 CODE >97:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/pin_manager.c
+1C5 text14 CODE >98:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/pin_manager.c
+1C6 text14 CODE >99:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/pin_manager.c
+1C7 text14 CODE >100:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/pin_manager.c
+1C8 text14 CODE >105:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/pin_manager.c
+1CA text14 CODE >106:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/pin_manager.c
+1CC text14 CODE >107:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/pin_manager.c
+1CE text14 CODE >108:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/pin_manager.c
+1D0 text14 CODE >109:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/pin_manager.c
+1D2 text14 CODE >114:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/pin_manager.c
+1D4 text14 CODE >115:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/pin_manager.c
+1D6 text14 CODE >116:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/pin_manager.c
+1D8 text14 CODE >117:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/pin_manager.c
+1DA text14 CODE >118:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/pin_manager.c
+1DC text14 CODE >127:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/pin_manager.c
+1DF text14 CODE >128:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/pin_manager.c
+1E2 text14 CODE >129:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/pin_manager.c
+397 text13 CODE >72:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/mcc.c
+397 text13 CODE >75:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/mcc.c
+399 text13 CODE >77:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/mcc.c
+39A text13 CODE >79:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/mcc.c
+39B text13 CODE >81:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/mcc.c
+39C text13 CODE >83:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/mcc.c
+39D text13 CODE >85:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/mcc.c
+39E text13 CODE >86:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/mcc.c
+36F text12 CODE >50:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/mcc.c
+36F text12 CODE >52:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/mcc.c
+372 text12 CODE >53:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/mcc.c
+375 text12 CODE >54:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/mcc.c
+378 text12 CODE >55:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/mcc.c
+37B text12 CODE >56:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/mcc.c
+285 text11 CODE >151:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+285 text11 CODE >153:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+285 text11 CODE >155:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+28B text11 CODE >159:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+293 text11 CODE >161:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+29F text11 CODE >162:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+2A5 text11 CODE >164:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+2A6 text11 CODE >166:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+2A8 text11 CODE >167:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+2AB text11 CODE >168:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+2AD text11 CODE >170:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+2AE text11 CODE >171:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+385 text10 CODE >137:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+385 text10 CODE >139:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+38D text10 CODE >140:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+30E text9 CODE >111:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/uartusr.c
+30E text9 CODE >113:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/uartusr.c
+325 text9 CODE >115:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/uartusr.c
+4F text8 CODE >4:/Applications/microchip/xc8/v2.10/pic/sources/c99/common/memset.c
+50 text8 CODE >6:/Applications/microchip/xc8/v2.10/pic/sources/c99/common/memset.c
+54 text8 CODE >13:/Applications/microchip/xc8/v2.10/pic/sources/c99/common/memset.c
+5B text8 CODE >14:/Applications/microchip/xc8/v2.10/pic/sources/c99/common/memset.c
+62 text8 CODE >15:/Applications/microchip/xc8/v2.10/pic/sources/c99/common/memset.c
+6D text8 CODE >16:/Applications/microchip/xc8/v2.10/pic/sources/c99/common/memset.c
+77 text8 CODE >17:/Applications/microchip/xc8/v2.10/pic/sources/c99/common/memset.c
+7E text8 CODE >18:/Applications/microchip/xc8/v2.10/pic/sources/c99/common/memset.c
+86 text8 CODE >19:/Applications/microchip/xc8/v2.10/pic/sources/c99/common/memset.c
+91 text8 CODE >20:/Applications/microchip/xc8/v2.10/pic/sources/c99/common/memset.c
+9C text8 CODE >21:/Applications/microchip/xc8/v2.10/pic/sources/c99/common/memset.c
+A6 text8 CODE >22:/Applications/microchip/xc8/v2.10/pic/sources/c99/common/memset.c
+AE text8 CODE >23:/Applications/microchip/xc8/v2.10/pic/sources/c99/common/memset.c
+B9 text8 CODE >24:/Applications/microchip/xc8/v2.10/pic/sources/c99/common/memset.c
+C3 text8 CODE >31:/Applications/microchip/xc8/v2.10/pic/sources/c99/common/memset.c
+D0 text8 CODE >32:/Applications/microchip/xc8/v2.10/pic/sources/c99/common/memset.c
+D4 text8 CODE >33:/Applications/microchip/xc8/v2.10/pic/sources/c99/common/memset.c
+D8 text8 CODE >34:/Applications/microchip/xc8/v2.10/pic/sources/c99/common/memset.c
+DC text8 CODE >86:/Applications/microchip/xc8/v2.10/pic/sources/c99/common/memset.c
+F2 text8 CODE >90:/Applications/microchip/xc8/v2.10/pic/sources/c99/common/memset.c
+34E text7 CODE >99:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/uartusr.c
+34E text7 CODE >101:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/uartusr.c
+34F text7 CODE >102:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/uartusr.c
+353 text7 CODE >101:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/uartusr.c
+35B text7 CODE >105:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/uartusr.c
+35E text7 CODE >108:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/uartusr.c
+25B text6 CODE >173:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+25C text6 CODE >175:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+262 text6 CODE >179:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+267 text6 CODE >181:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+26A text6 CODE >182:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+26B text6 CODE >183:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+26B text6 CODE >185:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+26C text6 CODE >186:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+279 text6 CODE >187:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+27F text6 CODE >189:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+280 text6 CODE >191:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+282 text6 CODE >193:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+284 text6 CODE >194:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+3C9 text5 CODE >142:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+3C9 text5 CODE >144:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+3CC text5 CODE >145:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+37C text4 CODE >132:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+37C text4 CODE >134:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+384 text4 CODE >135:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/mcc_generated_files/eusart.c
+326 text3 CODE >130:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/uartusr.c
+327 text3 CODE >132:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/uartusr.c
+32F text3 CODE >134:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/uartusr.c
+337 text3 CODE >137:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/uartusr.c
+33B text3 CODE >141:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/uartusr.c
+2AF text2 CODE >118:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/uartusr.c
+2B0 text2 CODE >121:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/uartusr.c
+2B2 text2 CODE >123:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/uartusr.c
+2BC text2 CODE >124:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/uartusr.c
+2D1 text2 CODE >128:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/uartusr.c
+F3 text1 CODE >34:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/uartusr.c
+F5 text1 CODE >36:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/uartusr.c
+F9 text1 CODE >37:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/uartusr.c
+FA text1 CODE >38:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/uartusr.c
+108 text1 CODE >40:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/uartusr.c
+10F text1 CODE >41:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/uartusr.c
+115 text1 CODE >42:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/uartusr.c
+117 text1 CODE >43:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/uartusr.c
+121 text1 CODE >45:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/uartusr.c
+128 text1 CODE >47:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/uartusr.c
+13F text1 CODE >49:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/uartusr.c
+142 text1 CODE >51:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/uartusr.c
+14A text1 CODE >52:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/uartusr.c
+152 text1 CODE >56:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/uartusr.c
+153 maintext CODE >62:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/main.c
+153 maintext CODE >65:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/main.c
+156 maintext CODE >66:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/main.c
+165 maintext CODE >67:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/main.c
+16F maintext CODE >69:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/main.c
+179 maintext CODE >72:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/main.c
+17A maintext CODE >73:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/main.c
+17B maintext CODE >77:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/main.c
+17C maintext CODE >84:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/main.c
+189 maintext CODE >86:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/main.c
+192 maintext CODE >90:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/main.c
+193 maintext CODE >93:/Users/bmalbusca/Documents/IST/SCE/sce/uart_pic16f.X/main.c
+3A5 clrtext CODE >8120:/tmp/xc4bxhXtg.s
+3A5 clrtext CODE >8121:/tmp/xc4bxhXtg.s
+3A6 clrtext CODE >8122:/tmp/xc4bxhXtg.s
+3A6 clrtext CODE >8123:/tmp/xc4bxhXtg.s
+3A7 clrtext CODE >8124:/tmp/xc4bxhXtg.s
+3A8 clrtext CODE >8125:/tmp/xc4bxhXtg.s
+3A9 clrtext CODE >8126:/tmp/xc4bxhXtg.s
+3AA clrtext CODE >8127:/tmp/xc4bxhXtg.s
+39F inittext CODE >8094:/tmp/xc4bxhXtg.s
+39F inittext CODE >8095:/tmp/xc4bxhXtg.s
+3A0 inittext CODE >8096:/tmp/xc4bxhXtg.s
+3A0 inittext CODE >8097:/tmp/xc4bxhXtg.s
+3A1 inittext CODE >8098:/tmp/xc4bxhXtg.s
+3A2 inittext CODE >8099:/tmp/xc4bxhXtg.s
+3A3 inittext CODE >8100:/tmp/xc4bxhXtg.s
+3A4 inittext CODE >8101:/tmp/xc4bxhXtg.s
 # %SYMTAB Section
 # An enumeration of all symbols in the program.
 # The beginning of the section is indicated by %SYMTAB.
@@ -485,10 +485,10 @@ _WPUB F44 0 ABS 0 - dist/default/production/uart_pic16f.X.production.o
 _WPUC F4F 0 ABS 0 - dist/default/production/uart_pic16f.X.production.o
 _WPUD F5A 0 ABS 0 - dist/default/production/uart_pic16f.X.production.o
 _WPUE F65 0 ABS 0 - dist/default/production/uart_pic16f.X.production.o
-___sp 0 0 STACK 2 stack /tmp/xcXwYbIFd.o
+___sp 0 0 STACK 2 stack /tmp/xcEokEckR.o
 _main 2A6 0 CODE 0 maintext dist/default/production/uart_pic16f.X.production.o
 btemp 7E 0 ABS 0 - dist/default/production/uart_pic16f.X.production.o
-start 56 0 CODE 0 init /tmp/xcXwYbIFd.o
+start 56 0 CODE 0 init /tmp/xcEokEckR.o
 _EUSART_Write 4B6 0 CODE 0 text6 dist/default/production/uart_pic16f.X.production.o
 __size_of_main 0 0 ABS 0 - dist/default/production/uart_pic16f.X.production.o
 __HbssCOMMON 0 0 ABS 0 bssCOMMON -
@@ -501,12 +501,12 @@ __end_of_EUSART_Initialize 444 0 CODE 0 text16 dist/default/production/uart_pic1
 __Hpowerup 0 0 CODE 0 powerup -
 _read_str_UART 1E6 0 CODE 0 text1 dist/default/production/uart_pic16f.X.production.o
 __size_of_SYSTEM_Initialize 0 0 ABS 0 - dist/default/production/uart_pic16f.X.production.o
-intlevel0 0 0 ENTRY 0 functab /tmp/xcXwYbIFd.o
-intlevel1 0 0 ENTRY 0 functab /tmp/xcXwYbIFd.o
-intlevel2 0 0 ENTRY 0 functab /tmp/xcXwYbIFd.o
-intlevel3 0 0 ENTRY 0 functab /tmp/xcXwYbIFd.o
-intlevel4 0 0 ENTRY 0 functab /tmp/xcXwYbIFd.o
-intlevel5 0 0 ENTRY 0 functab /tmp/xcXwYbIFd.o
+intlevel0 0 0 ENTRY 0 functab /tmp/xcEokEckR.o
+intlevel1 0 0 ENTRY 0 functab /tmp/xcEokEckR.o
+intlevel2 0 0 ENTRY 0 functab /tmp/xcEokEckR.o
+intlevel3 0 0 ENTRY 0 functab /tmp/xcEokEckR.o
+intlevel4 0 0 ENTRY 0 functab /tmp/xcEokEckR.o
+intlevel5 0 0 ENTRY 0 functab /tmp/xcEokEckR.o
 __LbssCOMMON 0 0 ABS 0 bssCOMMON -
 _EUSART_is_tx_ready 6F8 0 CODE 0 text4 dist/default/production/uart_pic16f.X.production.o
 wtemp0 7E 0 ABS 0 - dist/default/production/uart_pic16f.X.production.o
@@ -538,8 +538,8 @@ _INLVLB F47 0 ABS 0 - dist/default/production/uart_pic16f.X.production.o
 _INLVLC F52 0 ABS 0 - dist/default/production/uart_pic16f.X.production.o
 _INLVLD F5D 0 ABS 0 - dist/default/production/uart_pic16f.X.production.o
 _INLVLE F68 0 ABS 0 - dist/default/production/uart_pic16f.X.production.o
-___stackhi 23EF 0 ABS 0 - /tmp/xcXwYbIFd.o
-___stacklo 20A0 0 ABS 0 - /tmp/xcXwYbIFd.o
+___stackhi 23EF 0 ABS 0 - /tmp/xcEokEckR.o
+___stacklo 20A0 0 ABS 0 - /tmp/xcEokEckR.o
 main@cmd_hex B0 0 BANK1 1 cstackBANK1 dist/default/production/uart_pic16f.X.production.o
 _EUSART_Initialize 3C6 0 CODE 0 text16 dist/default/production/uart_pic16f.X.production.o
 _EUSART_is_rx_ready 70A 0 CODE 0 text10 dist/default/production/uart_pic16f.X.production.o
@@ -576,7 +576,7 @@ __end_of_EUSART_DefaultFramingErrorHandler 7AC 0 CODE 0 text26 dist/default/prod
 __end_of_EUSART_DefaultOverrunErrorHandler 7A2 0 CODE 0 text25 dist/default/production/uart_pic16f.X.production.o
 __end_of_read_str_UART 2A6 0 CODE 0 text1 dist/default/production/uart_pic16f.X.production.o
 _EUSART_TxDefaultInterruptHandler 48 0 BANK0 1 nvBANK0 dist/default/production/uart_pic16f.X.production.o
-___int_sp 0 0 STACK 2 stack /tmp/xcXwYbIFd.o
+___int_sp 0 0 STACK 2 stack /tmp/xcEokEckR.o
 __end_of_EUSART_Read 55E 0 CODE 0 text11 dist/default/production/uart_pic16f.X.production.o
 main@str_send A0 0 BANK1 1 cstackBANK1 dist/default/production/uart_pic16f.X.production.o
 __Hbank0 0 0 ABS 0 bank0 -
@@ -744,7 +744,7 @@ __HnvBANK0 0 0 ABS 0 nvBANK0 -
 __HnvBANK1 0 0 ABS 0 nvBANK1 -
 __Lintentry 8 0 CODE 0 intentry -
 __size_of_EUSART_is_tx_done 0 0 ABS 0 - dist/default/production/uart_pic16f.X.production.o
-reset_vec 0 0 CODE 0 reset_vec /tmp/xcXwYbIFd.o
+reset_vec 0 0 CODE 0 reset_vec /tmp/xcEokEckR.o
 EUSART_Read@readValue 72 0 COMMON 1 cstackCOMMON dist/default/production/uart_pic16f.X.production.o
 __pdataBANK1 DC 0 BANK1 1 dataBANK1 dist/default/production/uart_pic16f.X.production.o
 __LbssBANK0 0 0 ABS 0 bssBANK0 -
@@ -964,9 +964,9 @@ intentry 0 4 8 338 2
 reset_vec 0 0 0 2 2
 bssBANK0 1 20 20 2B 1
 config 0 8007 1000E 5 2
-# %NOTES Section
+# NOTES Section
 # This section contains data of all the note-psects.  The beginning of the section
-# is indicated by %NOTES. The first line indicates the name and decimal
+# is indicated by NOTES. The first line indicates the name and decimal
 # byte-length of the first note-psect, e.g.
 #   $codecov_info_hdr 16
 # Each line that follows contains the byte-data of the psect in hexadecimal as a

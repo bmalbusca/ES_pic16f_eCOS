@@ -1,7 +1,7 @@
 
 
 Microchip MPLAB XC8 Assembler V2.10 build 88905656 
-                                                                                               Sun Dec  8 23:19:11 2019
+                                                                                               Mon Dec  9 15:29:57 2019
 
 Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1 
      1                           	processor	16F18875
@@ -3956,17 +3956,17 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   3942  00EC                     	ds	2
   3943  00EE                     _EUSART_OverrunErrorHandler:	
   3944  00EE                     	ds	2
-  3945  0016                     _LATAbits	set	22
-  3946  0014                     _TRISD	set	20
-  3947  0013                     _TRISC	set	19
-  3948  0012                     _TRISB	set	18
-  3949  0011                     _TRISA	set	17
-  3950  0015                     _TRISE	set	21
-  3951  0018                     _LATC	set	24
-  3952  0017                     _LATB	set	23
-  3953  0016                     _LATA	set	22
-  3954  0019                     _LATD	set	25
-  3955  001A                     _LATE	set	26
+  3945  0014                     _TRISD	set	20
+  3946  0013                     _TRISC	set	19
+  3947  0012                     _TRISB	set	18
+  3948  0011                     _TRISA	set	17
+  3949  0015                     _TRISE	set	21
+  3950  0018                     _LATC	set	24
+  3951  0017                     _LATB	set	23
+  3952  0016                     _LATA	set	22
+  3953  0019                     _LATD	set	25
+  3954  001A                     _LATE	set	26
+  3955  0016                     _LATAbits	set	22
   3956  000B                     _INTCONbits	set	11
   3957  0119                     _RC1REG	set	281
   3958  011D                     _RC1STAbits	set	285
@@ -3977,8 +3977,8 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   3963  011E                     _TX1STA	set	286
   3964  011D                     _RC1STA	set	285
   3965  011F                     _BAUD1CON	set	287
-  3966  070F                     _PIR3bits	set	1807
-  3967  0719                     _PIE3bits	set	1817
+  3966  0719                     _PIE3bits	set	1817
+  3967  070F                     _PIR3bits	set	1807
   3968  079B                     _PMD5	set	1947
   3969  079A                     _PMD4	set	1946
   3970  0799                     _PMD3	set	1945
@@ -4164,126 +4164,126 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   4150                           
   4151                           	psect	cstackCOMMON
   4152  0070                     __pcstackCOMMON:	
-  4153  0070                     ?_EUSART_Receive_ISR:	
-  4154  0070                     ?_EUSART_Transmit_ISR:	
+  4153  0070                     ?_SYSTEM_Initialize:	
+  4154  0070                     ?_EUSART_is_rx_ready:	
   4155                           ; 1 bytes @ 0x0
   4156                           
-  4157  0070                     ??_EUSART_Transmit_ISR:	
+  4157  0070                     ?_read_UART:	
   4158                           ; 1 bytes @ 0x0
   4159                           
-  4160  0070                     ?_EUSART_DefaultFramingErrorHandler:	
+  4160  0070                     ?_dump_UART_FIFO:	
   4161                           ; 1 bytes @ 0x0
   4162                           
-  4163  0070                     ??_EUSART_DefaultFramingErrorHandler:	
+  4163  0070                     ?_EUSART_Read:	
   4164                           ; 1 bytes @ 0x0
   4165                           
-  4166  0070                     ?_EUSART_DefaultOverrunErrorHandler:	
+  4166  0070                     ?_EUSART_is_tx_ready:	
   4167                           ; 1 bytes @ 0x0
   4168                           
-  4169  0070                     ??_EUSART_DefaultOverrunErrorHandler:	
+  4169  0070                     ?_EUSART_Write:	
   4170                           ; 1 bytes @ 0x0
   4171                           
-  4172  0070                     ?_EUSART_DefaultErrorHandler:	
+  4172  0070                     ?_write_UART:	
   4173                           ; 1 bytes @ 0x0
   4174                           
-  4175  0070                     ?_EUSART_RxDataHandler:	
+  4175  0070                     ?_EUSART_is_tx_done:	
   4176                           ; 1 bytes @ 0x0
   4177                           
-  4178  0070                     ??_EUSART_RxDataHandler:	
+  4178  0070                     ?_EUSART_Receive_ISR:	
   4179                           ; 1 bytes @ 0x0
   4180                           
-  4181  0070                     ?_PMD_Initialize:	
+  4181  0070                     ?_EUSART_Transmit_ISR:	
   4182                           ; 1 bytes @ 0x0
   4183                           
-  4184  0070                     ?_PIN_MANAGER_Initialize:	
+  4184  0070                     ??_EUSART_Transmit_ISR:	
   4185                           ; 1 bytes @ 0x0
   4186                           
-  4187  0070                     ?_OSCILLATOR_Initialize:	
+  4187  0070                     ?_EUSART_DefaultFramingErrorHandler:	
   4188                           ; 1 bytes @ 0x0
   4189                           
-  4190  0070                     ?_read_UART:	
+  4190  0070                     ??_EUSART_DefaultFramingErrorHandler:	
   4191                           ; 1 bytes @ 0x0
   4192                           
-  4193  0070                     ?_dump_UART_FIFO:	
+  4193  0070                     ?_EUSART_DefaultOverrunErrorHandler:	
   4194                           ; 1 bytes @ 0x0
   4195                           
-  4196  0070                     ?_write_UART:	
+  4196  0070                     ??_EUSART_DefaultOverrunErrorHandler:	
   4197                           ; 1 bytes @ 0x0
   4198                           
-  4199  0070                     ?_EUSART_Initialize:	
+  4199  0070                     ?_EUSART_DefaultErrorHandler:	
   4200                           ; 1 bytes @ 0x0
   4201                           
-  4202  0070                     ?_EUSART_is_tx_ready:	
+  4202  0070                     ?_EUSART_RxDataHandler:	
   4203                           ; 1 bytes @ 0x0
   4204                           
-  4205  0070                     ?_EUSART_is_rx_ready:	
+  4205  0070                     ??_EUSART_RxDataHandler:	
   4206                           ; 1 bytes @ 0x0
   4207                           
-  4208  0070                     ?_EUSART_is_tx_done:	
+  4208  0070                     ?_PMD_Initialize:	
   4209                           ; 1 bytes @ 0x0
   4210                           
-  4211  0070                     ?_EUSART_Read:	
+  4211  0070                     ?_PIN_MANAGER_Initialize:	
   4212                           ; 1 bytes @ 0x0
   4213                           
-  4214  0070                     ?_EUSART_Write:	
+  4214  0070                     ?_OSCILLATOR_Initialize:	
   4215                           ; 1 bytes @ 0x0
   4216                           
-  4217  0070                     ?_INTERRUPT_InterruptManager:	
+  4217  0070                     ?_main:	
   4218                           ; 1 bytes @ 0x0
   4219                           
-  4220  0070                     ?_SYSTEM_Initialize:	
+  4220  0070                     ?_EUSART_Initialize:	
   4221                           ; 1 bytes @ 0x0
   4222                           
-  4223  0070                     ?_main:	
+  4223  0070                     ?_INTERRUPT_InterruptManager:	
   4224                           ; 1 bytes @ 0x0
   4225                           
   4226                           
   4227                           ; 1 bytes @ 0x0
   4228  0070                     	ds	1
-  4229  0071                     ?_EUSART_SetRxInterruptHandler:	
-  4230  0071                     ??_EUSART_Receive_ISR:	
+  4229  0071                     ??_EUSART_is_rx_ready:	
+  4230  0071                     ?_memset:	
   4231                           ; 1 bytes @ 0x1
   4232                           
-  4233  0071                     ?_EUSART_SetTxInterruptHandler:	
+  4233  0071                     ??_EUSART_Read:	
   4234                           ; 1 bytes @ 0x1
   4235                           
-  4236  0071                     ?_EUSART_SetFramingErrorHandler:	
+  4236  0071                     ??_EUSART_is_tx_ready:	
   4237                           ; 1 bytes @ 0x1
   4238                           
-  4239  0071                     ?_EUSART_SetOverrunErrorHandler:	
+  4239  0071                     ??_EUSART_Write:	
   4240                           ; 1 bytes @ 0x1
   4241                           
-  4242  0071                     ?_EUSART_SetErrorHandler:	
+  4242  0071                     ??_EUSART_is_tx_done:	
   4243                           ; 1 bytes @ 0x1
   4244                           
-  4245  0071                     ??_EUSART_DefaultErrorHandler:	
+  4245  0071                     ?_EUSART_SetRxInterruptHandler:	
   4246                           ; 1 bytes @ 0x1
   4247                           
-  4248  0071                     ??_PMD_Initialize:	
+  4248  0071                     ??_EUSART_Receive_ISR:	
   4249                           ; 1 bytes @ 0x1
   4250                           
-  4251  0071                     ??_PIN_MANAGER_Initialize:	
+  4251  0071                     ?_EUSART_SetTxInterruptHandler:	
   4252                           ; 1 bytes @ 0x1
   4253                           
-  4254  0071                     ??_OSCILLATOR_Initialize:	
+  4254  0071                     ?_EUSART_SetFramingErrorHandler:	
   4255                           ; 1 bytes @ 0x1
   4256                           
-  4257  0071                     ?_memset:	
+  4257  0071                     ?_EUSART_SetOverrunErrorHandler:	
   4258                           ; 1 bytes @ 0x1
   4259                           
-  4260  0071                     ??_EUSART_is_tx_ready:	
+  4260  0071                     ?_EUSART_SetErrorHandler:	
   4261                           ; 1 bytes @ 0x1
   4262                           
-  4263  0071                     ??_EUSART_is_rx_ready:	
+  4263  0071                     ??_EUSART_DefaultErrorHandler:	
   4264                           ; 1 bytes @ 0x1
   4265                           
-  4266  0071                     ??_EUSART_is_tx_done:	
+  4266  0071                     ??_PMD_Initialize:	
   4267                           ; 1 bytes @ 0x1
   4268                           
-  4269  0071                     ??_EUSART_Read:	
+  4269  0071                     ??_PIN_MANAGER_Initialize:	
   4270                           ; 1 bytes @ 0x1
   4271                           
-  4272  0071                     ??_EUSART_Write:	
+  4272  0071                     ??_OSCILLATOR_Initialize:	
   4273                           ; 1 bytes @ 0x1
   4274                           
   4275  0071                     ??_INTERRUPT_InterruptManager:	
@@ -4317,26 +4317,26 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   4303                           
   4304                           ; 1 bytes @ 0x2
   4305  0072                     	ds	1
-  4306  0073                     ??_EUSART_SetRxInterruptHandler:	
-  4307  0073                     ??_EUSART_SetTxInterruptHandler:	
+  4306  0073                     ??_read_UART:	
+  4307  0073                     ??_dump_UART_FIFO:	
   4308                           ; 1 bytes @ 0x3
   4309                           
-  4310  0073                     ??_EUSART_SetFramingErrorHandler:	
+  4310  0073                     ??_write_UART:	
   4311                           ; 1 bytes @ 0x3
   4312                           
-  4313  0073                     ??_EUSART_SetOverrunErrorHandler:	
+  4313  0073                     ??_EUSART_SetRxInterruptHandler:	
   4314                           ; 1 bytes @ 0x3
   4315                           
-  4316  0073                     ??_EUSART_SetErrorHandler:	
+  4316  0073                     ??_EUSART_SetTxInterruptHandler:	
   4317                           ; 1 bytes @ 0x3
   4318                           
-  4319  0073                     ??_read_UART:	
+  4319  0073                     ??_EUSART_SetFramingErrorHandler:	
   4320                           ; 1 bytes @ 0x3
   4321                           
-  4322  0073                     ??_dump_UART_FIFO:	
+  4322  0073                     ??_EUSART_SetOverrunErrorHandler:	
   4323                           ; 1 bytes @ 0x3
   4324                           
-  4325  0073                     ??_write_UART:	
+  4325  0073                     ??_EUSART_SetErrorHandler:	
   4326                           ; 1 bytes @ 0x3
   4327                           
   4328  0073                     ??_EUSART_Initialize:	
@@ -4354,8 +4354,8 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   4340                           
   4341                           ; 2 bytes @ 0x3
   4342  0073                     	ds	1
-  4343  0074                     ?_write_str_UART:	
-  4344  0074                     ??_SYSTEM_Initialize:	
+  4343  0074                     ??_SYSTEM_Initialize:	
+  4344  0074                     ?_write_str_UART:	
   4345                           ; 1 bytes @ 0x4
   4346                           
   4347  0074                     write_str_UART@size:	
@@ -4468,14 +4468,14 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   4449                           
   4450                           ;psect for function _main
   4451  0153                     _main:	
-  4452  0153                     l2109:	
+  4452  0153                     l2103:	
   4453                           ;incstack = 0
   4454                           ; Regs used in _main: [wreg-fsr1h+status,2+status,0+pclath+cstack]
   4455                           
   4456                           
   4457                           ;main.c: 65:     SYSTEM_Initialize();
   4458  0153  3183  236F  3181   	fcall	_SYSTEM_Initialize
-  4459  0156                     l2111:	
+  4459  0156                     l2105:	
   4460                           
   4461                           ;main.c: 66:     char str_send[16] = "hello mike\n\r";
   4462  0156  30DC               	movlw	low main@F12637
@@ -4494,7 +4494,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   4475  0162  001A               	movwi fsr0++
   4476  0163  0BC2               	decfsz	??_main,f
   4477  0164  2961               	goto	u1250
-  4478  0165                     l2113:	
+  4478  0165                     l2107:	
   4479                           
   4480                           ;main.c: 67:     char str_rc[16]="\0";
   4481  0165  30B6               	movlw	low main@str_rc
@@ -4508,7 +4508,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   4489  016C  001E               	movwi fsr1++
   4490  016D  0BC2               	decfsz	??_main,f
   4491  016E  296C               	goto	u1260
-  4492  016F                     l2115:	
+  4492  016F                     l2109:	
   4493                           
   4494                           ;main.c: 69:     uint8_t cmd_hex[6] = {0x00,0x00,0x00,0x00,0x00,0x00};
   4495  016F  30B0               	movlw	low main@cmd_hex
@@ -4522,17 +4522,17 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   4503  0176  001E               	movwi fsr1++
   4504  0177  0BC2               	decfsz	??_main,f
   4505  0178  2976               	goto	u1270
-  4506  0179                     l2117:	
+  4506  0179                     l2111:	
   4507                           
   4508                           ;main.c: 70:     char val;;main.c: 72:     (INTCONbits.GIE = 1);
   4509  0179  178B               	bsf	11,7	;volatile
-  4510  017A                     l2119:	
+  4510  017A                     l2113:	
   4511                           
   4512                           ;main.c: 73:     (INTCONbits.PEIE = 1);
   4513  017A  170B               	bsf	11,6	;volatile
-  4514  017B                     l2121:	
+  4514  017B                     l2115:	
   4515  017B  1396               	bcf	22,7	;volatile
-  4516  017C                     l2123:	
+  4516  017C                     l2117:	
   4517                           
   4518                           ;main.c: 81:     {;main.c: 84:         if(PIR3bits.RCIF || EUSART_is_rx_ready()){
   4519  017C  002E               	movlb	14	; select bank14
@@ -4540,18 +4540,18 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   4521  017E  2980               	goto	u1281
   4522  017F  2981               	goto	u1280
   4523  0180                     u1281:	
-  4524  0180  2989               	goto	l2127
+  4524  0180  2989               	goto	l2121
   4525  0181                     u1280:	
-  4526  0181                     l2125:	
+  4526  0181                     l2119:	
   4527  0181  3183  2385  3181   	fcall	_EUSART_is_rx_ready
   4528  0184  3A00               	xorlw	0
   4529  0185  1903               	skipnz
   4530  0186  2988               	goto	u1291
   4531  0187  2989               	goto	u1290
   4532  0188                     u1291:	
-  4533  0188  2993               	goto	l2129
+  4533  0188  2993               	goto	l2123
   4534  0189                     u1290:	
-  4535  0189                     l2127:	
+  4535  0189                     l2121:	
   4536                           
   4537                           ;main.c: 86:              read_str_UART(str_rc, 16);
   4538  0189  3010               	movlw	16
@@ -4563,8 +4563,8 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   4544  018F  3180  20F3  3181   	fcall	_read_str_UART
   4545                           
   4546                           ;main.c: 90:         }
-  4547  0192  297C               	goto	l2123
-  4548  0193                     l2129:	
+  4547  0192  297C               	goto	l2117
+  4548  0193                     l2123:	
   4549                           
   4550                           ;main.c: 93:             _delay((unsigned long)((1000)*(1000000/4000.0)));
   4551  0193  3002               	movlw	2
@@ -4581,7 +4581,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   4562  019D  0BC3               	decfsz	??_main+1,f
   4563  019E  2999               	goto	u1377
   4564  019F  3200               	nop2
-  4565  01A0  297C               	goto	l2123
+  4565  01A0  297C               	goto	l2117
   4566  01A1  3180  282B         	ljmp	start
   4567  01A3                     __end_of_main:	
   4568                           
@@ -4734,7 +4734,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   4709  0135  2937               	goto	u1231
   4710  0136  2938               	goto	u1230
   4711  0137                     u1231:	
-  4712  0137  293F               	goto	l364
+  4712  0137  293F               	goto	l74
   4713  0138                     u1230:	
   4714  0138                     l2093:	
   4715  0138  303F               	movlw	63
@@ -4746,7 +4746,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   4721  013D  2917               	goto	l2083
   4722  013E                     u1240:	
   4723  013E  293F               	goto	l2095
-  4724  013F                     l364:	
+  4724  013F                     l74:	
   4725  013F                     l2095:	
   4726                           
   4727                           ;uartusr.c: 49:     dump_UART_FIFO();
@@ -4771,7 +4771,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   4746  014D  00F4               	movwf	write_str_UART@size
   4747  014E  0840               	movf	read_str_UART@buff,w
   4748  014F  3182  22AF  3180   	fcall	_write_str_UART
-  4749  0152                     l365:	
+  4749  0152                     l75:	
   4750  0152  0008               	return
   4751  0153                     __end_of_read_str_UART:	
   4752                           
@@ -4825,13 +4825,13 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   4795                           ; Regs used in _write_str_UART: [wreg+fsr1l+fsr1h+status,2+status,0+pclath+cstack]
   4796                           ;write_str_UART@string stored from wreg
   4797  02AF  00F6               	movwf	write_str_UART@string
-  4798  02B0                     l2053:	
+  4798  02B0                     l1965:	
   4799                           
   4800                           ;uartusr.c: 119:     uint8_t id;;uartusr.c: 121:     for(id=0; id <= size && string[id]!
       +                          = '\0'; ++id){
   4801  02B0  01F7               	clrf	write_str_UART@id
-  4802  02B1  2AC0               	goto	l2059
-  4803  02B2                     l2055:	
+  4802  02B1  2AC0               	goto	l1971
+  4803  02B2                     l1967:	
   4804                           
   4805                           ;uartusr.c: 123:         write_UART(string[id]);
   4806  02B2  0877               	movf	write_str_UART@id,w
@@ -4842,23 +4842,23 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   4811  02B7  0187               	clrf	7
   4812  02B8  0801               	movf	1,w
   4813  02B9  3183  2326  3182   	fcall	_write_UART
-  4814  02BC                     l2057:	
+  4814  02BC                     l1969:	
   4815                           
   4816                           ;uartusr.c: 124:     }
   4817  02BC  3001               	movlw	1
   4818  02BD  00F5               	movwf	??_write_str_UART
   4819  02BE  0875               	movf	??_write_str_UART,w
   4820  02BF  07F7               	addwf	write_str_UART@id,f
-  4821  02C0                     l2059:	
+  4821  02C0                     l1971:	
   4822  02C0  0877               	movf	write_str_UART@id,w
   4823  02C1  0274               	subwf	write_str_UART@size,w
   4824  02C2  1C03               	skipc
   4825  02C3  2AC5               	goto	u1191
   4826  02C4  2AC6               	goto	u1190
   4827  02C5                     u1191:	
-  4828  02C5  2AD1               	goto	l403
+  4828  02C5  2AD1               	goto	l113
   4829  02C6                     u1190:	
-  4830  02C6                     l2061:	
+  4830  02C6                     l1973:	
   4831  02C6  0877               	movf	write_str_UART@id,w
   4832  02C7  0776               	addwf	write_str_UART@string,w
   4833  02C8  00F5               	movwf	??_write_str_UART
@@ -4870,9 +4870,9 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   4839  02CE  2AD0               	goto	u1201
   4840  02CF  2AD1               	goto	u1200
   4841  02D0                     u1201:	
-  4842  02D0  2AB2               	goto	l2055
+  4842  02D0  2AB2               	goto	l1967
   4843  02D1                     u1200:	
-  4844  02D1                     l403:	
+  4844  02D1                     l113:	
   4845  02D1  0008               	return
   4846  02D2                     __end_of_write_str_UART:	
   4847                           
@@ -4923,8 +4923,8 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   4887                           ; Regs used in _write_UART: [wreg+fsr1l+fsr1h+status,2+status,0+pclath+cstack]
   4888                           ;write_UART@rxData stored from wreg
   4889  0326  00F3               	movwf	write_UART@rxData
-  4890  0327                     l1893:	
-  4891  0327                     l1895:	
+  4890  0327                     l1883:	
+  4891  0327                     l1885:	
   4892                           ;uartusr.c: 132:    while(!EUSART_is_tx_done());
   4893                           
   4894  0327  3183  23C9  3183   	fcall	_EUSART_is_tx_done
@@ -4933,9 +4933,9 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   4897  032C  2B2E               	goto	u1081
   4898  032D  2B2F               	goto	u1080
   4899  032E                     u1081:	
-  4900  032E  2B27               	goto	l1895
+  4900  032E  2B27               	goto	l1885
   4901  032F                     u1080:	
-  4902  032F                     l1897:	
+  4902  032F                     l1887:	
   4903                           
   4904                           ;uartusr.c: 134:    if(EUSART_is_tx_ready())
   4905  032F  3183  237C  3183   	fcall	_EUSART_is_tx_ready
@@ -4944,14 +4944,14 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   4908  0334  2B36               	goto	u1091
   4909  0335  2B37               	goto	u1090
   4910  0336                     u1091:	
-  4911  0336  2B3B               	goto	l410
+  4911  0336  2B3B               	goto	l120
   4912  0337                     u1090:	
-  4913  0337                     l1899:	
+  4913  0337                     l1889:	
   4914                           
   4915                           ;uartusr.c: 135:     {;uartusr.c: 137:         EUSART_Write(rxData);
   4916  0337  0873               	movf	write_UART@rxData,w
   4917  0338  3182  225B  3183   	fcall	_EUSART_Write
-  4918  033B                     l410:	
+  4918  033B                     l120:	
   4919  033B  0008               	return
   4920  033C                     __end_of_write_UART:	
   4921                           
@@ -5013,7 +5013,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   4972  0383                     u990:	
   4973  0383  3000               	movlw	0
   4974  0384                     u1000:	
-  4975  0384                     l78:	
+  4975  0384                     l198:	
   4976  0384  0008               	return
   4977  0385                     __end_of_EUSART_is_tx_ready:	
   4978                           
@@ -5057,7 +5057,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   5011                           
   5012                           ;psect for function _EUSART_is_tx_done
   5013  03C9                     _EUSART_is_tx_done:	
-  5014  03C9                     l1835:	
+  5014  03C9                     l1853:	
   5015                           ;incstack = 0
   5016                           ; Regs used in _EUSART_is_tx_done: [wreg+status,2+status,0]
   5017                           
@@ -5066,7 +5066,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   5020  03C9  0022               	movlb	2	; select bank2
   5021  03CA  0C1E               	rrf	30,w	;volatile
   5022  03CB  3901               	andlw	1
-  5023  03CC                     l84:	
+  5023  03CC                     l204:	
   5024  03CC  0008               	return
   5025  03CD                     __end_of_EUSART_is_tx_done:	
   5026                           
@@ -5104,8 +5104,8 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   5053 ;;		Nothing
   5054 ;; This function is called by:
   5055 ;;		_write_UART
-  5056 ;;		_putch
-  5057 ;;		_echo
+  5056 ;;		_echo
+  5057 ;;		_putch
   5058 ;; This function uses a non-reentrant model
   5059 ;;
   5060                           
@@ -5117,8 +5117,8 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   5066                           ; Regs used in _EUSART_Write: [wreg+fsr1l+fsr1h+status,2+status,0]
   5067                           ;EUSART_Write@txData stored from wreg
   5068  025B  00F2               	movwf	EUSART_Write@txData
-  5069  025C                     l1839:	
-  5070  025C                     l1841:	
+  5069  025C                     l1835:	
+  5070  025C                     l1837:	
   5071                           ;mcc_generated_files/eusart.c: 173: void EUSART_Write(uint8_t txData);mcc_generated_file
       +                          s/eusart.c: 174: {;mcc_generated_files/eusart.c: 175:     while(0 == eusartTxBufferRemai
       +                          ning)
@@ -5131,9 +5131,9 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   5078  025F  2A61               	goto	u1011
   5079  0260  2A62               	goto	u1010
   5080  0261                     u1011:	
-  5081  0261  2A5C               	goto	l1841
+  5081  0261  2A5C               	goto	l1837
   5082  0262                     u1010:	
-  5083  0262                     l99:	
+  5083  0262                     l219:	
   5084                           
   5085                           ;mcc_generated_files/eusart.c: 179:     if(0 == PIE3bits.TXIE)
   5086  0262  002E               	movlb	14	; select bank14
@@ -5141,9 +5141,9 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   5088  0264  2A66               	goto	u1021
   5089  0265  2A67               	goto	u1020
   5090  0266                     u1021:	
-  5091  0266  2A6B               	goto	l100
+  5091  0266  2A6B               	goto	l220
   5092  0267                     u1020:	
-  5093  0267                     l1843:	
+  5093  0267                     l1839:	
   5094                           
   5095                           ;mcc_generated_files/eusart.c: 180:     {;mcc_generated_files/eusart.c: 181:         TX1
       +                          REG = txData;
@@ -5152,15 +5152,15 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   5098  0269  009A               	movwf	26	;volatile
   5099                           
   5100                           ;mcc_generated_files/eusart.c: 182:     }
-  5101  026A  2A82               	goto	l1855
-  5102  026B                     l100:	
+  5101  026A  2A82               	goto	l1851
+  5102  026B                     l220:	
   5103                           ;mcc_generated_files/eusart.c: 183:     else
   5104                           
   5105                           
   5106                           ;mcc_generated_files/eusart.c: 184:     {;mcc_generated_files/eusart.c: 185:         PIE
       +                          3bits.TXIE = 0;
   5107  026B  1219               	bcf	25,4	;volatile
-  5108  026C                     l1845:	
+  5108  026C                     l1841:	
   5109                           
   5110                           ;mcc_generated_files/eusart.c: 186:         eusartTxBuffer[eusartTxHead++] = txData;
   5111  026C  0872               	movf	EUSART_Write@txData,w
@@ -5172,12 +5172,12 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   5117  0272  0187               	clrf	7
   5118  0273  0871               	movf	??_EUSART_Write,w
   5119  0274  0081               	movwf	1
-  5120  0275                     l1847:	
+  5120  0275                     l1843:	
   5121  0275  3001               	movlw	1
   5122  0276  00F1               	movwf	??_EUSART_Write
   5123  0277  0871               	movf	??_EUSART_Write,w
   5124  0278  07BB               	addwf	_eusartTxHead,f	;volatile
-  5125  0279                     l1849:	
+  5125  0279                     l1845:	
   5126                           
   5127                           ;mcc_generated_files/eusart.c: 187:         if(sizeof(eusartTxBuffer) <= eusartTxHead)
   5128  0279  3008               	movlw	8
@@ -5186,24 +5186,24 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   5131  027C  2A7E               	goto	u1031
   5132  027D  2A7F               	goto	u1030
   5133  027E                     u1031:	
-  5134  027E  2A80               	goto	l1853
+  5134  027E  2A80               	goto	l1849
   5135  027F                     u1030:	
-  5136  027F                     l1851:	
+  5136  027F                     l1847:	
   5137                           
   5138                           ;mcc_generated_files/eusart.c: 188:         {;mcc_generated_files/eusart.c: 189:        
       +                               eusartTxHead = 0;
   5139  027F  01BB               	clrf	_eusartTxHead	;volatile
-  5140  0280                     l1853:	
+  5140  0280                     l1849:	
   5141                           
   5142                           ;mcc_generated_files/eusart.c: 191:         eusartTxBufferRemaining--;
   5143  0280  3001               	movlw	1
   5144  0281  02CA               	subwf	_eusartTxBufferRemaining,f	;volatile
-  5145  0282                     l1855:	
+  5145  0282                     l1851:	
   5146                           
   5147                           ;mcc_generated_files/eusart.c: 193:     PIE3bits.TXIE = 1;
   5148  0282  002E               	movlb	14	; select bank14
   5149  0283  1619               	bsf	25,4	;volatile
-  5150  0284                     l103:	
+  5150  0284                     l223:	
   5151  0284  0008               	return
   5152  0285                     __end_of_EUSART_Write:	
   5153                           
@@ -5248,14 +5248,14 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   5187                           
   5188                           ;psect for function _read_UART
   5189  034E                     _read_UART:	
-  5190  034E                     l2035:	
+  5190  034E                     l1947:	
   5191                           ;incstack = 0
   5192                           ; Regs used in _read_UART: [wreg+fsr1l+fsr1h+status,2+status,0+pclath+cstack]
   5193                           
   5194                           
   5195                           ;uartusr.c: 101:     while(!EUSART_is_rx_ready()){
-  5196  034E  2B53               	goto	l2039
-  5197  034F                     l2037:	
+  5196  034E  2B53               	goto	l1951
+  5197  034F                     l1949:	
   5198                           
   5199                           ;uartusr.c: 102:                _delay((unsigned long)((1)*(1000000/4000.0)));
   5200  034F  3053               	movlw	83
@@ -5263,7 +5263,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   5202  0350  0B89               	decfsz	9,f
   5203  0351  2B50               	goto	u1387
   5204  0352  0000               	nop
-  5205  0353                     l2039:	
+  5205  0353                     l1951:	
   5206                           
   5207                           ;uartusr.c: 101:     while(!EUSART_is_rx_ready()){
   5208  0353  3183  2385  3183   	fcall	_EUSART_is_rx_ready
@@ -5272,13 +5272,13 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   5211  0358  2B5A               	goto	u1151
   5212  0359  2B5B               	goto	u1150
   5213  035A                     u1151:	
-  5214  035A  2B4F               	goto	l2037
+  5214  035A  2B4F               	goto	l1949
   5215  035B                     u1150:	
-  5216  035B                     l2041:	
+  5216  035B                     l1953:	
   5217                           
   5218                           ;uartusr.c: 105:    return EUSART_Read();
   5219  035B  3182  2285  3183   	fcall	_EUSART_Read
-  5220  035E                     l389:	
+  5220  035E                     l99:	
   5221  035E  0008               	return
   5222  035F                     __end_of_read_UART:	
   5223                           
@@ -5286,7 +5286,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   5225  004F                     __ptext8:	
   5226 ;; *************** function _memset *****************
   5227 ;; Defined at:
-  5228 ;;		line 4 in file "/opt/microchip/xc8/v2.10/pic/sources/c99/common/memset.c"
+  5228 ;;		line 4 in file "/Applications/microchip/xc8/v2.10/pic/sources/c99/common/memset.c"
   5229 ;; Parameters:    Size  Location     Type
   5230 ;;  dest            1    wreg     PTR void 
   5231 ;;		 -> main@str_rc(16), 
@@ -5334,22 +5334,22 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   5268                           ; Regs used in _memset: [wreg+fsr1l+fsr1h+status,2+status,0]
   5269                           ;memset@dest stored from wreg
   5270  004F  00F7               	movwf	memset@dest
-  5271  0050                     l1989:	
+  5271  0050                     l1901:	
   5272  0050  0877               	movf	memset@dest,w
   5273  0051  00F5               	movwf	??_memset
   5274  0052  0875               	movf	??_memset,w
   5275  0053  00FA               	movwf	memset@s
-  5276  0054                     l1991:	
+  5276  0054                     l1903:	
   5277  0054  0873               	movf	memset@n,w
   5278  0055  0474               	iorwf	memset@n+1,w
   5279  0056  1D03               	btfss	3,2
   5280  0057  2859               	goto	u1101
   5281  0058  285A               	goto	u1100
   5282  0059                     u1101:	
-  5283  0059  285B               	goto	l1995
+  5283  0059  285B               	goto	l1907
   5284  005A                     u1100:	
   5285  005A  28F2               	goto	l1016
-  5286  005B                     l1995:	
+  5286  005B                     l1907:	
   5287  005B  0871               	movf	memset@c,w
   5288  005C  00F5               	movwf	??_memset
   5289  005D  087A               	movf	memset@s,w
@@ -5357,7 +5357,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   5291  005F  0187               	clrf	7
   5292  0060  0875               	movf	??_memset,w
   5293  0061  0081               	movwf	1
-  5294  0062                     l1997:	
+  5294  0062                     l1909:	
   5295  0062  0871               	movf	memset@c,w
   5296  0063  00F5               	movwf	??_memset
   5297  0064  0873               	movf	memset@n,w
@@ -5369,7 +5369,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   5303  006A  0187               	clrf	7
   5304  006B  0875               	movf	??_memset,w
   5305  006C  0081               	movwf	1
-  5306  006D                     l1999:	
+  5306  006D                     l1911:	
   5307  006D  3000               	movlw	0
   5308  006E  0274               	subwf	memset@n+1,w
   5309  006F  3003               	movlw	3
@@ -5379,10 +5379,10 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   5313  0073  2875               	goto	u1111
   5314  0074  2876               	goto	u1110
   5315  0075                     u1111:	
-  5316  0075  2877               	goto	l2003
+  5316  0075  2877               	goto	l1915
   5317  0076                     u1110:	
   5318  0076  28F2               	goto	l1016
-  5319  0077                     l2003:	
+  5319  0077                     l1915:	
   5320  0077  0871               	movf	memset@c,w
   5321  0078  00F5               	movwf	??_memset
   5322  0079  0A7A               	incf	memset@s,w
@@ -5390,7 +5390,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   5324  007B  0187               	clrf	7
   5325  007C  0875               	movf	??_memset,w
   5326  007D  0081               	movwf	1
-  5327  007E                     l2005:	
+  5327  007E                     l1917:	
   5328  007E  0871               	movf	memset@c,w
   5329  007F  00F5               	movwf	??_memset
   5330  0080  087A               	movf	memset@s,w
@@ -5399,7 +5399,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   5333  0083  0187               	clrf	7
   5334  0084  0875               	movf	??_memset,w
   5335  0085  0081               	movwf	1
-  5336  0086                     l2007:	
+  5336  0086                     l1919:	
   5337  0086  0871               	movf	memset@c,w
   5338  0087  00F5               	movwf	??_memset
   5339  0088  0873               	movf	memset@n,w
@@ -5411,7 +5411,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   5345  008E  0187               	clrf	7
   5346  008F  0875               	movf	??_memset,w
   5347  0090  0081               	movwf	1
-  5348  0091                     l2009:	
+  5348  0091                     l1921:	
   5349  0091  0871               	movf	memset@c,w
   5350  0092  00F5               	movwf	??_memset
   5351  0093  0873               	movf	memset@n,w
@@ -5423,7 +5423,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   5357  0099  0187               	clrf	7
   5358  009A  0875               	movf	??_memset,w
   5359  009B  0081               	movwf	1
-  5360  009C                     l2011:	
+  5360  009C                     l1923:	
   5361  009C  3000               	movlw	0
   5362  009D  0274               	subwf	memset@n+1,w
   5363  009E  3007               	movlw	7
@@ -5433,10 +5433,10 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   5367  00A2  28A4               	goto	u1121
   5368  00A3  28A5               	goto	u1120
   5369  00A4                     u1121:	
-  5370  00A4  28A6               	goto	l2015
+  5370  00A4  28A6               	goto	l1927
   5371  00A5                     u1120:	
   5372  00A5  28F2               	goto	l1016
-  5373  00A6                     l2015:	
+  5373  00A6                     l1927:	
   5374  00A6  0871               	movf	memset@c,w
   5375  00A7  00F5               	movwf	??_memset
   5376  00A8  087A               	movf	memset@s,w
@@ -5456,7 +5456,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   5390  00B6  0187               	clrf	7
   5391  00B7  0875               	movf	??_memset,w
   5392  00B8  0081               	movwf	1
-  5393  00B9                     l2017:	
+  5393  00B9                     l1929:	
   5394  00B9  3000               	movlw	0
   5395  00BA  0274               	subwf	memset@n+1,w
   5396  00BB  3009               	movlw	9
@@ -5466,10 +5466,10 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   5400  00BF  28C1               	goto	u1131
   5401  00C0  28C2               	goto	u1130
   5402  00C1                     u1131:	
-  5403  00C1  28C3               	goto	l2021
+  5403  00C1  28C3               	goto	l1933
   5404  00C2                     u1130:	
   5405  00C2  28F2               	goto	l1016
-  5406  00C3                     l2021:	
+  5406  00C3                     l1933:	
   5407  00C3  097A               	comf	memset@s,w
   5408  00C4  00F5               	movwf	??_memset
   5409  00C5  097B               	comf	memset@s+1,w
@@ -5487,18 +5487,18 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   5421  00D1  00F5               	movwf	??_memset
   5422  00D2  0875               	movf	??_memset,w
   5423  00D3  07FA               	addwf	memset@s,f
-  5424  00D4                     l2023:	
+  5424  00D4                     l1935:	
   5425  00D4  0878               	movf	memset@k,w
   5426  00D5  02F3               	subwf	memset@n,f
   5427  00D6  0879               	movf	memset@k+1,w
   5428  00D7  3BF4               	subwfb	memset@n+1,f
-  5429  00D8                     l2025:	
+  5429  00D8                     l1937:	
   5430  00D8  30FC               	movlw	252
   5431  00D9  05F3               	andwf	memset@n,f
   5432  00DA  30FF               	movlw	255
   5433  00DB  05F4               	andwf	memset@n+1,f
-  5434  00DC  28EC               	goto	l2033
-  5435  00DD                     l2027:	
+  5434  00DC  28EC               	goto	l1945
+  5435  00DD                     l1939:	
   5436  00DD  0871               	movf	memset@c,w
   5437  00DE  00F5               	movwf	??_memset
   5438  00DF  087A               	movf	memset@s,w
@@ -5506,24 +5506,24 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   5440  00E1  0187               	clrf	7
   5441  00E2  0875               	movf	??_memset,w
   5442  00E3  0081               	movwf	1
-  5443  00E4                     l2029:	
+  5443  00E4                     l1941:	
   5444  00E4  3001               	movlw	1
   5445  00E5  02F3               	subwf	memset@n,f
   5446  00E6  3000               	movlw	0
   5447  00E7  3BF4               	subwfb	memset@n+1,f
-  5448  00E8                     l2031:	
+  5448  00E8                     l1943:	
   5449  00E8  3001               	movlw	1
   5450  00E9  00F5               	movwf	??_memset
   5451  00EA  0875               	movf	??_memset,w
   5452  00EB  07FA               	addwf	memset@s,f
-  5453  00EC                     l2033:	
+  5453  00EC                     l1945:	
   5454  00EC  0873               	movf	memset@n,w
   5455  00ED  0474               	iorwf	memset@n+1,w
   5456  00EE  1D03               	btfss	3,2
   5457  00EF  28F1               	goto	u1141
   5458  00F0  28F2               	goto	u1140
   5459  00F1                     u1141:	
-  5460  00F1  28DD               	goto	l2027
+  5460  00F1  28DD               	goto	l1939
   5461  00F2                     u1140:	
   5462  00F2                     l1016:	
   5463  00F2  0008               	return
@@ -5570,7 +5570,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   5499                           
   5500                           ;psect for function _dump_UART_FIFO
   5501  030E                     _dump_UART_FIFO:	
-  5502  030E                     l2045:	
+  5502  030E                     l1957:	
   5503                           ;incstack = 0
   5504                           ; Regs used in _dump_UART_FIFO: [wreg+fsr1l+fsr1h+status,2+status,0+pclath+cstack]
   5505                           
@@ -5583,29 +5583,29 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   5511  0313  2B15               	goto	u1161
   5512  0314  2B16               	goto	u1160
   5513  0315                     u1161:	
-  5514  0315  2B25               	goto	l395
+  5514  0315  2B25               	goto	l105
   5515  0316                     u1160:	
-  5516  0316                     l2047:	
+  5516  0316                     l1959:	
   5517  0316  303A               	movlw	58
   5518  0317  0673               	xorwf	dump_UART_FIFO@dump,w
   5519  0318  1D03               	btfss	3,2
   5520  0319  2B1B               	goto	u1171
   5521  031A  2B1C               	goto	u1170
   5522  031B                     u1171:	
-  5523  031B  2B22               	goto	l2051
+  5523  031B  2B22               	goto	l1963
   5524  031C                     u1170:	
-  5525  031C                     l2049:	
+  5525  031C                     l1961:	
   5526  031C  303F               	movlw	63
   5527  031D  0673               	xorwf	dump_UART_FIFO@dump,w
   5528  031E  1903               	btfsc	3,2
   5529  031F  2B21               	goto	u1181
   5530  0320  2B22               	goto	u1180
   5531  0321                     u1181:	
-  5532  0321  2B25               	goto	l395
+  5532  0321  2B25               	goto	l105
   5533  0322                     u1180:	
-  5534  0322                     l2051:	
+  5534  0322                     l1963:	
   5535  0322  3182  2285  3183   	fcall	_EUSART_Read
-  5536  0325                     l395:	
+  5536  0325                     l105:	
   5537  0325  0008               	return
   5538  0326                     __end_of_dump_UART_FIFO:	
   5539                           
@@ -5652,7 +5652,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   5575                           
   5576                           ;psect for function _EUSART_is_rx_ready
   5577  0385                     _EUSART_is_rx_ready:	
-  5578  0385                     l1867:	
+  5578  0385                     l1857:	
   5579                           ;incstack = 0
   5580                           ; Regs used in _EUSART_is_rx_ready: [wreg+status,2+status,0]
   5581                           
@@ -5669,7 +5669,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   5592  038C                     u1040:	
   5593  038C  3000               	movlw	0
   5594  038D                     u1050:	
-  5595  038D                     l81:	
+  5595  038D                     l201:	
   5596  038D  0008               	return
   5597  038E                     __end_of_EUSART_is_rx_ready:	
   5598                           
@@ -5708,19 +5708,19 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   5626 ;; This function is called by:
   5627 ;;		_read_UART
   5628 ;;		_dump_UART_FIFO
-  5629 ;;		_getch
-  5630 ;;		_echo
+  5629 ;;		_echo
+  5630 ;;		_getch
   5631 ;; This function uses a non-reentrant model
   5632 ;;
   5633                           
   5634                           
   5635                           ;psect for function _EUSART_Read
   5636  0285                     _EUSART_Read:	
-  5637  0285                     l1871:	
+  5637  0285                     l1861:	
   5638                           ;incstack = 0
   5639                           ; Regs used in _EUSART_Read: [wreg+fsr1l+fsr1h+status,2+status,0]
   5640                           
-  5641  0285                     l1873:	
+  5641  0285                     l1863:	
   5642                           ;mcc_generated_files/eusart.c: 155:     while(0 == eusartRxCount)
   5643                           
   5644                           
@@ -5731,9 +5731,9 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   5649  0288  2A8A               	goto	u1061
   5650  0289  2A8B               	goto	u1060
   5651  028A                     u1061:	
-  5652  028A  2A85               	goto	l1873
+  5652  028A  2A85               	goto	l1863
   5653  028B                     u1060:	
-  5654  028B                     l1875:	
+  5654  028B                     l1865:	
   5655                           
   5656                           ;mcc_generated_files/eusart.c: 159:     eusartRxLastError = eusartRxStatusBuffer[eusartR
       +                          xTail];
@@ -5755,12 +5755,12 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   5672  0298  00F1               	movwf	??_EUSART_Read
   5673  0299  0871               	movf	??_EUSART_Read,w
   5674  029A  00F2               	movwf	EUSART_Read@readValue
-  5675  029B                     l1877:	
+  5675  029B                     l1867:	
   5676  029B  3001               	movlw	1
   5677  029C  00F1               	movwf	??_EUSART_Read
   5678  029D  0871               	movf	??_EUSART_Read,w
   5679  029E  07FB               	addwf	_eusartRxTail,f	;volatile
-  5680  029F                     l1879:	
+  5680  029F                     l1869:	
   5681                           
   5682                           ;mcc_generated_files/eusart.c: 162:     if(sizeof(eusartRxBuffer) <= eusartRxTail)
   5683  029F  3008               	movlw	8
@@ -5769,34 +5769,34 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   5686  02A2  2AA4               	goto	u1071
   5687  02A3  2AA5               	goto	u1070
   5688  02A4                     u1071:	
-  5689  02A4  2AA6               	goto	l1883
+  5689  02A4  2AA6               	goto	l1873
   5690  02A5                     u1070:	
-  5691  02A5                     l1881:	
+  5691  02A5                     l1871:	
   5692                           
   5693                           ;mcc_generated_files/eusart.c: 163:     {;mcc_generated_files/eusart.c: 164:         eus
       +                          artRxTail = 0;
   5694  02A5  01FB               	clrf	_eusartRxTail	;volatile
-  5695  02A6                     l1883:	
+  5695  02A6                     l1873:	
   5696                           
   5697                           ;mcc_generated_files/eusart.c: 166:     PIE3bits.RCIE = 0;
   5698  02A6  002E               	movlb	14	; select bank14
   5699  02A7  1299               	bcf	25,5	;volatile
-  5700  02A8                     l1885:	
+  5700  02A8                     l1875:	
   5701                           
   5702                           ;mcc_generated_files/eusart.c: 167:     eusartRxCount--;
   5703  02A8  3001               	movlw	1
   5704  02A9  0020               	movlb	0	; select bank0
   5705  02AA  02B9               	subwf	_eusartRxCount,f	;volatile
-  5706  02AB                     l1887:	
+  5706  02AB                     l1877:	
   5707                           
   5708                           ;mcc_generated_files/eusart.c: 168:     PIE3bits.RCIE = 1;
   5709  02AB  002E               	movlb	14	; select bank14
   5710  02AC  1699               	bsf	25,5	;volatile
-  5711  02AD                     l1889:	
+  5711  02AD                     l1879:	
   5712                           
   5713                           ;mcc_generated_files/eusart.c: 170:     return readValue;
   5714  02AD  0872               	movf	EUSART_Read@readValue,w
-  5715  02AE                     l94:	
+  5715  02AE                     l214:	
   5716  02AE  0008               	return
   5717  02AF                     __end_of_EUSART_Read:	
   5718                           
@@ -5862,7 +5862,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   5773                           
   5774                           ;mcc_generated_files/mcc.c: 55:     EUSART_Initialize();
   5775  0378  3181  21E3  3183   	fcall	_EUSART_Initialize
-  5776  037B                     l204:	
+  5776  037B                     l324:	
   5777  037B  0008               	return
   5778  037C                     __end_of_SYSTEM_Initialize:	
   5779                           
@@ -5906,7 +5906,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   5812                           
   5813                           ;psect for function _PMD_Initialize
   5814  0397                     _PMD_Initialize:	
-  5815  0397                     l1933:	
+  5815  0397                     l2007:	
   5816                           ;incstack = 0
   5817                           ; Regs used in _PMD_Initialize: [status,2]
   5818                           
@@ -5929,7 +5929,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   5835                           
   5836                           ;mcc_generated_files/mcc.c: 85:     PMD5 = 0x00;
   5837  039D  019B               	clrf	27	;volatile
-  5838  039E                     l210:	
+  5838  039E                     l330:	
   5839  039E  0008               	return
   5840  039F                     __end_of_PMD_Initialize:	
   5841                           
@@ -5973,7 +5973,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   5874                           
   5875                           ;psect for function _PIN_MANAGER_Initialize
   5876  01A3                     _PIN_MANAGER_Initialize:	
-  5877  01A3                     l1935:	
+  5877  01A3                     l2009:	
   5878                           ;incstack = 0
   5879                           ; Regs used in _PIN_MANAGER_Initialize: [wreg+status,2]
   5880                           
@@ -5993,53 +5993,53 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   5894                           
   5895                           ;mcc_generated_files/pin_manager.c: 64:     LATC = 0x00;
   5896  01A8  0198               	clrf	24	;volatile
-  5897  01A9                     l1937:	
+  5897  01A9                     l2011:	
   5898                           
   5899                           ;mcc_generated_files/pin_manager.c: 69:     TRISE = 0x07;
   5900  01A9  3007               	movlw	7
   5901  01AA  0095               	movwf	21	;volatile
-  5902  01AB                     l1939:	
+  5902  01AB                     l2013:	
   5903                           
   5904                           ;mcc_generated_files/pin_manager.c: 70:     TRISA = 0x7F;
   5905  01AB  307F               	movlw	127
   5906  01AC  0091               	movwf	17	;volatile
-  5907  01AD                     l1941:	
+  5907  01AD                     l2015:	
   5908                           
   5909                           ;mcc_generated_files/pin_manager.c: 71:     TRISB = 0xFF;
   5910  01AD  30FF               	movlw	255
   5911  01AE  0092               	movwf	18	;volatile
-  5912  01AF                     l1943:	
+  5912  01AF                     l2017:	
   5913                           
   5914                           ;mcc_generated_files/pin_manager.c: 72:     TRISC = 0xBF;
   5915  01AF  30BF               	movlw	191
   5916  01B0  0093               	movwf	19	;volatile
-  5917  01B1                     l1945:	
+  5917  01B1                     l2019:	
   5918                           
   5919                           ;mcc_generated_files/pin_manager.c: 73:     TRISD = 0xFF;
   5920  01B1  30FF               	movlw	255
   5921  01B2  0094               	movwf	20	;volatile
-  5922  01B3                     l1947:	
+  5922  01B3                     l2021:	
   5923                           
   5924                           ;mcc_generated_files/pin_manager.c: 78:     ANSELD = 0xFF;
   5925  01B3  30FF               	movlw	255
   5926  01B4  003E               	movlb	30	; select bank30
   5927  01B5  00D9               	movwf	89	;volatile
-  5928  01B6                     l1949:	
+  5928  01B6                     l2023:	
   5929                           
   5930                           ;mcc_generated_files/pin_manager.c: 79:     ANSELC = 0x7F;
   5931  01B6  307F               	movlw	127
   5932  01B7  00CE               	movwf	78	;volatile
-  5933  01B8                     l1951:	
+  5933  01B8                     l2025:	
   5934                           
   5935                           ;mcc_generated_files/pin_manager.c: 80:     ANSELB = 0xFF;
   5936  01B8  30FF               	movlw	255
   5937  01B9  00C3               	movwf	67	;volatile
-  5938  01BA                     l1953:	
+  5938  01BA                     l2027:	
   5939                           
   5940                           ;mcc_generated_files/pin_manager.c: 81:     ANSELE = 0x07;
   5941  01BA  3007               	movlw	7
   5942  01BB  00E4               	movwf	100	;volatile
-  5943  01BC                     l1955:	
+  5943  01BC                     l2029:	
   5944                           
   5945                           ;mcc_generated_files/pin_manager.c: 82:     ANSELA = 0xFF;
   5946  01BC  30FF               	movlw	255
@@ -6074,69 +6074,69 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   5975                           
   5976                           ;mcc_generated_files/pin_manager.c: 100:     ODCOND = 0x00;
   5977  01C7  01DB               	clrf	91	;volatile
-  5978  01C8                     l1957:	
+  5978  01C8                     l2031:	
   5979                           
   5980                           ;mcc_generated_files/pin_manager.c: 105:     SLRCONA = 0xFF;
   5981  01C8  30FF               	movlw	255
   5982  01C9  00BB               	movwf	59	;volatile
-  5983  01CA                     l1959:	
+  5983  01CA                     l2033:	
   5984                           
   5985                           ;mcc_generated_files/pin_manager.c: 106:     SLRCONB = 0xFF;
   5986  01CA  30FF               	movlw	255
   5987  01CB  00C6               	movwf	70	;volatile
-  5988  01CC                     l1961:	
+  5988  01CC                     l2035:	
   5989                           
   5990                           ;mcc_generated_files/pin_manager.c: 107:     SLRCONC = 0xFF;
   5991  01CC  30FF               	movlw	255
   5992  01CD  00D1               	movwf	81	;volatile
-  5993  01CE                     l1963:	
+  5993  01CE                     l2037:	
   5994                           
   5995                           ;mcc_generated_files/pin_manager.c: 108:     SLRCOND = 0xFF;
   5996  01CE  30FF               	movlw	255
   5997  01CF  00DC               	movwf	92	;volatile
-  5998  01D0                     l1965:	
+  5998  01D0                     l2039:	
   5999                           
   6000                           ;mcc_generated_files/pin_manager.c: 109:     SLRCONE = 0x07;
   6001  01D0  3007               	movlw	7
   6002  01D1  00E7               	movwf	103	;volatile
-  6003  01D2                     l1967:	
+  6003  01D2                     l2041:	
   6004                           
   6005                           ;mcc_generated_files/pin_manager.c: 114:     INLVLA = 0xFF;
   6006  01D2  30FF               	movlw	255
   6007  01D3  00BC               	movwf	60	;volatile
-  6008  01D4                     l1969:	
+  6008  01D4                     l2043:	
   6009                           
   6010                           ;mcc_generated_files/pin_manager.c: 115:     INLVLB = 0xFF;
   6011  01D4  30FF               	movlw	255
   6012  01D5  00C7               	movwf	71	;volatile
-  6013  01D6                     l1971:	
+  6013  01D6                     l2045:	
   6014                           
   6015                           ;mcc_generated_files/pin_manager.c: 116:     INLVLC = 0xFF;
   6016  01D6  30FF               	movlw	255
   6017  01D7  00D2               	movwf	82	;volatile
-  6018  01D8                     l1973:	
+  6018  01D8                     l2047:	
   6019                           
   6020                           ;mcc_generated_files/pin_manager.c: 117:     INLVLD = 0xFF;
   6021  01D8  30FF               	movlw	255
   6022  01D9  00DD               	movwf	93	;volatile
-  6023  01DA                     l1975:	
+  6023  01DA                     l2049:	
   6024                           
   6025                           ;mcc_generated_files/pin_manager.c: 118:     INLVLE = 0x07;
   6026  01DA  3007               	movlw	7
   6027  01DB  00E8               	movwf	104	;volatile
-  6028  01DC                     l1977:	
+  6028  01DC                     l2051:	
   6029                           
   6030                           ;mcc_generated_files/pin_manager.c: 127:     RXPPS = 0x17;
   6031  01DC  3017               	movlw	23
   6032  01DD  003D               	movlb	29	; select bank29
   6033  01DE  00CB               	movwf	75	;volatile
-  6034  01DF                     l1979:	
+  6034  01DF                     l2053:	
   6035                           
   6036                           ;mcc_generated_files/pin_manager.c: 128:     RC6PPS = 0x10;
   6037  01DF  3010               	movlw	16
   6038  01E0  003E               	movlb	30	; select bank30
   6039  01E1  00A6               	movwf	38	;volatile
-  6040  01E2                     l287:	
+  6040  01E2                     l407:	
   6041  01E2  0008               	return
   6042  01E3                     __end_of_PIN_MANAGER_Initialize:	
   6043                           
@@ -6180,7 +6180,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   6076                           
   6077                           ;psect for function _OSCILLATOR_Initialize
   6078  038E                     _OSCILLATOR_Initialize:	
-  6079  038E                     l1981:	
+  6079  038E                     l2055:	
   6080                           ;incstack = 0
   6081                           ; Regs used in _OSCILLATOR_Initialize: [wreg+status,2]
   6082                           
@@ -6189,11 +6189,11 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   6085  038E  3062               	movlw	98
   6086  038F  0031               	movlb	17	; select bank17
   6087  0390  008D               	movwf	13	;volatile
-  6088  0391                     l1983:	
+  6088  0391                     l2057:	
   6089                           
   6090                           ;mcc_generated_files/mcc.c: 63:     OSCCON3 = 0x00;
   6091  0391  018F               	clrf	15	;volatile
-  6092  0392                     l1985:	
+  6092  0392                     l2059:	
   6093                           
   6094                           ;mcc_generated_files/mcc.c: 65:     OSCEN = 0x00;
   6095  0392  0191               	clrf	17	;volatile
@@ -6201,11 +6201,11 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   6097                           ;mcc_generated_files/mcc.c: 67:     OSCFRQ = 0x02;
   6098  0393  3002               	movlw	2
   6099  0394  0093               	movwf	19	;volatile
-  6100  0395                     l1987:	
+  6100  0395                     l2061:	
   6101                           
   6102                           ;mcc_generated_files/mcc.c: 69:     OSCTUNE = 0x00;
   6103  0395  0192               	clrf	18	;volatile
-  6104  0396                     l207:	
+  6104  0396                     l327:	
   6105  0396  0008               	return
   6106  0397                     __end_of_OSCILLATOR_Initialize:	
   6107                           
@@ -6253,7 +6253,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   6144                           
   6145                           ;psect for function _EUSART_Initialize
   6146  01E3                     _EUSART_Initialize:	
-  6147  01E3                     l1901:	
+  6147  01E3                     l1975:	
   6148                           ;incstack = 0
   6149                           ; Regs used in _EUSART_Initialize: [wreg+status,2+status,0+pclath+cstack]
   6150                           
@@ -6261,7 +6261,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   6152                           ;mcc_generated_files/eusart.c: 91:     PIE3bits.RCIE = 0;
   6153  01E3  002E               	movlb	14	; select bank14
   6154  01E4  1299               	bcf	25,5	;volatile
-  6155  01E5                     l1903:	
+  6155  01E5                     l1977:	
   6156                           
   6157                           ;mcc_generated_files/eusart.c: 92:     EUSART_SetRxInterruptHandler(EUSART_Receive_ISR);
   6158  01E5  3022               	movlw	low _EUSART_Receive_ISR
@@ -6269,7 +6269,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   6160  01E7  3002               	movlw	high _EUSART_Receive_ISR
   6161  01E8  00F2               	movwf	EUSART_SetRxInterruptHandler@interruptHandler+1
   6162  01E9  3183  23B1  3181   	fcall	_EUSART_SetRxInterruptHandler
-  6163  01EC                     l1905:	
+  6163  01EC                     l1979:	
   6164                           
   6165                           ;mcc_generated_files/eusart.c: 93:     PIE3bits.TXIE = 0;
   6166  01EC  002E               	movlb	14	; select bank14
@@ -6282,32 +6282,32 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   6172  01F0  3002               	movlw	high _EUSART_Transmit_ISR
   6173  01F1  00F2               	movwf	EUSART_SetTxInterruptHandler@interruptHandler+1
   6174  01F2  3183  23AB  3181   	fcall	_EUSART_SetTxInterruptHandler
-  6175  01F5                     l1907:	
+  6175  01F5                     l1981:	
   6176                           
   6177                           ;mcc_generated_files/eusart.c: 98:     BAUD1CON = 0x0B;
   6178  01F5  300B               	movlw	11
   6179  01F6  0022               	movlb	2	; select bank2
   6180  01F7  009F               	movwf	31	;volatile
-  6181  01F8                     l1909:	
+  6181  01F8                     l1983:	
   6182                           
   6183                           ;mcc_generated_files/eusart.c: 101:     RC1STA = 0x90;
   6184  01F8  3090               	movlw	144
   6185  01F9  009D               	movwf	29	;volatile
-  6186  01FA                     l1911:	
+  6186  01FA                     l1985:	
   6187                           
   6188                           ;mcc_generated_files/eusart.c: 104:     TX1STA = 0x24;
   6189  01FA  3024               	movlw	36
   6190  01FB  009E               	movwf	30	;volatile
-  6191  01FC                     l1913:	
+  6191  01FC                     l1987:	
   6192                           
   6193                           ;mcc_generated_files/eusart.c: 107:     SP1BRGL = 0x19;
   6194  01FC  3019               	movlw	25
   6195  01FD  009B               	movwf	27	;volatile
-  6196  01FE                     l1915:	
+  6196  01FE                     l1989:	
   6197                           
   6198                           ;mcc_generated_files/eusart.c: 110:     SP1BRGH = 0x00;
   6199  01FE  019C               	clrf	28	;volatile
-  6200  01FF                     l1917:	
+  6200  01FF                     l1991:	
   6201                           
   6202                           ;mcc_generated_files/eusart.c: 113:     EUSART_SetFramingErrorHandler(EUSART_DefaultFram
       +                          ingErrorHandler);
@@ -6316,7 +6316,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   6205  0201  3003               	movlw	high _EUSART_DefaultFramingErrorHandler
   6206  0202  00F2               	movwf	EUSART_SetFramingErrorHandler@interruptHandler+1
   6207  0203  3183  23BD  3181   	fcall	_EUSART_SetFramingErrorHandler
-  6208  0206                     l1919:	
+  6208  0206                     l1993:	
   6209                           
   6210                           ;mcc_generated_files/eusart.c: 114:     EUSART_SetOverrunErrorHandler(EUSART_DefaultOver
       +                          runErrorHandler);
@@ -6325,7 +6325,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   6213  0208  3003               	movlw	high _EUSART_DefaultOverrunErrorHandler
   6214  0209  00F2               	movwf	EUSART_SetOverrunErrorHandler@interruptHandler+1
   6215  020A  3183  23B7  3181   	fcall	_EUSART_SetOverrunErrorHandler
-  6216  020D                     l1921:	
+  6216  020D                     l1995:	
   6217                           
   6218                           ;mcc_generated_files/eusart.c: 115:     EUSART_SetErrorHandler(EUSART_DefaultErrorHandle
       +                          r);
@@ -6344,7 +6344,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   6231                           
   6232                           ;mcc_generated_files/eusart.c: 121:     eusartTxTail = 0;
   6233  0217  01BA               	clrf	_eusartTxTail	;volatile
-  6234  0218                     l1923:	
+  6234  0218                     l1997:	
   6235                           
   6236                           ;mcc_generated_files/eusart.c: 122:     eusartTxBufferRemaining = sizeof(eusartTxBuffer)
       +                          ;
@@ -6352,24 +6352,24 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   6238  0219  00F3               	movwf	??_EUSART_Initialize
   6239  021A  0873               	movf	??_EUSART_Initialize,w
   6240  021B  00CA               	movwf	_eusartTxBufferRemaining	;volatile
-  6241  021C                     l1925:	
+  6241  021C                     l1999:	
   6242                           
   6243                           ;mcc_generated_files/eusart.c: 124:     eusartRxHead = 0;
   6244  021C  01FC               	clrf	_eusartRxHead	;volatile
-  6245  021D                     l1927:	
+  6245  021D                     l2001:	
   6246                           
   6247                           ;mcc_generated_files/eusart.c: 125:     eusartRxTail = 0;
   6248  021D  01FB               	clrf	_eusartRxTail	;volatile
-  6249  021E                     l1929:	
+  6249  021E                     l2003:	
   6250                           
   6251                           ;mcc_generated_files/eusart.c: 126:     eusartRxCount = 0;
   6252  021E  01B9               	clrf	_eusartRxCount	;volatile
-  6253  021F                     l1931:	
+  6253  021F                     l2005:	
   6254                           
   6255                           ;mcc_generated_files/eusart.c: 129:     PIE3bits.RCIE = 1;
   6256  021F  002E               	movlb	14	; select bank14
   6257  0220  1699               	bsf	25,5	;volatile
-  6258  0221                     l75:	
+  6258  0221                     l195:	
   6259  0221  0008               	return
   6260  0222                     __end_of_EUSART_Initialize:	
   6261                           
@@ -6414,7 +6414,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   6295                           
   6296                           ;psect for function _EUSART_SetTxInterruptHandler
   6297  03AB                     _EUSART_SetTxInterruptHandler:	
-  6298  03AB                     l1859:	
+  6298  03AB                     l1893:	
   6299                           ;incstack = 0
   6300                           ; Regs used in _EUSART_SetTxInterruptHandler: [wreg]
   6301                           
@@ -6426,7 +6426,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   6306  03AD  00C9               	movwf	_EUSART_TxDefaultInterruptHandler+1
   6307  03AE  0871               	movf	EUSART_SetTxInterruptHandler@interruptHandler,w
   6308  03AF  00C8               	movwf	_EUSART_TxDefaultInterruptHandler
-  6309  03B0                     l147:	
+  6309  03B0                     l267:	
   6310  03B0  0008               	return
   6311  03B1                     __end_of_EUSART_SetTxInterruptHandler:	
   6312                           
@@ -6471,7 +6471,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   6346                           
   6347                           ;psect for function _EUSART_SetRxInterruptHandler
   6348  03B1                     _EUSART_SetRxInterruptHandler:	
-  6349  03B1                     l1857:	
+  6349  03B1                     l1891:	
   6350                           ;incstack = 0
   6351                           ; Regs used in _EUSART_SetRxInterruptHandler: [wreg]
   6352                           
@@ -6483,7 +6483,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   6357  03B3  00C7               	movwf	_EUSART_RxDefaultInterruptHandler+1
   6358  03B4  0871               	movf	EUSART_SetRxInterruptHandler@interruptHandler,w
   6359  03B5  00C6               	movwf	_EUSART_RxDefaultInterruptHandler
-  6360  03B6                     l150:	
+  6360  03B6                     l270:	
   6361  03B6  0008               	return
   6362  03B7                     __end_of_EUSART_SetRxInterruptHandler:	
   6363                           
@@ -6528,7 +6528,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   6397                           
   6398                           ;psect for function _EUSART_SetOverrunErrorHandler
   6399  03B7                     _EUSART_SetOverrunErrorHandler:	
-  6400  03B7                     l1863:	
+  6400  03B7                     l1897:	
   6401                           ;incstack = 0
   6402                           ; Regs used in _EUSART_SetOverrunErrorHandler: [wreg]
   6403                           
@@ -6539,7 +6539,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   6408  03B9  00EF               	movwf	(_EUSART_OverrunErrorHandler+1)^(0+128)
   6409  03BA  0871               	movf	EUSART_SetOverrunErrorHandler@interruptHandler,w
   6410  03BB  00EE               	movwf	_EUSART_OverrunErrorHandler^(0+128)
-  6411  03BC                     l141:	
+  6411  03BC                     l261:	
   6412  03BC  0008               	return
   6413  03BD                     __end_of_EUSART_SetOverrunErrorHandler:	
   6414                           
@@ -6584,7 +6584,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   6448                           
   6449                           ;psect for function _EUSART_SetFramingErrorHandler
   6450  03BD                     _EUSART_SetFramingErrorHandler:	
-  6451  03BD                     l1861:	
+  6451  03BD                     l1895:	
   6452                           ;incstack = 0
   6453                           ; Regs used in _EUSART_SetFramingErrorHandler: [wreg]
   6454                           
@@ -6595,7 +6595,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   6459  03BF  00C5               	movwf	_EUSART_FramingErrorHandler+1
   6460  03C0  0871               	movf	EUSART_SetFramingErrorHandler@interruptHandler,w
   6461  03C1  00C4               	movwf	_EUSART_FramingErrorHandler
-  6462  03C2                     l138:	
+  6462  03C2                     l258:	
   6463  03C2  0008               	return
   6464  03C3                     __end_of_EUSART_SetFramingErrorHandler:	
   6465                           
@@ -6640,7 +6640,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   6499                           
   6500                           ;psect for function _EUSART_SetErrorHandler
   6501  03C3                     _EUSART_SetErrorHandler:	
-  6502  03C3                     l1865:	
+  6502  03C3                     l1899:	
   6503                           ;incstack = 0
   6504                           ; Regs used in _EUSART_SetErrorHandler: [wreg]
   6505                           
@@ -6651,7 +6651,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   6510  03C5  00ED               	movwf	(_EUSART_ErrorHandler+1)^(0+128)
   6511  03C6  0871               	movf	EUSART_SetErrorHandler@interruptHandler,w
   6512  03C7  00EC               	movwf	_EUSART_ErrorHandler^(0+128)
-  6513  03C8                     l144:	
+  6513  03C8                     l264:	
   6514  03C8  0008               	return
   6515  03C9                     __end_of_EUSART_SetErrorHandler:	
   6516                           
@@ -6702,34 +6702,34 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   6556                           ; Regs used in _INTERRUPT_InterruptManager: [wreg+fsr1l+fsr1h+status,2+status,0+pclath+c
       +                          stack]
   6557  0005  3180               	pagesel	$
-  6558  0006                     i1l1761:	
+  6558  0006                     i1l1819:	
   6559                           
   6560                           ;mcc_generated_files/interrupt_manager.c: 55:     if(INTCONbits.PEIE == 1)
   6561  0006  1F0B               	btfss	11,6	;volatile
-  6562  0007  2809               	goto	u82_21
-  6563  0008  280A               	goto	u82_20
-  6564  0009                     u82_21:	
-  6565  0009  2829               	goto	i1l171
-  6566  000A                     u82_20:	
-  6567  000A                     i1l1763:	
+  6562  0007  2809               	goto	u94_21
+  6563  0008  280A               	goto	u94_20
+  6564  0009                     u94_21:	
+  6565  0009  2829               	goto	i1l291
+  6566  000A                     u94_20:	
+  6567  000A                     i1l1821:	
   6568                           
   6569                           ;mcc_generated_files/interrupt_manager.c: 56:     {;mcc_generated_files/interrupt_manage
       +                          r.c: 57:         if(PIE3bits.TXIE == 1 && PIR3bits.TXIF == 1)
   6570  000A  002E               	movlb	14	; select bank14
   6571  000B  1E19               	btfss	25,4	;volatile
-  6572  000C  280E               	goto	u83_21
-  6573  000D  280F               	goto	u83_20
-  6574  000E                     u83_21:	
-  6575  000E  281A               	goto	i1l166
-  6576  000F                     u83_20:	
-  6577  000F                     i1l1765:	
+  6572  000C  280E               	goto	u95_21
+  6573  000D  280F               	goto	u95_20
+  6574  000E                     u95_21:	
+  6575  000E  281A               	goto	i1l286
+  6576  000F                     u95_20:	
+  6577  000F                     i1l1823:	
   6578  000F  1E0F               	btfss	15,4	;volatile
-  6579  0010  2812               	goto	u84_21
-  6580  0011  2813               	goto	u84_20
-  6581  0012                     u84_21:	
-  6582  0012  281A               	goto	i1l166
-  6583  0013                     u84_20:	
-  6584  0013                     i1l1767:	
+  6579  0010  2812               	goto	u96_21
+  6580  0011  2813               	goto	u96_20
+  6581  0012                     u96_21:	
+  6582  0012  281A               	goto	i1l286
+  6583  0013                     u96_20:	
+  6584  0013                     i1l1825:	
   6585                           
   6586                           ;mcc_generated_files/interrupt_manager.c: 58:         {;mcc_generated_files/interrupt_ma
       +                          nager.c: 59:             EUSART_TxDefaultInterruptHandler();
@@ -6741,25 +6741,25 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   6592  0018  3180               	pagesel	$
   6593                           
   6594                           ;mcc_generated_files/interrupt_manager.c: 60:         }
-  6595  0019  2829               	goto	i1l171
-  6596  001A                     i1l166:	
+  6595  0019  2829               	goto	i1l291
+  6596  001A                     i1l286:	
   6597                           ;mcc_generated_files/interrupt_manager.c: 61:         else if(PIE3bits.RCIE == 1 && PIR3
       +                          bits.RCIF == 1)
   6598                           
   6599  001A  1E99               	btfss	25,5	;volatile
-  6600  001B  281D               	goto	u85_21
-  6601  001C  281E               	goto	u85_20
-  6602  001D                     u85_21:	
-  6603  001D  2829               	goto	i1l167
-  6604  001E                     u85_20:	
-  6605  001E                     i1l1769:	
+  6600  001B  281D               	goto	u97_21
+  6601  001C  281E               	goto	u97_20
+  6602  001D                     u97_21:	
+  6603  001D  2829               	goto	i1l287
+  6604  001E                     u97_20:	
+  6605  001E                     i1l1827:	
   6606  001E  1E8F               	btfss	15,5	;volatile
-  6607  001F  2821               	goto	u86_21
-  6608  0020  2822               	goto	u86_20
-  6609  0021                     u86_21:	
-  6610  0021  2829               	goto	i1l167
-  6611  0022                     u86_20:	
-  6612  0022                     i1l1771:	
+  6607  001F  2821               	goto	u98_21
+  6608  0020  2822               	goto	u98_20
+  6609  0021                     u98_21:	
+  6610  0021  2829               	goto	i1l287
+  6611  0022                     u98_20:	
+  6612  0022                     i1l1829:	
   6613                           
   6614                           ;mcc_generated_files/interrupt_manager.c: 62:         {;mcc_generated_files/interrupt_ma
       +                          nager.c: 63:             EUSART_RxDefaultInterruptHandler();
@@ -6771,9 +6771,9 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   6620  0027  3180               	pagesel	$
   6621                           
   6622                           ;mcc_generated_files/interrupt_manager.c: 64:         }
-  6623  0028  2829               	goto	i1l171
-  6624  0029                     i1l167:	
-  6625  0029                     i1l171:	
+  6623  0028  2829               	goto	i1l291
+  6624  0029                     i1l287:	
+  6625  0029                     i1l291:	
   6626                           ;mcc_generated_files/interrupt_manager.c: 69:     }
   6627                           
   6628  0029  107E               	bcf	int$flags,0	;clear compiler interrupt flag (level 1)
@@ -6820,7 +6820,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   6664                           
   6665                           ;psect for function _EUSART_Transmit_ISR
   6666  02D2                     _EUSART_Transmit_ISR:	
-  6667  02D2                     i1l1683:	
+  6667  02D2                     i1l1723:	
   6668                           ;incstack = 0
   6669                           ; Regs used in _EUSART_Transmit_ISR: [wreg+fsr1l+fsr1h+status,2+status,0]
   6670                           
@@ -6831,12 +6831,12 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   6674  02D3  0020               	movlb	0	; select bank0
   6675  02D4  024A               	subwf	_eusartTxBufferRemaining,w	;volatile
   6676  02D5  1803               	skipnc
-  6677  02D6  2AD8               	goto	u73_21
-  6678  02D7  2AD9               	goto	u73_20
-  6679  02D8                     u73_21:	
-  6680  02D8  2AF1               	goto	i1l112
-  6681  02D9                     u73_20:	
-  6682  02D9                     i1l1685:	
+  6677  02D6  2AD8               	goto	u77_21
+  6678  02D7  2AD9               	goto	u77_20
+  6679  02D8                     u77_21:	
+  6680  02D8  2AF1               	goto	i1l232
+  6681  02D9                     u77_20:	
+  6682  02D9                     i1l1725:	
   6683                           
   6684                           ;mcc_generated_files/eusart.c: 211:     {;mcc_generated_files/eusart.c: 212:         TX1
       +                          REG = eusartTxBuffer[eusartTxTail++];
@@ -6847,29 +6847,29 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   6689  02DD  0801               	movf	1,w
   6690  02DE  0022               	movlb	2	; select bank2
   6691  02DF  009A               	movwf	26	;volatile
-  6692  02E0                     i1l1687:	
+  6692  02E0                     i1l1727:	
   6693  02E0  3001               	movlw	1
   6694  02E1  00F0               	movwf	??_EUSART_Transmit_ISR
   6695  02E2  0870               	movf	??_EUSART_Transmit_ISR,w
   6696  02E3  0020               	movlb	0	; select bank0
   6697  02E4  07BA               	addwf	_eusartTxTail,f	;volatile
-  6698  02E5                     i1l1689:	
+  6698  02E5                     i1l1729:	
   6699                           
   6700                           ;mcc_generated_files/eusart.c: 213:         if(sizeof(eusartTxBuffer) <= eusartTxTail)
   6701  02E5  3008               	movlw	8
   6702  02E6  023A               	subwf	_eusartTxTail,w	;volatile
   6703  02E7  1C03               	skipc
-  6704  02E8  2AEA               	goto	u74_21
-  6705  02E9  2AEB               	goto	u74_20
-  6706  02EA                     u74_21:	
-  6707  02EA  2AEC               	goto	i1l1693
-  6708  02EB                     u74_20:	
-  6709  02EB                     i1l1691:	
+  6704  02E8  2AEA               	goto	u78_21
+  6705  02E9  2AEB               	goto	u78_20
+  6706  02EA                     u78_21:	
+  6707  02EA  2AEC               	goto	i1l1733
+  6708  02EB                     u78_20:	
+  6709  02EB                     i1l1731:	
   6710                           
   6711                           ;mcc_generated_files/eusart.c: 214:         {;mcc_generated_files/eusart.c: 215:        
       +                               eusartTxTail = 0;
   6712  02EB  01BA               	clrf	_eusartTxTail	;volatile
-  6713  02EC                     i1l1693:	
+  6713  02EC                     i1l1733:	
   6714                           
   6715                           ;mcc_generated_files/eusart.c: 217:         eusartTxBufferRemaining++;
   6716  02EC  3001               	movlw	1
@@ -6878,8 +6878,8 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   6719  02EF  07CA               	addwf	_eusartTxBufferRemaining,f	;volatile
   6720                           
   6721                           ;mcc_generated_files/eusart.c: 218:     }
-  6722  02F0  2AF3               	goto	i1l115
-  6723  02F1                     i1l112:	
+  6722  02F0  2AF3               	goto	i1l235
+  6723  02F1                     i1l232:	
   6724                           ;mcc_generated_files/eusart.c: 219:     else
   6725                           
   6726                           
@@ -6887,7 +6887,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
       +                          3bits.TXIE = 0;
   6728  02F1  002E               	movlb	14	; select bank14
   6729  02F2  1219               	bcf	25,4	;volatile
-  6730  02F3                     i1l115:	
+  6730  02F3                     i1l235:	
   6731  02F3  0008               	return
   6732  02F4                     __end_of_EUSART_Transmit_ISR:	
   6733                           
@@ -6936,7 +6936,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   6771                           
   6772                           ;psect for function _EUSART_Receive_ISR
   6773  0222                     _EUSART_Receive_ISR:	
-  6774  0222                     i1l1695:	
+  6774  0222                     i1l1735:	
   6775                           ;incstack = 0
   6776                           ; Regs used in _EUSART_Receive_ISR: [wreg+fsr1l+fsr1h+status,2+status,0+pclath+cstack]
   6777                           
@@ -6947,17 +6947,17 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   6782  0224  0086               	movwf	6
   6783  0225  0187               	clrf	7
   6784  0226  0181               	clrf	1
-  6785  0227                     i1l1697:	
+  6785  0227                     i1l1737:	
   6786                           
   6787                           ;mcc_generated_files/eusart.c: 230:     if(RC1STAbits.FERR){
   6788  0227  0022               	movlb	2	; select bank2
   6789  0228  1D1D               	btfss	29,2	;volatile
-  6790  0229  2A2B               	goto	u75_21
-  6791  022A  2A2C               	goto	u75_20
-  6792  022B                     u75_21:	
-  6793  022B  2A37               	goto	i1l1703
-  6794  022C                     u75_20:	
-  6795  022C                     i1l1699:	
+  6790  0229  2A2B               	goto	u79_21
+  6791  022A  2A2C               	goto	u79_20
+  6792  022B                     u79_21:	
+  6793  022B  2A37               	goto	i1l1743
+  6794  022C                     u79_20:	
+  6795  022C                     i1l1739:	
   6796                           
   6797                           ;mcc_generated_files/eusart.c: 231:         eusartRxStatusBuffer[eusartRxHead].ferr = 1;
   6798  022C  087C               	movf	_eusartRxHead,w	;volatile
@@ -6965,7 +6965,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   6800  022E  0086               	movwf	6
   6801  022F  0187               	clrf	7
   6802  0230  1481               	bsf	1,1
-  6803  0231                     i1l1701:	
+  6803  0231                     i1l1741:	
   6804                           
   6805                           ;mcc_generated_files/eusart.c: 232:         EUSART_FramingErrorHandler();
   6806  0231  0020               	movlb	0	; select bank0
@@ -6974,17 +6974,17 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   6809  0234  0844               	movf	_EUSART_FramingErrorHandler,w
   6810  0235  000A               	callw
   6811  0236  3182               	pagesel	$
-  6812  0237                     i1l1703:	
+  6812  0237                     i1l1743:	
   6813                           
   6814                           ;mcc_generated_files/eusart.c: 235:     if(RC1STAbits.OERR){
   6815  0237  0022               	movlb	2	; select bank2
   6816  0238  1C9D               	btfss	29,1	;volatile
-  6817  0239  2A3B               	goto	u76_21
-  6818  023A  2A3C               	goto	u76_20
-  6819  023B                     u76_21:	
-  6820  023B  2A47               	goto	i1l1709
-  6821  023C                     u76_20:	
-  6822  023C                     i1l1705:	
+  6817  0239  2A3B               	goto	u80_21
+  6818  023A  2A3C               	goto	u80_20
+  6819  023B                     u80_21:	
+  6820  023B  2A47               	goto	i1l1749
+  6821  023C                     u80_20:	
+  6822  023C                     i1l1745:	
   6823                           
   6824                           ;mcc_generated_files/eusart.c: 236:         eusartRxStatusBuffer[eusartRxHead].oerr = 1;
   6825  023C  087C               	movf	_eusartRxHead,w	;volatile
@@ -6992,7 +6992,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   6827  023E  0086               	movwf	6
   6828  023F  0187               	clrf	7
   6829  0240  1501               	bsf	1,2
-  6830  0241                     i1l1707:	
+  6830  0241                     i1l1747:	
   6831                           
   6832                           ;mcc_generated_files/eusart.c: 237:         EUSART_OverrunErrorHandler();
   6833  0241  0021               	movlb	1	; select bank1
@@ -7001,7 +7001,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   6836  0244  086E               	movf	_EUSART_OverrunErrorHandler^(0+128),w
   6837  0245  000A               	callw
   6838  0246  3182               	pagesel	$
-  6839  0247                     i1l1709:	
+  6839  0247                     i1l1749:	
   6840                           
   6841                           ;mcc_generated_files/eusart.c: 240:     if(eusartRxStatusBuffer[eusartRxHead].status){
   6842  0247  087C               	movf	_eusartRxHead,w	;volatile
@@ -7010,12 +7010,12 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   6845  024A  0187               	clrf	7
   6846  024B  0801               	movf	1,w
   6847  024C  1903               	btfsc	3,2
-  6848  024D  2A4F               	goto	u77_21
-  6849  024E  2A50               	goto	u77_20
-  6850  024F                     u77_21:	
-  6851  024F  2A57               	goto	i1l1713
-  6852  0250                     u77_20:	
-  6853  0250                     i1l1711:	
+  6848  024D  2A4F               	goto	u81_21
+  6849  024E  2A50               	goto	u81_20
+  6850  024F                     u81_21:	
+  6851  024F  2A57               	goto	i1l1753
+  6852  0250                     u81_20:	
+  6853  0250                     i1l1751:	
   6854                           
   6855                           ;mcc_generated_files/eusart.c: 241:         EUSART_ErrorHandler();
   6856  0250  0021               	movlb	1	; select bank1
@@ -7026,12 +7026,12 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   6861  0255  3182               	pagesel	$
   6862                           
   6863                           ;mcc_generated_files/eusart.c: 242:     } else {
-  6864  0256  2A5A               	goto	i1l122
-  6865  0257                     i1l1713:	
+  6864  0256  2A5A               	goto	i1l242
+  6865  0257                     i1l1753:	
   6866                           
   6867                           ;mcc_generated_files/eusart.c: 243:         EUSART_RxDataHandler();
   6868  0257  3182  22F4  3182   	fcall	_EUSART_RxDataHandler
-  6869  025A                     i1l122:	
+  6869  025A                     i1l242:	
   6870  025A  0008               	return
   6871  025B                     __end_of_EUSART_Receive_ISR:	
   6872                           
@@ -7075,7 +7075,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   6905                           
   6906                           ;psect for function _EUSART_DefaultOverrunErrorHandler
   6907  03CD                     _EUSART_DefaultOverrunErrorHandler:	
-  6908  03CD                     i1l1549:	
+  6908  03CD                     i1l1623:	
   6909                           ;incstack = 0
   6910                           ; Regs used in _EUSART_DefaultOverrunErrorHandler: []
   6911                           
@@ -7086,7 +7086,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   6916                           
   6917                           ;mcc_generated_files/eusart.c: 265:     RC1STAbits.CREN = 1;
   6918  03CF  161D               	bsf	29,4	;volatile
-  6919  03D0                     i1l132:	
+  6919  03D0                     i1l252:	
   6920  03D0  0008               	return
   6921  03D1                     __end_of_EUSART_DefaultOverrunErrorHandler:	
   6922                           
@@ -7130,7 +7130,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   6955                           
   6956                           ;psect for function _EUSART_DefaultFramingErrorHandler
   6957  03D5                     _EUSART_DefaultFramingErrorHandler:	
-  6958  03D5                     i1l129:	
+  6958  03D5                     i1l249:	
   6959                           ;incstack = 0
   6960                           ; Regs used in _EUSART_DefaultFramingErrorHandler: []
   6961                           
@@ -7178,7 +7178,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   6998                           
   6999                           ;psect for function _EUSART_DefaultErrorHandler
   7000  03D1                     _EUSART_DefaultErrorHandler:	
-  7001  03D1                     i1l1551:	
+  7001  03D1                     i1l1625:	
   7002                           ;incstack = 0
   7003                           ; Regs used in _EUSART_DefaultErrorHandler: [wreg+fsr1l+fsr1h+status,2+status,0+pclath+c
       +                          stack]
@@ -7186,7 +7186,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   7005                           
   7006                           ;mcc_generated_files/eusart.c: 270:     EUSART_RxDataHandler();
   7007  03D1  3182  22F4  3183   	fcall	_EUSART_RxDataHandler
-  7008  03D4                     i1l135:	
+  7008  03D4                     i1l255:	
   7009  03D4  0008               	return
   7010  03D5                     __end_of_EUSART_DefaultErrorHandler:	
   7011                           
@@ -7230,7 +7230,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   7044                           
   7045                           ;psect for function _EUSART_RxDataHandler
   7046  02F4                     _EUSART_RxDataHandler:	
-  7047  02F4                     i1l1499:	
+  7047  02F4                     i1l1507:	
   7048                           ;incstack = 0
   7049                           ; Regs used in _EUSART_RxDataHandler: [wreg+fsr1l+fsr1h+status,2+status,0]
   7050                           
@@ -7245,28 +7245,28 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   7059  02FA  0187               	clrf	7
   7060  02FB  0870               	movf	??_EUSART_RxDataHandler,w
   7061  02FC  0081               	movwf	1
-  7062  02FD                     i1l1501:	
+  7062  02FD                     i1l1509:	
   7063  02FD  3001               	movlw	1
   7064  02FE  00F0               	movwf	??_EUSART_RxDataHandler
   7065  02FF  0870               	movf	??_EUSART_RxDataHandler,w
   7066  0300  07FC               	addwf	_eusartRxHead,f	;volatile
-  7067  0301                     i1l1503:	
+  7067  0301                     i1l1511:	
   7068                           
   7069                           ;mcc_generated_files/eusart.c: 252:     if(sizeof(eusartRxBuffer) <= eusartRxHead)
   7070  0301  3008               	movlw	8
   7071  0302  027C               	subwf	_eusartRxHead,w	;volatile
   7072  0303  1C03               	skipc
-  7073  0304  2B06               	goto	u59_21
-  7074  0305  2B07               	goto	u59_20
-  7075  0306                     u59_21:	
-  7076  0306  2B08               	goto	i1l1507
-  7077  0307                     u59_20:	
-  7078  0307                     i1l1505:	
+  7073  0304  2B06               	goto	u61_21
+  7074  0305  2B07               	goto	u61_20
+  7075  0306                     u61_21:	
+  7076  0306  2B08               	goto	i1l1515
+  7077  0307                     u61_20:	
+  7078  0307                     i1l1513:	
   7079                           
   7080                           ;mcc_generated_files/eusart.c: 253:     {;mcc_generated_files/eusart.c: 254:         eus
       +                          artRxHead = 0;
   7081  0307  01FC               	clrf	_eusartRxHead	;volatile
-  7082  0308                     i1l1507:	
+  7082  0308                     i1l1515:	
   7083                           
   7084                           ;mcc_generated_files/eusart.c: 256:     eusartRxCount++;
   7085  0308  3001               	movlw	1
@@ -7274,7 +7274,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   7087  030A  0870               	movf	??_EUSART_RxDataHandler,w
   7088  030B  0020               	movlb	0	; select bank0
   7089  030C  07B9               	addwf	_eusartRxCount,f	;volatile
-  7090  030D                     i1l126:	
+  7090  030D                     i1l246:	
   7091  030D  0008               	return
   7092  030E                     __end_of_EUSART_RxDataHandler:	
   7093  007E                     btemp	set	126	;btemp
@@ -7324,15 +7324,6 @@ Pointer List with Targets:
     memset@s	PTR unsigned char  size(1) Largest target is 16
 		 -> main@str_rc(BANK1[16]), 
 
-    write_str_UART@string	PTR unsigned char  size(1) Largest target is 16
-		 -> main@str_rc(BANK1[16]), 
-
-    sp__memset	PTR void  size(1) Largest target is 16
-		 -> main@str_rc(BANK1[16]), 
-
-    read_str_UART@buff	PTR unsigned char  size(1) Largest target is 16
-		 -> main@str_rc(BANK1[16]), 
-
     EUSART_SetRxInterruptHandler@interruptHandler	PTR FTN()void  size(2) Largest target is 1
 		 -> EUSART_Receive_ISR(), 
 
@@ -7362,6 +7353,15 @@ Pointer List with Targets:
 
     EUSART_FramingErrorHandler	PTR FTN()void  size(2) Largest target is 1
 		 -> Absolute function(), EUSART_DefaultFramingErrorHandler(), 
+
+    write_str_UART@string	PTR unsigned char  size(1) Largest target is 16
+		 -> main@str_rc(BANK1[16]), 
+
+    sp__memset	PTR void  size(1) Largest target is 16
+		 -> main@str_rc(BANK1[16]), 
+
+    read_str_UART@buff	PTR unsigned char  size(1) Largest target is 16
+		 -> main@str_rc(BANK1[16]), 
 
 
 Critical Paths under _main in COMMON
@@ -7753,97 +7753,97 @@ SFR31                0      0       0      32        0.0%
 
 
 Microchip Technology PIC Macro Assembler V2.10 build 88905656 
-Symbol Table                                                                                   Sun Dec  8 23:19:11 2019
+Symbol Table                                                                                   Mon Dec  9 15:29:57 2019
 
                 ?_EUSART_SetRxInterruptHandler 0071                                 read_str_UART@i 003F  
-                                  __CFG_CP$OFF 0000                                             l81 038D  
-                                           l75 0221                                             l84 03CC  
-                                           l94 02AE                                             l78 0384  
-                                           l99 0262                                    __CFG_LVP$ON 0000  
-                                          l100 026B                                            l103 0284  
-                                          l210 039E                                            l204 037B  
-                                          l141 03BC                                            l150 03B6  
-                                          l207 0396                                            l144 03C8  
-                                          l138 03C2                                            l410 033B  
-                                          l147 03B0                                            l403 02D1  
-                                          l364 013F                                            l365 0152  
-                                          l287 01E2                                            l395 0325  
-                                          l389 035E                                   __CFG_CPD$OFF 0000  
+                                  __CFG_CP$OFF 0000                                             l74 013F  
+                                           l75 0152                                             l99 035E  
+                                  __CFG_LVP$ON 0000                                            l120 033B  
+                                          l201 038D                                            l105 0325  
+                                          l113 02D1                                            l220 026B  
+                                          l204 03CC                                            l214 02AE  
+                                          l223 0284                                            l330 039E  
+                                          l219 0262                                            l324 037B  
+                                          l261 03BC                                            l270 03B6  
+                                          l327 0396                                            l407 01E2  
+                                          l264 03C8                                            l258 03C2  
+                                          l267 03B0                                            l195 0221  
+                                          l198 0384                                   __CFG_CPD$OFF 0000  
                                           u990 0383                                            u991 0381  
                        ??_EUSART_RxDataHandler 0070                 ?_EUSART_SetFramingErrorHandler 0071  
                       __size_of_PMD_Initialize 0008                                   __CFG_BORV$LO 0000  
                                           wreg 0009                                    main@cmd_hex 00B0  
                                  ?_EUSART_Read 0070                              read_str_UART@buff 0040  
                                  __CFG_ZCD$OFF 0000                                           l1016 00F2  
-                                         l2011 009C                                           l2003 0077  
-                                         l2021 00C3                                           l2005 007E  
-                                         l2031 00E8                                           l2023 00D4  
-                                         l2015 00A6                                           l2007 0086  
-                                         l2111 0156                                           l2033 00EC  
-                                         l2025 00D8                                           l2017 00B9  
-                                         l2009 0091                                           l2041 035B  
-                                         l2121 017B                                           l2113 0165  
-                                         l2051 0322                                           l2027 00DD  
-                                         l2035 034E                                           l2123 017C  
-                                         l2115 016F                                           l2045 030E  
-                                         l2029 00E4                                           l2037 034F  
-                                         l2061 02C6                                           l2053 02B0  
-                                         l2125 0181                                           l2117 0179  
-                                         l2109 0153                                           l2063 036F  
-                                         l2047 0316                                           l2039 0353  
-                                         l2055 02B2                                           l2071 00F5  
-                                         l2127 0189                                           l2119 017A  
-                                         l2065 0372                                           l2049 031C  
-                                         l2057 02BC                                           l2081 0115  
-                                         l2073 00F9                                           l2129 0193  
-                                         l2067 0375                                           l2059 02C0  
+                                         l2001 021D                                           l2003 021E  
+                                         l2011 01A9                                           l2005 021F  
+                                         l2021 01B3                                           l2013 01AB  
+                                         l2031 01C8                                           l2023 01B6  
+                                         l2015 01AD                                           l2007 0397  
+                                         l2111 0179                                           l2103 0153  
+                                         l2041 01D2                                           l2033 01CA  
+                                         l2025 01B8                                           l2017 01AF  
+                                         l2009 01A3                                           l2121 0189  
+                                         l2113 017A                                           l2105 0156  
+                                         l2051 01DC                                           l2043 01D4  
+                                         l2035 01CC                                           l2027 01BA  
+                                         l2019 01B1                                           l2123 0193  
+                                         l2115 017B                                           l2107 0165  
+                                         l2061 0395                                           l2053 01DF  
+                                         l2045 01D6                                           l2037 01CE  
+                                         l2029 01BC                                           l2117 017C  
+                                         l2109 016F                                           l2055 038E  
+                                         l2047 01D8                                           l2039 01D0  
+                                         l2063 036F                                           l2071 00F5  
+                                         l2119 0181                                           l2057 0391  
+                                         l2049 01DA                                           l2065 0372  
+                                         l2081 0115                                           l2073 00F9  
+                                         l2059 0392                                           l2067 0375  
                                          l2091 0132                                           l2083 0117  
                                          l2075 00FA                                           l2069 0378  
                                          l2093 0138                                           l2085 0121  
                                          l2077 0108                                           l2087 0128  
                                          l2095 013F                                           l2079 010F  
                                          l2097 0142                                           l2089 012C  
-                                         l2099 014A                                           l1901 01E3  
-                                         l1911 01FA                                           l1903 01E5  
-                                         l1831 037C                                           l1921 020D  
-                                         l1913 01FC                                           l1905 01EC  
-                                         l1841 025C                                           l1931 021F  
-                                         l1923 0218                                           l1915 01FE  
-                                         l1907 01F5                                           l1851 027F  
-                                         l1843 0267                                           l1835 03C9  
-                                         l1861 03BD                                           l1925 021C  
-                                         l1917 01FF                                           l1909 01F8  
-                                         l1941 01AD                                           l1933 0397  
-                                         l1853 0280                                           l1845 026C  
-                                         l1863 03B7                                           l1927 021D  
-                                         l1919 0206                                           l1951 01B8  
-                                         l1943 01AF                                           l1935 01A3  
-                                         l1871 0285                                           l1847 0275  
-                                         l1855 0282                                           l1839 025C  
-                                         l1865 03C3                                           l1857 03B1  
-                                         l1929 021E                                           l1961 01CC  
-                                         l1953 01BA                                           l1945 01B1  
-                                         l1937 01A9                                           l1881 02A5  
-                                         l1873 0285                                           l1849 0279  
-                                         l1859 03AB                                           l1971 01D6  
-                                         l1963 01CE                                           l1955 01BC  
-                                         l1947 01B3                                           l1939 01AB  
-                                         l1883 02A6                                           l1875 028B  
-                                         l1867 0385                                           l1981 038E  
-                                         l1973 01D8                                           l1965 01D0  
-                                         l1957 01C8                                           l1949 01B6  
-                                         l1885 02A8                                           l1877 029B  
-                                         l1893 0327                                           l1983 0391  
-                                         l1975 01DA                                           l1967 01D2  
-                                         l1959 01CA                                           l1887 02AB  
-                                         l1879 029F                                           l1991 0054  
-                                         l1895 0327                                           l1985 0392  
-                                         l1977 01DC                                           l1969 01D4  
-                                         l1889 02AD                                           l1897 032F  
-                                         l1987 0395                                           l1979 01DF  
-                                         l1995 005B                                           l1899 0337  
-                                         l1997 0062                                           l1989 0050  
-                                         l1999 006D                                           STR_1 033C  
+                                         l2099 014A                                           l1901 0050  
+                                         l1911 006D                                           l1903 0054  
+                                         l1831 037C                                           l1921 0091  
+                                         l1841 026C                                           l1923 009C  
+                                         l1915 0077                                           l1907 005B  
+                                         l1843 0275                                           l1851 0282  
+                                         l1835 025C                                           l1861 0285  
+                                         l1941 00E4                                           l1933 00C3  
+                                         l1917 007E                                           l1909 0062  
+                                         l1845 0279                                           l1837 025C  
+                                         l1853 03C9                                           l1871 02A5  
+                                         l1863 0285                                           l1943 00E8  
+                                         l1935 00D4                                           l1927 00A6  
+                                         l1919 0086                                           l1951 0353  
+                                         l1847 027F                                           l1839 0267  
+                                         l1873 02A6                                           l1865 028B  
+                                         l1857 0385                                           l1961 031C  
+                                         l1945 00EC                                           l1937 00D8  
+                                         l1929 00B9                                           l1953 035B  
+                                         l1849 0280                                           l1891 03B1  
+                                         l1875 02A8                                           l1867 029B  
+                                         l1963 0322                                           l1939 00DD  
+                                         l1947 034E                                           l1883 0327  
+                                         l1971 02C0                                           l1893 03AB  
+                                         l1981 01F5                                           l1877 02AB  
+                                         l1869 029F                                           l1957 030E  
+                                         l1949 034F                                           l1885 0327  
+                                         l1973 02C6                                           l1965 02B0  
+                                         l1895 03BD                                           l1991 01FF  
+                                         l1983 01F8                                           l1975 01E3  
+                                         l1879 02AD                                           l1959 0316  
+                                         l1887 032F                                           l1967 02B2  
+                                         l1897 03B7                                           l1993 0206  
+                                         l1985 01FA                                           l1977 01E5  
+                                         l1889 0337                                           l1969 02BC  
+                                         l1899 03C3                                           l1995 020D  
+                                         l1987 01FC                                           l1979 01EC  
+                                         l1997 0218                                           l1989 01FE  
+                                         l1999 021C                                           STR_1 033C  
                                          u1000 0384                                           u1010 0262  
                                          u1011 0261                                           u1100 005A  
                                          u1020 0267                                           u1101 0059  
@@ -7891,26 +7891,26 @@ Symbol Table                                                                    
                                 ?_EUSART_Write 0070                 __size_of_OSCILLATOR_Initialize 0009  
                 __end_of_OSCILLATOR_Initialize 0397                                          ?_main 0070  
                                 __CFG_WDTE$OFF 0000                                 __CFG_DEBUG$OFF 0000  
-                                        i1l112 02F1                                          i1l122 025A  
-                                        i1l115 02F3                                          i1l132 03D0  
-                                        i1l126 030D                                          i1l135 03D4  
-                                        i1l129 03D5                                          i1l171 0029  
-                                        i1l166 001A                                          i1l167 0029  
-                                        _OSCEN 0891                                          u73_20 02D9  
-                                        u73_21 02D8                                          _TRISA 0011  
+                                        i1l232 02F1                                          i1l242 025A  
+                                        i1l235 02F3                                          i1l252 03D0  
+                                        i1l246 030D                                          i1l255 03D4  
+                                        i1l249 03D5                                          i1l291 0029  
+                                        i1l286 001A                                          i1l287 0029  
+                                        _OSCEN 0891                                          u61_20 0307  
+                                        u61_21 0306                                          u80_20 023C  
+                                        u80_21 023B                                          u81_20 0250  
+                                        u81_21 024F                                          _TRISA 0011  
                                         _TRISB 0012                                          _TRISC 0013  
                                         _TRISD 0014                                          _TRISE 0015  
-                                        u74_20 02EB                                          u82_20 000A  
-                                        u74_21 02EA                                          u82_21 0009  
-                                        u59_20 0307                                          u75_20 022C  
-                                        u83_20 000F                                          u59_21 0306  
-                                        u75_21 022B                                          u83_21 000E  
-                                        u76_20 023C                                          u84_20 0013  
-                                        u76_21 023B                                          u84_21 0012  
-                                        u77_20 0250                                          u85_20 001E  
-                                        u77_21 024F                                          u85_21 001D  
-                                        u86_20 0022                                          u86_21 0021  
-                                        _RXPPS 0ECB                                          pclath 000A  
+                                        u77_20 02D9                                          u77_21 02D8  
+                                        u78_20 02EB                                          u94_20 000A  
+                                        u78_21 02EA                                          u94_21 0009  
+                                        u79_20 022C                                          u95_20 000F  
+                                        u79_21 022B                                          u95_21 000E  
+                                        u96_20 0013                                          u96_21 0012  
+                                        _RXPPS 0ECB                                          u97_20 001E  
+                                        u97_21 001D                                          u98_20 0022  
+                                        u98_21 0021                                          pclath 000A  
                                         status 0003                                          wtemp0 007E  
                                  main@str_send 00A0                                __initialization 002D  
                                  __end_of_main 01A3                                 ??_EUSART_Write 0071  
@@ -7923,24 +7923,24 @@ Symbol Table                                                                    
                                        _ANSELC 0F4E                                         _ANSELD 0F59  
                                        _ANSELE 0F64                             __CFG_RSTOSC$HFINT1 0000  
                    __end_of_EUSART_is_rx_ready 038E                                         _RC1REG 0119  
-                                       _RC1STA 011D                                         i1l1501 02FD  
-                                       i1l1503 0301                                         i1l1505 0307  
-                                       _ODCONA 0F3A                                         _ODCONB 0F45  
-                                       i1l1507 0308                                         _ODCONC 0F50  
+                                       _RC1STA 011D                                         i1l1511 0301  
+                                       i1l1513 0307                                         _ODCONA 0F3A  
+                                       _ODCONB 0F45                                         i1l1515 0308  
+                                       i1l1507 02F4                                         _ODCONC 0F50  
                                        _RC6PPS 0F26                                         _ODCOND 0F5B  
-                                       i1l1701 0231                                         _ODCONE 0F66  
-                                       i1l1551 03D1                                         i1l1711 0250  
-                                       i1l1703 0237                                         i1l1713 0257  
-                                       i1l1705 023C                                         i1l1707 0241  
-                                       i1l1549 03CD                                         i1l1709 0247  
-                                       i1l1761 0006                                         i1l1499 02F4  
-                                       i1l1691 02EB                                         i1l1683 02D2  
-                                       i1l1771 0022                                         i1l1763 000A  
-                                       i1l1693 02EC                                         i1l1685 02D9  
-                                       i1l1765 000F                                         i1l1695 0222  
-                                       i1l1687 02E0                                         i1l1767 0013  
-                                       i1l1697 0227                                         i1l1689 02E5  
-                                       i1l1769 001E                                         i1l1699 022C  
+                                       i1l1509 02FD                                         _ODCONE 0F66  
+                                       i1l1623 03CD                                         i1l1625 03D1  
+                                       i1l1731 02EB                                         i1l1723 02D2  
+                                       i1l1741 0231                                         i1l1733 02EC  
+                                       i1l1725 02D9                                         i1l1821 000A  
+                                       i1l1751 0250                                         i1l1743 0237  
+                                       i1l1735 0222                                         i1l1727 02E0  
+                                       i1l1823 000F                                         i1l1753 0257  
+                                       i1l1745 023C                                         i1l1737 0227  
+                                       i1l1729 02E5                                         i1l1825 0013  
+                                       i1l1747 0241                                         i1l1739 022C  
+                                       i1l1827 001E                                         i1l1819 0006  
+                                       i1l1749 0247                                         i1l1829 0022  
                                __CFG_WDTCCS$SC 0000                                         _INLVLA 0F3C  
                                        _INLVLB 0F47                                         _INLVLC 0F52  
                                        _INLVLD 0F5D                                         _INLVLE 0F68  

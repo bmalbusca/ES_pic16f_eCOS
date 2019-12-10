@@ -1,12 +1,11 @@
 /* 
  * 
- *	ALERT - MUDEI A FREQ DO TIMER 1 PARA FICAR MAIS RAPIDO
- * 		NECESSARIO ALTERAR 
+ *  ALERT - MUDEI A FREQ DO TIMER 1 PARA FICAR MAIS RAPIDO
+ *      NECESSARIO ALTERAR 
  *
- * 	NOTE - KEYWORD PARA ALTERACOES 
+ *  NOTE - KEYWORD PARA ALTERACOES 
  */
-#include <stdio.h>
-#include <stdlib.h>
+
 #include <xc.h>
 #include "mcc_generated_files/mcc.h"
 #include "eeprom_rw.h"
@@ -14,7 +13,6 @@
 #include "leds.h" 
 #include "defines.h"
 #include "uartusr.h"
-
 
 #define NREG 30
 #define PMON 5
@@ -38,8 +36,8 @@
 #define TIMER_MS_RESET 200
 #define DEBNC_TIME 15
 
-#define UART_BUFF_SIZE 16
 
+#define UART_BUFF_SIZE 16
 
 
 /*******************************************
@@ -64,12 +62,12 @@ unsigned char increment_subfield(unsigned char limit, unsigned init_val);
 unsigned char checkDebounceSW1();
 unsigned char checkDebounceSW2();
 
-void check_thresholds(uint8_t threshold);
 void clock_field(void);
 void config_routine(void);
 void selectSubfield(void);
 void getSubfieldInfo(void);
 void save_recovery_params(void);
+void check_thresholds(uint8_t threshold);
 
 typedef unsigned char udch;
 void ring_buffer (udch * _ring_byte, udch clock_h, udch  clock_m, udch  clock_s,udch tem, udch lum);
@@ -102,9 +100,8 @@ volatile unsigned char set_mode = 0;
 volatile unsigned char config_mode = OFF;
 volatile unsigned char alarm = 0;
 
- char str_rc[UART_BUFF_SIZE]="\0";
- char str_snd[UART_BUFF_SIZE]="hello\0";
-
+char str_rc[UART_BUFF_SIZE]="\0";
+char str_snd[UART_BUFF_SIZE]="hello\0";
 
 unsigned int convertedValue = 0;
 unsigned int duty_cycle = 0;
@@ -119,7 +116,6 @@ unsigned char nreg_pt;
 unsigned char pmon = PMON;
 unsigned char tala = TALA;
 
-
 const unsigned char num_subfields[5] = {0,4, 1, 2, 1};
 unsigned char temp_thresh = ALAT;
 unsigned char lum_thresh = ALAL;
@@ -131,15 +127,15 @@ unsigned char lum_thresh = ALAL;
 void sw1_EXT(void){
 
     if(checkDebounceSW1()){
-        if (alarm == ON){               	// Turn off the alarm 
+        if (alarm == ON){                   // Turn off the alarm 
             alarm = OFF;
             PWM6_LoadDutyValue(OFF); 
             last_ms = clkms;
         }
         else{
             if(config_mode == OFF){
-                config_mode = ON; 			// NOTE after changing to Configure mode disable the EXT interrupt and only check if is pressed at main loop		
-            }					// for not overloading the interrupt vector ISR            
+                config_mode = ON;           // NOTE after changing to Configure mode disable the EXT interrupt and only check if is pressed at main loop        
+            }                   // for not overloading the interrupt vector ISR            
         }
     }
 }
@@ -164,14 +160,6 @@ void ISR_3s(void){
 }
 
 
-void UART_RX(void){
-
-    write_str_UART(str_snd, UART_BUFF_SIZE);   
-    read_str_UART(str_rc, UART_BUFF_SIZE);
-
-}
-
-
 /*******************************************
  *  Desc: Main fucntion
  *******************************************/
@@ -184,11 +172,9 @@ void main(void){
     TMR1_SetInterruptHandler(handler_clock_hms);
     INT_SetInterruptHandler(sw1_EXT);
     TMR2_SetInterruptHandler(handler_clock_ms);
-    //EUSART_SetRxInterruptHandler(UART_RX);
-
 
     //variables initialization
-   
+    
     unsigned char t5s =0, t1m =0;
     
 
@@ -225,16 +211,15 @@ void main(void){
     while (1)
     {   
 
-        SLEEP();                //sleep mode
+        //SLEEP();                //sleep mode
         NOP();
 
-        if(EUSART_is_rx_ready()){
-             write_str_UART(str_snd, UART_BUFF_SIZE);
+         if(EUSART_is_rx_ready()){
              read_str_UART(str_rc, UART_BUFF_SIZE);
+             
          }
-        
-        
 
+    
         PIE4bits.TMR1IE = 0;    //race condition - disable interrupt
         t5s = last5s;
         PIE4bits.TMR1IE = 1;
@@ -244,8 +229,7 @@ void main(void){
             last5s =0; 
             PIE4bits.TMR1IE = 1;  
 
-            do{      
-                    //write_str_UART(str_snd, UART_BUFF_SIZE);
+            do{       
                     if(!config_mode){
 
                             convertedValue = ADC_read();        //read potentiometer
@@ -266,9 +250,9 @@ void main(void){
                             }
 
 
-                            threshold = (lum_bin > lum_thresh /*|| temp > temp_thresh*/  ) & alaf;   //detect alarm 
+                            threshold = (lum_bin > lum_thresh || temp > temp_thresh  ) & alaf;   //detect alarm 
                             check_thresholds(threshold);
-                        
+                            
 
                     }
 
@@ -300,6 +284,7 @@ void main(void){
 }
 
 
+
 void check_thresholds(uint8_t threshold){
     
     if(threshold){
@@ -323,6 +308,9 @@ void check_thresholds(uint8_t threshold){
 }
 
 
+
+
+
 /*******************************************
  *  Func: all_LED
  *  Desc: Blink all LEDs
@@ -337,21 +325,21 @@ void check_thresholds(uint8_t threshold){
     last_ms2 = clkms;
     
     do{
-        if(mode_field_subfield[FIELD] == NONE && select_mode == 0){  			
+        if(mode_field_subfield[FIELD] == NONE && select_mode == 0){             
             all_LED();
         } 
 
-        if(!IO_RB4_GetValue()){		  
+        if(!IO_RB4_GetValue()){       
             if(checkDebounceSW1()){
 
                 select_mode +=1;
 
-                switch(select_mode){			
+                switch(select_mode){            
                     case 1: mod1_LED();break;
                     case 2: mod2_LED();break;
                     case 3: mod3_LED();break;
                     case 4: mod4_LED();break;
-                    default: select_mode = 0; config_mode = OFF; alarm = OFF;	// NOTE Enable EXT interrupt or at that moment when the pic is moving to normal operation
+                    default: select_mode = 0; config_mode = OFF; alarm = OFF;   // NOTE Enable EXT interrupt or at that moment when the pic is moving to normal operation
                     break;
 
                 }   
@@ -419,7 +407,7 @@ void selectSubfield(void){ // o clock tem 4 subfields
 void getSubfieldInfo(void){
 
     unsigned char h_tens, h_units, m_tens, m_units, temp_thresh_tens, temp_thresh_units;
- 	
+    
     switch(mode_field_subfield[FIELD]){
         case 1: 
             PIE4bits.TMR1IE = 0;
@@ -430,18 +418,18 @@ void getSubfieldInfo(void){
         
             switch(mode_field_subfield[SUBFIELD]){
                 case 1:                             //Hour tens
-                  	h_tens = increment_subfield(2, h_tens);
-                	break;
+                    h_tens = increment_subfield(2, h_tens);
+                    break;
                 case 2:                             //Hour units
                     h_units = increment_subfield( limitHoursUnits() , h_units);
-                	break;
+                    break;
                 case 3:                             //minutes tens
                     m_tens = increment_subfield( 5 , m_tens);
-                	break;
+                    break;
                 case 4:                             //minutes units
-                	m_units = increment_subfield( 9, m_units);
-                    	break;
-		
+                    m_units = increment_subfield( 9, m_units);
+                        break;
+        
             }
             clkh = 10*h_tens + h_units;
             clkm = 10*m_tens + m_units;
@@ -449,8 +437,8 @@ void getSubfieldInfo(void){
         break;
         //------------------------
         case 2:
-            alaf = increment_subfield( 1, alaf );	
-	break;
+            alaf = increment_subfield( 1, alaf );   
+    break;
         //------------------------
         case 3:
             temp_thresh_tens = temp_thresh / 10;
@@ -502,7 +490,7 @@ void recTempThresh(unsigned char _value){
 
 
 unsigned char limitTempThreshUnits(){
-     if((temp_thresh / 10) == 5){       //Se os tens das horas são 2, o limite de unidades é 3 
+     if((temp_thresh / 10) == 5){       //Se os tens das horas s?o 2, o limite de unidades ? 3 
         return 0;
     }else{
         return 9;
@@ -517,8 +505,8 @@ unsigned char limitTempThreshUnits(){
 
 
 unsigned char limitHoursUnits(){
-    //n é preciso disable do interrupt do clock
-    if((clkh / 10) == 2){       //Se os tens das horas são 2, o limite de unidades é 3 
+    //n ? preciso disable do interrupt do clock
+    if((clkh / 10) == 2){       //Se os tens das horas s?o 2, o limite de unidades ? 3 
         return 3;
     }else{
         return 9;
@@ -536,7 +524,7 @@ unsigned char increment_subfield(unsigned char limit, unsigned init_val){  //fun
     if(_value > limit) _value = 0;
 
     while(exit == 0){
-   		representLed(_value);
+        representLed(_value);
         if(!IO_RC5_GetValue()){
             if(checkDebounceSW2()){
                 _value++;
