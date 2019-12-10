@@ -13,6 +13,9 @@
 #include "leds.h" 
 #include "defines.h"
 #include "uartusr.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 #define NREG 30
 #define PMON 5
@@ -57,7 +60,8 @@ unsigned char limitTempThreshUnits(void);
 unsigned char limitHoursUnits(void);
 void recTempThresh(unsigned char _value);
 void recLumThresh(unsigned char _value);
-unsigned char increment_subfield(unsigned char limit, unsigned init_val); 
+unsigned char increment_subfield(unsigned char limit, unsigned init_val);
+void parse_message(char * message, uint8_t max_size);
 
 unsigned char checkDebounceSW1();
 unsigned char checkDebounceSW2();
@@ -215,7 +219,9 @@ void main(void){
         NOP();
 
          if(EUSART_is_rx_ready()){
-             read_str_UART(str_rc, UART_BUFF_SIZE);
+            if (read_str_UART(str_rc, UART_BUFF_SIZE)>1){
+                parse_message(str_rc, UART_BUFF_SIZE);  
+            }
              
          }
 
@@ -598,6 +604,147 @@ void handler_clock_ms(void){
         clkms = 0;
     }
 }
+
+
+
+void parse_message(char * message, uint8_t max_size){
+    uint8_t i,h,m,s,p;
+    uint8_t  T,L,a;
+    char c = '0', cmd =message[1] ;
+    //reply_UART_OK(cmd);
+    switch (cmd)
+    {
+     case (char)RCLK : 
+        
+        PIE4bits.TMR1IE = 0;
+        //printf("%c%i%i%i%c",(char)SOM,clkh,clkm,seg,(char)EOM );
+        write_UART((char)SOM);
+        write_UART((char)cmd);
+        write_UART((char)clkh);
+        write_UART((char)clkm);
+        write_UART((char)seg);
+        write_UART((char)EOM);
+        
+        PIE4bits.TMR1IE = 1;
+        
+        break;
+    
+    case (char)SCLK:
+        
+        if ((strlen(message)) >= 5 ){ 
+            h = message[2] -'0';
+            m = message[3] - '0';
+            s = message[4] - '0';
+            
+            if (( h >= 0 && h <24) && (m >=0 && m < 60 ) && ( s>=0 && s<60) ){
+                PIE4bits.TMR1IE = 0;
+                clkh = h;
+                clkm = m;
+                seg = s;
+                PIE4bits.TMR1IE = 1;
+            }
+            else{
+                reply_UART_ERROR((char)cmd);  
+            } 
+        
+        }
+        else{
+            
+            reply_UART_ERROR((char)cmd);
+        }
+        
+        break;
+    case (char)RTL:
+        //printf("%c%i%i%c",(char)SOM,temp,lum_bin,(char)EOM );
+        write_UART((char)SOM);
+        write_UART((char)cmd);
+        write_UART((char)temp);
+        write_UART((char)lum_bin);
+        write_UART((char)EOM);
+        break;
+    case (char)RPAR:
+        //printf("%c%i%i%c",(char)SOM,pmon,tala,(char)EOM );
+        write_UART((char)SOM);
+        write_UART((char)cmd);
+        write_UART((char)pmon);
+        write_UART((char)tala);
+        write_UART((char)EOM);
+        break;
+    case (char)MMP:
+            
+            if ((strlen(message)) >= 3 ){ 
+                p = message[2] -'0';
+               
+                if (( p >= 0 && p <100)  ){
+                 pmon = p  ;  
+                }
+                else{
+                    reply_UART_ERROR((char)cmd);  
+                } 
+            }
+            else{
+                
+                reply_UART_ERROR((char)cmd);
+            }
+        break;
+    case (char) MTA:
+        break;
+    case (char) RALA:
+        //printf("%c%i%i%c",(char)SOM,pmon,tala,(char)EOM );
+        write_UART((char)SOM);
+        write_UART((char)cmd);
+        write_UART((char)temp_thresh);
+        write_UART((char)lum_thresh);
+        write_UART((char)EOM);
+        break;
+    case (char)DATL:
+        if ((strlen(message)) >= 4 ){ 
+                T = message[2] -'0';
+                L = message[3] -'0';
+               
+                if (( T >= 0 && T <51) && ( L >= 0 && L<4)  ){
+                 temp_thresh = T ;
+                 lum_thresh = L;
+                }
+                else{
+                    reply_UART_ERROR((char)cmd);  
+                } 
+            }
+            else{
+                
+                reply_UART_ERROR((char)cmd);
+        }
+        break;
+    case (char)AALA:
+        if ((strlen(message)) >= 3 ){ 
+                a = message[2] -'0';
+                if (( a == 0 || a == 1)){
+                 alaf = a ;
+                 
+                }
+                else{
+                    reply_UART_ERROR((char)cmd);  
+                } 
+            }
+            else{              
+                reply_UART_ERROR((char)cmd);
+        }
+        break;
+    case (char)IREG:
+        break;
+    case (char)TRGC:
+        break;
+    case (char)TRGI:
+        break;
+    case (char)NMFL:
+        break;
+    default:
+        reply_UART_ERROR((char)CMD_ERROR);
+        
+    }
+
+}
+
 
 
 /*******************************************

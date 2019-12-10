@@ -4,7 +4,7 @@
 
 #define SOM   0x3A	/* start of message : */
 #define EOM   0x3F	/* end of message ?*/
-#define RCLK  0xC0  /* read clock */
+#define RCLK  0x3B  /* read clock ;*/
 #define SCLK  0XC1  /* set clock */
 #define RTL   0XC2  /* read temperature and luminosity */
 #define RPAR  0XC3  /* read parameters */
@@ -18,7 +18,7 @@
 #define TRGI  0XCB  /* transfer registers (index) */
 #define NMFL  0XCC  /* notification memory (half) full */
 #define CMD_OK    0     /* command successful */
-#define CMD_ERROR 0xFF  /* error in command */
+#define CMD_ERROR 0x2B /* error in command <*/
 
 
 
