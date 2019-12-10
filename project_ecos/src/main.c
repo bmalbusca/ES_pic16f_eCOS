@@ -46,9 +46,12 @@ int alal = 2;
     USART
 */
 
-cyg_io_handle_t usart_h;
-char* usart_n = "/dev/sr0"; // name
+extern cyg_io_handle_t serial_h;
+char* usart_n = "/dev/ser0"; // name
 cyg_serial_info_t serial_i; // struct with configs for usart
+
+extern Cyg_ErrNo err;
+
 
 /*
 *
@@ -74,7 +77,7 @@ void cyg_user_start(void)
 }
 
 // On configuration... (not working)
-void usart_init() {
+void usart_init(){
     int err;//, len;
 
     serial_i.baud =  CYGNUM_SERIAL_BAUD_9600;
@@ -83,10 +86,10 @@ void usart_init() {
     serial_i.word_length = CYGNUM_SERIAL_WORD_LENGTH_8;
     serial_i.flags = CYG_SERIAL_FLAGS_RTSCTS;
 
-    err = cyg_io_lookup(usart_n, &usart_h);
+    err = cyg_io_lookup(usart_n, &serial_h);
     if(err == ENOERR) {
         printf("[IO:\"%s\"] Detected\n", usart_n);
-        //cyg_io_set_config(usart_h, key, (const void*) , &len);
+        //cyg_io_set_config(serial_h, key, (const void*) , &len);
     }
     else if(err == -ENOENT)
         printf("[IO:\"%s\"] No such entity\n", usart_n);
@@ -205,24 +208,29 @@ void proc_F(cyg_addrword_t data)
 
 void rx_F(cyg_addrword_t data){
     char *cmd_out, *cmd_in;
+
+    /*
     char buffer[30] = {(char)  0, (char) 30, (char) 27, (char) 30, (char)  1,
                        (char)  0, (char) 32, (char) 10, (char) 20, (char)  2,
                        (char)  1, (char) 21, (char)  9, (char) 60, (char)  0,
                        (char)  5, (char) 19, (char) 59, (char) 50, (char)  0,
                        (char) 13, (char) 59, (char) 59, (char) 10, (char)  1,
                        (char) 23, (char) 59, (char) 59, (char) 20, (char)  1}; // for testing
+    */
 
-    pushMem(buffer, 30);
+    char buffer_rx[10];
 
-    while(1) {
-        cyg_mutex_lock(&rs_stdin);
-        printf("RX\n");
-        cyg_mutex_unlock(&rs_stdin);
+    int num_bytes = 7;
 
-        /*
-        cmd_in = (char*) cyg_mbox_tryget(rx.mbox_h);
+    //pushMem(buffer, 30);
 
-        if(cmd_in != NULL) {
+
+
+    while(1){
+
+        cmd_in = (char*)cyg_io_read(serial_h, (void*)buffer_rx, &num_bytes);        //7 = nº bytes a serem lidos
+
+        /*if(cmd_in != NULL){
             switch (getName(cmd_in)) {
                 case TRGC:
                     cmd_out = writeCommand(TRGC, 0);
@@ -233,6 +241,9 @@ void rx_F(cyg_addrword_t data){
         */
 
         __DELAY();
+
+        }*/
+        printf("%s\n", buffer_rx);
     }
 }
 

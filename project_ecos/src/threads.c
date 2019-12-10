@@ -56,7 +56,7 @@ char* writeCommand(char name, short int argc)
 
 char getName(char *pt)
 {
-    return commandbus[pt - commandbus];
+    return *pt;
 }
 
 short int getArgc(char* pt)
@@ -64,6 +64,7 @@ short int getArgc(char* pt)
     return (short int) commandbus[(pt - commandbus + 1) % SIZE_CB];
 }
 
+//arg = 1 -> retorna o PRIMEIRO arg
 short int getArg(char* pt, int arg)
 {
     if((arg < 1) || (arg > getArgc(pt))) return 0;

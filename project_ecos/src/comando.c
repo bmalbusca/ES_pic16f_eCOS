@@ -12,7 +12,7 @@
 #include "threads.h"
 
 Cyg_ErrNo err;
-cyg_io_handle_t serH;
+cyg_io_handle_t serial_h;
 
 /*-------------------------------------------------------------------------+
 | Function: cmd_sair - termina a aplicacao
@@ -43,12 +43,12 @@ void cmd_ems (int argc, char **argv)
 
   if (argc > 1) {
     n = strlen(argv[1]) + 1;
-    err = cyg_io_write(serH, argv[1], &n);
+    err = cyg_io_write(serial_h, argv[1], &n);
     printf("io_write err=%x, n=%d str=%s\n", err, n, argv[1]);
   }
   else {
     n = 10;
-    err = cyg_io_write(serH, "123456789", &n);
+    err = cyg_io_write(serial_h, "123456789", &n);
     printf("io_write err=%x, n=%d str=%s\n", err, n, "123456789");
   }
 }
@@ -67,7 +67,7 @@ void cmd_emh (int argc, char **argv)
     for (i=0; i<n; i++)
       //      sscanf(argv[i+1], "%hhx", &bufw[i]);
       {unsigned int x; sscanf(argv[i+1], "%x", &x); bufw[i]=(unsigned char)x;}
-    err = cyg_io_write(serH, bufw, &n);
+    err = cyg_io_write(serial_h, bufw, &n);
     printf("io_write err=%x, n=%d\n", err, n);
     for (i=0; i<n; i++)
       printf("buf[%d]=%x\n", i, bufw[i]);
@@ -87,7 +87,7 @@ void cmd_rms (int argc, char **argv)
 
   if (argc > 1) n = atoi(argv[1]);
   if (n > 50) n = 50;
-  err = cyg_io_read(serH, bufr, &n);
+  err = cyg_io_read(serial_h, bufr, &n);
   printf("io_read err=%x, n=%d buf=%s\n", err, n, bufr);
 }
 
@@ -101,7 +101,7 @@ void cmd_rmh (int argc, char **argv)
 
   if (argc > 1) n = atoi(argv[1]);
   if (n > 50) n = 50;
-  err = cyg_io_read(serH, bufr, &n);
+  err = cyg_io_read(serial_h, bufr, &n);
   printf("io_read err=%x, n=%d\n", err, n);
   for (i=0; i<n; i++)
     printf("buf[%d]=%x\n", i, bufr[i]);
@@ -115,8 +115,8 @@ void cmd_ini(int argc, char **argv)
 {
   printf("io_lookup\n");
   if ((argc > 1) && (argv[1][0] = '1'))
-    err = cyg_io_lookup("/dev/ser1", &serH);
-  else err = cyg_io_lookup("/dev/ser0", &serH);
+    err = cyg_io_lookup("/dev/ser1", &serial_h);
+  else err = cyg_io_lookup("/dev/ser0", &serial_h);
   printf("lookup err=%x\n", err);
 }
 
@@ -125,6 +125,9 @@ void cmd_ini(int argc, char **argv)
 |   PROJECT FUNCTIONS
 |
 +--------------------------------------------------------------------------*/
+
+
+
 void cmd_irl(int argc, char **argv)
 {
     unsigned int i = 0, j = NRBUF, nr, _iwrite, _iread;

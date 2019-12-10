@@ -18,5 +18,4 @@ void cmd_cpt(int argc, char **argv);
 void cmd_dttl(int argc, char **argv);
 void cmd_cttl(int argc, char **argv);
 void cmd_pr(int argc, char **argv);
-
 #endif
