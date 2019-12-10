@@ -1,4 +1,5 @@
 #include "main.h"
+#include "defines.h"
 
 void usart_init (void);
 void thread_init(void);
@@ -213,7 +214,7 @@ void tx_F(cyg_addrword_t data){
     char *cmd_out, *cmd_in;
     int i;
     int num_args = 0;
-    int num_bytes = 5;
+    int num_bytes = 3;
 
     while(1){
         //cmd_in = (char*)cyg_mbox_get(tx.mbox_h);            //Bloquear enquanto não houver cenas para enviar para o PIC
@@ -230,10 +231,9 @@ void tx_F(cyg_addrword_t data){
         }
         FreeRead(&rs_rwf);          //Largar as keys para ler o ring buffer com inter threads
         */
-        buffer_tx[1] = 'c';
-        buffer_tx[2] = 'r';
-        buffer_tx[3] = 'l';
-        buffer_tx[4] = '?';
+        buffer_tx[1] = MTA;
+        buffer_tx[2] = '?';
+
         err = cyg_io_write(serial_h, buffer_tx, &num_bytes);
         printf("Sent, err =%x\n", err);
 
