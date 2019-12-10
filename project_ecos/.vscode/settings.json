@@ -1,6 +1,7 @@
 {
     "files.associations": {
-        "threads.h": "c"
+        "threads.h": "c",
+        "cmath": "c"
     },
     "C_Cpp.errorSquiggles": "Disabled"
 }

@@ -4,12 +4,7 @@
 | Autor: Carlos Almeida (IST)
 | Data:  Maio 2008
 ***************************************************************************/
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <cyg/io/io.h>
-#include "main.h"
-#include "threads.h"
+#include "comando.h"
 
 Cyg_ErrNo err;
 cyg_io_handle_t serial_h;
@@ -125,9 +120,6 @@ void cmd_ini(int argc, char **argv)
 |   PROJECT FUNCTIONS
 |
 +--------------------------------------------------------------------------*/
-
-
-
 void cmd_irl(int argc, char **argv)
 {
     unsigned int i = 0, j = NRBUF, nr, _iwrite, _iread;
@@ -138,33 +130,47 @@ void cmd_irl(int argc, char **argv)
     _iread = iread;
     FreeRead(&rs_rwf);
 
-    cyg_mutex_lock(&rs_stdin);
-    printf("\nNRBUF \tnr \tiread \tiwrite\n%d \t%d \t%d \t%d", NRBUF, nr, iread, iwrite);
-    cyg_mutex_unlock(&rs_stdin);
+    cyg_mutex_lock(&rs_stdout);
+    printf("\nNRBUF \tnr \tiread \tiwrite\n%d \t%d \t%d \t%d\n", NRBUF, nr, _iread, _iwrite);
+    cyg_mutex_unlock(&rs_stdout);
 }
 
 void cmd_lr(int argc, char **argv)
 {
-    unsigned int size, i, j, k = 0;
-    char *buffer;
+    unsigned int i, j, size;
 
     i = strtol(argv[2], NULL, 10);
-    size = 5*strtol(argv[1], NULL, 10);
-    j = i + size;
-    buffer = getMem(&i, &j, &size);
+    size = strtol(argv[1], NULL, 10);
+    j = i + size - 1;
 
-    if(size % 5)
-        return;
+    printMemReg(i, j);
+}
 
-    cyg_mutex_lock(&rs_stdin);
-    printf("\n**********************************\n\tLocal Memory from 0 to %d\n**********************************\n", j);
-    printf("HOURS \tMIN \tSEC \tTEMP \tLUM");
-    for(; k < size; k += 5) {
-        printf("\n%d \t%d \t%d \t%d \t%d", buffer[k], buffer[k + 1], buffer[k + 2], buffer[k + 3], buffer[k + 4]);
+void printMemReg(unsigned int from_regi, unsigned int to_regj)
+{
+    unsigned int i = from_regi, j = to_regj, size, mem_size;
+    int u, v;
+
+    mem_size = ACTUAL_SIZE;
+    getValidRegIndexes(&i, &j, &size);
+
+    AskRead(&rs_localmem);
+    cyg_mutex_lock(&rs_stdout);
+    if(!size)
+        printf("\n**************************************\n\tLocal Memory is EMPTY\n**************************************\n");
+    else {
+        printf("\n**************************************\nLocal Memory from Register %d to %d\n**************************************\n", i, j);
+        printf("HOURS \tMIN \tSEC \tTEMP \tLUM\n");
+        for(u = 0; u < size; u++) {
+            for(v = 0; v < REGISTER_SIZE; v++) {
+                printf("%d\t", localmem[(REGISTER_SIZE*(u + i) + v) % mem_size]);
+            }
+            printf("\n");
+        }
+        printf("_____________________________________\n");
     }
-    cyg_mutex_unlock(&rs_stdin);
-
-    free(buffer);
+    cyg_mutex_unlock(&rs_stdout);
+    FreeRead(&rs_localmem);
 }
 
 void cmd_dr(int argc, char **argv)
@@ -187,18 +193,17 @@ void cmd_mpt(int argc, char **argv)
 
 void cmd_cpt(int argc, char **argv)
 {
-    int now, last;
     char *cmd_out, *cmd_in;
 
     cmd_out = writeCommand(PROC_CHECK_PERIOD_TRANSF, 0);
     cyg_mbox_tryput(proc.mbox_h, (void*) cmd_out);
-
+    cmd_in = cyg_mbox_get(user.mbox_h);
     if(getName(cmd_in) != PROC_CHECK_PERIOD_TRANSF)
         return;
 
-    cyg_mutex_lock(&rs_stdin);
+    cyg_mutex_lock(&rs_stdout);
     printf("\nPeriod of transference is %d\n", getArg(cmd_in, 1));
-    cyg_mutex_unlock(&rs_stdin);
+    cyg_mutex_unlock(&rs_stdout);
 }
 
 void cmd_dttl(int argc, char **argv)
@@ -213,23 +218,22 @@ void cmd_dttl(int argc, char **argv)
 
 void cmd_cttl(int argc, char **argv)
 {
-    int now, last;
     char *cmd_out, *cmd_in;
 
     cmd_out = writeCommand(PROC_CHECK_THRESHOLDS, 0);
     cyg_mbox_tryput(proc.mbox_h, (void*) cmd_out);
-
+    cmd_in = cyg_mbox_tryget(user.mbox_h);
     if(getName(cmd_in) != PROC_CHECK_THRESHOLDS)
         return;
 
-    cyg_mutex_lock(&rs_stdin);
-    printf("\nTemperature threshold is %d celsius\nLuminosity threshold is %d (0 - 3)", getArg(cmd_in, 1), getArg(cmd_in, 2));
-    cyg_mutex_unlock(&rs_stdin);
+    cyg_mutex_lock(&rs_stdout);
+    printf("\nTemperature threshold is %d celsius\nLuminosity threshold is %d (0 - 3)\n", getArg(cmd_in, 1), getArg(cmd_in, 2));
+    cyg_mutex_unlock(&rs_stdout);
 }
 
 void cmd_pr(int argc, char **argv)
 {
-    int arg, k, now, last;
+    int arg, k;
     char *cmd_in, *cmd_out;
 
     cmd_out = writeCommand(USER_STATISTICS, argc);
@@ -253,14 +257,24 @@ void cmd_pr(int argc, char **argv)
     }
 
     cyg_mbox_tryput(proc.mbox_h, (void*) cmd_out);
-    cmd_in = cyg_mbox_tryget(user.mbox_h);
-
-    if(getArgc(cmd_in) < 6 || getName(cmd_in) != USER_STATISTICS)
-        return;
-
-    cyg_mutex_lock(&rs_stdin);
-    printf("\n**********************************\n\tResults\n**********************************\n");
-    printf("TEMPERATURE (celsius)\nmax = %d \tmin = %d \tmean = %d\n", getArg(cmd_in, 1), getArg(cmd_in, 2), getArg(cmd_in, 3));
-    printf("LUMINOSITY (0 - 3)\nmax = %d \tmin = %d \tmean = %d", getArg(cmd_in, 4), getArg(cmd_in, 5), getArg(cmd_in, 6));
-    cyg_mutex_unlock(&rs_stdin);
+    cmd_in = cyg_mbox_get(user.mbox_h);
+    if(getArgc(cmd_in) < 6 || getName(cmd_in) != USER_STATISTICS) {
+        if(getName(cmd_in) == ERROR_MEMEMPTY) {
+            cyg_mutex_lock(&rs_stdout);
+            printf("\n<!> No registers found in local memory\n");
+            cyg_mutex_unlock(&rs_stdout);
+        }
+        else {
+            cyg_mutex_lock(&rs_stdout);
+            printf("\n<!> Unknow error\n");
+            cyg_mutex_unlock(&rs_stdout);
+        }
+    }
+    else {
+        cyg_mutex_lock(&rs_stdout);
+        printf("\n**********************************\n\tResults\n**********************************\n");
+        printf("TEMPERATURE (celsius)\nmin = %d \tmax = %d \tmean = %d\n", getArg(cmd_in, 1), getArg(cmd_in, 2), getArg(cmd_in, 3));
+        printf("LUMINOSITY (0 - 3)\nmin = %d \tmax = %d \tmean = %d\n", getArg(cmd_in, 4), getArg(cmd_in, 5), getArg(cmd_in, 6));
+        cyg_mutex_unlock(&rs_stdout);
+    }
 }

@@ -1,6 +1,28 @@
-#include "main.h"
-#include "defines.h"
+#include <cyg/kernel/kapi.h>
+#include <cyg/error/codes.h>
+#include <cyg/io/io.h>
+#include <cyg/io/serialio.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
+#include "defines.h"
+#include "threads.h"
+#include "mem.h"
+
+#include "proc.h" // proc tasks
+#include "monitor.h" // user interface
+#include "com_pic.h"
+
+#define DEBUG_THREADS 0
+#define CYG_SERIAL_FLAGS_RTSCTS 0x0001
+
+// macros
+#define DELTA(X,Y)      ((X) >= (Y) ? (X) - (Y) : (Y) - (X))
+#define ABS(X)          ((X) < 0 ? -(X) : (X))
+
+
+// f(x)
 void usart_init (void);
 void thread_init(void);
 void proc_F     (cyg_addrword_t data);
@@ -31,32 +53,35 @@ cyg_serial_info_t serial_i; // struct with configs for usart
 
 extern Cyg_ErrNo err;
 
-
 /*
 *
 *   ECOS runs this on START (user side inits)
 *
 */
 
-void cyg_user_start(void)
-{
-    iwrite = 0; iread = 0; ring_filled = 0;
+extern int commands_in_argc[TRGI];
 
-    cyg_semaphore_init(&rs_localmem, 1);
-    cyg_semaphore_init(&rs_rwf, 1);
-    cyg_mutex_init(&rs_stdin);
-    stdin_buff_pt = stdin_buff;
+void cyg_user_start(void){
+    commands_in_argc[RCLK] = 3;
+    commands_in_argc[SCLK] = 0;
+    commands_in_argc[RTL] = 2;
+    commands_in_argc[RPAR] = 3;
+    commands_in_argc[MMP] = 0;
+    commands_in_argc[MTA] = 3;
+    commands_in_argc[RALA] = 3;
+    commands_in_argc[DATL] = 0;
+    commands_in_argc[AALA] = 0;
+    commands_in_argc[IREG] = 4;
+    commands_in_argc[TRGC] = -1;
+    commands_in_argc[TRGI] = -1;
+
     usart_init();
+    mem_init();
     thread_init();
-
-    cyg_thread_resume(proc.h);
-    cyg_thread_resume(user.h);
-    cyg_thread_resume(rx.h);
-    cyg_thread_resume(tx.h);
 }
 
 // On configuration... (not working)
-void usart_init(){
+void usart_init() {
     int err;//, len;
 
     serial_i.baud =  CYGNUM_SERIAL_BAUD_9600;
@@ -70,7 +95,7 @@ void usart_init(){
         printf("[IO:\"%s\"] Detected\n", usart_n);
         //cyg_io_set_config(serial_h, key, (const void*) , &len);
     }
-    else if(err == -ENOENT) 
+    else if(err == -ENOENT)
         printf("[IO:\"%s\"] No such entity\n", usart_n);
     else
         printf("[IO:\"%s\"] Some error with code <%d> (lookup \'CYGONCE_ERROR_CODES_H\')\n", usart_n, err);
@@ -86,15 +111,20 @@ void thread_init() {
     user.f = monitor; // this function is in "monitor.c"
     rx.f = rx_F;
     tx.f = tx_F;
-    proc.pri = (cyg_addrword_t) HIGH_PRI;
+    proc.pri = (cyg_addrword_t) DEFAULT_PRI;
     user.pri = (cyg_addrword_t) LOW_PRI;
     rx.pri = (cyg_addrword_t) DEFAULT_PRI;
     tx.pri = (cyg_addrword_t) DEFAULT_PRI;
 
-    thread_create(&proc, 0);
-    thread_create(&user, 0);
-    thread_create(&rx, 0);
-    thread_create(&tx, 0);
+    thread_create(&proc);
+    thread_create(&user);
+    thread_create(&rx);
+    thread_create(&tx);
+
+    cyg_thread_resume(proc.h);
+    cyg_thread_resume(user.h);
+    cyg_thread_resume(rx.h);
+    cyg_thread_resume(tx.h);
 }
 
 /*
@@ -117,11 +147,15 @@ void proc_F(cyg_addrword_t data)
     int tht = alat, thl = alal; // Temperature and Luminosity thresholds reserved to proc
 
     while(1) {
+        if (DEBUG_THREADS) {
+            sprintf(stdout_buff, "<PC>\n");
+            queueStdout(stdout_buff);
+        }
+
         now = cyg_current_time();
 
         if(period_transference) {
             if(DELTA(now, last) > period_transference) {
-                // transfere, ask to transfere
                 cmd_out = writeCommand(RX_TRANSFERENCE, 0);
                 cyg_mbox_tryput(rx.mbox_h, (void*) cmd_out);
                 last = now;
@@ -133,14 +167,14 @@ void proc_F(cyg_addrword_t data)
         if(cmd_in != NULL) {
             switch (getName(cmd_in)) {
                 case RX_TRANSFERENCE:
-                    checkThresholds(popMem, alat, alal);
+                    checkThresholds(alat, alal);
                     break;
                 case USER_STATISTICS:
                     for(k = 0; k < 6; k ++) {
                         range[k] = getArg(cmd_in, k + 1);
                     }
-                    returns = calcStatistics(getMem, LM_SIZE, &temp, &lum, range);
-                    if(returns) {
+                    returns = calcStatistics(&temp, &lum, range);
+                    if(!returns) {
                         cmd_out = writeCommand(ERROR_MEMEMPTY, 0);
                     } else {
                         cmd_out = writeCommand(USER_STATISTICS, 6);
@@ -180,192 +214,4 @@ void proc_F(cyg_addrword_t data)
 
         __DELAY();
     }
-}
-
-void rx_F(cyg_addrword_t data){
-    char *cmd_out, *cmd_in;
-
-    char buffer_rx[10];
-
-    int num_bytes = 7;
-
-    //pushMem(buffer, 30);
-
-    
-
-    while(1){
-
-        cmd_in = (char*)cyg_io_read(serial_h, (void*)buffer_rx, &num_bytes);        //7 = nº bytes a serem lidos
-
-        /*if(cmd_in != NULL){
-            switch (getName(cmd_in)) {
-                case RX_TRANSFERENCE:
-                    cmd_out = writeCommand(RX_TRANSFERENCE, 0);
-                    cyg_mbox_tryput(proc.mbox_h, (void*) cmd_out);
-                    break;
-            }
-        }*/
-        printf("%s\n", buffer_rx);
-    }
-}
-
-void tx_F(cyg_addrword_t data){
-    char buffer_tx[50];
-    char *cmd_out, *cmd_in;
-    int i;
-    int num_args = 0;
-    int num_bytes = 3;
-
-    while(1){
-        //cmd_in = (char*)cyg_mbox_get(tx.mbox_h);            //Bloquear enquanto não houver cenas para enviar para o PIC
-
-        buffer_tx[0] = ':';
-        /*
-        AskRead(&rs_rwf);           //Pedir para ler o ring buffer com inter threads
-
-        buffer_tx[1] = getName(cmd_in);
-        num_args = getArgc(cmd_in);
-
-        for(i = 2; i < num_args + 2; i++){
-            buffer_tx[i] = getArg(cmd_in, i-1);
-        }
-        FreeRead(&rs_rwf);          //Largar as keys para ler o ring buffer com inter threads
-        */
-        buffer_tx[1] = MTA;
-        buffer_tx[2] = '?';
-
-        err = cyg_io_write(serial_h, buffer_tx, &num_bytes);
-        printf("Sent, err =%x\n", err);
-
-        cyg_thread_delay(40);
-
-        /*buffer_tx[num_args + 2] = '?';
-        num_bytes = num_args + 3;
-        cyg_io_write(serial_h, buffer_tx, &num_bytes)*/
-    }
-}
-
-
-/*
-    ******************
-    LOCAL MEMORY calls
-    ==================
-*/
-
-/*
-    This function puts data in local memory in push like way,
-    because caller doesn't control where to write.
-*/
-void pushMem(char* buffer, unsigned int size)
-{
-    int k = 0;
-    if(size % 5)
-        return;
-    AskWrite(&rs_localmem);
-    AskWrite(&rs_rwf);
-    for(; k < size; iwrite = (iwrite + 1) % LM_SIZE, k++)
-    {
-        localmem[iwrite] = buffer[k];
-    }
-    FreeWrite(&rs_rwf);
-    FreeWrite(&rs_localmem);
-    if(!iwrite) {
-        AskRead(&rs_rwf);
-        ring_filled = 1;
-        FreeRead(&rs_rwf);
-    }
-}
-
-/*
-    This function outputs data in local memory in a pop like way,
-    because caller doesn't control where to read and
-    once data has taken it can't be read again with this function.
-*/
-char* popMem(unsigned int* size)
-{
-    char* buffer;
-    int k = 0;
-
-    AskWrite(&rs_rwf);
-    *size = RINGDELTA(iread, iwrite);
-    buffer = (char*) malloc((*size)*sizeof(char));
-
-    AskRead(&rs_localmem);
-    for(; k < *size; iread = (iread + 1) % LM_SIZE, k++)
-    {
-        buffer[k] = localmem[iread];
-    }
-    FreeRead(&rs_localmem);
-    FreeWrite(&rs_rwf);
-    return buffer;
-}
-
-/*
-    This functions exists to allow reading positions
-*/
-char getMemP(unsigned int _pos)
-{
-    char aux_c;
-    int pos = ring_filled ? (_pos % LM_SIZE) : (_pos % iwrite);
-
-    AskRead(&rs_localmem);
-    aux_c = localmem[pos];
-    FreeRead(&rs_localmem);
-    return aux_c;
-}
-
-/*
-    This functions exists to allow reading ranges
-    returns a buffer with size "size" from older to the
-    most recent resgisters
-*/
-char* getMem(unsigned int from_i, unsigned int to_j, unsigned int* size)
-{
-    if(from_i == to_j) return NULL; // use getMemP
-
-    unsigned int k = 0, i, j;
-    char *buffer;
-
-    i = from_i;
-    j = to_j;
-
-    if(!getValidIndexes(&i, &j, size))
-        return NULL;
-
-    buffer = (char*) malloc((*size)*sizeof(char));
-    if(buffer == NULL)
-        return NULL;
-
-    AskRead(&rs_localmem);
-    for(; i != j; i++, k++)
-        buffer[k] = localmem[i % *size];
-    FreeRead(&rs_localmem);
-    return buffer;
-}
-
-/*
-    Validates memory indexes, adjusting them if position requested wasn't
-    writen or if index was higher than buffer size
-*/
-char getValidIndexes(unsigned int* from_i, unsigned int* to_j, unsigned int* size)
-{
-    unsigned int s, _iwrite, _iread, _ring_filled, aux;
-
-    AskRead(&rs_rwf);
-    _iwrite = iwrite;
-    _iread = iread;
-    _ring_filled = ring_filled;
-    FreeRead(&rs_rwf);
-
-    s = _ring_filled ? LM_SIZE : _iwrite + 1;
-    if(!s) {
-        *size = 0;
-        return 0;
-    }
-    *from_i = (_iwrite + *from_i) % s;
-    *to_j = (_iwrite + *to_j) > s ? _iwrite - 1 : *to_j;
-
-    *size = RINGDELTA(*from_i, *to_j);
-
-    return 1; // success
 }
