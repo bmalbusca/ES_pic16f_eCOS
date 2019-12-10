@@ -3,21 +3,6 @@
 #include <cyg/kernel/kapi.h>
 #include <stdlib.h>
 
-/*
-    THREAD COMMUNICATION PROTOCOL
-    to do ACK send the same command back with no arguments
-    {x} -- means it corresponds to command x from page 2 of Project_part2.pdf
-*/
-
-#define RX_TRANSFERENCE             'a' // used by (proc, user, rx) to transfere registers to local memory
-#define USER_STATISTICS             'b' // {pr} used by (proc, user) to send statistics to user
-#define USER_MODIFY_PERIOD_TRANSF   'c' // {mpt} used by (proc, user) to change a proc variable (period_transference)
-#define USER_CHANGE_THRESHOLDS      'd' // {dttl} used by (proc, user) to change thresholds used in processing registers
-#define PROC_CHECK_PERIOD_TRANSF    'e' // {cpt} used by (proc, user) to send to user the period of transference
-#define PROC_CHECK_THRESHOLDS       'f' // {cttl} used by (proc, user) to send to user the thresholds
-#define ERROR                       'x' // used to communicate a request error
-#define ERROR_MEMEMPTY              'u' // local memory is empty
-
 #define LOW_PRI 11
 #define DEFAULT_PRI 10
 #define HIGH_PRI 9
@@ -32,7 +17,7 @@
 #define SHORT_DELAY 10
 
 // macros
-#define __DELAY() (cyg_thread_delay(DELAY + (rand() % (DELAY >> 2))))
+#define __DELAY() (cyg_thread_delay(DELAY + (rand() % SHORT_DELAY)))
 #define __SHORT_DELAY() (cyg_thread_delay(SHORT_DELAY))
 
 typedef struct {
@@ -49,14 +34,17 @@ typedef struct {
 } thread;
 
 thread proc, user, rx, tx;
-cyg_mutex_t rs_stdin;
-char stdin_buff[1024], *stdin_buff_pt;
 
-void thread_create(thread* ti, int flag_defaults);
+cyg_mutex_t rs_stdout;
+char stdout_buff[1024], *stdout_buff_pt;
+
+void thread_create(thread* ti);
+
 void AskRead(cyg_sem_t* s);
 void FreeRead(cyg_sem_t* s);
 void AskWrite(cyg_sem_t* s);
 void FreeWrite(cyg_sem_t* s);
+
 char* writeCommand(char name, short int argc);
 char getName(char *pt);
 short int getArgc(char* pt);

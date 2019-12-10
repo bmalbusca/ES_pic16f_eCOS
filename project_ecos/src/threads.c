@@ -5,7 +5,7 @@ cyg_mutex_t global;
 int nread = 0;
 int cb_index = 0;
 
-void thread_create(thread* ti, int flag_defaults)
+void thread_create(thread* ti)
 {
     ti->data = (cyg_addrword_t) 0;
     ti->ssize = DEFAULT_STACKSZ;
