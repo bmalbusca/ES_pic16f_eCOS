@@ -19,5 +19,6 @@ unsigned char read_ring(unsigned char nreg_pt, unsigned char nreg, unsigned char
 void cksum_w();
 unsigned char cksum();
 void reset_recv();
+unsigned char  read_registers( unsigned char reg[5], unsigned char index );
 
 #endif

@@ -9,6 +9,8 @@ extern unsigned char pmon;
 extern unsigned char tala;
 extern unsigned char temp_thresh;
 extern unsigned char lum_thresh;
+extern unsigned char reg_valid;
+extern unsigned int nreg_read; 
 
 void recoverData(){
     /* Recover Parameters */
@@ -39,6 +41,11 @@ void recoverData(){
 
 void push_ring(unsigned char* nreg_pt, unsigned char nreg, unsigned char* nreg_init, unsigned char* ring_byte)
 {   if(!(*nreg_init)) (*nreg_init) = 1;
+    
+    if (reg_valid < nreg){
+        reg_valid++;  
+    }
+    
     for(unsigned char i = 0; i < 5; i++) {
         if((*nreg_pt) >= nreg) (*nreg_pt) = 0;
         DATAEE_WriteByte(EE_FST + (*nreg_pt), ring_byte[i]);
@@ -51,18 +58,68 @@ unsigned char read_ring(unsigned char nreg_pt, unsigned char nreg, unsigned char
     unsigned char absindex;
     unsigned char i = 0;
     
+    
     if(index <= nreg && nreg_init) {
         absindex = 5 * index + subindex;
         if(absindex <= nreg_pt)
             i = nreg_pt - 5 + absindex;
         else
             i = nreg - (nreg_pt - 5 + absindex);
+            
+        
     }
     else 
         return 0;
     
     return DATAEE_ReadByte(EE_FST + i);
 }
+
+
+unsigned char  read_registers( unsigned char reg[5], unsigned char index ){
+    
+    if((nreg_read) >= nreg) (nreg_read) = 0;
+    
+    unsigned char i; 
+
+    if (nreg_pt > nreg_read ) {
+        if ((nreg_read + index*5 ) < nreg ){
+            nreg_read += index*5;
+            for(i=0; i <=5; i++){
+                nreg_read+= i;
+                reg[i] = DATAEE_ReadByte(nreg_read);
+            }
+        }
+        else {
+                return 0;
+            }
+    }
+    else if (nreg_pt < nreg_read ) {    
+        if ((nreg_read + index*5 ) < nreg){
+            nreg_read += index*5;
+            for(i=0; i <=5; i++){
+                nreg_read+= i;
+                reg[i] = DATAEE_ReadByte(nreg_read);
+            }
+        }
+        else if ( (nreg_read + index*5) - nreg  < nreg_pt ) {
+            nreg_read = ((nreg_read + index*5) - nreg);   
+            for(i=0; i <=5; i++){
+                nreg_read+= i;
+                reg[i] = DATAEE_ReadByte(nreg_read);
+            }   
+        }
+        else{     
+             return 0; 
+        }
+    }
+    else {   
+        return 0;    
+    }
+    
+    return i;
+
+}
+
 
 void cksum_w()
 {

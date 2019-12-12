@@ -87,10 +87,14 @@ volatile unsigned char clkm = CLKM;
 volatile unsigned char seg;
 volatile unsigned char clkms = 0;
 
+
 unsigned int hours_tens =0; // 0 -23
 unsigned int hours_units =0;
 unsigned int min_tens =0; //0 -59
 unsigned int min_units =0;
+
+volatile unsigned char alarm_told = 0, alarm_t =0;
+
 
 unsigned char nreg_init;
 unsigned char ring_byte[5];
@@ -105,7 +109,9 @@ volatile unsigned char config_mode = OFF;
 volatile unsigned char alarm = 0;
 
 char str_rc[UART_BUFF_SIZE]="\0";
-char str_snd[UART_BUFF_SIZE]="hello\0";
+char str_snd[UART_BUFF_SIZE]="\0";
+char buff_reg[5]="\0";
+
 
 unsigned int convertedValue = 0;
 unsigned int duty_cycle = 0;
@@ -117,6 +123,8 @@ unsigned char temp;
 unsigned char alaf;
 unsigned char nreg = NREG;
 unsigned char nreg_pt;
+unsigned int nreg_read = 0;
+unsigned char reg_valid =0; 
 unsigned char pmon = PMON;
 unsigned char tala = TALA;
 
@@ -181,9 +189,10 @@ void main(void){
     
     unsigned char t5s =0, t1m =0;
     
-
+    
     nreg = (unsigned char) (EE_FST + 5 * NREG >= EE_RECV ? EE_SIZE : 5 * NREG);
     nreg_pt = 0;
+    nreg_read = 0;
     nreg_init = 0;
     alaf = 1;
     temp = 0;
@@ -210,8 +219,8 @@ void main(void){
     INTERRUPT_GlobalInterruptEnable();
     // Enable the Peripheral Interrupts
     INTERRUPT_PeripheralInterruptEnable();
-
-
+     
+    
     while (1)
     {   
 
@@ -247,7 +256,7 @@ void main(void){
                             temp = tsttc();                     //I2C read
                             NOP();
                             
-                               // Push to Ring buffer
+                            // Push to Ring buffer
                             if (temp != read_ring(nreg_pt, nreg, nreg_init, 0, 3) || lum_bin != read_ring(nreg_pt, nreg, nreg_init, 0, 4)) {
                                 ring_buffer (ring_byte,clkh, clkm, seg, temp,lum_bin);
                                 push_ring(&nreg_pt, nreg, &nreg_init, ring_byte);
@@ -293,21 +302,28 @@ void main(void){
 
 void check_thresholds(uint8_t threshold){
     
+    unsigned char _alarm;
+   
+    PIE4bits.TMR2IE = 0;
+    _alarm = alarm;
+    PIE4bits.TMR2IE = 1;
+    
+    
     if(threshold){
-            if(alarm == SET){           //if alarm is set ON you need to press SW1 ON 
+            if(_alarm == SET){           //if alarm is set ON you need to press SW1 ON 
                 duty_cycle +=1 ;   
                 PWM6_LoadDutyValue(duty_cycle);
             }
-            else if(alarm == OFF){
-                PIE0bits.TMR0IE = 1;    // We exceed the threshold  check the 3 sec 
-                TMR0_StartTimer();
-                alarm = SET ;  
+            else if(_alarm == OFF){
+                //PIE0bits.TMR0IE = 1;    // We exceed the threshold  check the 3 sec 
+                //TMR0_StartTimer();
+                _alarm = SET ;  
             }
         }
     else{
-        if(alarm == SET){
+        if(_alarm == SET){
             PWM6_LoadDutyValue(OFF);
-            alarm = OFF ;
+            _alarm = OFF ;
         }
     }
     
@@ -576,7 +592,9 @@ void handler_clock_hms(void){
     if(!config_mode){
         IO_RA7_Toggle();
     }
-
+    
+   
+    alarm_t++;
     last5s++;
     seg++;
     if(seg >= 60) {
@@ -587,6 +605,10 @@ void handler_clock_hms(void){
             clkh++;
             clkm = 0;
         }
+    }
+    
+    if(clkh > 24){
+        clkh =0;
     }
 
 }
@@ -599,6 +621,21 @@ void handler_clock_hms(void){
 
 void handler_clock_ms(void){   
     clkms++;
+    
+    if (threshold){     //check if we still have a issue
+       
+        if (  alarm_t - alarm_told  > tala  ){
+            alarm_t =0;
+            alarm_told =0;
+            PWM6_LoadDutyValue(1023);
+            alarm = ON;
+        }
+    }
+    else{
+         alarm_told = alarm_t;
+    }
+    
+    alarm_t++;
 
     if(clkms > TIMER_MS_RESET){
         clkms = 0;
@@ -608,22 +645,28 @@ void handler_clock_ms(void){
 
 
 void parse_message(char * message, uint8_t max_size){
-    uint8_t i,h,m,s,p;
-    uint8_t  T,L,a;
+    uint8_t i,h,m,s,p,t;
+    uint8_t  T,L,a,n,idx;
     char c = '0', cmd =message[1] ;
-    //reply_UART_OK(cmd);
+    
     switch (cmd)
     {
      case (char)RCLK : 
-        
+        reply_UART_OK((char)cmd);
         PIE4bits.TMR1IE = 0;
-        //printf("%c%i%i%i%c",(char)SOM,clkh,clkm,seg,(char)EOM );
-        write_UART((char)SOM);
-        write_UART((char)cmd);
-        write_UART((char)clkh);
-        write_UART((char)clkm);
-        write_UART((char)seg);
-        write_UART((char)EOM);
+        
+        //sprintf(str_snd, "%c%c%02i%02i%02i%c", SOM,cmd,clkh,clkm,seg,(char)EOM);
+        //write_str_UART(str_snd ,UART_BUFF_SIZE);
+        
+        
+        printf("%c%c%02i%02i%02i%c",(char)SOM,(char)cmd, clkh,clkm,seg,(char)EOM );
+        
+        //write_UART((char)SOM);
+        //write_UART((char)cmd);
+        //write_UART('1');
+        //write_UART('2');
+        //write_UART(c);
+        //write_UART((char)EOM);
         
         PIE4bits.TMR1IE = 1;
         
@@ -642,6 +685,7 @@ void parse_message(char * message, uint8_t max_size){
                 clkm = m;
                 seg = s;
                 PIE4bits.TMR1IE = 1;
+                reply_UART_OK((char)cmd);
             }
             else{
                 reply_UART_ERROR((char)cmd);  
@@ -655,15 +699,19 @@ void parse_message(char * message, uint8_t max_size){
         
         break;
     case (char)RTL:
-        //printf("%c%i%i%c",(char)SOM,temp,lum_bin,(char)EOM );
-        write_UART((char)SOM);
-        write_UART((char)cmd);
-        write_UART((char)temp);
-        write_UART((char)lum_bin);
-        write_UART((char)EOM);
+        reply_UART_OK((char)cmd);
+        printf("%c%c %i %i %c",(char)SOM,(char)cmd,temp,lum_bin,(char)EOM );
+        
+        //write_UART((char)SOM);
+        //write_UART((char)cmd);
+        //write_UART((char)temp);
+        //write_UART((char)lum_bin);
+        //write_UART((char)EOM);
         break;
     case (char)RPAR:
-        //printf("%c%i%i%c",(char)SOM,pmon,tala,(char)EOM );
+        reply_UART_OK((char)cmd);
+        printf("%c%c %i %i %c",(char)SOM,(char)cmd,pmon,tala,(char)EOM );
+        
         write_UART((char)SOM);
         write_UART((char)cmd);
         write_UART((char)pmon);
@@ -676,7 +724,8 @@ void parse_message(char * message, uint8_t max_size){
                 p = message[2] -'0';
                
                 if (( p >= 0 && p <100)  ){
-                 pmon = p  ;  
+                 pmon = p  ; 
+                 reply_UART_OK((char)cmd);
                 }
                 else{
                     reply_UART_ERROR((char)cmd);  
@@ -688,9 +737,25 @@ void parse_message(char * message, uint8_t max_size){
             }
         break;
     case (char) MTA:
+      if ((strlen(message)) >= 3 ){ 
+                t = message[2] -'0';
+                if (( t >= 0 && t<61)){
+                 tala = t ;
+                 reply_UART_OK((char)cmd);
+                 
+                }
+                else{
+                    reply_UART_ERROR((char)cmd);  
+                } 
+            }
+            else{              
+                reply_UART_ERROR((char)cmd);
+        }
         break;
     case (char) RALA:
-        //printf("%c%i%i%c",(char)SOM,pmon,tala,(char)EOM );
+        reply_UART_OK((char)cmd);
+        printf("%c%c %i %i %c",(char)SOM,pmon,tala,(char)EOM );
+        
         write_UART((char)SOM);
         write_UART((char)cmd);
         write_UART((char)temp_thresh);
@@ -705,6 +770,7 @@ void parse_message(char * message, uint8_t max_size){
                 if (( T >= 0 && T <51) && ( L >= 0 && L<4)  ){
                  temp_thresh = T ;
                  lum_thresh = L;
+                 reply_UART_OK((char)cmd);
                 }
                 else{
                     reply_UART_ERROR((char)cmd);  
@@ -720,6 +786,7 @@ void parse_message(char * message, uint8_t max_size){
                 a = message[2] -'0';
                 if (( a == 0 || a == 1)){
                  alaf = a ;
+                 reply_UART_OK((char)cmd);
                  
                 }
                 else{
@@ -731,10 +798,85 @@ void parse_message(char * message, uint8_t max_size){
         }
         break;
     case (char)IREG:
+        
+        reply_UART_OK((char)cmd);
+        printf("%c%c %i %i %i %c",(char)SOM,(char)cmd,reg_valid,nreg_read,nreg,nreg_pt,(char)EOM );
+        
+        //write_UART((char)SOM);
+        //write_UART((char)cmd);
+        //write_UART((char)nreg);
+        //write_UART((char)reg_valid);
+        //write_UART((char)nreg_read);
+        //write_UART((char)nreg_pt);
+        //write_UART((char)EOM);
         break;
     case (char)TRGC:
+        
+         if ((strlen(message)) >= 3 ){ 
+                n = message[2] -'0';
+                if (( n >= 0 && n< nreg)){
+                    
+                             
+                    reply_UART_OK((char)cmd);
+                 for(int j=0; i < n; ++i){
+                    if (read_registers(buff_reg, 0) >4 ){
+                        
+                        write_UART((char)SOM);
+                        write_UART((char)cmd);
+                        write_UART(buff_reg[0]);
+                        write_UART(buff_reg[1]);
+                        write_UART(buff_reg[2]);
+                        write_UART(buff_reg[3]);
+                        write_UART(buff_reg[4]);
+                        write_UART((char)EOM);
+                    }
+                  
+                  }
+                }
+                else{
+                    reply_UART_ERROR((char)cmd);  
+                } 
+            }
+            else{              
+                reply_UART_ERROR((char)cmd);
+        }
+        
         break;
     case (char)TRGI:
+        
+        if ((strlen(message)) >= 4 ){ 
+                n = message[2] -'0';
+                idx = message[2] -'0';
+                if (( n >= 0 && n< nreg)  && (idx >= 0 && idx< nreg)){
+                    
+                             
+                    reply_UART_OK((char)cmd);
+                 for(int j=0; i < n; ++i){
+                    if (read_registers(buff_reg, idx) >4 ){
+                        
+                        write_UART((char)SOM);
+                        write_UART((char)cmd);
+                        write_UART(buff_reg[0]);
+                        write_UART(buff_reg[1]);
+                        write_UART(buff_reg[2]);
+                        write_UART(buff_reg[3]);
+                        write_UART(buff_reg[4]);
+                        write_UART((char)EOM);
+                    }
+                    idx =0; 
+                  
+                  }
+                }
+                else{
+                    reply_UART_ERROR((char)cmd);  
+                } 
+            }
+            else{              
+                reply_UART_ERROR((char)cmd);
+        }
+        
+        
+        
         break;
     case (char)NMFL:
         break;
